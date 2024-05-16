@@ -1,0 +1,14 @@
+export { AggregateMovieStudioArgs } from "./AggregateMovieStudioArgs";
+export { CreateManyMovieStudioArgs } from "./CreateManyMovieStudioArgs";
+export { CreateOneMovieStudioArgs } from "./CreateOneMovieStudioArgs";
+export { DeleteManyMovieStudioArgs } from "./DeleteManyMovieStudioArgs";
+export { DeleteOneMovieStudioArgs } from "./DeleteOneMovieStudioArgs";
+export { FindFirstMovieStudioArgs } from "./FindFirstMovieStudioArgs";
+export { FindFirstMovieStudioOrThrowArgs } from "./FindFirstMovieStudioOrThrowArgs";
+export { FindManyMovieStudioArgs } from "./FindManyMovieStudioArgs";
+export { FindUniqueMovieStudioArgs } from "./FindUniqueMovieStudioArgs";
+export { FindUniqueMovieStudioOrThrowArgs } from "./FindUniqueMovieStudioOrThrowArgs";
+export { GroupByMovieStudioArgs } from "./GroupByMovieStudioArgs";
+export { UpdateManyMovieStudioArgs } from "./UpdateManyMovieStudioArgs";
+export { UpdateOneMovieStudioArgs } from "./UpdateOneMovieStudioArgs";
+export { UpsertOneMovieStudioArgs } from "./UpsertOneMovieStudioArgs";

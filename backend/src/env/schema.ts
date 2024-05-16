@@ -10,6 +10,10 @@ export const envSchema = {
       type: "string",
       default: "postgresql://postgres:password@localhost:5432/postgres",
     },
+    REDIS_URL: {
+      type: "string",
+      default: "redis://localhost:6379",
+    },
   },
 };
 
@@ -18,6 +22,7 @@ declare module "fastify" {
     config: {
       PORT: number;
       DATABASE_URL: string;
+      REDIS_URL: string;
     };
   }
 }

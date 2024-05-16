@@ -1,0 +1,15 @@
+export { GenreRelationsResolver } from "./Genre/GenreRelationsResolver";
+export { MovieRelationsResolver } from "./Movie/MovieRelationsResolver";
+export { MovieCrewMemberRelationsResolver } from "./MovieCrewMember/MovieCrewMemberRelationsResolver";
+export { MovieCrewMemberTypeRelationsResolver } from "./MovieCrewMemberType/MovieCrewMemberTypeRelationsResolver";
+export { MovieInfoRelationsResolver } from "./MovieInfo/MovieInfoRelationsResolver";
+export { MovieKeywordCategoryRelationsResolver } from "./MovieKeywordCategory/MovieKeywordCategoryRelationsResolver";
+export { MovieListRelationsResolver } from "./MovieList/MovieListRelationsResolver";
+export { MovieListCommentRelationsResolver } from "./MovieListComment/MovieListCommentRelationsResolver";
+export { MovieListStatsRelationsResolver } from "./MovieListStats/MovieListStatsRelationsResolver";
+export { MovieRatingRelationsResolver } from "./MovieRating/MovieRatingRelationsResolver";
+export { MovieReviewRelationsResolver } from "./MovieReview/MovieReviewRelationsResolver";
+export { MovieSpokenLanguageRelationsResolver } from "./MovieSpokenLanguage/MovieSpokenLanguageRelationsResolver";
+export { MovieStatsRelationsResolver } from "./MovieStats/MovieStatsRelationsResolver";
+export { MovieStudioRelationsResolver } from "./MovieStudio/MovieStudioRelationsResolver";
+export { MovifierAppUserRelationsResolver } from "./MovifierAppUser/MovifierAppUserRelationsResolver";

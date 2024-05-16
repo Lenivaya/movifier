@@ -10,9 +10,10 @@ import { createYoga } from "graphql-yoga";
 import { renderGraphiqlWithApolloPlayground } from "@/utils/graphql-playground/renderGraphiqlWithApolloPlayground";
 import { useParserCache } from "@envelop/parser-cache";
 import { useValidationCache } from "@envelop/validation-cache";
+import { useResponseCache } from "@envelop/response-cache";
 import { createFetch } from "@whatwg-node/fetch";
 import { useAPQ } from "@graphql-yoga/plugin-apq";
-import { resolvers } from "@generated/type-graphql";
+import { resolvers } from "@/graphql/resolvers";
 
 export async function main() {
   const app = fastify({
@@ -60,6 +61,11 @@ export async function main() {
     plugins: [
       useParserCache({}),
       useValidationCache({}),
+      useResponseCache({
+        ttl: 60 * 1000 * 60,
+        session: (context) => null,
+        invalidateViaMutation: true,
+      }),
       useAPQ({}),
       // useGraphQlJit({}),
       // useApolloTracing(),
