@@ -1,0 +1,181 @@
+datasource movifier_db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+generator typegraphql {
+  provider = "typegraphql-prisma"
+}
+
+model MovieStudio {
+  id        String   @id @unique @default(cuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  name      String
+  movies    Movie[]
+}
+
+model Movie {
+  id                 String                 @id @unique @default(cuid())
+  createdAt          DateTime               @default(now())
+  updatedAt          DateTime               @updatedAt
+  movieInfo          MovieInfo?
+  MovieStats         MovieStats?
+  crewMembers        MovieCrewMember[]
+  studios            MovieStudio[]
+  genres             Genre[]
+  keywordCategories  MovieKeywordCategory[]
+  ratings            MovieRating[]
+  movieLists         MovieList[]
+  inWatchlistByUsers MovifierAppUser[]
+  spokenLanguages    MovieSpokenLanguage[]
+  genreName          String?
+}
+
+model MovieStats {
+  id                String @id @default(cuid())
+  timesWatchedCount Int
+  totalRatingsCount Int
+  totalLikesCount   Int
+  overallPlaceINTop Int
+  avgRating         Float
+  movieId           String @unique
+  movie             Movie  @relation(fields: [movieId], references: [id], onDelete: Cascade)
+}
+
+model MovieInfo {
+  id                String   @id @unique @default(cuid())
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+  imdbId            String   @unique
+  title             String
+  description       String
+  alternativeTitles String[] @default([])
+  durationInMinutes Int
+  posterUrl         String
+  movieId           String   @unique
+  movie             Movie    @relation(fields: [movieId], references: [id], onDelete: Cascade)
+}
+
+model MovieSpokenLanguage {
+  language  String   @id @unique
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  movies    Movie[]
+}
+
+model MovieCrewMember {
+  id        String   @id @unique @default(cuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  name      String
+  movies    Movie[]
+
+  movieCrewMemberTypeId String?
+  movieCrewMemberType   MovieCrewMemberType? @relation(fields: [movieCrewMemberTypeId], references: [id])
+}
+
+model MovieCrewMemberType {
+  id               String            @id @unique @default(cuid())
+  name             String            @unique
+  movieCrewMembers MovieCrewMember[]
+}
+
+model Genre {
+  name      String   @id @unique
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  movies    Movie[]
+}
+
+model MovieKeywordCategory {
+  id     String  @id @unique @default(cuid())
+  name   String
+  movies Movie[]
+}
+
+enum MoviefireAppUserRole {
+  USER
+  ADMIN
+}
+
+model MovifierAppUser {
+  id                 String               @id @unique @default(cuid())
+  createdAt          DateTime             @default(now())
+  updatedAt          DateTime             @updatedAt
+  email              String               @unique
+  username           String               @unique
+  password_hash      String
+  name               String
+  role               MoviefireAppUserRole @default(USER)
+  watchlist          Movie[]
+  rating             MovieRating[]
+  movieLists         MovieList[]
+  movieListsComments MovieListComment[]
+}
+
+model MovieList {
+  id        String   @id @unique @default(cuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  name      String
+  movies    Movie[]
+
+  userId          String
+  movieListAuthor MovifierAppUser @relation(fields: [userId], references: [id])
+
+  MovieListStats    MovieListStats?
+  movieListComments MovieListComment[]
+}
+
+model MovieListStats {
+  id        String   @id @unique @default(cuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  views     Int
+  likes     Int
+
+  movieListId String    @unique
+  MovieList   MovieList @relation(fields: [movieListId], references: [id])
+}
+
+model MovieListComment {
+  id        String   @id @unique @default(cuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  content   String
+
+  movieListId String
+  movieList   MovieList @relation(fields: [movieListId], references: [id])
+
+  userId String
+  user   MovifierAppUser @relation(fields: [userId], references: [id])
+}
+
+model MovieRating {
+  id        String       @id @unique @default(cuid())
+  createdAt DateTime     @default(now())
+  updatedAt DateTime     @updatedAt
+  rating    Int
+  Review    MovieReview?
+
+  movieId String @unique
+  movie   Movie  @relation(fields: [movieId], references: [id], onDelete: Cascade)
+
+  userId String
+  user   MovifierAppUser @relation(fields: [userId], references: [id])
+}
+
+model MovieReview {
+  id        String   @id @unique @default(cuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  content   String
+
+  ratingId String      @unique
+  rating   MovieRating @relation(fields: [ratingId], references: [id])
+}
