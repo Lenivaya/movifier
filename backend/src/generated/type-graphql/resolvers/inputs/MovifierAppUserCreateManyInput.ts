@@ -34,7 +34,7 @@ export class MovifierAppUserCreateManyInput {
   @TypeGraphQL.Field((_type) => String, {
     nullable: false,
   })
-  password_hash!: string;
+  password!: string;
 
   @TypeGraphQL.Field((_type) => String, {
     nullable: false,

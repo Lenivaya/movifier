@@ -2,8 +2,8 @@ import * as TypeGraphQL from "type-graphql";
 import * as GraphQLScalars from "graphql-scalars";
 import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../scalars";
-import { MovieList } from "./MovieList";
-import { MovifierAppUser } from "./MovifierAppUser";
+import { MovieList } from "../models/MovieList";
+import { MovifierAppUser } from "../models/MovifierAppUser";
 
 @TypeGraphQL.ObjectType("MovieListComment", {})
 export class MovieListComment {

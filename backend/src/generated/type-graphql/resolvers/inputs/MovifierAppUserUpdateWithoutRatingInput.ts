@@ -39,7 +39,7 @@ export class MovifierAppUserUpdateWithoutRatingInput {
   @TypeGraphQL.Field((_type) => StringFieldUpdateOperationsInput, {
     nullable: true,
   })
-  password_hash?: StringFieldUpdateOperationsInput | undefined;
+  password?: StringFieldUpdateOperationsInput | undefined;
 
   @TypeGraphQL.Field((_type) => StringFieldUpdateOperationsInput, {
     nullable: true,

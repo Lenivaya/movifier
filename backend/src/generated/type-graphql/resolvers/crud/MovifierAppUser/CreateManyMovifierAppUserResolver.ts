@@ -1,7 +1,7 @@
 import * as TypeGraphQL from "type-graphql";
 import type { GraphQLResolveInfo } from "graphql";
 import { CreateManyMovifierAppUserArgs } from "./args/CreateManyMovifierAppUserArgs";
-import { MovifierAppUser } from "@/generated/type-graphql/models/MovifierAppUser";
+import { MovifierAppUser } from "../../../models/MovifierAppUser";
 import { AffectedRowsOutput } from "../../outputs/AffectedRowsOutput";
 import {
   transformInfoIntoPrismaArgs,

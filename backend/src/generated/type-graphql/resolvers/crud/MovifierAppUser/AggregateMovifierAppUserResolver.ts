@@ -1,7 +1,7 @@
 import * as TypeGraphQL from "type-graphql";
 import type { GraphQLResolveInfo } from "graphql";
 import { AggregateMovifierAppUserArgs } from "./args/AggregateMovifierAppUserArgs";
-import { MovifierAppUser } from "@/generated/type-graphql/models/MovifierAppUser";
+import { MovifierAppUser } from "../../../models/MovifierAppUser";
 import { AggregateMovifierAppUser } from "../../outputs/AggregateMovifierAppUser";
 import {
   transformInfoIntoPrismaArgs,

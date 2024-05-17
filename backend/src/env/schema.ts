@@ -14,6 +14,10 @@ export const envSchema = {
       type: "string",
       default: "redis://localhost:6379",
     },
+    JWT_SECRET: {
+      type: "string",
+      default: "secret",
+    },
   },
 };
 
@@ -23,6 +27,7 @@ declare module "fastify" {
       PORT: number;
       DATABASE_URL: string;
       REDIS_URL: string;
+      JWT_SECRET: string;
     };
   }
 }

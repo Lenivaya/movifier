@@ -19,7 +19,7 @@ import {
   getPrismaFromContext,
   transformCountFieldIntoSelectRelationsCount,
 } from "../../../helpers";
-import { Genre } from "@/generated/type-graphql/models/Genre";
+import { Genre } from "../../../models/Genre";
 import { AffectedRowsOutput } from "../../outputs/AffectedRowsOutput";
 import { AggregateGenre } from "../../outputs/AggregateGenre";
 import { GenreGroupBy } from "../../outputs/GenreGroupBy";

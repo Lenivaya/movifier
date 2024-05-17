@@ -60,7 +60,7 @@ export class MovifierAppUserScalarWhereWithAggregatesInput {
   @TypeGraphQL.Field((_type) => StringWithAggregatesFilter, {
     nullable: true,
   })
-  password_hash?: StringWithAggregatesFilter | undefined;
+  password?: StringWithAggregatesFilter | undefined;
 
   @TypeGraphQL.Field((_type) => StringWithAggregatesFilter, {
     nullable: true,

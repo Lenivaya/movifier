@@ -34,7 +34,7 @@ export class MovifierAppUserMinAggregate {
   @TypeGraphQL.Field((_type) => String, {
     nullable: true,
   })
-  password_hash!: string | null;
+  password!: string | null;
 
   @TypeGraphQL.Field((_type) => String, {
     nullable: true,

@@ -6,7 +6,7 @@ export enum MovifierAppUserScalarFieldEnum {
   updatedAt = "updatedAt",
   email = "email",
   username = "username",
-  password_hash = "password_hash",
+  password = "password",
   name = "name",
   role = "role",
 }

@@ -1,7 +1,7 @@
 import * as TypeGraphQL from "type-graphql";
 import type { GraphQLResolveInfo } from "graphql";
 import { DeleteOneGenreArgs } from "./args/DeleteOneGenreArgs";
-import { Genre } from "@/generated/type-graphql/models/Genre";
+import { Genre } from "../../../models/Genre";
 import {
   transformInfoIntoPrismaArgs,
   getPrismaFromContext,

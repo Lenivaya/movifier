@@ -42,7 +42,7 @@ export class FindFirstMovifierAppUserOrThrowArgs {
         | "updatedAt"
         | "email"
         | "username"
-        | "password_hash"
+        | "password"
         | "name"
         | "role"
       >

@@ -2,16 +2,16 @@ import * as TypeGraphQL from "type-graphql";
 import * as GraphQLScalars from "graphql-scalars";
 import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../scalars";
-import { Genre } from "./Genre";
-import { MovieCrewMember } from "./MovieCrewMember";
-import { MovieInfo } from "./MovieInfo";
-import { MovieKeywordCategory } from "./MovieKeywordCategory";
-import { MovieList } from "./MovieList";
-import { MovieRating } from "./MovieRating";
-import { MovieSpokenLanguage } from "./MovieSpokenLanguage";
-import { MovieStats } from "./MovieStats";
-import { MovieStudio } from "./MovieStudio";
-import { MovifierAppUser } from "./MovifierAppUser";
+import { Genre } from "../models/Genre";
+import { MovieCrewMember } from "../models/MovieCrewMember";
+import { MovieInfo } from "../models/MovieInfo";
+import { MovieKeywordCategory } from "../models/MovieKeywordCategory";
+import { MovieList } from "../models/MovieList";
+import { MovieRating } from "../models/MovieRating";
+import { MovieSpokenLanguage } from "../models/MovieSpokenLanguage";
+import { MovieStats } from "../models/MovieStats";
+import { MovieStudio } from "../models/MovieStudio";
+import { MovifierAppUser } from "../models/MovifierAppUser";
 import { MovieCount } from "../resolvers/outputs/MovieCount";
 
 @TypeGraphQL.ObjectType("Movie", {})

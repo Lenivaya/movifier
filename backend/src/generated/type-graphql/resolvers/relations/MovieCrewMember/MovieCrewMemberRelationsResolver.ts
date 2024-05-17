@@ -1,8 +1,8 @@
 import * as TypeGraphQL from "type-graphql";
 import type { GraphQLResolveInfo } from "graphql";
-import { Movie } from "@/generated/type-graphql/models/Movie";
-import { MovieCrewMember } from "@/generated/type-graphql/models/MovieCrewMember";
-import { MovieCrewMemberType } from "@/generated/type-graphql/models/MovieCrewMemberType";
+import { Movie } from "../../../models/Movie";
+import { MovieCrewMember } from "../../../models/MovieCrewMember";
+import { MovieCrewMemberType } from "../../../models/MovieCrewMemberType";
 import { MovieCrewMemberMovieCrewMemberTypeArgs } from "./args/MovieCrewMemberMovieCrewMemberTypeArgs";
 import { MovieCrewMemberMoviesArgs } from "./args/MovieCrewMemberMoviesArgs";
 import {

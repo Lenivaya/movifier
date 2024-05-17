@@ -19,7 +19,7 @@ import {
   getPrismaFromContext,
   transformCountFieldIntoSelectRelationsCount,
 } from "../../../helpers";
-import { MovieKeywordCategory } from "@/generated/type-graphql/models/MovieKeywordCategory";
+import { MovieKeywordCategory } from "../../../models/MovieKeywordCategory";
 import { AffectedRowsOutput } from "../../outputs/AffectedRowsOutput";
 import { AggregateMovieKeywordCategory } from "../../outputs/AggregateMovieKeywordCategory";
 import { MovieKeywordCategoryGroupBy } from "../../outputs/MovieKeywordCategoryGroupBy";

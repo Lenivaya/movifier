@@ -1,7 +1,7 @@
 import * as TypeGraphQL from "type-graphql";
 import type { GraphQLResolveInfo } from "graphql";
 import { UpdateManyMovieKeywordCategoryArgs } from "./args/UpdateManyMovieKeywordCategoryArgs";
-import { MovieKeywordCategory } from "@/generated/type-graphql/models/MovieKeywordCategory";
+import { MovieKeywordCategory } from "../../../models/MovieKeywordCategory";
 import { AffectedRowsOutput } from "../../outputs/AffectedRowsOutput";
 import {
   transformInfoIntoPrismaArgs,

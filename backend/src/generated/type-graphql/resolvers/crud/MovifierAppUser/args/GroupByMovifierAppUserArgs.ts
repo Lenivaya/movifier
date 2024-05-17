@@ -26,7 +26,7 @@ export class GroupByMovifierAppUserArgs {
     | "updatedAt"
     | "email"
     | "username"
-    | "password_hash"
+    | "password"
     | "name"
     | "role"
   >;

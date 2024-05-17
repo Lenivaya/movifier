@@ -19,7 +19,7 @@ import {
   getPrismaFromContext,
   transformCountFieldIntoSelectRelationsCount,
 } from "../../../helpers";
-import { MovifierAppUser } from "@/generated/type-graphql/models/MovifierAppUser";
+import { MovifierAppUser } from "../../../models/MovifierAppUser";
 import { AffectedRowsOutput } from "../../outputs/AffectedRowsOutput";
 import { AggregateMovifierAppUser } from "../../outputs/AggregateMovifierAppUser";
 import { MovifierAppUserGroupBy } from "../../outputs/MovifierAppUserGroupBy";

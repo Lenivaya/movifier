@@ -42,7 +42,7 @@ export class FindManyMovifierAppUserArgs {
         | "updatedAt"
         | "email"
         | "username"
-        | "password_hash"
+        | "password"
         | "name"
         | "role"
       >

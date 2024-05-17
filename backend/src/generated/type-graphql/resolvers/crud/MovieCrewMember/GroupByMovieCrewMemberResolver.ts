@@ -1,7 +1,7 @@
 import * as TypeGraphQL from "type-graphql";
 import type { GraphQLResolveInfo } from "graphql";
 import { GroupByMovieCrewMemberArgs } from "./args/GroupByMovieCrewMemberArgs";
-import { MovieCrewMember } from "@/generated/type-graphql/models/MovieCrewMember";
+import { MovieCrewMember } from "../../../models/MovieCrewMember";
 import { MovieCrewMemberGroupBy } from "../../outputs/MovieCrewMemberGroupBy";
 import {
   transformInfoIntoPrismaArgs,

@@ -19,7 +19,7 @@ import {
   getPrismaFromContext,
   transformCountFieldIntoSelectRelationsCount,
 } from "../../../helpers";
-import { MovieSpokenLanguage } from "@/generated/type-graphql/models/MovieSpokenLanguage";
+import { MovieSpokenLanguage } from "../../../models/MovieSpokenLanguage";
 import { AffectedRowsOutput } from "../../outputs/AffectedRowsOutput";
 import { AggregateMovieSpokenLanguage } from "../../outputs/AggregateMovieSpokenLanguage";
 import { MovieSpokenLanguageGroupBy } from "../../outputs/MovieSpokenLanguageGroupBy";

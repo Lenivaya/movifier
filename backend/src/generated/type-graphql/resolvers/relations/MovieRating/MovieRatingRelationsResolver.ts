@@ -1,9 +1,9 @@
 import * as TypeGraphQL from "type-graphql";
 import type { GraphQLResolveInfo } from "graphql";
-import { Movie } from "@/generated/type-graphql/models/Movie";
-import { MovieRating } from "@/generated/type-graphql/models/MovieRating";
-import { MovieReview } from "@/generated/type-graphql/models/MovieReview";
-import { MovifierAppUser } from "@/generated/type-graphql/models/MovifierAppUser";
+import { Movie } from "../../../models/Movie";
+import { MovieRating } from "../../../models/MovieRating";
+import { MovieReview } from "../../../models/MovieReview";
+import { MovifierAppUser } from "../../../models/MovifierAppUser";
 import { MovieRatingReviewArgs } from "./args/MovieRatingReviewArgs";
 import {
   transformInfoIntoPrismaArgs,

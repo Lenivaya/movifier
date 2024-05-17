@@ -1,7 +1,7 @@
 import * as TypeGraphQL from "type-graphql";
 import type { GraphQLResolveInfo } from "graphql";
 import { DeleteOneMovieSpokenLanguageArgs } from "./args/DeleteOneMovieSpokenLanguageArgs";
-import { MovieSpokenLanguage } from "@/generated/type-graphql/models/MovieSpokenLanguage";
+import { MovieSpokenLanguage } from "../../../models/MovieSpokenLanguage";
 import {
   transformInfoIntoPrismaArgs,
   getPrismaFromContext,

@@ -1,7 +1,7 @@
 import * as TypeGraphQL from "type-graphql";
 import type { GraphQLResolveInfo } from "graphql";
 import { FindUniqueMovieKeywordCategoryArgs } from "./args/FindUniqueMovieKeywordCategoryArgs";
-import { MovieKeywordCategory } from "@/generated/type-graphql/models/MovieKeywordCategory";
+import { MovieKeywordCategory } from "../../../models/MovieKeywordCategory";
 import {
   transformInfoIntoPrismaArgs,
   getPrismaFromContext,

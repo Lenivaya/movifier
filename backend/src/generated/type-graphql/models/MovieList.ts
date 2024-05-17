@@ -2,10 +2,10 @@ import * as TypeGraphQL from "type-graphql";
 import * as GraphQLScalars from "graphql-scalars";
 import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../scalars";
-import { Movie } from "./Movie";
-import { MovieListComment } from "./MovieListComment";
-import { MovieListStats } from "./MovieListStats";
-import { MovifierAppUser } from "./MovifierAppUser";
+import { Movie } from "../models/Movie";
+import { MovieListComment } from "../models/MovieListComment";
+import { MovieListStats } from "../models/MovieListStats";
+import { MovifierAppUser } from "../models/MovifierAppUser";
 import { MovieListCount } from "../resolvers/outputs/MovieListCount";
 
 @TypeGraphQL.ObjectType("MovieList", {})

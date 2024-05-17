@@ -1,10 +1,10 @@
 import * as TypeGraphQL from "type-graphql";
 import type { GraphQLResolveInfo } from "graphql";
-import { Movie } from "@/generated/type-graphql/models/Movie";
-import { MovieList } from "@/generated/type-graphql/models/MovieList";
-import { MovieListComment } from "@/generated/type-graphql/models/MovieListComment";
-import { MovieRating } from "@/generated/type-graphql/models/MovieRating";
-import { MovifierAppUser } from "@/generated/type-graphql/models/MovifierAppUser";
+import { Movie } from "../../../models/Movie";
+import { MovieList } from "../../../models/MovieList";
+import { MovieListComment } from "../../../models/MovieListComment";
+import { MovieRating } from "../../../models/MovieRating";
+import { MovifierAppUser } from "../../../models/MovifierAppUser";
 import { MovifierAppUserMovieListsArgs } from "./args/MovifierAppUserMovieListsArgs";
 import { MovifierAppUserMovieListsCommentsArgs } from "./args/MovifierAppUserMovieListsCommentsArgs";
 import { MovifierAppUserRatingArgs } from "./args/MovifierAppUserRatingArgs";

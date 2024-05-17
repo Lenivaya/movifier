@@ -38,7 +38,7 @@ export class MovifierAppUserOrderByWithRelationInput {
   @TypeGraphQL.Field((_type) => SortOrder, {
     nullable: true,
   })
-  password_hash?: "asc" | "desc" | undefined;
+  password?: "asc" | "desc" | undefined;
 
   @TypeGraphQL.Field((_type) => SortOrder, {
     nullable: true,

@@ -13,18 +13,25 @@ import { useValidationCache } from "@envelop/validation-cache";
 import { useResponseCache } from "@envelop/response-cache";
 import { createFetch } from "@whatwg-node/fetch";
 import { useAPQ } from "@graphql-yoga/plugin-apq";
-import { resolvers } from "@/graphql/resolvers";
+import { resolvers, resolversEnhanceMap } from "@/graphql/resolvers";
+import { applyResolversEnhanceMap } from "@/generated/type-graphql";
+import { useJWT } from "@graphql-yoga/plugin-jwt";
+import { AppContext } from "@/graphql/context";
+
+export const app = fastify({
+  logger: true,
+})
+  .register(cors)
+  .register(fastifyEnv, {
+    schema: envSchema,
+    dotenv: true,
+    data: process.env,
+  });
 
 export async function main() {
-  const app = fastify({
-    logger: true,
-  })
-    .register(cors)
-    .register(fastifyEnv, {
-      schema: envSchema,
-      dotenv: true,
-      data: process.env,
-    });
+  await app.after();
+
+  applyResolversEnhanceMap(resolversEnhanceMap);
 
   const schema = await buildSchema({
     resolvers,
@@ -49,20 +56,19 @@ export async function main() {
     },
     schema,
     renderGraphiQL: renderGraphiqlWithApolloPlayground,
-    //context: contextCreator,
     batching: true,
     cors: {
       origin: "*",
       credentials: true,
     },
-    context: ({}) => ({
+    context: ({}): AppContext => ({
       prisma,
     }),
     plugins: [
       useParserCache({}),
       useValidationCache({}),
       useResponseCache({
-        ttl: 60 * 1000 * 60,
+        ttl: 60 * 1000 * 5,
         session: (context) => null,
         invalidateViaMutation: true,
       }),

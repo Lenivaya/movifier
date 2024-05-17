@@ -55,7 +55,7 @@ export class MovifierAppUserWhereInput {
   @TypeGraphQL.Field((_type) => StringFilter, {
     nullable: true,
   })
-  password_hash?: StringFilter | undefined;
+  password?: StringFilter | undefined;
 
   @TypeGraphQL.Field((_type) => StringFilter, {
     nullable: true,

@@ -1,7 +1,7 @@
 import * as TypeGraphQL from "type-graphql";
 import type { GraphQLResolveInfo } from "graphql";
 import { UpdateOneMovieListStatsArgs } from "./args/UpdateOneMovieListStatsArgs";
-import { MovieListStats } from "@/generated/type-graphql/models/MovieListStats";
+import { MovieListStats } from "../../../models/MovieListStats";
 import {
   transformInfoIntoPrismaArgs,
   getPrismaFromContext,

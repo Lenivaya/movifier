@@ -19,7 +19,7 @@ import {
   getPrismaFromContext,
   transformCountFieldIntoSelectRelationsCount,
 } from "../../../helpers";
-import { MovieCrewMemberType } from "@/generated/type-graphql/models/MovieCrewMemberType";
+import { MovieCrewMemberType } from "../../../models/MovieCrewMemberType";
 import { AffectedRowsOutput } from "../../outputs/AffectedRowsOutput";
 import { AggregateMovieCrewMemberType } from "../../outputs/AggregateMovieCrewMemberType";
 import { MovieCrewMemberTypeGroupBy } from "../../outputs/MovieCrewMemberTypeGroupBy";

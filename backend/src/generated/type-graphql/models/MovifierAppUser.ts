@@ -2,10 +2,10 @@ import * as TypeGraphQL from "type-graphql";
 import * as GraphQLScalars from "graphql-scalars";
 import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../scalars";
-import { Movie } from "./Movie";
-import { MovieList } from "./MovieList";
-import { MovieListComment } from "./MovieListComment";
-import { MovieRating } from "./MovieRating";
+import { Movie } from "../models/Movie";
+import { MovieList } from "../models/MovieList";
+import { MovieListComment } from "../models/MovieListComment";
+import { MovieRating } from "../models/MovieRating";
 import { MoviefireAppUserRole } from "../enums/MoviefireAppUserRole";
 import { MovifierAppUserCount } from "../resolvers/outputs/MovifierAppUserCount";
 
@@ -36,10 +36,7 @@ export class MovifierAppUser {
   })
   username!: string;
 
-  @TypeGraphQL.Field((_type) => String, {
-    nullable: false,
-  })
-  password_hash!: string;
+  password?: string;
 
   @TypeGraphQL.Field((_type) => String, {
     nullable: false,

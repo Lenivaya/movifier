@@ -19,7 +19,7 @@ import {
   getPrismaFromContext,
   transformCountFieldIntoSelectRelationsCount,
 } from "../../../helpers";
-import { MovieListComment } from "@/generated/type-graphql/models/MovieListComment";
+import { MovieListComment } from "../../../models/MovieListComment";
 import { AffectedRowsOutput } from "../../outputs/AffectedRowsOutput";
 import { AggregateMovieListComment } from "../../outputs/AggregateMovieListComment";
 import { MovieListCommentGroupBy } from "../../outputs/MovieListCommentGroupBy";
