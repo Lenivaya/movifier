@@ -44,6 +44,8 @@ export async function main() {
   });
   await prisma.$connect();
 
+  console.log(app.config.JWT_SECRET);
+
   const yoga = createYoga<{
     req: FastifyRequest;
     reply: FastifyReply;
@@ -80,6 +82,12 @@ export async function main() {
       //   // includeResolverArgs: false, // set to `true` in order to include the args passed to resolvers
       //   includeExecuteVariables: false, // set to `true` in order to include the operation variables values
       // }),
+      // useExtendContext(async (ctx) => console.log(ctx.jwt)),
+      useJWT({
+        issuer: "movifier.org",
+        signingKey: app.config.JWT_SECRET,
+        algorithms: ["HS256"],
+      }),
     ],
     fetchAPI: createFetch({
       // We prefer `node-fetch` over `undici` and current unstable Node's implementation
@@ -99,7 +107,7 @@ export async function main() {
 
   app.route({
     url: "/graphql",
-    method: ["GET", "POST", "OPTIONS"],
+    method: ["GET", "POST", "OPTIONS", "PUT"],
     handler: async (req, reply) => {
       const response = await yoga.handleNodeRequest(req, {
         req,
@@ -108,6 +116,7 @@ export async function main() {
       response.headers.forEach((value, key) => {
         reply.header(key, value);
       });
+      console.log(req.headers);
 
       reply.status(response.status);
       reply.send(response.body);
@@ -116,7 +125,7 @@ export async function main() {
     },
   });
 
-  await app.after();
+  // await app.after();
 
   app
     .listen({ port: app.config.PORT })
