@@ -1,0 +1,10 @@
+export { MovieCrewMembersArgs } from "./MovieCrewMembersArgs";
+export { MovieGenresArgs } from "./MovieGenresArgs";
+export { MovieInWatchlistByUsersArgs } from "./MovieInWatchlistByUsersArgs";
+export { MovieKeywordCategoriesArgs } from "./MovieKeywordCategoriesArgs";
+export { MovieMovieInfoArgs } from "./MovieMovieInfoArgs";
+export { MovieMovieListsArgs } from "./MovieMovieListsArgs";
+export { MovieMovieStatsArgs } from "./MovieMovieStatsArgs";
+export { MovieRatingsArgs } from "./MovieRatingsArgs";
+export { MovieSpokenLanguagesArgs } from "./MovieSpokenLanguagesArgs";
+export { MovieStudiosArgs } from "./MovieStudiosArgs";

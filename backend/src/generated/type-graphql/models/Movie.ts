@@ -1,0 +1,63 @@
+import * as TypeGraphQL from "type-graphql";
+import * as GraphQLScalars from "graphql-scalars";
+import { Prisma } from "@prisma/client";
+import { DecimalJSScalar } from "../scalars";
+import { Genre } from "../models/Genre";
+import { MovieCrewMember } from "../models/MovieCrewMember";
+import { MovieInfo } from "../models/MovieInfo";
+import { MovieKeywordCategory } from "../models/MovieKeywordCategory";
+import { MovieList } from "../models/MovieList";
+import { MovieRating } from "../models/MovieRating";
+import { MovieSpokenLanguage } from "../models/MovieSpokenLanguage";
+import { MovieStats } from "../models/MovieStats";
+import { MovieStudio } from "../models/MovieStudio";
+import { MovifierAppUser } from "../models/MovifierAppUser";
+import { MovieCount } from "../resolvers/outputs/MovieCount";
+
+@TypeGraphQL.ObjectType("Movie", {})
+export class Movie {
+  @TypeGraphQL.Field((_type) => String, {
+    nullable: false,
+  })
+  id!: string;
+
+  @TypeGraphQL.Field((_type) => Date, {
+    nullable: false,
+  })
+  createdAt!: Date;
+
+  @TypeGraphQL.Field((_type) => Date, {
+    nullable: false,
+  })
+  updatedAt!: Date;
+
+  movieInfo?: MovieInfo | null;
+
+  MovieStats?: MovieStats | null;
+
+  crewMembers?: MovieCrewMember[];
+
+  studios?: MovieStudio[];
+
+  genres?: Genre[];
+
+  keywordCategories?: MovieKeywordCategory[];
+
+  ratings?: MovieRating[];
+
+  movieLists?: MovieList[];
+
+  inWatchlistByUsers?: MovifierAppUser[];
+
+  spokenLanguages?: MovieSpokenLanguage[];
+
+  @TypeGraphQL.Field((_type) => String, {
+    nullable: true,
+  })
+  genreName?: string | null;
+
+  @TypeGraphQL.Field((_type) => MovieCount, {
+    nullable: true,
+  })
+  _count?: MovieCount | null;
+}

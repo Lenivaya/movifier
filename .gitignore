@@ -516,7 +516,6 @@ fabric.properties
 
 .idea/
 
-
-.direnv/*
 .direnv
-.direnv/
+.vscode
+backend/build
