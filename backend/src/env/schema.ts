@@ -10,6 +10,14 @@ export const envSchema = {
       type: "string",
       default: "postgresql://postgres:password@localhost:5432/postgres",
     },
+    REDIS_URL: {
+      type: "string",
+      default: "redis://localhost:6379",
+    },
+    JWT_SECRET: {
+      type: "string",
+      default: "secret",
+    },
   },
 };
 
@@ -18,6 +26,8 @@ declare module "fastify" {
     config: {
       PORT: number;
       DATABASE_URL: string;
+      REDIS_URL: string;
+      JWT_SECRET: string;
     };
   }
 }

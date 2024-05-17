@@ -1,0 +1,15 @@
+export { GenreCrudResolver } from "./Genre/GenreCrudResolver";
+export { MovieCrudResolver } from "./Movie/MovieCrudResolver";
+export { MovieCrewMemberCrudResolver } from "./MovieCrewMember/MovieCrewMemberCrudResolver";
+export { MovieCrewMemberTypeCrudResolver } from "./MovieCrewMemberType/MovieCrewMemberTypeCrudResolver";
+export { MovieInfoCrudResolver } from "./MovieInfo/MovieInfoCrudResolver";
+export { MovieKeywordCategoryCrudResolver } from "./MovieKeywordCategory/MovieKeywordCategoryCrudResolver";
+export { MovieListCrudResolver } from "./MovieList/MovieListCrudResolver";
+export { MovieListCommentCrudResolver } from "./MovieListComment/MovieListCommentCrudResolver";
+export { MovieListStatsCrudResolver } from "./MovieListStats/MovieListStatsCrudResolver";
+export { MovieRatingCrudResolver } from "./MovieRating/MovieRatingCrudResolver";
+export { MovieReviewCrudResolver } from "./MovieReview/MovieReviewCrudResolver";
+export { MovieSpokenLanguageCrudResolver } from "./MovieSpokenLanguage/MovieSpokenLanguageCrudResolver";
+export { MovieStatsCrudResolver } from "./MovieStats/MovieStatsCrudResolver";
+export { MovieStudioCrudResolver } from "./MovieStudio/MovieStudioCrudResolver";
+export { MovifierAppUserCrudResolver } from "./MovifierAppUser/MovifierAppUserCrudResolver";

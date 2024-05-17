@@ -8,7 +8,10 @@ generator client {
 }
 
 generator typegraphql {
-  provider = "typegraphql-prisma"
+  provider               = "typegraphql-prisma"
+  output                 = "./src/generated/type-graphql"
+  emitRedundantTypesInfo = true
+  // emitTranspiledCode     = true
 }
 
 model MovieStudio {
@@ -109,7 +112,8 @@ model MovifierAppUser {
   updatedAt          DateTime             @updatedAt
   email              String               @unique
   username           String               @unique
-  password_hash      String
+  /// @TypeGraphQL.omit(output: true)
+  password           String
   name               String
   role               MoviefireAppUserRole @default(USER)
   watchlist          Movie[]
