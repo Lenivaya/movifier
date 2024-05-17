@@ -18,6 +18,7 @@
     "@envelop/graphql-jit": "^8.0.3",
     "@envelop/parser-cache": "^7.0.0",
     "@envelop/response-cache": "^6.1.2",
+    "@envelop/response-cache-redis": "^4.1.2",
     "@envelop/sentry": "^9.0.0",
     "@envelop/validation-cache": "^7.0.0",
     "@fastify/cors": "^9.0.1",

@@ -11,12 +11,14 @@ import { renderGraphiqlWithApolloPlayground } from "@/utils/graphql-playground/r
 import { useParserCache } from "@envelop/parser-cache";
 import { useValidationCache } from "@envelop/validation-cache";
 import { useResponseCache } from "@envelop/response-cache";
+import { createRedisCache } from "@envelop/response-cache-redis";
 import { createFetch } from "@whatwg-node/fetch";
 import { useAPQ } from "@graphql-yoga/plugin-apq";
 import { resolvers, resolversEnhanceMap } from "@/graphql/resolvers";
 import { applyResolversEnhanceMap } from "@/generated/type-graphql";
 import { useJWT } from "@graphql-yoga/plugin-jwt";
 import { AppContext } from "@/graphql/context";
+import Redis from "ioredis";
 
 export const app = fastify({
   logger: true,
@@ -31,6 +33,9 @@ export const app = fastify({
 export async function main() {
   await app.after();
 
+  const redis = new Redis(app.config.REDIS_URL);
+  const cache = createRedisCache({ redis });
+
   applyResolversEnhanceMap(resolversEnhanceMap);
 
   const schema = await buildSchema({
@@ -43,8 +48,6 @@ export async function main() {
     log: ["query", "info", "warn", "error"],
   });
   await prisma.$connect();
-
-  console.log(app.config.JWT_SECRET);
 
   const yoga = createYoga<{
     req: FastifyRequest;
@@ -70,11 +73,29 @@ export async function main() {
       useParserCache({}),
       useValidationCache({}),
       useResponseCache({
-        ttl: 60 * 1000 * 5,
+        ttl: 5000,
+        cache,
         session: (context) => null,
         invalidateViaMutation: true,
       }),
-      useAPQ({}),
+      useAPQ({
+        store: {
+          async get(key) {
+            try {
+              return await redis.get(key);
+            } catch (e) {
+              console.error(`Error while fetching the operation: ${key}`, e);
+            }
+          },
+          async set(key, value) {
+            try {
+              return await redis.set(key, value);
+            } catch (e) {
+              console.error(`Error while saving the operation: ${key}`, e);
+            }
+          },
+        },
+      }),
       // useGraphQlJit({}),
       // useApolloTracing(),
       // useSentry({
@@ -82,7 +103,6 @@ export async function main() {
       //   // includeResolverArgs: false, // set to `true` in order to include the args passed to resolvers
       //   includeExecuteVariables: false, // set to `true` in order to include the operation variables values
       // }),
-      // useExtendContext(async (ctx) => console.log(ctx.jwt)),
       useJWT({
         issuer: "movifier.org",
         signingKey: app.config.JWT_SECRET,
@@ -116,7 +136,6 @@ export async function main() {
       response.headers.forEach((value, key) => {
         reply.header(key, value);
       });
-      console.log(req.headers);
 
       reply.status(response.status);
       reply.send(response.body);
@@ -124,8 +143,6 @@ export async function main() {
       return reply;
     },
   });
-
-  // await app.after();
 
   app
     .listen({ port: app.config.PORT })
