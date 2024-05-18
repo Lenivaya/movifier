@@ -3,10 +3,14 @@ import * as GraphQLScalars from "graphql-scalars";
 import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../../scalars";
 import { MovieCrewMemberOrderByRelationAggregateInput } from "../inputs/MovieCrewMemberOrderByRelationAggregateInput";
+import { MovieCrewMemberTypeOrderByRelevanceInput } from "../inputs/MovieCrewMemberTypeOrderByRelevanceInput";
 import { SortOrder } from "../../enums/SortOrder";
 
-@TypeGraphQL.InputType("MovieCrewMemberTypeOrderByWithRelationInput", {})
-export class MovieCrewMemberTypeOrderByWithRelationInput {
+@TypeGraphQL.InputType(
+  "MovieCrewMemberTypeOrderByWithRelationAndSearchRelevanceInput",
+  {},
+)
+export class MovieCrewMemberTypeOrderByWithRelationAndSearchRelevanceInput {
   @TypeGraphQL.Field((_type) => SortOrder, {
     nullable: true,
   })
@@ -21,4 +25,9 @@ export class MovieCrewMemberTypeOrderByWithRelationInput {
     nullable: true,
   })
   movieCrewMembers?: MovieCrewMemberOrderByRelationAggregateInput | undefined;
+
+  @TypeGraphQL.Field((_type) => MovieCrewMemberTypeOrderByRelevanceInput, {
+    nullable: true,
+  })
+  _relevance?: MovieCrewMemberTypeOrderByRelevanceInput | undefined;
 }

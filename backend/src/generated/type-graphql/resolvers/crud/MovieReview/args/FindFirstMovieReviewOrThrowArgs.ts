@@ -1,6 +1,6 @@
 import * as TypeGraphQL from "type-graphql";
 import * as GraphQLScalars from "graphql-scalars";
-import { MovieReviewOrderByWithRelationInput } from "../../../inputs/MovieReviewOrderByWithRelationInput";
+import { MovieReviewOrderByWithRelationAndSearchRelevanceInput } from "../../../inputs/MovieReviewOrderByWithRelationAndSearchRelevanceInput";
 import { MovieReviewWhereInput } from "../../../inputs/MovieReviewWhereInput";
 import { MovieReviewWhereUniqueInput } from "../../../inputs/MovieReviewWhereUniqueInput";
 import { MovieReviewScalarFieldEnum } from "../../../../enums/MovieReviewScalarFieldEnum";
@@ -12,10 +12,13 @@ export class FindFirstMovieReviewOrThrowArgs {
   })
   where?: MovieReviewWhereInput | undefined;
 
-  @TypeGraphQL.Field((_type) => [MovieReviewOrderByWithRelationInput], {
-    nullable: true,
-  })
-  orderBy?: MovieReviewOrderByWithRelationInput[] | undefined;
+  @TypeGraphQL.Field(
+    (_type) => [MovieReviewOrderByWithRelationAndSearchRelevanceInput],
+    {
+      nullable: true,
+    },
+  )
+  orderBy?: MovieReviewOrderByWithRelationAndSearchRelevanceInput[] | undefined;
 
   @TypeGraphQL.Field((_type) => MovieReviewWhereUniqueInput, {
     nullable: true,

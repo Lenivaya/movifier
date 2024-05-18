@@ -4,7 +4,6 @@ import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../../scalars";
 import { DateTimeFilter } from "../inputs/DateTimeFilter";
 import { StringFilter } from "../inputs/StringFilter";
-import { StringNullableFilter } from "../inputs/StringNullableFilter";
 
 @TypeGraphQL.InputType("MovieScalarWhereInput", {})
 export class MovieScalarWhereInput {
@@ -37,9 +36,4 @@ export class MovieScalarWhereInput {
     nullable: true,
   })
   updatedAt?: DateTimeFilter | undefined;
-
-  @TypeGraphQL.Field((_type) => StringNullableFilter, {
-    nullable: true,
-  })
-  genreName?: StringNullableFilter | undefined;
 }

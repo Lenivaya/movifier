@@ -4,19 +4,19 @@ import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../../scalars";
 import { GenreOrderByRelationAggregateInput } from "../inputs/GenreOrderByRelationAggregateInput";
 import { MovieCrewMemberOrderByRelationAggregateInput } from "../inputs/MovieCrewMemberOrderByRelationAggregateInput";
-import { MovieInfoOrderByWithRelationInput } from "../inputs/MovieInfoOrderByWithRelationInput";
+import { MovieInfoOrderByWithRelationAndSearchRelevanceInput } from "../inputs/MovieInfoOrderByWithRelationAndSearchRelevanceInput";
 import { MovieKeywordCategoryOrderByRelationAggregateInput } from "../inputs/MovieKeywordCategoryOrderByRelationAggregateInput";
 import { MovieListOrderByRelationAggregateInput } from "../inputs/MovieListOrderByRelationAggregateInput";
+import { MovieOrderByRelevanceInput } from "../inputs/MovieOrderByRelevanceInput";
 import { MovieRatingOrderByRelationAggregateInput } from "../inputs/MovieRatingOrderByRelationAggregateInput";
 import { MovieSpokenLanguageOrderByRelationAggregateInput } from "../inputs/MovieSpokenLanguageOrderByRelationAggregateInput";
-import { MovieStatsOrderByWithRelationInput } from "../inputs/MovieStatsOrderByWithRelationInput";
+import { MovieStatsOrderByWithRelationAndSearchRelevanceInput } from "../inputs/MovieStatsOrderByWithRelationAndSearchRelevanceInput";
 import { MovieStudioOrderByRelationAggregateInput } from "../inputs/MovieStudioOrderByRelationAggregateInput";
 import { MovifierAppUserOrderByRelationAggregateInput } from "../inputs/MovifierAppUserOrderByRelationAggregateInput";
-import { SortOrderInput } from "../inputs/SortOrderInput";
 import { SortOrder } from "../../enums/SortOrder";
 
-@TypeGraphQL.InputType("MovieOrderByWithRelationInput", {})
-export class MovieOrderByWithRelationInput {
+@TypeGraphQL.InputType("MovieOrderByWithRelationAndSearchRelevanceInput", {})
+export class MovieOrderByWithRelationAndSearchRelevanceInput {
   @TypeGraphQL.Field((_type) => SortOrder, {
     nullable: true,
   })
@@ -32,20 +32,21 @@ export class MovieOrderByWithRelationInput {
   })
   updatedAt?: "asc" | "desc" | undefined;
 
-  @TypeGraphQL.Field((_type) => SortOrderInput, {
-    nullable: true,
-  })
-  genreName?: SortOrderInput | undefined;
+  @TypeGraphQL.Field(
+    (_type) => MovieInfoOrderByWithRelationAndSearchRelevanceInput,
+    {
+      nullable: true,
+    },
+  )
+  movieInfo?: MovieInfoOrderByWithRelationAndSearchRelevanceInput | undefined;
 
-  @TypeGraphQL.Field((_type) => MovieInfoOrderByWithRelationInput, {
-    nullable: true,
-  })
-  movieInfo?: MovieInfoOrderByWithRelationInput | undefined;
-
-  @TypeGraphQL.Field((_type) => MovieStatsOrderByWithRelationInput, {
-    nullable: true,
-  })
-  MovieStats?: MovieStatsOrderByWithRelationInput | undefined;
+  @TypeGraphQL.Field(
+    (_type) => MovieStatsOrderByWithRelationAndSearchRelevanceInput,
+    {
+      nullable: true,
+    },
+  )
+  MovieStats?: MovieStatsOrderByWithRelationAndSearchRelevanceInput | undefined;
 
   @TypeGraphQL.Field((_type) => MovieCrewMemberOrderByRelationAggregateInput, {
     nullable: true,
@@ -96,4 +97,9 @@ export class MovieOrderByWithRelationInput {
   spokenLanguages?:
     | MovieSpokenLanguageOrderByRelationAggregateInput
     | undefined;
+
+  @TypeGraphQL.Field((_type) => MovieOrderByRelevanceInput, {
+    nullable: true,
+  })
+  _relevance?: MovieOrderByRelevanceInput | undefined;
 }

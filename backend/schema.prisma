@@ -4,14 +4,14 @@ datasource movifier_db {
 }
 
 generator client {
-  provider = "prisma-client-js"
+  provider        = "prisma-client-js"
+  previewFeatures = ["fullTextSearch"]
 }
 
 generator typegraphql {
   provider               = "typegraphql-prisma"
   output                 = "./src/generated/type-graphql"
   emitRedundantTypesInfo = true
-  // emitTranspiledCode     = true
 }
 
 model MovieStudio {
@@ -36,7 +36,6 @@ model Movie {
   movieLists         MovieList[]
   inWatchlistByUsers MovifierAppUser[]
   spokenLanguages    MovieSpokenLanguage[]
-  genreName          String?
 }
 
 model MovieStats {
@@ -62,6 +61,8 @@ model MovieInfo {
   posterUrl         String
   movieId           String   @unique
   movie             Movie    @relation(fields: [movieId], references: [id], onDelete: Cascade)
+
+  @@index([title, description, imdbId], map: "movie_info_pgroonga_idx")
 }
 
 model MovieSpokenLanguage {
@@ -93,12 +94,16 @@ model Genre {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   movies    Movie[]
+
+  @@index([name], map: "genre_pgroonga_idx")
 }
 
 model MovieKeywordCategory {
   id     String  @id @unique @default(cuid())
   name   String
   movies Movie[]
+
+  @@index([name], map: "movie_keyword_category_pgroonga_idx")
 }
 
 enum MoviefireAppUserRole {
@@ -134,6 +139,8 @@ model MovieList {
 
   MovieListStats    MovieListStats?
   movieListComments MovieListComment[]
+
+  @@index([name], map: "movie_list_pgroonga_idx")
 }
 
 model MovieListStats {

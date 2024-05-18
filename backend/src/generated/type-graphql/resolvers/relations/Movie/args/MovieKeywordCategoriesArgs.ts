@@ -1,6 +1,6 @@
 import * as TypeGraphQL from "type-graphql";
 import * as GraphQLScalars from "graphql-scalars";
-import { MovieKeywordCategoryOrderByWithRelationInput } from "../../../inputs/MovieKeywordCategoryOrderByWithRelationInput";
+import { MovieKeywordCategoryOrderByWithRelationAndSearchRelevanceInput } from "../../../inputs/MovieKeywordCategoryOrderByWithRelationAndSearchRelevanceInput";
 import { MovieKeywordCategoryWhereInput } from "../../../inputs/MovieKeywordCategoryWhereInput";
 import { MovieKeywordCategoryWhereUniqueInput } from "../../../inputs/MovieKeywordCategoryWhereUniqueInput";
 import { MovieKeywordCategoryScalarFieldEnum } from "../../../../enums/MovieKeywordCategoryScalarFieldEnum";
@@ -13,12 +13,14 @@ export class MovieKeywordCategoriesArgs {
   where?: MovieKeywordCategoryWhereInput | undefined;
 
   @TypeGraphQL.Field(
-    (_type) => [MovieKeywordCategoryOrderByWithRelationInput],
+    (_type) => [MovieKeywordCategoryOrderByWithRelationAndSearchRelevanceInput],
     {
       nullable: true,
     },
   )
-  orderBy?: MovieKeywordCategoryOrderByWithRelationInput[] | undefined;
+  orderBy?:
+    | MovieKeywordCategoryOrderByWithRelationAndSearchRelevanceInput[]
+    | undefined;
 
   @TypeGraphQL.Field((_type) => MovieKeywordCategoryWhereUniqueInput, {
     nullable: true,

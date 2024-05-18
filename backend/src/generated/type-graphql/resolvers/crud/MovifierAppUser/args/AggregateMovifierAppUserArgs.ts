@@ -1,6 +1,6 @@
 import * as TypeGraphQL from "type-graphql";
 import * as GraphQLScalars from "graphql-scalars";
-import { MovifierAppUserOrderByWithRelationInput } from "../../../inputs/MovifierAppUserOrderByWithRelationInput";
+import { MovifierAppUserOrderByWithRelationAndSearchRelevanceInput } from "../../../inputs/MovifierAppUserOrderByWithRelationAndSearchRelevanceInput";
 import { MovifierAppUserWhereInput } from "../../../inputs/MovifierAppUserWhereInput";
 import { MovifierAppUserWhereUniqueInput } from "../../../inputs/MovifierAppUserWhereUniqueInput";
 
@@ -11,10 +11,15 @@ export class AggregateMovifierAppUserArgs {
   })
   where?: MovifierAppUserWhereInput | undefined;
 
-  @TypeGraphQL.Field((_type) => [MovifierAppUserOrderByWithRelationInput], {
-    nullable: true,
-  })
-  orderBy?: MovifierAppUserOrderByWithRelationInput[] | undefined;
+  @TypeGraphQL.Field(
+    (_type) => [MovifierAppUserOrderByWithRelationAndSearchRelevanceInput],
+    {
+      nullable: true,
+    },
+  )
+  orderBy?:
+    | MovifierAppUserOrderByWithRelationAndSearchRelevanceInput[]
+    | undefined;
 
   @TypeGraphQL.Field((_type) => MovifierAppUserWhereUniqueInput, {
     nullable: true,

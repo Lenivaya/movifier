@@ -12,7 +12,6 @@ import { MovieRatingUpdateManyWithoutMovieNestedInput } from "../inputs/MovieRat
 import { MovieSpokenLanguageUpdateManyWithoutMoviesNestedInput } from "../inputs/MovieSpokenLanguageUpdateManyWithoutMoviesNestedInput";
 import { MovieStatsUpdateOneWithoutMovieNestedInput } from "../inputs/MovieStatsUpdateOneWithoutMovieNestedInput";
 import { MovieStudioUpdateManyWithoutMoviesNestedInput } from "../inputs/MovieStudioUpdateManyWithoutMoviesNestedInput";
-import { NullableStringFieldUpdateOperationsInput } from "../inputs/NullableStringFieldUpdateOperationsInput";
 import { StringFieldUpdateOperationsInput } from "../inputs/StringFieldUpdateOperationsInput";
 
 @TypeGraphQL.InputType("MovieUpdateWithoutInWatchlistByUsersInput", {})
@@ -31,11 +30,6 @@ export class MovieUpdateWithoutInWatchlistByUsersInput {
     nullable: true,
   })
   updatedAt?: DateTimeFieldUpdateOperationsInput | undefined;
-
-  @TypeGraphQL.Field((_type) => NullableStringFieldUpdateOperationsInput, {
-    nullable: true,
-  })
-  genreName?: NullableStringFieldUpdateOperationsInput | undefined;
 
   @TypeGraphQL.Field((_type) => MovieInfoUpdateOneWithoutMovieNestedInput, {
     nullable: true,
