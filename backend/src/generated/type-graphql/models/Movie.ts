@@ -51,11 +51,6 @@ export class Movie {
 
   spokenLanguages?: MovieSpokenLanguage[];
 
-  @TypeGraphQL.Field((_type) => String, {
-    nullable: true,
-  })
-  genreName?: string | null;
-
   @TypeGraphQL.Field((_type) => MovieCount, {
     nullable: true,
   })

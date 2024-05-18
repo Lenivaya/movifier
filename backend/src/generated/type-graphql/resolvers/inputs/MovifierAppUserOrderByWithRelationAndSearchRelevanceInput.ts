@@ -6,10 +6,14 @@ import { MovieListCommentOrderByRelationAggregateInput } from "../inputs/MovieLi
 import { MovieListOrderByRelationAggregateInput } from "../inputs/MovieListOrderByRelationAggregateInput";
 import { MovieOrderByRelationAggregateInput } from "../inputs/MovieOrderByRelationAggregateInput";
 import { MovieRatingOrderByRelationAggregateInput } from "../inputs/MovieRatingOrderByRelationAggregateInput";
+import { MovifierAppUserOrderByRelevanceInput } from "../inputs/MovifierAppUserOrderByRelevanceInput";
 import { SortOrder } from "../../enums/SortOrder";
 
-@TypeGraphQL.InputType("MovifierAppUserOrderByWithRelationInput", {})
-export class MovifierAppUserOrderByWithRelationInput {
+@TypeGraphQL.InputType(
+  "MovifierAppUserOrderByWithRelationAndSearchRelevanceInput",
+  {},
+)
+export class MovifierAppUserOrderByWithRelationAndSearchRelevanceInput {
   @TypeGraphQL.Field((_type) => SortOrder, {
     nullable: true,
   })
@@ -71,4 +75,9 @@ export class MovifierAppUserOrderByWithRelationInput {
   movieListsComments?:
     | MovieListCommentOrderByRelationAggregateInput
     | undefined;
+
+  @TypeGraphQL.Field((_type) => MovifierAppUserOrderByRelevanceInput, {
+    nullable: true,
+  })
+  _relevance?: MovifierAppUserOrderByRelevanceInput | undefined;
 }

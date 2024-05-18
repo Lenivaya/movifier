@@ -23,11 +23,6 @@ export class MovieGroupBy {
   })
   updatedAt!: Date;
 
-  @TypeGraphQL.Field((_type) => String, {
-    nullable: true,
-  })
-  genreName!: string | null;
-
   @TypeGraphQL.Field((_type) => MovieCountAggregate, {
     nullable: true,
   })

@@ -1,6 +1,6 @@
 import * as TypeGraphQL from "type-graphql";
 import * as GraphQLScalars from "graphql-scalars";
-import { MovieListCommentOrderByWithRelationInput } from "../../../inputs/MovieListCommentOrderByWithRelationInput";
+import { MovieListCommentOrderByWithRelationAndSearchRelevanceInput } from "../../../inputs/MovieListCommentOrderByWithRelationAndSearchRelevanceInput";
 import { MovieListCommentWhereInput } from "../../../inputs/MovieListCommentWhereInput";
 import { MovieListCommentWhereUniqueInput } from "../../../inputs/MovieListCommentWhereUniqueInput";
 import { MovieListCommentScalarFieldEnum } from "../../../../enums/MovieListCommentScalarFieldEnum";
@@ -12,10 +12,15 @@ export class MovieListMovieListCommentsArgs {
   })
   where?: MovieListCommentWhereInput | undefined;
 
-  @TypeGraphQL.Field((_type) => [MovieListCommentOrderByWithRelationInput], {
-    nullable: true,
-  })
-  orderBy?: MovieListCommentOrderByWithRelationInput[] | undefined;
+  @TypeGraphQL.Field(
+    (_type) => [MovieListCommentOrderByWithRelationAndSearchRelevanceInput],
+    {
+      nullable: true,
+    },
+  )
+  orderBy?:
+    | MovieListCommentOrderByWithRelationAndSearchRelevanceInput[]
+    | undefined;
 
   @TypeGraphQL.Field((_type) => MovieListCommentWhereUniqueInput, {
     nullable: true,

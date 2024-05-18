@@ -30,11 +30,6 @@ export class MovieCreateInput {
   })
   updatedAt?: Date | undefined;
 
-  @TypeGraphQL.Field((_type) => String, {
-    nullable: true,
-  })
-  genreName?: string | undefined;
-
   @TypeGraphQL.Field((_type) => MovieInfoCreateNestedOneWithoutMovieInput, {
     nullable: true,
   })

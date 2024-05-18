@@ -19,9 +19,4 @@ export class MovieCreateManyInput {
     nullable: true,
   })
   updatedAt?: Date | undefined;
-
-  @TypeGraphQL.Field((_type) => String, {
-    nullable: true,
-  })
-  genreName?: string | undefined;
 }

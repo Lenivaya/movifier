@@ -20,9 +20,4 @@ export class MovieMinOrderByAggregateInput {
     nullable: true,
   })
   updatedAt?: "asc" | "desc" | undefined;
-
-  @TypeGraphQL.Field((_type) => SortOrder, {
-    nullable: true,
-  })
-  genreName?: "asc" | "desc" | undefined;
 }

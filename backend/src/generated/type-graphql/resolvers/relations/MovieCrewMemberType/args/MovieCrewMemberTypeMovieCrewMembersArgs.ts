@@ -1,6 +1,6 @@
 import * as TypeGraphQL from "type-graphql";
 import * as GraphQLScalars from "graphql-scalars";
-import { MovieCrewMemberOrderByWithRelationInput } from "../../../inputs/MovieCrewMemberOrderByWithRelationInput";
+import { MovieCrewMemberOrderByWithRelationAndSearchRelevanceInput } from "../../../inputs/MovieCrewMemberOrderByWithRelationAndSearchRelevanceInput";
 import { MovieCrewMemberWhereInput } from "../../../inputs/MovieCrewMemberWhereInput";
 import { MovieCrewMemberWhereUniqueInput } from "../../../inputs/MovieCrewMemberWhereUniqueInput";
 import { MovieCrewMemberScalarFieldEnum } from "../../../../enums/MovieCrewMemberScalarFieldEnum";
@@ -12,10 +12,15 @@ export class MovieCrewMemberTypeMovieCrewMembersArgs {
   })
   where?: MovieCrewMemberWhereInput | undefined;
 
-  @TypeGraphQL.Field((_type) => [MovieCrewMemberOrderByWithRelationInput], {
-    nullable: true,
-  })
-  orderBy?: MovieCrewMemberOrderByWithRelationInput[] | undefined;
+  @TypeGraphQL.Field(
+    (_type) => [MovieCrewMemberOrderByWithRelationAndSearchRelevanceInput],
+    {
+      nullable: true,
+    },
+  )
+  orderBy?:
+    | MovieCrewMemberOrderByWithRelationAndSearchRelevanceInput[]
+    | undefined;
 
   @TypeGraphQL.Field((_type) => MovieCrewMemberWhereUniqueInput, {
     nullable: true,

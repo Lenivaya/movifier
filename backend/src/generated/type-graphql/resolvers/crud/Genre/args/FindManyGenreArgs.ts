@@ -1,6 +1,6 @@
 import * as TypeGraphQL from "type-graphql";
 import * as GraphQLScalars from "graphql-scalars";
-import { GenreOrderByWithRelationInput } from "../../../inputs/GenreOrderByWithRelationInput";
+import { GenreOrderByWithRelationAndSearchRelevanceInput } from "../../../inputs/GenreOrderByWithRelationAndSearchRelevanceInput";
 import { GenreWhereInput } from "../../../inputs/GenreWhereInput";
 import { GenreWhereUniqueInput } from "../../../inputs/GenreWhereUniqueInput";
 import { GenreScalarFieldEnum } from "../../../../enums/GenreScalarFieldEnum";
@@ -12,10 +12,13 @@ export class FindManyGenreArgs {
   })
   where?: GenreWhereInput | undefined;
 
-  @TypeGraphQL.Field((_type) => [GenreOrderByWithRelationInput], {
-    nullable: true,
-  })
-  orderBy?: GenreOrderByWithRelationInput[] | undefined;
+  @TypeGraphQL.Field(
+    (_type) => [GenreOrderByWithRelationAndSearchRelevanceInput],
+    {
+      nullable: true,
+    },
+  )
+  orderBy?: GenreOrderByWithRelationAndSearchRelevanceInput[] | undefined;
 
   @TypeGraphQL.Field((_type) => GenreWhereUniqueInput, {
     nullable: true,

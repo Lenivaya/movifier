@@ -1,6 +1,6 @@
 import * as TypeGraphQL from "type-graphql";
 import * as GraphQLScalars from "graphql-scalars";
-import { MovieStatsOrderByWithRelationInput } from "../../../inputs/MovieStatsOrderByWithRelationInput";
+import { MovieStatsOrderByWithRelationAndSearchRelevanceInput } from "../../../inputs/MovieStatsOrderByWithRelationAndSearchRelevanceInput";
 import { MovieStatsWhereInput } from "../../../inputs/MovieStatsWhereInput";
 import { MovieStatsWhereUniqueInput } from "../../../inputs/MovieStatsWhereUniqueInput";
 
@@ -11,10 +11,13 @@ export class AggregateMovieStatsArgs {
   })
   where?: MovieStatsWhereInput | undefined;
 
-  @TypeGraphQL.Field((_type) => [MovieStatsOrderByWithRelationInput], {
-    nullable: true,
-  })
-  orderBy?: MovieStatsOrderByWithRelationInput[] | undefined;
+  @TypeGraphQL.Field(
+    (_type) => [MovieStatsOrderByWithRelationAndSearchRelevanceInput],
+    {
+      nullable: true,
+    },
+  )
+  orderBy?: MovieStatsOrderByWithRelationAndSearchRelevanceInput[] | undefined;
 
   @TypeGraphQL.Field((_type) => MovieStatsWhereUniqueInput, {
     nullable: true,

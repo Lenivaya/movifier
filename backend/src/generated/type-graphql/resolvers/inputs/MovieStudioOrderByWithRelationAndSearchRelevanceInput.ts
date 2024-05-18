@@ -2,11 +2,15 @@ import * as TypeGraphQL from "type-graphql";
 import * as GraphQLScalars from "graphql-scalars";
 import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../../scalars";
-import { MovieRatingOrderByWithRelationInput } from "../inputs/MovieRatingOrderByWithRelationInput";
+import { MovieOrderByRelationAggregateInput } from "../inputs/MovieOrderByRelationAggregateInput";
+import { MovieStudioOrderByRelevanceInput } from "../inputs/MovieStudioOrderByRelevanceInput";
 import { SortOrder } from "../../enums/SortOrder";
 
-@TypeGraphQL.InputType("MovieReviewOrderByWithRelationInput", {})
-export class MovieReviewOrderByWithRelationInput {
+@TypeGraphQL.InputType(
+  "MovieStudioOrderByWithRelationAndSearchRelevanceInput",
+  {},
+)
+export class MovieStudioOrderByWithRelationAndSearchRelevanceInput {
   @TypeGraphQL.Field((_type) => SortOrder, {
     nullable: true,
   })
@@ -25,15 +29,15 @@ export class MovieReviewOrderByWithRelationInput {
   @TypeGraphQL.Field((_type) => SortOrder, {
     nullable: true,
   })
-  content?: "asc" | "desc" | undefined;
+  name?: "asc" | "desc" | undefined;
 
-  @TypeGraphQL.Field((_type) => SortOrder, {
+  @TypeGraphQL.Field((_type) => MovieOrderByRelationAggregateInput, {
     nullable: true,
   })
-  ratingId?: "asc" | "desc" | undefined;
+  movies?: MovieOrderByRelationAggregateInput | undefined;
 
-  @TypeGraphQL.Field((_type) => MovieRatingOrderByWithRelationInput, {
+  @TypeGraphQL.Field((_type) => MovieStudioOrderByRelevanceInput, {
     nullable: true,
   })
-  rating?: MovieRatingOrderByWithRelationInput | undefined;
+  _relevance?: MovieStudioOrderByRelevanceInput | undefined;
 }

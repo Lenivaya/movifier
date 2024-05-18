@@ -1,6 +1,6 @@
 import * as TypeGraphQL from "type-graphql";
 import * as GraphQLScalars from "graphql-scalars";
-import { MovieCrewMemberTypeOrderByWithRelationInput } from "../../../inputs/MovieCrewMemberTypeOrderByWithRelationInput";
+import { MovieCrewMemberTypeOrderByWithRelationAndSearchRelevanceInput } from "../../../inputs/MovieCrewMemberTypeOrderByWithRelationAndSearchRelevanceInput";
 import { MovieCrewMemberTypeWhereInput } from "../../../inputs/MovieCrewMemberTypeWhereInput";
 import { MovieCrewMemberTypeWhereUniqueInput } from "../../../inputs/MovieCrewMemberTypeWhereUniqueInput";
 
@@ -11,10 +11,15 @@ export class AggregateMovieCrewMemberTypeArgs {
   })
   where?: MovieCrewMemberTypeWhereInput | undefined;
 
-  @TypeGraphQL.Field((_type) => [MovieCrewMemberTypeOrderByWithRelationInput], {
-    nullable: true,
-  })
-  orderBy?: MovieCrewMemberTypeOrderByWithRelationInput[] | undefined;
+  @TypeGraphQL.Field(
+    (_type) => [MovieCrewMemberTypeOrderByWithRelationAndSearchRelevanceInput],
+    {
+      nullable: true,
+    },
+  )
+  orderBy?:
+    | MovieCrewMemberTypeOrderByWithRelationAndSearchRelevanceInput[]
+    | undefined;
 
   @TypeGraphQL.Field((_type) => MovieCrewMemberTypeWhereUniqueInput, {
     nullable: true,

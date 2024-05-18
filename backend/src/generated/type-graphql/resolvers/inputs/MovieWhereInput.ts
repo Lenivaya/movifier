@@ -14,7 +14,6 @@ import { MovieStatsNullableRelationFilter } from "../inputs/MovieStatsNullableRe
 import { MovieStudioListRelationFilter } from "../inputs/MovieStudioListRelationFilter";
 import { MovifierAppUserListRelationFilter } from "../inputs/MovifierAppUserListRelationFilter";
 import { StringFilter } from "../inputs/StringFilter";
-import { StringNullableFilter } from "../inputs/StringNullableFilter";
 
 @TypeGraphQL.InputType("MovieWhereInput", {})
 export class MovieWhereInput {
@@ -47,11 +46,6 @@ export class MovieWhereInput {
     nullable: true,
   })
   updatedAt?: DateTimeFilter | undefined;
-
-  @TypeGraphQL.Field((_type) => StringNullableFilter, {
-    nullable: true,
-  })
-  genreName?: StringNullableFilter | undefined;
 
   @TypeGraphQL.Field((_type) => MovieInfoNullableRelationFilter, {
     nullable: true,

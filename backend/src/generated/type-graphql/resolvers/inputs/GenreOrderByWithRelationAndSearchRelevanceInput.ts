@@ -2,15 +2,16 @@ import * as TypeGraphQL from "type-graphql";
 import * as GraphQLScalars from "graphql-scalars";
 import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../../scalars";
+import { GenreOrderByRelevanceInput } from "../inputs/GenreOrderByRelevanceInput";
 import { MovieOrderByRelationAggregateInput } from "../inputs/MovieOrderByRelationAggregateInput";
 import { SortOrder } from "../../enums/SortOrder";
 
-@TypeGraphQL.InputType("MovieSpokenLanguageOrderByWithRelationInput", {})
-export class MovieSpokenLanguageOrderByWithRelationInput {
+@TypeGraphQL.InputType("GenreOrderByWithRelationAndSearchRelevanceInput", {})
+export class GenreOrderByWithRelationAndSearchRelevanceInput {
   @TypeGraphQL.Field((_type) => SortOrder, {
     nullable: true,
   })
-  language?: "asc" | "desc" | undefined;
+  name?: "asc" | "desc" | undefined;
 
   @TypeGraphQL.Field((_type) => SortOrder, {
     nullable: true,
@@ -26,4 +27,9 @@ export class MovieSpokenLanguageOrderByWithRelationInput {
     nullable: true,
   })
   movies?: MovieOrderByRelationAggregateInput | undefined;
+
+  @TypeGraphQL.Field((_type) => GenreOrderByRelevanceInput, {
+    nullable: true,
+  })
+  _relevance?: GenreOrderByRelevanceInput | undefined;
 }

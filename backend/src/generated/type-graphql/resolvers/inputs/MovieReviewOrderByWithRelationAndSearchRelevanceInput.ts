@@ -2,12 +2,15 @@ import * as TypeGraphQL from "type-graphql";
 import * as GraphQLScalars from "graphql-scalars";
 import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../../scalars";
-import { MovieListOrderByWithRelationInput } from "../inputs/MovieListOrderByWithRelationInput";
-import { MovifierAppUserOrderByWithRelationInput } from "../inputs/MovifierAppUserOrderByWithRelationInput";
+import { MovieRatingOrderByWithRelationAndSearchRelevanceInput } from "../inputs/MovieRatingOrderByWithRelationAndSearchRelevanceInput";
+import { MovieReviewOrderByRelevanceInput } from "../inputs/MovieReviewOrderByRelevanceInput";
 import { SortOrder } from "../../enums/SortOrder";
 
-@TypeGraphQL.InputType("MovieListCommentOrderByWithRelationInput", {})
-export class MovieListCommentOrderByWithRelationInput {
+@TypeGraphQL.InputType(
+  "MovieReviewOrderByWithRelationAndSearchRelevanceInput",
+  {},
+)
+export class MovieReviewOrderByWithRelationAndSearchRelevanceInput {
   @TypeGraphQL.Field((_type) => SortOrder, {
     nullable: true,
   })
@@ -31,20 +34,18 @@ export class MovieListCommentOrderByWithRelationInput {
   @TypeGraphQL.Field((_type) => SortOrder, {
     nullable: true,
   })
-  movieListId?: "asc" | "desc" | undefined;
+  ratingId?: "asc" | "desc" | undefined;
 
-  @TypeGraphQL.Field((_type) => SortOrder, {
+  @TypeGraphQL.Field(
+    (_type) => MovieRatingOrderByWithRelationAndSearchRelevanceInput,
+    {
+      nullable: true,
+    },
+  )
+  rating?: MovieRatingOrderByWithRelationAndSearchRelevanceInput | undefined;
+
+  @TypeGraphQL.Field((_type) => MovieReviewOrderByRelevanceInput, {
     nullable: true,
   })
-  userId?: "asc" | "desc" | undefined;
-
-  @TypeGraphQL.Field((_type) => MovieListOrderByWithRelationInput, {
-    nullable: true,
-  })
-  movieList?: MovieListOrderByWithRelationInput | undefined;
-
-  @TypeGraphQL.Field((_type) => MovifierAppUserOrderByWithRelationInput, {
-    nullable: true,
-  })
-  user?: MovifierAppUserOrderByWithRelationInput | undefined;
+  _relevance?: MovieReviewOrderByRelevanceInput | undefined;
 }

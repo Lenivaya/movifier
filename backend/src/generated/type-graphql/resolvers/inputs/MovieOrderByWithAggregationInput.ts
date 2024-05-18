@@ -5,7 +5,6 @@ import { DecimalJSScalar } from "../../scalars";
 import { MovieCountOrderByAggregateInput } from "../inputs/MovieCountOrderByAggregateInput";
 import { MovieMaxOrderByAggregateInput } from "../inputs/MovieMaxOrderByAggregateInput";
 import { MovieMinOrderByAggregateInput } from "../inputs/MovieMinOrderByAggregateInput";
-import { SortOrderInput } from "../inputs/SortOrderInput";
 import { SortOrder } from "../../enums/SortOrder";
 
 @TypeGraphQL.InputType("MovieOrderByWithAggregationInput", {})
@@ -24,11 +23,6 @@ export class MovieOrderByWithAggregationInput {
     nullable: true,
   })
   updatedAt?: "asc" | "desc" | undefined;
-
-  @TypeGraphQL.Field((_type) => SortOrderInput, {
-    nullable: true,
-  })
-  genreName?: SortOrderInput | undefined;
 
   @TypeGraphQL.Field((_type) => MovieCountOrderByAggregateInput, {
     nullable: true,

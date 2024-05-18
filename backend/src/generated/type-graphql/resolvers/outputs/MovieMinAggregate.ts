@@ -19,9 +19,4 @@ export class MovieMinAggregate {
     nullable: true,
   })
   updatedAt!: Date | null;
-
-  @TypeGraphQL.Field((_type) => String, {
-    nullable: true,
-  })
-  genreName!: string | null;
 }

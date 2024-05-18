@@ -1,6 +1,6 @@
 import * as TypeGraphQL from "type-graphql";
 import * as GraphQLScalars from "graphql-scalars";
-import { MovieSpokenLanguageOrderByWithRelationInput } from "../../../inputs/MovieSpokenLanguageOrderByWithRelationInput";
+import { MovieSpokenLanguageOrderByWithRelationAndSearchRelevanceInput } from "../../../inputs/MovieSpokenLanguageOrderByWithRelationAndSearchRelevanceInput";
 import { MovieSpokenLanguageWhereInput } from "../../../inputs/MovieSpokenLanguageWhereInput";
 import { MovieSpokenLanguageWhereUniqueInput } from "../../../inputs/MovieSpokenLanguageWhereUniqueInput";
 
@@ -11,10 +11,15 @@ export class AggregateMovieSpokenLanguageArgs {
   })
   where?: MovieSpokenLanguageWhereInput | undefined;
 
-  @TypeGraphQL.Field((_type) => [MovieSpokenLanguageOrderByWithRelationInput], {
-    nullable: true,
-  })
-  orderBy?: MovieSpokenLanguageOrderByWithRelationInput[] | undefined;
+  @TypeGraphQL.Field(
+    (_type) => [MovieSpokenLanguageOrderByWithRelationAndSearchRelevanceInput],
+    {
+      nullable: true,
+    },
+  )
+  orderBy?:
+    | MovieSpokenLanguageOrderByWithRelationAndSearchRelevanceInput[]
+    | undefined;
 
   @TypeGraphQL.Field((_type) => MovieSpokenLanguageWhereUniqueInput, {
     nullable: true,
