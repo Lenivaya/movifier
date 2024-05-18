@@ -1,12 +1,8 @@
 import "reflect-metadata";
 
-import fastify, { FastifyReply, FastifyRequest } from "fastify";
-import cors from "@fastify/cors";
-import fastifyEnv from "@fastify/env";
-import { envSchema } from "@/env/schema";
-import { buildSchema } from "type-graphql";
+import Redis from "ioredis";
 import { PrismaClient } from "@prisma/client";
-import { createYoga } from "graphql-yoga";
+import { createYoga, useExecutionCancellation } from "graphql-yoga";
 import { renderGraphiqlWithApolloPlayground } from "@/utils/graphql-playground/renderGraphiqlWithApolloPlayground";
 import { useParserCache } from "@envelop/parser-cache";
 import { useValidationCache } from "@envelop/validation-cache";
@@ -18,7 +14,16 @@ import { resolvers, resolversEnhanceMap } from "@/graphql/resolvers";
 import { applyResolversEnhanceMap } from "@/generated/type-graphql";
 import { useJWT } from "@graphql-yoga/plugin-jwt";
 import { AppContext } from "@/graphql/context";
-import Redis from "ioredis";
+import { buildSchema } from "type-graphql";
+import cors from "@fastify/cors";
+import fastify, { FastifyReply, FastifyRequest } from "fastify";
+import fastifyEnv from "@fastify/env";
+import { envSchema } from "@/env/schema";
+import { costLimitPlugin } from "@escape.tech/graphql-armor-cost-limit";
+import { maxTokensPlugin } from "@escape.tech/graphql-armor-max-tokens";
+import { maxDepthPlugin } from "@escape.tech/graphql-armor-max-depth";
+import { maxDirectivesPlugin } from "@escape.tech/graphql-armor-max-directives";
+import { maxAliasesPlugin } from "@escape.tech/graphql-armor-max-aliases";
 
 export const app = fastify({
   logger: true,
@@ -30,17 +35,23 @@ export const app = fastify({
     data: process.env,
   });
 
-export async function main() {
+export const graphqlArmorPlugins = [
+  costLimitPlugin(),
+  maxTokensPlugin(),
+  maxDepthPlugin(),
+  maxDirectivesPlugin(),
+  maxAliasesPlugin(),
+];
+
+export async function buildApp() {
   await app.after();
 
   const redis = new Redis(app.config.REDIS_URL);
   const cache = createRedisCache({ redis });
 
   applyResolversEnhanceMap(resolversEnhanceMap);
-
   const schema = await buildSchema({
     resolvers,
-    // emitSchemaFile: path.resolve(__dirname, "../generated-schema.graphql"),
     validate: false,
   });
 
@@ -49,15 +60,23 @@ export async function main() {
   });
   await prisma.$connect();
 
-  const yoga = createYoga<{
+  const graphqlServer = createYoga<{
     req: FastifyRequest;
     reply: FastifyReply;
   }>({
     logging: {
-      debug: (...args) => args.forEach((arg) => app.log.debug(arg)),
-      info: (...args) => args.forEach((arg) => app.log.info(arg)),
-      warn: (...args) => args.forEach((arg) => app.log.warn(arg)),
-      error: (...args) => args.forEach((arg) => app.log.error(arg)),
+      debug: (...args) => {
+        for (const arg of args) app.log.debug(arg);
+      },
+      info: (...args) => {
+        for (const arg of args) app.log.info(arg);
+      },
+      warn: (...args) => {
+        for (const arg of args) app.log.warn(arg);
+      },
+      error: (...args) => {
+        for (const arg of args) app.log.error(arg);
+      },
     },
     schema,
     renderGraphiQL: renderGraphiqlWithApolloPlayground,
@@ -70,12 +89,14 @@ export async function main() {
       prisma,
     }),
     plugins: [
+      ...graphqlArmorPlugins,
+      useExecutionCancellation(),
       useParserCache({}),
       useValidationCache({}),
       useResponseCache({
         ttl: 5000,
         cache,
-        session: (context) => null,
+        session: (_context) => null,
         invalidateViaMutation: true,
       }),
       useAPQ({
@@ -97,12 +118,6 @@ export async function main() {
         },
       }),
       // useGraphQlJit({}),
-      // useApolloTracing(),
-      // useSentry({
-      //   includeRawResult: false, // set to `true` in order to include the execution result in the metadata collected
-      //   // includeResolverArgs: false, // set to `true` in order to include the args passed to resolvers
-      //   includeExecuteVariables: false, // set to `true` in order to include the operation variables values
-      // }),
       useJWT({
         issuer: "movifier.org",
         signingKey: app.config.JWT_SECRET,
@@ -125,17 +140,25 @@ export async function main() {
     }),
   });
 
+  app.addContentTypeParser("multipart/form-data", {}, (_req, _payload, done) =>
+    done(null),
+  );
+
   app.route({
-    url: "/graphql",
-    method: ["GET", "POST", "OPTIONS", "PUT"],
+    url: graphqlServer.graphqlEndpoint,
+    method: ["GET", "POST", "OPTIONS"],
     handler: async (req, reply) => {
-      const response = await yoga.handleNodeRequest(req, {
+      const response = await graphqlServer.handleNodeRequestAndResponse(
         req,
         reply,
-      });
-      response.headers.forEach((value, key) => {
-        reply.header(key, value);
-      });
+        {
+          req,
+          reply,
+        },
+      );
+      for (const [name, value] of response.headers) {
+        reply.header(name, value);
+      }
 
       reply.status(response.status);
       reply.send(response.body);
@@ -144,11 +167,5 @@ export async function main() {
     },
   });
 
-  app
-    .listen({ port: app.config.PORT })
-    .then((address) => console.log(`server listening on ${address}`))
-    .catch((err) => {
-      console.log("Error starting server:", err);
-      process.exit(1);
-    });
+  return [app, graphqlServer.graphqlEndpoint] as const;
 }
