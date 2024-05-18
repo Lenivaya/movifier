@@ -14,10 +14,10 @@ import {
 import bcrypt from "bcrypt";
 import { D } from "@mobily/ts-belt";
 import jwt, { SignOptions } from "jsonwebtoken";
-import { app } from "@/main";
 import { UserLoginOutput } from "@/graphql/users/outputs/userLoginOutput";
 import { UserLoginArgs } from "@/graphql/users/args/userLoginArgs";
 import { AppContext } from "@/graphql/context";
+import { app } from "@/app";
 
 const SALT_ROUNDS = 10;
 
@@ -48,7 +48,7 @@ export class CustomUserResolver {
     nullable: false,
   })
   async createOneMovifierAppUser(
-    @TypeGraphQL.Ctx() ctx: any,
+    @TypeGraphQL.Ctx() ctx: AppContext,
     @TypeGraphQL.Info() info: GraphQLResolveInfo,
     @TypeGraphQL.Args((_type) => CreateOneMovifierAppUserArgs)
     args: CreateOneMovifierAppUserArgs,
@@ -56,7 +56,6 @@ export class CustomUserResolver {
     const { _count } = transformInfoIntoPrismaArgs(info);
 
     const passwordHash = await bcrypt.hash(args.data.password, SALT_ROUNDS);
-
     const user = await getPrismaFromContext(ctx).movifierAppUser.create({
       ...D.merge(args, {
         data: D.merge(args.data, {
@@ -65,9 +64,8 @@ export class CustomUserResolver {
       }),
       ...(_count && transformCountFieldIntoSelectRelationsCount(_count)),
     });
-
-    console.log(app.config.JWT_SECRET);
     if (!user) throw new GraphQLError("User was not created.");
+
     const token = jwt.sign(
       { userId: user.id, userRole: user.role },
       app.config.JWT_SECRET,
@@ -81,19 +79,17 @@ export class CustomUserResolver {
     nullable: false,
   })
   async loginUser(
-    @TypeGraphQL.Ctx() ctx: any,
+    @TypeGraphQL.Ctx() ctx: AppContext,
     @TypeGraphQL.Info() info: GraphQLResolveInfo,
     @TypeGraphQL.Args((_type) => UserLoginArgs) args: UserLoginArgs,
   ) {
     const { _count } = transformInfoIntoPrismaArgs(info);
-
     const user = await getPrismaFromContext(ctx).movifierAppUser.findUnique({
       where: {
         email: args.data.email,
       },
       ...(_count && transformCountFieldIntoSelectRelationsCount(_count)),
     });
-
     if (!user) throw new GraphQLError("User not found.");
 
     const isPasswordCorrect = await bcrypt.compare(

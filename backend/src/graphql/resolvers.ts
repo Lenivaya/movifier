@@ -9,9 +9,4 @@ export const resolvers: NonEmptyArray<Function> = [
   ...userResolvers,
 ];
 
-export const resolversEnhanceMap: ResolversEnhanceMap = {
-  Movie: {
-    movie: [UseProjection()],
-    movies: [UseProjection()],
-  },
-};
+export const resolversEnhanceMap: ResolversEnhanceMap = {};

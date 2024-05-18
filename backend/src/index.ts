@@ -1,8 +1,20 @@
 import "reflect-metadata";
 
-import { main } from "@/main";
+import { buildApp } from "@/app";
 
-main().catch((e) => {
-  console.error(e);
-  process.exit(1);
-});
+buildApp()
+  .then(([app, endpoint]) => {
+    app
+      .listen({ port: app.config.PORT })
+      .then((address) =>
+        console.log(`Server listening on ${address}${endpoint}`),
+      )
+      .catch((err) => {
+        app.log.error(err);
+        process.exit(1);
+      });
+  })
+  .catch((err) => {
+    console.error(err);
+    process.exit(1);
+  });
