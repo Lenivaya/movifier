@@ -1,9 +1,7 @@
 import * as TypeGraphQL from "type-graphql";
 import type { GraphQLResolveInfo } from "graphql";
-import { Movie } from "../../../models/Movie";
 import { MovieCrewMember } from "../../../models/MovieCrewMember";
-import { MovieCrewMemberType } from "../../../models/MovieCrewMemberType";
-import { MovieCrewMemberMovieCrewMemberTypeArgs } from "./args/MovieCrewMemberMovieCrewMemberTypeArgs";
+import { MovieCrewMemberOnMovie } from "../../../models/MovieCrewMemberOnMovie";
 import { MovieCrewMemberMoviesArgs } from "./args/MovieCrewMemberMoviesArgs";
 import {
   transformInfoIntoPrismaArgs,
@@ -13,7 +11,7 @@ import {
 
 @TypeGraphQL.Resolver((_of) => MovieCrewMember)
 export class MovieCrewMemberRelationsResolver {
-  @TypeGraphQL.FieldResolver((_type) => [Movie], {
+  @TypeGraphQL.FieldResolver((_type) => [MovieCrewMemberOnMovie], {
     nullable: false,
   })
   async movies(
@@ -22,7 +20,7 @@ export class MovieCrewMemberRelationsResolver {
     @TypeGraphQL.Info() info: GraphQLResolveInfo,
     @TypeGraphQL.Args((_type) => MovieCrewMemberMoviesArgs)
     args: MovieCrewMemberMoviesArgs,
-  ): Promise<Movie[]> {
+  ): Promise<MovieCrewMemberOnMovie[]> {
     const { _count } = transformInfoIntoPrismaArgs(info);
     return getPrismaFromContext(ctx)
       .movieCrewMember.findUniqueOrThrow({
@@ -31,29 +29,6 @@ export class MovieCrewMemberRelationsResolver {
         },
       })
       .movies({
-        ...args,
-        ...(_count && transformCountFieldIntoSelectRelationsCount(_count)),
-      });
-  }
-
-  @TypeGraphQL.FieldResolver((_type) => MovieCrewMemberType, {
-    nullable: true,
-  })
-  async movieCrewMemberType(
-    @TypeGraphQL.Root() movieCrewMember: MovieCrewMember,
-    @TypeGraphQL.Ctx() ctx: any,
-    @TypeGraphQL.Info() info: GraphQLResolveInfo,
-    @TypeGraphQL.Args((_type) => MovieCrewMemberMovieCrewMemberTypeArgs)
-    args: MovieCrewMemberMovieCrewMemberTypeArgs,
-  ): Promise<MovieCrewMemberType | null> {
-    const { _count } = transformInfoIntoPrismaArgs(info);
-    return getPrismaFromContext(ctx)
-      .movieCrewMember.findUniqueOrThrow({
-        where: {
-          id: movieCrewMember.id,
-        },
-      })
-      .movieCrewMemberType({
         ...args,
         ...(_count && transformCountFieldIntoSelectRelationsCount(_count)),
       });

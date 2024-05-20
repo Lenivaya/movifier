@@ -2,7 +2,7 @@ import * as TypeGraphQL from "type-graphql";
 import * as GraphQLScalars from "graphql-scalars";
 import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../../scalars";
-import { MovieCrewMemberOrderByRelationAggregateInput } from "../inputs/MovieCrewMemberOrderByRelationAggregateInput";
+import { MovieCrewMemberOnMovieOrderByRelationAggregateInput } from "../inputs/MovieCrewMemberOnMovieOrderByRelationAggregateInput";
 import { MovieCrewMemberTypeOrderByRelevanceInput } from "../inputs/MovieCrewMemberTypeOrderByRelevanceInput";
 import { SortOrder } from "../../enums/SortOrder";
 
@@ -21,10 +21,15 @@ export class MovieCrewMemberTypeOrderByWithRelationAndSearchRelevanceInput {
   })
   name?: "asc" | "desc" | undefined;
 
-  @TypeGraphQL.Field((_type) => MovieCrewMemberOrderByRelationAggregateInput, {
-    nullable: true,
-  })
-  movieCrewMembers?: MovieCrewMemberOrderByRelationAggregateInput | undefined;
+  @TypeGraphQL.Field(
+    (_type) => MovieCrewMemberOnMovieOrderByRelationAggregateInput,
+    {
+      nullable: true,
+    },
+  )
+  movieCrewMembers?:
+    | MovieCrewMemberOnMovieOrderByRelationAggregateInput
+    | undefined;
 
   @TypeGraphQL.Field((_type) => MovieCrewMemberTypeOrderByRelevanceInput, {
     nullable: true,

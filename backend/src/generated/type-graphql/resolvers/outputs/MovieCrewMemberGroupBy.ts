@@ -28,11 +28,6 @@ export class MovieCrewMemberGroupBy {
   })
   name!: string;
 
-  @TypeGraphQL.Field((_type) => String, {
-    nullable: true,
-  })
-  movieCrewMemberTypeId!: string | null;
-
   @TypeGraphQL.Field((_type) => MovieCrewMemberCountAggregate, {
     nullable: true,
   })

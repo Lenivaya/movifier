@@ -12,12 +12,12 @@ import {
   transformInfoIntoPrismaArgs,
 } from "@/generated/type-graphql/helpers";
 import bcrypt from "bcrypt";
-import { D } from "@mobily/ts-belt";
 import jwt, { SignOptions } from "jsonwebtoken";
 import { UserLoginOutput } from "@/graphql/users/outputs/userLoginOutput";
 import { UserLoginArgs } from "@/graphql/users/args/userLoginArgs";
 import { AppContext } from "@/graphql/context";
 import { app } from "@/app";
+import { create } from "mutative";
 
 const SALT_ROUNDS = 10;
 
@@ -57,10 +57,8 @@ export class CustomUserResolver {
 
     const passwordHash = await bcrypt.hash(args.data.password, SALT_ROUNDS);
     const user = await getPrismaFromContext(ctx).movifierAppUser.create({
-      ...D.merge(args, {
-        data: D.merge(args.data, {
-          password: passwordHash,
-        }),
+      ...create(args, (draft) => {
+        draft.data.password = passwordHash;
       }),
       ...(_count && transformCountFieldIntoSelectRelationsCount(_count)),
     });

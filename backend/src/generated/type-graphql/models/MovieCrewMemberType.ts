@@ -2,7 +2,7 @@ import * as TypeGraphQL from "type-graphql";
 import * as GraphQLScalars from "graphql-scalars";
 import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../scalars";
-import { MovieCrewMember } from "../models/MovieCrewMember";
+import { MovieCrewMemberOnMovie } from "../models/MovieCrewMemberOnMovie";
 import { MovieCrewMemberTypeCount } from "../resolvers/outputs/MovieCrewMemberTypeCount";
 
 @TypeGraphQL.ObjectType("MovieCrewMemberType", {})
@@ -17,7 +17,7 @@ export class MovieCrewMemberType {
   })
   name!: string;
 
-  movieCrewMembers?: MovieCrewMember[];
+  movieCrewMembers?: MovieCrewMemberOnMovie[];
 
   @TypeGraphQL.Field((_type) => MovieCrewMemberTypeCount, {
     nullable: true,

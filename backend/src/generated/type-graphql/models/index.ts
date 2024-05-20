@@ -1,6 +1,7 @@
 export { Genre } from "./Genre";
 export { Movie } from "./Movie";
 export { MovieCrewMember } from "./MovieCrewMember";
+export { MovieCrewMemberOnMovie } from "./MovieCrewMemberOnMovie";
 export { MovieCrewMemberType } from "./MovieCrewMemberType";
 export { MovieInfo } from "./MovieInfo";
 export { MovieKeywordCategory } from "./MovieKeywordCategory";

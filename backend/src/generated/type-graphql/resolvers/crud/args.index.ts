@@ -1,6 +1,7 @@
 export * from "./Genre/args";
 export * from "./Movie/args";
 export * from "./MovieCrewMember/args";
+export * from "./MovieCrewMemberOnMovie/args";
 export * from "./MovieCrewMemberType/args";
 export * from "./MovieInfo/args";
 export * from "./MovieKeywordCategory/args";

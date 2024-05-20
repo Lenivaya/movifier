@@ -24,9 +24,4 @@ export class MovieCrewMemberCreateManyInput {
     nullable: false,
   })
   name!: string;
-
-  @TypeGraphQL.Field((_type) => String, {
-    nullable: true,
-  })
-  movieCrewMemberTypeId?: string | undefined;
 }

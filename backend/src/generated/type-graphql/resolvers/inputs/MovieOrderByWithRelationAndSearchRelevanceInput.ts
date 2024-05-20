@@ -3,7 +3,7 @@ import * as GraphQLScalars from "graphql-scalars";
 import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../../scalars";
 import { GenreOrderByRelationAggregateInput } from "../inputs/GenreOrderByRelationAggregateInput";
-import { MovieCrewMemberOrderByRelationAggregateInput } from "../inputs/MovieCrewMemberOrderByRelationAggregateInput";
+import { MovieCrewMemberOnMovieOrderByRelationAggregateInput } from "../inputs/MovieCrewMemberOnMovieOrderByRelationAggregateInput";
 import { MovieInfoOrderByWithRelationAndSearchRelevanceInput } from "../inputs/MovieInfoOrderByWithRelationAndSearchRelevanceInput";
 import { MovieKeywordCategoryOrderByRelationAggregateInput } from "../inputs/MovieKeywordCategoryOrderByRelationAggregateInput";
 import { MovieListOrderByRelationAggregateInput } from "../inputs/MovieListOrderByRelationAggregateInput";
@@ -46,12 +46,15 @@ export class MovieOrderByWithRelationAndSearchRelevanceInput {
       nullable: true,
     },
   )
-  MovieStats?: MovieStatsOrderByWithRelationAndSearchRelevanceInput | undefined;
+  movieStats?: MovieStatsOrderByWithRelationAndSearchRelevanceInput | undefined;
 
-  @TypeGraphQL.Field((_type) => MovieCrewMemberOrderByRelationAggregateInput, {
-    nullable: true,
-  })
-  crewMembers?: MovieCrewMemberOrderByRelationAggregateInput | undefined;
+  @TypeGraphQL.Field(
+    (_type) => MovieCrewMemberOnMovieOrderByRelationAggregateInput,
+    {
+      nullable: true,
+    },
+  )
+  crewMembers?: MovieCrewMemberOnMovieOrderByRelationAggregateInput | undefined;
 
   @TypeGraphQL.Field((_type) => MovieStudioOrderByRelationAggregateInput, {
     nullable: true,

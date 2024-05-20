@@ -3,7 +3,7 @@ import * as GraphQLScalars from "graphql-scalars";
 import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../../scalars";
 import { GenreCreateNestedManyWithoutMoviesInput } from "../inputs/GenreCreateNestedManyWithoutMoviesInput";
-import { MovieCrewMemberCreateNestedManyWithoutMoviesInput } from "../inputs/MovieCrewMemberCreateNestedManyWithoutMoviesInput";
+import { MovieCrewMemberOnMovieCreateNestedManyWithoutMovieInput } from "../inputs/MovieCrewMemberOnMovieCreateNestedManyWithoutMovieInput";
 import { MovieInfoCreateNestedOneWithoutMovieInput } from "../inputs/MovieInfoCreateNestedOneWithoutMovieInput";
 import { MovieKeywordCategoryCreateNestedManyWithoutMoviesInput } from "../inputs/MovieKeywordCategoryCreateNestedManyWithoutMoviesInput";
 import { MovieListCreateNestedManyWithoutMoviesInput } from "../inputs/MovieListCreateNestedManyWithoutMoviesInput";
@@ -35,12 +35,14 @@ export class MovieCreateWithoutMovieStatsInput {
   movieInfo?: MovieInfoCreateNestedOneWithoutMovieInput | undefined;
 
   @TypeGraphQL.Field(
-    (_type) => MovieCrewMemberCreateNestedManyWithoutMoviesInput,
+    (_type) => MovieCrewMemberOnMovieCreateNestedManyWithoutMovieInput,
     {
       nullable: true,
     },
   )
-  crewMembers?: MovieCrewMemberCreateNestedManyWithoutMoviesInput | undefined;
+  crewMembers?:
+    | MovieCrewMemberOnMovieCreateNestedManyWithoutMovieInput
+    | undefined;
 
   @TypeGraphQL.Field((_type) => MovieStudioCreateNestedManyWithoutMoviesInput, {
     nullable: true,

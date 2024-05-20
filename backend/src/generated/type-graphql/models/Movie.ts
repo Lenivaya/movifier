@@ -3,7 +3,7 @@ import * as GraphQLScalars from "graphql-scalars";
 import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../scalars";
 import { Genre } from "../models/Genre";
-import { MovieCrewMember } from "../models/MovieCrewMember";
+import { MovieCrewMemberOnMovie } from "../models/MovieCrewMemberOnMovie";
 import { MovieInfo } from "../models/MovieInfo";
 import { MovieKeywordCategory } from "../models/MovieKeywordCategory";
 import { MovieList } from "../models/MovieList";
@@ -33,9 +33,9 @@ export class Movie {
 
   movieInfo?: MovieInfo | null;
 
-  MovieStats?: MovieStats | null;
+  movieStats?: MovieStats | null;
 
-  crewMembers?: MovieCrewMember[];
+  crewMembers?: MovieCrewMemberOnMovie[];
 
   studios?: MovieStudio[];
 

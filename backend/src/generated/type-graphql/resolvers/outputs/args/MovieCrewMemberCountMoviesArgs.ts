@@ -1,11 +1,11 @@
 import * as TypeGraphQL from "type-graphql";
 import * as GraphQLScalars from "graphql-scalars";
-import { MovieWhereInput } from "../../inputs/MovieWhereInput";
+import { MovieCrewMemberOnMovieWhereInput } from "../../inputs/MovieCrewMemberOnMovieWhereInput";
 
 @TypeGraphQL.ArgsType()
 export class MovieCrewMemberCountMoviesArgs {
-  @TypeGraphQL.Field((_type) => MovieWhereInput, {
+  @TypeGraphQL.Field((_type) => MovieCrewMemberOnMovieWhereInput, {
     nullable: true,
   })
-  where?: MovieWhereInput | undefined;
+  where?: MovieCrewMemberOnMovieWhereInput | undefined;
 }

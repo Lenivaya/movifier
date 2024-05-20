@@ -1,5 +1,7 @@
 export { GenreOrderByRelevanceFieldEnum } from "./GenreOrderByRelevanceFieldEnum";
 export { GenreScalarFieldEnum } from "./GenreScalarFieldEnum";
+export { MovieCrewMemberOnMovieOrderByRelevanceFieldEnum } from "./MovieCrewMemberOnMovieOrderByRelevanceFieldEnum";
+export { MovieCrewMemberOnMovieScalarFieldEnum } from "./MovieCrewMemberOnMovieScalarFieldEnum";
 export { MovieCrewMemberOrderByRelevanceFieldEnum } from "./MovieCrewMemberOrderByRelevanceFieldEnum";
 export { MovieCrewMemberScalarFieldEnum } from "./MovieCrewMemberScalarFieldEnum";
 export { MovieCrewMemberTypeOrderByRelevanceFieldEnum } from "./MovieCrewMemberTypeOrderByRelevanceFieldEnum";
@@ -29,7 +31,6 @@ export { MovieStudioScalarFieldEnum } from "./MovieStudioScalarFieldEnum";
 export { MoviefireAppUserRole } from "./MoviefireAppUserRole";
 export { MovifierAppUserOrderByRelevanceFieldEnum } from "./MovifierAppUserOrderByRelevanceFieldEnum";
 export { MovifierAppUserScalarFieldEnum } from "./MovifierAppUserScalarFieldEnum";
-export { NullsOrder } from "./NullsOrder";
 export { QueryMode } from "./QueryMode";
 export { SortOrder } from "./SortOrder";
 export { TransactionIsolationLevel } from "./TransactionIsolationLevel";
