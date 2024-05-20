@@ -35,5 +35,5 @@ export class FindManyMovieInfoArgs {
   @TypeGraphQL.Field(_type => [MovieInfoScalarFieldEnum], {
     nullable: true
   })
-  distinct?: Array<"id" | "createdAt" | "updatedAt" | "imdbId" | "title" | "description" | "alternativeTitles" | "durationInMinutes" | "posterUrl" | "movieId"> | undefined;
+  distinct?: Array<"id" | "createdAt" | "updatedAt" | "imdbId" | "title" | "description" | "alternativeTitles" | "durationInMinutes" | "posterUrl" | "releaseDate" | "movieId"> | undefined;
 }

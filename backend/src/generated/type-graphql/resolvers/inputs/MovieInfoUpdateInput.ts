@@ -55,6 +55,11 @@ export class MovieInfoUpdateInput {
   })
   posterUrl?: StringFieldUpdateOperationsInput | undefined;
 
+  @TypeGraphQL.Field(_type => DateTimeFieldUpdateOperationsInput, {
+    nullable: true
+  })
+  releaseDate?: DateTimeFieldUpdateOperationsInput | undefined;
+
   @TypeGraphQL.Field(_type => MovieUpdateOneRequiredWithoutMovieInfoNestedInput, {
     nullable: true
   })

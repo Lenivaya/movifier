@@ -10,6 +10,7 @@ export enum MovieInfoScalarFieldEnum {
   alternativeTitles = "alternativeTitles",
   durationInMinutes = "durationInMinutes",
   posterUrl = "posterUrl",
+  releaseDate = "releaseDate",
   movieId = "movieId"
 }
 TypeGraphQL.registerEnumType(MovieInfoScalarFieldEnum, {

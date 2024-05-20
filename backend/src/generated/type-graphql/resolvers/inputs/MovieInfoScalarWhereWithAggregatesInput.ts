@@ -69,6 +69,11 @@ export class MovieInfoScalarWhereWithAggregatesInput {
   })
   posterUrl?: StringWithAggregatesFilter | undefined;
 
+  @TypeGraphQL.Field(_type => DateTimeWithAggregatesFilter, {
+    nullable: true
+  })
+  releaseDate?: DateTimeWithAggregatesFilter | undefined;
+
   @TypeGraphQL.Field(_type => StringWithAggregatesFilter, {
     nullable: true
   })

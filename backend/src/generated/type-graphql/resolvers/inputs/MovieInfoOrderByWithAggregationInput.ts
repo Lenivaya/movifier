@@ -59,6 +59,11 @@ export class MovieInfoOrderByWithAggregationInput {
   @TypeGraphQL.Field(_type => SortOrder, {
     nullable: true
   })
+  releaseDate?: "asc" | "desc" | undefined;
+
+  @TypeGraphQL.Field(_type => SortOrder, {
+    nullable: true
+  })
   movieId?: "asc" | "desc" | undefined;
 
   @TypeGraphQL.Field(_type => MovieInfoCountOrderByAggregateInput, {
