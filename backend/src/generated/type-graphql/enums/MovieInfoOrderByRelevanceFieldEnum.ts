@@ -7,7 +7,7 @@ export enum MovieInfoOrderByRelevanceFieldEnum {
   description = "description",
   alternativeTitles = "alternativeTitles",
   posterUrl = "posterUrl",
-  movieId = "movieId",
+  movieId = "movieId"
 }
 TypeGraphQL.registerEnumType(MovieInfoOrderByRelevanceFieldEnum, {
   name: "MovieInfoOrderByRelevanceFieldEnum",

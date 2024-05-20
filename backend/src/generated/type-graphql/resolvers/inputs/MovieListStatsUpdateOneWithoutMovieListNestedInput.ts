@@ -11,46 +11,38 @@ import { MovieListStatsWhereUniqueInput } from "../inputs/MovieListStatsWhereUni
 
 @TypeGraphQL.InputType("MovieListStatsUpdateOneWithoutMovieListNestedInput", {})
 export class MovieListStatsUpdateOneWithoutMovieListNestedInput {
-  @TypeGraphQL.Field((_type) => MovieListStatsCreateWithoutMovieListInput, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => MovieListStatsCreateWithoutMovieListInput, {
+    nullable: true
   })
   create?: MovieListStatsCreateWithoutMovieListInput | undefined;
 
-  @TypeGraphQL.Field(
-    (_type) => MovieListStatsCreateOrConnectWithoutMovieListInput,
-    {
-      nullable: true,
-    },
-  )
-  connectOrCreate?:
-    | MovieListStatsCreateOrConnectWithoutMovieListInput
-    | undefined;
+  @TypeGraphQL.Field(_type => MovieListStatsCreateOrConnectWithoutMovieListInput, {
+    nullable: true
+  })
+  connectOrCreate?: MovieListStatsCreateOrConnectWithoutMovieListInput | undefined;
 
-  @TypeGraphQL.Field((_type) => MovieListStatsUpsertWithoutMovieListInput, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => MovieListStatsUpsertWithoutMovieListInput, {
+    nullable: true
   })
   upsert?: MovieListStatsUpsertWithoutMovieListInput | undefined;
 
-  @TypeGraphQL.Field((_type) => MovieListStatsWhereInput, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => MovieListStatsWhereInput, {
+    nullable: true
   })
   disconnect?: MovieListStatsWhereInput | undefined;
 
-  @TypeGraphQL.Field((_type) => MovieListStatsWhereInput, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => MovieListStatsWhereInput, {
+    nullable: true
   })
   delete?: MovieListStatsWhereInput | undefined;
 
-  @TypeGraphQL.Field((_type) => MovieListStatsWhereUniqueInput, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => MovieListStatsWhereUniqueInput, {
+    nullable: true
   })
   connect?: MovieListStatsWhereUniqueInput | undefined;
 
-  @TypeGraphQL.Field(
-    (_type) => MovieListStatsUpdateToOneWithWhereWithoutMovieListInput,
-    {
-      nullable: true,
-    },
-  )
+  @TypeGraphQL.Field(_type => MovieListStatsUpdateToOneWithWhereWithoutMovieListInput, {
+    nullable: true
+  })
   update?: MovieListStatsUpdateToOneWithWhereWithoutMovieListInput | undefined;
 }

@@ -6,23 +6,20 @@ import { MovifierAppUserCreateWithoutWatchlistInput } from "../inputs/MovifierAp
 import { MovifierAppUserUpdateWithoutWatchlistInput } from "../inputs/MovifierAppUserUpdateWithoutWatchlistInput";
 import { MovifierAppUserWhereUniqueInput } from "../inputs/MovifierAppUserWhereUniqueInput";
 
-@TypeGraphQL.InputType(
-  "MovifierAppUserUpsertWithWhereUniqueWithoutWatchlistInput",
-  {},
-)
+@TypeGraphQL.InputType("MovifierAppUserUpsertWithWhereUniqueWithoutWatchlistInput", {})
 export class MovifierAppUserUpsertWithWhereUniqueWithoutWatchlistInput {
-  @TypeGraphQL.Field((_type) => MovifierAppUserWhereUniqueInput, {
-    nullable: false,
+  @TypeGraphQL.Field(_type => MovifierAppUserWhereUniqueInput, {
+    nullable: false
   })
   where!: MovifierAppUserWhereUniqueInput;
 
-  @TypeGraphQL.Field((_type) => MovifierAppUserUpdateWithoutWatchlistInput, {
-    nullable: false,
+  @TypeGraphQL.Field(_type => MovifierAppUserUpdateWithoutWatchlistInput, {
+    nullable: false
   })
   update!: MovifierAppUserUpdateWithoutWatchlistInput;
 
-  @TypeGraphQL.Field((_type) => MovifierAppUserCreateWithoutWatchlistInput, {
-    nullable: false,
+  @TypeGraphQL.Field(_type => MovifierAppUserCreateWithoutWatchlistInput, {
+    nullable: false
   })
   create!: MovifierAppUserCreateWithoutWatchlistInput;
 }

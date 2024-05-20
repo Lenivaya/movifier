@@ -8,37 +8,37 @@ import { MovifierAppUser } from "../models/MovifierAppUser";
 
 @TypeGraphQL.ObjectType("MovieRating", {})
 export class MovieRating {
-  @TypeGraphQL.Field((_type) => String, {
-    nullable: false,
+  @TypeGraphQL.Field(_type => String, {
+    nullable: false
   })
   id!: string;
 
-  @TypeGraphQL.Field((_type) => Date, {
-    nullable: false,
+  @TypeGraphQL.Field(_type => Date, {
+    nullable: false
   })
   createdAt!: Date;
 
-  @TypeGraphQL.Field((_type) => Date, {
-    nullable: false,
+  @TypeGraphQL.Field(_type => Date, {
+    nullable: false
   })
   updatedAt!: Date;
 
-  @TypeGraphQL.Field((_type) => TypeGraphQL.Int, {
-    nullable: false,
+  @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
+    nullable: false
   })
   rating!: number;
 
   Review?: MovieReview | null;
 
-  @TypeGraphQL.Field((_type) => String, {
-    nullable: false,
+  @TypeGraphQL.Field(_type => String, {
+    nullable: false
   })
   movieId!: string;
 
   movie?: Movie;
 
-  @TypeGraphQL.Field((_type) => String, {
-    nullable: false,
+  @TypeGraphQL.Field(_type => String, {
+    nullable: false
   })
   userId!: string;
 

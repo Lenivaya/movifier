@@ -5,18 +5,15 @@ import { DecimalJSScalar } from "../../scalars";
 import { MovieListCommentUpdateWithoutUserInput } from "../inputs/MovieListCommentUpdateWithoutUserInput";
 import { MovieListCommentWhereUniqueInput } from "../inputs/MovieListCommentWhereUniqueInput";
 
-@TypeGraphQL.InputType(
-  "MovieListCommentUpdateWithWhereUniqueWithoutUserInput",
-  {},
-)
+@TypeGraphQL.InputType("MovieListCommentUpdateWithWhereUniqueWithoutUserInput", {})
 export class MovieListCommentUpdateWithWhereUniqueWithoutUserInput {
-  @TypeGraphQL.Field((_type) => MovieListCommentWhereUniqueInput, {
-    nullable: false,
+  @TypeGraphQL.Field(_type => MovieListCommentWhereUniqueInput, {
+    nullable: false
   })
   where!: MovieListCommentWhereUniqueInput;
 
-  @TypeGraphQL.Field((_type) => MovieListCommentUpdateWithoutUserInput, {
-    nullable: false,
+  @TypeGraphQL.Field(_type => MovieListCommentUpdateWithoutUserInput, {
+    nullable: false
   })
   data!: MovieListCommentUpdateWithoutUserInput;
 }

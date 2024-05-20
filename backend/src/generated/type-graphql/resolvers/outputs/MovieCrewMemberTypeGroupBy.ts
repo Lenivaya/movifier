@@ -8,28 +8,28 @@ import { MovieCrewMemberTypeMinAggregate } from "../outputs/MovieCrewMemberTypeM
 
 @TypeGraphQL.ObjectType("MovieCrewMemberTypeGroupBy", {})
 export class MovieCrewMemberTypeGroupBy {
-  @TypeGraphQL.Field((_type) => String, {
-    nullable: false,
+  @TypeGraphQL.Field(_type => String, {
+    nullable: false
   })
   id!: string;
 
-  @TypeGraphQL.Field((_type) => String, {
-    nullable: false,
+  @TypeGraphQL.Field(_type => String, {
+    nullable: false
   })
   name!: string;
 
-  @TypeGraphQL.Field((_type) => MovieCrewMemberTypeCountAggregate, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => MovieCrewMemberTypeCountAggregate, {
+    nullable: true
   })
   _count!: MovieCrewMemberTypeCountAggregate | null;
 
-  @TypeGraphQL.Field((_type) => MovieCrewMemberTypeMinAggregate, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => MovieCrewMemberTypeMinAggregate, {
+    nullable: true
   })
   _min!: MovieCrewMemberTypeMinAggregate | null;
 
-  @TypeGraphQL.Field((_type) => MovieCrewMemberTypeMaxAggregate, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => MovieCrewMemberTypeMaxAggregate, {
+    nullable: true
   })
   _max!: MovieCrewMemberTypeMaxAggregate | null;
 }

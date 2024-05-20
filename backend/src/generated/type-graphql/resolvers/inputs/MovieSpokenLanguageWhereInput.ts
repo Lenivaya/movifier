@@ -8,38 +8,38 @@ import { StringFilter } from "../inputs/StringFilter";
 
 @TypeGraphQL.InputType("MovieSpokenLanguageWhereInput", {})
 export class MovieSpokenLanguageWhereInput {
-  @TypeGraphQL.Field((_type) => [MovieSpokenLanguageWhereInput], {
-    nullable: true,
+  @TypeGraphQL.Field(_type => [MovieSpokenLanguageWhereInput], {
+    nullable: true
   })
   AND?: MovieSpokenLanguageWhereInput[] | undefined;
 
-  @TypeGraphQL.Field((_type) => [MovieSpokenLanguageWhereInput], {
-    nullable: true,
+  @TypeGraphQL.Field(_type => [MovieSpokenLanguageWhereInput], {
+    nullable: true
   })
   OR?: MovieSpokenLanguageWhereInput[] | undefined;
 
-  @TypeGraphQL.Field((_type) => [MovieSpokenLanguageWhereInput], {
-    nullable: true,
+  @TypeGraphQL.Field(_type => [MovieSpokenLanguageWhereInput], {
+    nullable: true
   })
   NOT?: MovieSpokenLanguageWhereInput[] | undefined;
 
-  @TypeGraphQL.Field((_type) => StringFilter, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => StringFilter, {
+    nullable: true
   })
   language?: StringFilter | undefined;
 
-  @TypeGraphQL.Field((_type) => DateTimeFilter, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => DateTimeFilter, {
+    nullable: true
   })
   createdAt?: DateTimeFilter | undefined;
 
-  @TypeGraphQL.Field((_type) => DateTimeFilter, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => DateTimeFilter, {
+    nullable: true
   })
   updatedAt?: DateTimeFilter | undefined;
 
-  @TypeGraphQL.Field((_type) => MovieListRelationFilter, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => MovieListRelationFilter, {
+    nullable: true
   })
   movies?: MovieListRelationFilter | undefined;
 }

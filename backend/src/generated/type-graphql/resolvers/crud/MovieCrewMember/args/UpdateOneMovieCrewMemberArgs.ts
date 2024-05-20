@@ -5,13 +5,13 @@ import { MovieCrewMemberWhereUniqueInput } from "../../../inputs/MovieCrewMember
 
 @TypeGraphQL.ArgsType()
 export class UpdateOneMovieCrewMemberArgs {
-  @TypeGraphQL.Field((_type) => MovieCrewMemberUpdateInput, {
-    nullable: false,
+  @TypeGraphQL.Field(_type => MovieCrewMemberUpdateInput, {
+    nullable: false
   })
   data!: MovieCrewMemberUpdateInput;
 
-  @TypeGraphQL.Field((_type) => MovieCrewMemberWhereUniqueInput, {
-    nullable: false,
+  @TypeGraphQL.Field(_type => MovieCrewMemberWhereUniqueInput, {
+    nullable: false
   })
   where!: MovieCrewMemberWhereUniqueInput;
 }

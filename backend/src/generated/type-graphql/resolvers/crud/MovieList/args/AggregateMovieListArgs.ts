@@ -6,31 +6,28 @@ import { MovieListWhereUniqueInput } from "../../../inputs/MovieListWhereUniqueI
 
 @TypeGraphQL.ArgsType()
 export class AggregateMovieListArgs {
-  @TypeGraphQL.Field((_type) => MovieListWhereInput, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => MovieListWhereInput, {
+    nullable: true
   })
   where?: MovieListWhereInput | undefined;
 
-  @TypeGraphQL.Field(
-    (_type) => [MovieListOrderByWithRelationAndSearchRelevanceInput],
-    {
-      nullable: true,
-    },
-  )
+  @TypeGraphQL.Field(_type => [MovieListOrderByWithRelationAndSearchRelevanceInput], {
+    nullable: true
+  })
   orderBy?: MovieListOrderByWithRelationAndSearchRelevanceInput[] | undefined;
 
-  @TypeGraphQL.Field((_type) => MovieListWhereUniqueInput, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => MovieListWhereUniqueInput, {
+    nullable: true
   })
   cursor?: MovieListWhereUniqueInput | undefined;
 
-  @TypeGraphQL.Field((_type) => TypeGraphQL.Int, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
+    nullable: true
   })
   take?: number | undefined;
 
-  @TypeGraphQL.Field((_type) => TypeGraphQL.Int, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
+    nullable: true
   })
   skip?: number | undefined;
 }

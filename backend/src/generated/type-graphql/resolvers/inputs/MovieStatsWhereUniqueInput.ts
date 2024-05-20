@@ -9,58 +9,58 @@ import { MovieStatsWhereInput } from "../inputs/MovieStatsWhereInput";
 
 @TypeGraphQL.InputType("MovieStatsWhereUniqueInput", {})
 export class MovieStatsWhereUniqueInput {
-  @TypeGraphQL.Field((_type) => String, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => String, {
+    nullable: true
   })
   id?: string | undefined;
 
-  @TypeGraphQL.Field((_type) => String, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => String, {
+    nullable: true
   })
   movieId?: string | undefined;
 
-  @TypeGraphQL.Field((_type) => [MovieStatsWhereInput], {
-    nullable: true,
+  @TypeGraphQL.Field(_type => [MovieStatsWhereInput], {
+    nullable: true
   })
   AND?: MovieStatsWhereInput[] | undefined;
 
-  @TypeGraphQL.Field((_type) => [MovieStatsWhereInput], {
-    nullable: true,
+  @TypeGraphQL.Field(_type => [MovieStatsWhereInput], {
+    nullable: true
   })
   OR?: MovieStatsWhereInput[] | undefined;
 
-  @TypeGraphQL.Field((_type) => [MovieStatsWhereInput], {
-    nullable: true,
+  @TypeGraphQL.Field(_type => [MovieStatsWhereInput], {
+    nullable: true
   })
   NOT?: MovieStatsWhereInput[] | undefined;
 
-  @TypeGraphQL.Field((_type) => IntFilter, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => IntFilter, {
+    nullable: true
   })
   timesWatchedCount?: IntFilter | undefined;
 
-  @TypeGraphQL.Field((_type) => IntFilter, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => IntFilter, {
+    nullable: true
   })
   totalRatingsCount?: IntFilter | undefined;
 
-  @TypeGraphQL.Field((_type) => IntFilter, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => IntFilter, {
+    nullable: true
   })
   totalLikesCount?: IntFilter | undefined;
 
-  @TypeGraphQL.Field((_type) => IntFilter, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => IntFilter, {
+    nullable: true
   })
   overallPlaceINTop?: IntFilter | undefined;
 
-  @TypeGraphQL.Field((_type) => FloatFilter, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => FloatFilter, {
+    nullable: true
   })
   avgRating?: FloatFilter | undefined;
 
-  @TypeGraphQL.Field((_type) => MovieRelationFilter, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => MovieRelationFilter, {
+    nullable: true
   })
   movie?: MovieRelationFilter | undefined;
 }

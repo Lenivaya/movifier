@@ -5,18 +5,15 @@ import { DecimalJSScalar } from "../../scalars";
 import { MovifierAppUserScalarWhereInput } from "../inputs/MovifierAppUserScalarWhereInput";
 import { MovifierAppUserUpdateManyMutationInput } from "../inputs/MovifierAppUserUpdateManyMutationInput";
 
-@TypeGraphQL.InputType(
-  "MovifierAppUserUpdateManyWithWhereWithoutWatchlistInput",
-  {},
-)
+@TypeGraphQL.InputType("MovifierAppUserUpdateManyWithWhereWithoutWatchlistInput", {})
 export class MovifierAppUserUpdateManyWithWhereWithoutWatchlistInput {
-  @TypeGraphQL.Field((_type) => MovifierAppUserScalarWhereInput, {
-    nullable: false,
+  @TypeGraphQL.Field(_type => MovifierAppUserScalarWhereInput, {
+    nullable: false
   })
   where!: MovifierAppUserScalarWhereInput;
 
-  @TypeGraphQL.Field((_type) => MovifierAppUserUpdateManyMutationInput, {
-    nullable: false,
+  @TypeGraphQL.Field(_type => MovifierAppUserUpdateManyMutationInput, {
+    nullable: false
   })
   data!: MovifierAppUserUpdateManyMutationInput;
 }

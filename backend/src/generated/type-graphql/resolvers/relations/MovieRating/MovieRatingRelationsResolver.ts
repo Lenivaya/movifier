@@ -5,74 +5,50 @@ import { MovieRating } from "../../../models/MovieRating";
 import { MovieReview } from "../../../models/MovieReview";
 import { MovifierAppUser } from "../../../models/MovifierAppUser";
 import { MovieRatingReviewArgs } from "./args/MovieRatingReviewArgs";
-import {
-  transformInfoIntoPrismaArgs,
-  getPrismaFromContext,
-  transformCountFieldIntoSelectRelationsCount,
-} from "../../../helpers";
+import { transformInfoIntoPrismaArgs, getPrismaFromContext, transformCountFieldIntoSelectRelationsCount } from "../../../helpers";
 
-@TypeGraphQL.Resolver((_of) => MovieRating)
+@TypeGraphQL.Resolver(_of => MovieRating)
 export class MovieRatingRelationsResolver {
-  @TypeGraphQL.FieldResolver((_type) => MovieReview, {
-    nullable: true,
+  @TypeGraphQL.FieldResolver(_type => MovieReview, {
+    nullable: true
   })
-  async Review(
-    @TypeGraphQL.Root() movieRating: MovieRating,
-    @TypeGraphQL.Ctx() ctx: any,
-    @TypeGraphQL.Info() info: GraphQLResolveInfo,
-    @TypeGraphQL.Args((_type) => MovieRatingReviewArgs)
-    args: MovieRatingReviewArgs,
-  ): Promise<MovieReview | null> {
+  async Review(@TypeGraphQL.Root() movieRating: MovieRating, @TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Info() info: GraphQLResolveInfo, @TypeGraphQL.Args(_type => MovieRatingReviewArgs) args: MovieRatingReviewArgs): Promise<MovieReview | null> {
     const { _count } = transformInfoIntoPrismaArgs(info);
-    return getPrismaFromContext(ctx)
-      .movieRating.findUniqueOrThrow({
-        where: {
-          id: movieRating.id,
-        },
-      })
-      .Review({
-        ...args,
-        ...(_count && transformCountFieldIntoSelectRelationsCount(_count)),
-      });
+    return getPrismaFromContext(ctx).movieRating.findUniqueOrThrow({
+      where: {
+        id: movieRating.id,
+      },
+    }).Review({
+      ...args,
+      ...(_count && transformCountFieldIntoSelectRelationsCount(_count)),
+    });
   }
 
-  @TypeGraphQL.FieldResolver((_type) => Movie, {
-    nullable: false,
+  @TypeGraphQL.FieldResolver(_type => Movie, {
+    nullable: false
   })
-  async movie(
-    @TypeGraphQL.Root() movieRating: MovieRating,
-    @TypeGraphQL.Ctx() ctx: any,
-    @TypeGraphQL.Info() info: GraphQLResolveInfo,
-  ): Promise<Movie> {
+  async movie(@TypeGraphQL.Root() movieRating: MovieRating, @TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Info() info: GraphQLResolveInfo): Promise<Movie> {
     const { _count } = transformInfoIntoPrismaArgs(info);
-    return getPrismaFromContext(ctx)
-      .movieRating.findUniqueOrThrow({
-        where: {
-          id: movieRating.id,
-        },
-      })
-      .movie({
-        ...(_count && transformCountFieldIntoSelectRelationsCount(_count)),
-      });
+    return getPrismaFromContext(ctx).movieRating.findUniqueOrThrow({
+      where: {
+        id: movieRating.id,
+      },
+    }).movie({
+      ...(_count && transformCountFieldIntoSelectRelationsCount(_count)),
+    });
   }
 
-  @TypeGraphQL.FieldResolver((_type) => MovifierAppUser, {
-    nullable: false,
+  @TypeGraphQL.FieldResolver(_type => MovifierAppUser, {
+    nullable: false
   })
-  async user(
-    @TypeGraphQL.Root() movieRating: MovieRating,
-    @TypeGraphQL.Ctx() ctx: any,
-    @TypeGraphQL.Info() info: GraphQLResolveInfo,
-  ): Promise<MovifierAppUser> {
+  async user(@TypeGraphQL.Root() movieRating: MovieRating, @TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Info() info: GraphQLResolveInfo): Promise<MovifierAppUser> {
     const { _count } = transformInfoIntoPrismaArgs(info);
-    return getPrismaFromContext(ctx)
-      .movieRating.findUniqueOrThrow({
-        where: {
-          id: movieRating.id,
-        },
-      })
-      .user({
-        ...(_count && transformCountFieldIntoSelectRelationsCount(_count)),
-      });
+    return getPrismaFromContext(ctx).movieRating.findUniqueOrThrow({
+      where: {
+        id: movieRating.id,
+      },
+    }).user({
+      ...(_count && transformCountFieldIntoSelectRelationsCount(_count)),
+    });
   }
 }

@@ -6,18 +6,18 @@ import { MovieKeywordCategoryWhereInput } from "../inputs/MovieKeywordCategoryWh
 
 @TypeGraphQL.InputType("MovieKeywordCategoryListRelationFilter", {})
 export class MovieKeywordCategoryListRelationFilter {
-  @TypeGraphQL.Field((_type) => MovieKeywordCategoryWhereInput, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => MovieKeywordCategoryWhereInput, {
+    nullable: true
   })
   every?: MovieKeywordCategoryWhereInput | undefined;
 
-  @TypeGraphQL.Field((_type) => MovieKeywordCategoryWhereInput, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => MovieKeywordCategoryWhereInput, {
+    nullable: true
   })
   some?: MovieKeywordCategoryWhereInput | undefined;
 
-  @TypeGraphQL.Field((_type) => MovieKeywordCategoryWhereInput, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => MovieKeywordCategoryWhereInput, {
+    nullable: true
   })
   none?: MovieKeywordCategoryWhereInput | undefined;
 }

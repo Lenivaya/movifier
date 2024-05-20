@@ -6,18 +6,18 @@ import { MovieListStatsWhereUniqueInput } from "../../../inputs/MovieListStatsWh
 
 @TypeGraphQL.ArgsType()
 export class UpsertOneMovieListStatsArgs {
-  @TypeGraphQL.Field((_type) => MovieListStatsWhereUniqueInput, {
-    nullable: false,
+  @TypeGraphQL.Field(_type => MovieListStatsWhereUniqueInput, {
+    nullable: false
   })
   where!: MovieListStatsWhereUniqueInput;
 
-  @TypeGraphQL.Field((_type) => MovieListStatsCreateInput, {
-    nullable: false,
+  @TypeGraphQL.Field(_type => MovieListStatsCreateInput, {
+    nullable: false
   })
   create!: MovieListStatsCreateInput;
 
-  @TypeGraphQL.Field((_type) => MovieListStatsUpdateInput, {
-    nullable: false,
+  @TypeGraphQL.Field(_type => MovieListStatsUpdateInput, {
+    nullable: false
   })
   update!: MovieListStatsUpdateInput;
 }

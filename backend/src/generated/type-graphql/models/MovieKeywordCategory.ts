@@ -7,20 +7,20 @@ import { MovieKeywordCategoryCount } from "../resolvers/outputs/MovieKeywordCate
 
 @TypeGraphQL.ObjectType("MovieKeywordCategory", {})
 export class MovieKeywordCategory {
-  @TypeGraphQL.Field((_type) => String, {
-    nullable: false,
+  @TypeGraphQL.Field(_type => String, {
+    nullable: false
   })
   id!: string;
 
-  @TypeGraphQL.Field((_type) => String, {
-    nullable: false,
+  @TypeGraphQL.Field(_type => String, {
+    nullable: false
   })
   name!: string;
 
   movies?: Movie[];
 
-  @TypeGraphQL.Field((_type) => MovieKeywordCategoryCount, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => MovieKeywordCategoryCount, {
+    nullable: true
   })
   _count?: MovieKeywordCategoryCount | null;
 }

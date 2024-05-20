@@ -16,18 +16,18 @@ import { MovieCount } from "../resolvers/outputs/MovieCount";
 
 @TypeGraphQL.ObjectType("Movie", {})
 export class Movie {
-  @TypeGraphQL.Field((_type) => String, {
-    nullable: false,
+  @TypeGraphQL.Field(_type => String, {
+    nullable: false
   })
   id!: string;
 
-  @TypeGraphQL.Field((_type) => Date, {
-    nullable: false,
+  @TypeGraphQL.Field(_type => Date, {
+    nullable: false
   })
   createdAt!: Date;
 
-  @TypeGraphQL.Field((_type) => Date, {
-    nullable: false,
+  @TypeGraphQL.Field(_type => Date, {
+    nullable: false
   })
   updatedAt!: Date;
 
@@ -51,8 +51,8 @@ export class Movie {
 
   spokenLanguages?: MovieSpokenLanguage[];
 
-  @TypeGraphQL.Field((_type) => MovieCount, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => MovieCount, {
+    nullable: true
   })
   _count?: MovieCount | null;
 }

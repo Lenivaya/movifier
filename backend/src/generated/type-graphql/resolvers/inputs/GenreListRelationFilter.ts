@@ -6,18 +6,18 @@ import { GenreWhereInput } from "../inputs/GenreWhereInput";
 
 @TypeGraphQL.InputType("GenreListRelationFilter", {})
 export class GenreListRelationFilter {
-  @TypeGraphQL.Field((_type) => GenreWhereInput, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => GenreWhereInput, {
+    nullable: true
   })
   every?: GenreWhereInput | undefined;
 
-  @TypeGraphQL.Field((_type) => GenreWhereInput, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => GenreWhereInput, {
+    nullable: true
   })
   some?: GenreWhereInput | undefined;
 
-  @TypeGraphQL.Field((_type) => GenreWhereInput, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => GenreWhereInput, {
+    nullable: true
   })
   none?: GenreWhereInput | undefined;
 }

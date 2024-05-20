@@ -10,74 +10,63 @@ import { MoviefireAppUserRole } from "../../enums/MoviefireAppUserRole";
 
 @TypeGraphQL.InputType("MovifierAppUserCreateInput", {})
 export class MovifierAppUserCreateInput {
-  @TypeGraphQL.Field((_type) => String, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => String, {
+    nullable: true
   })
   id?: string | undefined;
 
-  @TypeGraphQL.Field((_type) => Date, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => Date, {
+    nullable: true
   })
   createdAt?: Date | undefined;
 
-  @TypeGraphQL.Field((_type) => Date, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => Date, {
+    nullable: true
   })
   updatedAt?: Date | undefined;
 
-  @TypeGraphQL.Field((_type) => String, {
-    nullable: false,
+  @TypeGraphQL.Field(_type => String, {
+    nullable: false
   })
   email!: string;
 
-  @TypeGraphQL.Field((_type) => String, {
-    nullable: false,
+  @TypeGraphQL.Field(_type => String, {
+    nullable: false
   })
   username!: string;
 
-  @TypeGraphQL.Field((_type) => String, {
-    nullable: false,
+  @TypeGraphQL.Field(_type => String, {
+    nullable: false
   })
   password!: string;
 
-  @TypeGraphQL.Field((_type) => String, {
-    nullable: false,
+  @TypeGraphQL.Field(_type => String, {
+    nullable: false
   })
   name!: string;
 
-  @TypeGraphQL.Field((_type) => MoviefireAppUserRole, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => MoviefireAppUserRole, {
+    nullable: true
   })
   role?: "USER" | "ADMIN" | undefined;
 
-  @TypeGraphQL.Field(
-    (_type) => MovieCreateNestedManyWithoutInWatchlistByUsersInput,
-    {
-      nullable: true,
-    },
-  )
+  @TypeGraphQL.Field(_type => MovieCreateNestedManyWithoutInWatchlistByUsersInput, {
+    nullable: true
+  })
   watchlist?: MovieCreateNestedManyWithoutInWatchlistByUsersInput | undefined;
 
-  @TypeGraphQL.Field((_type) => MovieRatingCreateNestedManyWithoutUserInput, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => MovieRatingCreateNestedManyWithoutUserInput, {
+    nullable: true
   })
   rating?: MovieRatingCreateNestedManyWithoutUserInput | undefined;
 
-  @TypeGraphQL.Field(
-    (_type) => MovieListCreateNestedManyWithoutMovieListAuthorInput,
-    {
-      nullable: true,
-    },
-  )
+  @TypeGraphQL.Field(_type => MovieListCreateNestedManyWithoutMovieListAuthorInput, {
+    nullable: true
+  })
   movieLists?: MovieListCreateNestedManyWithoutMovieListAuthorInput | undefined;
 
-  @TypeGraphQL.Field(
-    (_type) => MovieListCommentCreateNestedManyWithoutUserInput,
-    {
-      nullable: true,
-    },
-  )
-  movieListsComments?:
-    | MovieListCommentCreateNestedManyWithoutUserInput
-    | undefined;
+  @TypeGraphQL.Field(_type => MovieListCommentCreateNestedManyWithoutUserInput, {
+    nullable: true
+  })
+  movieListsComments?: MovieListCommentCreateNestedManyWithoutUserInput | undefined;
 }

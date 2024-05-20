@@ -7,18 +7,18 @@ import { SortOrder } from "../../enums/SortOrder";
 
 @TypeGraphQL.InputType("MovieListStatsOrderByRelevanceInput", {})
 export class MovieListStatsOrderByRelevanceInput {
-  @TypeGraphQL.Field((_type) => [MovieListStatsOrderByRelevanceFieldEnum], {
-    nullable: false,
+  @TypeGraphQL.Field(_type => [MovieListStatsOrderByRelevanceFieldEnum], {
+    nullable: false
   })
   fields!: Array<"id" | "movieListId">;
 
-  @TypeGraphQL.Field((_type) => SortOrder, {
-    nullable: false,
+  @TypeGraphQL.Field(_type => SortOrder, {
+    nullable: false
   })
   sort!: "asc" | "desc";
 
-  @TypeGraphQL.Field((_type) => String, {
-    nullable: false,
+  @TypeGraphQL.Field(_type => String, {
+    nullable: false
   })
   search!: string;
 }

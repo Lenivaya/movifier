@@ -4,8 +4,8 @@ import { MovieListCommentCreateInput } from "../../../inputs/MovieListCommentCre
 
 @TypeGraphQL.ArgsType()
 export class CreateOneMovieListCommentArgs {
-  @TypeGraphQL.Field((_type) => MovieListCommentCreateInput, {
-    nullable: false,
+  @TypeGraphQL.Field(_type => MovieListCommentCreateInput, {
+    nullable: false
   })
   data!: MovieListCommentCreateInput;
 }

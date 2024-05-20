@@ -6,23 +6,20 @@ import { MovieCreateWithoutKeywordCategoriesInput } from "../inputs/MovieCreateW
 import { MovieUpdateWithoutKeywordCategoriesInput } from "../inputs/MovieUpdateWithoutKeywordCategoriesInput";
 import { MovieWhereUniqueInput } from "../inputs/MovieWhereUniqueInput";
 
-@TypeGraphQL.InputType(
-  "MovieUpsertWithWhereUniqueWithoutKeywordCategoriesInput",
-  {},
-)
+@TypeGraphQL.InputType("MovieUpsertWithWhereUniqueWithoutKeywordCategoriesInput", {})
 export class MovieUpsertWithWhereUniqueWithoutKeywordCategoriesInput {
-  @TypeGraphQL.Field((_type) => MovieWhereUniqueInput, {
-    nullable: false,
+  @TypeGraphQL.Field(_type => MovieWhereUniqueInput, {
+    nullable: false
   })
   where!: MovieWhereUniqueInput;
 
-  @TypeGraphQL.Field((_type) => MovieUpdateWithoutKeywordCategoriesInput, {
-    nullable: false,
+  @TypeGraphQL.Field(_type => MovieUpdateWithoutKeywordCategoriesInput, {
+    nullable: false
   })
   update!: MovieUpdateWithoutKeywordCategoriesInput;
 
-  @TypeGraphQL.Field((_type) => MovieCreateWithoutKeywordCategoriesInput, {
-    nullable: false,
+  @TypeGraphQL.Field(_type => MovieCreateWithoutKeywordCategoriesInput, {
+    nullable: false
   })
   create!: MovieCreateWithoutKeywordCategoriesInput;
 }

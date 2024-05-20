@@ -10,28 +10,28 @@ import { MovieStatsSumAggregate } from "../outputs/MovieStatsSumAggregate";
 
 @TypeGraphQL.ObjectType("AggregateMovieStats", {})
 export class AggregateMovieStats {
-  @TypeGraphQL.Field((_type) => MovieStatsCountAggregate, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => MovieStatsCountAggregate, {
+    nullable: true
   })
   _count!: MovieStatsCountAggregate | null;
 
-  @TypeGraphQL.Field((_type) => MovieStatsAvgAggregate, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => MovieStatsAvgAggregate, {
+    nullable: true
   })
   _avg!: MovieStatsAvgAggregate | null;
 
-  @TypeGraphQL.Field((_type) => MovieStatsSumAggregate, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => MovieStatsSumAggregate, {
+    nullable: true
   })
   _sum!: MovieStatsSumAggregate | null;
 
-  @TypeGraphQL.Field((_type) => MovieStatsMinAggregate, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => MovieStatsMinAggregate, {
+    nullable: true
   })
   _min!: MovieStatsMinAggregate | null;
 
-  @TypeGraphQL.Field((_type) => MovieStatsMaxAggregate, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => MovieStatsMaxAggregate, {
+    nullable: true
   })
   _max!: MovieStatsMaxAggregate | null;
 }

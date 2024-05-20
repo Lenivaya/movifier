@@ -8,34 +8,28 @@ import { StringFieldUpdateOperationsInput } from "../inputs/StringFieldUpdateOpe
 
 @TypeGraphQL.InputType("MovieListCommentUpdateWithoutMovieListInput", {})
 export class MovieListCommentUpdateWithoutMovieListInput {
-  @TypeGraphQL.Field((_type) => StringFieldUpdateOperationsInput, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => StringFieldUpdateOperationsInput, {
+    nullable: true
   })
   id?: StringFieldUpdateOperationsInput | undefined;
 
-  @TypeGraphQL.Field((_type) => DateTimeFieldUpdateOperationsInput, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => DateTimeFieldUpdateOperationsInput, {
+    nullable: true
   })
   createdAt?: DateTimeFieldUpdateOperationsInput | undefined;
 
-  @TypeGraphQL.Field((_type) => DateTimeFieldUpdateOperationsInput, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => DateTimeFieldUpdateOperationsInput, {
+    nullable: true
   })
   updatedAt?: DateTimeFieldUpdateOperationsInput | undefined;
 
-  @TypeGraphQL.Field((_type) => StringFieldUpdateOperationsInput, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => StringFieldUpdateOperationsInput, {
+    nullable: true
   })
   content?: StringFieldUpdateOperationsInput | undefined;
 
-  @TypeGraphQL.Field(
-    (_type) =>
-      MovifierAppUserUpdateOneRequiredWithoutMovieListsCommentsNestedInput,
-    {
-      nullable: true,
-    },
-  )
-  user?:
-    | MovifierAppUserUpdateOneRequiredWithoutMovieListsCommentsNestedInput
-    | undefined;
+  @TypeGraphQL.Field(_type => MovifierAppUserUpdateOneRequiredWithoutMovieListsCommentsNestedInput, {
+    nullable: true
+  })
+  user?: MovifierAppUserUpdateOneRequiredWithoutMovieListsCommentsNestedInput | undefined;
 }

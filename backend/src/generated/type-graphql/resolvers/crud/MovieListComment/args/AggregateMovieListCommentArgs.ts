@@ -6,33 +6,28 @@ import { MovieListCommentWhereUniqueInput } from "../../../inputs/MovieListComme
 
 @TypeGraphQL.ArgsType()
 export class AggregateMovieListCommentArgs {
-  @TypeGraphQL.Field((_type) => MovieListCommentWhereInput, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => MovieListCommentWhereInput, {
+    nullable: true
   })
   where?: MovieListCommentWhereInput | undefined;
 
-  @TypeGraphQL.Field(
-    (_type) => [MovieListCommentOrderByWithRelationAndSearchRelevanceInput],
-    {
-      nullable: true,
-    },
-  )
-  orderBy?:
-    | MovieListCommentOrderByWithRelationAndSearchRelevanceInput[]
-    | undefined;
+  @TypeGraphQL.Field(_type => [MovieListCommentOrderByWithRelationAndSearchRelevanceInput], {
+    nullable: true
+  })
+  orderBy?: MovieListCommentOrderByWithRelationAndSearchRelevanceInput[] | undefined;
 
-  @TypeGraphQL.Field((_type) => MovieListCommentWhereUniqueInput, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => MovieListCommentWhereUniqueInput, {
+    nullable: true
   })
   cursor?: MovieListCommentWhereUniqueInput | undefined;
 
-  @TypeGraphQL.Field((_type) => TypeGraphQL.Int, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
+    nullable: true
   })
   take?: number | undefined;
 
-  @TypeGraphQL.Field((_type) => TypeGraphQL.Int, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
+    nullable: true
   })
   skip?: number | undefined;
 }

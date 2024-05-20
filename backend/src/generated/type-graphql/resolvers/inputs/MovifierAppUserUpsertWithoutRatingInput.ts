@@ -8,18 +8,18 @@ import { MovifierAppUserWhereInput } from "../inputs/MovifierAppUserWhereInput";
 
 @TypeGraphQL.InputType("MovifierAppUserUpsertWithoutRatingInput", {})
 export class MovifierAppUserUpsertWithoutRatingInput {
-  @TypeGraphQL.Field((_type) => MovifierAppUserUpdateWithoutRatingInput, {
-    nullable: false,
+  @TypeGraphQL.Field(_type => MovifierAppUserUpdateWithoutRatingInput, {
+    nullable: false
   })
   update!: MovifierAppUserUpdateWithoutRatingInput;
 
-  @TypeGraphQL.Field((_type) => MovifierAppUserCreateWithoutRatingInput, {
-    nullable: false,
+  @TypeGraphQL.Field(_type => MovifierAppUserCreateWithoutRatingInput, {
+    nullable: false
   })
   create!: MovifierAppUserCreateWithoutRatingInput;
 
-  @TypeGraphQL.Field((_type) => MovifierAppUserWhereInput, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => MovifierAppUserWhereInput, {
+    nullable: true
   })
   where?: MovifierAppUserWhereInput | undefined;
 }

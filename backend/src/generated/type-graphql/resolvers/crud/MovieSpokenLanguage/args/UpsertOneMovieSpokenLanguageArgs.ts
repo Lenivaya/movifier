@@ -6,18 +6,18 @@ import { MovieSpokenLanguageWhereUniqueInput } from "../../../inputs/MovieSpoken
 
 @TypeGraphQL.ArgsType()
 export class UpsertOneMovieSpokenLanguageArgs {
-  @TypeGraphQL.Field((_type) => MovieSpokenLanguageWhereUniqueInput, {
-    nullable: false,
+  @TypeGraphQL.Field(_type => MovieSpokenLanguageWhereUniqueInput, {
+    nullable: false
   })
   where!: MovieSpokenLanguageWhereUniqueInput;
 
-  @TypeGraphQL.Field((_type) => MovieSpokenLanguageCreateInput, {
-    nullable: false,
+  @TypeGraphQL.Field(_type => MovieSpokenLanguageCreateInput, {
+    nullable: false
   })
   create!: MovieSpokenLanguageCreateInput;
 
-  @TypeGraphQL.Field((_type) => MovieSpokenLanguageUpdateInput, {
-    nullable: false,
+  @TypeGraphQL.Field(_type => MovieSpokenLanguageUpdateInput, {
+    nullable: false
   })
   update!: MovieSpokenLanguageUpdateInput;
 }

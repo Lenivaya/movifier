@@ -8,67 +8,58 @@ import { StringWithAggregatesFilter } from "../inputs/StringWithAggregatesFilter
 
 @TypeGraphQL.InputType("MovifierAppUserScalarWhereWithAggregatesInput", {})
 export class MovifierAppUserScalarWhereWithAggregatesInput {
-  @TypeGraphQL.Field(
-    (_type) => [MovifierAppUserScalarWhereWithAggregatesInput],
-    {
-      nullable: true,
-    },
-  )
+  @TypeGraphQL.Field(_type => [MovifierAppUserScalarWhereWithAggregatesInput], {
+    nullable: true
+  })
   AND?: MovifierAppUserScalarWhereWithAggregatesInput[] | undefined;
 
-  @TypeGraphQL.Field(
-    (_type) => [MovifierAppUserScalarWhereWithAggregatesInput],
-    {
-      nullable: true,
-    },
-  )
+  @TypeGraphQL.Field(_type => [MovifierAppUserScalarWhereWithAggregatesInput], {
+    nullable: true
+  })
   OR?: MovifierAppUserScalarWhereWithAggregatesInput[] | undefined;
 
-  @TypeGraphQL.Field(
-    (_type) => [MovifierAppUserScalarWhereWithAggregatesInput],
-    {
-      nullable: true,
-    },
-  )
+  @TypeGraphQL.Field(_type => [MovifierAppUserScalarWhereWithAggregatesInput], {
+    nullable: true
+  })
   NOT?: MovifierAppUserScalarWhereWithAggregatesInput[] | undefined;
 
-  @TypeGraphQL.Field((_type) => StringWithAggregatesFilter, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => StringWithAggregatesFilter, {
+    nullable: true
   })
   id?: StringWithAggregatesFilter | undefined;
 
-  @TypeGraphQL.Field((_type) => DateTimeWithAggregatesFilter, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => DateTimeWithAggregatesFilter, {
+    nullable: true
   })
   createdAt?: DateTimeWithAggregatesFilter | undefined;
 
-  @TypeGraphQL.Field((_type) => DateTimeWithAggregatesFilter, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => DateTimeWithAggregatesFilter, {
+    nullable: true
   })
   updatedAt?: DateTimeWithAggregatesFilter | undefined;
 
-  @TypeGraphQL.Field((_type) => StringWithAggregatesFilter, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => StringWithAggregatesFilter, {
+    nullable: true
   })
   email?: StringWithAggregatesFilter | undefined;
 
-  @TypeGraphQL.Field((_type) => StringWithAggregatesFilter, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => StringWithAggregatesFilter, {
+    nullable: true
   })
   username?: StringWithAggregatesFilter | undefined;
 
-  @TypeGraphQL.Field((_type) => StringWithAggregatesFilter, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => StringWithAggregatesFilter, {
+    nullable: true
   })
   password?: StringWithAggregatesFilter | undefined;
 
-  @TypeGraphQL.Field((_type) => StringWithAggregatesFilter, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => StringWithAggregatesFilter, {
+    nullable: true
   })
   name?: StringWithAggregatesFilter | undefined;
 
-  @TypeGraphQL.Field((_type) => EnumMoviefireAppUserRoleWithAggregatesFilter, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => EnumMoviefireAppUserRoleWithAggregatesFilter, {
+    nullable: true
   })
   role?: EnumMoviefireAppUserRoleWithAggregatesFilter | undefined;
 }

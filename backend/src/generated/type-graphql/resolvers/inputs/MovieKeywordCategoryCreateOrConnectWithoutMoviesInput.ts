@@ -5,18 +5,15 @@ import { DecimalJSScalar } from "../../scalars";
 import { MovieKeywordCategoryCreateWithoutMoviesInput } from "../inputs/MovieKeywordCategoryCreateWithoutMoviesInput";
 import { MovieKeywordCategoryWhereUniqueInput } from "../inputs/MovieKeywordCategoryWhereUniqueInput";
 
-@TypeGraphQL.InputType(
-  "MovieKeywordCategoryCreateOrConnectWithoutMoviesInput",
-  {},
-)
+@TypeGraphQL.InputType("MovieKeywordCategoryCreateOrConnectWithoutMoviesInput", {})
 export class MovieKeywordCategoryCreateOrConnectWithoutMoviesInput {
-  @TypeGraphQL.Field((_type) => MovieKeywordCategoryWhereUniqueInput, {
-    nullable: false,
+  @TypeGraphQL.Field(_type => MovieKeywordCategoryWhereUniqueInput, {
+    nullable: false
   })
   where!: MovieKeywordCategoryWhereUniqueInput;
 
-  @TypeGraphQL.Field((_type) => MovieKeywordCategoryCreateWithoutMoviesInput, {
-    nullable: false,
+  @TypeGraphQL.Field(_type => MovieKeywordCategoryCreateWithoutMoviesInput, {
+    nullable: false
   })
   create!: MovieKeywordCategoryCreateWithoutMoviesInput;
 }

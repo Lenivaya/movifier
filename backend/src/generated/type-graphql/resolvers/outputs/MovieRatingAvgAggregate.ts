@@ -5,8 +5,8 @@ import { DecimalJSScalar } from "../../scalars";
 
 @TypeGraphQL.ObjectType("MovieRatingAvgAggregate", {})
 export class MovieRatingAvgAggregate {
-  @TypeGraphQL.Field((_type) => TypeGraphQL.Float, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => TypeGraphQL.Float, {
+    nullable: true
   })
   rating!: number | null;
 }

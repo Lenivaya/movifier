@@ -5,18 +5,15 @@ import { DecimalJSScalar } from "../../scalars";
 import { MovieListScalarWhereInput } from "../inputs/MovieListScalarWhereInput";
 import { MovieListUpdateManyMutationInput } from "../inputs/MovieListUpdateManyMutationInput";
 
-@TypeGraphQL.InputType(
-  "MovieListUpdateManyWithWhereWithoutMovieListAuthorInput",
-  {},
-)
+@TypeGraphQL.InputType("MovieListUpdateManyWithWhereWithoutMovieListAuthorInput", {})
 export class MovieListUpdateManyWithWhereWithoutMovieListAuthorInput {
-  @TypeGraphQL.Field((_type) => MovieListScalarWhereInput, {
-    nullable: false,
+  @TypeGraphQL.Field(_type => MovieListScalarWhereInput, {
+    nullable: false
   })
   where!: MovieListScalarWhereInput;
 
-  @TypeGraphQL.Field((_type) => MovieListUpdateManyMutationInput, {
-    nullable: false,
+  @TypeGraphQL.Field(_type => MovieListUpdateManyMutationInput, {
+    nullable: false
   })
   data!: MovieListUpdateManyMutationInput;
 }

@@ -6,18 +6,18 @@ import { MovieSpokenLanguageWhereInput } from "../inputs/MovieSpokenLanguageWher
 
 @TypeGraphQL.InputType("MovieSpokenLanguageListRelationFilter", {})
 export class MovieSpokenLanguageListRelationFilter {
-  @TypeGraphQL.Field((_type) => MovieSpokenLanguageWhereInput, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => MovieSpokenLanguageWhereInput, {
+    nullable: true
   })
   every?: MovieSpokenLanguageWhereInput | undefined;
 
-  @TypeGraphQL.Field((_type) => MovieSpokenLanguageWhereInput, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => MovieSpokenLanguageWhereInput, {
+    nullable: true
   })
   some?: MovieSpokenLanguageWhereInput | undefined;
 
-  @TypeGraphQL.Field((_type) => MovieSpokenLanguageWhereInput, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => MovieSpokenLanguageWhereInput, {
+    nullable: true
   })
   none?: MovieSpokenLanguageWhereInput | undefined;
 }

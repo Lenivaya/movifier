@@ -2,22 +2,14 @@ import * as TypeGraphQL from "type-graphql";
 import type { GraphQLResolveInfo } from "graphql";
 import { FindFirstMovieArgs } from "./args/FindFirstMovieArgs";
 import { Movie } from "../../../models/Movie";
-import {
-  transformInfoIntoPrismaArgs,
-  getPrismaFromContext,
-  transformCountFieldIntoSelectRelationsCount,
-} from "../../../helpers";
+import { transformInfoIntoPrismaArgs, getPrismaFromContext, transformCountFieldIntoSelectRelationsCount } from "../../../helpers";
 
-@TypeGraphQL.Resolver((_of) => Movie)
+@TypeGraphQL.Resolver(_of => Movie)
 export class FindFirstMovieResolver {
-  @TypeGraphQL.Query((_returns) => Movie, {
-    nullable: true,
+  @TypeGraphQL.Query(_returns => Movie, {
+    nullable: true
   })
-  async findFirstMovie(
-    @TypeGraphQL.Ctx() ctx: any,
-    @TypeGraphQL.Info() info: GraphQLResolveInfo,
-    @TypeGraphQL.Args((_type) => FindFirstMovieArgs) args: FindFirstMovieArgs,
-  ): Promise<Movie | null> {
+  async findFirstMovie(@TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Info() info: GraphQLResolveInfo, @TypeGraphQL.Args(_type => FindFirstMovieArgs) args: FindFirstMovieArgs): Promise<Movie | null> {
     const { _count } = transformInfoIntoPrismaArgs(info);
     return getPrismaFromContext(ctx).movie.findFirst({
       ...args,

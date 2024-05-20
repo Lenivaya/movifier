@@ -5,13 +5,13 @@ import { GenreWhereInput } from "../../../inputs/GenreWhereInput";
 
 @TypeGraphQL.ArgsType()
 export class UpdateManyGenreArgs {
-  @TypeGraphQL.Field((_type) => GenreUpdateManyMutationInput, {
-    nullable: false,
+  @TypeGraphQL.Field(_type => GenreUpdateManyMutationInput, {
+    nullable: false
   })
   data!: GenreUpdateManyMutationInput;
 
-  @TypeGraphQL.Field((_type) => GenreWhereInput, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => GenreWhereInput, {
+    nullable: true
   })
   where?: GenreWhereInput | undefined;
 }

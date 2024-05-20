@@ -7,49 +7,33 @@ import { MovieInfoScalarFieldEnum } from "../../../../enums/MovieInfoScalarField
 
 @TypeGraphQL.ArgsType()
 export class FindManyMovieInfoArgs {
-  @TypeGraphQL.Field((_type) => MovieInfoWhereInput, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => MovieInfoWhereInput, {
+    nullable: true
   })
   where?: MovieInfoWhereInput | undefined;
 
-  @TypeGraphQL.Field(
-    (_type) => [MovieInfoOrderByWithRelationAndSearchRelevanceInput],
-    {
-      nullable: true,
-    },
-  )
+  @TypeGraphQL.Field(_type => [MovieInfoOrderByWithRelationAndSearchRelevanceInput], {
+    nullable: true
+  })
   orderBy?: MovieInfoOrderByWithRelationAndSearchRelevanceInput[] | undefined;
 
-  @TypeGraphQL.Field((_type) => MovieInfoWhereUniqueInput, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => MovieInfoWhereUniqueInput, {
+    nullable: true
   })
   cursor?: MovieInfoWhereUniqueInput | undefined;
 
-  @TypeGraphQL.Field((_type) => TypeGraphQL.Int, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
+    nullable: true
   })
   take?: number | undefined;
 
-  @TypeGraphQL.Field((_type) => TypeGraphQL.Int, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
+    nullable: true
   })
   skip?: number | undefined;
 
-  @TypeGraphQL.Field((_type) => [MovieInfoScalarFieldEnum], {
-    nullable: true,
+  @TypeGraphQL.Field(_type => [MovieInfoScalarFieldEnum], {
+    nullable: true
   })
-  distinct?:
-    | Array<
-        | "id"
-        | "createdAt"
-        | "updatedAt"
-        | "imdbId"
-        | "title"
-        | "description"
-        | "alternativeTitles"
-        | "durationInMinutes"
-        | "posterUrl"
-        | "movieId"
-      >
-    | undefined;
+  distinct?: Array<"id" | "createdAt" | "updatedAt" | "imdbId" | "title" | "description" | "alternativeTitles" | "durationInMinutes" | "posterUrl" | "movieId"> | undefined;
 }

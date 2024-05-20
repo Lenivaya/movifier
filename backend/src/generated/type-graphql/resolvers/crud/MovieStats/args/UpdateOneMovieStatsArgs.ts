@@ -5,13 +5,13 @@ import { MovieStatsWhereUniqueInput } from "../../../inputs/MovieStatsWhereUniqu
 
 @TypeGraphQL.ArgsType()
 export class UpdateOneMovieStatsArgs {
-  @TypeGraphQL.Field((_type) => MovieStatsUpdateInput, {
-    nullable: false,
+  @TypeGraphQL.Field(_type => MovieStatsUpdateInput, {
+    nullable: false
   })
   data!: MovieStatsUpdateInput;
 
-  @TypeGraphQL.Field((_type) => MovieStatsWhereUniqueInput, {
-    nullable: false,
+  @TypeGraphQL.Field(_type => MovieStatsWhereUniqueInput, {
+    nullable: false
   })
   where!: MovieStatsWhereUniqueInput;
 }

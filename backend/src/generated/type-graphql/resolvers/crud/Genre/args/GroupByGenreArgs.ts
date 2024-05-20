@@ -7,33 +7,33 @@ import { GenreScalarFieldEnum } from "../../../../enums/GenreScalarFieldEnum";
 
 @TypeGraphQL.ArgsType()
 export class GroupByGenreArgs {
-  @TypeGraphQL.Field((_type) => GenreWhereInput, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => GenreWhereInput, {
+    nullable: true
   })
   where?: GenreWhereInput | undefined;
 
-  @TypeGraphQL.Field((_type) => [GenreOrderByWithAggregationInput], {
-    nullable: true,
+  @TypeGraphQL.Field(_type => [GenreOrderByWithAggregationInput], {
+    nullable: true
   })
   orderBy?: GenreOrderByWithAggregationInput[] | undefined;
 
-  @TypeGraphQL.Field((_type) => [GenreScalarFieldEnum], {
-    nullable: false,
+  @TypeGraphQL.Field(_type => [GenreScalarFieldEnum], {
+    nullable: false
   })
   by!: Array<"name" | "createdAt" | "updatedAt">;
 
-  @TypeGraphQL.Field((_type) => GenreScalarWhereWithAggregatesInput, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => GenreScalarWhereWithAggregatesInput, {
+    nullable: true
   })
   having?: GenreScalarWhereWithAggregatesInput | undefined;
 
-  @TypeGraphQL.Field((_type) => TypeGraphQL.Int, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
+    nullable: true
   })
   take?: number | undefined;
 
-  @TypeGraphQL.Field((_type) => TypeGraphQL.Int, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
+    nullable: true
   })
   skip?: number | undefined;
 }

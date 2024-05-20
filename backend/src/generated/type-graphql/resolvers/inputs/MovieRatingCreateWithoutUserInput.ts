@@ -7,33 +7,33 @@ import { MovieReviewCreateNestedOneWithoutRatingInput } from "../inputs/MovieRev
 
 @TypeGraphQL.InputType("MovieRatingCreateWithoutUserInput", {})
 export class MovieRatingCreateWithoutUserInput {
-  @TypeGraphQL.Field((_type) => String, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => String, {
+    nullable: true
   })
   id?: string | undefined;
 
-  @TypeGraphQL.Field((_type) => Date, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => Date, {
+    nullable: true
   })
   createdAt?: Date | undefined;
 
-  @TypeGraphQL.Field((_type) => Date, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => Date, {
+    nullable: true
   })
   updatedAt?: Date | undefined;
 
-  @TypeGraphQL.Field((_type) => TypeGraphQL.Int, {
-    nullable: false,
+  @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
+    nullable: false
   })
   rating!: number;
 
-  @TypeGraphQL.Field((_type) => MovieReviewCreateNestedOneWithoutRatingInput, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => MovieReviewCreateNestedOneWithoutRatingInput, {
+    nullable: true
   })
   Review?: MovieReviewCreateNestedOneWithoutRatingInput | undefined;
 
-  @TypeGraphQL.Field((_type) => MovieCreateNestedOneWithoutRatingsInput, {
-    nullable: false,
+  @TypeGraphQL.Field(_type => MovieCreateNestedOneWithoutRatingsInput, {
+    nullable: false
   })
   movie!: MovieCreateNestedOneWithoutRatingsInput;
 }

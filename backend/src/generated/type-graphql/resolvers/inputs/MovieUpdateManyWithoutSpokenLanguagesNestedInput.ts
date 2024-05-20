@@ -12,69 +12,53 @@ import { MovieWhereUniqueInput } from "../inputs/MovieWhereUniqueInput";
 
 @TypeGraphQL.InputType("MovieUpdateManyWithoutSpokenLanguagesNestedInput", {})
 export class MovieUpdateManyWithoutSpokenLanguagesNestedInput {
-  @TypeGraphQL.Field((_type) => [MovieCreateWithoutSpokenLanguagesInput], {
-    nullable: true,
+  @TypeGraphQL.Field(_type => [MovieCreateWithoutSpokenLanguagesInput], {
+    nullable: true
   })
   create?: MovieCreateWithoutSpokenLanguagesInput[] | undefined;
 
-  @TypeGraphQL.Field(
-    (_type) => [MovieCreateOrConnectWithoutSpokenLanguagesInput],
-    {
-      nullable: true,
-    },
-  )
-  connectOrCreate?:
-    | MovieCreateOrConnectWithoutSpokenLanguagesInput[]
-    | undefined;
+  @TypeGraphQL.Field(_type => [MovieCreateOrConnectWithoutSpokenLanguagesInput], {
+    nullable: true
+  })
+  connectOrCreate?: MovieCreateOrConnectWithoutSpokenLanguagesInput[] | undefined;
 
-  @TypeGraphQL.Field(
-    (_type) => [MovieUpsertWithWhereUniqueWithoutSpokenLanguagesInput],
-    {
-      nullable: true,
-    },
-  )
+  @TypeGraphQL.Field(_type => [MovieUpsertWithWhereUniqueWithoutSpokenLanguagesInput], {
+    nullable: true
+  })
   upsert?: MovieUpsertWithWhereUniqueWithoutSpokenLanguagesInput[] | undefined;
 
-  @TypeGraphQL.Field((_type) => [MovieWhereUniqueInput], {
-    nullable: true,
+  @TypeGraphQL.Field(_type => [MovieWhereUniqueInput], {
+    nullable: true
   })
   set?: MovieWhereUniqueInput[] | undefined;
 
-  @TypeGraphQL.Field((_type) => [MovieWhereUniqueInput], {
-    nullable: true,
+  @TypeGraphQL.Field(_type => [MovieWhereUniqueInput], {
+    nullable: true
   })
   disconnect?: MovieWhereUniqueInput[] | undefined;
 
-  @TypeGraphQL.Field((_type) => [MovieWhereUniqueInput], {
-    nullable: true,
+  @TypeGraphQL.Field(_type => [MovieWhereUniqueInput], {
+    nullable: true
   })
   delete?: MovieWhereUniqueInput[] | undefined;
 
-  @TypeGraphQL.Field((_type) => [MovieWhereUniqueInput], {
-    nullable: true,
+  @TypeGraphQL.Field(_type => [MovieWhereUniqueInput], {
+    nullable: true
   })
   connect?: MovieWhereUniqueInput[] | undefined;
 
-  @TypeGraphQL.Field(
-    (_type) => [MovieUpdateWithWhereUniqueWithoutSpokenLanguagesInput],
-    {
-      nullable: true,
-    },
-  )
+  @TypeGraphQL.Field(_type => [MovieUpdateWithWhereUniqueWithoutSpokenLanguagesInput], {
+    nullable: true
+  })
   update?: MovieUpdateWithWhereUniqueWithoutSpokenLanguagesInput[] | undefined;
 
-  @TypeGraphQL.Field(
-    (_type) => [MovieUpdateManyWithWhereWithoutSpokenLanguagesInput],
-    {
-      nullable: true,
-    },
-  )
-  updateMany?:
-    | MovieUpdateManyWithWhereWithoutSpokenLanguagesInput[]
-    | undefined;
+  @TypeGraphQL.Field(_type => [MovieUpdateManyWithWhereWithoutSpokenLanguagesInput], {
+    nullable: true
+  })
+  updateMany?: MovieUpdateManyWithWhereWithoutSpokenLanguagesInput[] | undefined;
 
-  @TypeGraphQL.Field((_type) => [MovieScalarWhereInput], {
-    nullable: true,
+  @TypeGraphQL.Field(_type => [MovieScalarWhereInput], {
+    nullable: true
   })
   deleteMany?: MovieScalarWhereInput[] | undefined;
 }

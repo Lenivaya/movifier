@@ -5,18 +5,15 @@ import { DecimalJSScalar } from "../../scalars";
 import { MovifierAppUserCreateWithoutWatchlistInput } from "../inputs/MovifierAppUserCreateWithoutWatchlistInput";
 import { MovifierAppUserWhereUniqueInput } from "../inputs/MovifierAppUserWhereUniqueInput";
 
-@TypeGraphQL.InputType(
-  "MovifierAppUserCreateOrConnectWithoutWatchlistInput",
-  {},
-)
+@TypeGraphQL.InputType("MovifierAppUserCreateOrConnectWithoutWatchlistInput", {})
 export class MovifierAppUserCreateOrConnectWithoutWatchlistInput {
-  @TypeGraphQL.Field((_type) => MovifierAppUserWhereUniqueInput, {
-    nullable: false,
+  @TypeGraphQL.Field(_type => MovifierAppUserWhereUniqueInput, {
+    nullable: false
   })
   where!: MovifierAppUserWhereUniqueInput;
 
-  @TypeGraphQL.Field((_type) => MovifierAppUserCreateWithoutWatchlistInput, {
-    nullable: false,
+  @TypeGraphQL.Field(_type => MovifierAppUserCreateWithoutWatchlistInput, {
+    nullable: false
   })
   create!: MovifierAppUserCreateWithoutWatchlistInput;
 }

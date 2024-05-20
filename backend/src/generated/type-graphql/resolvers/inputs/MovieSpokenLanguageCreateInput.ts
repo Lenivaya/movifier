@@ -6,26 +6,23 @@ import { MovieCreateNestedManyWithoutSpokenLanguagesInput } from "../inputs/Movi
 
 @TypeGraphQL.InputType("MovieSpokenLanguageCreateInput", {})
 export class MovieSpokenLanguageCreateInput {
-  @TypeGraphQL.Field((_type) => String, {
-    nullable: false,
+  @TypeGraphQL.Field(_type => String, {
+    nullable: false
   })
   language!: string;
 
-  @TypeGraphQL.Field((_type) => Date, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => Date, {
+    nullable: true
   })
   createdAt?: Date | undefined;
 
-  @TypeGraphQL.Field((_type) => Date, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => Date, {
+    nullable: true
   })
   updatedAt?: Date | undefined;
 
-  @TypeGraphQL.Field(
-    (_type) => MovieCreateNestedManyWithoutSpokenLanguagesInput,
-    {
-      nullable: true,
-    },
-  )
+  @TypeGraphQL.Field(_type => MovieCreateNestedManyWithoutSpokenLanguagesInput, {
+    nullable: true
+  })
   movies?: MovieCreateNestedManyWithoutSpokenLanguagesInput | undefined;
 }

@@ -10,78 +10,55 @@ import { MovifierAppUserUpdateWithWhereUniqueWithoutWatchlistInput } from "../in
 import { MovifierAppUserUpsertWithWhereUniqueWithoutWatchlistInput } from "../inputs/MovifierAppUserUpsertWithWhereUniqueWithoutWatchlistInput";
 import { MovifierAppUserWhereUniqueInput } from "../inputs/MovifierAppUserWhereUniqueInput";
 
-@TypeGraphQL.InputType(
-  "MovifierAppUserUpdateManyWithoutWatchlistNestedInput",
-  {},
-)
+@TypeGraphQL.InputType("MovifierAppUserUpdateManyWithoutWatchlistNestedInput", {})
 export class MovifierAppUserUpdateManyWithoutWatchlistNestedInput {
-  @TypeGraphQL.Field((_type) => [MovifierAppUserCreateWithoutWatchlistInput], {
-    nullable: true,
+  @TypeGraphQL.Field(_type => [MovifierAppUserCreateWithoutWatchlistInput], {
+    nullable: true
   })
   create?: MovifierAppUserCreateWithoutWatchlistInput[] | undefined;
 
-  @TypeGraphQL.Field(
-    (_type) => [MovifierAppUserCreateOrConnectWithoutWatchlistInput],
-    {
-      nullable: true,
-    },
-  )
-  connectOrCreate?:
-    | MovifierAppUserCreateOrConnectWithoutWatchlistInput[]
-    | undefined;
+  @TypeGraphQL.Field(_type => [MovifierAppUserCreateOrConnectWithoutWatchlistInput], {
+    nullable: true
+  })
+  connectOrCreate?: MovifierAppUserCreateOrConnectWithoutWatchlistInput[] | undefined;
 
-  @TypeGraphQL.Field(
-    (_type) => [MovifierAppUserUpsertWithWhereUniqueWithoutWatchlistInput],
-    {
-      nullable: true,
-    },
-  )
-  upsert?:
-    | MovifierAppUserUpsertWithWhereUniqueWithoutWatchlistInput[]
-    | undefined;
+  @TypeGraphQL.Field(_type => [MovifierAppUserUpsertWithWhereUniqueWithoutWatchlistInput], {
+    nullable: true
+  })
+  upsert?: MovifierAppUserUpsertWithWhereUniqueWithoutWatchlistInput[] | undefined;
 
-  @TypeGraphQL.Field((_type) => [MovifierAppUserWhereUniqueInput], {
-    nullable: true,
+  @TypeGraphQL.Field(_type => [MovifierAppUserWhereUniqueInput], {
+    nullable: true
   })
   set?: MovifierAppUserWhereUniqueInput[] | undefined;
 
-  @TypeGraphQL.Field((_type) => [MovifierAppUserWhereUniqueInput], {
-    nullable: true,
+  @TypeGraphQL.Field(_type => [MovifierAppUserWhereUniqueInput], {
+    nullable: true
   })
   disconnect?: MovifierAppUserWhereUniqueInput[] | undefined;
 
-  @TypeGraphQL.Field((_type) => [MovifierAppUserWhereUniqueInput], {
-    nullable: true,
+  @TypeGraphQL.Field(_type => [MovifierAppUserWhereUniqueInput], {
+    nullable: true
   })
   delete?: MovifierAppUserWhereUniqueInput[] | undefined;
 
-  @TypeGraphQL.Field((_type) => [MovifierAppUserWhereUniqueInput], {
-    nullable: true,
+  @TypeGraphQL.Field(_type => [MovifierAppUserWhereUniqueInput], {
+    nullable: true
   })
   connect?: MovifierAppUserWhereUniqueInput[] | undefined;
 
-  @TypeGraphQL.Field(
-    (_type) => [MovifierAppUserUpdateWithWhereUniqueWithoutWatchlistInput],
-    {
-      nullable: true,
-    },
-  )
-  update?:
-    | MovifierAppUserUpdateWithWhereUniqueWithoutWatchlistInput[]
-    | undefined;
+  @TypeGraphQL.Field(_type => [MovifierAppUserUpdateWithWhereUniqueWithoutWatchlistInput], {
+    nullable: true
+  })
+  update?: MovifierAppUserUpdateWithWhereUniqueWithoutWatchlistInput[] | undefined;
 
-  @TypeGraphQL.Field(
-    (_type) => [MovifierAppUserUpdateManyWithWhereWithoutWatchlistInput],
-    {
-      nullable: true,
-    },
-  )
-  updateMany?:
-    | MovifierAppUserUpdateManyWithWhereWithoutWatchlistInput[]
-    | undefined;
+  @TypeGraphQL.Field(_type => [MovifierAppUserUpdateManyWithWhereWithoutWatchlistInput], {
+    nullable: true
+  })
+  updateMany?: MovifierAppUserUpdateManyWithWhereWithoutWatchlistInput[] | undefined;
 
-  @TypeGraphQL.Field((_type) => [MovifierAppUserScalarWhereInput], {
-    nullable: true,
+  @TypeGraphQL.Field(_type => [MovifierAppUserScalarWhereInput], {
+    nullable: true
   })
   deleteMany?: MovifierAppUserScalarWhereInput[] | undefined;
 }

@@ -11,15 +11,13 @@ import {
   transformCountFieldIntoSelectRelationsCount,
   transformInfoIntoPrismaArgs,
 } from "@/generated/type-graphql/helpers";
-import bcrypt from "bcrypt";
 import jwt, { SignOptions } from "jsonwebtoken";
 import { UserLoginOutput } from "@/graphql/users/outputs/userLoginOutput";
 import { UserLoginArgs } from "@/graphql/users/args/userLoginArgs";
 import { AppContext } from "@/graphql/context";
 import { app } from "@/app";
 import { create } from "mutative";
-
-const SALT_ROUNDS = 10;
+import { PasswordHasher } from "@/services/passwordHasher";
 
 const JWT_OPTIONS: SignOptions = {
   issuer: "movifier.org",
@@ -55,9 +53,9 @@ export class CustomUserResolver {
   ): Promise<UserRegisterOutput> {
     const { _count } = transformInfoIntoPrismaArgs(info);
 
-    const passwordHash = await bcrypt.hash(args.data.password, SALT_ROUNDS);
+    const passwordHash = await PasswordHasher.hashPassword(args.data.password);
     const user = await getPrismaFromContext(ctx).movifierAppUser.create({
-      ...create(args, (draft) => {
+      ...create({ ...args }, (draft) => {
         draft.data.password = passwordHash;
       }),
       ...(_count && transformCountFieldIntoSelectRelationsCount(_count)),
@@ -90,7 +88,7 @@ export class CustomUserResolver {
     });
     if (!user) throw new GraphQLError("User not found.");
 
-    const isPasswordCorrect = await bcrypt.compare(
+    const isPasswordCorrect = await PasswordHasher.comparePassword(
       args.data.password,
       user.password,
     );

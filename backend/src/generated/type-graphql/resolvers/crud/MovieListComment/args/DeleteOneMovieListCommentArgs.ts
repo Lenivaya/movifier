@@ -4,8 +4,8 @@ import { MovieListCommentWhereUniqueInput } from "../../../inputs/MovieListComme
 
 @TypeGraphQL.ArgsType()
 export class DeleteOneMovieListCommentArgs {
-  @TypeGraphQL.Field((_type) => MovieListCommentWhereUniqueInput, {
-    nullable: false,
+  @TypeGraphQL.Field(_type => MovieListCommentWhereUniqueInput, {
+    nullable: false
   })
   where!: MovieListCommentWhereUniqueInput;
 }

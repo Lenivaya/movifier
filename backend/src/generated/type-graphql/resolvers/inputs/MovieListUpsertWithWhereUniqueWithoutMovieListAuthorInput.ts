@@ -6,23 +6,20 @@ import { MovieListCreateWithoutMovieListAuthorInput } from "../inputs/MovieListC
 import { MovieListUpdateWithoutMovieListAuthorInput } from "../inputs/MovieListUpdateWithoutMovieListAuthorInput";
 import { MovieListWhereUniqueInput } from "../inputs/MovieListWhereUniqueInput";
 
-@TypeGraphQL.InputType(
-  "MovieListUpsertWithWhereUniqueWithoutMovieListAuthorInput",
-  {},
-)
+@TypeGraphQL.InputType("MovieListUpsertWithWhereUniqueWithoutMovieListAuthorInput", {})
 export class MovieListUpsertWithWhereUniqueWithoutMovieListAuthorInput {
-  @TypeGraphQL.Field((_type) => MovieListWhereUniqueInput, {
-    nullable: false,
+  @TypeGraphQL.Field(_type => MovieListWhereUniqueInput, {
+    nullable: false
   })
   where!: MovieListWhereUniqueInput;
 
-  @TypeGraphQL.Field((_type) => MovieListUpdateWithoutMovieListAuthorInput, {
-    nullable: false,
+  @TypeGraphQL.Field(_type => MovieListUpdateWithoutMovieListAuthorInput, {
+    nullable: false
   })
   update!: MovieListUpdateWithoutMovieListAuthorInput;
 
-  @TypeGraphQL.Field((_type) => MovieListCreateWithoutMovieListAuthorInput, {
-    nullable: false,
+  @TypeGraphQL.Field(_type => MovieListCreateWithoutMovieListAuthorInput, {
+    nullable: false
   })
   create!: MovieListCreateWithoutMovieListAuthorInput;
 }

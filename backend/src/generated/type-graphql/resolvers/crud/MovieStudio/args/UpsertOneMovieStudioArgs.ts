@@ -6,18 +6,18 @@ import { MovieStudioWhereUniqueInput } from "../../../inputs/MovieStudioWhereUni
 
 @TypeGraphQL.ArgsType()
 export class UpsertOneMovieStudioArgs {
-  @TypeGraphQL.Field((_type) => MovieStudioWhereUniqueInput, {
-    nullable: false,
+  @TypeGraphQL.Field(_type => MovieStudioWhereUniqueInput, {
+    nullable: false
   })
   where!: MovieStudioWhereUniqueInput;
 
-  @TypeGraphQL.Field((_type) => MovieStudioCreateInput, {
-    nullable: false,
+  @TypeGraphQL.Field(_type => MovieStudioCreateInput, {
+    nullable: false
   })
   create!: MovieStudioCreateInput;
 
-  @TypeGraphQL.Field((_type) => MovieStudioUpdateInput, {
-    nullable: false,
+  @TypeGraphQL.Field(_type => MovieStudioUpdateInput, {
+    nullable: false
   })
   update!: MovieStudioUpdateInput;
 }

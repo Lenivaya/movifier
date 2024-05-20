@@ -7,13 +7,13 @@ import { MovieListUpdateManyMutationInput } from "../inputs/MovieListUpdateManyM
 
 @TypeGraphQL.InputType("MovieListUpdateManyWithWhereWithoutMoviesInput", {})
 export class MovieListUpdateManyWithWhereWithoutMoviesInput {
-  @TypeGraphQL.Field((_type) => MovieListScalarWhereInput, {
-    nullable: false,
+  @TypeGraphQL.Field(_type => MovieListScalarWhereInput, {
+    nullable: false
   })
   where!: MovieListScalarWhereInput;
 
-  @TypeGraphQL.Field((_type) => MovieListUpdateManyMutationInput, {
-    nullable: false,
+  @TypeGraphQL.Field(_type => MovieListUpdateManyMutationInput, {
+    nullable: false
   })
   data!: MovieListUpdateManyMutationInput;
 }

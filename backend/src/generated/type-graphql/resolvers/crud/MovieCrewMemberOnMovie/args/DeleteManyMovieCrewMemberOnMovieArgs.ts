@@ -4,8 +4,8 @@ import { MovieCrewMemberOnMovieWhereInput } from "../../../inputs/MovieCrewMembe
 
 @TypeGraphQL.ArgsType()
 export class DeleteManyMovieCrewMemberOnMovieArgs {
-  @TypeGraphQL.Field((_type) => MovieCrewMemberOnMovieWhereInput, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => MovieCrewMemberOnMovieWhereInput, {
+    nullable: true
   })
   where?: MovieCrewMemberOnMovieWhereInput | undefined;
 }

@@ -8,46 +8,38 @@ import { MovifierAppUserCreateNestedOneWithoutMovieListsInput } from "../inputs/
 
 @TypeGraphQL.InputType("MovieListCreateWithoutMovieListStatsInput", {})
 export class MovieListCreateWithoutMovieListStatsInput {
-  @TypeGraphQL.Field((_type) => String, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => String, {
+    nullable: true
   })
   id?: string | undefined;
 
-  @TypeGraphQL.Field((_type) => Date, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => Date, {
+    nullable: true
   })
   createdAt?: Date | undefined;
 
-  @TypeGraphQL.Field((_type) => Date, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => Date, {
+    nullable: true
   })
   updatedAt?: Date | undefined;
 
-  @TypeGraphQL.Field((_type) => String, {
-    nullable: false,
+  @TypeGraphQL.Field(_type => String, {
+    nullable: false
   })
   name!: string;
 
-  @TypeGraphQL.Field((_type) => MovieCreateNestedManyWithoutMovieListsInput, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => MovieCreateNestedManyWithoutMovieListsInput, {
+    nullable: true
   })
   movies?: MovieCreateNestedManyWithoutMovieListsInput | undefined;
 
-  @TypeGraphQL.Field(
-    (_type) => MovifierAppUserCreateNestedOneWithoutMovieListsInput,
-    {
-      nullable: false,
-    },
-  )
+  @TypeGraphQL.Field(_type => MovifierAppUserCreateNestedOneWithoutMovieListsInput, {
+    nullable: false
+  })
   movieListAuthor!: MovifierAppUserCreateNestedOneWithoutMovieListsInput;
 
-  @TypeGraphQL.Field(
-    (_type) => MovieListCommentCreateNestedManyWithoutMovieListInput,
-    {
-      nullable: true,
-    },
-  )
-  movieListComments?:
-    | MovieListCommentCreateNestedManyWithoutMovieListInput
-    | undefined;
+  @TypeGraphQL.Field(_type => MovieListCommentCreateNestedManyWithoutMovieListInput, {
+    nullable: true
+  })
+  movieListComments?: MovieListCommentCreateNestedManyWithoutMovieListInput | undefined;
 }

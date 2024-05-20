@@ -4,8 +4,8 @@ import { GenreWhereInput } from "../../inputs/GenreWhereInput";
 
 @TypeGraphQL.ArgsType()
 export class MovieCountGenresArgs {
-  @TypeGraphQL.Field((_type) => GenreWhereInput, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => GenreWhereInput, {
+    nullable: true
   })
   where?: GenreWhereInput | undefined;
 }

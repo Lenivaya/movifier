@@ -6,8 +6,8 @@ import { MoviefireAppUserRole } from "../../enums/MoviefireAppUserRole";
 
 @TypeGraphQL.InputType("EnumMoviefireAppUserRoleFieldUpdateOperationsInput", {})
 export class EnumMoviefireAppUserRoleFieldUpdateOperationsInput {
-  @TypeGraphQL.Field((_type) => MoviefireAppUserRole, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => MoviefireAppUserRole, {
+    nullable: true
   })
   set?: "USER" | "ADMIN" | undefined;
 }

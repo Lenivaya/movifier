@@ -8,32 +8,23 @@ import { MovieUpdateOneRequiredWithoutCrewMembersNestedInput } from "../inputs/M
 
 @TypeGraphQL.InputType("MovieCrewMemberOnMovieUpdateWithoutCrewMemberInput", {})
 export class MovieCrewMemberOnMovieUpdateWithoutCrewMemberInput {
-  @TypeGraphQL.Field((_type) => DateTimeFieldUpdateOperationsInput, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => DateTimeFieldUpdateOperationsInput, {
+    nullable: true
   })
   createdAt?: DateTimeFieldUpdateOperationsInput | undefined;
 
-  @TypeGraphQL.Field((_type) => DateTimeFieldUpdateOperationsInput, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => DateTimeFieldUpdateOperationsInput, {
+    nullable: true
   })
   updatedAt?: DateTimeFieldUpdateOperationsInput | undefined;
 
-  @TypeGraphQL.Field(
-    (_type) => MovieUpdateOneRequiredWithoutCrewMembersNestedInput,
-    {
-      nullable: true,
-    },
-  )
+  @TypeGraphQL.Field(_type => MovieUpdateOneRequiredWithoutCrewMembersNestedInput, {
+    nullable: true
+  })
   movie?: MovieUpdateOneRequiredWithoutCrewMembersNestedInput | undefined;
 
-  @TypeGraphQL.Field(
-    (_type) =>
-      MovieCrewMemberTypeUpdateOneRequiredWithoutMovieCrewMembersNestedInput,
-    {
-      nullable: true,
-    },
-  )
-  movieCrewMemberType?:
-    | MovieCrewMemberTypeUpdateOneRequiredWithoutMovieCrewMembersNestedInput
-    | undefined;
+  @TypeGraphQL.Field(_type => MovieCrewMemberTypeUpdateOneRequiredWithoutMovieCrewMembersNestedInput, {
+    nullable: true
+  })
+  movieCrewMemberType?: MovieCrewMemberTypeUpdateOneRequiredWithoutMovieCrewMembersNestedInput | undefined;
 }

@@ -12,59 +12,53 @@ import { MovieWhereUniqueInput } from "../inputs/MovieWhereUniqueInput";
 
 @TypeGraphQL.InputType("MovieUpdateManyWithoutGenresNestedInput", {})
 export class MovieUpdateManyWithoutGenresNestedInput {
-  @TypeGraphQL.Field((_type) => [MovieCreateWithoutGenresInput], {
-    nullable: true,
+  @TypeGraphQL.Field(_type => [MovieCreateWithoutGenresInput], {
+    nullable: true
   })
   create?: MovieCreateWithoutGenresInput[] | undefined;
 
-  @TypeGraphQL.Field((_type) => [MovieCreateOrConnectWithoutGenresInput], {
-    nullable: true,
+  @TypeGraphQL.Field(_type => [MovieCreateOrConnectWithoutGenresInput], {
+    nullable: true
   })
   connectOrCreate?: MovieCreateOrConnectWithoutGenresInput[] | undefined;
 
-  @TypeGraphQL.Field(
-    (_type) => [MovieUpsertWithWhereUniqueWithoutGenresInput],
-    {
-      nullable: true,
-    },
-  )
+  @TypeGraphQL.Field(_type => [MovieUpsertWithWhereUniqueWithoutGenresInput], {
+    nullable: true
+  })
   upsert?: MovieUpsertWithWhereUniqueWithoutGenresInput[] | undefined;
 
-  @TypeGraphQL.Field((_type) => [MovieWhereUniqueInput], {
-    nullable: true,
+  @TypeGraphQL.Field(_type => [MovieWhereUniqueInput], {
+    nullable: true
   })
   set?: MovieWhereUniqueInput[] | undefined;
 
-  @TypeGraphQL.Field((_type) => [MovieWhereUniqueInput], {
-    nullable: true,
+  @TypeGraphQL.Field(_type => [MovieWhereUniqueInput], {
+    nullable: true
   })
   disconnect?: MovieWhereUniqueInput[] | undefined;
 
-  @TypeGraphQL.Field((_type) => [MovieWhereUniqueInput], {
-    nullable: true,
+  @TypeGraphQL.Field(_type => [MovieWhereUniqueInput], {
+    nullable: true
   })
   delete?: MovieWhereUniqueInput[] | undefined;
 
-  @TypeGraphQL.Field((_type) => [MovieWhereUniqueInput], {
-    nullable: true,
+  @TypeGraphQL.Field(_type => [MovieWhereUniqueInput], {
+    nullable: true
   })
   connect?: MovieWhereUniqueInput[] | undefined;
 
-  @TypeGraphQL.Field(
-    (_type) => [MovieUpdateWithWhereUniqueWithoutGenresInput],
-    {
-      nullable: true,
-    },
-  )
+  @TypeGraphQL.Field(_type => [MovieUpdateWithWhereUniqueWithoutGenresInput], {
+    nullable: true
+  })
   update?: MovieUpdateWithWhereUniqueWithoutGenresInput[] | undefined;
 
-  @TypeGraphQL.Field((_type) => [MovieUpdateManyWithWhereWithoutGenresInput], {
-    nullable: true,
+  @TypeGraphQL.Field(_type => [MovieUpdateManyWithWhereWithoutGenresInput], {
+    nullable: true
   })
   updateMany?: MovieUpdateManyWithWhereWithoutGenresInput[] | undefined;
 
-  @TypeGraphQL.Field((_type) => [MovieScalarWhereInput], {
-    nullable: true,
+  @TypeGraphQL.Field(_type => [MovieScalarWhereInput], {
+    nullable: true
   })
   deleteMany?: MovieScalarWhereInput[] | undefined;
 }

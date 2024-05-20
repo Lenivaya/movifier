@@ -6,38 +6,35 @@ import { MovieOrderByRelationAggregateInput } from "../inputs/MovieOrderByRelati
 import { MovieStudioOrderByRelevanceInput } from "../inputs/MovieStudioOrderByRelevanceInput";
 import { SortOrder } from "../../enums/SortOrder";
 
-@TypeGraphQL.InputType(
-  "MovieStudioOrderByWithRelationAndSearchRelevanceInput",
-  {},
-)
+@TypeGraphQL.InputType("MovieStudioOrderByWithRelationAndSearchRelevanceInput", {})
 export class MovieStudioOrderByWithRelationAndSearchRelevanceInput {
-  @TypeGraphQL.Field((_type) => SortOrder, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => SortOrder, {
+    nullable: true
   })
   id?: "asc" | "desc" | undefined;
 
-  @TypeGraphQL.Field((_type) => SortOrder, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => SortOrder, {
+    nullable: true
   })
   createdAt?: "asc" | "desc" | undefined;
 
-  @TypeGraphQL.Field((_type) => SortOrder, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => SortOrder, {
+    nullable: true
   })
   updatedAt?: "asc" | "desc" | undefined;
 
-  @TypeGraphQL.Field((_type) => SortOrder, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => SortOrder, {
+    nullable: true
   })
   name?: "asc" | "desc" | undefined;
 
-  @TypeGraphQL.Field((_type) => MovieOrderByRelationAggregateInput, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => MovieOrderByRelationAggregateInput, {
+    nullable: true
   })
   movies?: MovieOrderByRelationAggregateInput | undefined;
 
-  @TypeGraphQL.Field((_type) => MovieStudioOrderByRelevanceInput, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => MovieStudioOrderByRelevanceInput, {
+    nullable: true
   })
   _relevance?: MovieStudioOrderByRelevanceInput | undefined;
 }

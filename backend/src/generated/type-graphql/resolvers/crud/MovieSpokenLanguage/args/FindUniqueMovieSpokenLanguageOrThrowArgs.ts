@@ -4,8 +4,8 @@ import { MovieSpokenLanguageWhereUniqueInput } from "../../../inputs/MovieSpoken
 
 @TypeGraphQL.ArgsType()
 export class FindUniqueMovieSpokenLanguageOrThrowArgs {
-  @TypeGraphQL.Field((_type) => MovieSpokenLanguageWhereUniqueInput, {
-    nullable: false,
+  @TypeGraphQL.Field(_type => MovieSpokenLanguageWhereUniqueInput, {
+    nullable: false
   })
   where!: MovieSpokenLanguageWhereUniqueInput;
 }

@@ -4,8 +4,8 @@ import { MovieSpokenLanguageCreateInput } from "../../../inputs/MovieSpokenLangu
 
 @TypeGraphQL.ArgsType()
 export class CreateOneMovieSpokenLanguageArgs {
-  @TypeGraphQL.Field((_type) => MovieSpokenLanguageCreateInput, {
-    nullable: false,
+  @TypeGraphQL.Field(_type => MovieSpokenLanguageCreateInput, {
+    nullable: false
   })
   data!: MovieSpokenLanguageCreateInput;
 }

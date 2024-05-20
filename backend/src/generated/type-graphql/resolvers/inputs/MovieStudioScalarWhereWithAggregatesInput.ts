@@ -7,38 +7,38 @@ import { StringWithAggregatesFilter } from "../inputs/StringWithAggregatesFilter
 
 @TypeGraphQL.InputType("MovieStudioScalarWhereWithAggregatesInput", {})
 export class MovieStudioScalarWhereWithAggregatesInput {
-  @TypeGraphQL.Field((_type) => [MovieStudioScalarWhereWithAggregatesInput], {
-    nullable: true,
+  @TypeGraphQL.Field(_type => [MovieStudioScalarWhereWithAggregatesInput], {
+    nullable: true
   })
   AND?: MovieStudioScalarWhereWithAggregatesInput[] | undefined;
 
-  @TypeGraphQL.Field((_type) => [MovieStudioScalarWhereWithAggregatesInput], {
-    nullable: true,
+  @TypeGraphQL.Field(_type => [MovieStudioScalarWhereWithAggregatesInput], {
+    nullable: true
   })
   OR?: MovieStudioScalarWhereWithAggregatesInput[] | undefined;
 
-  @TypeGraphQL.Field((_type) => [MovieStudioScalarWhereWithAggregatesInput], {
-    nullable: true,
+  @TypeGraphQL.Field(_type => [MovieStudioScalarWhereWithAggregatesInput], {
+    nullable: true
   })
   NOT?: MovieStudioScalarWhereWithAggregatesInput[] | undefined;
 
-  @TypeGraphQL.Field((_type) => StringWithAggregatesFilter, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => StringWithAggregatesFilter, {
+    nullable: true
   })
   id?: StringWithAggregatesFilter | undefined;
 
-  @TypeGraphQL.Field((_type) => DateTimeWithAggregatesFilter, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => DateTimeWithAggregatesFilter, {
+    nullable: true
   })
   createdAt?: DateTimeWithAggregatesFilter | undefined;
 
-  @TypeGraphQL.Field((_type) => DateTimeWithAggregatesFilter, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => DateTimeWithAggregatesFilter, {
+    nullable: true
   })
   updatedAt?: DateTimeWithAggregatesFilter | undefined;
 
-  @TypeGraphQL.Field((_type) => StringWithAggregatesFilter, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => StringWithAggregatesFilter, {
+    nullable: true
   })
   name?: StringWithAggregatesFilter | undefined;
 }

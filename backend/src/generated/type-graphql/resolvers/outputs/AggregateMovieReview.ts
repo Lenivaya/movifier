@@ -8,18 +8,18 @@ import { MovieReviewMinAggregate } from "../outputs/MovieReviewMinAggregate";
 
 @TypeGraphQL.ObjectType("AggregateMovieReview", {})
 export class AggregateMovieReview {
-  @TypeGraphQL.Field((_type) => MovieReviewCountAggregate, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => MovieReviewCountAggregate, {
+    nullable: true
   })
   _count!: MovieReviewCountAggregate | null;
 
-  @TypeGraphQL.Field((_type) => MovieReviewMinAggregate, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => MovieReviewMinAggregate, {
+    nullable: true
   })
   _min!: MovieReviewMinAggregate | null;
 
-  @TypeGraphQL.Field((_type) => MovieReviewMaxAggregate, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => MovieReviewMaxAggregate, {
+    nullable: true
   })
   _max!: MovieReviewMaxAggregate | null;
 }

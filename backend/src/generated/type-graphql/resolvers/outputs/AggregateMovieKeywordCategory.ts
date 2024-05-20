@@ -8,18 +8,18 @@ import { MovieKeywordCategoryMinAggregate } from "../outputs/MovieKeywordCategor
 
 @TypeGraphQL.ObjectType("AggregateMovieKeywordCategory", {})
 export class AggregateMovieKeywordCategory {
-  @TypeGraphQL.Field((_type) => MovieKeywordCategoryCountAggregate, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => MovieKeywordCategoryCountAggregate, {
+    nullable: true
   })
   _count!: MovieKeywordCategoryCountAggregate | null;
 
-  @TypeGraphQL.Field((_type) => MovieKeywordCategoryMinAggregate, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => MovieKeywordCategoryMinAggregate, {
+    nullable: true
   })
   _min!: MovieKeywordCategoryMinAggregate | null;
 
-  @TypeGraphQL.Field((_type) => MovieKeywordCategoryMaxAggregate, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => MovieKeywordCategoryMaxAggregate, {
+    nullable: true
   })
   _max!: MovieKeywordCategoryMaxAggregate | null;
 }

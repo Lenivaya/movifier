@@ -3,22 +3,14 @@ import type { GraphQLResolveInfo } from "graphql";
 import { DeleteManyGenreArgs } from "./args/DeleteManyGenreArgs";
 import { Genre } from "../../../models/Genre";
 import { AffectedRowsOutput } from "../../outputs/AffectedRowsOutput";
-import {
-  transformInfoIntoPrismaArgs,
-  getPrismaFromContext,
-  transformCountFieldIntoSelectRelationsCount,
-} from "../../../helpers";
+import { transformInfoIntoPrismaArgs, getPrismaFromContext, transformCountFieldIntoSelectRelationsCount } from "../../../helpers";
 
-@TypeGraphQL.Resolver((_of) => Genre)
+@TypeGraphQL.Resolver(_of => Genre)
 export class DeleteManyGenreResolver {
-  @TypeGraphQL.Mutation((_returns) => AffectedRowsOutput, {
-    nullable: false,
+  @TypeGraphQL.Mutation(_returns => AffectedRowsOutput, {
+    nullable: false
   })
-  async deleteManyGenre(
-    @TypeGraphQL.Ctx() ctx: any,
-    @TypeGraphQL.Info() info: GraphQLResolveInfo,
-    @TypeGraphQL.Args((_type) => DeleteManyGenreArgs) args: DeleteManyGenreArgs,
-  ): Promise<AffectedRowsOutput> {
+  async deleteManyGenre(@TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Info() info: GraphQLResolveInfo, @TypeGraphQL.Args(_type => DeleteManyGenreArgs) args: DeleteManyGenreArgs): Promise<AffectedRowsOutput> {
     const { _count } = transformInfoIntoPrismaArgs(info);
     return getPrismaFromContext(ctx).genre.deleteMany({
       ...args,

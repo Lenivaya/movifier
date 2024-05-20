@@ -6,38 +6,38 @@ import { MovieCreateNestedOneWithoutMovieStatsInput } from "../inputs/MovieCreat
 
 @TypeGraphQL.InputType("MovieStatsCreateInput", {})
 export class MovieStatsCreateInput {
-  @TypeGraphQL.Field((_type) => String, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => String, {
+    nullable: true
   })
   id?: string | undefined;
 
-  @TypeGraphQL.Field((_type) => TypeGraphQL.Int, {
-    nullable: false,
+  @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
+    nullable: false
   })
   timesWatchedCount!: number;
 
-  @TypeGraphQL.Field((_type) => TypeGraphQL.Int, {
-    nullable: false,
+  @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
+    nullable: false
   })
   totalRatingsCount!: number;
 
-  @TypeGraphQL.Field((_type) => TypeGraphQL.Int, {
-    nullable: false,
+  @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
+    nullable: false
   })
   totalLikesCount!: number;
 
-  @TypeGraphQL.Field((_type) => TypeGraphQL.Int, {
-    nullable: false,
+  @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
+    nullable: false
   })
   overallPlaceINTop!: number;
 
-  @TypeGraphQL.Field((_type) => TypeGraphQL.Float, {
-    nullable: false,
+  @TypeGraphQL.Field(_type => TypeGraphQL.Float, {
+    nullable: false
   })
   avgRating!: number;
 
-  @TypeGraphQL.Field((_type) => MovieCreateNestedOneWithoutMovieStatsInput, {
-    nullable: false,
+  @TypeGraphQL.Field(_type => MovieCreateNestedOneWithoutMovieStatsInput, {
+    nullable: false
   })
   movie!: MovieCreateNestedOneWithoutMovieStatsInput;
 }

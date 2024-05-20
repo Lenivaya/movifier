@@ -8,18 +8,18 @@ import { GenreMinAggregate } from "../outputs/GenreMinAggregate";
 
 @TypeGraphQL.ObjectType("AggregateGenre", {})
 export class AggregateGenre {
-  @TypeGraphQL.Field((_type) => GenreCountAggregate, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => GenreCountAggregate, {
+    nullable: true
   })
   _count!: GenreCountAggregate | null;
 
-  @TypeGraphQL.Field((_type) => GenreMinAggregate, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => GenreMinAggregate, {
+    nullable: true
   })
   _min!: GenreMinAggregate | null;
 
-  @TypeGraphQL.Field((_type) => GenreMaxAggregate, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => GenreMaxAggregate, {
+    nullable: true
   })
   _max!: GenreMaxAggregate | null;
 }

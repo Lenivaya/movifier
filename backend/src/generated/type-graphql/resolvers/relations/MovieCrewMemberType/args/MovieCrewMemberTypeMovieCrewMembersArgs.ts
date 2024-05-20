@@ -7,48 +7,33 @@ import { MovieCrewMemberOnMovieScalarFieldEnum } from "../../../../enums/MovieCr
 
 @TypeGraphQL.ArgsType()
 export class MovieCrewMemberTypeMovieCrewMembersArgs {
-  @TypeGraphQL.Field((_type) => MovieCrewMemberOnMovieWhereInput, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => MovieCrewMemberOnMovieWhereInput, {
+    nullable: true
   })
   where?: MovieCrewMemberOnMovieWhereInput | undefined;
 
-  @TypeGraphQL.Field(
-    (_type) => [
-      MovieCrewMemberOnMovieOrderByWithRelationAndSearchRelevanceInput,
-    ],
-    {
-      nullable: true,
-    },
-  )
-  orderBy?:
-    | MovieCrewMemberOnMovieOrderByWithRelationAndSearchRelevanceInput[]
-    | undefined;
+  @TypeGraphQL.Field(_type => [MovieCrewMemberOnMovieOrderByWithRelationAndSearchRelevanceInput], {
+    nullable: true
+  })
+  orderBy?: MovieCrewMemberOnMovieOrderByWithRelationAndSearchRelevanceInput[] | undefined;
 
-  @TypeGraphQL.Field((_type) => MovieCrewMemberOnMovieWhereUniqueInput, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => MovieCrewMemberOnMovieWhereUniqueInput, {
+    nullable: true
   })
   cursor?: MovieCrewMemberOnMovieWhereUniqueInput | undefined;
 
-  @TypeGraphQL.Field((_type) => TypeGraphQL.Int, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
+    nullable: true
   })
   take?: number | undefined;
 
-  @TypeGraphQL.Field((_type) => TypeGraphQL.Int, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
+    nullable: true
   })
   skip?: number | undefined;
 
-  @TypeGraphQL.Field((_type) => [MovieCrewMemberOnMovieScalarFieldEnum], {
-    nullable: true,
+  @TypeGraphQL.Field(_type => [MovieCrewMemberOnMovieScalarFieldEnum], {
+    nullable: true
   })
-  distinct?:
-    | Array<
-        | "createdAt"
-        | "updatedAt"
-        | "movieId"
-        | "movieCrewMemberId"
-        | "movieCrewMemberTypeId"
-      >
-    | undefined;
+  distinct?: Array<"createdAt" | "updatedAt" | "movieId" | "movieCrewMemberId" | "movieCrewMemberTypeId"> | undefined;
 }

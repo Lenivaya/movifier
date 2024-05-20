@@ -9,72 +9,60 @@ import { MovieRatingUpdateManyWithoutUserNestedInput } from "../inputs/MovieRati
 import { MovieUpdateManyWithoutInWatchlistByUsersNestedInput } from "../inputs/MovieUpdateManyWithoutInWatchlistByUsersNestedInput";
 import { StringFieldUpdateOperationsInput } from "../inputs/StringFieldUpdateOperationsInput";
 
-@TypeGraphQL.InputType(
-  "MovifierAppUserUpdateWithoutMovieListsCommentsInput",
-  {},
-)
+@TypeGraphQL.InputType("MovifierAppUserUpdateWithoutMovieListsCommentsInput", {})
 export class MovifierAppUserUpdateWithoutMovieListsCommentsInput {
-  @TypeGraphQL.Field((_type) => StringFieldUpdateOperationsInput, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => StringFieldUpdateOperationsInput, {
+    nullable: true
   })
   id?: StringFieldUpdateOperationsInput | undefined;
 
-  @TypeGraphQL.Field((_type) => DateTimeFieldUpdateOperationsInput, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => DateTimeFieldUpdateOperationsInput, {
+    nullable: true
   })
   createdAt?: DateTimeFieldUpdateOperationsInput | undefined;
 
-  @TypeGraphQL.Field((_type) => DateTimeFieldUpdateOperationsInput, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => DateTimeFieldUpdateOperationsInput, {
+    nullable: true
   })
   updatedAt?: DateTimeFieldUpdateOperationsInput | undefined;
 
-  @TypeGraphQL.Field((_type) => StringFieldUpdateOperationsInput, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => StringFieldUpdateOperationsInput, {
+    nullable: true
   })
   email?: StringFieldUpdateOperationsInput | undefined;
 
-  @TypeGraphQL.Field((_type) => StringFieldUpdateOperationsInput, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => StringFieldUpdateOperationsInput, {
+    nullable: true
   })
   username?: StringFieldUpdateOperationsInput | undefined;
 
-  @TypeGraphQL.Field((_type) => StringFieldUpdateOperationsInput, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => StringFieldUpdateOperationsInput, {
+    nullable: true
   })
   password?: StringFieldUpdateOperationsInput | undefined;
 
-  @TypeGraphQL.Field((_type) => StringFieldUpdateOperationsInput, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => StringFieldUpdateOperationsInput, {
+    nullable: true
   })
   name?: StringFieldUpdateOperationsInput | undefined;
 
-  @TypeGraphQL.Field(
-    (_type) => EnumMoviefireAppUserRoleFieldUpdateOperationsInput,
-    {
-      nullable: true,
-    },
-  )
+  @TypeGraphQL.Field(_type => EnumMoviefireAppUserRoleFieldUpdateOperationsInput, {
+    nullable: true
+  })
   role?: EnumMoviefireAppUserRoleFieldUpdateOperationsInput | undefined;
 
-  @TypeGraphQL.Field(
-    (_type) => MovieUpdateManyWithoutInWatchlistByUsersNestedInput,
-    {
-      nullable: true,
-    },
-  )
+  @TypeGraphQL.Field(_type => MovieUpdateManyWithoutInWatchlistByUsersNestedInput, {
+    nullable: true
+  })
   watchlist?: MovieUpdateManyWithoutInWatchlistByUsersNestedInput | undefined;
 
-  @TypeGraphQL.Field((_type) => MovieRatingUpdateManyWithoutUserNestedInput, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => MovieRatingUpdateManyWithoutUserNestedInput, {
+    nullable: true
   })
   rating?: MovieRatingUpdateManyWithoutUserNestedInput | undefined;
 
-  @TypeGraphQL.Field(
-    (_type) => MovieListUpdateManyWithoutMovieListAuthorNestedInput,
-    {
-      nullable: true,
-    },
-  )
+  @TypeGraphQL.Field(_type => MovieListUpdateManyWithoutMovieListAuthorNestedInput, {
+    nullable: true
+  })
   movieLists?: MovieListUpdateManyWithoutMovieListAuthorNestedInput | undefined;
 }

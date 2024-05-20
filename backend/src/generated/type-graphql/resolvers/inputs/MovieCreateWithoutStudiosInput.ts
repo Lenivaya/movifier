@@ -14,83 +14,63 @@ import { MovifierAppUserCreateNestedManyWithoutWatchlistInput } from "../inputs/
 
 @TypeGraphQL.InputType("MovieCreateWithoutStudiosInput", {})
 export class MovieCreateWithoutStudiosInput {
-  @TypeGraphQL.Field((_type) => String, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => String, {
+    nullable: true
   })
   id?: string | undefined;
 
-  @TypeGraphQL.Field((_type) => Date, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => Date, {
+    nullable: true
   })
   createdAt?: Date | undefined;
 
-  @TypeGraphQL.Field((_type) => Date, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => Date, {
+    nullable: true
   })
   updatedAt?: Date | undefined;
 
-  @TypeGraphQL.Field((_type) => MovieInfoCreateNestedOneWithoutMovieInput, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => MovieInfoCreateNestedOneWithoutMovieInput, {
+    nullable: true
   })
   movieInfo?: MovieInfoCreateNestedOneWithoutMovieInput | undefined;
 
-  @TypeGraphQL.Field((_type) => MovieStatsCreateNestedOneWithoutMovieInput, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => MovieStatsCreateNestedOneWithoutMovieInput, {
+    nullable: true
   })
   movieStats?: MovieStatsCreateNestedOneWithoutMovieInput | undefined;
 
-  @TypeGraphQL.Field(
-    (_type) => MovieCrewMemberOnMovieCreateNestedManyWithoutMovieInput,
-    {
-      nullable: true,
-    },
-  )
-  crewMembers?:
-    | MovieCrewMemberOnMovieCreateNestedManyWithoutMovieInput
-    | undefined;
+  @TypeGraphQL.Field(_type => MovieCrewMemberOnMovieCreateNestedManyWithoutMovieInput, {
+    nullable: true
+  })
+  crewMembers?: MovieCrewMemberOnMovieCreateNestedManyWithoutMovieInput | undefined;
 
-  @TypeGraphQL.Field((_type) => GenreCreateNestedManyWithoutMoviesInput, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => GenreCreateNestedManyWithoutMoviesInput, {
+    nullable: true
   })
   genres?: GenreCreateNestedManyWithoutMoviesInput | undefined;
 
-  @TypeGraphQL.Field(
-    (_type) => MovieKeywordCategoryCreateNestedManyWithoutMoviesInput,
-    {
-      nullable: true,
-    },
-  )
-  keywordCategories?:
-    | MovieKeywordCategoryCreateNestedManyWithoutMoviesInput
-    | undefined;
+  @TypeGraphQL.Field(_type => MovieKeywordCategoryCreateNestedManyWithoutMoviesInput, {
+    nullable: true
+  })
+  keywordCategories?: MovieKeywordCategoryCreateNestedManyWithoutMoviesInput | undefined;
 
-  @TypeGraphQL.Field((_type) => MovieRatingCreateNestedManyWithoutMovieInput, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => MovieRatingCreateNestedManyWithoutMovieInput, {
+    nullable: true
   })
   ratings?: MovieRatingCreateNestedManyWithoutMovieInput | undefined;
 
-  @TypeGraphQL.Field((_type) => MovieListCreateNestedManyWithoutMoviesInput, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => MovieListCreateNestedManyWithoutMoviesInput, {
+    nullable: true
   })
   movieLists?: MovieListCreateNestedManyWithoutMoviesInput | undefined;
 
-  @TypeGraphQL.Field(
-    (_type) => MovifierAppUserCreateNestedManyWithoutWatchlistInput,
-    {
-      nullable: true,
-    },
-  )
-  inWatchlistByUsers?:
-    | MovifierAppUserCreateNestedManyWithoutWatchlistInput
-    | undefined;
+  @TypeGraphQL.Field(_type => MovifierAppUserCreateNestedManyWithoutWatchlistInput, {
+    nullable: true
+  })
+  inWatchlistByUsers?: MovifierAppUserCreateNestedManyWithoutWatchlistInput | undefined;
 
-  @TypeGraphQL.Field(
-    (_type) => MovieSpokenLanguageCreateNestedManyWithoutMoviesInput,
-    {
-      nullable: true,
-    },
-  )
-  spokenLanguages?:
-    | MovieSpokenLanguageCreateNestedManyWithoutMoviesInput
-    | undefined;
+  @TypeGraphQL.Field(_type => MovieSpokenLanguageCreateNestedManyWithoutMoviesInput, {
+    nullable: true
+  })
+  spokenLanguages?: MovieSpokenLanguageCreateNestedManyWithoutMoviesInput | undefined;
 }

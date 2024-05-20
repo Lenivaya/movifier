@@ -6,18 +6,18 @@ import { MovieCrewMemberTypeWhereUniqueInput } from "../../../inputs/MovieCrewMe
 
 @TypeGraphQL.ArgsType()
 export class UpsertOneMovieCrewMemberTypeArgs {
-  @TypeGraphQL.Field((_type) => MovieCrewMemberTypeWhereUniqueInput, {
-    nullable: false,
+  @TypeGraphQL.Field(_type => MovieCrewMemberTypeWhereUniqueInput, {
+    nullable: false
   })
   where!: MovieCrewMemberTypeWhereUniqueInput;
 
-  @TypeGraphQL.Field((_type) => MovieCrewMemberTypeCreateInput, {
-    nullable: false,
+  @TypeGraphQL.Field(_type => MovieCrewMemberTypeCreateInput, {
+    nullable: false
   })
   create!: MovieCrewMemberTypeCreateInput;
 
-  @TypeGraphQL.Field((_type) => MovieCrewMemberTypeUpdateInput, {
-    nullable: false,
+  @TypeGraphQL.Field(_type => MovieCrewMemberTypeUpdateInput, {
+    nullable: false
   })
   update!: MovieCrewMemberTypeUpdateInput;
 }

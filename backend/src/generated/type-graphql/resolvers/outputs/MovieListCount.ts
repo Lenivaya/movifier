@@ -10,25 +10,19 @@ export class MovieListCount {
   movies!: number;
   movieListComments!: number;
 
-  @TypeGraphQL.Field((_type) => TypeGraphQL.Int, {
+  @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
     name: "movies",
-    nullable: false,
+    nullable: false
   })
-  getMovies(
-    @TypeGraphQL.Root() root: MovieListCount,
-    @TypeGraphQL.Args() args: MovieListCountMoviesArgs,
-  ): number {
+  getMovies(@TypeGraphQL.Root() root: MovieListCount, @TypeGraphQL.Args() args: MovieListCountMoviesArgs): number {
     return root.movies;
   }
 
-  @TypeGraphQL.Field((_type) => TypeGraphQL.Int, {
+  @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
     name: "movieListComments",
-    nullable: false,
+    nullable: false
   })
-  getMovieListComments(
-    @TypeGraphQL.Root() root: MovieListCount,
-    @TypeGraphQL.Args() args: MovieListCountMovieListCommentsArgs,
-  ): number {
+  getMovieListComments(@TypeGraphQL.Root() root: MovieListCount, @TypeGraphQL.Args() args: MovieListCountMovieListCommentsArgs): number {
     return root.movieListComments;
   }
 }

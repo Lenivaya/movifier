@@ -6,37 +6,28 @@ import { StringWithAggregatesFilter } from "../inputs/StringWithAggregatesFilter
 
 @TypeGraphQL.InputType("MovieCrewMemberTypeScalarWhereWithAggregatesInput", {})
 export class MovieCrewMemberTypeScalarWhereWithAggregatesInput {
-  @TypeGraphQL.Field(
-    (_type) => [MovieCrewMemberTypeScalarWhereWithAggregatesInput],
-    {
-      nullable: true,
-    },
-  )
+  @TypeGraphQL.Field(_type => [MovieCrewMemberTypeScalarWhereWithAggregatesInput], {
+    nullable: true
+  })
   AND?: MovieCrewMemberTypeScalarWhereWithAggregatesInput[] | undefined;
 
-  @TypeGraphQL.Field(
-    (_type) => [MovieCrewMemberTypeScalarWhereWithAggregatesInput],
-    {
-      nullable: true,
-    },
-  )
+  @TypeGraphQL.Field(_type => [MovieCrewMemberTypeScalarWhereWithAggregatesInput], {
+    nullable: true
+  })
   OR?: MovieCrewMemberTypeScalarWhereWithAggregatesInput[] | undefined;
 
-  @TypeGraphQL.Field(
-    (_type) => [MovieCrewMemberTypeScalarWhereWithAggregatesInput],
-    {
-      nullable: true,
-    },
-  )
+  @TypeGraphQL.Field(_type => [MovieCrewMemberTypeScalarWhereWithAggregatesInput], {
+    nullable: true
+  })
   NOT?: MovieCrewMemberTypeScalarWhereWithAggregatesInput[] | undefined;
 
-  @TypeGraphQL.Field((_type) => StringWithAggregatesFilter, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => StringWithAggregatesFilter, {
+    nullable: true
   })
   id?: StringWithAggregatesFilter | undefined;
 
-  @TypeGraphQL.Field((_type) => StringWithAggregatesFilter, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => StringWithAggregatesFilter, {
+    nullable: true
   })
   name?: StringWithAggregatesFilter | undefined;
 }

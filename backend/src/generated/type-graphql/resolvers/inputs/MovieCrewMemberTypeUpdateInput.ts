@@ -7,24 +7,18 @@ import { StringFieldUpdateOperationsInput } from "../inputs/StringFieldUpdateOpe
 
 @TypeGraphQL.InputType("MovieCrewMemberTypeUpdateInput", {})
 export class MovieCrewMemberTypeUpdateInput {
-  @TypeGraphQL.Field((_type) => StringFieldUpdateOperationsInput, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => StringFieldUpdateOperationsInput, {
+    nullable: true
   })
   id?: StringFieldUpdateOperationsInput | undefined;
 
-  @TypeGraphQL.Field((_type) => StringFieldUpdateOperationsInput, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => StringFieldUpdateOperationsInput, {
+    nullable: true
   })
   name?: StringFieldUpdateOperationsInput | undefined;
 
-  @TypeGraphQL.Field(
-    (_type) =>
-      MovieCrewMemberOnMovieUpdateManyWithoutMovieCrewMemberTypeNestedInput,
-    {
-      nullable: true,
-    },
-  )
-  movieCrewMembers?:
-    | MovieCrewMemberOnMovieUpdateManyWithoutMovieCrewMemberTypeNestedInput
-    | undefined;
+  @TypeGraphQL.Field(_type => MovieCrewMemberOnMovieUpdateManyWithoutMovieCrewMemberTypeNestedInput, {
+    nullable: true
+  })
+  movieCrewMembers?: MovieCrewMemberOnMovieUpdateManyWithoutMovieCrewMemberTypeNestedInput | undefined;
 }

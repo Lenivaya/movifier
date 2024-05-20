@@ -9,38 +9,38 @@ import { SortOrder } from "../../enums/SortOrder";
 
 @TypeGraphQL.InputType("MovieStudioOrderByWithAggregationInput", {})
 export class MovieStudioOrderByWithAggregationInput {
-  @TypeGraphQL.Field((_type) => SortOrder, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => SortOrder, {
+    nullable: true
   })
   id?: "asc" | "desc" | undefined;
 
-  @TypeGraphQL.Field((_type) => SortOrder, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => SortOrder, {
+    nullable: true
   })
   createdAt?: "asc" | "desc" | undefined;
 
-  @TypeGraphQL.Field((_type) => SortOrder, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => SortOrder, {
+    nullable: true
   })
   updatedAt?: "asc" | "desc" | undefined;
 
-  @TypeGraphQL.Field((_type) => SortOrder, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => SortOrder, {
+    nullable: true
   })
   name?: "asc" | "desc" | undefined;
 
-  @TypeGraphQL.Field((_type) => MovieStudioCountOrderByAggregateInput, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => MovieStudioCountOrderByAggregateInput, {
+    nullable: true
   })
   _count?: MovieStudioCountOrderByAggregateInput | undefined;
 
-  @TypeGraphQL.Field((_type) => MovieStudioMaxOrderByAggregateInput, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => MovieStudioMaxOrderByAggregateInput, {
+    nullable: true
   })
   _max?: MovieStudioMaxOrderByAggregateInput | undefined;
 
-  @TypeGraphQL.Field((_type) => MovieStudioMinOrderByAggregateInput, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => MovieStudioMinOrderByAggregateInput, {
+    nullable: true
   })
   _min?: MovieStudioMinOrderByAggregateInput | undefined;
 }

@@ -6,23 +6,20 @@ import { MovieKeywordCategoryCreateWithoutMoviesInput } from "../inputs/MovieKey
 import { MovieKeywordCategoryUpdateWithoutMoviesInput } from "../inputs/MovieKeywordCategoryUpdateWithoutMoviesInput";
 import { MovieKeywordCategoryWhereUniqueInput } from "../inputs/MovieKeywordCategoryWhereUniqueInput";
 
-@TypeGraphQL.InputType(
-  "MovieKeywordCategoryUpsertWithWhereUniqueWithoutMoviesInput",
-  {},
-)
+@TypeGraphQL.InputType("MovieKeywordCategoryUpsertWithWhereUniqueWithoutMoviesInput", {})
 export class MovieKeywordCategoryUpsertWithWhereUniqueWithoutMoviesInput {
-  @TypeGraphQL.Field((_type) => MovieKeywordCategoryWhereUniqueInput, {
-    nullable: false,
+  @TypeGraphQL.Field(_type => MovieKeywordCategoryWhereUniqueInput, {
+    nullable: false
   })
   where!: MovieKeywordCategoryWhereUniqueInput;
 
-  @TypeGraphQL.Field((_type) => MovieKeywordCategoryUpdateWithoutMoviesInput, {
-    nullable: false,
+  @TypeGraphQL.Field(_type => MovieKeywordCategoryUpdateWithoutMoviesInput, {
+    nullable: false
   })
   update!: MovieKeywordCategoryUpdateWithoutMoviesInput;
 
-  @TypeGraphQL.Field((_type) => MovieKeywordCategoryCreateWithoutMoviesInput, {
-    nullable: false,
+  @TypeGraphQL.Field(_type => MovieKeywordCategoryCreateWithoutMoviesInput, {
+    nullable: false
   })
   create!: MovieKeywordCategoryCreateWithoutMoviesInput;
 }

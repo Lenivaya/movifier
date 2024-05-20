@@ -9,28 +9,23 @@ import { MovieListCommentWhereUniqueInput } from "../inputs/MovieListCommentWher
 
 @TypeGraphQL.InputType("MovieListCommentCreateNestedManyWithoutUserInput", {})
 export class MovieListCommentCreateNestedManyWithoutUserInput {
-  @TypeGraphQL.Field((_type) => [MovieListCommentCreateWithoutUserInput], {
-    nullable: true,
+  @TypeGraphQL.Field(_type => [MovieListCommentCreateWithoutUserInput], {
+    nullable: true
   })
   create?: MovieListCommentCreateWithoutUserInput[] | undefined;
 
-  @TypeGraphQL.Field(
-    (_type) => [MovieListCommentCreateOrConnectWithoutUserInput],
-    {
-      nullable: true,
-    },
-  )
-  connectOrCreate?:
-    | MovieListCommentCreateOrConnectWithoutUserInput[]
-    | undefined;
+  @TypeGraphQL.Field(_type => [MovieListCommentCreateOrConnectWithoutUserInput], {
+    nullable: true
+  })
+  connectOrCreate?: MovieListCommentCreateOrConnectWithoutUserInput[] | undefined;
 
-  @TypeGraphQL.Field((_type) => MovieListCommentCreateManyUserInputEnvelope, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => MovieListCommentCreateManyUserInputEnvelope, {
+    nullable: true
   })
   createMany?: MovieListCommentCreateManyUserInputEnvelope | undefined;
 
-  @TypeGraphQL.Field((_type) => [MovieListCommentWhereUniqueInput], {
-    nullable: true,
+  @TypeGraphQL.Field(_type => [MovieListCommentWhereUniqueInput], {
+    nullable: true
   })
   connect?: MovieListCommentWhereUniqueInput[] | undefined;
 }

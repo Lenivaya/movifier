@@ -5,18 +5,15 @@ import { DecimalJSScalar } from "../../scalars";
 import { MovifierAppUserUpdateWithoutRatingInput } from "../inputs/MovifierAppUserUpdateWithoutRatingInput";
 import { MovifierAppUserWhereInput } from "../inputs/MovifierAppUserWhereInput";
 
-@TypeGraphQL.InputType(
-  "MovifierAppUserUpdateToOneWithWhereWithoutRatingInput",
-  {},
-)
+@TypeGraphQL.InputType("MovifierAppUserUpdateToOneWithWhereWithoutRatingInput", {})
 export class MovifierAppUserUpdateToOneWithWhereWithoutRatingInput {
-  @TypeGraphQL.Field((_type) => MovifierAppUserWhereInput, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => MovifierAppUserWhereInput, {
+    nullable: true
   })
   where?: MovifierAppUserWhereInput | undefined;
 
-  @TypeGraphQL.Field((_type) => MovifierAppUserUpdateWithoutRatingInput, {
-    nullable: false,
+  @TypeGraphQL.Field(_type => MovifierAppUserUpdateWithoutRatingInput, {
+    nullable: false
   })
   data!: MovifierAppUserUpdateWithoutRatingInput;
 }

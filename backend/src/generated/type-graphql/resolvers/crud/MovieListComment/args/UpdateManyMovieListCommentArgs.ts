@@ -5,13 +5,13 @@ import { MovieListCommentWhereInput } from "../../../inputs/MovieListCommentWher
 
 @TypeGraphQL.ArgsType()
 export class UpdateManyMovieListCommentArgs {
-  @TypeGraphQL.Field((_type) => MovieListCommentUpdateManyMutationInput, {
-    nullable: false,
+  @TypeGraphQL.Field(_type => MovieListCommentUpdateManyMutationInput, {
+    nullable: false
   })
   data!: MovieListCommentUpdateManyMutationInput;
 
-  @TypeGraphQL.Field((_type) => MovieListCommentWhereInput, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => MovieListCommentWhereInput, {
+    nullable: true
   })
   where?: MovieListCommentWhereInput | undefined;
 }

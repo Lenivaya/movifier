@@ -7,13 +7,13 @@ import { MovifierAppUserWhereUniqueInput } from "../inputs/MovifierAppUserWhereU
 
 @TypeGraphQL.InputType("MovifierAppUserCreateOrConnectWithoutRatingInput", {})
 export class MovifierAppUserCreateOrConnectWithoutRatingInput {
-  @TypeGraphQL.Field((_type) => MovifierAppUserWhereUniqueInput, {
-    nullable: false,
+  @TypeGraphQL.Field(_type => MovifierAppUserWhereUniqueInput, {
+    nullable: false
   })
   where!: MovifierAppUserWhereUniqueInput;
 
-  @TypeGraphQL.Field((_type) => MovifierAppUserCreateWithoutRatingInput, {
-    nullable: false,
+  @TypeGraphQL.Field(_type => MovifierAppUserCreateWithoutRatingInput, {
+    nullable: false
   })
   create!: MovifierAppUserCreateWithoutRatingInput;
 }

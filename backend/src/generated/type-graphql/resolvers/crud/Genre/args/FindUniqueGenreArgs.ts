@@ -4,8 +4,8 @@ import { GenreWhereUniqueInput } from "../../../inputs/GenreWhereUniqueInput";
 
 @TypeGraphQL.ArgsType()
 export class FindUniqueGenreArgs {
-  @TypeGraphQL.Field((_type) => GenreWhereUniqueInput, {
-    nullable: false,
+  @TypeGraphQL.Field(_type => GenreWhereUniqueInput, {
+    nullable: false
   })
   where!: GenreWhereUniqueInput;
 }

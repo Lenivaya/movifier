@@ -5,13 +5,13 @@ import { MovieCrewMemberWhereInput } from "../../../inputs/MovieCrewMemberWhereI
 
 @TypeGraphQL.ArgsType()
 export class UpdateManyMovieCrewMemberArgs {
-  @TypeGraphQL.Field((_type) => MovieCrewMemberUpdateManyMutationInput, {
-    nullable: false,
+  @TypeGraphQL.Field(_type => MovieCrewMemberUpdateManyMutationInput, {
+    nullable: false
   })
   data!: MovieCrewMemberUpdateManyMutationInput;
 
-  @TypeGraphQL.Field((_type) => MovieCrewMemberWhereInput, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => MovieCrewMemberWhereInput, {
+    nullable: true
   })
   where?: MovieCrewMemberWhereInput | undefined;
 }

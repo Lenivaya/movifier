@@ -5,18 +5,15 @@ import { DecimalJSScalar } from "../../scalars";
 import { MovifierAppUserCreateWithoutMovieListsInput } from "../inputs/MovifierAppUserCreateWithoutMovieListsInput";
 import { MovifierAppUserWhereUniqueInput } from "../inputs/MovifierAppUserWhereUniqueInput";
 
-@TypeGraphQL.InputType(
-  "MovifierAppUserCreateOrConnectWithoutMovieListsInput",
-  {},
-)
+@TypeGraphQL.InputType("MovifierAppUserCreateOrConnectWithoutMovieListsInput", {})
 export class MovifierAppUserCreateOrConnectWithoutMovieListsInput {
-  @TypeGraphQL.Field((_type) => MovifierAppUserWhereUniqueInput, {
-    nullable: false,
+  @TypeGraphQL.Field(_type => MovifierAppUserWhereUniqueInput, {
+    nullable: false
   })
   where!: MovifierAppUserWhereUniqueInput;
 
-  @TypeGraphQL.Field((_type) => MovifierAppUserCreateWithoutMovieListsInput, {
-    nullable: false,
+  @TypeGraphQL.Field(_type => MovifierAppUserCreateWithoutMovieListsInput, {
+    nullable: false
   })
   create!: MovifierAppUserCreateWithoutMovieListsInput;
 }

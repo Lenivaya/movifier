@@ -8,43 +8,30 @@ import { MovieListUpdateToOneWithWhereWithoutMovieListCommentsInput } from "../i
 import { MovieListUpsertWithoutMovieListCommentsInput } from "../inputs/MovieListUpsertWithoutMovieListCommentsInput";
 import { MovieListWhereUniqueInput } from "../inputs/MovieListWhereUniqueInput";
 
-@TypeGraphQL.InputType(
-  "MovieListUpdateOneRequiredWithoutMovieListCommentsNestedInput",
-  {},
-)
+@TypeGraphQL.InputType("MovieListUpdateOneRequiredWithoutMovieListCommentsNestedInput", {})
 export class MovieListUpdateOneRequiredWithoutMovieListCommentsNestedInput {
-  @TypeGraphQL.Field((_type) => MovieListCreateWithoutMovieListCommentsInput, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => MovieListCreateWithoutMovieListCommentsInput, {
+    nullable: true
   })
   create?: MovieListCreateWithoutMovieListCommentsInput | undefined;
 
-  @TypeGraphQL.Field(
-    (_type) => MovieListCreateOrConnectWithoutMovieListCommentsInput,
-    {
-      nullable: true,
-    },
-  )
-  connectOrCreate?:
-    | MovieListCreateOrConnectWithoutMovieListCommentsInput
-    | undefined;
+  @TypeGraphQL.Field(_type => MovieListCreateOrConnectWithoutMovieListCommentsInput, {
+    nullable: true
+  })
+  connectOrCreate?: MovieListCreateOrConnectWithoutMovieListCommentsInput | undefined;
 
-  @TypeGraphQL.Field((_type) => MovieListUpsertWithoutMovieListCommentsInput, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => MovieListUpsertWithoutMovieListCommentsInput, {
+    nullable: true
   })
   upsert?: MovieListUpsertWithoutMovieListCommentsInput | undefined;
 
-  @TypeGraphQL.Field((_type) => MovieListWhereUniqueInput, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => MovieListWhereUniqueInput, {
+    nullable: true
   })
   connect?: MovieListWhereUniqueInput | undefined;
 
-  @TypeGraphQL.Field(
-    (_type) => MovieListUpdateToOneWithWhereWithoutMovieListCommentsInput,
-    {
-      nullable: true,
-    },
-  )
-  update?:
-    | MovieListUpdateToOneWithWhereWithoutMovieListCommentsInput
-    | undefined;
+  @TypeGraphQL.Field(_type => MovieListUpdateToOneWithWhereWithoutMovieListCommentsInput, {
+    nullable: true
+  })
+  update?: MovieListUpdateToOneWithWhereWithoutMovieListCommentsInput | undefined;
 }

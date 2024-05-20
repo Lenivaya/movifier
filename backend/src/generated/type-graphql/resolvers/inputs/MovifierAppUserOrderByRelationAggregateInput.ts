@@ -6,8 +6,8 @@ import { SortOrder } from "../../enums/SortOrder";
 
 @TypeGraphQL.InputType("MovifierAppUserOrderByRelationAggregateInput", {})
 export class MovifierAppUserOrderByRelationAggregateInput {
-  @TypeGraphQL.Field((_type) => SortOrder, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => SortOrder, {
+    nullable: true
   })
   _count?: "asc" | "desc" | undefined;
 }

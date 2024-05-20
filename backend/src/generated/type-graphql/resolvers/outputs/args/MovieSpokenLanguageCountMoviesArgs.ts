@@ -4,8 +4,8 @@ import { MovieWhereInput } from "../../inputs/MovieWhereInput";
 
 @TypeGraphQL.ArgsType()
 export class MovieSpokenLanguageCountMoviesArgs {
-  @TypeGraphQL.Field((_type) => MovieWhereInput, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => MovieWhereInput, {
+    nullable: true
   })
   where?: MovieWhereInput | undefined;
 }

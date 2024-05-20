@@ -7,33 +7,33 @@ import { StringFilter } from "../inputs/StringFilter";
 
 @TypeGraphQL.InputType("MovieCrewMemberTypeWhereInput", {})
 export class MovieCrewMemberTypeWhereInput {
-  @TypeGraphQL.Field((_type) => [MovieCrewMemberTypeWhereInput], {
-    nullable: true,
+  @TypeGraphQL.Field(_type => [MovieCrewMemberTypeWhereInput], {
+    nullable: true
   })
   AND?: MovieCrewMemberTypeWhereInput[] | undefined;
 
-  @TypeGraphQL.Field((_type) => [MovieCrewMemberTypeWhereInput], {
-    nullable: true,
+  @TypeGraphQL.Field(_type => [MovieCrewMemberTypeWhereInput], {
+    nullable: true
   })
   OR?: MovieCrewMemberTypeWhereInput[] | undefined;
 
-  @TypeGraphQL.Field((_type) => [MovieCrewMemberTypeWhereInput], {
-    nullable: true,
+  @TypeGraphQL.Field(_type => [MovieCrewMemberTypeWhereInput], {
+    nullable: true
   })
   NOT?: MovieCrewMemberTypeWhereInput[] | undefined;
 
-  @TypeGraphQL.Field((_type) => StringFilter, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => StringFilter, {
+    nullable: true
   })
   id?: StringFilter | undefined;
 
-  @TypeGraphQL.Field((_type) => StringFilter, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => StringFilter, {
+    nullable: true
   })
   name?: StringFilter | undefined;
 
-  @TypeGraphQL.Field((_type) => MovieCrewMemberOnMovieListRelationFilter, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => MovieCrewMemberOnMovieListRelationFilter, {
+    nullable: true
   })
   movieCrewMembers?: MovieCrewMemberOnMovieListRelationFilter | undefined;
 }

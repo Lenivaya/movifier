@@ -4,8 +4,8 @@ import { MovieStatsWhereInput } from "../../../inputs/MovieStatsWhereInput";
 
 @TypeGraphQL.ArgsType()
 export class DeleteManyMovieStatsArgs {
-  @TypeGraphQL.Field((_type) => MovieStatsWhereInput, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => MovieStatsWhereInput, {
+    nullable: true
   })
   where?: MovieStatsWhereInput | undefined;
 }

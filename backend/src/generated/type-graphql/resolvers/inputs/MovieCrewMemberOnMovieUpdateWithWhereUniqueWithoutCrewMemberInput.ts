@@ -5,21 +5,15 @@ import { DecimalJSScalar } from "../../scalars";
 import { MovieCrewMemberOnMovieUpdateWithoutCrewMemberInput } from "../inputs/MovieCrewMemberOnMovieUpdateWithoutCrewMemberInput";
 import { MovieCrewMemberOnMovieWhereUniqueInput } from "../inputs/MovieCrewMemberOnMovieWhereUniqueInput";
 
-@TypeGraphQL.InputType(
-  "MovieCrewMemberOnMovieUpdateWithWhereUniqueWithoutCrewMemberInput",
-  {},
-)
+@TypeGraphQL.InputType("MovieCrewMemberOnMovieUpdateWithWhereUniqueWithoutCrewMemberInput", {})
 export class MovieCrewMemberOnMovieUpdateWithWhereUniqueWithoutCrewMemberInput {
-  @TypeGraphQL.Field((_type) => MovieCrewMemberOnMovieWhereUniqueInput, {
-    nullable: false,
+  @TypeGraphQL.Field(_type => MovieCrewMemberOnMovieWhereUniqueInput, {
+    nullable: false
   })
   where!: MovieCrewMemberOnMovieWhereUniqueInput;
 
-  @TypeGraphQL.Field(
-    (_type) => MovieCrewMemberOnMovieUpdateWithoutCrewMemberInput,
-    {
-      nullable: false,
-    },
-  )
+  @TypeGraphQL.Field(_type => MovieCrewMemberOnMovieUpdateWithoutCrewMemberInput, {
+    nullable: false
+  })
   data!: MovieCrewMemberOnMovieUpdateWithoutCrewMemberInput;
 }

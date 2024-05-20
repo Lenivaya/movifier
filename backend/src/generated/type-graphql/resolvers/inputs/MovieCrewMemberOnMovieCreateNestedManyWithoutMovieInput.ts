@@ -7,39 +7,25 @@ import { MovieCrewMemberOnMovieCreateOrConnectWithoutMovieInput } from "../input
 import { MovieCrewMemberOnMovieCreateWithoutMovieInput } from "../inputs/MovieCrewMemberOnMovieCreateWithoutMovieInput";
 import { MovieCrewMemberOnMovieWhereUniqueInput } from "../inputs/MovieCrewMemberOnMovieWhereUniqueInput";
 
-@TypeGraphQL.InputType(
-  "MovieCrewMemberOnMovieCreateNestedManyWithoutMovieInput",
-  {},
-)
+@TypeGraphQL.InputType("MovieCrewMemberOnMovieCreateNestedManyWithoutMovieInput", {})
 export class MovieCrewMemberOnMovieCreateNestedManyWithoutMovieInput {
-  @TypeGraphQL.Field(
-    (_type) => [MovieCrewMemberOnMovieCreateWithoutMovieInput],
-    {
-      nullable: true,
-    },
-  )
+  @TypeGraphQL.Field(_type => [MovieCrewMemberOnMovieCreateWithoutMovieInput], {
+    nullable: true
+  })
   create?: MovieCrewMemberOnMovieCreateWithoutMovieInput[] | undefined;
 
-  @TypeGraphQL.Field(
-    (_type) => [MovieCrewMemberOnMovieCreateOrConnectWithoutMovieInput],
-    {
-      nullable: true,
-    },
-  )
-  connectOrCreate?:
-    | MovieCrewMemberOnMovieCreateOrConnectWithoutMovieInput[]
-    | undefined;
+  @TypeGraphQL.Field(_type => [MovieCrewMemberOnMovieCreateOrConnectWithoutMovieInput], {
+    nullable: true
+  })
+  connectOrCreate?: MovieCrewMemberOnMovieCreateOrConnectWithoutMovieInput[] | undefined;
 
-  @TypeGraphQL.Field(
-    (_type) => MovieCrewMemberOnMovieCreateManyMovieInputEnvelope,
-    {
-      nullable: true,
-    },
-  )
+  @TypeGraphQL.Field(_type => MovieCrewMemberOnMovieCreateManyMovieInputEnvelope, {
+    nullable: true
+  })
   createMany?: MovieCrewMemberOnMovieCreateManyMovieInputEnvelope | undefined;
 
-  @TypeGraphQL.Field((_type) => [MovieCrewMemberOnMovieWhereUniqueInput], {
-    nullable: true,
+  @TypeGraphQL.Field(_type => [MovieCrewMemberOnMovieWhereUniqueInput], {
+    nullable: true
   })
   connect?: MovieCrewMemberOnMovieWhereUniqueInput[] | undefined;
 }

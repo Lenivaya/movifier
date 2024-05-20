@@ -6,18 +6,18 @@ import { GenreWhereUniqueInput } from "../../../inputs/GenreWhereUniqueInput";
 
 @TypeGraphQL.ArgsType()
 export class UpsertOneGenreArgs {
-  @TypeGraphQL.Field((_type) => GenreWhereUniqueInput, {
-    nullable: false,
+  @TypeGraphQL.Field(_type => GenreWhereUniqueInput, {
+    nullable: false
   })
   where!: GenreWhereUniqueInput;
 
-  @TypeGraphQL.Field((_type) => GenreCreateInput, {
-    nullable: false,
+  @TypeGraphQL.Field(_type => GenreCreateInput, {
+    nullable: false
   })
   create!: GenreCreateInput;
 
-  @TypeGraphQL.Field((_type) => GenreUpdateInput, {
-    nullable: false,
+  @TypeGraphQL.Field(_type => GenreUpdateInput, {
+    nullable: false
   })
   update!: GenreUpdateInput;
 }

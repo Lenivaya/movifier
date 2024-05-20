@@ -17,83 +17,83 @@ import { MovifierAppUserListRelationFilter } from "../inputs/MovifierAppUserList
 
 @TypeGraphQL.InputType("MovieWhereUniqueInput", {})
 export class MovieWhereUniqueInput {
-  @TypeGraphQL.Field((_type) => String, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => String, {
+    nullable: true
   })
   id?: string | undefined;
 
-  @TypeGraphQL.Field((_type) => [MovieWhereInput], {
-    nullable: true,
+  @TypeGraphQL.Field(_type => [MovieWhereInput], {
+    nullable: true
   })
   AND?: MovieWhereInput[] | undefined;
 
-  @TypeGraphQL.Field((_type) => [MovieWhereInput], {
-    nullable: true,
+  @TypeGraphQL.Field(_type => [MovieWhereInput], {
+    nullable: true
   })
   OR?: MovieWhereInput[] | undefined;
 
-  @TypeGraphQL.Field((_type) => [MovieWhereInput], {
-    nullable: true,
+  @TypeGraphQL.Field(_type => [MovieWhereInput], {
+    nullable: true
   })
   NOT?: MovieWhereInput[] | undefined;
 
-  @TypeGraphQL.Field((_type) => DateTimeFilter, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => DateTimeFilter, {
+    nullable: true
   })
   createdAt?: DateTimeFilter | undefined;
 
-  @TypeGraphQL.Field((_type) => DateTimeFilter, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => DateTimeFilter, {
+    nullable: true
   })
   updatedAt?: DateTimeFilter | undefined;
 
-  @TypeGraphQL.Field((_type) => MovieInfoNullableRelationFilter, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => MovieInfoNullableRelationFilter, {
+    nullable: true
   })
   movieInfo?: MovieInfoNullableRelationFilter | undefined;
 
-  @TypeGraphQL.Field((_type) => MovieStatsNullableRelationFilter, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => MovieStatsNullableRelationFilter, {
+    nullable: true
   })
   movieStats?: MovieStatsNullableRelationFilter | undefined;
 
-  @TypeGraphQL.Field((_type) => MovieCrewMemberOnMovieListRelationFilter, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => MovieCrewMemberOnMovieListRelationFilter, {
+    nullable: true
   })
   crewMembers?: MovieCrewMemberOnMovieListRelationFilter | undefined;
 
-  @TypeGraphQL.Field((_type) => MovieStudioListRelationFilter, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => MovieStudioListRelationFilter, {
+    nullable: true
   })
   studios?: MovieStudioListRelationFilter | undefined;
 
-  @TypeGraphQL.Field((_type) => GenreListRelationFilter, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => GenreListRelationFilter, {
+    nullable: true
   })
   genres?: GenreListRelationFilter | undefined;
 
-  @TypeGraphQL.Field((_type) => MovieKeywordCategoryListRelationFilter, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => MovieKeywordCategoryListRelationFilter, {
+    nullable: true
   })
   keywordCategories?: MovieKeywordCategoryListRelationFilter | undefined;
 
-  @TypeGraphQL.Field((_type) => MovieRatingListRelationFilter, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => MovieRatingListRelationFilter, {
+    nullable: true
   })
   ratings?: MovieRatingListRelationFilter | undefined;
 
-  @TypeGraphQL.Field((_type) => MovieListListRelationFilter, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => MovieListListRelationFilter, {
+    nullable: true
   })
   movieLists?: MovieListListRelationFilter | undefined;
 
-  @TypeGraphQL.Field((_type) => MovifierAppUserListRelationFilter, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => MovifierAppUserListRelationFilter, {
+    nullable: true
   })
   inWatchlistByUsers?: MovifierAppUserListRelationFilter | undefined;
 
-  @TypeGraphQL.Field((_type) => MovieSpokenLanguageListRelationFilter, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => MovieSpokenLanguageListRelationFilter, {
+    nullable: true
   })
   spokenLanguages?: MovieSpokenLanguageListRelationFilter | undefined;
 }

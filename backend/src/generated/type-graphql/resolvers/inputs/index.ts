@@ -266,7 +266,6 @@ export { MovieListOrderByRelevanceInput } from "./MovieListOrderByRelevanceInput
 export { MovieListOrderByWithAggregationInput } from "./MovieListOrderByWithAggregationInput";
 export { MovieListOrderByWithRelationAndSearchRelevanceInput } from "./MovieListOrderByWithRelationAndSearchRelevanceInput";
 export { MovieListRelationFilter } from "./MovieListRelationFilter";
-export { MovieListRelationFilter } from "./MovieListRelationFilter";
 export { MovieListScalarWhereInput } from "./MovieListScalarWhereInput";
 export { MovieListScalarWhereWithAggregatesInput } from "./MovieListScalarWhereWithAggregatesInput";
 export { MovieListStatsAvgOrderByAggregateInput } from "./MovieListStatsAvgOrderByAggregateInput";

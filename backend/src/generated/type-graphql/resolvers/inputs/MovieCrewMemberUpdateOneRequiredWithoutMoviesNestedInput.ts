@@ -8,41 +8,30 @@ import { MovieCrewMemberUpdateToOneWithWhereWithoutMoviesInput } from "../inputs
 import { MovieCrewMemberUpsertWithoutMoviesInput } from "../inputs/MovieCrewMemberUpsertWithoutMoviesInput";
 import { MovieCrewMemberWhereUniqueInput } from "../inputs/MovieCrewMemberWhereUniqueInput";
 
-@TypeGraphQL.InputType(
-  "MovieCrewMemberUpdateOneRequiredWithoutMoviesNestedInput",
-  {},
-)
+@TypeGraphQL.InputType("MovieCrewMemberUpdateOneRequiredWithoutMoviesNestedInput", {})
 export class MovieCrewMemberUpdateOneRequiredWithoutMoviesNestedInput {
-  @TypeGraphQL.Field((_type) => MovieCrewMemberCreateWithoutMoviesInput, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => MovieCrewMemberCreateWithoutMoviesInput, {
+    nullable: true
   })
   create?: MovieCrewMemberCreateWithoutMoviesInput | undefined;
 
-  @TypeGraphQL.Field(
-    (_type) => MovieCrewMemberCreateOrConnectWithoutMoviesInput,
-    {
-      nullable: true,
-    },
-  )
-  connectOrCreate?:
-    | MovieCrewMemberCreateOrConnectWithoutMoviesInput
-    | undefined;
+  @TypeGraphQL.Field(_type => MovieCrewMemberCreateOrConnectWithoutMoviesInput, {
+    nullable: true
+  })
+  connectOrCreate?: MovieCrewMemberCreateOrConnectWithoutMoviesInput | undefined;
 
-  @TypeGraphQL.Field((_type) => MovieCrewMemberUpsertWithoutMoviesInput, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => MovieCrewMemberUpsertWithoutMoviesInput, {
+    nullable: true
   })
   upsert?: MovieCrewMemberUpsertWithoutMoviesInput | undefined;
 
-  @TypeGraphQL.Field((_type) => MovieCrewMemberWhereUniqueInput, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => MovieCrewMemberWhereUniqueInput, {
+    nullable: true
   })
   connect?: MovieCrewMemberWhereUniqueInput | undefined;
 
-  @TypeGraphQL.Field(
-    (_type) => MovieCrewMemberUpdateToOneWithWhereWithoutMoviesInput,
-    {
-      nullable: true,
-    },
-  )
+  @TypeGraphQL.Field(_type => MovieCrewMemberUpdateToOneWithWhereWithoutMoviesInput, {
+    nullable: true
+  })
   update?: MovieCrewMemberUpdateToOneWithWhereWithoutMoviesInput | undefined;
 }

@@ -10,48 +10,38 @@ import { StringFieldUpdateOperationsInput } from "../inputs/StringFieldUpdateOpe
 
 @TypeGraphQL.InputType("MovieListUpdateWithoutMovieListCommentsInput", {})
 export class MovieListUpdateWithoutMovieListCommentsInput {
-  @TypeGraphQL.Field((_type) => StringFieldUpdateOperationsInput, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => StringFieldUpdateOperationsInput, {
+    nullable: true
   })
   id?: StringFieldUpdateOperationsInput | undefined;
 
-  @TypeGraphQL.Field((_type) => DateTimeFieldUpdateOperationsInput, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => DateTimeFieldUpdateOperationsInput, {
+    nullable: true
   })
   createdAt?: DateTimeFieldUpdateOperationsInput | undefined;
 
-  @TypeGraphQL.Field((_type) => DateTimeFieldUpdateOperationsInput, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => DateTimeFieldUpdateOperationsInput, {
+    nullable: true
   })
   updatedAt?: DateTimeFieldUpdateOperationsInput | undefined;
 
-  @TypeGraphQL.Field((_type) => StringFieldUpdateOperationsInput, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => StringFieldUpdateOperationsInput, {
+    nullable: true
   })
   name?: StringFieldUpdateOperationsInput | undefined;
 
-  @TypeGraphQL.Field((_type) => MovieUpdateManyWithoutMovieListsNestedInput, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => MovieUpdateManyWithoutMovieListsNestedInput, {
+    nullable: true
   })
   movies?: MovieUpdateManyWithoutMovieListsNestedInput | undefined;
 
-  @TypeGraphQL.Field(
-    (_type) => MovifierAppUserUpdateOneRequiredWithoutMovieListsNestedInput,
-    {
-      nullable: true,
-    },
-  )
-  movieListAuthor?:
-    | MovifierAppUserUpdateOneRequiredWithoutMovieListsNestedInput
-    | undefined;
+  @TypeGraphQL.Field(_type => MovifierAppUserUpdateOneRequiredWithoutMovieListsNestedInput, {
+    nullable: true
+  })
+  movieListAuthor?: MovifierAppUserUpdateOneRequiredWithoutMovieListsNestedInput | undefined;
 
-  @TypeGraphQL.Field(
-    (_type) => MovieListStatsUpdateOneWithoutMovieListNestedInput,
-    {
-      nullable: true,
-    },
-  )
-  MovieListStats?:
-    | MovieListStatsUpdateOneWithoutMovieListNestedInput
-    | undefined;
+  @TypeGraphQL.Field(_type => MovieListStatsUpdateOneWithoutMovieListNestedInput, {
+    nullable: true
+  })
+  MovieListStats?: MovieListStatsUpdateOneWithoutMovieListNestedInput | undefined;
 }

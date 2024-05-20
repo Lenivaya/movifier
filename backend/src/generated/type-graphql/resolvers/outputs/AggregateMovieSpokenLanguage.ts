@@ -8,18 +8,18 @@ import { MovieSpokenLanguageMinAggregate } from "../outputs/MovieSpokenLanguageM
 
 @TypeGraphQL.ObjectType("AggregateMovieSpokenLanguage", {})
 export class AggregateMovieSpokenLanguage {
-  @TypeGraphQL.Field((_type) => MovieSpokenLanguageCountAggregate, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => MovieSpokenLanguageCountAggregate, {
+    nullable: true
   })
   _count!: MovieSpokenLanguageCountAggregate | null;
 
-  @TypeGraphQL.Field((_type) => MovieSpokenLanguageMinAggregate, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => MovieSpokenLanguageMinAggregate, {
+    nullable: true
   })
   _min!: MovieSpokenLanguageMinAggregate | null;
 
-  @TypeGraphQL.Field((_type) => MovieSpokenLanguageMaxAggregate, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => MovieSpokenLanguageMaxAggregate, {
+    nullable: true
   })
   _max!: MovieSpokenLanguageMaxAggregate | null;
 }

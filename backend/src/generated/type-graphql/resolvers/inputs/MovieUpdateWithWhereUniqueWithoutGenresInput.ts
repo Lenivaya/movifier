@@ -7,13 +7,13 @@ import { MovieWhereUniqueInput } from "../inputs/MovieWhereUniqueInput";
 
 @TypeGraphQL.InputType("MovieUpdateWithWhereUniqueWithoutGenresInput", {})
 export class MovieUpdateWithWhereUniqueWithoutGenresInput {
-  @TypeGraphQL.Field((_type) => MovieWhereUniqueInput, {
-    nullable: false,
+  @TypeGraphQL.Field(_type => MovieWhereUniqueInput, {
+    nullable: false
   })
   where!: MovieWhereUniqueInput;
 
-  @TypeGraphQL.Field((_type) => MovieUpdateWithoutGenresInput, {
-    nullable: false,
+  @TypeGraphQL.Field(_type => MovieUpdateWithoutGenresInput, {
+    nullable: false
   })
   data!: MovieUpdateWithoutGenresInput;
 }

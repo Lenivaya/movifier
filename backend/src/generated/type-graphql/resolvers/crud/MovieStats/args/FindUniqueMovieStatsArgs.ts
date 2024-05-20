@@ -4,8 +4,8 @@ import { MovieStatsWhereUniqueInput } from "../../../inputs/MovieStatsWhereUniqu
 
 @TypeGraphQL.ArgsType()
 export class FindUniqueMovieStatsArgs {
-  @TypeGraphQL.Field((_type) => MovieStatsWhereUniqueInput, {
-    nullable: false,
+  @TypeGraphQL.Field(_type => MovieStatsWhereUniqueInput, {
+    nullable: false
   })
   where!: MovieStatsWhereUniqueInput;
 }

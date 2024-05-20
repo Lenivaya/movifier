@@ -7,13 +7,13 @@ import { GenreUpdateManyMutationInput } from "../inputs/GenreUpdateManyMutationI
 
 @TypeGraphQL.InputType("GenreUpdateManyWithWhereWithoutMoviesInput", {})
 export class GenreUpdateManyWithWhereWithoutMoviesInput {
-  @TypeGraphQL.Field((_type) => GenreScalarWhereInput, {
-    nullable: false,
+  @TypeGraphQL.Field(_type => GenreScalarWhereInput, {
+    nullable: false
   })
   where!: GenreScalarWhereInput;
 
-  @TypeGraphQL.Field((_type) => GenreUpdateManyMutationInput, {
-    nullable: false,
+  @TypeGraphQL.Field(_type => GenreUpdateManyMutationInput, {
+    nullable: false
   })
   data!: GenreUpdateManyMutationInput;
 }

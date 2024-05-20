@@ -4,8 +4,8 @@ import { MovieKeywordCategoryCreateInput } from "../../../inputs/MovieKeywordCat
 
 @TypeGraphQL.ArgsType()
 export class CreateOneMovieKeywordCategoryArgs {
-  @TypeGraphQL.Field((_type) => MovieKeywordCategoryCreateInput, {
-    nullable: false,
+  @TypeGraphQL.Field(_type => MovieKeywordCategoryCreateInput, {
+    nullable: false
   })
   data!: MovieKeywordCategoryCreateInput;
 }
