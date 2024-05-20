@@ -53,6 +53,11 @@ export class MovieInfoCountAggregate {
   @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
     nullable: false
   })
+  releaseDate!: number;
+
+  @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
+    nullable: false
+  })
   movieId!: number;
 
   @TypeGraphQL.Field(_type => TypeGraphQL.Int, {

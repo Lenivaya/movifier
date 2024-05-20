@@ -94,7 +94,7 @@ export async function buildApp() {
       useParserCache({}),
       useValidationCache({}),
       useResponseCache({
-        ttl: 5000,
+        ttl: 30000,
         cache,
         session: (_context) => null,
         invalidateViaMutation: true,

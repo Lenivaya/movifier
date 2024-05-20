@@ -59,6 +59,7 @@ model MovieInfo {
   alternativeTitles String[] @default([])
   durationInMinutes Int
   posterUrl         String
+  releaseDate       DateTime
   movieId           String   @unique
   movie             Movie    @relation(fields: [movieId], references: [id], onDelete: Cascade)
 

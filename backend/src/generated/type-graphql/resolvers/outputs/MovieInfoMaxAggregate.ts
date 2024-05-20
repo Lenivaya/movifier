@@ -45,6 +45,11 @@ export class MovieInfoMaxAggregate {
   })
   posterUrl!: string | null;
 
+  @TypeGraphQL.Field(_type => Date, {
+    nullable: true
+  })
+  releaseDate!: Date | null;
+
   @TypeGraphQL.Field(_type => String, {
     nullable: true
   })

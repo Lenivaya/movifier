@@ -70,6 +70,11 @@ export class MovieInfoWhereInput {
   })
   posterUrl?: StringFilter | undefined;
 
+  @TypeGraphQL.Field(_type => DateTimeFilter, {
+    nullable: true
+  })
+  releaseDate?: DateTimeFilter | undefined;
+
   @TypeGraphQL.Field(_type => StringFilter, {
     nullable: true
   })

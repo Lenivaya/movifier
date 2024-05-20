@@ -50,4 +50,9 @@ export class MovieInfoCreateWithoutMovieInput {
     nullable: false
   })
   posterUrl!: string;
+
+  @TypeGraphQL.Field(_type => Date, {
+    nullable: false
+  })
+  releaseDate!: Date;
 }

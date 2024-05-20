@@ -55,6 +55,11 @@ export class MovieInfoGroupBy {
   })
   posterUrl!: string;
 
+  @TypeGraphQL.Field(_type => Date, {
+    nullable: false
+  })
+  releaseDate!: Date;
+
   @TypeGraphQL.Field(_type => String, {
     nullable: false
   })
