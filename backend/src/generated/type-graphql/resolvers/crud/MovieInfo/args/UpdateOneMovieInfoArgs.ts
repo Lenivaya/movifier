@@ -5,13 +5,13 @@ import { MovieInfoWhereUniqueInput } from "../../../inputs/MovieInfoWhereUniqueI
 
 @TypeGraphQL.ArgsType()
 export class UpdateOneMovieInfoArgs {
-  @TypeGraphQL.Field((_type) => MovieInfoUpdateInput, {
-    nullable: false,
+  @TypeGraphQL.Field(_type => MovieInfoUpdateInput, {
+    nullable: false
   })
   data!: MovieInfoUpdateInput;
 
-  @TypeGraphQL.Field((_type) => MovieInfoWhereUniqueInput, {
-    nullable: false,
+  @TypeGraphQL.Field(_type => MovieInfoWhereUniqueInput, {
+    nullable: false
   })
   where!: MovieInfoWhereUniqueInput;
 }

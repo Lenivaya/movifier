@@ -6,18 +6,18 @@ import { MovieCrewMemberOnMovieWhereInput } from "../inputs/MovieCrewMemberOnMov
 
 @TypeGraphQL.InputType("MovieCrewMemberOnMovieListRelationFilter", {})
 export class MovieCrewMemberOnMovieListRelationFilter {
-  @TypeGraphQL.Field((_type) => MovieCrewMemberOnMovieWhereInput, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => MovieCrewMemberOnMovieWhereInput, {
+    nullable: true
   })
   every?: MovieCrewMemberOnMovieWhereInput | undefined;
 
-  @TypeGraphQL.Field((_type) => MovieCrewMemberOnMovieWhereInput, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => MovieCrewMemberOnMovieWhereInput, {
+    nullable: true
   })
   some?: MovieCrewMemberOnMovieWhereInput | undefined;
 
-  @TypeGraphQL.Field((_type) => MovieCrewMemberOnMovieWhereInput, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => MovieCrewMemberOnMovieWhereInput, {
+    nullable: true
   })
   none?: MovieCrewMemberOnMovieWhereInput | undefined;
 }

@@ -6,18 +6,18 @@ import { MovieListCommentWhereUniqueInput } from "../../../inputs/MovieListComme
 
 @TypeGraphQL.ArgsType()
 export class UpsertOneMovieListCommentArgs {
-  @TypeGraphQL.Field((_type) => MovieListCommentWhereUniqueInput, {
-    nullable: false,
+  @TypeGraphQL.Field(_type => MovieListCommentWhereUniqueInput, {
+    nullable: false
   })
   where!: MovieListCommentWhereUniqueInput;
 
-  @TypeGraphQL.Field((_type) => MovieListCommentCreateInput, {
-    nullable: false,
+  @TypeGraphQL.Field(_type => MovieListCommentCreateInput, {
+    nullable: false
   })
   create!: MovieListCommentCreateInput;
 
-  @TypeGraphQL.Field((_type) => MovieListCommentUpdateInput, {
-    nullable: false,
+  @TypeGraphQL.Field(_type => MovieListCommentUpdateInput, {
+    nullable: false
   })
   update!: MovieListCommentUpdateInput;
 }

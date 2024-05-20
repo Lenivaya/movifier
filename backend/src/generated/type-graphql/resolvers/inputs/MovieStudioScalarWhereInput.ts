@@ -7,38 +7,38 @@ import { StringFilter } from "../inputs/StringFilter";
 
 @TypeGraphQL.InputType("MovieStudioScalarWhereInput", {})
 export class MovieStudioScalarWhereInput {
-  @TypeGraphQL.Field((_type) => [MovieStudioScalarWhereInput], {
-    nullable: true,
+  @TypeGraphQL.Field(_type => [MovieStudioScalarWhereInput], {
+    nullable: true
   })
   AND?: MovieStudioScalarWhereInput[] | undefined;
 
-  @TypeGraphQL.Field((_type) => [MovieStudioScalarWhereInput], {
-    nullable: true,
+  @TypeGraphQL.Field(_type => [MovieStudioScalarWhereInput], {
+    nullable: true
   })
   OR?: MovieStudioScalarWhereInput[] | undefined;
 
-  @TypeGraphQL.Field((_type) => [MovieStudioScalarWhereInput], {
-    nullable: true,
+  @TypeGraphQL.Field(_type => [MovieStudioScalarWhereInput], {
+    nullable: true
   })
   NOT?: MovieStudioScalarWhereInput[] | undefined;
 
-  @TypeGraphQL.Field((_type) => StringFilter, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => StringFilter, {
+    nullable: true
   })
   id?: StringFilter | undefined;
 
-  @TypeGraphQL.Field((_type) => DateTimeFilter, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => DateTimeFilter, {
+    nullable: true
   })
   createdAt?: DateTimeFilter | undefined;
 
-  @TypeGraphQL.Field((_type) => DateTimeFilter, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => DateTimeFilter, {
+    nullable: true
   })
   updatedAt?: DateTimeFilter | undefined;
 
-  @TypeGraphQL.Field((_type) => StringFilter, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => StringFilter, {
+    nullable: true
   })
   name?: StringFilter | undefined;
 }

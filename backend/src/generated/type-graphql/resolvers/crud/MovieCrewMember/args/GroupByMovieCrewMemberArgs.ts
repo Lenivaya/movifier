@@ -7,33 +7,33 @@ import { MovieCrewMemberScalarFieldEnum } from "../../../../enums/MovieCrewMembe
 
 @TypeGraphQL.ArgsType()
 export class GroupByMovieCrewMemberArgs {
-  @TypeGraphQL.Field((_type) => MovieCrewMemberWhereInput, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => MovieCrewMemberWhereInput, {
+    nullable: true
   })
   where?: MovieCrewMemberWhereInput | undefined;
 
-  @TypeGraphQL.Field((_type) => [MovieCrewMemberOrderByWithAggregationInput], {
-    nullable: true,
+  @TypeGraphQL.Field(_type => [MovieCrewMemberOrderByWithAggregationInput], {
+    nullable: true
   })
   orderBy?: MovieCrewMemberOrderByWithAggregationInput[] | undefined;
 
-  @TypeGraphQL.Field((_type) => [MovieCrewMemberScalarFieldEnum], {
-    nullable: false,
+  @TypeGraphQL.Field(_type => [MovieCrewMemberScalarFieldEnum], {
+    nullable: false
   })
-  by!: Array<"id" | "createdAt" | "updatedAt" | "name">;
+  by!: Array<"id" | "createdAt" | "updatedAt" | "name" | "photoUrl" | "description" | "imdbId">;
 
-  @TypeGraphQL.Field((_type) => MovieCrewMemberScalarWhereWithAggregatesInput, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => MovieCrewMemberScalarWhereWithAggregatesInput, {
+    nullable: true
   })
   having?: MovieCrewMemberScalarWhereWithAggregatesInput | undefined;
 
-  @TypeGraphQL.Field((_type) => TypeGraphQL.Int, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
+    nullable: true
   })
   take?: number | undefined;
 
-  @TypeGraphQL.Field((_type) => TypeGraphQL.Int, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
+    nullable: true
   })
   skip?: number | undefined;
 }

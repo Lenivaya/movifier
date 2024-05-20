@@ -4,8 +4,8 @@ import { MovieSpokenLanguageWhereInput } from "../../../inputs/MovieSpokenLangua
 
 @TypeGraphQL.ArgsType()
 export class DeleteManyMovieSpokenLanguageArgs {
-  @TypeGraphQL.Field((_type) => MovieSpokenLanguageWhereInput, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => MovieSpokenLanguageWhereInput, {
+    nullable: true
   })
   where?: MovieSpokenLanguageWhereInput | undefined;
 }

@@ -6,41 +6,50 @@ import { MovieCrewMemberOnMovieOrderByRelationAggregateInput } from "../inputs/M
 import { MovieCrewMemberOrderByRelevanceInput } from "../inputs/MovieCrewMemberOrderByRelevanceInput";
 import { SortOrder } from "../../enums/SortOrder";
 
-@TypeGraphQL.InputType(
-  "MovieCrewMemberOrderByWithRelationAndSearchRelevanceInput",
-  {},
-)
+@TypeGraphQL.InputType("MovieCrewMemberOrderByWithRelationAndSearchRelevanceInput", {})
 export class MovieCrewMemberOrderByWithRelationAndSearchRelevanceInput {
-  @TypeGraphQL.Field((_type) => SortOrder, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => SortOrder, {
+    nullable: true
   })
   id?: "asc" | "desc" | undefined;
 
-  @TypeGraphQL.Field((_type) => SortOrder, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => SortOrder, {
+    nullable: true
   })
   createdAt?: "asc" | "desc" | undefined;
 
-  @TypeGraphQL.Field((_type) => SortOrder, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => SortOrder, {
+    nullable: true
   })
   updatedAt?: "asc" | "desc" | undefined;
 
-  @TypeGraphQL.Field((_type) => SortOrder, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => SortOrder, {
+    nullable: true
   })
   name?: "asc" | "desc" | undefined;
 
-  @TypeGraphQL.Field(
-    (_type) => MovieCrewMemberOnMovieOrderByRelationAggregateInput,
-    {
-      nullable: true,
-    },
-  )
+  @TypeGraphQL.Field(_type => SortOrder, {
+    nullable: true
+  })
+  photoUrl?: "asc" | "desc" | undefined;
+
+  @TypeGraphQL.Field(_type => SortOrder, {
+    nullable: true
+  })
+  description?: "asc" | "desc" | undefined;
+
+  @TypeGraphQL.Field(_type => SortOrder, {
+    nullable: true
+  })
+  imdbId?: "asc" | "desc" | undefined;
+
+  @TypeGraphQL.Field(_type => MovieCrewMemberOnMovieOrderByRelationAggregateInput, {
+    nullable: true
+  })
   movies?: MovieCrewMemberOnMovieOrderByRelationAggregateInput | undefined;
 
-  @TypeGraphQL.Field((_type) => MovieCrewMemberOrderByRelevanceInput, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => MovieCrewMemberOrderByRelevanceInput, {
+    nullable: true
   })
   _relevance?: MovieCrewMemberOrderByRelevanceInput | undefined;
 }

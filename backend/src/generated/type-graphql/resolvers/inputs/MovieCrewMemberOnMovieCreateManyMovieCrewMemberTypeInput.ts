@@ -3,28 +3,25 @@ import * as GraphQLScalars from "graphql-scalars";
 import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../../scalars";
 
-@TypeGraphQL.InputType(
-  "MovieCrewMemberOnMovieCreateManyMovieCrewMemberTypeInput",
-  {},
-)
+@TypeGraphQL.InputType("MovieCrewMemberOnMovieCreateManyMovieCrewMemberTypeInput", {})
 export class MovieCrewMemberOnMovieCreateManyMovieCrewMemberTypeInput {
-  @TypeGraphQL.Field((_type) => Date, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => Date, {
+    nullable: true
   })
   createdAt?: Date | undefined;
 
-  @TypeGraphQL.Field((_type) => Date, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => Date, {
+    nullable: true
   })
   updatedAt?: Date | undefined;
 
-  @TypeGraphQL.Field((_type) => String, {
-    nullable: false,
+  @TypeGraphQL.Field(_type => String, {
+    nullable: false
   })
   movieId!: string;
 
-  @TypeGraphQL.Field((_type) => String, {
-    nullable: false,
+  @TypeGraphQL.Field(_type => String, {
+    nullable: false
   })
   movieCrewMemberId!: string;
 }

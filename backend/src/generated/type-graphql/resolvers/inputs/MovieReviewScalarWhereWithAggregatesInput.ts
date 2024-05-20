@@ -7,43 +7,43 @@ import { StringWithAggregatesFilter } from "../inputs/StringWithAggregatesFilter
 
 @TypeGraphQL.InputType("MovieReviewScalarWhereWithAggregatesInput", {})
 export class MovieReviewScalarWhereWithAggregatesInput {
-  @TypeGraphQL.Field((_type) => [MovieReviewScalarWhereWithAggregatesInput], {
-    nullable: true,
+  @TypeGraphQL.Field(_type => [MovieReviewScalarWhereWithAggregatesInput], {
+    nullable: true
   })
   AND?: MovieReviewScalarWhereWithAggregatesInput[] | undefined;
 
-  @TypeGraphQL.Field((_type) => [MovieReviewScalarWhereWithAggregatesInput], {
-    nullable: true,
+  @TypeGraphQL.Field(_type => [MovieReviewScalarWhereWithAggregatesInput], {
+    nullable: true
   })
   OR?: MovieReviewScalarWhereWithAggregatesInput[] | undefined;
 
-  @TypeGraphQL.Field((_type) => [MovieReviewScalarWhereWithAggregatesInput], {
-    nullable: true,
+  @TypeGraphQL.Field(_type => [MovieReviewScalarWhereWithAggregatesInput], {
+    nullable: true
   })
   NOT?: MovieReviewScalarWhereWithAggregatesInput[] | undefined;
 
-  @TypeGraphQL.Field((_type) => StringWithAggregatesFilter, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => StringWithAggregatesFilter, {
+    nullable: true
   })
   id?: StringWithAggregatesFilter | undefined;
 
-  @TypeGraphQL.Field((_type) => DateTimeWithAggregatesFilter, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => DateTimeWithAggregatesFilter, {
+    nullable: true
   })
   createdAt?: DateTimeWithAggregatesFilter | undefined;
 
-  @TypeGraphQL.Field((_type) => DateTimeWithAggregatesFilter, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => DateTimeWithAggregatesFilter, {
+    nullable: true
   })
   updatedAt?: DateTimeWithAggregatesFilter | undefined;
 
-  @TypeGraphQL.Field((_type) => StringWithAggregatesFilter, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => StringWithAggregatesFilter, {
+    nullable: true
   })
   content?: StringWithAggregatesFilter | undefined;
 
-  @TypeGraphQL.Field((_type) => StringWithAggregatesFilter, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => StringWithAggregatesFilter, {
+    nullable: true
   })
   ratingId?: StringWithAggregatesFilter | undefined;
 }

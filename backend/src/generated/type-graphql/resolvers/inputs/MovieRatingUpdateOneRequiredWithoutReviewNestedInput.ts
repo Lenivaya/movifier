@@ -8,36 +8,30 @@ import { MovieRatingUpdateToOneWithWhereWithoutReviewInput } from "../inputs/Mov
 import { MovieRatingUpsertWithoutReviewInput } from "../inputs/MovieRatingUpsertWithoutReviewInput";
 import { MovieRatingWhereUniqueInput } from "../inputs/MovieRatingWhereUniqueInput";
 
-@TypeGraphQL.InputType(
-  "MovieRatingUpdateOneRequiredWithoutReviewNestedInput",
-  {},
-)
+@TypeGraphQL.InputType("MovieRatingUpdateOneRequiredWithoutReviewNestedInput", {})
 export class MovieRatingUpdateOneRequiredWithoutReviewNestedInput {
-  @TypeGraphQL.Field((_type) => MovieRatingCreateWithoutReviewInput, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => MovieRatingCreateWithoutReviewInput, {
+    nullable: true
   })
   create?: MovieRatingCreateWithoutReviewInput | undefined;
 
-  @TypeGraphQL.Field((_type) => MovieRatingCreateOrConnectWithoutReviewInput, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => MovieRatingCreateOrConnectWithoutReviewInput, {
+    nullable: true
   })
   connectOrCreate?: MovieRatingCreateOrConnectWithoutReviewInput | undefined;
 
-  @TypeGraphQL.Field((_type) => MovieRatingUpsertWithoutReviewInput, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => MovieRatingUpsertWithoutReviewInput, {
+    nullable: true
   })
   upsert?: MovieRatingUpsertWithoutReviewInput | undefined;
 
-  @TypeGraphQL.Field((_type) => MovieRatingWhereUniqueInput, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => MovieRatingWhereUniqueInput, {
+    nullable: true
   })
   connect?: MovieRatingWhereUniqueInput | undefined;
 
-  @TypeGraphQL.Field(
-    (_type) => MovieRatingUpdateToOneWithWhereWithoutReviewInput,
-    {
-      nullable: true,
-    },
-  )
+  @TypeGraphQL.Field(_type => MovieRatingUpdateToOneWithWhereWithoutReviewInput, {
+    nullable: true
+  })
   update?: MovieRatingUpdateToOneWithWhereWithoutReviewInput | undefined;
 }

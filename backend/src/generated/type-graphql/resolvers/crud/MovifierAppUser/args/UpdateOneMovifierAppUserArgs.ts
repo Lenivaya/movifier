@@ -5,13 +5,13 @@ import { MovifierAppUserWhereUniqueInput } from "../../../inputs/MovifierAppUser
 
 @TypeGraphQL.ArgsType()
 export class UpdateOneMovifierAppUserArgs {
-  @TypeGraphQL.Field((_type) => MovifierAppUserUpdateInput, {
-    nullable: false,
+  @TypeGraphQL.Field(_type => MovifierAppUserUpdateInput, {
+    nullable: false
   })
   data!: MovifierAppUserUpdateInput;
 
-  @TypeGraphQL.Field((_type) => MovifierAppUserWhereUniqueInput, {
-    nullable: false,
+  @TypeGraphQL.Field(_type => MovifierAppUserWhereUniqueInput, {
+    nullable: false
   })
   where!: MovifierAppUserWhereUniqueInput;
 }

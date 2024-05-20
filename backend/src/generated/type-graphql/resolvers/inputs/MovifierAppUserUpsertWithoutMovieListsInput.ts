@@ -8,18 +8,18 @@ import { MovifierAppUserWhereInput } from "../inputs/MovifierAppUserWhereInput";
 
 @TypeGraphQL.InputType("MovifierAppUserUpsertWithoutMovieListsInput", {})
 export class MovifierAppUserUpsertWithoutMovieListsInput {
-  @TypeGraphQL.Field((_type) => MovifierAppUserUpdateWithoutMovieListsInput, {
-    nullable: false,
+  @TypeGraphQL.Field(_type => MovifierAppUserUpdateWithoutMovieListsInput, {
+    nullable: false
   })
   update!: MovifierAppUserUpdateWithoutMovieListsInput;
 
-  @TypeGraphQL.Field((_type) => MovifierAppUserCreateWithoutMovieListsInput, {
-    nullable: false,
+  @TypeGraphQL.Field(_type => MovifierAppUserCreateWithoutMovieListsInput, {
+    nullable: false
   })
   create!: MovifierAppUserCreateWithoutMovieListsInput;
 
-  @TypeGraphQL.Field((_type) => MovifierAppUserWhereInput, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => MovifierAppUserWhereInput, {
+    nullable: true
   })
   where?: MovifierAppUserWhereInput | undefined;
 }

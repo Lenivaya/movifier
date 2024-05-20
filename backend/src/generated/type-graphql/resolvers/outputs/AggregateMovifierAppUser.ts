@@ -8,18 +8,18 @@ import { MovifierAppUserMinAggregate } from "../outputs/MovifierAppUserMinAggreg
 
 @TypeGraphQL.ObjectType("AggregateMovifierAppUser", {})
 export class AggregateMovifierAppUser {
-  @TypeGraphQL.Field((_type) => MovifierAppUserCountAggregate, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => MovifierAppUserCountAggregate, {
+    nullable: true
   })
   _count!: MovifierAppUserCountAggregate | null;
 
-  @TypeGraphQL.Field((_type) => MovifierAppUserMinAggregate, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => MovifierAppUserMinAggregate, {
+    nullable: true
   })
   _min!: MovifierAppUserMinAggregate | null;
 
-  @TypeGraphQL.Field((_type) => MovifierAppUserMaxAggregate, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => MovifierAppUserMaxAggregate, {
+    nullable: true
   })
   _max!: MovifierAppUserMaxAggregate | null;
 }

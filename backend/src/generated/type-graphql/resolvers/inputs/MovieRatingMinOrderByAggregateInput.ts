@@ -6,33 +6,33 @@ import { SortOrder } from "../../enums/SortOrder";
 
 @TypeGraphQL.InputType("MovieRatingMinOrderByAggregateInput", {})
 export class MovieRatingMinOrderByAggregateInput {
-  @TypeGraphQL.Field((_type) => SortOrder, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => SortOrder, {
+    nullable: true
   })
   id?: "asc" | "desc" | undefined;
 
-  @TypeGraphQL.Field((_type) => SortOrder, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => SortOrder, {
+    nullable: true
   })
   createdAt?: "asc" | "desc" | undefined;
 
-  @TypeGraphQL.Field((_type) => SortOrder, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => SortOrder, {
+    nullable: true
   })
   updatedAt?: "asc" | "desc" | undefined;
 
-  @TypeGraphQL.Field((_type) => SortOrder, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => SortOrder, {
+    nullable: true
   })
   rating?: "asc" | "desc" | undefined;
 
-  @TypeGraphQL.Field((_type) => SortOrder, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => SortOrder, {
+    nullable: true
   })
   movieId?: "asc" | "desc" | undefined;
 
-  @TypeGraphQL.Field((_type) => SortOrder, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => SortOrder, {
+    nullable: true
   })
   userId?: "asc" | "desc" | undefined;
 }

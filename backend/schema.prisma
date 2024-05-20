@@ -18,7 +18,7 @@ model MovieStudio {
   id        String   @id @unique @default(cuid())
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-  name      String
+  name      String   @unique
   movies    Movie[]
 }
 
@@ -76,23 +76,26 @@ model MovieCrewMemberOnMovie {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  movie               Movie               @relation(fields: [movieId], references: [id])
-  crewMember          MovieCrewMember     @relation(fields: [movieCrewMemberId], references: [id])
-  movieCrewMemberType MovieCrewMemberType @relation(fields: [movieCrewMemberTypeId], references: [id])
-
   movieId               String
   movieCrewMemberId     String
   movieCrewMemberTypeId String
+
+  movie               Movie               @relation(fields: [movieId], references: [id])
+  crewMember          MovieCrewMember     @relation(fields: [movieCrewMemberId], references: [id])
+  movieCrewMemberType MovieCrewMemberType @relation(fields: [movieCrewMemberTypeId], references: [id])
 
   @@id([movieId, movieCrewMemberId, movieCrewMemberTypeId])
 }
 
 model MovieCrewMember {
-  id        String                   @id @unique @default(cuid())
-  createdAt DateTime                 @default(now())
-  updatedAt DateTime                 @updatedAt
-  name      String
-  movies    MovieCrewMemberOnMovie[]
+  id          String                   @id @unique @default(cuid())
+  createdAt   DateTime                 @default(now())
+  updatedAt   DateTime                 @updatedAt
+  name        String
+  photoUrl    String
+  description String
+  imdbId      String                   @unique
+  movies      MovieCrewMemberOnMovie[]
 }
 
 model MovieCrewMemberType {
@@ -112,7 +115,7 @@ model Genre {
 
 model MovieKeywordCategory {
   id     String  @id @unique @default(cuid())
-  name   String
+  name   String  @unique
   movies Movie[]
 
   @@index([name], map: "movie_keyword_category_pgroonga_idx")

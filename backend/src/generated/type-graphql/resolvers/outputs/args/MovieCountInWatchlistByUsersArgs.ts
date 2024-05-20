@@ -4,8 +4,8 @@ import { MovifierAppUserWhereInput } from "../../inputs/MovifierAppUserWhereInpu
 
 @TypeGraphQL.ArgsType()
 export class MovieCountInWatchlistByUsersArgs {
-  @TypeGraphQL.Field((_type) => MovifierAppUserWhereInput, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => MovifierAppUserWhereInput, {
+    nullable: true
   })
   where?: MovifierAppUserWhereInput | undefined;
 }

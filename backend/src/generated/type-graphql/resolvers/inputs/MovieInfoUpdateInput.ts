@@ -10,56 +10,53 @@ import { StringFieldUpdateOperationsInput } from "../inputs/StringFieldUpdateOpe
 
 @TypeGraphQL.InputType("MovieInfoUpdateInput", {})
 export class MovieInfoUpdateInput {
-  @TypeGraphQL.Field((_type) => StringFieldUpdateOperationsInput, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => StringFieldUpdateOperationsInput, {
+    nullable: true
   })
   id?: StringFieldUpdateOperationsInput | undefined;
 
-  @TypeGraphQL.Field((_type) => DateTimeFieldUpdateOperationsInput, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => DateTimeFieldUpdateOperationsInput, {
+    nullable: true
   })
   createdAt?: DateTimeFieldUpdateOperationsInput | undefined;
 
-  @TypeGraphQL.Field((_type) => DateTimeFieldUpdateOperationsInput, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => DateTimeFieldUpdateOperationsInput, {
+    nullable: true
   })
   updatedAt?: DateTimeFieldUpdateOperationsInput | undefined;
 
-  @TypeGraphQL.Field((_type) => StringFieldUpdateOperationsInput, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => StringFieldUpdateOperationsInput, {
+    nullable: true
   })
   imdbId?: StringFieldUpdateOperationsInput | undefined;
 
-  @TypeGraphQL.Field((_type) => StringFieldUpdateOperationsInput, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => StringFieldUpdateOperationsInput, {
+    nullable: true
   })
   title?: StringFieldUpdateOperationsInput | undefined;
 
-  @TypeGraphQL.Field((_type) => StringFieldUpdateOperationsInput, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => StringFieldUpdateOperationsInput, {
+    nullable: true
   })
   description?: StringFieldUpdateOperationsInput | undefined;
 
-  @TypeGraphQL.Field((_type) => MovieInfoUpdatealternativeTitlesInput, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => MovieInfoUpdatealternativeTitlesInput, {
+    nullable: true
   })
   alternativeTitles?: MovieInfoUpdatealternativeTitlesInput | undefined;
 
-  @TypeGraphQL.Field((_type) => IntFieldUpdateOperationsInput, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => IntFieldUpdateOperationsInput, {
+    nullable: true
   })
   durationInMinutes?: IntFieldUpdateOperationsInput | undefined;
 
-  @TypeGraphQL.Field((_type) => StringFieldUpdateOperationsInput, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => StringFieldUpdateOperationsInput, {
+    nullable: true
   })
   posterUrl?: StringFieldUpdateOperationsInput | undefined;
 
-  @TypeGraphQL.Field(
-    (_type) => MovieUpdateOneRequiredWithoutMovieInfoNestedInput,
-    {
-      nullable: true,
-    },
-  )
+  @TypeGraphQL.Field(_type => MovieUpdateOneRequiredWithoutMovieInfoNestedInput, {
+    nullable: true
+  })
   movie?: MovieUpdateOneRequiredWithoutMovieInfoNestedInput | undefined;
 }

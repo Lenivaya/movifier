@@ -22,91 +22,67 @@ export class MovieCount {
   inWatchlistByUsers!: number;
   spokenLanguages!: number;
 
-  @TypeGraphQL.Field((_type) => TypeGraphQL.Int, {
+  @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
     name: "crewMembers",
-    nullable: false,
+    nullable: false
   })
-  getCrewMembers(
-    @TypeGraphQL.Root() root: MovieCount,
-    @TypeGraphQL.Args() args: MovieCountCrewMembersArgs,
-  ): number {
+  getCrewMembers(@TypeGraphQL.Root() root: MovieCount, @TypeGraphQL.Args() args: MovieCountCrewMembersArgs): number {
     return root.crewMembers;
   }
 
-  @TypeGraphQL.Field((_type) => TypeGraphQL.Int, {
+  @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
     name: "studios",
-    nullable: false,
+    nullable: false
   })
-  getStudios(
-    @TypeGraphQL.Root() root: MovieCount,
-    @TypeGraphQL.Args() args: MovieCountStudiosArgs,
-  ): number {
+  getStudios(@TypeGraphQL.Root() root: MovieCount, @TypeGraphQL.Args() args: MovieCountStudiosArgs): number {
     return root.studios;
   }
 
-  @TypeGraphQL.Field((_type) => TypeGraphQL.Int, {
+  @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
     name: "genres",
-    nullable: false,
+    nullable: false
   })
-  getGenres(
-    @TypeGraphQL.Root() root: MovieCount,
-    @TypeGraphQL.Args() args: MovieCountGenresArgs,
-  ): number {
+  getGenres(@TypeGraphQL.Root() root: MovieCount, @TypeGraphQL.Args() args: MovieCountGenresArgs): number {
     return root.genres;
   }
 
-  @TypeGraphQL.Field((_type) => TypeGraphQL.Int, {
+  @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
     name: "keywordCategories",
-    nullable: false,
+    nullable: false
   })
-  getKeywordCategories(
-    @TypeGraphQL.Root() root: MovieCount,
-    @TypeGraphQL.Args() args: MovieCountKeywordCategoriesArgs,
-  ): number {
+  getKeywordCategories(@TypeGraphQL.Root() root: MovieCount, @TypeGraphQL.Args() args: MovieCountKeywordCategoriesArgs): number {
     return root.keywordCategories;
   }
 
-  @TypeGraphQL.Field((_type) => TypeGraphQL.Int, {
+  @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
     name: "ratings",
-    nullable: false,
+    nullable: false
   })
-  getRatings(
-    @TypeGraphQL.Root() root: MovieCount,
-    @TypeGraphQL.Args() args: MovieCountRatingsArgs,
-  ): number {
+  getRatings(@TypeGraphQL.Root() root: MovieCount, @TypeGraphQL.Args() args: MovieCountRatingsArgs): number {
     return root.ratings;
   }
 
-  @TypeGraphQL.Field((_type) => TypeGraphQL.Int, {
+  @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
     name: "movieLists",
-    nullable: false,
+    nullable: false
   })
-  getMovieLists(
-    @TypeGraphQL.Root() root: MovieCount,
-    @TypeGraphQL.Args() args: MovieCountMovieListsArgs,
-  ): number {
+  getMovieLists(@TypeGraphQL.Root() root: MovieCount, @TypeGraphQL.Args() args: MovieCountMovieListsArgs): number {
     return root.movieLists;
   }
 
-  @TypeGraphQL.Field((_type) => TypeGraphQL.Int, {
+  @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
     name: "inWatchlistByUsers",
-    nullable: false,
+    nullable: false
   })
-  getInWatchlistByUsers(
-    @TypeGraphQL.Root() root: MovieCount,
-    @TypeGraphQL.Args() args: MovieCountInWatchlistByUsersArgs,
-  ): number {
+  getInWatchlistByUsers(@TypeGraphQL.Root() root: MovieCount, @TypeGraphQL.Args() args: MovieCountInWatchlistByUsersArgs): number {
     return root.inWatchlistByUsers;
   }
 
-  @TypeGraphQL.Field((_type) => TypeGraphQL.Int, {
+  @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
     name: "spokenLanguages",
-    nullable: false,
+    nullable: false
   })
-  getSpokenLanguages(
-    @TypeGraphQL.Root() root: MovieCount,
-    @TypeGraphQL.Args() args: MovieCountSpokenLanguagesArgs,
-  ): number {
+  getSpokenLanguages(@TypeGraphQL.Root() root: MovieCount, @TypeGraphQL.Args() args: MovieCountSpokenLanguagesArgs): number {
     return root.spokenLanguages;
   }
 }

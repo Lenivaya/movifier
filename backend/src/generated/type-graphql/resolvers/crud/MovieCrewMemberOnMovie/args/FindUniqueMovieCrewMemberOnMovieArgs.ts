@@ -4,8 +4,8 @@ import { MovieCrewMemberOnMovieWhereUniqueInput } from "../../../inputs/MovieCre
 
 @TypeGraphQL.ArgsType()
 export class FindUniqueMovieCrewMemberOnMovieArgs {
-  @TypeGraphQL.Field((_type) => MovieCrewMemberOnMovieWhereUniqueInput, {
-    nullable: false,
+  @TypeGraphQL.Field(_type => MovieCrewMemberOnMovieWhereUniqueInput, {
+    nullable: false
   })
   where!: MovieCrewMemberOnMovieWhereUniqueInput;
 }

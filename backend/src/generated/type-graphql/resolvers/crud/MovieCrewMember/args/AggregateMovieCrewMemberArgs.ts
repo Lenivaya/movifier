@@ -6,33 +6,28 @@ import { MovieCrewMemberWhereUniqueInput } from "../../../inputs/MovieCrewMember
 
 @TypeGraphQL.ArgsType()
 export class AggregateMovieCrewMemberArgs {
-  @TypeGraphQL.Field((_type) => MovieCrewMemberWhereInput, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => MovieCrewMemberWhereInput, {
+    nullable: true
   })
   where?: MovieCrewMemberWhereInput | undefined;
 
-  @TypeGraphQL.Field(
-    (_type) => [MovieCrewMemberOrderByWithRelationAndSearchRelevanceInput],
-    {
-      nullable: true,
-    },
-  )
-  orderBy?:
-    | MovieCrewMemberOrderByWithRelationAndSearchRelevanceInput[]
-    | undefined;
+  @TypeGraphQL.Field(_type => [MovieCrewMemberOrderByWithRelationAndSearchRelevanceInput], {
+    nullable: true
+  })
+  orderBy?: MovieCrewMemberOrderByWithRelationAndSearchRelevanceInput[] | undefined;
 
-  @TypeGraphQL.Field((_type) => MovieCrewMemberWhereUniqueInput, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => MovieCrewMemberWhereUniqueInput, {
+    nullable: true
   })
   cursor?: MovieCrewMemberWhereUniqueInput | undefined;
 
-  @TypeGraphQL.Field((_type) => TypeGraphQL.Int, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
+    nullable: true
   })
   take?: number | undefined;
 
-  @TypeGraphQL.Field((_type) => TypeGraphQL.Int, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
+    nullable: true
   })
   skip?: number | undefined;
 }

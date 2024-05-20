@@ -6,29 +6,20 @@ import { MovieCrewMemberOnMovieCreateWithoutMovieCrewMemberTypeInput } from "../
 import { MovieCrewMemberOnMovieUpdateWithoutMovieCrewMemberTypeInput } from "../inputs/MovieCrewMemberOnMovieUpdateWithoutMovieCrewMemberTypeInput";
 import { MovieCrewMemberOnMovieWhereUniqueInput } from "../inputs/MovieCrewMemberOnMovieWhereUniqueInput";
 
-@TypeGraphQL.InputType(
-  "MovieCrewMemberOnMovieUpsertWithWhereUniqueWithoutMovieCrewMemberTypeInput",
-  {},
-)
+@TypeGraphQL.InputType("MovieCrewMemberOnMovieUpsertWithWhereUniqueWithoutMovieCrewMemberTypeInput", {})
 export class MovieCrewMemberOnMovieUpsertWithWhereUniqueWithoutMovieCrewMemberTypeInput {
-  @TypeGraphQL.Field((_type) => MovieCrewMemberOnMovieWhereUniqueInput, {
-    nullable: false,
+  @TypeGraphQL.Field(_type => MovieCrewMemberOnMovieWhereUniqueInput, {
+    nullable: false
   })
   where!: MovieCrewMemberOnMovieWhereUniqueInput;
 
-  @TypeGraphQL.Field(
-    (_type) => MovieCrewMemberOnMovieUpdateWithoutMovieCrewMemberTypeInput,
-    {
-      nullable: false,
-    },
-  )
+  @TypeGraphQL.Field(_type => MovieCrewMemberOnMovieUpdateWithoutMovieCrewMemberTypeInput, {
+    nullable: false
+  })
   update!: MovieCrewMemberOnMovieUpdateWithoutMovieCrewMemberTypeInput;
 
-  @TypeGraphQL.Field(
-    (_type) => MovieCrewMemberOnMovieCreateWithoutMovieCrewMemberTypeInput,
-    {
-      nullable: false,
-    },
-  )
+  @TypeGraphQL.Field(_type => MovieCrewMemberOnMovieCreateWithoutMovieCrewMemberTypeInput, {
+    nullable: false
+  })
   create!: MovieCrewMemberOnMovieCreateWithoutMovieCrewMemberTypeInput;
 }

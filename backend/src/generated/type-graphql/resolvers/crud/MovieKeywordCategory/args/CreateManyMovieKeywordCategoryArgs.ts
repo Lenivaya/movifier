@@ -4,13 +4,13 @@ import { MovieKeywordCategoryCreateManyInput } from "../../../inputs/MovieKeywor
 
 @TypeGraphQL.ArgsType()
 export class CreateManyMovieKeywordCategoryArgs {
-  @TypeGraphQL.Field((_type) => [MovieKeywordCategoryCreateManyInput], {
-    nullable: false,
+  @TypeGraphQL.Field(_type => [MovieKeywordCategoryCreateManyInput], {
+    nullable: false
   })
   data!: MovieKeywordCategoryCreateManyInput[];
 
-  @TypeGraphQL.Field((_type) => Boolean, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => Boolean, {
+    nullable: true
   })
   skipDuplicates?: boolean | undefined;
 }

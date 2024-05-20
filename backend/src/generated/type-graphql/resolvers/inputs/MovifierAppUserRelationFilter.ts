@@ -6,13 +6,13 @@ import { MovifierAppUserWhereInput } from "../inputs/MovifierAppUserWhereInput";
 
 @TypeGraphQL.InputType("MovifierAppUserRelationFilter", {})
 export class MovifierAppUserRelationFilter {
-  @TypeGraphQL.Field((_type) => MovifierAppUserWhereInput, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => MovifierAppUserWhereInput, {
+    nullable: true
   })
   is?: MovifierAppUserWhereInput | undefined;
 
-  @TypeGraphQL.Field((_type) => MovifierAppUserWhereInput, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => MovifierAppUserWhereInput, {
+    nullable: true
   })
   isNot?: MovifierAppUserWhereInput | undefined;
 }

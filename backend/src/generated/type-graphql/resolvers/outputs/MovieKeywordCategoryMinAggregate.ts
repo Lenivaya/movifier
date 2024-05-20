@@ -5,13 +5,13 @@ import { DecimalJSScalar } from "../../scalars";
 
 @TypeGraphQL.ObjectType("MovieKeywordCategoryMinAggregate", {})
 export class MovieKeywordCategoryMinAggregate {
-  @TypeGraphQL.Field((_type) => String, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => String, {
+    nullable: true
   })
   id!: string | null;
 
-  @TypeGraphQL.Field((_type) => String, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => String, {
+    nullable: true
   })
   name!: string | null;
 }

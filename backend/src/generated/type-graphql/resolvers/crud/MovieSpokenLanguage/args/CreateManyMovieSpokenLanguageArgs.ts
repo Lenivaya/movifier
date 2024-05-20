@@ -4,13 +4,13 @@ import { MovieSpokenLanguageCreateManyInput } from "../../../inputs/MovieSpokenL
 
 @TypeGraphQL.ArgsType()
 export class CreateManyMovieSpokenLanguageArgs {
-  @TypeGraphQL.Field((_type) => [MovieSpokenLanguageCreateManyInput], {
-    nullable: false,
+  @TypeGraphQL.Field(_type => [MovieSpokenLanguageCreateManyInput], {
+    nullable: false
   })
   data!: MovieSpokenLanguageCreateManyInput[];
 
-  @TypeGraphQL.Field((_type) => Boolean, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => Boolean, {
+    nullable: true
   })
   skipDuplicates?: boolean | undefined;
 }

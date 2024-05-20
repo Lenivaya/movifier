@@ -8,23 +8,18 @@ import { MovifierAppUserWhereUniqueInput } from "../inputs/MovifierAppUserWhereU
 
 @TypeGraphQL.InputType("MovifierAppUserCreateNestedOneWithoutRatingInput", {})
 export class MovifierAppUserCreateNestedOneWithoutRatingInput {
-  @TypeGraphQL.Field((_type) => MovifierAppUserCreateWithoutRatingInput, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => MovifierAppUserCreateWithoutRatingInput, {
+    nullable: true
   })
   create?: MovifierAppUserCreateWithoutRatingInput | undefined;
 
-  @TypeGraphQL.Field(
-    (_type) => MovifierAppUserCreateOrConnectWithoutRatingInput,
-    {
-      nullable: true,
-    },
-  )
-  connectOrCreate?:
-    | MovifierAppUserCreateOrConnectWithoutRatingInput
-    | undefined;
+  @TypeGraphQL.Field(_type => MovifierAppUserCreateOrConnectWithoutRatingInput, {
+    nullable: true
+  })
+  connectOrCreate?: MovifierAppUserCreateOrConnectWithoutRatingInput | undefined;
 
-  @TypeGraphQL.Field((_type) => MovifierAppUserWhereUniqueInput, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => MovifierAppUserWhereUniqueInput, {
+    nullable: true
   })
   connect?: MovifierAppUserWhereUniqueInput | undefined;
 }

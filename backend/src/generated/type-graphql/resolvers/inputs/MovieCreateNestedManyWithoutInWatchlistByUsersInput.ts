@@ -6,28 +6,20 @@ import { MovieCreateOrConnectWithoutInWatchlistByUsersInput } from "../inputs/Mo
 import { MovieCreateWithoutInWatchlistByUsersInput } from "../inputs/MovieCreateWithoutInWatchlistByUsersInput";
 import { MovieWhereUniqueInput } from "../inputs/MovieWhereUniqueInput";
 
-@TypeGraphQL.InputType(
-  "MovieCreateNestedManyWithoutInWatchlistByUsersInput",
-  {},
-)
+@TypeGraphQL.InputType("MovieCreateNestedManyWithoutInWatchlistByUsersInput", {})
 export class MovieCreateNestedManyWithoutInWatchlistByUsersInput {
-  @TypeGraphQL.Field((_type) => [MovieCreateWithoutInWatchlistByUsersInput], {
-    nullable: true,
+  @TypeGraphQL.Field(_type => [MovieCreateWithoutInWatchlistByUsersInput], {
+    nullable: true
   })
   create?: MovieCreateWithoutInWatchlistByUsersInput[] | undefined;
 
-  @TypeGraphQL.Field(
-    (_type) => [MovieCreateOrConnectWithoutInWatchlistByUsersInput],
-    {
-      nullable: true,
-    },
-  )
-  connectOrCreate?:
-    | MovieCreateOrConnectWithoutInWatchlistByUsersInput[]
-    | undefined;
+  @TypeGraphQL.Field(_type => [MovieCreateOrConnectWithoutInWatchlistByUsersInput], {
+    nullable: true
+  })
+  connectOrCreate?: MovieCreateOrConnectWithoutInWatchlistByUsersInput[] | undefined;
 
-  @TypeGraphQL.Field((_type) => [MovieWhereUniqueInput], {
-    nullable: true,
+  @TypeGraphQL.Field(_type => [MovieWhereUniqueInput], {
+    nullable: true
   })
   connect?: MovieWhereUniqueInput[] | undefined;
 }

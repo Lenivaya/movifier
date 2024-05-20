@@ -5,18 +5,18 @@ import { DecimalJSScalar } from "../../scalars";
 
 @TypeGraphQL.ObjectType("GenreMaxAggregate", {})
 export class GenreMaxAggregate {
-  @TypeGraphQL.Field((_type) => String, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => String, {
+    nullable: true
   })
   name!: string | null;
 
-  @TypeGraphQL.Field((_type) => Date, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => Date, {
+    nullable: true
   })
   createdAt!: Date | null;
 
-  @TypeGraphQL.Field((_type) => Date, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => Date, {
+    nullable: true
   })
   updatedAt!: Date | null;
 }

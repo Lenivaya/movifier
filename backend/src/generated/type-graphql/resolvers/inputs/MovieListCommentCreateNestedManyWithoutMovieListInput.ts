@@ -7,36 +7,25 @@ import { MovieListCommentCreateOrConnectWithoutMovieListInput } from "../inputs/
 import { MovieListCommentCreateWithoutMovieListInput } from "../inputs/MovieListCommentCreateWithoutMovieListInput";
 import { MovieListCommentWhereUniqueInput } from "../inputs/MovieListCommentWhereUniqueInput";
 
-@TypeGraphQL.InputType(
-  "MovieListCommentCreateNestedManyWithoutMovieListInput",
-  {},
-)
+@TypeGraphQL.InputType("MovieListCommentCreateNestedManyWithoutMovieListInput", {})
 export class MovieListCommentCreateNestedManyWithoutMovieListInput {
-  @TypeGraphQL.Field((_type) => [MovieListCommentCreateWithoutMovieListInput], {
-    nullable: true,
+  @TypeGraphQL.Field(_type => [MovieListCommentCreateWithoutMovieListInput], {
+    nullable: true
   })
   create?: MovieListCommentCreateWithoutMovieListInput[] | undefined;
 
-  @TypeGraphQL.Field(
-    (_type) => [MovieListCommentCreateOrConnectWithoutMovieListInput],
-    {
-      nullable: true,
-    },
-  )
-  connectOrCreate?:
-    | MovieListCommentCreateOrConnectWithoutMovieListInput[]
-    | undefined;
+  @TypeGraphQL.Field(_type => [MovieListCommentCreateOrConnectWithoutMovieListInput], {
+    nullable: true
+  })
+  connectOrCreate?: MovieListCommentCreateOrConnectWithoutMovieListInput[] | undefined;
 
-  @TypeGraphQL.Field(
-    (_type) => MovieListCommentCreateManyMovieListInputEnvelope,
-    {
-      nullable: true,
-    },
-  )
+  @TypeGraphQL.Field(_type => MovieListCommentCreateManyMovieListInputEnvelope, {
+    nullable: true
+  })
   createMany?: MovieListCommentCreateManyMovieListInputEnvelope | undefined;
 
-  @TypeGraphQL.Field((_type) => [MovieListCommentWhereUniqueInput], {
-    nullable: true,
+  @TypeGraphQL.Field(_type => [MovieListCommentWhereUniqueInput], {
+    nullable: true
   })
   connect?: MovieListCommentWhereUniqueInput[] | undefined;
 }

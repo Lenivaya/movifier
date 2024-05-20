@@ -6,28 +6,28 @@ import { StringFilter } from "../inputs/StringFilter";
 
 @TypeGraphQL.InputType("MovieKeywordCategoryScalarWhereInput", {})
 export class MovieKeywordCategoryScalarWhereInput {
-  @TypeGraphQL.Field((_type) => [MovieKeywordCategoryScalarWhereInput], {
-    nullable: true,
+  @TypeGraphQL.Field(_type => [MovieKeywordCategoryScalarWhereInput], {
+    nullable: true
   })
   AND?: MovieKeywordCategoryScalarWhereInput[] | undefined;
 
-  @TypeGraphQL.Field((_type) => [MovieKeywordCategoryScalarWhereInput], {
-    nullable: true,
+  @TypeGraphQL.Field(_type => [MovieKeywordCategoryScalarWhereInput], {
+    nullable: true
   })
   OR?: MovieKeywordCategoryScalarWhereInput[] | undefined;
 
-  @TypeGraphQL.Field((_type) => [MovieKeywordCategoryScalarWhereInput], {
-    nullable: true,
+  @TypeGraphQL.Field(_type => [MovieKeywordCategoryScalarWhereInput], {
+    nullable: true
   })
   NOT?: MovieKeywordCategoryScalarWhereInput[] | undefined;
 
-  @TypeGraphQL.Field((_type) => StringFilter, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => StringFilter, {
+    nullable: true
   })
   id?: StringFilter | undefined;
 
-  @TypeGraphQL.Field((_type) => StringFilter, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => StringFilter, {
+    nullable: true
   })
   name?: StringFilter | undefined;
 }

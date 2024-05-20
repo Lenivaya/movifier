@@ -7,13 +7,13 @@ import { MovieWhereInput } from "../inputs/MovieWhereInput";
 
 @TypeGraphQL.InputType("MovieUpdateToOneWithWhereWithoutCrewMembersInput", {})
 export class MovieUpdateToOneWithWhereWithoutCrewMembersInput {
-  @TypeGraphQL.Field((_type) => MovieWhereInput, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => MovieWhereInput, {
+    nullable: true
   })
   where?: MovieWhereInput | undefined;
 
-  @TypeGraphQL.Field((_type) => MovieUpdateWithoutCrewMembersInput, {
-    nullable: false,
+  @TypeGraphQL.Field(_type => MovieUpdateWithoutCrewMembersInput, {
+    nullable: false
   })
   data!: MovieUpdateWithoutCrewMembersInput;
 }

@@ -11,41 +11,38 @@ import { MovieStatsWhereUniqueInput } from "../inputs/MovieStatsWhereUniqueInput
 
 @TypeGraphQL.InputType("MovieStatsUpdateOneWithoutMovieNestedInput", {})
 export class MovieStatsUpdateOneWithoutMovieNestedInput {
-  @TypeGraphQL.Field((_type) => MovieStatsCreateWithoutMovieInput, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => MovieStatsCreateWithoutMovieInput, {
+    nullable: true
   })
   create?: MovieStatsCreateWithoutMovieInput | undefined;
 
-  @TypeGraphQL.Field((_type) => MovieStatsCreateOrConnectWithoutMovieInput, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => MovieStatsCreateOrConnectWithoutMovieInput, {
+    nullable: true
   })
   connectOrCreate?: MovieStatsCreateOrConnectWithoutMovieInput | undefined;
 
-  @TypeGraphQL.Field((_type) => MovieStatsUpsertWithoutMovieInput, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => MovieStatsUpsertWithoutMovieInput, {
+    nullable: true
   })
   upsert?: MovieStatsUpsertWithoutMovieInput | undefined;
 
-  @TypeGraphQL.Field((_type) => MovieStatsWhereInput, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => MovieStatsWhereInput, {
+    nullable: true
   })
   disconnect?: MovieStatsWhereInput | undefined;
 
-  @TypeGraphQL.Field((_type) => MovieStatsWhereInput, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => MovieStatsWhereInput, {
+    nullable: true
   })
   delete?: MovieStatsWhereInput | undefined;
 
-  @TypeGraphQL.Field((_type) => MovieStatsWhereUniqueInput, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => MovieStatsWhereUniqueInput, {
+    nullable: true
   })
   connect?: MovieStatsWhereUniqueInput | undefined;
 
-  @TypeGraphQL.Field(
-    (_type) => MovieStatsUpdateToOneWithWhereWithoutMovieInput,
-    {
-      nullable: true,
-    },
-  )
+  @TypeGraphQL.Field(_type => MovieStatsUpdateToOneWithWhereWithoutMovieInput, {
+    nullable: true
+  })
   update?: MovieStatsUpdateToOneWithWhereWithoutMovieInput | undefined;
 }

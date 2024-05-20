@@ -6,29 +6,20 @@ import { MovieCrewMemberTypeCreateWithoutMovieCrewMembersInput } from "../inputs
 import { MovieCrewMemberTypeUpdateWithoutMovieCrewMembersInput } from "../inputs/MovieCrewMemberTypeUpdateWithoutMovieCrewMembersInput";
 import { MovieCrewMemberTypeWhereInput } from "../inputs/MovieCrewMemberTypeWhereInput";
 
-@TypeGraphQL.InputType(
-  "MovieCrewMemberTypeUpsertWithoutMovieCrewMembersInput",
-  {},
-)
+@TypeGraphQL.InputType("MovieCrewMemberTypeUpsertWithoutMovieCrewMembersInput", {})
 export class MovieCrewMemberTypeUpsertWithoutMovieCrewMembersInput {
-  @TypeGraphQL.Field(
-    (_type) => MovieCrewMemberTypeUpdateWithoutMovieCrewMembersInput,
-    {
-      nullable: false,
-    },
-  )
+  @TypeGraphQL.Field(_type => MovieCrewMemberTypeUpdateWithoutMovieCrewMembersInput, {
+    nullable: false
+  })
   update!: MovieCrewMemberTypeUpdateWithoutMovieCrewMembersInput;
 
-  @TypeGraphQL.Field(
-    (_type) => MovieCrewMemberTypeCreateWithoutMovieCrewMembersInput,
-    {
-      nullable: false,
-    },
-  )
+  @TypeGraphQL.Field(_type => MovieCrewMemberTypeCreateWithoutMovieCrewMembersInput, {
+    nullable: false
+  })
   create!: MovieCrewMemberTypeCreateWithoutMovieCrewMembersInput;
 
-  @TypeGraphQL.Field((_type) => MovieCrewMemberTypeWhereInput, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => MovieCrewMemberTypeWhereInput, {
+    nullable: true
   })
   where?: MovieCrewMemberTypeWhereInput | undefined;
 }

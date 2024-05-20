@@ -4,8 +4,8 @@ import { MovifierAppUserWhereInput } from "../../../inputs/MovifierAppUserWhereI
 
 @TypeGraphQL.ArgsType()
 export class DeleteManyMovifierAppUserArgs {
-  @TypeGraphQL.Field((_type) => MovifierAppUserWhereInput, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => MovifierAppUserWhereInput, {
+    nullable: true
   })
   where?: MovifierAppUserWhereInput | undefined;
 }

@@ -4,7 +4,7 @@ export enum MovieStudioScalarFieldEnum {
   id = "id",
   createdAt = "createdAt",
   updatedAt = "updatedAt",
-  name = "name",
+  name = "name"
 }
 TypeGraphQL.registerEnumType(MovieStudioScalarFieldEnum, {
   name: "MovieStudioScalarFieldEnum",

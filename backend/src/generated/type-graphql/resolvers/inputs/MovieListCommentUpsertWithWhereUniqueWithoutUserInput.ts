@@ -6,23 +6,20 @@ import { MovieListCommentCreateWithoutUserInput } from "../inputs/MovieListComme
 import { MovieListCommentUpdateWithoutUserInput } from "../inputs/MovieListCommentUpdateWithoutUserInput";
 import { MovieListCommentWhereUniqueInput } from "../inputs/MovieListCommentWhereUniqueInput";
 
-@TypeGraphQL.InputType(
-  "MovieListCommentUpsertWithWhereUniqueWithoutUserInput",
-  {},
-)
+@TypeGraphQL.InputType("MovieListCommentUpsertWithWhereUniqueWithoutUserInput", {})
 export class MovieListCommentUpsertWithWhereUniqueWithoutUserInput {
-  @TypeGraphQL.Field((_type) => MovieListCommentWhereUniqueInput, {
-    nullable: false,
+  @TypeGraphQL.Field(_type => MovieListCommentWhereUniqueInput, {
+    nullable: false
   })
   where!: MovieListCommentWhereUniqueInput;
 
-  @TypeGraphQL.Field((_type) => MovieListCommentUpdateWithoutUserInput, {
-    nullable: false,
+  @TypeGraphQL.Field(_type => MovieListCommentUpdateWithoutUserInput, {
+    nullable: false
   })
   update!: MovieListCommentUpdateWithoutUserInput;
 
-  @TypeGraphQL.Field((_type) => MovieListCommentCreateWithoutUserInput, {
-    nullable: false,
+  @TypeGraphQL.Field(_type => MovieListCommentCreateWithoutUserInput, {
+    nullable: false
   })
   create!: MovieListCommentCreateWithoutUserInput;
 }

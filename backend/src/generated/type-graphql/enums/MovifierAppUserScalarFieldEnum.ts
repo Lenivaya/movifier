@@ -8,7 +8,7 @@ export enum MovifierAppUserScalarFieldEnum {
   username = "username",
   password = "password",
   name = "name",
-  role = "role",
+  role = "role"
 }
 TypeGraphQL.registerEnumType(MovifierAppUserScalarFieldEnum, {
   name: "MovifierAppUserScalarFieldEnum",

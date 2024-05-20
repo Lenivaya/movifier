@@ -6,29 +6,20 @@ import { MovifierAppUserCreateWithoutMovieListsCommentsInput } from "../inputs/M
 import { MovifierAppUserUpdateWithoutMovieListsCommentsInput } from "../inputs/MovifierAppUserUpdateWithoutMovieListsCommentsInput";
 import { MovifierAppUserWhereInput } from "../inputs/MovifierAppUserWhereInput";
 
-@TypeGraphQL.InputType(
-  "MovifierAppUserUpsertWithoutMovieListsCommentsInput",
-  {},
-)
+@TypeGraphQL.InputType("MovifierAppUserUpsertWithoutMovieListsCommentsInput", {})
 export class MovifierAppUserUpsertWithoutMovieListsCommentsInput {
-  @TypeGraphQL.Field(
-    (_type) => MovifierAppUserUpdateWithoutMovieListsCommentsInput,
-    {
-      nullable: false,
-    },
-  )
+  @TypeGraphQL.Field(_type => MovifierAppUserUpdateWithoutMovieListsCommentsInput, {
+    nullable: false
+  })
   update!: MovifierAppUserUpdateWithoutMovieListsCommentsInput;
 
-  @TypeGraphQL.Field(
-    (_type) => MovifierAppUserCreateWithoutMovieListsCommentsInput,
-    {
-      nullable: false,
-    },
-  )
+  @TypeGraphQL.Field(_type => MovifierAppUserCreateWithoutMovieListsCommentsInput, {
+    nullable: false
+  })
   create!: MovifierAppUserCreateWithoutMovieListsCommentsInput;
 
-  @TypeGraphQL.Field((_type) => MovifierAppUserWhereInput, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => MovifierAppUserWhereInput, {
+    nullable: true
   })
   where?: MovifierAppUserWhereInput | undefined;
 }

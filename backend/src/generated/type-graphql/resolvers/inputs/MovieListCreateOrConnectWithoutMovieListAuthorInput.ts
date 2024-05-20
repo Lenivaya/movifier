@@ -5,18 +5,15 @@ import { DecimalJSScalar } from "../../scalars";
 import { MovieListCreateWithoutMovieListAuthorInput } from "../inputs/MovieListCreateWithoutMovieListAuthorInput";
 import { MovieListWhereUniqueInput } from "../inputs/MovieListWhereUniqueInput";
 
-@TypeGraphQL.InputType(
-  "MovieListCreateOrConnectWithoutMovieListAuthorInput",
-  {},
-)
+@TypeGraphQL.InputType("MovieListCreateOrConnectWithoutMovieListAuthorInput", {})
 export class MovieListCreateOrConnectWithoutMovieListAuthorInput {
-  @TypeGraphQL.Field((_type) => MovieListWhereUniqueInput, {
-    nullable: false,
+  @TypeGraphQL.Field(_type => MovieListWhereUniqueInput, {
+    nullable: false
   })
   where!: MovieListWhereUniqueInput;
 
-  @TypeGraphQL.Field((_type) => MovieListCreateWithoutMovieListAuthorInput, {
-    nullable: false,
+  @TypeGraphQL.Field(_type => MovieListCreateWithoutMovieListAuthorInput, {
+    nullable: false
   })
   create!: MovieListCreateWithoutMovieListAuthorInput;
 }

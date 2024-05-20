@@ -5,18 +5,18 @@ import { DecimalJSScalar } from "../../scalars";
 
 @TypeGraphQL.ObjectType("MovieCrewMemberTypeCountAggregate", {})
 export class MovieCrewMemberTypeCountAggregate {
-  @TypeGraphQL.Field((_type) => TypeGraphQL.Int, {
-    nullable: false,
+  @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
+    nullable: false
   })
   id!: number;
 
-  @TypeGraphQL.Field((_type) => TypeGraphQL.Int, {
-    nullable: false,
+  @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
+    nullable: false
   })
   name!: number;
 
-  @TypeGraphQL.Field((_type) => TypeGraphQL.Int, {
-    nullable: false,
+  @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
+    nullable: false
   })
   _all!: number;
 }

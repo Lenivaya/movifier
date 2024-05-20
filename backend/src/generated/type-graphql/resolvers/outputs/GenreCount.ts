@@ -8,14 +8,11 @@ import { GenreCountMoviesArgs } from "./args/GenreCountMoviesArgs";
 export class GenreCount {
   movies!: number;
 
-  @TypeGraphQL.Field((_type) => TypeGraphQL.Int, {
+  @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
     name: "movies",
-    nullable: false,
+    nullable: false
   })
-  getMovies(
-    @TypeGraphQL.Root() root: GenreCount,
-    @TypeGraphQL.Args() args: GenreCountMoviesArgs,
-  ): number {
+  getMovies(@TypeGraphQL.Root() root: GenreCount, @TypeGraphQL.Args() args: GenreCountMoviesArgs): number {
     return root.movies;
   }
 }

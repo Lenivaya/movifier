@@ -7,13 +7,13 @@ import { MovieWhereUniqueInput } from "../inputs/MovieWhereUniqueInput";
 
 @TypeGraphQL.InputType("MovieCreateOrConnectWithoutKeywordCategoriesInput", {})
 export class MovieCreateOrConnectWithoutKeywordCategoriesInput {
-  @TypeGraphQL.Field((_type) => MovieWhereUniqueInput, {
-    nullable: false,
+  @TypeGraphQL.Field(_type => MovieWhereUniqueInput, {
+    nullable: false
   })
   where!: MovieWhereUniqueInput;
 
-  @TypeGraphQL.Field((_type) => MovieCreateWithoutKeywordCategoriesInput, {
-    nullable: false,
+  @TypeGraphQL.Field(_type => MovieCreateWithoutKeywordCategoriesInput, {
+    nullable: false
   })
   create!: MovieCreateWithoutKeywordCategoriesInput;
 }

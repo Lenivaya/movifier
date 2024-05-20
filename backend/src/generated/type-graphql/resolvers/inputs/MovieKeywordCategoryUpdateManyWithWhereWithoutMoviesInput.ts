@@ -5,18 +5,15 @@ import { DecimalJSScalar } from "../../scalars";
 import { MovieKeywordCategoryScalarWhereInput } from "../inputs/MovieKeywordCategoryScalarWhereInput";
 import { MovieKeywordCategoryUpdateManyMutationInput } from "../inputs/MovieKeywordCategoryUpdateManyMutationInput";
 
-@TypeGraphQL.InputType(
-  "MovieKeywordCategoryUpdateManyWithWhereWithoutMoviesInput",
-  {},
-)
+@TypeGraphQL.InputType("MovieKeywordCategoryUpdateManyWithWhereWithoutMoviesInput", {})
 export class MovieKeywordCategoryUpdateManyWithWhereWithoutMoviesInput {
-  @TypeGraphQL.Field((_type) => MovieKeywordCategoryScalarWhereInput, {
-    nullable: false,
+  @TypeGraphQL.Field(_type => MovieKeywordCategoryScalarWhereInput, {
+    nullable: false
   })
   where!: MovieKeywordCategoryScalarWhereInput;
 
-  @TypeGraphQL.Field((_type) => MovieKeywordCategoryUpdateManyMutationInput, {
-    nullable: false,
+  @TypeGraphQL.Field(_type => MovieKeywordCategoryUpdateManyMutationInput, {
+    nullable: false
   })
   data!: MovieKeywordCategoryUpdateManyMutationInput;
 }

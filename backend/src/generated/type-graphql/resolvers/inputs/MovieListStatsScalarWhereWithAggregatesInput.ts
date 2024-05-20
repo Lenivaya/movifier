@@ -8,57 +8,48 @@ import { StringWithAggregatesFilter } from "../inputs/StringWithAggregatesFilter
 
 @TypeGraphQL.InputType("MovieListStatsScalarWhereWithAggregatesInput", {})
 export class MovieListStatsScalarWhereWithAggregatesInput {
-  @TypeGraphQL.Field(
-    (_type) => [MovieListStatsScalarWhereWithAggregatesInput],
-    {
-      nullable: true,
-    },
-  )
+  @TypeGraphQL.Field(_type => [MovieListStatsScalarWhereWithAggregatesInput], {
+    nullable: true
+  })
   AND?: MovieListStatsScalarWhereWithAggregatesInput[] | undefined;
 
-  @TypeGraphQL.Field(
-    (_type) => [MovieListStatsScalarWhereWithAggregatesInput],
-    {
-      nullable: true,
-    },
-  )
+  @TypeGraphQL.Field(_type => [MovieListStatsScalarWhereWithAggregatesInput], {
+    nullable: true
+  })
   OR?: MovieListStatsScalarWhereWithAggregatesInput[] | undefined;
 
-  @TypeGraphQL.Field(
-    (_type) => [MovieListStatsScalarWhereWithAggregatesInput],
-    {
-      nullable: true,
-    },
-  )
+  @TypeGraphQL.Field(_type => [MovieListStatsScalarWhereWithAggregatesInput], {
+    nullable: true
+  })
   NOT?: MovieListStatsScalarWhereWithAggregatesInput[] | undefined;
 
-  @TypeGraphQL.Field((_type) => StringWithAggregatesFilter, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => StringWithAggregatesFilter, {
+    nullable: true
   })
   id?: StringWithAggregatesFilter | undefined;
 
-  @TypeGraphQL.Field((_type) => DateTimeWithAggregatesFilter, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => DateTimeWithAggregatesFilter, {
+    nullable: true
   })
   createdAt?: DateTimeWithAggregatesFilter | undefined;
 
-  @TypeGraphQL.Field((_type) => DateTimeWithAggregatesFilter, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => DateTimeWithAggregatesFilter, {
+    nullable: true
   })
   updatedAt?: DateTimeWithAggregatesFilter | undefined;
 
-  @TypeGraphQL.Field((_type) => IntWithAggregatesFilter, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => IntWithAggregatesFilter, {
+    nullable: true
   })
   views?: IntWithAggregatesFilter | undefined;
 
-  @TypeGraphQL.Field((_type) => IntWithAggregatesFilter, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => IntWithAggregatesFilter, {
+    nullable: true
   })
   likes?: IntWithAggregatesFilter | undefined;
 
-  @TypeGraphQL.Field((_type) => StringWithAggregatesFilter, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => StringWithAggregatesFilter, {
+    nullable: true
   })
   movieListId?: StringWithAggregatesFilter | undefined;
 }

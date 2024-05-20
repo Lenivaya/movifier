@@ -6,13 +6,13 @@ import { MovieListCommentCreateManyMovieListInput } from "../inputs/MovieListCom
 
 @TypeGraphQL.InputType("MovieListCommentCreateManyMovieListInputEnvelope", {})
 export class MovieListCommentCreateManyMovieListInputEnvelope {
-  @TypeGraphQL.Field((_type) => [MovieListCommentCreateManyMovieListInput], {
-    nullable: false,
+  @TypeGraphQL.Field(_type => [MovieListCommentCreateManyMovieListInput], {
+    nullable: false
   })
   data!: MovieListCommentCreateManyMovieListInput[];
 
-  @TypeGraphQL.Field((_type) => Boolean, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => Boolean, {
+    nullable: true
   })
   skipDuplicates?: boolean | undefined;
 }

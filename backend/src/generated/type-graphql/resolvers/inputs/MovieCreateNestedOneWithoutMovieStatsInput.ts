@@ -8,18 +8,18 @@ import { MovieWhereUniqueInput } from "../inputs/MovieWhereUniqueInput";
 
 @TypeGraphQL.InputType("MovieCreateNestedOneWithoutMovieStatsInput", {})
 export class MovieCreateNestedOneWithoutMovieStatsInput {
-  @TypeGraphQL.Field((_type) => MovieCreateWithoutMovieStatsInput, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => MovieCreateWithoutMovieStatsInput, {
+    nullable: true
   })
   create?: MovieCreateWithoutMovieStatsInput | undefined;
 
-  @TypeGraphQL.Field((_type) => MovieCreateOrConnectWithoutMovieStatsInput, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => MovieCreateOrConnectWithoutMovieStatsInput, {
+    nullable: true
   })
   connectOrCreate?: MovieCreateOrConnectWithoutMovieStatsInput | undefined;
 
-  @TypeGraphQL.Field((_type) => MovieWhereUniqueInput, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => MovieWhereUniqueInput, {
+    nullable: true
   })
   connect?: MovieWhereUniqueInput | undefined;
 }

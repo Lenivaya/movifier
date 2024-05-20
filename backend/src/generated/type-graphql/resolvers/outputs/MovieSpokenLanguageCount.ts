@@ -8,14 +8,11 @@ import { MovieSpokenLanguageCountMoviesArgs } from "./args/MovieSpokenLanguageCo
 export class MovieSpokenLanguageCount {
   movies!: number;
 
-  @TypeGraphQL.Field((_type) => TypeGraphQL.Int, {
+  @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
     name: "movies",
-    nullable: false,
+    nullable: false
   })
-  getMovies(
-    @TypeGraphQL.Root() root: MovieSpokenLanguageCount,
-    @TypeGraphQL.Args() args: MovieSpokenLanguageCountMoviesArgs,
-  ): number {
+  getMovies(@TypeGraphQL.Root() root: MovieSpokenLanguageCount, @TypeGraphQL.Args() args: MovieSpokenLanguageCountMoviesArgs): number {
     return root.movies;
   }
 }

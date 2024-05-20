@@ -5,8 +5,8 @@ import { DecimalJSScalar } from "../../scalars";
 
 @TypeGraphQL.InputType("StringFieldUpdateOperationsInput", {})
 export class StringFieldUpdateOperationsInput {
-  @TypeGraphQL.Field((_type) => String, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => String, {
+    nullable: true
   })
   set?: string | undefined;
 }

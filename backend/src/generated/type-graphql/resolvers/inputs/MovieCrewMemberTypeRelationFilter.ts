@@ -6,13 +6,13 @@ import { MovieCrewMemberTypeWhereInput } from "../inputs/MovieCrewMemberTypeWher
 
 @TypeGraphQL.InputType("MovieCrewMemberTypeRelationFilter", {})
 export class MovieCrewMemberTypeRelationFilter {
-  @TypeGraphQL.Field((_type) => MovieCrewMemberTypeWhereInput, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => MovieCrewMemberTypeWhereInput, {
+    nullable: true
   })
   is?: MovieCrewMemberTypeWhereInput | undefined;
 
-  @TypeGraphQL.Field((_type) => MovieCrewMemberTypeWhereInput, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => MovieCrewMemberTypeWhereInput, {
+    nullable: true
   })
   isNot?: MovieCrewMemberTypeWhereInput | undefined;
 }

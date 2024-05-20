@@ -6,36 +6,25 @@ import { DateTimeFieldUpdateOperationsInput } from "../inputs/DateTimeFieldUpdat
 import { MovieCrewMemberUpdateOneRequiredWithoutMoviesNestedInput } from "../inputs/MovieCrewMemberUpdateOneRequiredWithoutMoviesNestedInput";
 import { MovieUpdateOneRequiredWithoutCrewMembersNestedInput } from "../inputs/MovieUpdateOneRequiredWithoutCrewMembersNestedInput";
 
-@TypeGraphQL.InputType(
-  "MovieCrewMemberOnMovieUpdateWithoutMovieCrewMemberTypeInput",
-  {},
-)
+@TypeGraphQL.InputType("MovieCrewMemberOnMovieUpdateWithoutMovieCrewMemberTypeInput", {})
 export class MovieCrewMemberOnMovieUpdateWithoutMovieCrewMemberTypeInput {
-  @TypeGraphQL.Field((_type) => DateTimeFieldUpdateOperationsInput, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => DateTimeFieldUpdateOperationsInput, {
+    nullable: true
   })
   createdAt?: DateTimeFieldUpdateOperationsInput | undefined;
 
-  @TypeGraphQL.Field((_type) => DateTimeFieldUpdateOperationsInput, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => DateTimeFieldUpdateOperationsInput, {
+    nullable: true
   })
   updatedAt?: DateTimeFieldUpdateOperationsInput | undefined;
 
-  @TypeGraphQL.Field(
-    (_type) => MovieUpdateOneRequiredWithoutCrewMembersNestedInput,
-    {
-      nullable: true,
-    },
-  )
+  @TypeGraphQL.Field(_type => MovieUpdateOneRequiredWithoutCrewMembersNestedInput, {
+    nullable: true
+  })
   movie?: MovieUpdateOneRequiredWithoutCrewMembersNestedInput | undefined;
 
-  @TypeGraphQL.Field(
-    (_type) => MovieCrewMemberUpdateOneRequiredWithoutMoviesNestedInput,
-    {
-      nullable: true,
-    },
-  )
-  crewMember?:
-    | MovieCrewMemberUpdateOneRequiredWithoutMoviesNestedInput
-    | undefined;
+  @TypeGraphQL.Field(_type => MovieCrewMemberUpdateOneRequiredWithoutMoviesNestedInput, {
+    nullable: true
+  })
+  crewMember?: MovieCrewMemberUpdateOneRequiredWithoutMoviesNestedInput | undefined;
 }

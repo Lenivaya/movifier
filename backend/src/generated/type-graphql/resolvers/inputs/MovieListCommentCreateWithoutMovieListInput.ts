@@ -6,31 +6,28 @@ import { MovifierAppUserCreateNestedOneWithoutMovieListsCommentsInput } from "..
 
 @TypeGraphQL.InputType("MovieListCommentCreateWithoutMovieListInput", {})
 export class MovieListCommentCreateWithoutMovieListInput {
-  @TypeGraphQL.Field((_type) => String, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => String, {
+    nullable: true
   })
   id?: string | undefined;
 
-  @TypeGraphQL.Field((_type) => Date, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => Date, {
+    nullable: true
   })
   createdAt?: Date | undefined;
 
-  @TypeGraphQL.Field((_type) => Date, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => Date, {
+    nullable: true
   })
   updatedAt?: Date | undefined;
 
-  @TypeGraphQL.Field((_type) => String, {
-    nullable: false,
+  @TypeGraphQL.Field(_type => String, {
+    nullable: false
   })
   content!: string;
 
-  @TypeGraphQL.Field(
-    (_type) => MovifierAppUserCreateNestedOneWithoutMovieListsCommentsInput,
-    {
-      nullable: false,
-    },
-  )
+  @TypeGraphQL.Field(_type => MovifierAppUserCreateNestedOneWithoutMovieListsCommentsInput, {
+    nullable: false
+  })
   user!: MovifierAppUserCreateNestedOneWithoutMovieListsCommentsInput;
 }

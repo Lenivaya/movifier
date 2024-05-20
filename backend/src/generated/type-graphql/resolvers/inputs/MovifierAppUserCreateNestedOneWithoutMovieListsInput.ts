@@ -6,28 +6,20 @@ import { MovifierAppUserCreateOrConnectWithoutMovieListsInput } from "../inputs/
 import { MovifierAppUserCreateWithoutMovieListsInput } from "../inputs/MovifierAppUserCreateWithoutMovieListsInput";
 import { MovifierAppUserWhereUniqueInput } from "../inputs/MovifierAppUserWhereUniqueInput";
 
-@TypeGraphQL.InputType(
-  "MovifierAppUserCreateNestedOneWithoutMovieListsInput",
-  {},
-)
+@TypeGraphQL.InputType("MovifierAppUserCreateNestedOneWithoutMovieListsInput", {})
 export class MovifierAppUserCreateNestedOneWithoutMovieListsInput {
-  @TypeGraphQL.Field((_type) => MovifierAppUserCreateWithoutMovieListsInput, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => MovifierAppUserCreateWithoutMovieListsInput, {
+    nullable: true
   })
   create?: MovifierAppUserCreateWithoutMovieListsInput | undefined;
 
-  @TypeGraphQL.Field(
-    (_type) => MovifierAppUserCreateOrConnectWithoutMovieListsInput,
-    {
-      nullable: true,
-    },
-  )
-  connectOrCreate?:
-    | MovifierAppUserCreateOrConnectWithoutMovieListsInput
-    | undefined;
+  @TypeGraphQL.Field(_type => MovifierAppUserCreateOrConnectWithoutMovieListsInput, {
+    nullable: true
+  })
+  connectOrCreate?: MovifierAppUserCreateOrConnectWithoutMovieListsInput | undefined;
 
-  @TypeGraphQL.Field((_type) => MovifierAppUserWhereUniqueInput, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => MovifierAppUserWhereUniqueInput, {
+    nullable: true
   })
   connect?: MovifierAppUserWhereUniqueInput | undefined;
 }

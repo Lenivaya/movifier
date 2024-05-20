@@ -11,86 +11,60 @@ import { MovieListUpdateWithWhereUniqueWithoutMovieListAuthorInput } from "../in
 import { MovieListUpsertWithWhereUniqueWithoutMovieListAuthorInput } from "../inputs/MovieListUpsertWithWhereUniqueWithoutMovieListAuthorInput";
 import { MovieListWhereUniqueInput } from "../inputs/MovieListWhereUniqueInput";
 
-@TypeGraphQL.InputType(
-  "MovieListUpdateManyWithoutMovieListAuthorNestedInput",
-  {},
-)
+@TypeGraphQL.InputType("MovieListUpdateManyWithoutMovieListAuthorNestedInput", {})
 export class MovieListUpdateManyWithoutMovieListAuthorNestedInput {
-  @TypeGraphQL.Field((_type) => [MovieListCreateWithoutMovieListAuthorInput], {
-    nullable: true,
+  @TypeGraphQL.Field(_type => [MovieListCreateWithoutMovieListAuthorInput], {
+    nullable: true
   })
   create?: MovieListCreateWithoutMovieListAuthorInput[] | undefined;
 
-  @TypeGraphQL.Field(
-    (_type) => [MovieListCreateOrConnectWithoutMovieListAuthorInput],
-    {
-      nullable: true,
-    },
-  )
-  connectOrCreate?:
-    | MovieListCreateOrConnectWithoutMovieListAuthorInput[]
-    | undefined;
+  @TypeGraphQL.Field(_type => [MovieListCreateOrConnectWithoutMovieListAuthorInput], {
+    nullable: true
+  })
+  connectOrCreate?: MovieListCreateOrConnectWithoutMovieListAuthorInput[] | undefined;
 
-  @TypeGraphQL.Field(
-    (_type) => [MovieListUpsertWithWhereUniqueWithoutMovieListAuthorInput],
-    {
-      nullable: true,
-    },
-  )
-  upsert?:
-    | MovieListUpsertWithWhereUniqueWithoutMovieListAuthorInput[]
-    | undefined;
+  @TypeGraphQL.Field(_type => [MovieListUpsertWithWhereUniqueWithoutMovieListAuthorInput], {
+    nullable: true
+  })
+  upsert?: MovieListUpsertWithWhereUniqueWithoutMovieListAuthorInput[] | undefined;
 
-  @TypeGraphQL.Field(
-    (_type) => MovieListCreateManyMovieListAuthorInputEnvelope,
-    {
-      nullable: true,
-    },
-  )
+  @TypeGraphQL.Field(_type => MovieListCreateManyMovieListAuthorInputEnvelope, {
+    nullable: true
+  })
   createMany?: MovieListCreateManyMovieListAuthorInputEnvelope | undefined;
 
-  @TypeGraphQL.Field((_type) => [MovieListWhereUniqueInput], {
-    nullable: true,
+  @TypeGraphQL.Field(_type => [MovieListWhereUniqueInput], {
+    nullable: true
   })
   set?: MovieListWhereUniqueInput[] | undefined;
 
-  @TypeGraphQL.Field((_type) => [MovieListWhereUniqueInput], {
-    nullable: true,
+  @TypeGraphQL.Field(_type => [MovieListWhereUniqueInput], {
+    nullable: true
   })
   disconnect?: MovieListWhereUniqueInput[] | undefined;
 
-  @TypeGraphQL.Field((_type) => [MovieListWhereUniqueInput], {
-    nullable: true,
+  @TypeGraphQL.Field(_type => [MovieListWhereUniqueInput], {
+    nullable: true
   })
   delete?: MovieListWhereUniqueInput[] | undefined;
 
-  @TypeGraphQL.Field((_type) => [MovieListWhereUniqueInput], {
-    nullable: true,
+  @TypeGraphQL.Field(_type => [MovieListWhereUniqueInput], {
+    nullable: true
   })
   connect?: MovieListWhereUniqueInput[] | undefined;
 
-  @TypeGraphQL.Field(
-    (_type) => [MovieListUpdateWithWhereUniqueWithoutMovieListAuthorInput],
-    {
-      nullable: true,
-    },
-  )
-  update?:
-    | MovieListUpdateWithWhereUniqueWithoutMovieListAuthorInput[]
-    | undefined;
+  @TypeGraphQL.Field(_type => [MovieListUpdateWithWhereUniqueWithoutMovieListAuthorInput], {
+    nullable: true
+  })
+  update?: MovieListUpdateWithWhereUniqueWithoutMovieListAuthorInput[] | undefined;
 
-  @TypeGraphQL.Field(
-    (_type) => [MovieListUpdateManyWithWhereWithoutMovieListAuthorInput],
-    {
-      nullable: true,
-    },
-  )
-  updateMany?:
-    | MovieListUpdateManyWithWhereWithoutMovieListAuthorInput[]
-    | undefined;
+  @TypeGraphQL.Field(_type => [MovieListUpdateManyWithWhereWithoutMovieListAuthorInput], {
+    nullable: true
+  })
+  updateMany?: MovieListUpdateManyWithWhereWithoutMovieListAuthorInput[] | undefined;
 
-  @TypeGraphQL.Field((_type) => [MovieListScalarWhereInput], {
-    nullable: true,
+  @TypeGraphQL.Field(_type => [MovieListScalarWhereInput], {
+    nullable: true
   })
   deleteMany?: MovieListScalarWhereInput[] | undefined;
 }

@@ -5,18 +5,15 @@ import { DecimalJSScalar } from "../../scalars";
 import { MovieSpokenLanguageCreateWithoutMoviesInput } from "../inputs/MovieSpokenLanguageCreateWithoutMoviesInput";
 import { MovieSpokenLanguageWhereUniqueInput } from "../inputs/MovieSpokenLanguageWhereUniqueInput";
 
-@TypeGraphQL.InputType(
-  "MovieSpokenLanguageCreateOrConnectWithoutMoviesInput",
-  {},
-)
+@TypeGraphQL.InputType("MovieSpokenLanguageCreateOrConnectWithoutMoviesInput", {})
 export class MovieSpokenLanguageCreateOrConnectWithoutMoviesInput {
-  @TypeGraphQL.Field((_type) => MovieSpokenLanguageWhereUniqueInput, {
-    nullable: false,
+  @TypeGraphQL.Field(_type => MovieSpokenLanguageWhereUniqueInput, {
+    nullable: false
   })
   where!: MovieSpokenLanguageWhereUniqueInput;
 
-  @TypeGraphQL.Field((_type) => MovieSpokenLanguageCreateWithoutMoviesInput, {
-    nullable: false,
+  @TypeGraphQL.Field(_type => MovieSpokenLanguageCreateWithoutMoviesInput, {
+    nullable: false
   })
   create!: MovieSpokenLanguageCreateWithoutMoviesInput;
 }

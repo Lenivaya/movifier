@@ -7,41 +7,25 @@ import { MovieCrewMemberOnMovieCreateOrConnectWithoutCrewMemberInput } from "../
 import { MovieCrewMemberOnMovieCreateWithoutCrewMemberInput } from "../inputs/MovieCrewMemberOnMovieCreateWithoutCrewMemberInput";
 import { MovieCrewMemberOnMovieWhereUniqueInput } from "../inputs/MovieCrewMemberOnMovieWhereUniqueInput";
 
-@TypeGraphQL.InputType(
-  "MovieCrewMemberOnMovieCreateNestedManyWithoutCrewMemberInput",
-  {},
-)
+@TypeGraphQL.InputType("MovieCrewMemberOnMovieCreateNestedManyWithoutCrewMemberInput", {})
 export class MovieCrewMemberOnMovieCreateNestedManyWithoutCrewMemberInput {
-  @TypeGraphQL.Field(
-    (_type) => [MovieCrewMemberOnMovieCreateWithoutCrewMemberInput],
-    {
-      nullable: true,
-    },
-  )
+  @TypeGraphQL.Field(_type => [MovieCrewMemberOnMovieCreateWithoutCrewMemberInput], {
+    nullable: true
+  })
   create?: MovieCrewMemberOnMovieCreateWithoutCrewMemberInput[] | undefined;
 
-  @TypeGraphQL.Field(
-    (_type) => [MovieCrewMemberOnMovieCreateOrConnectWithoutCrewMemberInput],
-    {
-      nullable: true,
-    },
-  )
-  connectOrCreate?:
-    | MovieCrewMemberOnMovieCreateOrConnectWithoutCrewMemberInput[]
-    | undefined;
+  @TypeGraphQL.Field(_type => [MovieCrewMemberOnMovieCreateOrConnectWithoutCrewMemberInput], {
+    nullable: true
+  })
+  connectOrCreate?: MovieCrewMemberOnMovieCreateOrConnectWithoutCrewMemberInput[] | undefined;
 
-  @TypeGraphQL.Field(
-    (_type) => MovieCrewMemberOnMovieCreateManyCrewMemberInputEnvelope,
-    {
-      nullable: true,
-    },
-  )
-  createMany?:
-    | MovieCrewMemberOnMovieCreateManyCrewMemberInputEnvelope
-    | undefined;
+  @TypeGraphQL.Field(_type => MovieCrewMemberOnMovieCreateManyCrewMemberInputEnvelope, {
+    nullable: true
+  })
+  createMany?: MovieCrewMemberOnMovieCreateManyCrewMemberInputEnvelope | undefined;
 
-  @TypeGraphQL.Field((_type) => [MovieCrewMemberOnMovieWhereUniqueInput], {
-    nullable: true,
+  @TypeGraphQL.Field(_type => [MovieCrewMemberOnMovieWhereUniqueInput], {
+    nullable: true
   })
   connect?: MovieCrewMemberOnMovieWhereUniqueInput[] | undefined;
 }

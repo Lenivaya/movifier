@@ -6,13 +6,13 @@ import { MovieStatsWhereInput } from "../inputs/MovieStatsWhereInput";
 
 @TypeGraphQL.InputType("MovieStatsNullableRelationFilter", {})
 export class MovieStatsNullableRelationFilter {
-  @TypeGraphQL.Field((_type) => MovieStatsWhereInput, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => MovieStatsWhereInput, {
+    nullable: true
   })
   is?: MovieStatsWhereInput | undefined;
 
-  @TypeGraphQL.Field((_type) => MovieStatsWhereInput, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => MovieStatsWhereInput, {
+    nullable: true
   })
   isNot?: MovieStatsWhereInput | undefined;
 }

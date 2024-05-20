@@ -16,83 +16,63 @@ import { StringFieldUpdateOperationsInput } from "../inputs/StringFieldUpdateOpe
 
 @TypeGraphQL.InputType("MovieUpdateWithoutRatingsInput", {})
 export class MovieUpdateWithoutRatingsInput {
-  @TypeGraphQL.Field((_type) => StringFieldUpdateOperationsInput, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => StringFieldUpdateOperationsInput, {
+    nullable: true
   })
   id?: StringFieldUpdateOperationsInput | undefined;
 
-  @TypeGraphQL.Field((_type) => DateTimeFieldUpdateOperationsInput, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => DateTimeFieldUpdateOperationsInput, {
+    nullable: true
   })
   createdAt?: DateTimeFieldUpdateOperationsInput | undefined;
 
-  @TypeGraphQL.Field((_type) => DateTimeFieldUpdateOperationsInput, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => DateTimeFieldUpdateOperationsInput, {
+    nullable: true
   })
   updatedAt?: DateTimeFieldUpdateOperationsInput | undefined;
 
-  @TypeGraphQL.Field((_type) => MovieInfoUpdateOneWithoutMovieNestedInput, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => MovieInfoUpdateOneWithoutMovieNestedInput, {
+    nullable: true
   })
   movieInfo?: MovieInfoUpdateOneWithoutMovieNestedInput | undefined;
 
-  @TypeGraphQL.Field((_type) => MovieStatsUpdateOneWithoutMovieNestedInput, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => MovieStatsUpdateOneWithoutMovieNestedInput, {
+    nullable: true
   })
   movieStats?: MovieStatsUpdateOneWithoutMovieNestedInput | undefined;
 
-  @TypeGraphQL.Field(
-    (_type) => MovieCrewMemberOnMovieUpdateManyWithoutMovieNestedInput,
-    {
-      nullable: true,
-    },
-  )
-  crewMembers?:
-    | MovieCrewMemberOnMovieUpdateManyWithoutMovieNestedInput
-    | undefined;
+  @TypeGraphQL.Field(_type => MovieCrewMemberOnMovieUpdateManyWithoutMovieNestedInput, {
+    nullable: true
+  })
+  crewMembers?: MovieCrewMemberOnMovieUpdateManyWithoutMovieNestedInput | undefined;
 
-  @TypeGraphQL.Field((_type) => MovieStudioUpdateManyWithoutMoviesNestedInput, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => MovieStudioUpdateManyWithoutMoviesNestedInput, {
+    nullable: true
   })
   studios?: MovieStudioUpdateManyWithoutMoviesNestedInput | undefined;
 
-  @TypeGraphQL.Field((_type) => GenreUpdateManyWithoutMoviesNestedInput, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => GenreUpdateManyWithoutMoviesNestedInput, {
+    nullable: true
   })
   genres?: GenreUpdateManyWithoutMoviesNestedInput | undefined;
 
-  @TypeGraphQL.Field(
-    (_type) => MovieKeywordCategoryUpdateManyWithoutMoviesNestedInput,
-    {
-      nullable: true,
-    },
-  )
-  keywordCategories?:
-    | MovieKeywordCategoryUpdateManyWithoutMoviesNestedInput
-    | undefined;
+  @TypeGraphQL.Field(_type => MovieKeywordCategoryUpdateManyWithoutMoviesNestedInput, {
+    nullable: true
+  })
+  keywordCategories?: MovieKeywordCategoryUpdateManyWithoutMoviesNestedInput | undefined;
 
-  @TypeGraphQL.Field((_type) => MovieListUpdateManyWithoutMoviesNestedInput, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => MovieListUpdateManyWithoutMoviesNestedInput, {
+    nullable: true
   })
   movieLists?: MovieListUpdateManyWithoutMoviesNestedInput | undefined;
 
-  @TypeGraphQL.Field(
-    (_type) => MovifierAppUserUpdateManyWithoutWatchlistNestedInput,
-    {
-      nullable: true,
-    },
-  )
-  inWatchlistByUsers?:
-    | MovifierAppUserUpdateManyWithoutWatchlistNestedInput
-    | undefined;
+  @TypeGraphQL.Field(_type => MovifierAppUserUpdateManyWithoutWatchlistNestedInput, {
+    nullable: true
+  })
+  inWatchlistByUsers?: MovifierAppUserUpdateManyWithoutWatchlistNestedInput | undefined;
 
-  @TypeGraphQL.Field(
-    (_type) => MovieSpokenLanguageUpdateManyWithoutMoviesNestedInput,
-    {
-      nullable: true,
-    },
-  )
-  spokenLanguages?:
-    | MovieSpokenLanguageUpdateManyWithoutMoviesNestedInput
-    | undefined;
+  @TypeGraphQL.Field(_type => MovieSpokenLanguageUpdateManyWithoutMoviesNestedInput, {
+    nullable: true
+  })
+  spokenLanguages?: MovieSpokenLanguageUpdateManyWithoutMoviesNestedInput | undefined;
 }

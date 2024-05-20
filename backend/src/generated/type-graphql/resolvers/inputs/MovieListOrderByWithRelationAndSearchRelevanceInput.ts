@@ -9,68 +9,55 @@ import { MovieOrderByRelationAggregateInput } from "../inputs/MovieOrderByRelati
 import { MovifierAppUserOrderByWithRelationAndSearchRelevanceInput } from "../inputs/MovifierAppUserOrderByWithRelationAndSearchRelevanceInput";
 import { SortOrder } from "../../enums/SortOrder";
 
-@TypeGraphQL.InputType(
-  "MovieListOrderByWithRelationAndSearchRelevanceInput",
-  {},
-)
+@TypeGraphQL.InputType("MovieListOrderByWithRelationAndSearchRelevanceInput", {})
 export class MovieListOrderByWithRelationAndSearchRelevanceInput {
-  @TypeGraphQL.Field((_type) => SortOrder, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => SortOrder, {
+    nullable: true
   })
   id?: "asc" | "desc" | undefined;
 
-  @TypeGraphQL.Field((_type) => SortOrder, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => SortOrder, {
+    nullable: true
   })
   createdAt?: "asc" | "desc" | undefined;
 
-  @TypeGraphQL.Field((_type) => SortOrder, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => SortOrder, {
+    nullable: true
   })
   updatedAt?: "asc" | "desc" | undefined;
 
-  @TypeGraphQL.Field((_type) => SortOrder, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => SortOrder, {
+    nullable: true
   })
   name?: "asc" | "desc" | undefined;
 
-  @TypeGraphQL.Field((_type) => SortOrder, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => SortOrder, {
+    nullable: true
   })
   userId?: "asc" | "desc" | undefined;
 
-  @TypeGraphQL.Field((_type) => MovieOrderByRelationAggregateInput, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => MovieOrderByRelationAggregateInput, {
+    nullable: true
   })
   movies?: MovieOrderByRelationAggregateInput | undefined;
 
-  @TypeGraphQL.Field(
-    (_type) => MovifierAppUserOrderByWithRelationAndSearchRelevanceInput,
-    {
-      nullable: true,
-    },
-  )
-  movieListAuthor?:
-    | MovifierAppUserOrderByWithRelationAndSearchRelevanceInput
-    | undefined;
+  @TypeGraphQL.Field(_type => MovifierAppUserOrderByWithRelationAndSearchRelevanceInput, {
+    nullable: true
+  })
+  movieListAuthor?: MovifierAppUserOrderByWithRelationAndSearchRelevanceInput | undefined;
 
-  @TypeGraphQL.Field(
-    (_type) => MovieListStatsOrderByWithRelationAndSearchRelevanceInput,
-    {
-      nullable: true,
-    },
-  )
-  MovieListStats?:
-    | MovieListStatsOrderByWithRelationAndSearchRelevanceInput
-    | undefined;
+  @TypeGraphQL.Field(_type => MovieListStatsOrderByWithRelationAndSearchRelevanceInput, {
+    nullable: true
+  })
+  MovieListStats?: MovieListStatsOrderByWithRelationAndSearchRelevanceInput | undefined;
 
-  @TypeGraphQL.Field((_type) => MovieListCommentOrderByRelationAggregateInput, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => MovieListCommentOrderByRelationAggregateInput, {
+    nullable: true
   })
   movieListComments?: MovieListCommentOrderByRelationAggregateInput | undefined;
 
-  @TypeGraphQL.Field((_type) => MovieListOrderByRelevanceInput, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => MovieListOrderByRelevanceInput, {
+    nullable: true
   })
   _relevance?: MovieListOrderByRelevanceInput | undefined;
 }

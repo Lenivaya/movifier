@@ -6,23 +6,20 @@ import { MovieSpokenLanguageCreateWithoutMoviesInput } from "../inputs/MovieSpok
 import { MovieSpokenLanguageUpdateWithoutMoviesInput } from "../inputs/MovieSpokenLanguageUpdateWithoutMoviesInput";
 import { MovieSpokenLanguageWhereUniqueInput } from "../inputs/MovieSpokenLanguageWhereUniqueInput";
 
-@TypeGraphQL.InputType(
-  "MovieSpokenLanguageUpsertWithWhereUniqueWithoutMoviesInput",
-  {},
-)
+@TypeGraphQL.InputType("MovieSpokenLanguageUpsertWithWhereUniqueWithoutMoviesInput", {})
 export class MovieSpokenLanguageUpsertWithWhereUniqueWithoutMoviesInput {
-  @TypeGraphQL.Field((_type) => MovieSpokenLanguageWhereUniqueInput, {
-    nullable: false,
+  @TypeGraphQL.Field(_type => MovieSpokenLanguageWhereUniqueInput, {
+    nullable: false
   })
   where!: MovieSpokenLanguageWhereUniqueInput;
 
-  @TypeGraphQL.Field((_type) => MovieSpokenLanguageUpdateWithoutMoviesInput, {
-    nullable: false,
+  @TypeGraphQL.Field(_type => MovieSpokenLanguageUpdateWithoutMoviesInput, {
+    nullable: false
   })
   update!: MovieSpokenLanguageUpdateWithoutMoviesInput;
 
-  @TypeGraphQL.Field((_type) => MovieSpokenLanguageCreateWithoutMoviesInput, {
-    nullable: false,
+  @TypeGraphQL.Field(_type => MovieSpokenLanguageCreateWithoutMoviesInput, {
+    nullable: false
   })
   create!: MovieSpokenLanguageCreateWithoutMoviesInput;
 }

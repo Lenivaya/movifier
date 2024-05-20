@@ -8,50 +8,30 @@ import { MovieCrewMemberTypeUpdateToOneWithWhereWithoutMovieCrewMembersInput } f
 import { MovieCrewMemberTypeUpsertWithoutMovieCrewMembersInput } from "../inputs/MovieCrewMemberTypeUpsertWithoutMovieCrewMembersInput";
 import { MovieCrewMemberTypeWhereUniqueInput } from "../inputs/MovieCrewMemberTypeWhereUniqueInput";
 
-@TypeGraphQL.InputType(
-  "MovieCrewMemberTypeUpdateOneRequiredWithoutMovieCrewMembersNestedInput",
-  {},
-)
+@TypeGraphQL.InputType("MovieCrewMemberTypeUpdateOneRequiredWithoutMovieCrewMembersNestedInput", {})
 export class MovieCrewMemberTypeUpdateOneRequiredWithoutMovieCrewMembersNestedInput {
-  @TypeGraphQL.Field(
-    (_type) => MovieCrewMemberTypeCreateWithoutMovieCrewMembersInput,
-    {
-      nullable: true,
-    },
-  )
+  @TypeGraphQL.Field(_type => MovieCrewMemberTypeCreateWithoutMovieCrewMembersInput, {
+    nullable: true
+  })
   create?: MovieCrewMemberTypeCreateWithoutMovieCrewMembersInput | undefined;
 
-  @TypeGraphQL.Field(
-    (_type) => MovieCrewMemberTypeCreateOrConnectWithoutMovieCrewMembersInput,
-    {
-      nullable: true,
-    },
-  )
-  connectOrCreate?:
-    | MovieCrewMemberTypeCreateOrConnectWithoutMovieCrewMembersInput
-    | undefined;
+  @TypeGraphQL.Field(_type => MovieCrewMemberTypeCreateOrConnectWithoutMovieCrewMembersInput, {
+    nullable: true
+  })
+  connectOrCreate?: MovieCrewMemberTypeCreateOrConnectWithoutMovieCrewMembersInput | undefined;
 
-  @TypeGraphQL.Field(
-    (_type) => MovieCrewMemberTypeUpsertWithoutMovieCrewMembersInput,
-    {
-      nullable: true,
-    },
-  )
+  @TypeGraphQL.Field(_type => MovieCrewMemberTypeUpsertWithoutMovieCrewMembersInput, {
+    nullable: true
+  })
   upsert?: MovieCrewMemberTypeUpsertWithoutMovieCrewMembersInput | undefined;
 
-  @TypeGraphQL.Field((_type) => MovieCrewMemberTypeWhereUniqueInput, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => MovieCrewMemberTypeWhereUniqueInput, {
+    nullable: true
   })
   connect?: MovieCrewMemberTypeWhereUniqueInput | undefined;
 
-  @TypeGraphQL.Field(
-    (_type) =>
-      MovieCrewMemberTypeUpdateToOneWithWhereWithoutMovieCrewMembersInput,
-    {
-      nullable: true,
-    },
-  )
-  update?:
-    | MovieCrewMemberTypeUpdateToOneWithWhereWithoutMovieCrewMembersInput
-    | undefined;
+  @TypeGraphQL.Field(_type => MovieCrewMemberTypeUpdateToOneWithWhereWithoutMovieCrewMembersInput, {
+    nullable: true
+  })
+  update?: MovieCrewMemberTypeUpdateToOneWithWhereWithoutMovieCrewMembersInput | undefined;
 }

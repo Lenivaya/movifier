@@ -5,7 +5,7 @@ export enum MovifierAppUserOrderByRelevanceFieldEnum {
   email = "email",
   username = "username",
   password = "password",
-  name = "name",
+  name = "name"
 }
 TypeGraphQL.registerEnumType(MovifierAppUserOrderByRelevanceFieldEnum, {
   name: "MovifierAppUserOrderByRelevanceFieldEnum",

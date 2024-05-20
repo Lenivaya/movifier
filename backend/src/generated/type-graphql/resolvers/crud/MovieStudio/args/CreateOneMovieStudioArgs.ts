@@ -4,8 +4,8 @@ import { MovieStudioCreateInput } from "../../../inputs/MovieStudioCreateInput";
 
 @TypeGraphQL.ArgsType()
 export class CreateOneMovieStudioArgs {
-  @TypeGraphQL.Field((_type) => MovieStudioCreateInput, {
-    nullable: false,
+  @TypeGraphQL.Field(_type => MovieStudioCreateInput, {
+    nullable: false
   })
   data!: MovieStudioCreateInput;
 }

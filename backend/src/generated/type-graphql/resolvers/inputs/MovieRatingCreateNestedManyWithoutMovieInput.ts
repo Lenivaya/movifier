@@ -9,23 +9,23 @@ import { MovieRatingWhereUniqueInput } from "../inputs/MovieRatingWhereUniqueInp
 
 @TypeGraphQL.InputType("MovieRatingCreateNestedManyWithoutMovieInput", {})
 export class MovieRatingCreateNestedManyWithoutMovieInput {
-  @TypeGraphQL.Field((_type) => [MovieRatingCreateWithoutMovieInput], {
-    nullable: true,
+  @TypeGraphQL.Field(_type => [MovieRatingCreateWithoutMovieInput], {
+    nullable: true
   })
   create?: MovieRatingCreateWithoutMovieInput[] | undefined;
 
-  @TypeGraphQL.Field((_type) => [MovieRatingCreateOrConnectWithoutMovieInput], {
-    nullable: true,
+  @TypeGraphQL.Field(_type => [MovieRatingCreateOrConnectWithoutMovieInput], {
+    nullable: true
   })
   connectOrCreate?: MovieRatingCreateOrConnectWithoutMovieInput[] | undefined;
 
-  @TypeGraphQL.Field((_type) => MovieRatingCreateManyMovieInputEnvelope, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => MovieRatingCreateManyMovieInputEnvelope, {
+    nullable: true
   })
   createMany?: MovieRatingCreateManyMovieInputEnvelope | undefined;
 
-  @TypeGraphQL.Field((_type) => [MovieRatingWhereUniqueInput], {
-    nullable: true,
+  @TypeGraphQL.Field(_type => [MovieRatingWhereUniqueInput], {
+    nullable: true
   })
   connect?: MovieRatingWhereUniqueInput[] | undefined;
 }

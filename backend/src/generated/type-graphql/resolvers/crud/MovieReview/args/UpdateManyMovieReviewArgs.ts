@@ -5,13 +5,13 @@ import { MovieReviewWhereInput } from "../../../inputs/MovieReviewWhereInput";
 
 @TypeGraphQL.ArgsType()
 export class UpdateManyMovieReviewArgs {
-  @TypeGraphQL.Field((_type) => MovieReviewUpdateManyMutationInput, {
-    nullable: false,
+  @TypeGraphQL.Field(_type => MovieReviewUpdateManyMutationInput, {
+    nullable: false
   })
   data!: MovieReviewUpdateManyMutationInput;
 
-  @TypeGraphQL.Field((_type) => MovieReviewWhereInput, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => MovieReviewWhereInput, {
+    nullable: true
   })
   where?: MovieReviewWhereInput | undefined;
 }

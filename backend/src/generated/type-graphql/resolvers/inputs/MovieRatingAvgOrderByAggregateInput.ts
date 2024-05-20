@@ -6,8 +6,8 @@ import { SortOrder } from "../../enums/SortOrder";
 
 @TypeGraphQL.InputType("MovieRatingAvgOrderByAggregateInput", {})
 export class MovieRatingAvgOrderByAggregateInput {
-  @TypeGraphQL.Field((_type) => SortOrder, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => SortOrder, {
+    nullable: true
   })
   rating?: "asc" | "desc" | undefined;
 }

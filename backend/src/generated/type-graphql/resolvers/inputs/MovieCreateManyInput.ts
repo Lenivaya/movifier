@@ -5,18 +5,18 @@ import { DecimalJSScalar } from "../../scalars";
 
 @TypeGraphQL.InputType("MovieCreateManyInput", {})
 export class MovieCreateManyInput {
-  @TypeGraphQL.Field((_type) => String, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => String, {
+    nullable: true
   })
   id?: string | undefined;
 
-  @TypeGraphQL.Field((_type) => Date, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => Date, {
+    nullable: true
   })
   createdAt?: Date | undefined;
 
-  @TypeGraphQL.Field((_type) => Date, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => Date, {
+    nullable: true
   })
   updatedAt?: Date | undefined;
 }

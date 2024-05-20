@@ -5,13 +5,13 @@ import { DecimalJSScalar } from "../../scalars";
 
 @TypeGraphQL.InputType("MovieInfoUpdatealternativeTitlesInput", {})
 export class MovieInfoUpdatealternativeTitlesInput {
-  @TypeGraphQL.Field((_type) => [String], {
-    nullable: true,
+  @TypeGraphQL.Field(_type => [String], {
+    nullable: true
   })
   set?: string[] | undefined;
 
-  @TypeGraphQL.Field((_type) => [String], {
-    nullable: true,
+  @TypeGraphQL.Field(_type => [String], {
+    nullable: true
   })
   push?: string[] | undefined;
 }

@@ -4,13 +4,13 @@ import { MovifierAppUserCreateManyInput } from "../../../inputs/MovifierAppUserC
 
 @TypeGraphQL.ArgsType()
 export class CreateManyMovifierAppUserArgs {
-  @TypeGraphQL.Field((_type) => [MovifierAppUserCreateManyInput], {
-    nullable: false,
+  @TypeGraphQL.Field(_type => [MovifierAppUserCreateManyInput], {
+    nullable: false
   })
   data!: MovifierAppUserCreateManyInput[];
 
-  @TypeGraphQL.Field((_type) => Boolean, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => Boolean, {
+    nullable: true
   })
   skipDuplicates?: boolean | undefined;
 }

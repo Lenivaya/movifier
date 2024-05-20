@@ -4,8 +4,8 @@ import { MovieListCommentWhereInput } from "../../inputs/MovieListCommentWhereIn
 
 @TypeGraphQL.ArgsType()
 export class MovieListCountMovieListCommentsArgs {
-  @TypeGraphQL.Field((_type) => MovieListCommentWhereInput, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => MovieListCommentWhereInput, {
+    nullable: true
   })
   where?: MovieListCommentWhereInput | undefined;
 }

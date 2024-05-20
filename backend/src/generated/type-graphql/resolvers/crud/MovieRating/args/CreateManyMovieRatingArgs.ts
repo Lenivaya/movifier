@@ -4,13 +4,13 @@ import { MovieRatingCreateManyInput } from "../../../inputs/MovieRatingCreateMan
 
 @TypeGraphQL.ArgsType()
 export class CreateManyMovieRatingArgs {
-  @TypeGraphQL.Field((_type) => [MovieRatingCreateManyInput], {
-    nullable: false,
+  @TypeGraphQL.Field(_type => [MovieRatingCreateManyInput], {
+    nullable: false
   })
   data!: MovieRatingCreateManyInput[];
 
-  @TypeGraphQL.Field((_type) => Boolean, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => Boolean, {
+    nullable: true
   })
   skipDuplicates?: boolean | undefined;
 }

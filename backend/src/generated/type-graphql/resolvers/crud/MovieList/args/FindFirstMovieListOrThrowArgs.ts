@@ -7,38 +7,33 @@ import { MovieListScalarFieldEnum } from "../../../../enums/MovieListScalarField
 
 @TypeGraphQL.ArgsType()
 export class FindFirstMovieListOrThrowArgs {
-  @TypeGraphQL.Field((_type) => MovieListWhereInput, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => MovieListWhereInput, {
+    nullable: true
   })
   where?: MovieListWhereInput | undefined;
 
-  @TypeGraphQL.Field(
-    (_type) => [MovieListOrderByWithRelationAndSearchRelevanceInput],
-    {
-      nullable: true,
-    },
-  )
+  @TypeGraphQL.Field(_type => [MovieListOrderByWithRelationAndSearchRelevanceInput], {
+    nullable: true
+  })
   orderBy?: MovieListOrderByWithRelationAndSearchRelevanceInput[] | undefined;
 
-  @TypeGraphQL.Field((_type) => MovieListWhereUniqueInput, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => MovieListWhereUniqueInput, {
+    nullable: true
   })
   cursor?: MovieListWhereUniqueInput | undefined;
 
-  @TypeGraphQL.Field((_type) => TypeGraphQL.Int, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
+    nullable: true
   })
   take?: number | undefined;
 
-  @TypeGraphQL.Field((_type) => TypeGraphQL.Int, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
+    nullable: true
   })
   skip?: number | undefined;
 
-  @TypeGraphQL.Field((_type) => [MovieListScalarFieldEnum], {
-    nullable: true,
+  @TypeGraphQL.Field(_type => [MovieListScalarFieldEnum], {
+    nullable: true
   })
-  distinct?:
-    | Array<"id" | "createdAt" | "updatedAt" | "name" | "userId">
-    | undefined;
+  distinct?: Array<"id" | "createdAt" | "updatedAt" | "name" | "userId"> | undefined;
 }

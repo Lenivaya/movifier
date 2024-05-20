@@ -7,38 +7,33 @@ import { MovieKeywordCategoryScalarFieldEnum } from "../../../../enums/MovieKeyw
 
 @TypeGraphQL.ArgsType()
 export class FindFirstMovieKeywordCategoryArgs {
-  @TypeGraphQL.Field((_type) => MovieKeywordCategoryWhereInput, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => MovieKeywordCategoryWhereInput, {
+    nullable: true
   })
   where?: MovieKeywordCategoryWhereInput | undefined;
 
-  @TypeGraphQL.Field(
-    (_type) => [MovieKeywordCategoryOrderByWithRelationAndSearchRelevanceInput],
-    {
-      nullable: true,
-    },
-  )
-  orderBy?:
-    | MovieKeywordCategoryOrderByWithRelationAndSearchRelevanceInput[]
-    | undefined;
+  @TypeGraphQL.Field(_type => [MovieKeywordCategoryOrderByWithRelationAndSearchRelevanceInput], {
+    nullable: true
+  })
+  orderBy?: MovieKeywordCategoryOrderByWithRelationAndSearchRelevanceInput[] | undefined;
 
-  @TypeGraphQL.Field((_type) => MovieKeywordCategoryWhereUniqueInput, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => MovieKeywordCategoryWhereUniqueInput, {
+    nullable: true
   })
   cursor?: MovieKeywordCategoryWhereUniqueInput | undefined;
 
-  @TypeGraphQL.Field((_type) => TypeGraphQL.Int, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
+    nullable: true
   })
   take?: number | undefined;
 
-  @TypeGraphQL.Field((_type) => TypeGraphQL.Int, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
+    nullable: true
   })
   skip?: number | undefined;
 
-  @TypeGraphQL.Field((_type) => [MovieKeywordCategoryScalarFieldEnum], {
-    nullable: true,
+  @TypeGraphQL.Field(_type => [MovieKeywordCategoryScalarFieldEnum], {
+    nullable: true
   })
   distinct?: Array<"id" | "name"> | undefined;
 }

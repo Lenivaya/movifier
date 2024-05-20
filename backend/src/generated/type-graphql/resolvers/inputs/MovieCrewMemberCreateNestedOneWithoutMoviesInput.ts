@@ -8,23 +8,18 @@ import { MovieCrewMemberWhereUniqueInput } from "../inputs/MovieCrewMemberWhereU
 
 @TypeGraphQL.InputType("MovieCrewMemberCreateNestedOneWithoutMoviesInput", {})
 export class MovieCrewMemberCreateNestedOneWithoutMoviesInput {
-  @TypeGraphQL.Field((_type) => MovieCrewMemberCreateWithoutMoviesInput, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => MovieCrewMemberCreateWithoutMoviesInput, {
+    nullable: true
   })
   create?: MovieCrewMemberCreateWithoutMoviesInput | undefined;
 
-  @TypeGraphQL.Field(
-    (_type) => MovieCrewMemberCreateOrConnectWithoutMoviesInput,
-    {
-      nullable: true,
-    },
-  )
-  connectOrCreate?:
-    | MovieCrewMemberCreateOrConnectWithoutMoviesInput
-    | undefined;
+  @TypeGraphQL.Field(_type => MovieCrewMemberCreateOrConnectWithoutMoviesInput, {
+    nullable: true
+  })
+  connectOrCreate?: MovieCrewMemberCreateOrConnectWithoutMoviesInput | undefined;
 
-  @TypeGraphQL.Field((_type) => MovieCrewMemberWhereUniqueInput, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => MovieCrewMemberWhereUniqueInput, {
+    nullable: true
   })
   connect?: MovieCrewMemberWhereUniqueInput | undefined;
 }

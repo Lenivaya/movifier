@@ -8,18 +8,18 @@ import { MovieReviewWhereUniqueInput } from "../inputs/MovieReviewWhereUniqueInp
 
 @TypeGraphQL.InputType("MovieReviewCreateNestedOneWithoutRatingInput", {})
 export class MovieReviewCreateNestedOneWithoutRatingInput {
-  @TypeGraphQL.Field((_type) => MovieReviewCreateWithoutRatingInput, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => MovieReviewCreateWithoutRatingInput, {
+    nullable: true
   })
   create?: MovieReviewCreateWithoutRatingInput | undefined;
 
-  @TypeGraphQL.Field((_type) => MovieReviewCreateOrConnectWithoutRatingInput, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => MovieReviewCreateOrConnectWithoutRatingInput, {
+    nullable: true
   })
   connectOrCreate?: MovieReviewCreateOrConnectWithoutRatingInput | undefined;
 
-  @TypeGraphQL.Field((_type) => MovieReviewWhereUniqueInput, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => MovieReviewWhereUniqueInput, {
+    nullable: true
   })
   connect?: MovieReviewWhereUniqueInput | undefined;
 }

@@ -6,13 +6,13 @@ import { StringFieldUpdateOperationsInput } from "../inputs/StringFieldUpdateOpe
 
 @TypeGraphQL.InputType("MovieKeywordCategoryUpdateManyMutationInput", {})
 export class MovieKeywordCategoryUpdateManyMutationInput {
-  @TypeGraphQL.Field((_type) => StringFieldUpdateOperationsInput, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => StringFieldUpdateOperationsInput, {
+    nullable: true
   })
   id?: StringFieldUpdateOperationsInput | undefined;
 
-  @TypeGraphQL.Field((_type) => StringFieldUpdateOperationsInput, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => StringFieldUpdateOperationsInput, {
+    nullable: true
   })
   name?: StringFieldUpdateOperationsInput | undefined;
 }

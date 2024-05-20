@@ -6,24 +6,18 @@ import { MovieCrewMemberOnMovieCreateNestedManyWithoutMovieCrewMemberTypeInput }
 
 @TypeGraphQL.InputType("MovieCrewMemberTypeCreateInput", {})
 export class MovieCrewMemberTypeCreateInput {
-  @TypeGraphQL.Field((_type) => String, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => String, {
+    nullable: true
   })
   id?: string | undefined;
 
-  @TypeGraphQL.Field((_type) => String, {
-    nullable: false,
+  @TypeGraphQL.Field(_type => String, {
+    nullable: false
   })
   name!: string;
 
-  @TypeGraphQL.Field(
-    (_type) =>
-      MovieCrewMemberOnMovieCreateNestedManyWithoutMovieCrewMemberTypeInput,
-    {
-      nullable: true,
-    },
-  )
-  movieCrewMembers?:
-    | MovieCrewMemberOnMovieCreateNestedManyWithoutMovieCrewMemberTypeInput
-    | undefined;
+  @TypeGraphQL.Field(_type => MovieCrewMemberOnMovieCreateNestedManyWithoutMovieCrewMemberTypeInput, {
+    nullable: true
+  })
+  movieCrewMembers?: MovieCrewMemberOnMovieCreateNestedManyWithoutMovieCrewMemberTypeInput | undefined;
 }

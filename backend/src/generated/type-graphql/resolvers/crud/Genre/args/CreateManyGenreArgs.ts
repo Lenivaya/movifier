@@ -4,13 +4,13 @@ import { GenreCreateManyInput } from "../../../inputs/GenreCreateManyInput";
 
 @TypeGraphQL.ArgsType()
 export class CreateManyGenreArgs {
-  @TypeGraphQL.Field((_type) => [GenreCreateManyInput], {
-    nullable: false,
+  @TypeGraphQL.Field(_type => [GenreCreateManyInput], {
+    nullable: false
   })
   data!: GenreCreateManyInput[];
 
-  @TypeGraphQL.Field((_type) => Boolean, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => Boolean, {
+    nullable: true
   })
   skipDuplicates?: boolean | undefined;
 }

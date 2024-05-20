@@ -2,7 +2,7 @@ import * as TypeGraphQL from "type-graphql";
 
 export enum MovieStatsOrderByRelevanceFieldEnum {
   id = "id",
-  movieId = "movieId",
+  movieId = "movieId"
 }
 TypeGraphQL.registerEnumType(MovieStatsOrderByRelevanceFieldEnum, {
   name: "MovieStatsOrderByRelevanceFieldEnum",

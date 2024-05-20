@@ -5,8 +5,8 @@ import { DecimalJSScalar } from "../../scalars";
 
 @TypeGraphQL.InputType("MovieInfoCreatealternativeTitlesInput", {})
 export class MovieInfoCreatealternativeTitlesInput {
-  @TypeGraphQL.Field((_type) => [String], {
-    nullable: false,
+  @TypeGraphQL.Field(_type => [String], {
+    nullable: false
   })
   set!: string[];
 }

@@ -5,7 +5,7 @@ export enum MovieReviewScalarFieldEnum {
   createdAt = "createdAt",
   updatedAt = "updatedAt",
   content = "content",
-  ratingId = "ratingId",
+  ratingId = "ratingId"
 }
 TypeGraphQL.registerEnumType(MovieReviewScalarFieldEnum, {
   name: "MovieReviewScalarFieldEnum",

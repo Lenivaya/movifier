@@ -14,47 +14,35 @@ export class MovifierAppUserCount {
   movieLists!: number;
   movieListsComments!: number;
 
-  @TypeGraphQL.Field((_type) => TypeGraphQL.Int, {
+  @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
     name: "watchlist",
-    nullable: false,
+    nullable: false
   })
-  getWatchlist(
-    @TypeGraphQL.Root() root: MovifierAppUserCount,
-    @TypeGraphQL.Args() args: MovifierAppUserCountWatchlistArgs,
-  ): number {
+  getWatchlist(@TypeGraphQL.Root() root: MovifierAppUserCount, @TypeGraphQL.Args() args: MovifierAppUserCountWatchlistArgs): number {
     return root.watchlist;
   }
 
-  @TypeGraphQL.Field((_type) => TypeGraphQL.Int, {
+  @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
     name: "rating",
-    nullable: false,
+    nullable: false
   })
-  getRating(
-    @TypeGraphQL.Root() root: MovifierAppUserCount,
-    @TypeGraphQL.Args() args: MovifierAppUserCountRatingArgs,
-  ): number {
+  getRating(@TypeGraphQL.Root() root: MovifierAppUserCount, @TypeGraphQL.Args() args: MovifierAppUserCountRatingArgs): number {
     return root.rating;
   }
 
-  @TypeGraphQL.Field((_type) => TypeGraphQL.Int, {
+  @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
     name: "movieLists",
-    nullable: false,
+    nullable: false
   })
-  getMovieLists(
-    @TypeGraphQL.Root() root: MovifierAppUserCount,
-    @TypeGraphQL.Args() args: MovifierAppUserCountMovieListsArgs,
-  ): number {
+  getMovieLists(@TypeGraphQL.Root() root: MovifierAppUserCount, @TypeGraphQL.Args() args: MovifierAppUserCountMovieListsArgs): number {
     return root.movieLists;
   }
 
-  @TypeGraphQL.Field((_type) => TypeGraphQL.Int, {
+  @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
     name: "movieListsComments",
-    nullable: false,
+    nullable: false
   })
-  getMovieListsComments(
-    @TypeGraphQL.Root() root: MovifierAppUserCount,
-    @TypeGraphQL.Args() args: MovifierAppUserCountMovieListsCommentsArgs,
-  ): number {
+  getMovieListsComments(@TypeGraphQL.Root() root: MovifierAppUserCount, @TypeGraphQL.Args() args: MovifierAppUserCountMovieListsCommentsArgs): number {
     return root.movieListsComments;
   }
 }

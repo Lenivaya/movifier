@@ -4,13 +4,13 @@ import { MovieStudioCreateManyInput } from "../../../inputs/MovieStudioCreateMan
 
 @TypeGraphQL.ArgsType()
 export class CreateManyMovieStudioArgs {
-  @TypeGraphQL.Field((_type) => [MovieStudioCreateManyInput], {
-    nullable: false,
+  @TypeGraphQL.Field(_type => [MovieStudioCreateManyInput], {
+    nullable: false
   })
   data!: MovieStudioCreateManyInput[];
 
-  @TypeGraphQL.Field((_type) => Boolean, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => Boolean, {
+    nullable: true
   })
   skipDuplicates?: boolean | undefined;
 }

@@ -7,33 +7,33 @@ import { StringWithAggregatesFilter } from "../inputs/StringWithAggregatesFilter
 
 @TypeGraphQL.InputType("GenreScalarWhereWithAggregatesInput", {})
 export class GenreScalarWhereWithAggregatesInput {
-  @TypeGraphQL.Field((_type) => [GenreScalarWhereWithAggregatesInput], {
-    nullable: true,
+  @TypeGraphQL.Field(_type => [GenreScalarWhereWithAggregatesInput], {
+    nullable: true
   })
   AND?: GenreScalarWhereWithAggregatesInput[] | undefined;
 
-  @TypeGraphQL.Field((_type) => [GenreScalarWhereWithAggregatesInput], {
-    nullable: true,
+  @TypeGraphQL.Field(_type => [GenreScalarWhereWithAggregatesInput], {
+    nullable: true
   })
   OR?: GenreScalarWhereWithAggregatesInput[] | undefined;
 
-  @TypeGraphQL.Field((_type) => [GenreScalarWhereWithAggregatesInput], {
-    nullable: true,
+  @TypeGraphQL.Field(_type => [GenreScalarWhereWithAggregatesInput], {
+    nullable: true
   })
   NOT?: GenreScalarWhereWithAggregatesInput[] | undefined;
 
-  @TypeGraphQL.Field((_type) => StringWithAggregatesFilter, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => StringWithAggregatesFilter, {
+    nullable: true
   })
   name?: StringWithAggregatesFilter | undefined;
 
-  @TypeGraphQL.Field((_type) => DateTimeWithAggregatesFilter, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => DateTimeWithAggregatesFilter, {
+    nullable: true
   })
   createdAt?: DateTimeWithAggregatesFilter | undefined;
 
-  @TypeGraphQL.Field((_type) => DateTimeWithAggregatesFilter, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => DateTimeWithAggregatesFilter, {
+    nullable: true
   })
   updatedAt?: DateTimeWithAggregatesFilter | undefined;
 }

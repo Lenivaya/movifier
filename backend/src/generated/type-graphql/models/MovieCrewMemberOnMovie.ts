@@ -8,34 +8,34 @@ import { MovieCrewMemberType } from "../models/MovieCrewMemberType";
 
 @TypeGraphQL.ObjectType("MovieCrewMemberOnMovie", {})
 export class MovieCrewMemberOnMovie {
-  @TypeGraphQL.Field((_type) => Date, {
-    nullable: false,
+  @TypeGraphQL.Field(_type => Date, {
+    nullable: false
   })
   createdAt!: Date;
 
-  @TypeGraphQL.Field((_type) => Date, {
-    nullable: false,
+  @TypeGraphQL.Field(_type => Date, {
+    nullable: false
   })
   updatedAt!: Date;
+
+  @TypeGraphQL.Field(_type => String, {
+    nullable: false
+  })
+  movieId!: string;
+
+  @TypeGraphQL.Field(_type => String, {
+    nullable: false
+  })
+  movieCrewMemberId!: string;
+
+  @TypeGraphQL.Field(_type => String, {
+    nullable: false
+  })
+  movieCrewMemberTypeId!: string;
 
   movie?: Movie;
 
   crewMember?: MovieCrewMember;
 
   movieCrewMemberType?: MovieCrewMemberType;
-
-  @TypeGraphQL.Field((_type) => String, {
-    nullable: false,
-  })
-  movieId!: string;
-
-  @TypeGraphQL.Field((_type) => String, {
-    nullable: false,
-  })
-  movieCrewMemberId!: string;
-
-  @TypeGraphQL.Field((_type) => String, {
-    nullable: false,
-  })
-  movieCrewMemberTypeId!: string;
 }

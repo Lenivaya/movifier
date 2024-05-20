@@ -2,7 +2,7 @@ import * as TypeGraphQL from "type-graphql";
 
 export enum MovieCrewMemberTypeScalarFieldEnum {
   id = "id",
-  name = "name",
+  name = "name"
 }
 TypeGraphQL.registerEnumType(MovieCrewMemberTypeScalarFieldEnum, {
   name: "MovieCrewMemberTypeScalarFieldEnum",

@@ -8,33 +8,43 @@ import { StringFieldUpdateOperationsInput } from "../inputs/StringFieldUpdateOpe
 
 @TypeGraphQL.InputType("MovieCrewMemberUpdateInput", {})
 export class MovieCrewMemberUpdateInput {
-  @TypeGraphQL.Field((_type) => StringFieldUpdateOperationsInput, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => StringFieldUpdateOperationsInput, {
+    nullable: true
   })
   id?: StringFieldUpdateOperationsInput | undefined;
 
-  @TypeGraphQL.Field((_type) => DateTimeFieldUpdateOperationsInput, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => DateTimeFieldUpdateOperationsInput, {
+    nullable: true
   })
   createdAt?: DateTimeFieldUpdateOperationsInput | undefined;
 
-  @TypeGraphQL.Field((_type) => DateTimeFieldUpdateOperationsInput, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => DateTimeFieldUpdateOperationsInput, {
+    nullable: true
   })
   updatedAt?: DateTimeFieldUpdateOperationsInput | undefined;
 
-  @TypeGraphQL.Field((_type) => StringFieldUpdateOperationsInput, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => StringFieldUpdateOperationsInput, {
+    nullable: true
   })
   name?: StringFieldUpdateOperationsInput | undefined;
 
-  @TypeGraphQL.Field(
-    (_type) => MovieCrewMemberOnMovieUpdateManyWithoutCrewMemberNestedInput,
-    {
-      nullable: true,
-    },
-  )
-  movies?:
-    | MovieCrewMemberOnMovieUpdateManyWithoutCrewMemberNestedInput
-    | undefined;
+  @TypeGraphQL.Field(_type => StringFieldUpdateOperationsInput, {
+    nullable: true
+  })
+  photoUrl?: StringFieldUpdateOperationsInput | undefined;
+
+  @TypeGraphQL.Field(_type => StringFieldUpdateOperationsInput, {
+    nullable: true
+  })
+  description?: StringFieldUpdateOperationsInput | undefined;
+
+  @TypeGraphQL.Field(_type => StringFieldUpdateOperationsInput, {
+    nullable: true
+  })
+  imdbId?: StringFieldUpdateOperationsInput | undefined;
+
+  @TypeGraphQL.Field(_type => MovieCrewMemberOnMovieUpdateManyWithoutCrewMemberNestedInput, {
+    nullable: true
+  })
+  movies?: MovieCrewMemberOnMovieUpdateManyWithoutCrewMemberNestedInput | undefined;
 }

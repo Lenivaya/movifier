@@ -6,23 +6,23 @@ import { MovieCreateNestedManyWithoutGenresInput } from "../inputs/MovieCreateNe
 
 @TypeGraphQL.InputType("GenreCreateInput", {})
 export class GenreCreateInput {
-  @TypeGraphQL.Field((_type) => String, {
-    nullable: false,
+  @TypeGraphQL.Field(_type => String, {
+    nullable: false
   })
   name!: string;
 
-  @TypeGraphQL.Field((_type) => Date, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => Date, {
+    nullable: true
   })
   createdAt?: Date | undefined;
 
-  @TypeGraphQL.Field((_type) => Date, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => Date, {
+    nullable: true
   })
   updatedAt?: Date | undefined;
 
-  @TypeGraphQL.Field((_type) => MovieCreateNestedManyWithoutGenresInput, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => MovieCreateNestedManyWithoutGenresInput, {
+    nullable: true
   })
   movies?: MovieCreateNestedManyWithoutGenresInput | undefined;
 }

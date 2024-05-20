@@ -3,23 +3,14 @@ import type { GraphQLResolveInfo } from "graphql";
 import { AggregateMovieReviewArgs } from "./args/AggregateMovieReviewArgs";
 import { MovieReview } from "../../../models/MovieReview";
 import { AggregateMovieReview } from "../../outputs/AggregateMovieReview";
-import {
-  transformInfoIntoPrismaArgs,
-  getPrismaFromContext,
-  transformCountFieldIntoSelectRelationsCount,
-} from "../../../helpers";
+import { transformInfoIntoPrismaArgs, getPrismaFromContext, transformCountFieldIntoSelectRelationsCount } from "../../../helpers";
 
-@TypeGraphQL.Resolver((_of) => MovieReview)
+@TypeGraphQL.Resolver(_of => MovieReview)
 export class AggregateMovieReviewResolver {
-  @TypeGraphQL.Query((_returns) => AggregateMovieReview, {
-    nullable: false,
+  @TypeGraphQL.Query(_returns => AggregateMovieReview, {
+    nullable: false
   })
-  async aggregateMovieReview(
-    @TypeGraphQL.Ctx() ctx: any,
-    @TypeGraphQL.Info() info: GraphQLResolveInfo,
-    @TypeGraphQL.Args((_type) => AggregateMovieReviewArgs)
-    args: AggregateMovieReviewArgs,
-  ): Promise<AggregateMovieReview> {
+  async aggregateMovieReview(@TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Info() info: GraphQLResolveInfo, @TypeGraphQL.Args(_type => AggregateMovieReviewArgs) args: AggregateMovieReviewArgs): Promise<AggregateMovieReview> {
     return getPrismaFromContext(ctx).movieReview.aggregate({
       ...args,
       ...transformInfoIntoPrismaArgs(info),

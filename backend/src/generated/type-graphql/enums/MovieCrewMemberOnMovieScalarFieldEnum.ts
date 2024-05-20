@@ -5,7 +5,7 @@ export enum MovieCrewMemberOnMovieScalarFieldEnum {
   updatedAt = "updatedAt",
   movieId = "movieId",
   movieCrewMemberId = "movieCrewMemberId",
-  movieCrewMemberTypeId = "movieCrewMemberTypeId",
+  movieCrewMemberTypeId = "movieCrewMemberTypeId"
 }
 TypeGraphQL.registerEnumType(MovieCrewMemberOnMovieScalarFieldEnum, {
   name: "MovieCrewMemberOnMovieScalarFieldEnum",

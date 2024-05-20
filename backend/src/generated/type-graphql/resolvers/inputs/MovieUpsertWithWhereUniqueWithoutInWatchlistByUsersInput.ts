@@ -6,23 +6,20 @@ import { MovieCreateWithoutInWatchlistByUsersInput } from "../inputs/MovieCreate
 import { MovieUpdateWithoutInWatchlistByUsersInput } from "../inputs/MovieUpdateWithoutInWatchlistByUsersInput";
 import { MovieWhereUniqueInput } from "../inputs/MovieWhereUniqueInput";
 
-@TypeGraphQL.InputType(
-  "MovieUpsertWithWhereUniqueWithoutInWatchlistByUsersInput",
-  {},
-)
+@TypeGraphQL.InputType("MovieUpsertWithWhereUniqueWithoutInWatchlistByUsersInput", {})
 export class MovieUpsertWithWhereUniqueWithoutInWatchlistByUsersInput {
-  @TypeGraphQL.Field((_type) => MovieWhereUniqueInput, {
-    nullable: false,
+  @TypeGraphQL.Field(_type => MovieWhereUniqueInput, {
+    nullable: false
   })
   where!: MovieWhereUniqueInput;
 
-  @TypeGraphQL.Field((_type) => MovieUpdateWithoutInWatchlistByUsersInput, {
-    nullable: false,
+  @TypeGraphQL.Field(_type => MovieUpdateWithoutInWatchlistByUsersInput, {
+    nullable: false
   })
   update!: MovieUpdateWithoutInWatchlistByUsersInput;
 
-  @TypeGraphQL.Field((_type) => MovieCreateWithoutInWatchlistByUsersInput, {
-    nullable: false,
+  @TypeGraphQL.Field(_type => MovieCreateWithoutInWatchlistByUsersInput, {
+    nullable: false
   })
   create!: MovieCreateWithoutInWatchlistByUsersInput;
 }

@@ -6,33 +6,28 @@ import { MovieSpokenLanguageWhereUniqueInput } from "../../../inputs/MovieSpoken
 
 @TypeGraphQL.ArgsType()
 export class AggregateMovieSpokenLanguageArgs {
-  @TypeGraphQL.Field((_type) => MovieSpokenLanguageWhereInput, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => MovieSpokenLanguageWhereInput, {
+    nullable: true
   })
   where?: MovieSpokenLanguageWhereInput | undefined;
 
-  @TypeGraphQL.Field(
-    (_type) => [MovieSpokenLanguageOrderByWithRelationAndSearchRelevanceInput],
-    {
-      nullable: true,
-    },
-  )
-  orderBy?:
-    | MovieSpokenLanguageOrderByWithRelationAndSearchRelevanceInput[]
-    | undefined;
+  @TypeGraphQL.Field(_type => [MovieSpokenLanguageOrderByWithRelationAndSearchRelevanceInput], {
+    nullable: true
+  })
+  orderBy?: MovieSpokenLanguageOrderByWithRelationAndSearchRelevanceInput[] | undefined;
 
-  @TypeGraphQL.Field((_type) => MovieSpokenLanguageWhereUniqueInput, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => MovieSpokenLanguageWhereUniqueInput, {
+    nullable: true
   })
   cursor?: MovieSpokenLanguageWhereUniqueInput | undefined;
 
-  @TypeGraphQL.Field((_type) => TypeGraphQL.Int, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
+    nullable: true
   })
   take?: number | undefined;
 
-  @TypeGraphQL.Field((_type) => TypeGraphQL.Int, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
+    nullable: true
   })
   skip?: number | undefined;
 }

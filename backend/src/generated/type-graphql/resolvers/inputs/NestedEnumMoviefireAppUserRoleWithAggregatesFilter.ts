@@ -8,41 +8,38 @@ import { MoviefireAppUserRole } from "../../enums/MoviefireAppUserRole";
 
 @TypeGraphQL.InputType("NestedEnumMoviefireAppUserRoleWithAggregatesFilter", {})
 export class NestedEnumMoviefireAppUserRoleWithAggregatesFilter {
-  @TypeGraphQL.Field((_type) => MoviefireAppUserRole, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => MoviefireAppUserRole, {
+    nullable: true
   })
   equals?: "USER" | "ADMIN" | undefined;
 
-  @TypeGraphQL.Field((_type) => [MoviefireAppUserRole], {
-    nullable: true,
+  @TypeGraphQL.Field(_type => [MoviefireAppUserRole], {
+    nullable: true
   })
   in?: Array<"USER" | "ADMIN"> | undefined;
 
-  @TypeGraphQL.Field((_type) => [MoviefireAppUserRole], {
-    nullable: true,
+  @TypeGraphQL.Field(_type => [MoviefireAppUserRole], {
+    nullable: true
   })
   notIn?: Array<"USER" | "ADMIN"> | undefined;
 
-  @TypeGraphQL.Field(
-    (_type) => NestedEnumMoviefireAppUserRoleWithAggregatesFilter,
-    {
-      nullable: true,
-    },
-  )
+  @TypeGraphQL.Field(_type => NestedEnumMoviefireAppUserRoleWithAggregatesFilter, {
+    nullable: true
+  })
   not?: NestedEnumMoviefireAppUserRoleWithAggregatesFilter | undefined;
 
-  @TypeGraphQL.Field((_type) => NestedIntFilter, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => NestedIntFilter, {
+    nullable: true
   })
   _count?: NestedIntFilter | undefined;
 
-  @TypeGraphQL.Field((_type) => NestedEnumMoviefireAppUserRoleFilter, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => NestedEnumMoviefireAppUserRoleFilter, {
+    nullable: true
   })
   _min?: NestedEnumMoviefireAppUserRoleFilter | undefined;
 
-  @TypeGraphQL.Field((_type) => NestedEnumMoviefireAppUserRoleFilter, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => NestedEnumMoviefireAppUserRoleFilter, {
+    nullable: true
   })
   _max?: NestedEnumMoviefireAppUserRoleFilter | undefined;
 }

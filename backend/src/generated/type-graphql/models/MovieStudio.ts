@@ -7,30 +7,30 @@ import { MovieStudioCount } from "../resolvers/outputs/MovieStudioCount";
 
 @TypeGraphQL.ObjectType("MovieStudio", {})
 export class MovieStudio {
-  @TypeGraphQL.Field((_type) => String, {
-    nullable: false,
+  @TypeGraphQL.Field(_type => String, {
+    nullable: false
   })
   id!: string;
 
-  @TypeGraphQL.Field((_type) => Date, {
-    nullable: false,
+  @TypeGraphQL.Field(_type => Date, {
+    nullable: false
   })
   createdAt!: Date;
 
-  @TypeGraphQL.Field((_type) => Date, {
-    nullable: false,
+  @TypeGraphQL.Field(_type => Date, {
+    nullable: false
   })
   updatedAt!: Date;
 
-  @TypeGraphQL.Field((_type) => String, {
-    nullable: false,
+  @TypeGraphQL.Field(_type => String, {
+    nullable: false
   })
   name!: string;
 
   movies?: Movie[];
 
-  @TypeGraphQL.Field((_type) => MovieStudioCount, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => MovieStudioCount, {
+    nullable: true
   })
   _count?: MovieStudioCount | null;
 }

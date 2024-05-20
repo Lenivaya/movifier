@@ -6,51 +6,45 @@ import { MovieListOrderByWithRelationAndSearchRelevanceInput } from "../inputs/M
 import { MovieListStatsOrderByRelevanceInput } from "../inputs/MovieListStatsOrderByRelevanceInput";
 import { SortOrder } from "../../enums/SortOrder";
 
-@TypeGraphQL.InputType(
-  "MovieListStatsOrderByWithRelationAndSearchRelevanceInput",
-  {},
-)
+@TypeGraphQL.InputType("MovieListStatsOrderByWithRelationAndSearchRelevanceInput", {})
 export class MovieListStatsOrderByWithRelationAndSearchRelevanceInput {
-  @TypeGraphQL.Field((_type) => SortOrder, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => SortOrder, {
+    nullable: true
   })
   id?: "asc" | "desc" | undefined;
 
-  @TypeGraphQL.Field((_type) => SortOrder, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => SortOrder, {
+    nullable: true
   })
   createdAt?: "asc" | "desc" | undefined;
 
-  @TypeGraphQL.Field((_type) => SortOrder, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => SortOrder, {
+    nullable: true
   })
   updatedAt?: "asc" | "desc" | undefined;
 
-  @TypeGraphQL.Field((_type) => SortOrder, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => SortOrder, {
+    nullable: true
   })
   views?: "asc" | "desc" | undefined;
 
-  @TypeGraphQL.Field((_type) => SortOrder, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => SortOrder, {
+    nullable: true
   })
   likes?: "asc" | "desc" | undefined;
 
-  @TypeGraphQL.Field((_type) => SortOrder, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => SortOrder, {
+    nullable: true
   })
   movieListId?: "asc" | "desc" | undefined;
 
-  @TypeGraphQL.Field(
-    (_type) => MovieListOrderByWithRelationAndSearchRelevanceInput,
-    {
-      nullable: true,
-    },
-  )
+  @TypeGraphQL.Field(_type => MovieListOrderByWithRelationAndSearchRelevanceInput, {
+    nullable: true
+  })
   MovieList?: MovieListOrderByWithRelationAndSearchRelevanceInput | undefined;
 
-  @TypeGraphQL.Field((_type) => MovieListStatsOrderByRelevanceInput, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => MovieListStatsOrderByRelevanceInput, {
+    nullable: true
   })
   _relevance?: MovieListStatsOrderByRelevanceInput | undefined;
 }

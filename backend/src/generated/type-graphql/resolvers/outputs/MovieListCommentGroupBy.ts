@@ -8,48 +8,48 @@ import { MovieListCommentMinAggregate } from "../outputs/MovieListCommentMinAggr
 
 @TypeGraphQL.ObjectType("MovieListCommentGroupBy", {})
 export class MovieListCommentGroupBy {
-  @TypeGraphQL.Field((_type) => String, {
-    nullable: false,
+  @TypeGraphQL.Field(_type => String, {
+    nullable: false
   })
   id!: string;
 
-  @TypeGraphQL.Field((_type) => Date, {
-    nullable: false,
+  @TypeGraphQL.Field(_type => Date, {
+    nullable: false
   })
   createdAt!: Date;
 
-  @TypeGraphQL.Field((_type) => Date, {
-    nullable: false,
+  @TypeGraphQL.Field(_type => Date, {
+    nullable: false
   })
   updatedAt!: Date;
 
-  @TypeGraphQL.Field((_type) => String, {
-    nullable: false,
+  @TypeGraphQL.Field(_type => String, {
+    nullable: false
   })
   content!: string;
 
-  @TypeGraphQL.Field((_type) => String, {
-    nullable: false,
+  @TypeGraphQL.Field(_type => String, {
+    nullable: false
   })
   movieListId!: string;
 
-  @TypeGraphQL.Field((_type) => String, {
-    nullable: false,
+  @TypeGraphQL.Field(_type => String, {
+    nullable: false
   })
   userId!: string;
 
-  @TypeGraphQL.Field((_type) => MovieListCommentCountAggregate, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => MovieListCommentCountAggregate, {
+    nullable: true
   })
   _count!: MovieListCommentCountAggregate | null;
 
-  @TypeGraphQL.Field((_type) => MovieListCommentMinAggregate, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => MovieListCommentMinAggregate, {
+    nullable: true
   })
   _min!: MovieListCommentMinAggregate | null;
 
-  @TypeGraphQL.Field((_type) => MovieListCommentMaxAggregate, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => MovieListCommentMaxAggregate, {
+    nullable: true
   })
   _max!: MovieListCommentMaxAggregate | null;
 }

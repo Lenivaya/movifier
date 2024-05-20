@@ -4,8 +4,8 @@ import { MovieCrewMemberCreateInput } from "../../../inputs/MovieCrewMemberCreat
 
 @TypeGraphQL.ArgsType()
 export class CreateOneMovieCrewMemberArgs {
-  @TypeGraphQL.Field((_type) => MovieCrewMemberCreateInput, {
-    nullable: false,
+  @TypeGraphQL.Field(_type => MovieCrewMemberCreateInput, {
+    nullable: false
   })
   data!: MovieCrewMemberCreateInput;
 }

@@ -9,31 +9,28 @@ import { SortOrder } from "../../enums/SortOrder";
 
 @TypeGraphQL.InputType("MovieKeywordCategoryOrderByWithAggregationInput", {})
 export class MovieKeywordCategoryOrderByWithAggregationInput {
-  @TypeGraphQL.Field((_type) => SortOrder, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => SortOrder, {
+    nullable: true
   })
   id?: "asc" | "desc" | undefined;
 
-  @TypeGraphQL.Field((_type) => SortOrder, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => SortOrder, {
+    nullable: true
   })
   name?: "asc" | "desc" | undefined;
 
-  @TypeGraphQL.Field(
-    (_type) => MovieKeywordCategoryCountOrderByAggregateInput,
-    {
-      nullable: true,
-    },
-  )
+  @TypeGraphQL.Field(_type => MovieKeywordCategoryCountOrderByAggregateInput, {
+    nullable: true
+  })
   _count?: MovieKeywordCategoryCountOrderByAggregateInput | undefined;
 
-  @TypeGraphQL.Field((_type) => MovieKeywordCategoryMaxOrderByAggregateInput, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => MovieKeywordCategoryMaxOrderByAggregateInput, {
+    nullable: true
   })
   _max?: MovieKeywordCategoryMaxOrderByAggregateInput | undefined;
 
-  @TypeGraphQL.Field((_type) => MovieKeywordCategoryMinOrderByAggregateInput, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => MovieKeywordCategoryMinOrderByAggregateInput, {
+    nullable: true
   })
   _min?: MovieKeywordCategoryMinOrderByAggregateInput | undefined;
 }

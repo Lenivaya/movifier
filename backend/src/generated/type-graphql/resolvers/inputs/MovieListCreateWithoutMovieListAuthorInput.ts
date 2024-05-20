@@ -8,48 +8,38 @@ import { MovieListStatsCreateNestedOneWithoutMovieListInput } from "../inputs/Mo
 
 @TypeGraphQL.InputType("MovieListCreateWithoutMovieListAuthorInput", {})
 export class MovieListCreateWithoutMovieListAuthorInput {
-  @TypeGraphQL.Field((_type) => String, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => String, {
+    nullable: true
   })
   id?: string | undefined;
 
-  @TypeGraphQL.Field((_type) => Date, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => Date, {
+    nullable: true
   })
   createdAt?: Date | undefined;
 
-  @TypeGraphQL.Field((_type) => Date, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => Date, {
+    nullable: true
   })
   updatedAt?: Date | undefined;
 
-  @TypeGraphQL.Field((_type) => String, {
-    nullable: false,
+  @TypeGraphQL.Field(_type => String, {
+    nullable: false
   })
   name!: string;
 
-  @TypeGraphQL.Field((_type) => MovieCreateNestedManyWithoutMovieListsInput, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => MovieCreateNestedManyWithoutMovieListsInput, {
+    nullable: true
   })
   movies?: MovieCreateNestedManyWithoutMovieListsInput | undefined;
 
-  @TypeGraphQL.Field(
-    (_type) => MovieListStatsCreateNestedOneWithoutMovieListInput,
-    {
-      nullable: true,
-    },
-  )
-  MovieListStats?:
-    | MovieListStatsCreateNestedOneWithoutMovieListInput
-    | undefined;
+  @TypeGraphQL.Field(_type => MovieListStatsCreateNestedOneWithoutMovieListInput, {
+    nullable: true
+  })
+  MovieListStats?: MovieListStatsCreateNestedOneWithoutMovieListInput | undefined;
 
-  @TypeGraphQL.Field(
-    (_type) => MovieListCommentCreateNestedManyWithoutMovieListInput,
-    {
-      nullable: true,
-    },
-  )
-  movieListComments?:
-    | MovieListCommentCreateNestedManyWithoutMovieListInput
-    | undefined;
+  @TypeGraphQL.Field(_type => MovieListCommentCreateNestedManyWithoutMovieListInput, {
+    nullable: true
+  })
+  movieListComments?: MovieListCommentCreateNestedManyWithoutMovieListInput | undefined;
 }

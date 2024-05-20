@@ -4,8 +4,8 @@ import { MovifierAppUserCreateInput } from "../../../inputs/MovifierAppUserCreat
 
 @TypeGraphQL.ArgsType()
 export class CreateOneMovifierAppUserArgs {
-  @TypeGraphQL.Field((_type) => MovifierAppUserCreateInput, {
-    nullable: false,
+  @TypeGraphQL.Field(_type => MovifierAppUserCreateInput, {
+    nullable: false
   })
   data!: MovifierAppUserCreateInput;
 }

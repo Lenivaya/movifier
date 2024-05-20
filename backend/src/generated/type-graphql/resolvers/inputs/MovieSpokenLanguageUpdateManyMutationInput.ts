@@ -7,18 +7,18 @@ import { StringFieldUpdateOperationsInput } from "../inputs/StringFieldUpdateOpe
 
 @TypeGraphQL.InputType("MovieSpokenLanguageUpdateManyMutationInput", {})
 export class MovieSpokenLanguageUpdateManyMutationInput {
-  @TypeGraphQL.Field((_type) => StringFieldUpdateOperationsInput, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => StringFieldUpdateOperationsInput, {
+    nullable: true
   })
   language?: StringFieldUpdateOperationsInput | undefined;
 
-  @TypeGraphQL.Field((_type) => DateTimeFieldUpdateOperationsInput, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => DateTimeFieldUpdateOperationsInput, {
+    nullable: true
   })
   createdAt?: DateTimeFieldUpdateOperationsInput | undefined;
 
-  @TypeGraphQL.Field((_type) => DateTimeFieldUpdateOperationsInput, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => DateTimeFieldUpdateOperationsInput, {
+    nullable: true
   })
   updatedAt?: DateTimeFieldUpdateOperationsInput | undefined;
 }

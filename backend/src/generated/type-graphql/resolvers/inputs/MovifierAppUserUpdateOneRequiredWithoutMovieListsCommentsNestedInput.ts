@@ -8,50 +8,30 @@ import { MovifierAppUserUpdateToOneWithWhereWithoutMovieListsCommentsInput } fro
 import { MovifierAppUserUpsertWithoutMovieListsCommentsInput } from "../inputs/MovifierAppUserUpsertWithoutMovieListsCommentsInput";
 import { MovifierAppUserWhereUniqueInput } from "../inputs/MovifierAppUserWhereUniqueInput";
 
-@TypeGraphQL.InputType(
-  "MovifierAppUserUpdateOneRequiredWithoutMovieListsCommentsNestedInput",
-  {},
-)
+@TypeGraphQL.InputType("MovifierAppUserUpdateOneRequiredWithoutMovieListsCommentsNestedInput", {})
 export class MovifierAppUserUpdateOneRequiredWithoutMovieListsCommentsNestedInput {
-  @TypeGraphQL.Field(
-    (_type) => MovifierAppUserCreateWithoutMovieListsCommentsInput,
-    {
-      nullable: true,
-    },
-  )
+  @TypeGraphQL.Field(_type => MovifierAppUserCreateWithoutMovieListsCommentsInput, {
+    nullable: true
+  })
   create?: MovifierAppUserCreateWithoutMovieListsCommentsInput | undefined;
 
-  @TypeGraphQL.Field(
-    (_type) => MovifierAppUserCreateOrConnectWithoutMovieListsCommentsInput,
-    {
-      nullable: true,
-    },
-  )
-  connectOrCreate?:
-    | MovifierAppUserCreateOrConnectWithoutMovieListsCommentsInput
-    | undefined;
+  @TypeGraphQL.Field(_type => MovifierAppUserCreateOrConnectWithoutMovieListsCommentsInput, {
+    nullable: true
+  })
+  connectOrCreate?: MovifierAppUserCreateOrConnectWithoutMovieListsCommentsInput | undefined;
 
-  @TypeGraphQL.Field(
-    (_type) => MovifierAppUserUpsertWithoutMovieListsCommentsInput,
-    {
-      nullable: true,
-    },
-  )
+  @TypeGraphQL.Field(_type => MovifierAppUserUpsertWithoutMovieListsCommentsInput, {
+    nullable: true
+  })
   upsert?: MovifierAppUserUpsertWithoutMovieListsCommentsInput | undefined;
 
-  @TypeGraphQL.Field((_type) => MovifierAppUserWhereUniqueInput, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => MovifierAppUserWhereUniqueInput, {
+    nullable: true
   })
   connect?: MovifierAppUserWhereUniqueInput | undefined;
 
-  @TypeGraphQL.Field(
-    (_type) =>
-      MovifierAppUserUpdateToOneWithWhereWithoutMovieListsCommentsInput,
-    {
-      nullable: true,
-    },
-  )
-  update?:
-    | MovifierAppUserUpdateToOneWithWhereWithoutMovieListsCommentsInput
-    | undefined;
+  @TypeGraphQL.Field(_type => MovifierAppUserUpdateToOneWithWhereWithoutMovieListsCommentsInput, {
+    nullable: true
+  })
+  update?: MovifierAppUserUpdateToOneWithWhereWithoutMovieListsCommentsInput | undefined;
 }

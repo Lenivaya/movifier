@@ -5,13 +5,13 @@ import { MovieKeywordCategoryWhereInput } from "../../../inputs/MovieKeywordCate
 
 @TypeGraphQL.ArgsType()
 export class UpdateManyMovieKeywordCategoryArgs {
-  @TypeGraphQL.Field((_type) => MovieKeywordCategoryUpdateManyMutationInput, {
-    nullable: false,
+  @TypeGraphQL.Field(_type => MovieKeywordCategoryUpdateManyMutationInput, {
+    nullable: false
   })
   data!: MovieKeywordCategoryUpdateManyMutationInput;
 
-  @TypeGraphQL.Field((_type) => MovieKeywordCategoryWhereInput, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => MovieKeywordCategoryWhereInput, {
+    nullable: true
   })
   where?: MovieKeywordCategoryWhereInput | undefined;
 }

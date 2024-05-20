@@ -5,13 +5,13 @@ import { MovieSpokenLanguageWhereInput } from "../../../inputs/MovieSpokenLangua
 
 @TypeGraphQL.ArgsType()
 export class UpdateManyMovieSpokenLanguageArgs {
-  @TypeGraphQL.Field((_type) => MovieSpokenLanguageUpdateManyMutationInput, {
-    nullable: false,
+  @TypeGraphQL.Field(_type => MovieSpokenLanguageUpdateManyMutationInput, {
+    nullable: false
   })
   data!: MovieSpokenLanguageUpdateManyMutationInput;
 
-  @TypeGraphQL.Field((_type) => MovieSpokenLanguageWhereInput, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => MovieSpokenLanguageWhereInput, {
+    nullable: true
   })
   where?: MovieSpokenLanguageWhereInput | undefined;
 }

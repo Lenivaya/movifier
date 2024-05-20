@@ -11,44 +11,38 @@ import { StringFieldUpdateOperationsInput } from "../inputs/StringFieldUpdateOpe
 
 @TypeGraphQL.InputType("MovieRatingUpdateInput", {})
 export class MovieRatingUpdateInput {
-  @TypeGraphQL.Field((_type) => StringFieldUpdateOperationsInput, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => StringFieldUpdateOperationsInput, {
+    nullable: true
   })
   id?: StringFieldUpdateOperationsInput | undefined;
 
-  @TypeGraphQL.Field((_type) => DateTimeFieldUpdateOperationsInput, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => DateTimeFieldUpdateOperationsInput, {
+    nullable: true
   })
   createdAt?: DateTimeFieldUpdateOperationsInput | undefined;
 
-  @TypeGraphQL.Field((_type) => DateTimeFieldUpdateOperationsInput, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => DateTimeFieldUpdateOperationsInput, {
+    nullable: true
   })
   updatedAt?: DateTimeFieldUpdateOperationsInput | undefined;
 
-  @TypeGraphQL.Field((_type) => IntFieldUpdateOperationsInput, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => IntFieldUpdateOperationsInput, {
+    nullable: true
   })
   rating?: IntFieldUpdateOperationsInput | undefined;
 
-  @TypeGraphQL.Field((_type) => MovieReviewUpdateOneWithoutRatingNestedInput, {
-    nullable: true,
+  @TypeGraphQL.Field(_type => MovieReviewUpdateOneWithoutRatingNestedInput, {
+    nullable: true
   })
   Review?: MovieReviewUpdateOneWithoutRatingNestedInput | undefined;
 
-  @TypeGraphQL.Field(
-    (_type) => MovieUpdateOneRequiredWithoutRatingsNestedInput,
-    {
-      nullable: true,
-    },
-  )
+  @TypeGraphQL.Field(_type => MovieUpdateOneRequiredWithoutRatingsNestedInput, {
+    nullable: true
+  })
   movie?: MovieUpdateOneRequiredWithoutRatingsNestedInput | undefined;
 
-  @TypeGraphQL.Field(
-    (_type) => MovifierAppUserUpdateOneRequiredWithoutRatingNestedInput,
-    {
-      nullable: true,
-    },
-  )
+  @TypeGraphQL.Field(_type => MovifierAppUserUpdateOneRequiredWithoutRatingNestedInput, {
+    nullable: true
+  })
   user?: MovifierAppUserUpdateOneRequiredWithoutRatingNestedInput | undefined;
 }

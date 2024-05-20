@@ -4,8 +4,8 @@ import { MovifierAppUserWhereUniqueInput } from "../../../inputs/MovifierAppUser
 
 @TypeGraphQL.ArgsType()
 export class FindUniqueMovifierAppUserOrThrowArgs {
-  @TypeGraphQL.Field((_type) => MovifierAppUserWhereUniqueInput, {
-    nullable: false,
+  @TypeGraphQL.Field(_type => MovifierAppUserWhereUniqueInput, {
+    nullable: false
   })
   where!: MovifierAppUserWhereUniqueInput;
 }

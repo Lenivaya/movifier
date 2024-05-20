@@ -10,81 +10,55 @@ import { MovieKeywordCategoryUpdateWithWhereUniqueWithoutMoviesInput } from "../
 import { MovieKeywordCategoryUpsertWithWhereUniqueWithoutMoviesInput } from "../inputs/MovieKeywordCategoryUpsertWithWhereUniqueWithoutMoviesInput";
 import { MovieKeywordCategoryWhereUniqueInput } from "../inputs/MovieKeywordCategoryWhereUniqueInput";
 
-@TypeGraphQL.InputType(
-  "MovieKeywordCategoryUpdateManyWithoutMoviesNestedInput",
-  {},
-)
+@TypeGraphQL.InputType("MovieKeywordCategoryUpdateManyWithoutMoviesNestedInput", {})
 export class MovieKeywordCategoryUpdateManyWithoutMoviesNestedInput {
-  @TypeGraphQL.Field(
-    (_type) => [MovieKeywordCategoryCreateWithoutMoviesInput],
-    {
-      nullable: true,
-    },
-  )
+  @TypeGraphQL.Field(_type => [MovieKeywordCategoryCreateWithoutMoviesInput], {
+    nullable: true
+  })
   create?: MovieKeywordCategoryCreateWithoutMoviesInput[] | undefined;
 
-  @TypeGraphQL.Field(
-    (_type) => [MovieKeywordCategoryCreateOrConnectWithoutMoviesInput],
-    {
-      nullable: true,
-    },
-  )
-  connectOrCreate?:
-    | MovieKeywordCategoryCreateOrConnectWithoutMoviesInput[]
-    | undefined;
+  @TypeGraphQL.Field(_type => [MovieKeywordCategoryCreateOrConnectWithoutMoviesInput], {
+    nullable: true
+  })
+  connectOrCreate?: MovieKeywordCategoryCreateOrConnectWithoutMoviesInput[] | undefined;
 
-  @TypeGraphQL.Field(
-    (_type) => [MovieKeywordCategoryUpsertWithWhereUniqueWithoutMoviesInput],
-    {
-      nullable: true,
-    },
-  )
-  upsert?:
-    | MovieKeywordCategoryUpsertWithWhereUniqueWithoutMoviesInput[]
-    | undefined;
+  @TypeGraphQL.Field(_type => [MovieKeywordCategoryUpsertWithWhereUniqueWithoutMoviesInput], {
+    nullable: true
+  })
+  upsert?: MovieKeywordCategoryUpsertWithWhereUniqueWithoutMoviesInput[] | undefined;
 
-  @TypeGraphQL.Field((_type) => [MovieKeywordCategoryWhereUniqueInput], {
-    nullable: true,
+  @TypeGraphQL.Field(_type => [MovieKeywordCategoryWhereUniqueInput], {
+    nullable: true
   })
   set?: MovieKeywordCategoryWhereUniqueInput[] | undefined;
 
-  @TypeGraphQL.Field((_type) => [MovieKeywordCategoryWhereUniqueInput], {
-    nullable: true,
+  @TypeGraphQL.Field(_type => [MovieKeywordCategoryWhereUniqueInput], {
+    nullable: true
   })
   disconnect?: MovieKeywordCategoryWhereUniqueInput[] | undefined;
 
-  @TypeGraphQL.Field((_type) => [MovieKeywordCategoryWhereUniqueInput], {
-    nullable: true,
+  @TypeGraphQL.Field(_type => [MovieKeywordCategoryWhereUniqueInput], {
+    nullable: true
   })
   delete?: MovieKeywordCategoryWhereUniqueInput[] | undefined;
 
-  @TypeGraphQL.Field((_type) => [MovieKeywordCategoryWhereUniqueInput], {
-    nullable: true,
+  @TypeGraphQL.Field(_type => [MovieKeywordCategoryWhereUniqueInput], {
+    nullable: true
   })
   connect?: MovieKeywordCategoryWhereUniqueInput[] | undefined;
 
-  @TypeGraphQL.Field(
-    (_type) => [MovieKeywordCategoryUpdateWithWhereUniqueWithoutMoviesInput],
-    {
-      nullable: true,
-    },
-  )
-  update?:
-    | MovieKeywordCategoryUpdateWithWhereUniqueWithoutMoviesInput[]
-    | undefined;
+  @TypeGraphQL.Field(_type => [MovieKeywordCategoryUpdateWithWhereUniqueWithoutMoviesInput], {
+    nullable: true
+  })
+  update?: MovieKeywordCategoryUpdateWithWhereUniqueWithoutMoviesInput[] | undefined;
 
-  @TypeGraphQL.Field(
-    (_type) => [MovieKeywordCategoryUpdateManyWithWhereWithoutMoviesInput],
-    {
-      nullable: true,
-    },
-  )
-  updateMany?:
-    | MovieKeywordCategoryUpdateManyWithWhereWithoutMoviesInput[]
-    | undefined;
+  @TypeGraphQL.Field(_type => [MovieKeywordCategoryUpdateManyWithWhereWithoutMoviesInput], {
+    nullable: true
+  })
+  updateMany?: MovieKeywordCategoryUpdateManyWithWhereWithoutMoviesInput[] | undefined;
 
-  @TypeGraphQL.Field((_type) => [MovieKeywordCategoryScalarWhereInput], {
-    nullable: true,
+  @TypeGraphQL.Field(_type => [MovieKeywordCategoryScalarWhereInput], {
+    nullable: true
   })
   deleteMany?: MovieKeywordCategoryScalarWhereInput[] | undefined;
 }
