@@ -4,7 +4,7 @@ import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../../scalars";
 import { DateTimeFieldUpdateOperationsInput } from "../inputs/DateTimeFieldUpdateOperationsInput";
 import { GenreUpdateManyWithoutMoviesNestedInput } from "../inputs/GenreUpdateManyWithoutMoviesNestedInput";
-import { MovieCrewMemberUpdateManyWithoutMoviesNestedInput } from "../inputs/MovieCrewMemberUpdateManyWithoutMoviesNestedInput";
+import { MovieCrewMemberOnMovieUpdateManyWithoutMovieNestedInput } from "../inputs/MovieCrewMemberOnMovieUpdateManyWithoutMovieNestedInput";
 import { MovieInfoUpdateOneWithoutMovieNestedInput } from "../inputs/MovieInfoUpdateOneWithoutMovieNestedInput";
 import { MovieListUpdateManyWithoutMoviesNestedInput } from "../inputs/MovieListUpdateManyWithoutMoviesNestedInput";
 import { MovieRatingUpdateManyWithoutMovieNestedInput } from "../inputs/MovieRatingUpdateManyWithoutMovieNestedInput";
@@ -39,15 +39,17 @@ export class MovieUpdateWithoutKeywordCategoriesInput {
   @TypeGraphQL.Field((_type) => MovieStatsUpdateOneWithoutMovieNestedInput, {
     nullable: true,
   })
-  MovieStats?: MovieStatsUpdateOneWithoutMovieNestedInput | undefined;
+  movieStats?: MovieStatsUpdateOneWithoutMovieNestedInput | undefined;
 
   @TypeGraphQL.Field(
-    (_type) => MovieCrewMemberUpdateManyWithoutMoviesNestedInput,
+    (_type) => MovieCrewMemberOnMovieUpdateManyWithoutMovieNestedInput,
     {
       nullable: true,
     },
   )
-  crewMembers?: MovieCrewMemberUpdateManyWithoutMoviesNestedInput | undefined;
+  crewMembers?:
+    | MovieCrewMemberOnMovieUpdateManyWithoutMovieNestedInput
+    | undefined;
 
   @TypeGraphQL.Field((_type) => MovieStudioUpdateManyWithoutMoviesNestedInput, {
     nullable: true,

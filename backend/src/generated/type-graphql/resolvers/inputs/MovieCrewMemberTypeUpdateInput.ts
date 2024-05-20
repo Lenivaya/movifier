@@ -2,7 +2,7 @@ import * as TypeGraphQL from "type-graphql";
 import * as GraphQLScalars from "graphql-scalars";
 import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../../scalars";
-import { MovieCrewMemberUpdateManyWithoutMovieCrewMemberTypeNestedInput } from "../inputs/MovieCrewMemberUpdateManyWithoutMovieCrewMemberTypeNestedInput";
+import { MovieCrewMemberOnMovieUpdateManyWithoutMovieCrewMemberTypeNestedInput } from "../inputs/MovieCrewMemberOnMovieUpdateManyWithoutMovieCrewMemberTypeNestedInput";
 import { StringFieldUpdateOperationsInput } from "../inputs/StringFieldUpdateOperationsInput";
 
 @TypeGraphQL.InputType("MovieCrewMemberTypeUpdateInput", {})
@@ -18,12 +18,13 @@ export class MovieCrewMemberTypeUpdateInput {
   name?: StringFieldUpdateOperationsInput | undefined;
 
   @TypeGraphQL.Field(
-    (_type) => MovieCrewMemberUpdateManyWithoutMovieCrewMemberTypeNestedInput,
+    (_type) =>
+      MovieCrewMemberOnMovieUpdateManyWithoutMovieCrewMemberTypeNestedInput,
     {
       nullable: true,
     },
   )
   movieCrewMembers?:
-    | MovieCrewMemberUpdateManyWithoutMovieCrewMemberTypeNestedInput
+    | MovieCrewMemberOnMovieUpdateManyWithoutMovieCrewMemberTypeNestedInput
     | undefined;
 }

@@ -2,7 +2,7 @@ import * as TypeGraphQL from "type-graphql";
 import * as GraphQLScalars from "graphql-scalars";
 import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../../scalars";
-import { MovieCrewMemberListRelationFilter } from "../inputs/MovieCrewMemberListRelationFilter";
+import { MovieCrewMemberOnMovieListRelationFilter } from "../inputs/MovieCrewMemberOnMovieListRelationFilter";
 import { StringFilter } from "../inputs/StringFilter";
 
 @TypeGraphQL.InputType("MovieCrewMemberTypeWhereInput", {})
@@ -32,8 +32,8 @@ export class MovieCrewMemberTypeWhereInput {
   })
   name?: StringFilter | undefined;
 
-  @TypeGraphQL.Field((_type) => MovieCrewMemberListRelationFilter, {
+  @TypeGraphQL.Field((_type) => MovieCrewMemberOnMovieListRelationFilter, {
     nullable: true,
   })
-  movieCrewMembers?: MovieCrewMemberListRelationFilter | undefined;
+  movieCrewMembers?: MovieCrewMemberOnMovieListRelationFilter | undefined;
 }

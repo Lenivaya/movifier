@@ -39,7 +39,7 @@ export class MovieUpdateWithoutCrewMembersInput {
   @TypeGraphQL.Field((_type) => MovieStatsUpdateOneWithoutMovieNestedInput, {
     nullable: true,
   })
-  MovieStats?: MovieStatsUpdateOneWithoutMovieNestedInput | undefined;
+  movieStats?: MovieStatsUpdateOneWithoutMovieNestedInput | undefined;
 
   @TypeGraphQL.Field((_type) => MovieStudioUpdateManyWithoutMoviesNestedInput, {
     nullable: true,

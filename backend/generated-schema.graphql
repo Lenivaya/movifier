@@ -115,7 +115,18 @@ input GenreOrderByRelationAggregateInput {
   _count: SortOrder
 }
 
-input GenreOrderByWithRelationInput {
+enum GenreOrderByRelevanceFieldEnum {
+  name
+}
+
+input GenreOrderByRelevanceInput {
+  fields: [GenreOrderByRelevanceFieldEnum!]!
+  search: String!
+  sort: SortOrder!
+}
+
+input GenreOrderByWithRelationAndSearchRelevanceInput {
+  _relevance: GenreOrderByRelevanceInput
   createdAt: SortOrder
   movies: MovieOrderByRelationAggregateInput
   name: SortOrder
@@ -221,17 +232,16 @@ type Movie {
   MovieStats(where: MovieStatsWhereInput): MovieStats
   _count: MovieCount
   createdAt: DateTimeISO!
-  crewMembers(cursor: MovieCrewMemberWhereUniqueInput, distinct: [MovieCrewMemberScalarFieldEnum!], orderBy: [MovieCrewMemberOrderByWithRelationInput!], skip: Int, take: Int, where: MovieCrewMemberWhereInput): [MovieCrewMember!]!
-  genreName: String
-  genres(cursor: GenreWhereUniqueInput, distinct: [GenreScalarFieldEnum!], orderBy: [GenreOrderByWithRelationInput!], skip: Int, take: Int, where: GenreWhereInput): [Genre!]!
+  crewMembers(cursor: MovieCrewMemberWhereUniqueInput, distinct: [MovieCrewMemberScalarFieldEnum!], orderBy: [MovieCrewMemberOrderByWithRelationAndSearchRelevanceInput!], skip: Int, take: Int, where: MovieCrewMemberWhereInput): [MovieCrewMember!]!
+  genres(cursor: GenreWhereUniqueInput, distinct: [GenreScalarFieldEnum!], orderBy: [GenreOrderByWithRelationAndSearchRelevanceInput!], skip: Int, take: Int, where: GenreWhereInput): [Genre!]!
   id: String!
-  inWatchlistByUsers(cursor: MovifierAppUserWhereUniqueInput, distinct: [MovifierAppUserScalarFieldEnum!], orderBy: [MovifierAppUserOrderByWithRelationInput!], skip: Int, take: Int, where: MovifierAppUserWhereInput): [MovifierAppUser!]!
-  keywordCategories(cursor: MovieKeywordCategoryWhereUniqueInput, distinct: [MovieKeywordCategoryScalarFieldEnum!], orderBy: [MovieKeywordCategoryOrderByWithRelationInput!], skip: Int, take: Int, where: MovieKeywordCategoryWhereInput): [MovieKeywordCategory!]!
+  inWatchlistByUsers(cursor: MovifierAppUserWhereUniqueInput, distinct: [MovifierAppUserScalarFieldEnum!], orderBy: [MovifierAppUserOrderByWithRelationAndSearchRelevanceInput!], skip: Int, take: Int, where: MovifierAppUserWhereInput): [MovifierAppUser!]!
+  keywordCategories(cursor: MovieKeywordCategoryWhereUniqueInput, distinct: [MovieKeywordCategoryScalarFieldEnum!], orderBy: [MovieKeywordCategoryOrderByWithRelationAndSearchRelevanceInput!], skip: Int, take: Int, where: MovieKeywordCategoryWhereInput): [MovieKeywordCategory!]!
   movieInfo(where: MovieInfoWhereInput): MovieInfo
-  movieLists(cursor: MovieListWhereUniqueInput, distinct: [MovieListScalarFieldEnum!], orderBy: [MovieListOrderByWithRelationInput!], skip: Int, take: Int, where: MovieListWhereInput): [MovieList!]!
-  ratings(cursor: MovieRatingWhereUniqueInput, distinct: [MovieRatingScalarFieldEnum!], orderBy: [MovieRatingOrderByWithRelationInput!], skip: Int, take: Int, where: MovieRatingWhereInput): [MovieRating!]!
-  spokenLanguages(cursor: MovieSpokenLanguageWhereUniqueInput, distinct: [MovieSpokenLanguageScalarFieldEnum!], orderBy: [MovieSpokenLanguageOrderByWithRelationInput!], skip: Int, take: Int, where: MovieSpokenLanguageWhereInput): [MovieSpokenLanguage!]!
-  studios(cursor: MovieStudioWhereUniqueInput, distinct: [MovieStudioScalarFieldEnum!], orderBy: [MovieStudioOrderByWithRelationInput!], skip: Int, take: Int, where: MovieStudioWhereInput): [MovieStudio!]!
+  movieLists(cursor: MovieListWhereUniqueInput, distinct: [MovieListScalarFieldEnum!], orderBy: [MovieListOrderByWithRelationAndSearchRelevanceInput!], skip: Int, take: Int, where: MovieListWhereInput): [MovieList!]!
+  ratings(cursor: MovieRatingWhereUniqueInput, distinct: [MovieRatingScalarFieldEnum!], orderBy: [MovieRatingOrderByWithRelationAndSearchRelevanceInput!], skip: Int, take: Int, where: MovieRatingWhereInput): [MovieRating!]!
+  spokenLanguages(cursor: MovieSpokenLanguageWhereUniqueInput, distinct: [MovieSpokenLanguageScalarFieldEnum!], orderBy: [MovieSpokenLanguageOrderByWithRelationAndSearchRelevanceInput!], skip: Int, take: Int, where: MovieSpokenLanguageWhereInput): [MovieSpokenLanguage!]!
+  studios(cursor: MovieStudioWhereUniqueInput, distinct: [MovieStudioScalarFieldEnum!], orderBy: [MovieStudioOrderByWithRelationAndSearchRelevanceInput!], skip: Int, take: Int, where: MovieStudioWhereInput): [MovieStudio!]!
   updatedAt: DateTimeISO!
 }
 
@@ -249,14 +259,12 @@ type MovieCount {
 type MovieCountAggregate {
   _all: Int!
   createdAt: Int!
-  genreName: Int!
   id: Int!
   updatedAt: Int!
 }
 
 input MovieCountOrderByAggregateInput {
   createdAt: SortOrder
-  genreName: SortOrder
   id: SortOrder
   updatedAt: SortOrder
 }
@@ -265,7 +273,6 @@ input MovieCreateInput {
   MovieStats: MovieStatsCreateNestedOneWithoutMovieInput
   createdAt: DateTimeISO
   crewMembers: MovieCrewMemberCreateNestedManyWithoutMoviesInput
-  genreName: String
   genres: GenreCreateNestedManyWithoutMoviesInput
   id: String
   inWatchlistByUsers: MovifierAppUserCreateNestedManyWithoutWatchlistInput
@@ -280,7 +287,6 @@ input MovieCreateInput {
 
 input MovieCreateManyInput {
   createdAt: DateTimeISO
-  genreName: String
   id: String
   updatedAt: DateTimeISO
 }
@@ -322,7 +328,6 @@ input MovieCreateWithoutInWatchlistByUsersInput {
   MovieStats: MovieStatsCreateNestedOneWithoutMovieInput
   createdAt: DateTimeISO
   crewMembers: MovieCrewMemberCreateNestedManyWithoutMoviesInput
-  genreName: String
   genres: GenreCreateNestedManyWithoutMoviesInput
   id: String
   keywordCategories: MovieKeywordCategoryCreateNestedManyWithoutMoviesInput
@@ -338,7 +343,6 @@ input MovieCreateWithoutMovieListsInput {
   MovieStats: MovieStatsCreateNestedOneWithoutMovieInput
   createdAt: DateTimeISO
   crewMembers: MovieCrewMemberCreateNestedManyWithoutMoviesInput
-  genreName: String
   genres: GenreCreateNestedManyWithoutMoviesInput
   id: String
   inWatchlistByUsers: MovifierAppUserCreateNestedManyWithoutWatchlistInput
@@ -354,7 +358,6 @@ input MovieCreateWithoutRatingsInput {
   MovieStats: MovieStatsCreateNestedOneWithoutMovieInput
   createdAt: DateTimeISO
   crewMembers: MovieCrewMemberCreateNestedManyWithoutMoviesInput
-  genreName: String
   genres: GenreCreateNestedManyWithoutMoviesInput
   id: String
   inWatchlistByUsers: MovifierAppUserCreateNestedManyWithoutWatchlistInput
@@ -408,10 +411,23 @@ input MovieCrewMemberOrderByRelationAggregateInput {
   _count: SortOrder
 }
 
-input MovieCrewMemberOrderByWithRelationInput {
+enum MovieCrewMemberOrderByRelevanceFieldEnum {
+  id
+  movieCrewMemberTypeId
+  name
+}
+
+input MovieCrewMemberOrderByRelevanceInput {
+  fields: [MovieCrewMemberOrderByRelevanceFieldEnum!]!
+  search: String!
+  sort: SortOrder!
+}
+
+input MovieCrewMemberOrderByWithRelationAndSearchRelevanceInput {
+  _relevance: MovieCrewMemberOrderByRelevanceInput
   createdAt: SortOrder
   id: SortOrder
-  movieCrewMemberType: MovieCrewMemberTypeOrderByWithRelationInput
+  movieCrewMemberType: MovieCrewMemberTypeOrderByWithRelationAndSearchRelevanceInput
   movieCrewMemberTypeId: SortOrderInput
   movies: MovieOrderByRelationAggregateInput
   name: SortOrder
@@ -458,7 +474,19 @@ input MovieCrewMemberTypeNullableRelationFilter {
   isNot: MovieCrewMemberTypeWhereInput
 }
 
-input MovieCrewMemberTypeOrderByWithRelationInput {
+enum MovieCrewMemberTypeOrderByRelevanceFieldEnum {
+  id
+  name
+}
+
+input MovieCrewMemberTypeOrderByRelevanceInput {
+  fields: [MovieCrewMemberTypeOrderByRelevanceFieldEnum!]!
+  search: String!
+  sort: SortOrder!
+}
+
+input MovieCrewMemberTypeOrderByWithRelationAndSearchRelevanceInput {
+  _relevance: MovieCrewMemberTypeOrderByRelevanceInput
   id: SortOrder
   movieCrewMembers: MovieCrewMemberOrderByRelationAggregateInput
   name: SortOrder
@@ -583,7 +611,6 @@ type MovieGroupBy {
   _max: MovieMaxAggregate
   _min: MovieMinAggregate
   createdAt: DateTimeISO!
-  genreName: String
   id: String!
   updatedAt: DateTimeISO!
 }
@@ -633,14 +660,31 @@ input MovieInfoNullableRelationFilter {
   isNot: MovieInfoWhereInput
 }
 
-input MovieInfoOrderByWithRelationInput {
+enum MovieInfoOrderByRelevanceFieldEnum {
+  alternativeTitles
+  description
+  id
+  imdbId
+  movieId
+  posterUrl
+  title
+}
+
+input MovieInfoOrderByRelevanceInput {
+  fields: [MovieInfoOrderByRelevanceFieldEnum!]!
+  search: String!
+  sort: SortOrder!
+}
+
+input MovieInfoOrderByWithRelationAndSearchRelevanceInput {
+  _relevance: MovieInfoOrderByRelevanceInput
   alternativeTitles: SortOrder
   createdAt: SortOrder
   description: SortOrder
   durationInMinutes: SortOrder
   id: SortOrder
   imdbId: SortOrder
-  movie: MovieOrderByWithRelationInput
+  movie: MovieOrderByWithRelationAndSearchRelevanceInput
   movieId: SortOrder
   posterUrl: SortOrder
   title: SortOrder
@@ -755,7 +799,19 @@ input MovieKeywordCategoryOrderByRelationAggregateInput {
   _count: SortOrder
 }
 
-input MovieKeywordCategoryOrderByWithRelationInput {
+enum MovieKeywordCategoryOrderByRelevanceFieldEnum {
+  id
+  name
+}
+
+input MovieKeywordCategoryOrderByRelevanceInput {
+  fields: [MovieKeywordCategoryOrderByRelevanceFieldEnum!]!
+  search: String!
+  sort: SortOrder!
+}
+
+input MovieKeywordCategoryOrderByWithRelationAndSearchRelevanceInput {
+  _relevance: MovieKeywordCategoryOrderByRelevanceInput
   id: SortOrder
   movies: MovieOrderByRelationAggregateInput
   name: SortOrder
@@ -1130,11 +1186,24 @@ input MovieListOrderByRelationAggregateInput {
   _count: SortOrder
 }
 
-input MovieListOrderByWithRelationInput {
-  MovieListStats: MovieListStatsOrderByWithRelationInput
+enum MovieListOrderByRelevanceFieldEnum {
+  id
+  name
+  userId
+}
+
+input MovieListOrderByRelevanceInput {
+  fields: [MovieListOrderByRelevanceFieldEnum!]!
+  search: String!
+  sort: SortOrder!
+}
+
+input MovieListOrderByWithRelationAndSearchRelevanceInput {
+  MovieListStats: MovieListStatsOrderByWithRelationAndSearchRelevanceInput
+  _relevance: MovieListOrderByRelevanceInput
   createdAt: SortOrder
   id: SortOrder
-  movieListAuthor: MovifierAppUserOrderByWithRelationInput
+  movieListAuthor: MovifierAppUserOrderByWithRelationAndSearchRelevanceInput
   movieListComments: MovieListCommentOrderByRelationAggregateInput
   movies: MovieOrderByRelationAggregateInput
   name: SortOrder
@@ -1190,8 +1259,20 @@ input MovieListStatsNullableRelationFilter {
   isNot: MovieListStatsWhereInput
 }
 
-input MovieListStatsOrderByWithRelationInput {
-  MovieList: MovieListOrderByWithRelationInput
+enum MovieListStatsOrderByRelevanceFieldEnum {
+  id
+  movieListId
+}
+
+input MovieListStatsOrderByRelevanceInput {
+  fields: [MovieListStatsOrderByRelevanceFieldEnum!]!
+  search: String!
+  sort: SortOrder!
+}
+
+input MovieListStatsOrderByWithRelationAndSearchRelevanceInput {
+  MovieList: MovieListOrderByWithRelationAndSearchRelevanceInput
+  _relevance: MovieListStatsOrderByRelevanceInput
   createdAt: SortOrder
   id: SortOrder
   likes: SortOrder
@@ -1402,28 +1483,24 @@ input MovieListWhereUniqueInput {
 
 type MovieMaxAggregate {
   createdAt: DateTimeISO
-  genreName: String
   id: String
   updatedAt: DateTimeISO
 }
 
 input MovieMaxOrderByAggregateInput {
   createdAt: SortOrder
-  genreName: SortOrder
   id: SortOrder
   updatedAt: SortOrder
 }
 
 type MovieMinAggregate {
   createdAt: DateTimeISO
-  genreName: String
   id: String
   updatedAt: DateTimeISO
 }
 
 input MovieMinOrderByAggregateInput {
   createdAt: SortOrder
-  genreName: SortOrder
   id: SortOrder
   updatedAt: SortOrder
 }
@@ -1432,26 +1509,35 @@ input MovieOrderByRelationAggregateInput {
   _count: SortOrder
 }
 
+enum MovieOrderByRelevanceFieldEnum {
+  id
+}
+
+input MovieOrderByRelevanceInput {
+  fields: [MovieOrderByRelevanceFieldEnum!]!
+  search: String!
+  sort: SortOrder!
+}
+
 input MovieOrderByWithAggregationInput {
   _count: MovieCountOrderByAggregateInput
   _max: MovieMaxOrderByAggregateInput
   _min: MovieMinOrderByAggregateInput
   createdAt: SortOrder
-  genreName: SortOrderInput
   id: SortOrder
   updatedAt: SortOrder
 }
 
-input MovieOrderByWithRelationInput {
-  MovieStats: MovieStatsOrderByWithRelationInput
+input MovieOrderByWithRelationAndSearchRelevanceInput {
+  MovieStats: MovieStatsOrderByWithRelationAndSearchRelevanceInput
+  _relevance: MovieOrderByRelevanceInput
   createdAt: SortOrder
   crewMembers: MovieCrewMemberOrderByRelationAggregateInput
-  genreName: SortOrderInput
   genres: GenreOrderByRelationAggregateInput
   id: SortOrder
   inWatchlistByUsers: MovifierAppUserOrderByRelationAggregateInput
   keywordCategories: MovieKeywordCategoryOrderByRelationAggregateInput
-  movieInfo: MovieInfoOrderByWithRelationInput
+  movieInfo: MovieInfoOrderByWithRelationAndSearchRelevanceInput
   movieLists: MovieListOrderByRelationAggregateInput
   ratings: MovieRatingOrderByRelationAggregateInput
   spokenLanguages: MovieSpokenLanguageOrderByRelationAggregateInput
@@ -1546,15 +1632,28 @@ input MovieRatingOrderByRelationAggregateInput {
   _count: SortOrder
 }
 
-input MovieRatingOrderByWithRelationInput {
-  Review: MovieReviewOrderByWithRelationInput
+enum MovieRatingOrderByRelevanceFieldEnum {
+  id
+  movieId
+  userId
+}
+
+input MovieRatingOrderByRelevanceInput {
+  fields: [MovieRatingOrderByRelevanceFieldEnum!]!
+  search: String!
+  sort: SortOrder!
+}
+
+input MovieRatingOrderByWithRelationAndSearchRelevanceInput {
+  Review: MovieReviewOrderByWithRelationAndSearchRelevanceInput
+  _relevance: MovieRatingOrderByRelevanceInput
   createdAt: SortOrder
   id: SortOrder
-  movie: MovieOrderByWithRelationInput
+  movie: MovieOrderByWithRelationAndSearchRelevanceInput
   movieId: SortOrder
   rating: SortOrder
   updatedAt: SortOrder
-  user: MovifierAppUserOrderByWithRelationInput
+  user: MovifierAppUserOrderByWithRelationAndSearchRelevanceInput
   userId: SortOrder
 }
 
@@ -1727,11 +1826,24 @@ input MovieReviewNullableRelationFilter {
   isNot: MovieReviewWhereInput
 }
 
-input MovieReviewOrderByWithRelationInput {
+enum MovieReviewOrderByRelevanceFieldEnum {
+  content
+  id
+  ratingId
+}
+
+input MovieReviewOrderByRelevanceInput {
+  fields: [MovieReviewOrderByRelevanceFieldEnum!]!
+  search: String!
+  sort: SortOrder!
+}
+
+input MovieReviewOrderByWithRelationAndSearchRelevanceInput {
+  _relevance: MovieReviewOrderByRelevanceInput
   content: SortOrder
   createdAt: SortOrder
   id: SortOrder
-  rating: MovieRatingOrderByWithRelationInput
+  rating: MovieRatingOrderByWithRelationAndSearchRelevanceInput
   ratingId: SortOrder
   updatedAt: SortOrder
 }
@@ -1790,7 +1902,6 @@ input MovieReviewWhereUniqueInput {
 
 enum MovieScalarFieldEnum {
   createdAt
-  genreName
   id
   updatedAt
 }
@@ -1800,7 +1911,6 @@ input MovieScalarWhereInput {
   NOT: [MovieScalarWhereInput!]
   OR: [MovieScalarWhereInput!]
   createdAt: DateTimeFilter
-  genreName: StringNullableFilter
   id: StringFilter
   updatedAt: DateTimeFilter
 }
@@ -1810,7 +1920,6 @@ input MovieScalarWhereWithAggregatesInput {
   NOT: [MovieScalarWhereWithAggregatesInput!]
   OR: [MovieScalarWhereWithAggregatesInput!]
   createdAt: DateTimeWithAggregatesFilter
-  genreName: StringNullableWithAggregatesFilter
   id: StringWithAggregatesFilter
   updatedAt: DateTimeWithAggregatesFilter
 }
@@ -1853,7 +1962,18 @@ input MovieSpokenLanguageOrderByRelationAggregateInput {
   _count: SortOrder
 }
 
-input MovieSpokenLanguageOrderByWithRelationInput {
+enum MovieSpokenLanguageOrderByRelevanceFieldEnum {
+  language
+}
+
+input MovieSpokenLanguageOrderByRelevanceInput {
+  fields: [MovieSpokenLanguageOrderByRelevanceFieldEnum!]!
+  search: String!
+  sort: SortOrder!
+}
+
+input MovieSpokenLanguageOrderByWithRelationAndSearchRelevanceInput {
+  _relevance: MovieSpokenLanguageOrderByRelevanceInput
   createdAt: SortOrder
   language: SortOrder
   movies: MovieOrderByRelationAggregateInput
@@ -1971,10 +2091,22 @@ input MovieStatsNullableRelationFilter {
   isNot: MovieStatsWhereInput
 }
 
-input MovieStatsOrderByWithRelationInput {
+enum MovieStatsOrderByRelevanceFieldEnum {
+  id
+  movieId
+}
+
+input MovieStatsOrderByRelevanceInput {
+  fields: [MovieStatsOrderByRelevanceFieldEnum!]!
+  search: String!
+  sort: SortOrder!
+}
+
+input MovieStatsOrderByWithRelationAndSearchRelevanceInput {
+  _relevance: MovieStatsOrderByRelevanceInput
   avgRating: SortOrder
   id: SortOrder
-  movie: MovieOrderByWithRelationInput
+  movie: MovieOrderByWithRelationAndSearchRelevanceInput
   movieId: SortOrder
   overallPlaceINTop: SortOrder
   timesWatchedCount: SortOrder
@@ -2080,7 +2212,19 @@ input MovieStudioOrderByRelationAggregateInput {
   _count: SortOrder
 }
 
-input MovieStudioOrderByWithRelationInput {
+enum MovieStudioOrderByRelevanceFieldEnum {
+  id
+  name
+}
+
+input MovieStudioOrderByRelevanceInput {
+  fields: [MovieStudioOrderByRelevanceFieldEnum!]!
+  search: String!
+  sort: SortOrder!
+}
+
+input MovieStudioOrderByWithRelationAndSearchRelevanceInput {
+  _relevance: MovieStudioOrderByRelevanceInput
   createdAt: SortOrder
   id: SortOrder
   movies: MovieOrderByRelationAggregateInput
@@ -2174,7 +2318,6 @@ input MovieUpdateInput {
   MovieStats: MovieStatsUpdateOneWithoutMovieNestedInput
   createdAt: DateTimeFieldUpdateOperationsInput
   crewMembers: MovieCrewMemberUpdateManyWithoutMoviesNestedInput
-  genreName: NullableStringFieldUpdateOperationsInput
   genres: GenreUpdateManyWithoutMoviesNestedInput
   id: StringFieldUpdateOperationsInput
   inWatchlistByUsers: MovifierAppUserUpdateManyWithoutWatchlistNestedInput
@@ -2189,7 +2332,6 @@ input MovieUpdateInput {
 
 input MovieUpdateManyMutationInput {
   createdAt: DateTimeFieldUpdateOperationsInput
-  genreName: NullableStringFieldUpdateOperationsInput
   id: StringFieldUpdateOperationsInput
   updatedAt: DateTimeFieldUpdateOperationsInput
 }
@@ -2257,7 +2399,6 @@ input MovieUpdateWithoutInWatchlistByUsersInput {
   MovieStats: MovieStatsUpdateOneWithoutMovieNestedInput
   createdAt: DateTimeFieldUpdateOperationsInput
   crewMembers: MovieCrewMemberUpdateManyWithoutMoviesNestedInput
-  genreName: NullableStringFieldUpdateOperationsInput
   genres: GenreUpdateManyWithoutMoviesNestedInput
   id: StringFieldUpdateOperationsInput
   keywordCategories: MovieKeywordCategoryUpdateManyWithoutMoviesNestedInput
@@ -2273,7 +2414,6 @@ input MovieUpdateWithoutMovieListsInput {
   MovieStats: MovieStatsUpdateOneWithoutMovieNestedInput
   createdAt: DateTimeFieldUpdateOperationsInput
   crewMembers: MovieCrewMemberUpdateManyWithoutMoviesNestedInput
-  genreName: NullableStringFieldUpdateOperationsInput
   genres: GenreUpdateManyWithoutMoviesNestedInput
   id: StringFieldUpdateOperationsInput
   inWatchlistByUsers: MovifierAppUserUpdateManyWithoutWatchlistNestedInput
@@ -2289,7 +2429,6 @@ input MovieUpdateWithoutRatingsInput {
   MovieStats: MovieStatsUpdateOneWithoutMovieNestedInput
   createdAt: DateTimeFieldUpdateOperationsInput
   crewMembers: MovieCrewMemberUpdateManyWithoutMoviesNestedInput
-  genreName: NullableStringFieldUpdateOperationsInput
   genres: GenreUpdateManyWithoutMoviesNestedInput
   id: StringFieldUpdateOperationsInput
   inWatchlistByUsers: MovifierAppUserUpdateManyWithoutWatchlistNestedInput
@@ -2326,7 +2465,6 @@ input MovieWhereInput {
   OR: [MovieWhereInput!]
   createdAt: DateTimeFilter
   crewMembers: MovieCrewMemberListRelationFilter
-  genreName: StringNullableFilter
   genres: GenreListRelationFilter
   id: StringFilter
   inWatchlistByUsers: MovifierAppUserListRelationFilter
@@ -2346,7 +2484,6 @@ input MovieWhereUniqueInput {
   OR: [MovieWhereInput!]
   createdAt: DateTimeFilter
   crewMembers: MovieCrewMemberListRelationFilter
-  genreName: StringNullableFilter
   genres: GenreListRelationFilter
   id: String
   inWatchlistByUsers: MovifierAppUserListRelationFilter
@@ -2507,7 +2644,22 @@ input MovifierAppUserOrderByRelationAggregateInput {
   _count: SortOrder
 }
 
-input MovifierAppUserOrderByWithRelationInput {
+enum MovifierAppUserOrderByRelevanceFieldEnum {
+  email
+  id
+  name
+  password
+  username
+}
+
+input MovifierAppUserOrderByRelevanceInput {
+  fields: [MovifierAppUserOrderByRelevanceFieldEnum!]!
+  search: String!
+  sort: SortOrder!
+}
+
+input MovifierAppUserOrderByWithRelationAndSearchRelevanceInput {
+  _relevance: MovifierAppUserOrderByRelevanceInput
   createdAt: SortOrder
   email: SortOrder
   id: SortOrder
@@ -2807,17 +2959,6 @@ input NestedIntFilter {
   notIn: [Int!]
 }
 
-input NestedIntNullableFilter {
-  equals: Int
-  gt: Int
-  gte: Int
-  in: [Int!]
-  lt: Int
-  lte: Int
-  not: NestedIntNullableFilter
-  notIn: [Int!]
-}
-
 input NestedStringFilter {
   contains: String
   endsWith: String
@@ -2829,6 +2970,7 @@ input NestedStringFilter {
   lte: String
   not: NestedStringFilter
   notIn: [String!]
+  search: String
   startsWith: String
 }
 
@@ -2843,23 +2985,7 @@ input NestedStringNullableFilter {
   lte: String
   not: NestedStringNullableFilter
   notIn: [String!]
-  startsWith: String
-}
-
-input NestedStringNullableWithAggregatesFilter {
-  _count: NestedIntNullableFilter
-  _max: NestedStringNullableFilter
-  _min: NestedStringNullableFilter
-  contains: String
-  endsWith: String
-  equals: String
-  gt: String
-  gte: String
-  in: [String!]
-  lt: String
-  lte: String
-  not: NestedStringNullableWithAggregatesFilter
-  notIn: [String!]
+  search: String
   startsWith: String
 }
 
@@ -2877,11 +3003,8 @@ input NestedStringWithAggregatesFilter {
   lte: String
   not: NestedStringWithAggregatesFilter
   notIn: [String!]
+  search: String
   startsWith: String
-}
-
-input NullableStringFieldUpdateOperationsInput {
-  set: String
 }
 
 enum NullsOrder {
@@ -2890,15 +3013,15 @@ enum NullsOrder {
 }
 
 type Query {
-  aggregateMovie(cursor: MovieWhereUniqueInput, orderBy: [MovieOrderByWithRelationInput!], skip: Int, take: Int, where: MovieWhereInput): AggregateMovie!
-  findFirstMovie(cursor: MovieWhereUniqueInput, distinct: [MovieScalarFieldEnum!], orderBy: [MovieOrderByWithRelationInput!], skip: Int, take: Int, where: MovieWhereInput): Movie
-  findFirstMovieOrThrow(cursor: MovieWhereUniqueInput, distinct: [MovieScalarFieldEnum!], orderBy: [MovieOrderByWithRelationInput!], skip: Int, take: Int, where: MovieWhereInput): Movie
+  aggregateMovie(cursor: MovieWhereUniqueInput, orderBy: [MovieOrderByWithRelationAndSearchRelevanceInput!], skip: Int, take: Int, where: MovieWhereInput): AggregateMovie!
+  findFirstMovie(cursor: MovieWhereUniqueInput, distinct: [MovieScalarFieldEnum!], orderBy: [MovieOrderByWithRelationAndSearchRelevanceInput!], skip: Int, take: Int, where: MovieWhereInput): Movie
+  findFirstMovieOrThrow(cursor: MovieWhereUniqueInput, distinct: [MovieScalarFieldEnum!], orderBy: [MovieOrderByWithRelationAndSearchRelevanceInput!], skip: Int, take: Int, where: MovieWhereInput): Movie
   getMovie(where: MovieWhereUniqueInput!): Movie
   groupByMovie(by: [MovieScalarFieldEnum!]!, having: MovieScalarWhereWithAggregatesInput, orderBy: [MovieOrderByWithAggregationInput!], skip: Int, take: Int, where: MovieWhereInput): [MovieGroupBy!]!
   me: MovifierAppUser
   movie(where: MovieWhereUniqueInput!): Movie
-  movies(cursor: MovieWhereUniqueInput, distinct: [MovieScalarFieldEnum!], orderBy: [MovieOrderByWithRelationInput!], skip: Int, take: Int, where: MovieWhereInput): [Movie!]!
-  movifierAppUsers(cursor: MovifierAppUserWhereUniqueInput, distinct: [MovifierAppUserScalarFieldEnum!], orderBy: [MovifierAppUserOrderByWithRelationInput!], skip: Int, take: Int, where: MovifierAppUserWhereInput): [MovifierAppUser!]!
+  movies(cursor: MovieWhereUniqueInput, distinct: [MovieScalarFieldEnum!], orderBy: [MovieOrderByWithRelationAndSearchRelevanceInput!], skip: Int, take: Int, where: MovieWhereInput): [Movie!]!
+  movifierAppUsers(cursor: MovifierAppUserWhereUniqueInput, distinct: [MovifierAppUserScalarFieldEnum!], orderBy: [MovifierAppUserOrderByWithRelationAndSearchRelevanceInput!], skip: Int, take: Int, where: MovifierAppUserWhereInput): [MovifierAppUser!]!
 }
 
 enum QueryMode {
@@ -2932,6 +3055,7 @@ input StringFilter {
   mode: QueryMode
   not: NestedStringFilter
   notIn: [String!]
+  search: String
   startsWith: String
 }
 
@@ -2947,6 +3071,7 @@ input StringNullableFilter {
   mode: QueryMode
   not: NestedStringNullableFilter
   notIn: [String!]
+  search: String
   startsWith: String
 }
 
@@ -2956,24 +3081,6 @@ input StringNullableListFilter {
   hasEvery: [String!]
   hasSome: [String!]
   isEmpty: Boolean
-}
-
-input StringNullableWithAggregatesFilter {
-  _count: NestedIntNullableFilter
-  _max: NestedStringNullableFilter
-  _min: NestedStringNullableFilter
-  contains: String
-  endsWith: String
-  equals: String
-  gt: String
-  gte: String
-  in: [String!]
-  lt: String
-  lte: String
-  mode: QueryMode
-  not: NestedStringNullableWithAggregatesFilter
-  notIn: [String!]
-  startsWith: String
 }
 
 input StringWithAggregatesFilter {
@@ -2991,6 +3098,7 @@ input StringWithAggregatesFilter {
   mode: QueryMode
   not: NestedStringWithAggregatesFilter
   notIn: [String!]
+  search: String
   startsWith: String
 }
 

@@ -10,7 +10,7 @@ export class MovieCrewMemberOrderByRelevanceInput {
   @TypeGraphQL.Field((_type) => [MovieCrewMemberOrderByRelevanceFieldEnum], {
     nullable: false,
   })
-  fields!: Array<"id" | "name" | "movieCrewMemberTypeId">;
+  fields!: Array<"id" | "name">;
 
   @TypeGraphQL.Field((_type) => SortOrder, {
     nullable: false,

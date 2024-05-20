@@ -113,6 +113,9 @@ importers:
       jsonwebtoken:
         specifier: ^9.0.2
         version: 9.0.2
+      mutative:
+        specifier: ^1.0.5
+        version: 1.0.5
       nodemon:
         specifier: ^3.1.0
         version: 3.1.0
@@ -1681,6 +1684,10 @@ packages:
 
   ms@2.1.3:
     resolution: {integrity: sha512-6FlzubTLZG3J2a/NVCAleEhjzq5oxgHyaCU9yYXvcLsvoVaHJq/s5xXI6/XXP6tz7R9xAOtHnSO/tXtF3WRTlA==}
+
+  mutative@1.0.5:
+    resolution: {integrity: sha512-uN4rD54sN8NRG2wuIO3K8nI0sB4Kk/wmjG5UbZa3amFU3bdF1k80OojBGQMomCeEIphq2hzIvK5T7f4hoZdkWA==}
+    engines: {node: '>=14.0'}
 
   node-addon-api@5.1.0:
     resolution: {integrity: sha512-eh0GgfEkpnoWDq+VY8OyvYhFEzBk6jIYbRKdIlyTiAXIVJ8PyBaKb0rp7oDtoddbdoHWhq8wwr+XZ81F1rpNdA==}
@@ -4045,6 +4052,8 @@ snapshots:
   ms@2.1.2: {}
 
   ms@2.1.3: {}
+
+  mutative@1.0.5: {}
 
   node-addon-api@5.1.0: {}
 

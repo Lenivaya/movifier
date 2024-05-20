@@ -5,7 +5,6 @@ export enum MovieCrewMemberScalarFieldEnum {
   createdAt = "createdAt",
   updatedAt = "updatedAt",
   name = "name",
-  movieCrewMemberTypeId = "movieCrewMemberTypeId",
 }
 TypeGraphQL.registerEnumType(MovieCrewMemberScalarFieldEnum, {
   name: "MovieCrewMemberScalarFieldEnum",

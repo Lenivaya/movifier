@@ -3,7 +3,6 @@ import * as GraphQLScalars from "graphql-scalars";
 import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../../scalars";
 import { DateTimeWithAggregatesFilter } from "../inputs/DateTimeWithAggregatesFilter";
-import { StringNullableWithAggregatesFilter } from "../inputs/StringNullableWithAggregatesFilter";
 import { StringWithAggregatesFilter } from "../inputs/StringWithAggregatesFilter";
 
 @TypeGraphQL.InputType("MovieCrewMemberScalarWhereWithAggregatesInput", {})
@@ -51,9 +50,4 @@ export class MovieCrewMemberScalarWhereWithAggregatesInput {
     nullable: true,
   })
   name?: StringWithAggregatesFilter | undefined;
-
-  @TypeGraphQL.Field((_type) => StringNullableWithAggregatesFilter, {
-    nullable: true,
-  })
-  movieCrewMemberTypeId?: StringNullableWithAggregatesFilter | undefined;
 }

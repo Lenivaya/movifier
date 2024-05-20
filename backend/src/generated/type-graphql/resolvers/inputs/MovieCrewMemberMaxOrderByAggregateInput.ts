@@ -25,9 +25,4 @@ export class MovieCrewMemberMaxOrderByAggregateInput {
     nullable: true,
   })
   name?: "asc" | "desc" | undefined;
-
-  @TypeGraphQL.Field((_type) => SortOrder, {
-    nullable: true,
-  })
-  movieCrewMemberTypeId?: "asc" | "desc" | undefined;
 }

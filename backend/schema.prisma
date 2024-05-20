@@ -23,12 +23,12 @@ model MovieStudio {
 }
 
 model Movie {
-  id                 String                 @id @unique @default(cuid())
-  createdAt          DateTime               @default(now())
-  updatedAt          DateTime               @updatedAt
+  id                 String                   @id @unique @default(cuid())
+  createdAt          DateTime                 @default(now())
+  updatedAt          DateTime                 @updatedAt
   movieInfo          MovieInfo?
-  MovieStats         MovieStats?
-  crewMembers        MovieCrewMember[]
+  movieStats         MovieStats?
+  crewMembers        MovieCrewMemberOnMovie[]
   studios            MovieStudio[]
   genres             Genre[]
   keywordCategories  MovieKeywordCategory[]
@@ -72,21 +72,33 @@ model MovieSpokenLanguage {
   movies    Movie[]
 }
 
-model MovieCrewMember {
-  id        String   @id @unique @default(cuid())
+model MovieCrewMemberOnMovie {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-  name      String
-  movies    Movie[]
 
-  movieCrewMemberTypeId String?
-  movieCrewMemberType   MovieCrewMemberType? @relation(fields: [movieCrewMemberTypeId], references: [id])
+  movie               Movie               @relation(fields: [movieId], references: [id])
+  crewMember          MovieCrewMember     @relation(fields: [movieCrewMemberId], references: [id])
+  movieCrewMemberType MovieCrewMemberType @relation(fields: [movieCrewMemberTypeId], references: [id])
+
+  movieId               String
+  movieCrewMemberId     String
+  movieCrewMemberTypeId String
+
+  @@id([movieId, movieCrewMemberId, movieCrewMemberTypeId])
+}
+
+model MovieCrewMember {
+  id        String                   @id @unique @default(cuid())
+  createdAt DateTime                 @default(now())
+  updatedAt DateTime                 @updatedAt
+  name      String
+  movies    MovieCrewMemberOnMovie[]
 }
 
 model MovieCrewMemberType {
-  id               String            @id @unique @default(cuid())
-  name             String            @unique
-  movieCrewMembers MovieCrewMember[]
+  id               String                   @id @unique @default(cuid())
+  name             String                   @unique
+  movieCrewMembers MovieCrewMemberOnMovie[]
 }
 
 model Genre {

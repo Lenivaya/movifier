@@ -2,7 +2,7 @@ import * as TypeGraphQL from "type-graphql";
 import type { GraphQLResolveInfo } from "graphql";
 import { Genre } from "../../../models/Genre";
 import { Movie } from "../../../models/Movie";
-import { MovieCrewMember } from "../../../models/MovieCrewMember";
+import { MovieCrewMemberOnMovie } from "../../../models/MovieCrewMemberOnMovie";
 import { MovieInfo } from "../../../models/MovieInfo";
 import { MovieKeywordCategory } from "../../../models/MovieKeywordCategory";
 import { MovieList } from "../../../models/MovieList";
@@ -54,7 +54,7 @@ export class MovieRelationsResolver {
   @TypeGraphQL.FieldResolver((_type) => MovieStats, {
     nullable: true,
   })
-  async MovieStats(
+  async movieStats(
     @TypeGraphQL.Root() movie: Movie,
     @TypeGraphQL.Ctx() ctx: any,
     @TypeGraphQL.Info() info: GraphQLResolveInfo,
@@ -67,13 +67,13 @@ export class MovieRelationsResolver {
           id: movie.id,
         },
       })
-      .MovieStats({
+      .movieStats({
         ...args,
         ...(_count && transformCountFieldIntoSelectRelationsCount(_count)),
       });
   }
 
-  @TypeGraphQL.FieldResolver((_type) => [MovieCrewMember], {
+  @TypeGraphQL.FieldResolver((_type) => [MovieCrewMemberOnMovie], {
     nullable: false,
   })
   async crewMembers(
@@ -82,7 +82,7 @@ export class MovieRelationsResolver {
     @TypeGraphQL.Info() info: GraphQLResolveInfo,
     @TypeGraphQL.Args((_type) => MovieCrewMembersArgs)
     args: MovieCrewMembersArgs,
-  ): Promise<MovieCrewMember[]> {
+  ): Promise<MovieCrewMemberOnMovie[]> {
     const { _count } = transformInfoIntoPrismaArgs(info);
     return getPrismaFromContext(ctx)
       .movie.findUniqueOrThrow({

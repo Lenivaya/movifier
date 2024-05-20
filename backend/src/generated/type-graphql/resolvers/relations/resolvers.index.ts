@@ -1,6 +1,7 @@
 export { GenreRelationsResolver } from "./Genre/GenreRelationsResolver";
 export { MovieRelationsResolver } from "./Movie/MovieRelationsResolver";
 export { MovieCrewMemberRelationsResolver } from "./MovieCrewMember/MovieCrewMemberRelationsResolver";
+export { MovieCrewMemberOnMovieRelationsResolver } from "./MovieCrewMemberOnMovie/MovieCrewMemberOnMovieRelationsResolver";
 export { MovieCrewMemberTypeRelationsResolver } from "./MovieCrewMemberType/MovieCrewMemberTypeRelationsResolver";
 export { MovieInfoRelationsResolver } from "./MovieInfo/MovieInfoRelationsResolver";
 export { MovieKeywordCategoryRelationsResolver } from "./MovieKeywordCategory/MovieKeywordCategoryRelationsResolver";

@@ -1,6 +1,7 @@
 export { GenreCrudResolver } from "./Genre/GenreCrudResolver";
 export { MovieCrudResolver } from "./Movie/MovieCrudResolver";
 export { MovieCrewMemberCrudResolver } from "./MovieCrewMember/MovieCrewMemberCrudResolver";
+export { MovieCrewMemberOnMovieCrudResolver } from "./MovieCrewMemberOnMovie/MovieCrewMemberOnMovieCrudResolver";
 export { MovieCrewMemberTypeCrudResolver } from "./MovieCrewMemberType/MovieCrewMemberTypeCrudResolver";
 export { MovieInfoCrudResolver } from "./MovieInfo/MovieInfoCrudResolver";
 export { MovieKeywordCategoryCrudResolver } from "./MovieKeywordCategory/MovieKeywordCategoryCrudResolver";

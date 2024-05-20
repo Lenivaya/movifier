@@ -28,10 +28,5 @@ export class MovieCrewMemberCountAggregate {
   @TypeGraphQL.Field((_type) => TypeGraphQL.Int, {
     nullable: false,
   })
-  movieCrewMemberTypeId!: number;
-
-  @TypeGraphQL.Field((_type) => TypeGraphQL.Int, {
-    nullable: false,
-  })
   _all!: number;
 }
