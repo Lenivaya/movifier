@@ -38,7 +38,7 @@ export const app = fastify({
 export const graphqlArmorPlugins = [
   costLimitPlugin(),
   maxTokensPlugin(),
-  maxDepthPlugin(),
+  maxDepthPlugin({ n: 8 }),
   maxDirectivesPlugin(),
   maxAliasesPlugin(),
 ];

@@ -263,7 +263,7 @@ async function main() {
         create: {
           imdbId: "tt0110912",
           title: "Pulp Fiction",
-          description: `The lives of two mob hitmen, a boxer, a gangster and his wife, and a pair of diner bandits intertwine in four tales of violence and redemption.`,
+          description: `A burger-loving hit man, his philosophical partner, a drug-addled gangster’s moll and a washed-up boxer converge in this sprawling, comedic crime caper. Their adventures unfurl in three stories that ingeniously trip back and forth in time.`,
           durationInMinutes: 154,
           releaseDate: new Date("1994-10-14"),
           alternativeTitles: ["Pulp Fiction 1994"],

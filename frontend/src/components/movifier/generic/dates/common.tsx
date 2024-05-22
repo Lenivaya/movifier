@@ -3,6 +3,7 @@ import { match, P } from 'ts-pattern'
 
 export const dateFormatter = formatDate('MM/dd/yyyy')
 export const dateFormatterWithHours = formatDate('MM/dd/yyyy HH:MM')
+export const dateFormatterYear = formatDate('yyyy')
 
 export const nullableDateComponent = (date: string) =>
   match(date)
