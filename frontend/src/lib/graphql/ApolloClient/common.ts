@@ -13,6 +13,7 @@ export const WS_ENDPOINT = process.env.NEXT_PUBLIC_API_WS_URL ?? ''
 
 export const authLink = setContext((_, { headers, ...context }) => {
   const token = isBrowser ? localStorage?.getItem('auth:token') : null
+  console.log(token)
   return {
     headers: {
       ...headers,
