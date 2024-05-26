@@ -6,11 +6,13 @@ import { GenreCreateNestedManyWithoutMoviesInput } from "../inputs/GenreCreateNe
 import { MovieCrewMemberOnMovieCreateNestedManyWithoutMovieInput } from "../inputs/MovieCrewMemberOnMovieCreateNestedManyWithoutMovieInput";
 import { MovieInfoCreateNestedOneWithoutMovieInput } from "../inputs/MovieInfoCreateNestedOneWithoutMovieInput";
 import { MovieKeywordCategoryCreateNestedManyWithoutMoviesInput } from "../inputs/MovieKeywordCategoryCreateNestedManyWithoutMoviesInput";
+import { MovieLikedByUserCreateNestedManyWithoutMovieInput } from "../inputs/MovieLikedByUserCreateNestedManyWithoutMovieInput";
 import { MovieListCreateNestedManyWithoutMoviesInput } from "../inputs/MovieListCreateNestedManyWithoutMoviesInput";
 import { MovieRatingCreateNestedManyWithoutMovieInput } from "../inputs/MovieRatingCreateNestedManyWithoutMovieInput";
 import { MovieSpokenLanguageCreateNestedManyWithoutMoviesInput } from "../inputs/MovieSpokenLanguageCreateNestedManyWithoutMoviesInput";
 import { MovieStatsCreateNestedOneWithoutMovieInput } from "../inputs/MovieStatsCreateNestedOneWithoutMovieInput";
 import { MovieStudioCreateNestedManyWithoutMoviesInput } from "../inputs/MovieStudioCreateNestedManyWithoutMoviesInput";
+import { MovieWatchedByUserCreateNestedManyWithoutMovieInput } from "../inputs/MovieWatchedByUserCreateNestedManyWithoutMovieInput";
 
 @TypeGraphQL.InputType("MovieCreateWithoutInWatchlistByUsersInput", {})
 export class MovieCreateWithoutInWatchlistByUsersInput {
@@ -62,7 +64,7 @@ export class MovieCreateWithoutInWatchlistByUsersInput {
   @TypeGraphQL.Field(_type => MovieRatingCreateNestedManyWithoutMovieInput, {
     nullable: true
   })
-  ratings?: MovieRatingCreateNestedManyWithoutMovieInput | undefined;
+  ratedBy?: MovieRatingCreateNestedManyWithoutMovieInput | undefined;
 
   @TypeGraphQL.Field(_type => MovieListCreateNestedManyWithoutMoviesInput, {
     nullable: true
@@ -73,4 +75,14 @@ export class MovieCreateWithoutInWatchlistByUsersInput {
     nullable: true
   })
   spokenLanguages?: MovieSpokenLanguageCreateNestedManyWithoutMoviesInput | undefined;
+
+  @TypeGraphQL.Field(_type => MovieWatchedByUserCreateNestedManyWithoutMovieInput, {
+    nullable: true
+  })
+  watchedBy?: MovieWatchedByUserCreateNestedManyWithoutMovieInput | undefined;
+
+  @TypeGraphQL.Field(_type => MovieLikedByUserCreateNestedManyWithoutMovieInput, {
+    nullable: true
+  })
+  likedBy?: MovieLikedByUserCreateNestedManyWithoutMovieInput | undefined;
 }

@@ -2,13 +2,15 @@ import * as TypeGraphQL from "type-graphql";
 import * as GraphQLScalars from "graphql-scalars";
 import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../../scalars";
-import { MovieListCountMovieListCommentsArgs } from "./args/MovieListCountMovieListCommentsArgs";
+import { MovieListCountCommentsArgs } from "./args/MovieListCountCommentsArgs";
+import { MovieListCountLikedByArgs } from "./args/MovieListCountLikedByArgs";
 import { MovieListCountMoviesArgs } from "./args/MovieListCountMoviesArgs";
 
 @TypeGraphQL.ObjectType("MovieListCount", {})
 export class MovieListCount {
   movies!: number;
-  movieListComments!: number;
+  comments!: number;
+  likedBy!: number;
 
   @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
     name: "movies",
@@ -19,10 +21,18 @@ export class MovieListCount {
   }
 
   @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
-    name: "movieListComments",
+    name: "comments",
     nullable: false
   })
-  getMovieListComments(@TypeGraphQL.Root() root: MovieListCount, @TypeGraphQL.Args() args: MovieListCountMovieListCommentsArgs): number {
-    return root.movieListComments;
+  getComments(@TypeGraphQL.Root() root: MovieListCount, @TypeGraphQL.Args() args: MovieListCountCommentsArgs): number {
+    return root.comments;
+  }
+
+  @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
+    name: "likedBy",
+    nullable: false
+  })
+  getLikedBy(@TypeGraphQL.Root() root: MovieListCount, @TypeGraphQL.Args() args: MovieListCountLikedByArgs): number {
+    return root.likedBy;
   }
 }

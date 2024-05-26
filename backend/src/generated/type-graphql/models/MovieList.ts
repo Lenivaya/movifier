@@ -4,6 +4,7 @@ import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../scalars";
 import { Movie } from "../models/Movie";
 import { MovieListComment } from "../models/MovieListComment";
+import { MovieListLikedByUser } from "../models/MovieListLikedByUser";
 import { MovieListStats } from "../models/MovieListStats";
 import { MovifierAppUser } from "../models/MovifierAppUser";
 import { MovieListCount } from "../resolvers/outputs/MovieListCount";
@@ -30,6 +31,16 @@ export class MovieList {
   })
   name!: string;
 
+  @TypeGraphQL.Field(_type => String, {
+    nullable: false
+  })
+  description!: string;
+
+  @TypeGraphQL.Field(_type => [String], {
+    nullable: false
+  })
+  tags!: string[];
+
   movies?: Movie[];
 
   @TypeGraphQL.Field(_type => String, {
@@ -39,9 +50,11 @@ export class MovieList {
 
   movieListAuthor?: MovifierAppUser;
 
-  MovieListStats?: MovieListStats | null;
+  stats?: MovieListStats | null;
 
-  movieListComments?: MovieListComment[];
+  comments?: MovieListComment[];
+
+  likedBy?: MovieListLikedByUser[];
 
   @TypeGraphQL.Field(_type => MovieListCount, {
     nullable: true

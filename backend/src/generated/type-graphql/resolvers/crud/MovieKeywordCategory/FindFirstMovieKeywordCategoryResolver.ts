@@ -9,7 +9,7 @@ export class FindFirstMovieKeywordCategoryResolver {
   @TypeGraphQL.Query(_returns => MovieKeywordCategory, {
     nullable: true
   })
-  async findFirstMovieKeywordCategory(@TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Info() info: GraphQLResolveInfo, @TypeGraphQL.Args(_type => FindFirstMovieKeywordCategoryArgs) args: FindFirstMovieKeywordCategoryArgs): Promise<MovieKeywordCategory | null> {
+  async findFirstMovieKeywordCategory(@TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Info() info: GraphQLResolveInfo, @TypeGraphQL.Args() args: FindFirstMovieKeywordCategoryArgs): Promise<MovieKeywordCategory | null> {
     const { _count } = transformInfoIntoPrismaArgs(info);
     return getPrismaFromContext(ctx).movieKeywordCategory.findFirst({
       ...args,

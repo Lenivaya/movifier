@@ -10,7 +10,7 @@ export class AggregateMovieKeywordCategoryResolver {
   @TypeGraphQL.Query(_returns => AggregateMovieKeywordCategory, {
     nullable: false
   })
-  async aggregateMovieKeywordCategory(@TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Info() info: GraphQLResolveInfo, @TypeGraphQL.Args(_type => AggregateMovieKeywordCategoryArgs) args: AggregateMovieKeywordCategoryArgs): Promise<AggregateMovieKeywordCategory> {
+  async aggregateMovieKeywordCategory(@TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Info() info: GraphQLResolveInfo, @TypeGraphQL.Args() args: AggregateMovieKeywordCategoryArgs): Promise<AggregateMovieKeywordCategory> {
     return getPrismaFromContext(ctx).movieKeywordCategory.aggregate({
       ...args,
       ...transformInfoIntoPrismaArgs(info),

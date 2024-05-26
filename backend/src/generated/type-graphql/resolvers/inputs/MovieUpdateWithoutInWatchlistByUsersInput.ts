@@ -7,11 +7,13 @@ import { GenreUpdateManyWithoutMoviesNestedInput } from "../inputs/GenreUpdateMa
 import { MovieCrewMemberOnMovieUpdateManyWithoutMovieNestedInput } from "../inputs/MovieCrewMemberOnMovieUpdateManyWithoutMovieNestedInput";
 import { MovieInfoUpdateOneWithoutMovieNestedInput } from "../inputs/MovieInfoUpdateOneWithoutMovieNestedInput";
 import { MovieKeywordCategoryUpdateManyWithoutMoviesNestedInput } from "../inputs/MovieKeywordCategoryUpdateManyWithoutMoviesNestedInput";
+import { MovieLikedByUserUpdateManyWithoutMovieNestedInput } from "../inputs/MovieLikedByUserUpdateManyWithoutMovieNestedInput";
 import { MovieListUpdateManyWithoutMoviesNestedInput } from "../inputs/MovieListUpdateManyWithoutMoviesNestedInput";
 import { MovieRatingUpdateManyWithoutMovieNestedInput } from "../inputs/MovieRatingUpdateManyWithoutMovieNestedInput";
 import { MovieSpokenLanguageUpdateManyWithoutMoviesNestedInput } from "../inputs/MovieSpokenLanguageUpdateManyWithoutMoviesNestedInput";
 import { MovieStatsUpdateOneWithoutMovieNestedInput } from "../inputs/MovieStatsUpdateOneWithoutMovieNestedInput";
 import { MovieStudioUpdateManyWithoutMoviesNestedInput } from "../inputs/MovieStudioUpdateManyWithoutMoviesNestedInput";
+import { MovieWatchedByUserUpdateManyWithoutMovieNestedInput } from "../inputs/MovieWatchedByUserUpdateManyWithoutMovieNestedInput";
 import { StringFieldUpdateOperationsInput } from "../inputs/StringFieldUpdateOperationsInput";
 
 @TypeGraphQL.InputType("MovieUpdateWithoutInWatchlistByUsersInput", {})
@@ -64,7 +66,7 @@ export class MovieUpdateWithoutInWatchlistByUsersInput {
   @TypeGraphQL.Field(_type => MovieRatingUpdateManyWithoutMovieNestedInput, {
     nullable: true
   })
-  ratings?: MovieRatingUpdateManyWithoutMovieNestedInput | undefined;
+  ratedBy?: MovieRatingUpdateManyWithoutMovieNestedInput | undefined;
 
   @TypeGraphQL.Field(_type => MovieListUpdateManyWithoutMoviesNestedInput, {
     nullable: true
@@ -75,4 +77,14 @@ export class MovieUpdateWithoutInWatchlistByUsersInput {
     nullable: true
   })
   spokenLanguages?: MovieSpokenLanguageUpdateManyWithoutMoviesNestedInput | undefined;
+
+  @TypeGraphQL.Field(_type => MovieWatchedByUserUpdateManyWithoutMovieNestedInput, {
+    nullable: true
+  })
+  watchedBy?: MovieWatchedByUserUpdateManyWithoutMovieNestedInput | undefined;
+
+  @TypeGraphQL.Field(_type => MovieLikedByUserUpdateManyWithoutMovieNestedInput, {
+    nullable: true
+  })
+  likedBy?: MovieLikedByUserUpdateManyWithoutMovieNestedInput | undefined;
 }

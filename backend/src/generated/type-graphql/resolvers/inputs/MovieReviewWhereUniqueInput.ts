@@ -4,6 +4,7 @@ import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../../scalars";
 import { DateTimeFilter } from "../inputs/DateTimeFilter";
 import { MovieRatingRelationFilter } from "../inputs/MovieRatingRelationFilter";
+import { MovieReviewLikedByUserListRelationFilter } from "../inputs/MovieReviewLikedByUserListRelationFilter";
 import { MovieReviewWhereInput } from "../inputs/MovieReviewWhereInput";
 import { StringFilter } from "../inputs/StringFilter";
 
@@ -53,4 +54,9 @@ export class MovieReviewWhereUniqueInput {
     nullable: true
   })
   rating?: MovieRatingRelationFilter | undefined;
+
+  @TypeGraphQL.Field(_type => MovieReviewLikedByUserListRelationFilter, {
+    nullable: true
+  })
+  likedBy?: MovieReviewLikedByUserListRelationFilter | undefined;
 }

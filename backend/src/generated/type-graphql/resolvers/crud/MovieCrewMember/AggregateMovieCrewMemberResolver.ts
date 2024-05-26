@@ -10,7 +10,7 @@ export class AggregateMovieCrewMemberResolver {
   @TypeGraphQL.Query(_returns => AggregateMovieCrewMember, {
     nullable: false
   })
-  async aggregateMovieCrewMember(@TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Info() info: GraphQLResolveInfo, @TypeGraphQL.Args(_type => AggregateMovieCrewMemberArgs) args: AggregateMovieCrewMemberArgs): Promise<AggregateMovieCrewMember> {
+  async aggregateMovieCrewMember(@TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Info() info: GraphQLResolveInfo, @TypeGraphQL.Args() args: AggregateMovieCrewMemberArgs): Promise<AggregateMovieCrewMember> {
     return getPrismaFromContext(ctx).movieCrewMember.aggregate({
       ...args,
       ...transformInfoIntoPrismaArgs(info),

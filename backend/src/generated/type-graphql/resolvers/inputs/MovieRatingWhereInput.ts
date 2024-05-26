@@ -59,7 +59,7 @@ export class MovieRatingWhereInput {
   @TypeGraphQL.Field(_type => MovieReviewNullableRelationFilter, {
     nullable: true
   })
-  Review?: MovieReviewNullableRelationFilter | undefined;
+  review?: MovieReviewNullableRelationFilter | undefined;
 
   @TypeGraphQL.Field(_type => MovieRelationFilter, {
     nullable: true

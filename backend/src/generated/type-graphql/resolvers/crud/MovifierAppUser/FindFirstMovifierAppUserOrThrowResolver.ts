@@ -9,7 +9,7 @@ export class FindFirstMovifierAppUserOrThrowResolver {
   @TypeGraphQL.Query(_returns => MovifierAppUser, {
     nullable: true
   })
-  async findFirstMovifierAppUserOrThrow(@TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Info() info: GraphQLResolveInfo, @TypeGraphQL.Args(_type => FindFirstMovifierAppUserOrThrowArgs) args: FindFirstMovifierAppUserOrThrowArgs): Promise<MovifierAppUser | null> {
+  async findFirstMovifierAppUserOrThrow(@TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Info() info: GraphQLResolveInfo, @TypeGraphQL.Args() args: FindFirstMovifierAppUserOrThrowArgs): Promise<MovifierAppUser | null> {
     const { _count } = transformInfoIntoPrismaArgs(info);
     return getPrismaFromContext(ctx).movifierAppUser.findFirstOrThrow({
       ...args,

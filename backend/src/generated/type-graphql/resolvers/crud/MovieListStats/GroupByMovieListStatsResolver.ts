@@ -10,7 +10,7 @@ export class GroupByMovieListStatsResolver {
   @TypeGraphQL.Query(_returns => [MovieListStatsGroupBy], {
     nullable: false
   })
-  async groupByMovieListStats(@TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Info() info: GraphQLResolveInfo, @TypeGraphQL.Args(_type => GroupByMovieListStatsArgs) args: GroupByMovieListStatsArgs): Promise<MovieListStatsGroupBy[]> {
+  async groupByMovieListStats(@TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Info() info: GraphQLResolveInfo, @TypeGraphQL.Args() args: GroupByMovieListStatsArgs): Promise<MovieListStatsGroupBy[]> {
     const { _count, _avg, _sum, _min, _max } = transformInfoIntoPrismaArgs(info);
     return getPrismaFromContext(ctx).movieListStats.groupBy({
       ...args,

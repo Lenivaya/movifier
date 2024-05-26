@@ -5,12 +5,16 @@ export { MovieCrewMemberOnMovieCrudResolver } from "./MovieCrewMemberOnMovie/Mov
 export { MovieCrewMemberTypeCrudResolver } from "./MovieCrewMemberType/MovieCrewMemberTypeCrudResolver";
 export { MovieInfoCrudResolver } from "./MovieInfo/MovieInfoCrudResolver";
 export { MovieKeywordCategoryCrudResolver } from "./MovieKeywordCategory/MovieKeywordCategoryCrudResolver";
+export { MovieLikedByUserCrudResolver } from "./MovieLikedByUser/MovieLikedByUserCrudResolver";
 export { MovieListCrudResolver } from "./MovieList/MovieListCrudResolver";
 export { MovieListCommentCrudResolver } from "./MovieListComment/MovieListCommentCrudResolver";
+export { MovieListLikedByUserCrudResolver } from "./MovieListLikedByUser/MovieListLikedByUserCrudResolver";
 export { MovieListStatsCrudResolver } from "./MovieListStats/MovieListStatsCrudResolver";
 export { MovieRatingCrudResolver } from "./MovieRating/MovieRatingCrudResolver";
 export { MovieReviewCrudResolver } from "./MovieReview/MovieReviewCrudResolver";
+export { MovieReviewLikedByUserCrudResolver } from "./MovieReviewLikedByUser/MovieReviewLikedByUserCrudResolver";
 export { MovieSpokenLanguageCrudResolver } from "./MovieSpokenLanguage/MovieSpokenLanguageCrudResolver";
 export { MovieStatsCrudResolver } from "./MovieStats/MovieStatsCrudResolver";
 export { MovieStudioCrudResolver } from "./MovieStudio/MovieStudioCrudResolver";
+export { MovieWatchedByUserCrudResolver } from "./MovieWatchedByUser/MovieWatchedByUserCrudResolver";
 export { MovifierAppUserCrudResolver } from "./MovifierAppUser/MovifierAppUserCrudResolver";

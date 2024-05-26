@@ -43,7 +43,7 @@ export class MovieRatingOrderByWithRelationAndSearchRelevanceInput {
   @TypeGraphQL.Field(_type => MovieReviewOrderByWithRelationAndSearchRelevanceInput, {
     nullable: true
   })
-  Review?: MovieReviewOrderByWithRelationAndSearchRelevanceInput | undefined;
+  review?: MovieReviewOrderByWithRelationAndSearchRelevanceInput | undefined;
 
   @TypeGraphQL.Field(_type => MovieOrderByWithRelationAndSearchRelevanceInput, {
     nullable: true

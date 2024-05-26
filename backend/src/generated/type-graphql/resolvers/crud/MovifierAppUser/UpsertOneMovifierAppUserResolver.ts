@@ -9,7 +9,7 @@ export class UpsertOneMovifierAppUserResolver {
   @TypeGraphQL.Mutation(_returns => MovifierAppUser, {
     nullable: false
   })
-  async upsertOneMovifierAppUser(@TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Info() info: GraphQLResolveInfo, @TypeGraphQL.Args(_type => UpsertOneMovifierAppUserArgs) args: UpsertOneMovifierAppUserArgs): Promise<MovifierAppUser> {
+  async upsertOneMovifierAppUser(@TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Info() info: GraphQLResolveInfo, @TypeGraphQL.Args() args: UpsertOneMovifierAppUserArgs): Promise<MovifierAppUser> {
     const { _count } = transformInfoIntoPrismaArgs(info);
     return getPrismaFromContext(ctx).movifierAppUser.upsert({
       ...args,

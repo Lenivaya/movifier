@@ -52,7 +52,7 @@ export class MovieStatsWhereUniqueInput {
   @TypeGraphQL.Field(_type => IntFilter, {
     nullable: true
   })
-  overallPlaceINTop?: IntFilter | undefined;
+  overallPlaceInTop?: IntFilter | undefined;
 
   @TypeGraphQL.Field(_type => FloatFilter, {
     nullable: true

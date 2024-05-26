@@ -3,6 +3,7 @@ import * as GraphQLScalars from "graphql-scalars";
 import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../../scalars";
 import { MovieRatingOrderByWithRelationAndSearchRelevanceInput } from "../inputs/MovieRatingOrderByWithRelationAndSearchRelevanceInput";
+import { MovieReviewLikedByUserOrderByRelationAggregateInput } from "../inputs/MovieReviewLikedByUserOrderByRelationAggregateInput";
 import { MovieReviewOrderByRelevanceInput } from "../inputs/MovieReviewOrderByRelevanceInput";
 import { SortOrder } from "../../enums/SortOrder";
 
@@ -37,6 +38,11 @@ export class MovieReviewOrderByWithRelationAndSearchRelevanceInput {
     nullable: true
   })
   rating?: MovieRatingOrderByWithRelationAndSearchRelevanceInput | undefined;
+
+  @TypeGraphQL.Field(_type => MovieReviewLikedByUserOrderByRelationAggregateInput, {
+    nullable: true
+  })
+  likedBy?: MovieReviewLikedByUserOrderByRelationAggregateInput | undefined;
 
   @TypeGraphQL.Field(_type => MovieReviewOrderByRelevanceInput, {
     nullable: true

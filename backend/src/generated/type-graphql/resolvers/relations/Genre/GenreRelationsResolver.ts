@@ -10,7 +10,7 @@ export class GenreRelationsResolver {
   @TypeGraphQL.FieldResolver(_type => [Movie], {
     nullable: false
   })
-  async movies(@TypeGraphQL.Root() genre: Genre, @TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Info() info: GraphQLResolveInfo, @TypeGraphQL.Args(_type => GenreMoviesArgs) args: GenreMoviesArgs): Promise<Movie[]> {
+  async movies(@TypeGraphQL.Root() genre: Genre, @TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Info() info: GraphQLResolveInfo, @TypeGraphQL.Args() args: GenreMoviesArgs): Promise<Movie[]> {
     const { _count } = transformInfoIntoPrismaArgs(info);
     return getPrismaFromContext(ctx).genre.findUniqueOrThrow({
       where: {

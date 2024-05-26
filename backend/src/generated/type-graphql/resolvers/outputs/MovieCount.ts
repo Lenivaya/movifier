@@ -6,10 +6,12 @@ import { MovieCountCrewMembersArgs } from "./args/MovieCountCrewMembersArgs";
 import { MovieCountGenresArgs } from "./args/MovieCountGenresArgs";
 import { MovieCountInWatchlistByUsersArgs } from "./args/MovieCountInWatchlistByUsersArgs";
 import { MovieCountKeywordCategoriesArgs } from "./args/MovieCountKeywordCategoriesArgs";
+import { MovieCountLikedByArgs } from "./args/MovieCountLikedByArgs";
 import { MovieCountMovieListsArgs } from "./args/MovieCountMovieListsArgs";
-import { MovieCountRatingsArgs } from "./args/MovieCountRatingsArgs";
+import { MovieCountRatedByArgs } from "./args/MovieCountRatedByArgs";
 import { MovieCountSpokenLanguagesArgs } from "./args/MovieCountSpokenLanguagesArgs";
 import { MovieCountStudiosArgs } from "./args/MovieCountStudiosArgs";
+import { MovieCountWatchedByArgs } from "./args/MovieCountWatchedByArgs";
 
 @TypeGraphQL.ObjectType("MovieCount", {})
 export class MovieCount {
@@ -17,10 +19,12 @@ export class MovieCount {
   studios!: number;
   genres!: number;
   keywordCategories!: number;
-  ratings!: number;
+  ratedBy!: number;
   movieLists!: number;
   inWatchlistByUsers!: number;
   spokenLanguages!: number;
+  watchedBy!: number;
+  likedBy!: number;
 
   @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
     name: "crewMembers",
@@ -55,11 +59,11 @@ export class MovieCount {
   }
 
   @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
-    name: "ratings",
+    name: "ratedBy",
     nullable: false
   })
-  getRatings(@TypeGraphQL.Root() root: MovieCount, @TypeGraphQL.Args() args: MovieCountRatingsArgs): number {
-    return root.ratings;
+  getRatedBy(@TypeGraphQL.Root() root: MovieCount, @TypeGraphQL.Args() args: MovieCountRatedByArgs): number {
+    return root.ratedBy;
   }
 
   @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
@@ -84,5 +88,21 @@ export class MovieCount {
   })
   getSpokenLanguages(@TypeGraphQL.Root() root: MovieCount, @TypeGraphQL.Args() args: MovieCountSpokenLanguagesArgs): number {
     return root.spokenLanguages;
+  }
+
+  @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
+    name: "watchedBy",
+    nullable: false
+  })
+  getWatchedBy(@TypeGraphQL.Root() root: MovieCount, @TypeGraphQL.Args() args: MovieCountWatchedByArgs): number {
+    return root.watchedBy;
+  }
+
+  @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
+    name: "likedBy",
+    nullable: false
+  })
+  getLikedBy(@TypeGraphQL.Root() root: MovieCount, @TypeGraphQL.Args() args: MovieCountLikedByArgs): number {
+    return root.likedBy;
   }
 }

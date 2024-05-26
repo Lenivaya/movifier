@@ -3,7 +3,7 @@ import * as GraphQLScalars from "graphql-scalars";
 import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../../scalars";
 import { DateTimeFieldUpdateOperationsInput } from "../inputs/DateTimeFieldUpdateOperationsInput";
-import { MovieListUpdateOneRequiredWithoutMovieListCommentsNestedInput } from "../inputs/MovieListUpdateOneRequiredWithoutMovieListCommentsNestedInput";
+import { MovieListUpdateOneRequiredWithoutCommentsNestedInput } from "../inputs/MovieListUpdateOneRequiredWithoutCommentsNestedInput";
 import { MovifierAppUserUpdateOneRequiredWithoutMovieListsCommentsNestedInput } from "../inputs/MovifierAppUserUpdateOneRequiredWithoutMovieListsCommentsNestedInput";
 import { StringFieldUpdateOperationsInput } from "../inputs/StringFieldUpdateOperationsInput";
 
@@ -29,10 +29,10 @@ export class MovieListCommentUpdateInput {
   })
   content?: StringFieldUpdateOperationsInput | undefined;
 
-  @TypeGraphQL.Field(_type => MovieListUpdateOneRequiredWithoutMovieListCommentsNestedInput, {
+  @TypeGraphQL.Field(_type => MovieListUpdateOneRequiredWithoutCommentsNestedInput, {
     nullable: true
   })
-  movieList?: MovieListUpdateOneRequiredWithoutMovieListCommentsNestedInput | undefined;
+  movieList?: MovieListUpdateOneRequiredWithoutCommentsNestedInput | undefined;
 
   @TypeGraphQL.Field(_type => MovifierAppUserUpdateOneRequiredWithoutMovieListsCommentsNestedInput, {
     nullable: true

@@ -1,0 +1,14 @@
+export { AggregateMovieWatchedByUserArgs } from "./AggregateMovieWatchedByUserArgs";
+export { CreateManyMovieWatchedByUserArgs } from "./CreateManyMovieWatchedByUserArgs";
+export { CreateOneMovieWatchedByUserArgs } from "./CreateOneMovieWatchedByUserArgs";
+export { DeleteManyMovieWatchedByUserArgs } from "./DeleteManyMovieWatchedByUserArgs";
+export { DeleteOneMovieWatchedByUserArgs } from "./DeleteOneMovieWatchedByUserArgs";
+export { FindFirstMovieWatchedByUserArgs } from "./FindFirstMovieWatchedByUserArgs";
+export { FindFirstMovieWatchedByUserOrThrowArgs } from "./FindFirstMovieWatchedByUserOrThrowArgs";
+export { FindManyMovieWatchedByUserArgs } from "./FindManyMovieWatchedByUserArgs";
+export { FindUniqueMovieWatchedByUserArgs } from "./FindUniqueMovieWatchedByUserArgs";
+export { FindUniqueMovieWatchedByUserOrThrowArgs } from "./FindUniqueMovieWatchedByUserOrThrowArgs";
+export { GroupByMovieWatchedByUserArgs } from "./GroupByMovieWatchedByUserArgs";
+export { UpdateManyMovieWatchedByUserArgs } from "./UpdateManyMovieWatchedByUserArgs";
+export { UpdateOneMovieWatchedByUserArgs } from "./UpdateOneMovieWatchedByUserArgs";
+export { UpsertOneMovieWatchedByUserArgs } from "./UpsertOneMovieWatchedByUserArgs";

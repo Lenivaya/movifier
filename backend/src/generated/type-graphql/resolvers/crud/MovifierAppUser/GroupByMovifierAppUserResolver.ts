@@ -10,7 +10,7 @@ export class GroupByMovifierAppUserResolver {
   @TypeGraphQL.Query(_returns => [MovifierAppUserGroupBy], {
     nullable: false
   })
-  async groupByMovifierAppUser(@TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Info() info: GraphQLResolveInfo, @TypeGraphQL.Args(_type => GroupByMovifierAppUserArgs) args: GroupByMovifierAppUserArgs): Promise<MovifierAppUserGroupBy[]> {
+  async groupByMovifierAppUser(@TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Info() info: GraphQLResolveInfo, @TypeGraphQL.Args() args: GroupByMovifierAppUserArgs): Promise<MovifierAppUserGroupBy[]> {
     const { _count, _avg, _sum, _min, _max } = transformInfoIntoPrismaArgs(info);
     return getPrismaFromContext(ctx).movifierAppUser.groupBy({
       ...args,

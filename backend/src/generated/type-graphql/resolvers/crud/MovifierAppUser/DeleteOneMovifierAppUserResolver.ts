@@ -9,7 +9,7 @@ export class DeleteOneMovifierAppUserResolver {
   @TypeGraphQL.Mutation(_returns => MovifierAppUser, {
     nullable: true
   })
-  async deleteOneMovifierAppUser(@TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Info() info: GraphQLResolveInfo, @TypeGraphQL.Args(_type => DeleteOneMovifierAppUserArgs) args: DeleteOneMovifierAppUserArgs): Promise<MovifierAppUser | null> {
+  async deleteOneMovifierAppUser(@TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Info() info: GraphQLResolveInfo, @TypeGraphQL.Args() args: DeleteOneMovifierAppUserArgs): Promise<MovifierAppUser | null> {
     const { _count } = transformInfoIntoPrismaArgs(info);
     return getPrismaFromContext(ctx).movifierAppUser.delete({
       ...args,

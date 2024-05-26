@@ -9,7 +9,7 @@ export class FindUniqueMovieSpokenLanguageOrThrowResolver {
   @TypeGraphQL.Query(_returns => MovieSpokenLanguage, {
     nullable: true
   })
-  async getMovieSpokenLanguage(@TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Info() info: GraphQLResolveInfo, @TypeGraphQL.Args(_type => FindUniqueMovieSpokenLanguageOrThrowArgs) args: FindUniqueMovieSpokenLanguageOrThrowArgs): Promise<MovieSpokenLanguage | null> {
+  async getMovieSpokenLanguage(@TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Info() info: GraphQLResolveInfo, @TypeGraphQL.Args() args: FindUniqueMovieSpokenLanguageOrThrowArgs): Promise<MovieSpokenLanguage | null> {
     const { _count } = transformInfoIntoPrismaArgs(info);
     return getPrismaFromContext(ctx).movieSpokenLanguage.findUniqueOrThrow({
       ...args,

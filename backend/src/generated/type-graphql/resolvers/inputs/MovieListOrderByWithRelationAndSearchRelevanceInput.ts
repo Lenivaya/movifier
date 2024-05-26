@@ -3,6 +3,7 @@ import * as GraphQLScalars from "graphql-scalars";
 import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../../scalars";
 import { MovieListCommentOrderByRelationAggregateInput } from "../inputs/MovieListCommentOrderByRelationAggregateInput";
+import { MovieListLikedByUserOrderByRelationAggregateInput } from "../inputs/MovieListLikedByUserOrderByRelationAggregateInput";
 import { MovieListOrderByRelevanceInput } from "../inputs/MovieListOrderByRelevanceInput";
 import { MovieListStatsOrderByWithRelationAndSearchRelevanceInput } from "../inputs/MovieListStatsOrderByWithRelationAndSearchRelevanceInput";
 import { MovieOrderByRelationAggregateInput } from "../inputs/MovieOrderByRelationAggregateInput";
@@ -34,6 +35,16 @@ export class MovieListOrderByWithRelationAndSearchRelevanceInput {
   @TypeGraphQL.Field(_type => SortOrder, {
     nullable: true
   })
+  description?: "asc" | "desc" | undefined;
+
+  @TypeGraphQL.Field(_type => SortOrder, {
+    nullable: true
+  })
+  tags?: "asc" | "desc" | undefined;
+
+  @TypeGraphQL.Field(_type => SortOrder, {
+    nullable: true
+  })
   userId?: "asc" | "desc" | undefined;
 
   @TypeGraphQL.Field(_type => MovieOrderByRelationAggregateInput, {
@@ -49,12 +60,17 @@ export class MovieListOrderByWithRelationAndSearchRelevanceInput {
   @TypeGraphQL.Field(_type => MovieListStatsOrderByWithRelationAndSearchRelevanceInput, {
     nullable: true
   })
-  MovieListStats?: MovieListStatsOrderByWithRelationAndSearchRelevanceInput | undefined;
+  stats?: MovieListStatsOrderByWithRelationAndSearchRelevanceInput | undefined;
 
   @TypeGraphQL.Field(_type => MovieListCommentOrderByRelationAggregateInput, {
     nullable: true
   })
-  movieListComments?: MovieListCommentOrderByRelationAggregateInput | undefined;
+  comments?: MovieListCommentOrderByRelationAggregateInput | undefined;
+
+  @TypeGraphQL.Field(_type => MovieListLikedByUserOrderByRelationAggregateInput, {
+    nullable: true
+  })
+  likedBy?: MovieListLikedByUserOrderByRelationAggregateInput | undefined;
 
   @TypeGraphQL.Field(_type => MovieListOrderByRelevanceInput, {
     nullable: true

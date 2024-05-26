@@ -9,7 +9,7 @@ export class CreateOneGenreResolver {
   @TypeGraphQL.Mutation(_returns => Genre, {
     nullable: false
   })
-  async createOneGenre(@TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Info() info: GraphQLResolveInfo, @TypeGraphQL.Args(_type => CreateOneGenreArgs) args: CreateOneGenreArgs): Promise<Genre> {
+  async createOneGenre(@TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Info() info: GraphQLResolveInfo, @TypeGraphQL.Args() args: CreateOneGenreArgs): Promise<Genre> {
     const { _count } = transformInfoIntoPrismaArgs(info);
     return getPrismaFromContext(ctx).genre.create({
       ...args,

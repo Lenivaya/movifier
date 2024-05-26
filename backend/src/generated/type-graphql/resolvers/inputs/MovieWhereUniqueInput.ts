@@ -7,11 +7,13 @@ import { GenreListRelationFilter } from "../inputs/GenreListRelationFilter";
 import { MovieCrewMemberOnMovieListRelationFilter } from "../inputs/MovieCrewMemberOnMovieListRelationFilter";
 import { MovieInfoNullableRelationFilter } from "../inputs/MovieInfoNullableRelationFilter";
 import { MovieKeywordCategoryListRelationFilter } from "../inputs/MovieKeywordCategoryListRelationFilter";
+import { MovieLikedByUserListRelationFilter } from "../inputs/MovieLikedByUserListRelationFilter";
 import { MovieListListRelationFilter } from "../inputs/MovieListListRelationFilter";
 import { MovieRatingListRelationFilter } from "../inputs/MovieRatingListRelationFilter";
 import { MovieSpokenLanguageListRelationFilter } from "../inputs/MovieSpokenLanguageListRelationFilter";
 import { MovieStatsNullableRelationFilter } from "../inputs/MovieStatsNullableRelationFilter";
 import { MovieStudioListRelationFilter } from "../inputs/MovieStudioListRelationFilter";
+import { MovieWatchedByUserListRelationFilter } from "../inputs/MovieWatchedByUserListRelationFilter";
 import { MovieWhereInput } from "../inputs/MovieWhereInput";
 import { MovifierAppUserListRelationFilter } from "../inputs/MovifierAppUserListRelationFilter";
 
@@ -80,7 +82,7 @@ export class MovieWhereUniqueInput {
   @TypeGraphQL.Field(_type => MovieRatingListRelationFilter, {
     nullable: true
   })
-  ratings?: MovieRatingListRelationFilter | undefined;
+  ratedBy?: MovieRatingListRelationFilter | undefined;
 
   @TypeGraphQL.Field(_type => MovieListListRelationFilter, {
     nullable: true
@@ -96,4 +98,14 @@ export class MovieWhereUniqueInput {
     nullable: true
   })
   spokenLanguages?: MovieSpokenLanguageListRelationFilter | undefined;
+
+  @TypeGraphQL.Field(_type => MovieWatchedByUserListRelationFilter, {
+    nullable: true
+  })
+  watchedBy?: MovieWatchedByUserListRelationFilter | undefined;
+
+  @TypeGraphQL.Field(_type => MovieLikedByUserListRelationFilter, {
+    nullable: true
+  })
+  likedBy?: MovieLikedByUserListRelationFilter | undefined;
 }

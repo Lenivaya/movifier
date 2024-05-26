@@ -25,7 +25,7 @@ export class MovifierAppUserCrudResolver {
   @TypeGraphQL.Query(_returns => AggregateMovifierAppUser, {
     nullable: false
   })
-  async aggregateMovifierAppUser(@TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Info() info: GraphQLResolveInfo, @TypeGraphQL.Args(_type => AggregateMovifierAppUserArgs) args: AggregateMovifierAppUserArgs): Promise<AggregateMovifierAppUser> {
+  async aggregateMovifierAppUser(@TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Info() info: GraphQLResolveInfo, @TypeGraphQL.Args() args: AggregateMovifierAppUserArgs): Promise<AggregateMovifierAppUser> {
     return getPrismaFromContext(ctx).movifierAppUser.aggregate({
       ...args,
       ...transformInfoIntoPrismaArgs(info),
@@ -35,7 +35,7 @@ export class MovifierAppUserCrudResolver {
   @TypeGraphQL.Mutation(_returns => AffectedRowsOutput, {
     nullable: false
   })
-  async createManyMovifierAppUser(@TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Info() info: GraphQLResolveInfo, @TypeGraphQL.Args(_type => CreateManyMovifierAppUserArgs) args: CreateManyMovifierAppUserArgs): Promise<AffectedRowsOutput> {
+  async createManyMovifierAppUser(@TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Info() info: GraphQLResolveInfo, @TypeGraphQL.Args() args: CreateManyMovifierAppUserArgs): Promise<AffectedRowsOutput> {
     const { _count } = transformInfoIntoPrismaArgs(info);
     return getPrismaFromContext(ctx).movifierAppUser.createMany({
       ...args,
@@ -46,7 +46,7 @@ export class MovifierAppUserCrudResolver {
   @TypeGraphQL.Mutation(_returns => MovifierAppUser, {
     nullable: false
   })
-  async createOneMovifierAppUser(@TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Info() info: GraphQLResolveInfo, @TypeGraphQL.Args(_type => CreateOneMovifierAppUserArgs) args: CreateOneMovifierAppUserArgs): Promise<MovifierAppUser> {
+  async createOneMovifierAppUser(@TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Info() info: GraphQLResolveInfo, @TypeGraphQL.Args() args: CreateOneMovifierAppUserArgs): Promise<MovifierAppUser> {
     const { _count } = transformInfoIntoPrismaArgs(info);
     return getPrismaFromContext(ctx).movifierAppUser.create({
       ...args,
@@ -57,7 +57,7 @@ export class MovifierAppUserCrudResolver {
   @TypeGraphQL.Mutation(_returns => AffectedRowsOutput, {
     nullable: false
   })
-  async deleteManyMovifierAppUser(@TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Info() info: GraphQLResolveInfo, @TypeGraphQL.Args(_type => DeleteManyMovifierAppUserArgs) args: DeleteManyMovifierAppUserArgs): Promise<AffectedRowsOutput> {
+  async deleteManyMovifierAppUser(@TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Info() info: GraphQLResolveInfo, @TypeGraphQL.Args() args: DeleteManyMovifierAppUserArgs): Promise<AffectedRowsOutput> {
     const { _count } = transformInfoIntoPrismaArgs(info);
     return getPrismaFromContext(ctx).movifierAppUser.deleteMany({
       ...args,
@@ -68,7 +68,7 @@ export class MovifierAppUserCrudResolver {
   @TypeGraphQL.Mutation(_returns => MovifierAppUser, {
     nullable: true
   })
-  async deleteOneMovifierAppUser(@TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Info() info: GraphQLResolveInfo, @TypeGraphQL.Args(_type => DeleteOneMovifierAppUserArgs) args: DeleteOneMovifierAppUserArgs): Promise<MovifierAppUser | null> {
+  async deleteOneMovifierAppUser(@TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Info() info: GraphQLResolveInfo, @TypeGraphQL.Args() args: DeleteOneMovifierAppUserArgs): Promise<MovifierAppUser | null> {
     const { _count } = transformInfoIntoPrismaArgs(info);
     return getPrismaFromContext(ctx).movifierAppUser.delete({
       ...args,
@@ -79,7 +79,7 @@ export class MovifierAppUserCrudResolver {
   @TypeGraphQL.Query(_returns => MovifierAppUser, {
     nullable: true
   })
-  async findFirstMovifierAppUser(@TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Info() info: GraphQLResolveInfo, @TypeGraphQL.Args(_type => FindFirstMovifierAppUserArgs) args: FindFirstMovifierAppUserArgs): Promise<MovifierAppUser | null> {
+  async findFirstMovifierAppUser(@TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Info() info: GraphQLResolveInfo, @TypeGraphQL.Args() args: FindFirstMovifierAppUserArgs): Promise<MovifierAppUser | null> {
     const { _count } = transformInfoIntoPrismaArgs(info);
     return getPrismaFromContext(ctx).movifierAppUser.findFirst({
       ...args,
@@ -90,7 +90,7 @@ export class MovifierAppUserCrudResolver {
   @TypeGraphQL.Query(_returns => MovifierAppUser, {
     nullable: true
   })
-  async findFirstMovifierAppUserOrThrow(@TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Info() info: GraphQLResolveInfo, @TypeGraphQL.Args(_type => FindFirstMovifierAppUserOrThrowArgs) args: FindFirstMovifierAppUserOrThrowArgs): Promise<MovifierAppUser | null> {
+  async findFirstMovifierAppUserOrThrow(@TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Info() info: GraphQLResolveInfo, @TypeGraphQL.Args() args: FindFirstMovifierAppUserOrThrowArgs): Promise<MovifierAppUser | null> {
     const { _count } = transformInfoIntoPrismaArgs(info);
     return getPrismaFromContext(ctx).movifierAppUser.findFirstOrThrow({
       ...args,
@@ -101,7 +101,7 @@ export class MovifierAppUserCrudResolver {
   @TypeGraphQL.Query(_returns => [MovifierAppUser], {
     nullable: false
   })
-  async movifierAppUsers(@TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Info() info: GraphQLResolveInfo, @TypeGraphQL.Args(_type => FindManyMovifierAppUserArgs) args: FindManyMovifierAppUserArgs): Promise<MovifierAppUser[]> {
+  async movifierAppUsers(@TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Info() info: GraphQLResolveInfo, @TypeGraphQL.Args() args: FindManyMovifierAppUserArgs): Promise<MovifierAppUser[]> {
     const { _count } = transformInfoIntoPrismaArgs(info);
     return getPrismaFromContext(ctx).movifierAppUser.findMany({
       ...args,
@@ -112,7 +112,7 @@ export class MovifierAppUserCrudResolver {
   @TypeGraphQL.Query(_returns => MovifierAppUser, {
     nullable: true
   })
-  async movifierAppUser(@TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Info() info: GraphQLResolveInfo, @TypeGraphQL.Args(_type => FindUniqueMovifierAppUserArgs) args: FindUniqueMovifierAppUserArgs): Promise<MovifierAppUser | null> {
+  async movifierAppUser(@TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Info() info: GraphQLResolveInfo, @TypeGraphQL.Args() args: FindUniqueMovifierAppUserArgs): Promise<MovifierAppUser | null> {
     const { _count } = transformInfoIntoPrismaArgs(info);
     return getPrismaFromContext(ctx).movifierAppUser.findUnique({
       ...args,
@@ -123,7 +123,7 @@ export class MovifierAppUserCrudResolver {
   @TypeGraphQL.Query(_returns => MovifierAppUser, {
     nullable: true
   })
-  async getMovifierAppUser(@TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Info() info: GraphQLResolveInfo, @TypeGraphQL.Args(_type => FindUniqueMovifierAppUserOrThrowArgs) args: FindUniqueMovifierAppUserOrThrowArgs): Promise<MovifierAppUser | null> {
+  async getMovifierAppUser(@TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Info() info: GraphQLResolveInfo, @TypeGraphQL.Args() args: FindUniqueMovifierAppUserOrThrowArgs): Promise<MovifierAppUser | null> {
     const { _count } = transformInfoIntoPrismaArgs(info);
     return getPrismaFromContext(ctx).movifierAppUser.findUniqueOrThrow({
       ...args,
@@ -134,7 +134,7 @@ export class MovifierAppUserCrudResolver {
   @TypeGraphQL.Query(_returns => [MovifierAppUserGroupBy], {
     nullable: false
   })
-  async groupByMovifierAppUser(@TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Info() info: GraphQLResolveInfo, @TypeGraphQL.Args(_type => GroupByMovifierAppUserArgs) args: GroupByMovifierAppUserArgs): Promise<MovifierAppUserGroupBy[]> {
+  async groupByMovifierAppUser(@TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Info() info: GraphQLResolveInfo, @TypeGraphQL.Args() args: GroupByMovifierAppUserArgs): Promise<MovifierAppUserGroupBy[]> {
     const { _count, _avg, _sum, _min, _max } = transformInfoIntoPrismaArgs(info);
     return getPrismaFromContext(ctx).movifierAppUser.groupBy({
       ...args,
@@ -147,7 +147,7 @@ export class MovifierAppUserCrudResolver {
   @TypeGraphQL.Mutation(_returns => AffectedRowsOutput, {
     nullable: false
   })
-  async updateManyMovifierAppUser(@TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Info() info: GraphQLResolveInfo, @TypeGraphQL.Args(_type => UpdateManyMovifierAppUserArgs) args: UpdateManyMovifierAppUserArgs): Promise<AffectedRowsOutput> {
+  async updateManyMovifierAppUser(@TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Info() info: GraphQLResolveInfo, @TypeGraphQL.Args() args: UpdateManyMovifierAppUserArgs): Promise<AffectedRowsOutput> {
     const { _count } = transformInfoIntoPrismaArgs(info);
     return getPrismaFromContext(ctx).movifierAppUser.updateMany({
       ...args,
@@ -158,7 +158,7 @@ export class MovifierAppUserCrudResolver {
   @TypeGraphQL.Mutation(_returns => MovifierAppUser, {
     nullable: true
   })
-  async updateOneMovifierAppUser(@TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Info() info: GraphQLResolveInfo, @TypeGraphQL.Args(_type => UpdateOneMovifierAppUserArgs) args: UpdateOneMovifierAppUserArgs): Promise<MovifierAppUser | null> {
+  async updateOneMovifierAppUser(@TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Info() info: GraphQLResolveInfo, @TypeGraphQL.Args() args: UpdateOneMovifierAppUserArgs): Promise<MovifierAppUser | null> {
     const { _count } = transformInfoIntoPrismaArgs(info);
     return getPrismaFromContext(ctx).movifierAppUser.update({
       ...args,
@@ -169,7 +169,7 @@ export class MovifierAppUserCrudResolver {
   @TypeGraphQL.Mutation(_returns => MovifierAppUser, {
     nullable: false
   })
-  async upsertOneMovifierAppUser(@TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Info() info: GraphQLResolveInfo, @TypeGraphQL.Args(_type => UpsertOneMovifierAppUserArgs) args: UpsertOneMovifierAppUserArgs): Promise<MovifierAppUser> {
+  async upsertOneMovifierAppUser(@TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Info() info: GraphQLResolveInfo, @TypeGraphQL.Args() args: UpsertOneMovifierAppUserArgs): Promise<MovifierAppUser> {
     const { _count } = transformInfoIntoPrismaArgs(info);
     return getPrismaFromContext(ctx).movifierAppUser.upsert({
       ...args,

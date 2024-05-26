@@ -46,7 +46,7 @@ export class MovieStatsScalarWhereWithAggregatesInput {
   @TypeGraphQL.Field(_type => IntWithAggregatesFilter, {
     nullable: true
   })
-  overallPlaceINTop?: IntWithAggregatesFilter | undefined;
+  overallPlaceInTop?: IntWithAggregatesFilter | undefined;
 
   @TypeGraphQL.Field(_type => FloatWithAggregatesFilter, {
     nullable: true

@@ -5,7 +5,7 @@ export enum MovieStatsScalarFieldEnum {
   timesWatchedCount = "timesWatchedCount",
   totalRatingsCount = "totalRatingsCount",
   totalLikesCount = "totalLikesCount",
-  overallPlaceINTop = "overallPlaceINTop",
+  overallPlaceInTop = "overallPlaceInTop",
   avgRating = "avgRating",
   movieId = "movieId"
 }

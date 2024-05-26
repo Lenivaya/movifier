@@ -12,13 +12,13 @@ export class MovieRatingRelationsResolver {
   @TypeGraphQL.FieldResolver(_type => MovieReview, {
     nullable: true
   })
-  async Review(@TypeGraphQL.Root() movieRating: MovieRating, @TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Info() info: GraphQLResolveInfo, @TypeGraphQL.Args(_type => MovieRatingReviewArgs) args: MovieRatingReviewArgs): Promise<MovieReview | null> {
+  async review(@TypeGraphQL.Root() movieRating: MovieRating, @TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Info() info: GraphQLResolveInfo, @TypeGraphQL.Args() args: MovieRatingReviewArgs): Promise<MovieReview | null> {
     const { _count } = transformInfoIntoPrismaArgs(info);
     return getPrismaFromContext(ctx).movieRating.findUniqueOrThrow({
       where: {
         id: movieRating.id,
       },
-    }).Review({
+    }).review({
       ...args,
       ...(_count && transformCountFieldIntoSelectRelationsCount(_count)),
     });

@@ -25,7 +25,7 @@ export class MovieCrewMemberTypeCrudResolver {
   @TypeGraphQL.Query(_returns => AggregateMovieCrewMemberType, {
     nullable: false
   })
-  async aggregateMovieCrewMemberType(@TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Info() info: GraphQLResolveInfo, @TypeGraphQL.Args(_type => AggregateMovieCrewMemberTypeArgs) args: AggregateMovieCrewMemberTypeArgs): Promise<AggregateMovieCrewMemberType> {
+  async aggregateMovieCrewMemberType(@TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Info() info: GraphQLResolveInfo, @TypeGraphQL.Args() args: AggregateMovieCrewMemberTypeArgs): Promise<AggregateMovieCrewMemberType> {
     return getPrismaFromContext(ctx).movieCrewMemberType.aggregate({
       ...args,
       ...transformInfoIntoPrismaArgs(info),
@@ -35,7 +35,7 @@ export class MovieCrewMemberTypeCrudResolver {
   @TypeGraphQL.Mutation(_returns => AffectedRowsOutput, {
     nullable: false
   })
-  async createManyMovieCrewMemberType(@TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Info() info: GraphQLResolveInfo, @TypeGraphQL.Args(_type => CreateManyMovieCrewMemberTypeArgs) args: CreateManyMovieCrewMemberTypeArgs): Promise<AffectedRowsOutput> {
+  async createManyMovieCrewMemberType(@TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Info() info: GraphQLResolveInfo, @TypeGraphQL.Args() args: CreateManyMovieCrewMemberTypeArgs): Promise<AffectedRowsOutput> {
     const { _count } = transformInfoIntoPrismaArgs(info);
     return getPrismaFromContext(ctx).movieCrewMemberType.createMany({
       ...args,
@@ -46,7 +46,7 @@ export class MovieCrewMemberTypeCrudResolver {
   @TypeGraphQL.Mutation(_returns => MovieCrewMemberType, {
     nullable: false
   })
-  async createOneMovieCrewMemberType(@TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Info() info: GraphQLResolveInfo, @TypeGraphQL.Args(_type => CreateOneMovieCrewMemberTypeArgs) args: CreateOneMovieCrewMemberTypeArgs): Promise<MovieCrewMemberType> {
+  async createOneMovieCrewMemberType(@TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Info() info: GraphQLResolveInfo, @TypeGraphQL.Args() args: CreateOneMovieCrewMemberTypeArgs): Promise<MovieCrewMemberType> {
     const { _count } = transformInfoIntoPrismaArgs(info);
     return getPrismaFromContext(ctx).movieCrewMemberType.create({
       ...args,
@@ -57,7 +57,7 @@ export class MovieCrewMemberTypeCrudResolver {
   @TypeGraphQL.Mutation(_returns => AffectedRowsOutput, {
     nullable: false
   })
-  async deleteManyMovieCrewMemberType(@TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Info() info: GraphQLResolveInfo, @TypeGraphQL.Args(_type => DeleteManyMovieCrewMemberTypeArgs) args: DeleteManyMovieCrewMemberTypeArgs): Promise<AffectedRowsOutput> {
+  async deleteManyMovieCrewMemberType(@TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Info() info: GraphQLResolveInfo, @TypeGraphQL.Args() args: DeleteManyMovieCrewMemberTypeArgs): Promise<AffectedRowsOutput> {
     const { _count } = transformInfoIntoPrismaArgs(info);
     return getPrismaFromContext(ctx).movieCrewMemberType.deleteMany({
       ...args,
@@ -68,7 +68,7 @@ export class MovieCrewMemberTypeCrudResolver {
   @TypeGraphQL.Mutation(_returns => MovieCrewMemberType, {
     nullable: true
   })
-  async deleteOneMovieCrewMemberType(@TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Info() info: GraphQLResolveInfo, @TypeGraphQL.Args(_type => DeleteOneMovieCrewMemberTypeArgs) args: DeleteOneMovieCrewMemberTypeArgs): Promise<MovieCrewMemberType | null> {
+  async deleteOneMovieCrewMemberType(@TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Info() info: GraphQLResolveInfo, @TypeGraphQL.Args() args: DeleteOneMovieCrewMemberTypeArgs): Promise<MovieCrewMemberType | null> {
     const { _count } = transformInfoIntoPrismaArgs(info);
     return getPrismaFromContext(ctx).movieCrewMemberType.delete({
       ...args,
@@ -79,7 +79,7 @@ export class MovieCrewMemberTypeCrudResolver {
   @TypeGraphQL.Query(_returns => MovieCrewMemberType, {
     nullable: true
   })
-  async findFirstMovieCrewMemberType(@TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Info() info: GraphQLResolveInfo, @TypeGraphQL.Args(_type => FindFirstMovieCrewMemberTypeArgs) args: FindFirstMovieCrewMemberTypeArgs): Promise<MovieCrewMemberType | null> {
+  async findFirstMovieCrewMemberType(@TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Info() info: GraphQLResolveInfo, @TypeGraphQL.Args() args: FindFirstMovieCrewMemberTypeArgs): Promise<MovieCrewMemberType | null> {
     const { _count } = transformInfoIntoPrismaArgs(info);
     return getPrismaFromContext(ctx).movieCrewMemberType.findFirst({
       ...args,
@@ -90,7 +90,7 @@ export class MovieCrewMemberTypeCrudResolver {
   @TypeGraphQL.Query(_returns => MovieCrewMemberType, {
     nullable: true
   })
-  async findFirstMovieCrewMemberTypeOrThrow(@TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Info() info: GraphQLResolveInfo, @TypeGraphQL.Args(_type => FindFirstMovieCrewMemberTypeOrThrowArgs) args: FindFirstMovieCrewMemberTypeOrThrowArgs): Promise<MovieCrewMemberType | null> {
+  async findFirstMovieCrewMemberTypeOrThrow(@TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Info() info: GraphQLResolveInfo, @TypeGraphQL.Args() args: FindFirstMovieCrewMemberTypeOrThrowArgs): Promise<MovieCrewMemberType | null> {
     const { _count } = transformInfoIntoPrismaArgs(info);
     return getPrismaFromContext(ctx).movieCrewMemberType.findFirstOrThrow({
       ...args,
@@ -101,7 +101,7 @@ export class MovieCrewMemberTypeCrudResolver {
   @TypeGraphQL.Query(_returns => [MovieCrewMemberType], {
     nullable: false
   })
-  async movieCrewMemberTypes(@TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Info() info: GraphQLResolveInfo, @TypeGraphQL.Args(_type => FindManyMovieCrewMemberTypeArgs) args: FindManyMovieCrewMemberTypeArgs): Promise<MovieCrewMemberType[]> {
+  async movieCrewMemberTypes(@TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Info() info: GraphQLResolveInfo, @TypeGraphQL.Args() args: FindManyMovieCrewMemberTypeArgs): Promise<MovieCrewMemberType[]> {
     const { _count } = transformInfoIntoPrismaArgs(info);
     return getPrismaFromContext(ctx).movieCrewMemberType.findMany({
       ...args,
@@ -112,7 +112,7 @@ export class MovieCrewMemberTypeCrudResolver {
   @TypeGraphQL.Query(_returns => MovieCrewMemberType, {
     nullable: true
   })
-  async movieCrewMemberType(@TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Info() info: GraphQLResolveInfo, @TypeGraphQL.Args(_type => FindUniqueMovieCrewMemberTypeArgs) args: FindUniqueMovieCrewMemberTypeArgs): Promise<MovieCrewMemberType | null> {
+  async movieCrewMemberType(@TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Info() info: GraphQLResolveInfo, @TypeGraphQL.Args() args: FindUniqueMovieCrewMemberTypeArgs): Promise<MovieCrewMemberType | null> {
     const { _count } = transformInfoIntoPrismaArgs(info);
     return getPrismaFromContext(ctx).movieCrewMemberType.findUnique({
       ...args,
@@ -123,7 +123,7 @@ export class MovieCrewMemberTypeCrudResolver {
   @TypeGraphQL.Query(_returns => MovieCrewMemberType, {
     nullable: true
   })
-  async getMovieCrewMemberType(@TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Info() info: GraphQLResolveInfo, @TypeGraphQL.Args(_type => FindUniqueMovieCrewMemberTypeOrThrowArgs) args: FindUniqueMovieCrewMemberTypeOrThrowArgs): Promise<MovieCrewMemberType | null> {
+  async getMovieCrewMemberType(@TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Info() info: GraphQLResolveInfo, @TypeGraphQL.Args() args: FindUniqueMovieCrewMemberTypeOrThrowArgs): Promise<MovieCrewMemberType | null> {
     const { _count } = transformInfoIntoPrismaArgs(info);
     return getPrismaFromContext(ctx).movieCrewMemberType.findUniqueOrThrow({
       ...args,
@@ -134,7 +134,7 @@ export class MovieCrewMemberTypeCrudResolver {
   @TypeGraphQL.Query(_returns => [MovieCrewMemberTypeGroupBy], {
     nullable: false
   })
-  async groupByMovieCrewMemberType(@TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Info() info: GraphQLResolveInfo, @TypeGraphQL.Args(_type => GroupByMovieCrewMemberTypeArgs) args: GroupByMovieCrewMemberTypeArgs): Promise<MovieCrewMemberTypeGroupBy[]> {
+  async groupByMovieCrewMemberType(@TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Info() info: GraphQLResolveInfo, @TypeGraphQL.Args() args: GroupByMovieCrewMemberTypeArgs): Promise<MovieCrewMemberTypeGroupBy[]> {
     const { _count, _avg, _sum, _min, _max } = transformInfoIntoPrismaArgs(info);
     return getPrismaFromContext(ctx).movieCrewMemberType.groupBy({
       ...args,
@@ -147,7 +147,7 @@ export class MovieCrewMemberTypeCrudResolver {
   @TypeGraphQL.Mutation(_returns => AffectedRowsOutput, {
     nullable: false
   })
-  async updateManyMovieCrewMemberType(@TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Info() info: GraphQLResolveInfo, @TypeGraphQL.Args(_type => UpdateManyMovieCrewMemberTypeArgs) args: UpdateManyMovieCrewMemberTypeArgs): Promise<AffectedRowsOutput> {
+  async updateManyMovieCrewMemberType(@TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Info() info: GraphQLResolveInfo, @TypeGraphQL.Args() args: UpdateManyMovieCrewMemberTypeArgs): Promise<AffectedRowsOutput> {
     const { _count } = transformInfoIntoPrismaArgs(info);
     return getPrismaFromContext(ctx).movieCrewMemberType.updateMany({
       ...args,
@@ -158,7 +158,7 @@ export class MovieCrewMemberTypeCrudResolver {
   @TypeGraphQL.Mutation(_returns => MovieCrewMemberType, {
     nullable: true
   })
-  async updateOneMovieCrewMemberType(@TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Info() info: GraphQLResolveInfo, @TypeGraphQL.Args(_type => UpdateOneMovieCrewMemberTypeArgs) args: UpdateOneMovieCrewMemberTypeArgs): Promise<MovieCrewMemberType | null> {
+  async updateOneMovieCrewMemberType(@TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Info() info: GraphQLResolveInfo, @TypeGraphQL.Args() args: UpdateOneMovieCrewMemberTypeArgs): Promise<MovieCrewMemberType | null> {
     const { _count } = transformInfoIntoPrismaArgs(info);
     return getPrismaFromContext(ctx).movieCrewMemberType.update({
       ...args,
@@ -169,7 +169,7 @@ export class MovieCrewMemberTypeCrudResolver {
   @TypeGraphQL.Mutation(_returns => MovieCrewMemberType, {
     nullable: false
   })
-  async upsertOneMovieCrewMemberType(@TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Info() info: GraphQLResolveInfo, @TypeGraphQL.Args(_type => UpsertOneMovieCrewMemberTypeArgs) args: UpsertOneMovieCrewMemberTypeArgs): Promise<MovieCrewMemberType> {
+  async upsertOneMovieCrewMemberType(@TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Info() info: GraphQLResolveInfo, @TypeGraphQL.Args() args: UpsertOneMovieCrewMemberTypeArgs): Promise<MovieCrewMemberType> {
     const { _count } = transformInfoIntoPrismaArgs(info);
     return getPrismaFromContext(ctx).movieCrewMemberType.upsert({
       ...args,

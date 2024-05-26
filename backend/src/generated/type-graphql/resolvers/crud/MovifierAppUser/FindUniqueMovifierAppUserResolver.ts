@@ -9,7 +9,7 @@ export class FindUniqueMovifierAppUserResolver {
   @TypeGraphQL.Query(_returns => MovifierAppUser, {
     nullable: true
   })
-  async movifierAppUser(@TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Info() info: GraphQLResolveInfo, @TypeGraphQL.Args(_type => FindUniqueMovifierAppUserArgs) args: FindUniqueMovifierAppUserArgs): Promise<MovifierAppUser | null> {
+  async movifierAppUser(@TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Info() info: GraphQLResolveInfo, @TypeGraphQL.Args() args: FindUniqueMovifierAppUserArgs): Promise<MovifierAppUser | null> {
     const { _count } = transformInfoIntoPrismaArgs(info);
     return getPrismaFromContext(ctx).movifierAppUser.findUnique({
       ...args,

@@ -3,7 +3,7 @@ import * as GraphQLScalars from "graphql-scalars";
 import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../../scalars";
 import { MovieReviewCreateNestedOneWithoutRatingInput } from "../inputs/MovieReviewCreateNestedOneWithoutRatingInput";
-import { MovifierAppUserCreateNestedOneWithoutRatingInput } from "../inputs/MovifierAppUserCreateNestedOneWithoutRatingInput";
+import { MovifierAppUserCreateNestedOneWithoutRatedMoviesInput } from "../inputs/MovifierAppUserCreateNestedOneWithoutRatedMoviesInput";
 
 @TypeGraphQL.InputType("MovieRatingCreateWithoutMovieInput", {})
 export class MovieRatingCreateWithoutMovieInput {
@@ -30,10 +30,10 @@ export class MovieRatingCreateWithoutMovieInput {
   @TypeGraphQL.Field(_type => MovieReviewCreateNestedOneWithoutRatingInput, {
     nullable: true
   })
-  Review?: MovieReviewCreateNestedOneWithoutRatingInput | undefined;
+  review?: MovieReviewCreateNestedOneWithoutRatingInput | undefined;
 
-  @TypeGraphQL.Field(_type => MovifierAppUserCreateNestedOneWithoutRatingInput, {
+  @TypeGraphQL.Field(_type => MovifierAppUserCreateNestedOneWithoutRatedMoviesInput, {
     nullable: false
   })
-  user!: MovifierAppUserCreateNestedOneWithoutRatingInput;
+  user!: MovifierAppUserCreateNestedOneWithoutRatedMoviesInput;
 }

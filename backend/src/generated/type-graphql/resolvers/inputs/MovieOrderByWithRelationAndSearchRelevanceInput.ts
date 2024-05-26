@@ -6,12 +6,14 @@ import { GenreOrderByRelationAggregateInput } from "../inputs/GenreOrderByRelati
 import { MovieCrewMemberOnMovieOrderByRelationAggregateInput } from "../inputs/MovieCrewMemberOnMovieOrderByRelationAggregateInput";
 import { MovieInfoOrderByWithRelationAndSearchRelevanceInput } from "../inputs/MovieInfoOrderByWithRelationAndSearchRelevanceInput";
 import { MovieKeywordCategoryOrderByRelationAggregateInput } from "../inputs/MovieKeywordCategoryOrderByRelationAggregateInput";
+import { MovieLikedByUserOrderByRelationAggregateInput } from "../inputs/MovieLikedByUserOrderByRelationAggregateInput";
 import { MovieListOrderByRelationAggregateInput } from "../inputs/MovieListOrderByRelationAggregateInput";
 import { MovieOrderByRelevanceInput } from "../inputs/MovieOrderByRelevanceInput";
 import { MovieRatingOrderByRelationAggregateInput } from "../inputs/MovieRatingOrderByRelationAggregateInput";
 import { MovieSpokenLanguageOrderByRelationAggregateInput } from "../inputs/MovieSpokenLanguageOrderByRelationAggregateInput";
 import { MovieStatsOrderByWithRelationAndSearchRelevanceInput } from "../inputs/MovieStatsOrderByWithRelationAndSearchRelevanceInput";
 import { MovieStudioOrderByRelationAggregateInput } from "../inputs/MovieStudioOrderByRelationAggregateInput";
+import { MovieWatchedByUserOrderByRelationAggregateInput } from "../inputs/MovieWatchedByUserOrderByRelationAggregateInput";
 import { MovifierAppUserOrderByRelationAggregateInput } from "../inputs/MovifierAppUserOrderByRelationAggregateInput";
 import { SortOrder } from "../../enums/SortOrder";
 
@@ -65,7 +67,7 @@ export class MovieOrderByWithRelationAndSearchRelevanceInput {
   @TypeGraphQL.Field(_type => MovieRatingOrderByRelationAggregateInput, {
     nullable: true
   })
-  ratings?: MovieRatingOrderByRelationAggregateInput | undefined;
+  ratedBy?: MovieRatingOrderByRelationAggregateInput | undefined;
 
   @TypeGraphQL.Field(_type => MovieListOrderByRelationAggregateInput, {
     nullable: true
@@ -81,6 +83,16 @@ export class MovieOrderByWithRelationAndSearchRelevanceInput {
     nullable: true
   })
   spokenLanguages?: MovieSpokenLanguageOrderByRelationAggregateInput | undefined;
+
+  @TypeGraphQL.Field(_type => MovieWatchedByUserOrderByRelationAggregateInput, {
+    nullable: true
+  })
+  watchedBy?: MovieWatchedByUserOrderByRelationAggregateInput | undefined;
+
+  @TypeGraphQL.Field(_type => MovieLikedByUserOrderByRelationAggregateInput, {
+    nullable: true
+  })
+  likedBy?: MovieLikedByUserOrderByRelationAggregateInput | undefined;
 
   @TypeGraphQL.Field(_type => MovieOrderByRelevanceInput, {
     nullable: true

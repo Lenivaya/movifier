@@ -25,7 +25,7 @@ export class MovieSpokenLanguageCrudResolver {
   @TypeGraphQL.Query(_returns => AggregateMovieSpokenLanguage, {
     nullable: false
   })
-  async aggregateMovieSpokenLanguage(@TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Info() info: GraphQLResolveInfo, @TypeGraphQL.Args(_type => AggregateMovieSpokenLanguageArgs) args: AggregateMovieSpokenLanguageArgs): Promise<AggregateMovieSpokenLanguage> {
+  async aggregateMovieSpokenLanguage(@TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Info() info: GraphQLResolveInfo, @TypeGraphQL.Args() args: AggregateMovieSpokenLanguageArgs): Promise<AggregateMovieSpokenLanguage> {
     return getPrismaFromContext(ctx).movieSpokenLanguage.aggregate({
       ...args,
       ...transformInfoIntoPrismaArgs(info),
@@ -35,7 +35,7 @@ export class MovieSpokenLanguageCrudResolver {
   @TypeGraphQL.Mutation(_returns => AffectedRowsOutput, {
     nullable: false
   })
-  async createManyMovieSpokenLanguage(@TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Info() info: GraphQLResolveInfo, @TypeGraphQL.Args(_type => CreateManyMovieSpokenLanguageArgs) args: CreateManyMovieSpokenLanguageArgs): Promise<AffectedRowsOutput> {
+  async createManyMovieSpokenLanguage(@TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Info() info: GraphQLResolveInfo, @TypeGraphQL.Args() args: CreateManyMovieSpokenLanguageArgs): Promise<AffectedRowsOutput> {
     const { _count } = transformInfoIntoPrismaArgs(info);
     return getPrismaFromContext(ctx).movieSpokenLanguage.createMany({
       ...args,
@@ -46,7 +46,7 @@ export class MovieSpokenLanguageCrudResolver {
   @TypeGraphQL.Mutation(_returns => MovieSpokenLanguage, {
     nullable: false
   })
-  async createOneMovieSpokenLanguage(@TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Info() info: GraphQLResolveInfo, @TypeGraphQL.Args(_type => CreateOneMovieSpokenLanguageArgs) args: CreateOneMovieSpokenLanguageArgs): Promise<MovieSpokenLanguage> {
+  async createOneMovieSpokenLanguage(@TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Info() info: GraphQLResolveInfo, @TypeGraphQL.Args() args: CreateOneMovieSpokenLanguageArgs): Promise<MovieSpokenLanguage> {
     const { _count } = transformInfoIntoPrismaArgs(info);
     return getPrismaFromContext(ctx).movieSpokenLanguage.create({
       ...args,
@@ -57,7 +57,7 @@ export class MovieSpokenLanguageCrudResolver {
   @TypeGraphQL.Mutation(_returns => AffectedRowsOutput, {
     nullable: false
   })
-  async deleteManyMovieSpokenLanguage(@TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Info() info: GraphQLResolveInfo, @TypeGraphQL.Args(_type => DeleteManyMovieSpokenLanguageArgs) args: DeleteManyMovieSpokenLanguageArgs): Promise<AffectedRowsOutput> {
+  async deleteManyMovieSpokenLanguage(@TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Info() info: GraphQLResolveInfo, @TypeGraphQL.Args() args: DeleteManyMovieSpokenLanguageArgs): Promise<AffectedRowsOutput> {
     const { _count } = transformInfoIntoPrismaArgs(info);
     return getPrismaFromContext(ctx).movieSpokenLanguage.deleteMany({
       ...args,
@@ -68,7 +68,7 @@ export class MovieSpokenLanguageCrudResolver {
   @TypeGraphQL.Mutation(_returns => MovieSpokenLanguage, {
     nullable: true
   })
-  async deleteOneMovieSpokenLanguage(@TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Info() info: GraphQLResolveInfo, @TypeGraphQL.Args(_type => DeleteOneMovieSpokenLanguageArgs) args: DeleteOneMovieSpokenLanguageArgs): Promise<MovieSpokenLanguage | null> {
+  async deleteOneMovieSpokenLanguage(@TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Info() info: GraphQLResolveInfo, @TypeGraphQL.Args() args: DeleteOneMovieSpokenLanguageArgs): Promise<MovieSpokenLanguage | null> {
     const { _count } = transformInfoIntoPrismaArgs(info);
     return getPrismaFromContext(ctx).movieSpokenLanguage.delete({
       ...args,
@@ -79,7 +79,7 @@ export class MovieSpokenLanguageCrudResolver {
   @TypeGraphQL.Query(_returns => MovieSpokenLanguage, {
     nullable: true
   })
-  async findFirstMovieSpokenLanguage(@TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Info() info: GraphQLResolveInfo, @TypeGraphQL.Args(_type => FindFirstMovieSpokenLanguageArgs) args: FindFirstMovieSpokenLanguageArgs): Promise<MovieSpokenLanguage | null> {
+  async findFirstMovieSpokenLanguage(@TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Info() info: GraphQLResolveInfo, @TypeGraphQL.Args() args: FindFirstMovieSpokenLanguageArgs): Promise<MovieSpokenLanguage | null> {
     const { _count } = transformInfoIntoPrismaArgs(info);
     return getPrismaFromContext(ctx).movieSpokenLanguage.findFirst({
       ...args,
@@ -90,7 +90,7 @@ export class MovieSpokenLanguageCrudResolver {
   @TypeGraphQL.Query(_returns => MovieSpokenLanguage, {
     nullable: true
   })
-  async findFirstMovieSpokenLanguageOrThrow(@TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Info() info: GraphQLResolveInfo, @TypeGraphQL.Args(_type => FindFirstMovieSpokenLanguageOrThrowArgs) args: FindFirstMovieSpokenLanguageOrThrowArgs): Promise<MovieSpokenLanguage | null> {
+  async findFirstMovieSpokenLanguageOrThrow(@TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Info() info: GraphQLResolveInfo, @TypeGraphQL.Args() args: FindFirstMovieSpokenLanguageOrThrowArgs): Promise<MovieSpokenLanguage | null> {
     const { _count } = transformInfoIntoPrismaArgs(info);
     return getPrismaFromContext(ctx).movieSpokenLanguage.findFirstOrThrow({
       ...args,
@@ -101,7 +101,7 @@ export class MovieSpokenLanguageCrudResolver {
   @TypeGraphQL.Query(_returns => [MovieSpokenLanguage], {
     nullable: false
   })
-  async movieSpokenLanguages(@TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Info() info: GraphQLResolveInfo, @TypeGraphQL.Args(_type => FindManyMovieSpokenLanguageArgs) args: FindManyMovieSpokenLanguageArgs): Promise<MovieSpokenLanguage[]> {
+  async movieSpokenLanguages(@TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Info() info: GraphQLResolveInfo, @TypeGraphQL.Args() args: FindManyMovieSpokenLanguageArgs): Promise<MovieSpokenLanguage[]> {
     const { _count } = transformInfoIntoPrismaArgs(info);
     return getPrismaFromContext(ctx).movieSpokenLanguage.findMany({
       ...args,
@@ -112,7 +112,7 @@ export class MovieSpokenLanguageCrudResolver {
   @TypeGraphQL.Query(_returns => MovieSpokenLanguage, {
     nullable: true
   })
-  async movieSpokenLanguage(@TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Info() info: GraphQLResolveInfo, @TypeGraphQL.Args(_type => FindUniqueMovieSpokenLanguageArgs) args: FindUniqueMovieSpokenLanguageArgs): Promise<MovieSpokenLanguage | null> {
+  async movieSpokenLanguage(@TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Info() info: GraphQLResolveInfo, @TypeGraphQL.Args() args: FindUniqueMovieSpokenLanguageArgs): Promise<MovieSpokenLanguage | null> {
     const { _count } = transformInfoIntoPrismaArgs(info);
     return getPrismaFromContext(ctx).movieSpokenLanguage.findUnique({
       ...args,
@@ -123,7 +123,7 @@ export class MovieSpokenLanguageCrudResolver {
   @TypeGraphQL.Query(_returns => MovieSpokenLanguage, {
     nullable: true
   })
-  async getMovieSpokenLanguage(@TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Info() info: GraphQLResolveInfo, @TypeGraphQL.Args(_type => FindUniqueMovieSpokenLanguageOrThrowArgs) args: FindUniqueMovieSpokenLanguageOrThrowArgs): Promise<MovieSpokenLanguage | null> {
+  async getMovieSpokenLanguage(@TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Info() info: GraphQLResolveInfo, @TypeGraphQL.Args() args: FindUniqueMovieSpokenLanguageOrThrowArgs): Promise<MovieSpokenLanguage | null> {
     const { _count } = transformInfoIntoPrismaArgs(info);
     return getPrismaFromContext(ctx).movieSpokenLanguage.findUniqueOrThrow({
       ...args,
@@ -134,7 +134,7 @@ export class MovieSpokenLanguageCrudResolver {
   @TypeGraphQL.Query(_returns => [MovieSpokenLanguageGroupBy], {
     nullable: false
   })
-  async groupByMovieSpokenLanguage(@TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Info() info: GraphQLResolveInfo, @TypeGraphQL.Args(_type => GroupByMovieSpokenLanguageArgs) args: GroupByMovieSpokenLanguageArgs): Promise<MovieSpokenLanguageGroupBy[]> {
+  async groupByMovieSpokenLanguage(@TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Info() info: GraphQLResolveInfo, @TypeGraphQL.Args() args: GroupByMovieSpokenLanguageArgs): Promise<MovieSpokenLanguageGroupBy[]> {
     const { _count, _avg, _sum, _min, _max } = transformInfoIntoPrismaArgs(info);
     return getPrismaFromContext(ctx).movieSpokenLanguage.groupBy({
       ...args,
@@ -147,7 +147,7 @@ export class MovieSpokenLanguageCrudResolver {
   @TypeGraphQL.Mutation(_returns => AffectedRowsOutput, {
     nullable: false
   })
-  async updateManyMovieSpokenLanguage(@TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Info() info: GraphQLResolveInfo, @TypeGraphQL.Args(_type => UpdateManyMovieSpokenLanguageArgs) args: UpdateManyMovieSpokenLanguageArgs): Promise<AffectedRowsOutput> {
+  async updateManyMovieSpokenLanguage(@TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Info() info: GraphQLResolveInfo, @TypeGraphQL.Args() args: UpdateManyMovieSpokenLanguageArgs): Promise<AffectedRowsOutput> {
     const { _count } = transformInfoIntoPrismaArgs(info);
     return getPrismaFromContext(ctx).movieSpokenLanguage.updateMany({
       ...args,
@@ -158,7 +158,7 @@ export class MovieSpokenLanguageCrudResolver {
   @TypeGraphQL.Mutation(_returns => MovieSpokenLanguage, {
     nullable: true
   })
-  async updateOneMovieSpokenLanguage(@TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Info() info: GraphQLResolveInfo, @TypeGraphQL.Args(_type => UpdateOneMovieSpokenLanguageArgs) args: UpdateOneMovieSpokenLanguageArgs): Promise<MovieSpokenLanguage | null> {
+  async updateOneMovieSpokenLanguage(@TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Info() info: GraphQLResolveInfo, @TypeGraphQL.Args() args: UpdateOneMovieSpokenLanguageArgs): Promise<MovieSpokenLanguage | null> {
     const { _count } = transformInfoIntoPrismaArgs(info);
     return getPrismaFromContext(ctx).movieSpokenLanguage.update({
       ...args,
@@ -169,7 +169,7 @@ export class MovieSpokenLanguageCrudResolver {
   @TypeGraphQL.Mutation(_returns => MovieSpokenLanguage, {
     nullable: false
   })
-  async upsertOneMovieSpokenLanguage(@TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Info() info: GraphQLResolveInfo, @TypeGraphQL.Args(_type => UpsertOneMovieSpokenLanguageArgs) args: UpsertOneMovieSpokenLanguageArgs): Promise<MovieSpokenLanguage> {
+  async upsertOneMovieSpokenLanguage(@TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Info() info: GraphQLResolveInfo, @TypeGraphQL.Args() args: UpsertOneMovieSpokenLanguageArgs): Promise<MovieSpokenLanguage> {
     const { _count } = transformInfoIntoPrismaArgs(info);
     return getPrismaFromContext(ctx).movieSpokenLanguage.upsert({
       ...args,

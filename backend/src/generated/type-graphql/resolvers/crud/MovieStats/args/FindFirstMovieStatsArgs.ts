@@ -35,5 +35,5 @@ export class FindFirstMovieStatsArgs {
   @TypeGraphQL.Field(_type => [MovieStatsScalarFieldEnum], {
     nullable: true
   })
-  distinct?: Array<"id" | "timesWatchedCount" | "totalRatingsCount" | "totalLikesCount" | "overallPlaceINTop" | "avgRating" | "movieId"> | undefined;
+  distinct?: Array<"id" | "timesWatchedCount" | "totalRatingsCount" | "totalLikesCount" | "overallPlaceInTop" | "avgRating" | "movieId"> | undefined;
 }

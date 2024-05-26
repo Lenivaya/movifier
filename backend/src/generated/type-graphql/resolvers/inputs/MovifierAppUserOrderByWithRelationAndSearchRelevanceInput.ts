@@ -2,10 +2,14 @@ import * as TypeGraphQL from "type-graphql";
 import * as GraphQLScalars from "graphql-scalars";
 import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../../scalars";
+import { MovieLikedByUserOrderByRelationAggregateInput } from "../inputs/MovieLikedByUserOrderByRelationAggregateInput";
 import { MovieListCommentOrderByRelationAggregateInput } from "../inputs/MovieListCommentOrderByRelationAggregateInput";
+import { MovieListLikedByUserOrderByRelationAggregateInput } from "../inputs/MovieListLikedByUserOrderByRelationAggregateInput";
 import { MovieListOrderByRelationAggregateInput } from "../inputs/MovieListOrderByRelationAggregateInput";
 import { MovieOrderByRelationAggregateInput } from "../inputs/MovieOrderByRelationAggregateInput";
 import { MovieRatingOrderByRelationAggregateInput } from "../inputs/MovieRatingOrderByRelationAggregateInput";
+import { MovieReviewLikedByUserOrderByRelationAggregateInput } from "../inputs/MovieReviewLikedByUserOrderByRelationAggregateInput";
+import { MovieWatchedByUserOrderByRelationAggregateInput } from "../inputs/MovieWatchedByUserOrderByRelationAggregateInput";
 import { MovifierAppUserOrderByRelevanceInput } from "../inputs/MovifierAppUserOrderByRelevanceInput";
 import { SortOrder } from "../../enums/SortOrder";
 
@@ -59,7 +63,17 @@ export class MovifierAppUserOrderByWithRelationAndSearchRelevanceInput {
   @TypeGraphQL.Field(_type => MovieRatingOrderByRelationAggregateInput, {
     nullable: true
   })
-  rating?: MovieRatingOrderByRelationAggregateInput | undefined;
+  ratedMovies?: MovieRatingOrderByRelationAggregateInput | undefined;
+
+  @TypeGraphQL.Field(_type => MovieWatchedByUserOrderByRelationAggregateInput, {
+    nullable: true
+  })
+  watchedMovies?: MovieWatchedByUserOrderByRelationAggregateInput | undefined;
+
+  @TypeGraphQL.Field(_type => MovieLikedByUserOrderByRelationAggregateInput, {
+    nullable: true
+  })
+  likedMovies?: MovieLikedByUserOrderByRelationAggregateInput | undefined;
 
   @TypeGraphQL.Field(_type => MovieListOrderByRelationAggregateInput, {
     nullable: true
@@ -70,6 +84,16 @@ export class MovifierAppUserOrderByWithRelationAndSearchRelevanceInput {
     nullable: true
   })
   movieListsComments?: MovieListCommentOrderByRelationAggregateInput | undefined;
+
+  @TypeGraphQL.Field(_type => MovieReviewLikedByUserOrderByRelationAggregateInput, {
+    nullable: true
+  })
+  likedMovieReviews?: MovieReviewLikedByUserOrderByRelationAggregateInput | undefined;
+
+  @TypeGraphQL.Field(_type => MovieListLikedByUserOrderByRelationAggregateInput, {
+    nullable: true
+  })
+  MovieListLikedByUser?: MovieListLikedByUserOrderByRelationAggregateInput | undefined;
 
   @TypeGraphQL.Field(_type => MovifierAppUserOrderByRelevanceInput, {
     nullable: true

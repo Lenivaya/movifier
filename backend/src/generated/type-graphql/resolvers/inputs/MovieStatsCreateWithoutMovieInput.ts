@@ -28,7 +28,7 @@ export class MovieStatsCreateWithoutMovieInput {
   @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
     nullable: false
   })
-  overallPlaceINTop!: number;
+  overallPlaceInTop!: number;
 
   @TypeGraphQL.Field(_type => TypeGraphQL.Float, {
     nullable: false

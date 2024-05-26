@@ -10,7 +10,7 @@ export class MovieSpokenLanguageRelationsResolver {
   @TypeGraphQL.FieldResolver(_type => [Movie], {
     nullable: false
   })
-  async movies(@TypeGraphQL.Root() movieSpokenLanguage: MovieSpokenLanguage, @TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Info() info: GraphQLResolveInfo, @TypeGraphQL.Args(_type => MovieSpokenLanguageMoviesArgs) args: MovieSpokenLanguageMoviesArgs): Promise<Movie[]> {
+  async movies(@TypeGraphQL.Root() movieSpokenLanguage: MovieSpokenLanguage, @TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Info() info: GraphQLResolveInfo, @TypeGraphQL.Args() args: MovieSpokenLanguageMoviesArgs): Promise<Movie[]> {
     const { _count } = transformInfoIntoPrismaArgs(info);
     return getPrismaFromContext(ctx).movieSpokenLanguage.findUniqueOrThrow({
       where: {

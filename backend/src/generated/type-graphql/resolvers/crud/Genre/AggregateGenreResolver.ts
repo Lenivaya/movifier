@@ -10,7 +10,7 @@ export class AggregateGenreResolver {
   @TypeGraphQL.Query(_returns => AggregateGenre, {
     nullable: false
   })
-  async aggregateGenre(@TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Info() info: GraphQLResolveInfo, @TypeGraphQL.Args(_type => AggregateGenreArgs) args: AggregateGenreArgs): Promise<AggregateGenre> {
+  async aggregateGenre(@TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Info() info: GraphQLResolveInfo, @TypeGraphQL.Args() args: AggregateGenreArgs): Promise<AggregateGenre> {
     return getPrismaFromContext(ctx).genre.aggregate({
       ...args,
       ...transformInfoIntoPrismaArgs(info),

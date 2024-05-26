@@ -10,7 +10,7 @@ export class MovieStudioRelationsResolver {
   @TypeGraphQL.FieldResolver(_type => [Movie], {
     nullable: false
   })
-  async movies(@TypeGraphQL.Root() movieStudio: MovieStudio, @TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Info() info: GraphQLResolveInfo, @TypeGraphQL.Args(_type => MovieStudioMoviesArgs) args: MovieStudioMoviesArgs): Promise<Movie[]> {
+  async movies(@TypeGraphQL.Root() movieStudio: MovieStudio, @TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Info() info: GraphQLResolveInfo, @TypeGraphQL.Args() args: MovieStudioMoviesArgs): Promise<Movie[]> {
     const { _count } = transformInfoIntoPrismaArgs(info);
     return getPrismaFromContext(ctx).movieStudio.findUniqueOrThrow({
       where: {

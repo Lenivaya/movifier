@@ -25,7 +25,7 @@ export class MovieInfoCrudResolver {
   @TypeGraphQL.Query(_returns => AggregateMovieInfo, {
     nullable: false
   })
-  async aggregateMovieInfo(@TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Info() info: GraphQLResolveInfo, @TypeGraphQL.Args(_type => AggregateMovieInfoArgs) args: AggregateMovieInfoArgs): Promise<AggregateMovieInfo> {
+  async aggregateMovieInfo(@TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Info() info: GraphQLResolveInfo, @TypeGraphQL.Args() args: AggregateMovieInfoArgs): Promise<AggregateMovieInfo> {
     return getPrismaFromContext(ctx).movieInfo.aggregate({
       ...args,
       ...transformInfoIntoPrismaArgs(info),
@@ -35,7 +35,7 @@ export class MovieInfoCrudResolver {
   @TypeGraphQL.Mutation(_returns => AffectedRowsOutput, {
     nullable: false
   })
-  async createManyMovieInfo(@TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Info() info: GraphQLResolveInfo, @TypeGraphQL.Args(_type => CreateManyMovieInfoArgs) args: CreateManyMovieInfoArgs): Promise<AffectedRowsOutput> {
+  async createManyMovieInfo(@TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Info() info: GraphQLResolveInfo, @TypeGraphQL.Args() args: CreateManyMovieInfoArgs): Promise<AffectedRowsOutput> {
     const { _count } = transformInfoIntoPrismaArgs(info);
     return getPrismaFromContext(ctx).movieInfo.createMany({
       ...args,
@@ -46,7 +46,7 @@ export class MovieInfoCrudResolver {
   @TypeGraphQL.Mutation(_returns => MovieInfo, {
     nullable: false
   })
-  async createOneMovieInfo(@TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Info() info: GraphQLResolveInfo, @TypeGraphQL.Args(_type => CreateOneMovieInfoArgs) args: CreateOneMovieInfoArgs): Promise<MovieInfo> {
+  async createOneMovieInfo(@TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Info() info: GraphQLResolveInfo, @TypeGraphQL.Args() args: CreateOneMovieInfoArgs): Promise<MovieInfo> {
     const { _count } = transformInfoIntoPrismaArgs(info);
     return getPrismaFromContext(ctx).movieInfo.create({
       ...args,
@@ -57,7 +57,7 @@ export class MovieInfoCrudResolver {
   @TypeGraphQL.Mutation(_returns => AffectedRowsOutput, {
     nullable: false
   })
-  async deleteManyMovieInfo(@TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Info() info: GraphQLResolveInfo, @TypeGraphQL.Args(_type => DeleteManyMovieInfoArgs) args: DeleteManyMovieInfoArgs): Promise<AffectedRowsOutput> {
+  async deleteManyMovieInfo(@TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Info() info: GraphQLResolveInfo, @TypeGraphQL.Args() args: DeleteManyMovieInfoArgs): Promise<AffectedRowsOutput> {
     const { _count } = transformInfoIntoPrismaArgs(info);
     return getPrismaFromContext(ctx).movieInfo.deleteMany({
       ...args,
@@ -68,7 +68,7 @@ export class MovieInfoCrudResolver {
   @TypeGraphQL.Mutation(_returns => MovieInfo, {
     nullable: true
   })
-  async deleteOneMovieInfo(@TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Info() info: GraphQLResolveInfo, @TypeGraphQL.Args(_type => DeleteOneMovieInfoArgs) args: DeleteOneMovieInfoArgs): Promise<MovieInfo | null> {
+  async deleteOneMovieInfo(@TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Info() info: GraphQLResolveInfo, @TypeGraphQL.Args() args: DeleteOneMovieInfoArgs): Promise<MovieInfo | null> {
     const { _count } = transformInfoIntoPrismaArgs(info);
     return getPrismaFromContext(ctx).movieInfo.delete({
       ...args,
@@ -79,7 +79,7 @@ export class MovieInfoCrudResolver {
   @TypeGraphQL.Query(_returns => MovieInfo, {
     nullable: true
   })
-  async findFirstMovieInfo(@TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Info() info: GraphQLResolveInfo, @TypeGraphQL.Args(_type => FindFirstMovieInfoArgs) args: FindFirstMovieInfoArgs): Promise<MovieInfo | null> {
+  async findFirstMovieInfo(@TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Info() info: GraphQLResolveInfo, @TypeGraphQL.Args() args: FindFirstMovieInfoArgs): Promise<MovieInfo | null> {
     const { _count } = transformInfoIntoPrismaArgs(info);
     return getPrismaFromContext(ctx).movieInfo.findFirst({
       ...args,
@@ -90,7 +90,7 @@ export class MovieInfoCrudResolver {
   @TypeGraphQL.Query(_returns => MovieInfo, {
     nullable: true
   })
-  async findFirstMovieInfoOrThrow(@TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Info() info: GraphQLResolveInfo, @TypeGraphQL.Args(_type => FindFirstMovieInfoOrThrowArgs) args: FindFirstMovieInfoOrThrowArgs): Promise<MovieInfo | null> {
+  async findFirstMovieInfoOrThrow(@TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Info() info: GraphQLResolveInfo, @TypeGraphQL.Args() args: FindFirstMovieInfoOrThrowArgs): Promise<MovieInfo | null> {
     const { _count } = transformInfoIntoPrismaArgs(info);
     return getPrismaFromContext(ctx).movieInfo.findFirstOrThrow({
       ...args,
@@ -101,7 +101,7 @@ export class MovieInfoCrudResolver {
   @TypeGraphQL.Query(_returns => [MovieInfo], {
     nullable: false
   })
-  async movieInfos(@TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Info() info: GraphQLResolveInfo, @TypeGraphQL.Args(_type => FindManyMovieInfoArgs) args: FindManyMovieInfoArgs): Promise<MovieInfo[]> {
+  async movieInfos(@TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Info() info: GraphQLResolveInfo, @TypeGraphQL.Args() args: FindManyMovieInfoArgs): Promise<MovieInfo[]> {
     const { _count } = transformInfoIntoPrismaArgs(info);
     return getPrismaFromContext(ctx).movieInfo.findMany({
       ...args,
@@ -112,7 +112,7 @@ export class MovieInfoCrudResolver {
   @TypeGraphQL.Query(_returns => MovieInfo, {
     nullable: true
   })
-  async movieInfo(@TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Info() info: GraphQLResolveInfo, @TypeGraphQL.Args(_type => FindUniqueMovieInfoArgs) args: FindUniqueMovieInfoArgs): Promise<MovieInfo | null> {
+  async movieInfo(@TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Info() info: GraphQLResolveInfo, @TypeGraphQL.Args() args: FindUniqueMovieInfoArgs): Promise<MovieInfo | null> {
     const { _count } = transformInfoIntoPrismaArgs(info);
     return getPrismaFromContext(ctx).movieInfo.findUnique({
       ...args,
@@ -123,7 +123,7 @@ export class MovieInfoCrudResolver {
   @TypeGraphQL.Query(_returns => MovieInfo, {
     nullable: true
   })
-  async getMovieInfo(@TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Info() info: GraphQLResolveInfo, @TypeGraphQL.Args(_type => FindUniqueMovieInfoOrThrowArgs) args: FindUniqueMovieInfoOrThrowArgs): Promise<MovieInfo | null> {
+  async getMovieInfo(@TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Info() info: GraphQLResolveInfo, @TypeGraphQL.Args() args: FindUniqueMovieInfoOrThrowArgs): Promise<MovieInfo | null> {
     const { _count } = transformInfoIntoPrismaArgs(info);
     return getPrismaFromContext(ctx).movieInfo.findUniqueOrThrow({
       ...args,
@@ -134,7 +134,7 @@ export class MovieInfoCrudResolver {
   @TypeGraphQL.Query(_returns => [MovieInfoGroupBy], {
     nullable: false
   })
-  async groupByMovieInfo(@TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Info() info: GraphQLResolveInfo, @TypeGraphQL.Args(_type => GroupByMovieInfoArgs) args: GroupByMovieInfoArgs): Promise<MovieInfoGroupBy[]> {
+  async groupByMovieInfo(@TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Info() info: GraphQLResolveInfo, @TypeGraphQL.Args() args: GroupByMovieInfoArgs): Promise<MovieInfoGroupBy[]> {
     const { _count, _avg, _sum, _min, _max } = transformInfoIntoPrismaArgs(info);
     return getPrismaFromContext(ctx).movieInfo.groupBy({
       ...args,
@@ -147,7 +147,7 @@ export class MovieInfoCrudResolver {
   @TypeGraphQL.Mutation(_returns => AffectedRowsOutput, {
     nullable: false
   })
-  async updateManyMovieInfo(@TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Info() info: GraphQLResolveInfo, @TypeGraphQL.Args(_type => UpdateManyMovieInfoArgs) args: UpdateManyMovieInfoArgs): Promise<AffectedRowsOutput> {
+  async updateManyMovieInfo(@TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Info() info: GraphQLResolveInfo, @TypeGraphQL.Args() args: UpdateManyMovieInfoArgs): Promise<AffectedRowsOutput> {
     const { _count } = transformInfoIntoPrismaArgs(info);
     return getPrismaFromContext(ctx).movieInfo.updateMany({
       ...args,
@@ -158,7 +158,7 @@ export class MovieInfoCrudResolver {
   @TypeGraphQL.Mutation(_returns => MovieInfo, {
     nullable: true
   })
-  async updateOneMovieInfo(@TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Info() info: GraphQLResolveInfo, @TypeGraphQL.Args(_type => UpdateOneMovieInfoArgs) args: UpdateOneMovieInfoArgs): Promise<MovieInfo | null> {
+  async updateOneMovieInfo(@TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Info() info: GraphQLResolveInfo, @TypeGraphQL.Args() args: UpdateOneMovieInfoArgs): Promise<MovieInfo | null> {
     const { _count } = transformInfoIntoPrismaArgs(info);
     return getPrismaFromContext(ctx).movieInfo.update({
       ...args,
@@ -169,7 +169,7 @@ export class MovieInfoCrudResolver {
   @TypeGraphQL.Mutation(_returns => MovieInfo, {
     nullable: false
   })
-  async upsertOneMovieInfo(@TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Info() info: GraphQLResolveInfo, @TypeGraphQL.Args(_type => UpsertOneMovieInfoArgs) args: UpsertOneMovieInfoArgs): Promise<MovieInfo> {
+  async upsertOneMovieInfo(@TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Info() info: GraphQLResolveInfo, @TypeGraphQL.Args() args: UpsertOneMovieInfoArgs): Promise<MovieInfo> {
     const { _count } = transformInfoIntoPrismaArgs(info);
     return getPrismaFromContext(ctx).movieInfo.upsert({
       ...args,

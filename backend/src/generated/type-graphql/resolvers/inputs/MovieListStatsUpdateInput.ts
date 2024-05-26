@@ -4,7 +4,7 @@ import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../../scalars";
 import { DateTimeFieldUpdateOperationsInput } from "../inputs/DateTimeFieldUpdateOperationsInput";
 import { IntFieldUpdateOperationsInput } from "../inputs/IntFieldUpdateOperationsInput";
-import { MovieListUpdateOneRequiredWithoutMovieListStatsNestedInput } from "../inputs/MovieListUpdateOneRequiredWithoutMovieListStatsNestedInput";
+import { MovieListUpdateOneRequiredWithoutStatsNestedInput } from "../inputs/MovieListUpdateOneRequiredWithoutStatsNestedInput";
 import { StringFieldUpdateOperationsInput } from "../inputs/StringFieldUpdateOperationsInput";
 
 @TypeGraphQL.InputType("MovieListStatsUpdateInput", {})
@@ -34,8 +34,8 @@ export class MovieListStatsUpdateInput {
   })
   likes?: IntFieldUpdateOperationsInput | undefined;
 
-  @TypeGraphQL.Field(_type => MovieListUpdateOneRequiredWithoutMovieListStatsNestedInput, {
+  @TypeGraphQL.Field(_type => MovieListUpdateOneRequiredWithoutStatsNestedInput, {
     nullable: true
   })
-  MovieList?: MovieListUpdateOneRequiredWithoutMovieListStatsNestedInput | undefined;
+  MovieList?: MovieListUpdateOneRequiredWithoutStatsNestedInput | undefined;
 }

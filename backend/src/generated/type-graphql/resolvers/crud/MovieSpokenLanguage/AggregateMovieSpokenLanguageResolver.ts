@@ -10,7 +10,7 @@ export class AggregateMovieSpokenLanguageResolver {
   @TypeGraphQL.Query(_returns => AggregateMovieSpokenLanguage, {
     nullable: false
   })
-  async aggregateMovieSpokenLanguage(@TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Info() info: GraphQLResolveInfo, @TypeGraphQL.Args(_type => AggregateMovieSpokenLanguageArgs) args: AggregateMovieSpokenLanguageArgs): Promise<AggregateMovieSpokenLanguage> {
+  async aggregateMovieSpokenLanguage(@TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Info() info: GraphQLResolveInfo, @TypeGraphQL.Args() args: AggregateMovieSpokenLanguageArgs): Promise<AggregateMovieSpokenLanguage> {
     return getPrismaFromContext(ctx).movieSpokenLanguage.aggregate({
       ...args,
       ...transformInfoIntoPrismaArgs(info),

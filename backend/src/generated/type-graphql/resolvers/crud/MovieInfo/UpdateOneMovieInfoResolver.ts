@@ -9,7 +9,7 @@ export class UpdateOneMovieInfoResolver {
   @TypeGraphQL.Mutation(_returns => MovieInfo, {
     nullable: true
   })
-  async updateOneMovieInfo(@TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Info() info: GraphQLResolveInfo, @TypeGraphQL.Args(_type => UpdateOneMovieInfoArgs) args: UpdateOneMovieInfoArgs): Promise<MovieInfo | null> {
+  async updateOneMovieInfo(@TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Info() info: GraphQLResolveInfo, @TypeGraphQL.Args() args: UpdateOneMovieInfoArgs): Promise<MovieInfo | null> {
     const { _count } = transformInfoIntoPrismaArgs(info);
     return getPrismaFromContext(ctx).movieInfo.update({
       ...args,

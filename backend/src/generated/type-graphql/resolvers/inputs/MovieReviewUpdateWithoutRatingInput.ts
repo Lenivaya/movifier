@@ -3,6 +3,7 @@ import * as GraphQLScalars from "graphql-scalars";
 import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../../scalars";
 import { DateTimeFieldUpdateOperationsInput } from "../inputs/DateTimeFieldUpdateOperationsInput";
+import { MovieReviewLikedByUserUpdateManyWithoutMovieReviewNestedInput } from "../inputs/MovieReviewLikedByUserUpdateManyWithoutMovieReviewNestedInput";
 import { StringFieldUpdateOperationsInput } from "../inputs/StringFieldUpdateOperationsInput";
 
 @TypeGraphQL.InputType("MovieReviewUpdateWithoutRatingInput", {})
@@ -26,4 +27,9 @@ export class MovieReviewUpdateWithoutRatingInput {
     nullable: true
   })
   content?: StringFieldUpdateOperationsInput | undefined;
+
+  @TypeGraphQL.Field(_type => MovieReviewLikedByUserUpdateManyWithoutMovieReviewNestedInput, {
+    nullable: true
+  })
+  likedBy?: MovieReviewLikedByUserUpdateManyWithoutMovieReviewNestedInput | undefined;
 }

@@ -9,7 +9,7 @@ export class CreateOneMovieSpokenLanguageResolver {
   @TypeGraphQL.Mutation(_returns => MovieSpokenLanguage, {
     nullable: false
   })
-  async createOneMovieSpokenLanguage(@TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Info() info: GraphQLResolveInfo, @TypeGraphQL.Args(_type => CreateOneMovieSpokenLanguageArgs) args: CreateOneMovieSpokenLanguageArgs): Promise<MovieSpokenLanguage> {
+  async createOneMovieSpokenLanguage(@TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Info() info: GraphQLResolveInfo, @TypeGraphQL.Args() args: CreateOneMovieSpokenLanguageArgs): Promise<MovieSpokenLanguage> {
     const { _count } = transformInfoIntoPrismaArgs(info);
     return getPrismaFromContext(ctx).movieSpokenLanguage.create({
       ...args,

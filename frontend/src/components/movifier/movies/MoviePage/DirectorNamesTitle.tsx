@@ -7,6 +7,7 @@ export const DirectorNamesTitleFragment = gql`
   fragment DirectorNamesTitleItem on Movie {
     crewMembers {
       movieCrewMemberType {
+        id
         name
       }
       crewMember {
@@ -27,7 +28,10 @@ export const DirectorNamesTitle: FC<DirectorNamesTitleItemFragment> = ({
     <p>
       Directed by{' '}
       {directors?.map((director) => (
-        <Link href={`/person/${director.crewMember?.id}`}>
+        <Link
+          href={`/person/${director.crewMember?.id}`}
+          key={director.crewMember.name}
+        >
           <span className={'font-semibold underline underline-offset-2'}>
             {director.crewMember?.name}
           </span>

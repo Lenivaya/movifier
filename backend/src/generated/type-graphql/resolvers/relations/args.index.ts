@@ -5,6 +5,7 @@ export * from "./MovieCrewMemberType/args";
 export * from "./MovieKeywordCategory/args";
 export * from "./MovieList/args";
 export * from "./MovieRating/args";
+export * from "./MovieReview/args";
 export * from "./MovieSpokenLanguage/args";
 export * from "./MovieStudio/args";
 export * from "./MovifierAppUser/args";
