@@ -9,7 +9,7 @@ export class DeleteOneMovieStudioResolver {
   @TypeGraphQL.Mutation(_returns => MovieStudio, {
     nullable: true
   })
-  async deleteOneMovieStudio(@TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Info() info: GraphQLResolveInfo, @TypeGraphQL.Args(_type => DeleteOneMovieStudioArgs) args: DeleteOneMovieStudioArgs): Promise<MovieStudio | null> {
+  async deleteOneMovieStudio(@TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Info() info: GraphQLResolveInfo, @TypeGraphQL.Args() args: DeleteOneMovieStudioArgs): Promise<MovieStudio | null> {
     const { _count } = transformInfoIntoPrismaArgs(info);
     return getPrismaFromContext(ctx).movieStudio.delete({
       ...args,

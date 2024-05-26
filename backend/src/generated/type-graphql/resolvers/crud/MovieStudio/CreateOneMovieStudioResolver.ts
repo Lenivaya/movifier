@@ -9,7 +9,7 @@ export class CreateOneMovieStudioResolver {
   @TypeGraphQL.Mutation(_returns => MovieStudio, {
     nullable: false
   })
-  async createOneMovieStudio(@TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Info() info: GraphQLResolveInfo, @TypeGraphQL.Args(_type => CreateOneMovieStudioArgs) args: CreateOneMovieStudioArgs): Promise<MovieStudio> {
+  async createOneMovieStudio(@TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Info() info: GraphQLResolveInfo, @TypeGraphQL.Args() args: CreateOneMovieStudioArgs): Promise<MovieStudio> {
     const { _count } = transformInfoIntoPrismaArgs(info);
     return getPrismaFromContext(ctx).movieStudio.create({
       ...args,

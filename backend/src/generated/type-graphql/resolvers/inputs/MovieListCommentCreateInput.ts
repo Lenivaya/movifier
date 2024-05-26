@@ -2,7 +2,7 @@ import * as TypeGraphQL from "type-graphql";
 import * as GraphQLScalars from "graphql-scalars";
 import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../../scalars";
-import { MovieListCreateNestedOneWithoutMovieListCommentsInput } from "../inputs/MovieListCreateNestedOneWithoutMovieListCommentsInput";
+import { MovieListCreateNestedOneWithoutCommentsInput } from "../inputs/MovieListCreateNestedOneWithoutCommentsInput";
 import { MovifierAppUserCreateNestedOneWithoutMovieListsCommentsInput } from "../inputs/MovifierAppUserCreateNestedOneWithoutMovieListsCommentsInput";
 
 @TypeGraphQL.InputType("MovieListCommentCreateInput", {})
@@ -27,10 +27,10 @@ export class MovieListCommentCreateInput {
   })
   content!: string;
 
-  @TypeGraphQL.Field(_type => MovieListCreateNestedOneWithoutMovieListCommentsInput, {
+  @TypeGraphQL.Field(_type => MovieListCreateNestedOneWithoutCommentsInput, {
     nullable: false
   })
-  movieList!: MovieListCreateNestedOneWithoutMovieListCommentsInput;
+  movieList!: MovieListCreateNestedOneWithoutCommentsInput;
 
   @TypeGraphQL.Field(_type => MovifierAppUserCreateNestedOneWithoutMovieListsCommentsInput, {
     nullable: false

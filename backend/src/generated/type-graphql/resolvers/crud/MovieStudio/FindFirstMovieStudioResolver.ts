@@ -9,7 +9,7 @@ export class FindFirstMovieStudioResolver {
   @TypeGraphQL.Query(_returns => MovieStudio, {
     nullable: true
   })
-  async findFirstMovieStudio(@TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Info() info: GraphQLResolveInfo, @TypeGraphQL.Args(_type => FindFirstMovieStudioArgs) args: FindFirstMovieStudioArgs): Promise<MovieStudio | null> {
+  async findFirstMovieStudio(@TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Info() info: GraphQLResolveInfo, @TypeGraphQL.Args() args: FindFirstMovieStudioArgs): Promise<MovieStudio | null> {
     const { _count } = transformInfoIntoPrismaArgs(info);
     return getPrismaFromContext(ctx).movieStudio.findFirst({
       ...args,

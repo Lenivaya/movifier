@@ -32,7 +32,7 @@ export class MovieStatsUpdateInput {
   @TypeGraphQL.Field(_type => IntFieldUpdateOperationsInput, {
     nullable: true
   })
-  overallPlaceINTop?: IntFieldUpdateOperationsInput | undefined;
+  overallPlaceInTop?: IntFieldUpdateOperationsInput | undefined;
 
   @TypeGraphQL.Field(_type => FloatFieldUpdateOperationsInput, {
     nullable: true

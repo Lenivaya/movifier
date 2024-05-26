@@ -9,7 +9,7 @@ export class FindUniqueGenreOrThrowResolver {
   @TypeGraphQL.Query(_returns => Genre, {
     nullable: true
   })
-  async getGenre(@TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Info() info: GraphQLResolveInfo, @TypeGraphQL.Args(_type => FindUniqueGenreOrThrowArgs) args: FindUniqueGenreOrThrowArgs): Promise<Genre | null> {
+  async getGenre(@TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Info() info: GraphQLResolveInfo, @TypeGraphQL.Args() args: FindUniqueGenreOrThrowArgs): Promise<Genre | null> {
     const { _count } = transformInfoIntoPrismaArgs(info);
     return getPrismaFromContext(ctx).genre.findUniqueOrThrow({
       ...args,

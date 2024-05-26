@@ -9,7 +9,7 @@ export class FindFirstMovieCrewMemberOnMovieOrThrowResolver {
   @TypeGraphQL.Query(_returns => MovieCrewMemberOnMovie, {
     nullable: true
   })
-  async findFirstMovieCrewMemberOnMovieOrThrow(@TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Info() info: GraphQLResolveInfo, @TypeGraphQL.Args(_type => FindFirstMovieCrewMemberOnMovieOrThrowArgs) args: FindFirstMovieCrewMemberOnMovieOrThrowArgs): Promise<MovieCrewMemberOnMovie | null> {
+  async findFirstMovieCrewMemberOnMovieOrThrow(@TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Info() info: GraphQLResolveInfo, @TypeGraphQL.Args() args: FindFirstMovieCrewMemberOnMovieOrThrowArgs): Promise<MovieCrewMemberOnMovie | null> {
     const { _count } = transformInfoIntoPrismaArgs(info);
     return getPrismaFromContext(ctx).movieCrewMemberOnMovie.findFirstOrThrow({
       ...args,

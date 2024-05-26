@@ -10,7 +10,7 @@ export class AggregateMovifierAppUserResolver {
   @TypeGraphQL.Query(_returns => AggregateMovifierAppUser, {
     nullable: false
   })
-  async aggregateMovifierAppUser(@TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Info() info: GraphQLResolveInfo, @TypeGraphQL.Args(_type => AggregateMovifierAppUserArgs) args: AggregateMovifierAppUserArgs): Promise<AggregateMovifierAppUser> {
+  async aggregateMovifierAppUser(@TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Info() info: GraphQLResolveInfo, @TypeGraphQL.Args() args: AggregateMovifierAppUserArgs): Promise<AggregateMovifierAppUser> {
     return getPrismaFromContext(ctx).movifierAppUser.aggregate({
       ...args,
       ...transformInfoIntoPrismaArgs(info),

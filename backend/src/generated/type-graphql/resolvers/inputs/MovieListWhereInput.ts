@@ -4,10 +4,12 @@ import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../../scalars";
 import { DateTimeFilter } from "../inputs/DateTimeFilter";
 import { MovieListCommentListRelationFilter } from "../inputs/MovieListCommentListRelationFilter";
+import { MovieListLikedByUserListRelationFilter } from "../inputs/MovieListLikedByUserListRelationFilter";
 import { MovieListRelationFilter } from "../inputs/MovieListRelationFilter";
 import { MovieListStatsNullableRelationFilter } from "../inputs/MovieListStatsNullableRelationFilter";
 import { MovifierAppUserRelationFilter } from "../inputs/MovifierAppUserRelationFilter";
 import { StringFilter } from "../inputs/StringFilter";
+import { StringNullableListFilter } from "../inputs/StringNullableListFilter";
 
 @TypeGraphQL.InputType("MovieListWhereInput", {})
 export class MovieListWhereInput {
@@ -49,6 +51,16 @@ export class MovieListWhereInput {
   @TypeGraphQL.Field(_type => StringFilter, {
     nullable: true
   })
+  description?: StringFilter | undefined;
+
+  @TypeGraphQL.Field(_type => StringNullableListFilter, {
+    nullable: true
+  })
+  tags?: StringNullableListFilter | undefined;
+
+  @TypeGraphQL.Field(_type => StringFilter, {
+    nullable: true
+  })
   userId?: StringFilter | undefined;
 
   @TypeGraphQL.Field(_type => MovieListRelationFilter, {
@@ -64,10 +76,15 @@ export class MovieListWhereInput {
   @TypeGraphQL.Field(_type => MovieListStatsNullableRelationFilter, {
     nullable: true
   })
-  MovieListStats?: MovieListStatsNullableRelationFilter | undefined;
+  stats?: MovieListStatsNullableRelationFilter | undefined;
 
   @TypeGraphQL.Field(_type => MovieListCommentListRelationFilter, {
     nullable: true
   })
-  movieListComments?: MovieListCommentListRelationFilter | undefined;
+  comments?: MovieListCommentListRelationFilter | undefined;
+
+  @TypeGraphQL.Field(_type => MovieListLikedByUserListRelationFilter, {
+    nullable: true
+  })
+  likedBy?: MovieListLikedByUserListRelationFilter | undefined;
 }

@@ -3,6 +3,7 @@ import * as GraphQLScalars from "graphql-scalars";
 import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../../scalars";
 import { DateTimeFieldUpdateOperationsInput } from "../inputs/DateTimeFieldUpdateOperationsInput";
+import { MovieListUpdatetagsInput } from "../inputs/MovieListUpdatetagsInput";
 import { StringFieldUpdateOperationsInput } from "../inputs/StringFieldUpdateOperationsInput";
 
 @TypeGraphQL.InputType("MovieListUpdateManyMutationInput", {})
@@ -26,4 +27,14 @@ export class MovieListUpdateManyMutationInput {
     nullable: true
   })
   name?: StringFieldUpdateOperationsInput | undefined;
+
+  @TypeGraphQL.Field(_type => StringFieldUpdateOperationsInput, {
+    nullable: true
+  })
+  description?: StringFieldUpdateOperationsInput | undefined;
+
+  @TypeGraphQL.Field(_type => MovieListUpdatetagsInput, {
+    nullable: true
+  })
+  tags?: MovieListUpdatetagsInput | undefined;
 }

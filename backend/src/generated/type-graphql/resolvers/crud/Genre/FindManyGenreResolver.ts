@@ -9,7 +9,7 @@ export class FindManyGenreResolver {
   @TypeGraphQL.Query(_returns => [Genre], {
     nullable: false
   })
-  async genres(@TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Info() info: GraphQLResolveInfo, @TypeGraphQL.Args(_type => FindManyGenreArgs) args: FindManyGenreArgs): Promise<Genre[]> {
+  async genres(@TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Info() info: GraphQLResolveInfo, @TypeGraphQL.Args() args: FindManyGenreArgs): Promise<Genre[]> {
     const { _count } = transformInfoIntoPrismaArgs(info);
     return getPrismaFromContext(ctx).genre.findMany({
       ...args,

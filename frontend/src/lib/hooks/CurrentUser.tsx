@@ -22,7 +22,6 @@ export const GET_CURRENT_USER = gql`
 
 export const useCurrentUser = () => {
   const { data } = useGetCurrentUserQuery()
-  console.log(data)
   return data?.me
 }
 
@@ -93,3 +92,5 @@ const withSignInUserRoleCheck =
 
 export const withSignInCheck = withSignInUserRoleCheck()
 export const withSignInAdminCheck = withSignInUserRoleCheck(useIsAdmin)
+export const withSignInRegularUserCheck =
+  withSignInUserRoleCheck(useIsRegularUser)

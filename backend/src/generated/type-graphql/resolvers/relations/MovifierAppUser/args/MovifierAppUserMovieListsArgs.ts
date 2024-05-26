@@ -35,5 +35,5 @@ export class MovifierAppUserMovieListsArgs {
   @TypeGraphQL.Field(_type => [MovieListScalarFieldEnum], {
     nullable: true
   })
-  distinct?: Array<"id" | "createdAt" | "updatedAt" | "name" | "userId"> | undefined;
+  distinct?: Array<"id" | "createdAt" | "updatedAt" | "name" | "description" | "tags" | "userId"> | undefined;
 }

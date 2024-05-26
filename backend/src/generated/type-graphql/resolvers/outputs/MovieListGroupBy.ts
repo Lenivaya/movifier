@@ -31,6 +31,16 @@ export class MovieListGroupBy {
   @TypeGraphQL.Field(_type => String, {
     nullable: false
   })
+  description!: string;
+
+  @TypeGraphQL.Field(_type => [String], {
+    nullable: true
+  })
+  tags!: string[] | null;
+
+  @TypeGraphQL.Field(_type => String, {
+    nullable: false
+  })
   userId!: string;
 
   @TypeGraphQL.Field(_type => MovieListCountAggregate, {

@@ -10,7 +10,7 @@ export class GroupByMovieSpokenLanguageResolver {
   @TypeGraphQL.Query(_returns => [MovieSpokenLanguageGroupBy], {
     nullable: false
   })
-  async groupByMovieSpokenLanguage(@TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Info() info: GraphQLResolveInfo, @TypeGraphQL.Args(_type => GroupByMovieSpokenLanguageArgs) args: GroupByMovieSpokenLanguageArgs): Promise<MovieSpokenLanguageGroupBy[]> {
+  async groupByMovieSpokenLanguage(@TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Info() info: GraphQLResolveInfo, @TypeGraphQL.Args() args: GroupByMovieSpokenLanguageArgs): Promise<MovieSpokenLanguageGroupBy[]> {
     const { _count, _avg, _sum, _min, _max } = transformInfoIntoPrismaArgs(info);
     return getPrismaFromContext(ctx).movieSpokenLanguage.groupBy({
       ...args,

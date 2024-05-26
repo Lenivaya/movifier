@@ -5,7 +5,7 @@ import { DecimalJSScalar } from "../../scalars";
 import { DateTimeFieldUpdateOperationsInput } from "../inputs/DateTimeFieldUpdateOperationsInput";
 import { IntFieldUpdateOperationsInput } from "../inputs/IntFieldUpdateOperationsInput";
 import { MovieReviewUpdateOneWithoutRatingNestedInput } from "../inputs/MovieReviewUpdateOneWithoutRatingNestedInput";
-import { MovifierAppUserUpdateOneRequiredWithoutRatingNestedInput } from "../inputs/MovifierAppUserUpdateOneRequiredWithoutRatingNestedInput";
+import { MovifierAppUserUpdateOneRequiredWithoutRatedMoviesNestedInput } from "../inputs/MovifierAppUserUpdateOneRequiredWithoutRatedMoviesNestedInput";
 import { StringFieldUpdateOperationsInput } from "../inputs/StringFieldUpdateOperationsInput";
 
 @TypeGraphQL.InputType("MovieRatingUpdateWithoutMovieInput", {})
@@ -33,10 +33,10 @@ export class MovieRatingUpdateWithoutMovieInput {
   @TypeGraphQL.Field(_type => MovieReviewUpdateOneWithoutRatingNestedInput, {
     nullable: true
   })
-  Review?: MovieReviewUpdateOneWithoutRatingNestedInput | undefined;
+  review?: MovieReviewUpdateOneWithoutRatingNestedInput | undefined;
 
-  @TypeGraphQL.Field(_type => MovifierAppUserUpdateOneRequiredWithoutRatingNestedInput, {
+  @TypeGraphQL.Field(_type => MovifierAppUserUpdateOneRequiredWithoutRatedMoviesNestedInput, {
     nullable: true
   })
-  user?: MovifierAppUserUpdateOneRequiredWithoutRatingNestedInput | undefined;
+  user?: MovifierAppUserUpdateOneRequiredWithoutRatedMoviesNestedInput | undefined;
 }

@@ -9,7 +9,7 @@ export class FindUniqueMovieKeywordCategoryOrThrowResolver {
   @TypeGraphQL.Query(_returns => MovieKeywordCategory, {
     nullable: true
   })
-  async getMovieKeywordCategory(@TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Info() info: GraphQLResolveInfo, @TypeGraphQL.Args(_type => FindUniqueMovieKeywordCategoryOrThrowArgs) args: FindUniqueMovieKeywordCategoryOrThrowArgs): Promise<MovieKeywordCategory | null> {
+  async getMovieKeywordCategory(@TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Info() info: GraphQLResolveInfo, @TypeGraphQL.Args() args: FindUniqueMovieKeywordCategoryOrThrowArgs): Promise<MovieKeywordCategory | null> {
     const { _count } = transformInfoIntoPrismaArgs(info);
     return getPrismaFromContext(ctx).movieKeywordCategory.findUniqueOrThrow({
       ...args,

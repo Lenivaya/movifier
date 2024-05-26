@@ -6,11 +6,13 @@ import { Genre } from "../models/Genre";
 import { MovieCrewMemberOnMovie } from "../models/MovieCrewMemberOnMovie";
 import { MovieInfo } from "../models/MovieInfo";
 import { MovieKeywordCategory } from "../models/MovieKeywordCategory";
+import { MovieLikedByUser } from "../models/MovieLikedByUser";
 import { MovieList } from "../models/MovieList";
 import { MovieRating } from "../models/MovieRating";
 import { MovieSpokenLanguage } from "../models/MovieSpokenLanguage";
 import { MovieStats } from "../models/MovieStats";
 import { MovieStudio } from "../models/MovieStudio";
+import { MovieWatchedByUser } from "../models/MovieWatchedByUser";
 import { MovifierAppUser } from "../models/MovifierAppUser";
 import { MovieCount } from "../resolvers/outputs/MovieCount";
 
@@ -43,13 +45,17 @@ export class Movie {
 
   keywordCategories?: MovieKeywordCategory[];
 
-  ratings?: MovieRating[];
+  ratedBy?: MovieRating[];
 
   movieLists?: MovieList[];
 
   inWatchlistByUsers?: MovifierAppUser[];
 
   spokenLanguages?: MovieSpokenLanguage[];
+
+  watchedBy?: MovieWatchedByUser[];
+
+  likedBy?: MovieLikedByUser[];
 
   @TypeGraphQL.Field(_type => MovieCount, {
     nullable: true

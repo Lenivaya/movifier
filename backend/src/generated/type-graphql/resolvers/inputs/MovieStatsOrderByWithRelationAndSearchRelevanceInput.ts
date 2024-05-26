@@ -31,7 +31,7 @@ export class MovieStatsOrderByWithRelationAndSearchRelevanceInput {
   @TypeGraphQL.Field(_type => SortOrder, {
     nullable: true
   })
-  overallPlaceINTop?: "asc" | "desc" | undefined;
+  overallPlaceInTop?: "asc" | "desc" | undefined;
 
   @TypeGraphQL.Field(_type => SortOrder, {
     nullable: true

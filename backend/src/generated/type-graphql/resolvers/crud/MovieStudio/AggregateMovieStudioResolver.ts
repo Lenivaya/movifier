@@ -10,7 +10,7 @@ export class AggregateMovieStudioResolver {
   @TypeGraphQL.Query(_returns => AggregateMovieStudio, {
     nullable: false
   })
-  async aggregateMovieStudio(@TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Info() info: GraphQLResolveInfo, @TypeGraphQL.Args(_type => AggregateMovieStudioArgs) args: AggregateMovieStudioArgs): Promise<AggregateMovieStudio> {
+  async aggregateMovieStudio(@TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Info() info: GraphQLResolveInfo, @TypeGraphQL.Args() args: AggregateMovieStudioArgs): Promise<AggregateMovieStudio> {
     return getPrismaFromContext(ctx).movieStudio.aggregate({
       ...args,
       ...transformInfoIntoPrismaArgs(info),

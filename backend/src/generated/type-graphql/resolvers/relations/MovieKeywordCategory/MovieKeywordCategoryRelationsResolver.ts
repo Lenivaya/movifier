@@ -10,7 +10,7 @@ export class MovieKeywordCategoryRelationsResolver {
   @TypeGraphQL.FieldResolver(_type => [Movie], {
     nullable: false
   })
-  async movies(@TypeGraphQL.Root() movieKeywordCategory: MovieKeywordCategory, @TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Info() info: GraphQLResolveInfo, @TypeGraphQL.Args(_type => MovieKeywordCategoryMoviesArgs) args: MovieKeywordCategoryMoviesArgs): Promise<Movie[]> {
+  async movies(@TypeGraphQL.Root() movieKeywordCategory: MovieKeywordCategory, @TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Info() info: GraphQLResolveInfo, @TypeGraphQL.Args() args: MovieKeywordCategoryMoviesArgs): Promise<Movie[]> {
     const { _count } = transformInfoIntoPrismaArgs(info);
     return getPrismaFromContext(ctx).movieKeywordCategory.findUniqueOrThrow({
       where: {

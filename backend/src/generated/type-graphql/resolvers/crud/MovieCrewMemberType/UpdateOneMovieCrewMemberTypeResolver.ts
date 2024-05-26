@@ -9,7 +9,7 @@ export class UpdateOneMovieCrewMemberTypeResolver {
   @TypeGraphQL.Mutation(_returns => MovieCrewMemberType, {
     nullable: true
   })
-  async updateOneMovieCrewMemberType(@TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Info() info: GraphQLResolveInfo, @TypeGraphQL.Args(_type => UpdateOneMovieCrewMemberTypeArgs) args: UpdateOneMovieCrewMemberTypeArgs): Promise<MovieCrewMemberType | null> {
+  async updateOneMovieCrewMemberType(@TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Info() info: GraphQLResolveInfo, @TypeGraphQL.Args() args: UpdateOneMovieCrewMemberTypeArgs): Promise<MovieCrewMemberType | null> {
     const { _count } = transformInfoIntoPrismaArgs(info);
     return getPrismaFromContext(ctx).movieCrewMemberType.update({
       ...args,

@@ -28,7 +28,7 @@ export class MovieRating {
   })
   rating!: number;
 
-  Review?: MovieReview | null;
+  review?: MovieReview | null;
 
   @TypeGraphQL.Field(_type => String, {
     nullable: false

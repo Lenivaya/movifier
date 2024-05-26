@@ -9,9 +9,9 @@ generator client {
 }
 
 generator typegraphql {
-  provider               = "typegraphql-prisma"
-  output                 = "./src/generated/type-graphql"
-  emitRedundantTypesInfo = true
+  provider = "typegraphql-prisma"
+  output   = "./src/generated/type-graphql"
+  // emitRedundantTypesInfo = true
 }
 
 model MovieStudio {
@@ -32,10 +32,12 @@ model Movie {
   studios            MovieStudio[]
   genres             Genre[]
   keywordCategories  MovieKeywordCategory[]
-  ratings            MovieRating[]
+  ratedBy            MovieRating[]
   movieLists         MovieList[]
   inWatchlistByUsers MovifierAppUser[]
   spokenLanguages    MovieSpokenLanguage[]
+  watchedBy          MovieWatchedByUser[]
+  likedBy            MovieLikedByUser[]
 }
 
 model MovieStats {
@@ -43,7 +45,7 @@ model MovieStats {
   timesWatchedCount Int
   totalRatingsCount Int
   totalLikesCount   Int
-  overallPlaceINTop Int
+  overallPlaceInTop Int
   avgRating         Float
   movieId           String @unique
   movie             Movie  @relation(fields: [movieId], references: [id], onDelete: Cascade)
@@ -128,35 +130,42 @@ enum MoviefireAppUserRole {
 }
 
 model MovifierAppUser {
-  id                 String               @id @unique @default(cuid())
-  createdAt          DateTime             @default(now())
-  updatedAt          DateTime             @updatedAt
-  email              String               @unique
-  username           String               @unique
+  id                   String                   @id @unique @default(cuid())
+  createdAt            DateTime                 @default(now())
+  updatedAt            DateTime                 @updatedAt
+  email                String                   @unique
+  username             String                   @unique
   /// @TypeGraphQL.omit(output: true)
-  password           String
-  name               String
-  role               MoviefireAppUserRole @default(USER)
-  watchlist          Movie[]
-  rating             MovieRating[]
-  movieLists         MovieList[]
-  movieListsComments MovieListComment[]
+  password             String
+  name                 String
+  role                 MoviefireAppUserRole     @default(USER)
+  watchlist            Movie[]
+  ratedMovies          MovieRating[]
+  watchedMovies        MovieWatchedByUser[]
+  likedMovies          MovieLikedByUser[]
+  movieLists           MovieList[]
+  movieListsComments   MovieListComment[]
+  likedMovieReviews    MovieReviewLikedByUser[]
+  MovieListLikedByUser MovieListLikedByUser[]
 }
 
 model MovieList {
-  id        String   @id @unique @default(cuid())
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  name      String
-  movies    Movie[]
+  id          String   @id @unique @default(cuid())
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  name        String
+  description String
+  tags        String[]
+  movies      Movie[]
 
   userId          String
   movieListAuthor MovifierAppUser @relation(fields: [userId], references: [id])
 
-  MovieListStats    MovieListStats?
-  movieListComments MovieListComment[]
+  stats    MovieListStats?
+  comments MovieListComment[]
+  likedBy  MovieListLikedByUser[]
 
-  @@index([name], map: "movie_list_pgroonga_idx")
+  @@index([name, description], map: "movie_list_pgroonga_idx")
 }
 
 model MovieListStats {
@@ -183,18 +192,56 @@ model MovieListComment {
   user   MovifierAppUser @relation(fields: [userId], references: [id])
 }
 
+model MovieListLikedByUser {
+  createdAt DateTime @default(now())
+
+  userId      String
+  movieListId String
+
+  movieList MovieList       @relation(fields: [movieListId], references: [id])
+  user      MovifierAppUser @relation(fields: [userId], references: [id])
+
+  @@id([userId, movieListId])
+}
+
+model MovieWatchedByUser {
+  createdAt DateTime @default(now())
+
+  userId  String
+  movieId String
+
+  movie Movie           @relation(fields: [movieId], references: [id])
+  user  MovifierAppUser @relation(fields: [userId], references: [id])
+
+  @@id([userId, movieId])
+}
+
+model MovieLikedByUser {
+  createdAt DateTime @default(now())
+
+  userId  String
+  movieId String
+
+  movie Movie           @relation(fields: [movieId], references: [id])
+  user  MovifierAppUser @relation(fields: [userId], references: [id])
+
+  @@id([userId, movieId])
+}
+
 model MovieRating {
   id        String       @id @unique @default(cuid())
   createdAt DateTime     @default(now())
   updatedAt DateTime     @updatedAt
   rating    Int
-  Review    MovieReview?
+  review    MovieReview?
 
-  movieId String @unique
+  movieId String
   movie   Movie  @relation(fields: [movieId], references: [id], onDelete: Cascade)
 
   userId String
-  user   MovifierAppUser @relation(fields: [userId], references: [id])
+  user   MovifierAppUser @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, movieId])
 }
 
 model MovieReview {
@@ -204,5 +251,19 @@ model MovieReview {
   content   String
 
   ratingId String      @unique
-  rating   MovieRating @relation(fields: [ratingId], references: [id])
+  rating   MovieRating @relation(fields: [ratingId], references: [id], onDelete: Cascade)
+
+  likedBy MovieReviewLikedByUser[]
+}
+
+model MovieReviewLikedByUser {
+  createdAt DateTime @default(now())
+
+  userId        String
+  movieReviewId String
+
+  movieReview MovieReview     @relation(fields: [movieReviewId], references: [id], onDelete: Cascade)
+  user        MovifierAppUser @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@id([userId, movieReviewId])
 }

@@ -20,7 +20,7 @@ export class GroupByMovieStatsArgs {
   @TypeGraphQL.Field(_type => [MovieStatsScalarFieldEnum], {
     nullable: false
   })
-  by!: Array<"id" | "timesWatchedCount" | "totalRatingsCount" | "totalLikesCount" | "overallPlaceINTop" | "avgRating" | "movieId">;
+  by!: Array<"id" | "timesWatchedCount" | "totalRatingsCount" | "totalLikesCount" | "overallPlaceInTop" | "avgRating" | "movieId">;
 
   @TypeGraphQL.Field(_type => MovieStatsScalarWhereWithAggregatesInput, {
     nullable: true

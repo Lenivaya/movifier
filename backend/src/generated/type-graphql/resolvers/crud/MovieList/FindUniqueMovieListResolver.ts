@@ -9,7 +9,7 @@ export class FindUniqueMovieListResolver {
   @TypeGraphQL.Query(_returns => MovieList, {
     nullable: true
   })
-  async movieList(@TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Info() info: GraphQLResolveInfo, @TypeGraphQL.Args(_type => FindUniqueMovieListArgs) args: FindUniqueMovieListArgs): Promise<MovieList | null> {
+  async movieList(@TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Info() info: GraphQLResolveInfo, @TypeGraphQL.Args() args: FindUniqueMovieListArgs): Promise<MovieList | null> {
     const { _count } = transformInfoIntoPrismaArgs(info);
     return getPrismaFromContext(ctx).movieList.findUnique({
       ...args,

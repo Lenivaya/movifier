@@ -9,7 +9,7 @@ export class UpsertOneMovieListCommentResolver {
   @TypeGraphQL.Mutation(_returns => MovieListComment, {
     nullable: false
   })
-  async upsertOneMovieListComment(@TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Info() info: GraphQLResolveInfo, @TypeGraphQL.Args(_type => UpsertOneMovieListCommentArgs) args: UpsertOneMovieListCommentArgs): Promise<MovieListComment> {
+  async upsertOneMovieListComment(@TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Info() info: GraphQLResolveInfo, @TypeGraphQL.Args() args: UpsertOneMovieListCommentArgs): Promise<MovieListComment> {
     const { _count } = transformInfoIntoPrismaArgs(info);
     return getPrismaFromContext(ctx).movieListComment.upsert({
       ...args,

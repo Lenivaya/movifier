@@ -28,7 +28,7 @@ export class MovieStatsMaxAggregate {
   @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
     nullable: true
   })
-  overallPlaceINTop!: number | null;
+  overallPlaceInTop!: number | null;
 
   @TypeGraphQL.Field(_type => TypeGraphQL.Float, {
     nullable: true

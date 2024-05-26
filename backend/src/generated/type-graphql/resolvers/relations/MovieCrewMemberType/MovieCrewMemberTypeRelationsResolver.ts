@@ -10,7 +10,7 @@ export class MovieCrewMemberTypeRelationsResolver {
   @TypeGraphQL.FieldResolver(_type => [MovieCrewMemberOnMovie], {
     nullable: false
   })
-  async movieCrewMembers(@TypeGraphQL.Root() movieCrewMemberType: MovieCrewMemberType, @TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Info() info: GraphQLResolveInfo, @TypeGraphQL.Args(_type => MovieCrewMemberTypeMovieCrewMembersArgs) args: MovieCrewMemberTypeMovieCrewMembersArgs): Promise<MovieCrewMemberOnMovie[]> {
+  async movieCrewMembers(@TypeGraphQL.Root() movieCrewMemberType: MovieCrewMemberType, @TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Info() info: GraphQLResolveInfo, @TypeGraphQL.Args() args: MovieCrewMemberTypeMovieCrewMembersArgs): Promise<MovieCrewMemberOnMovie[]> {
     const { _count } = transformInfoIntoPrismaArgs(info);
     return getPrismaFromContext(ctx).movieCrewMemberType.findUniqueOrThrow({
       where: {

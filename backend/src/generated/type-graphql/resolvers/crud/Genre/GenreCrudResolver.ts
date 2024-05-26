@@ -25,7 +25,7 @@ export class GenreCrudResolver {
   @TypeGraphQL.Query(_returns => AggregateGenre, {
     nullable: false
   })
-  async aggregateGenre(@TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Info() info: GraphQLResolveInfo, @TypeGraphQL.Args(_type => AggregateGenreArgs) args: AggregateGenreArgs): Promise<AggregateGenre> {
+  async aggregateGenre(@TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Info() info: GraphQLResolveInfo, @TypeGraphQL.Args() args: AggregateGenreArgs): Promise<AggregateGenre> {
     return getPrismaFromContext(ctx).genre.aggregate({
       ...args,
       ...transformInfoIntoPrismaArgs(info),
@@ -35,7 +35,7 @@ export class GenreCrudResolver {
   @TypeGraphQL.Mutation(_returns => AffectedRowsOutput, {
     nullable: false
   })
-  async createManyGenre(@TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Info() info: GraphQLResolveInfo, @TypeGraphQL.Args(_type => CreateManyGenreArgs) args: CreateManyGenreArgs): Promise<AffectedRowsOutput> {
+  async createManyGenre(@TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Info() info: GraphQLResolveInfo, @TypeGraphQL.Args() args: CreateManyGenreArgs): Promise<AffectedRowsOutput> {
     const { _count } = transformInfoIntoPrismaArgs(info);
     return getPrismaFromContext(ctx).genre.createMany({
       ...args,
@@ -46,7 +46,7 @@ export class GenreCrudResolver {
   @TypeGraphQL.Mutation(_returns => Genre, {
     nullable: false
   })
-  async createOneGenre(@TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Info() info: GraphQLResolveInfo, @TypeGraphQL.Args(_type => CreateOneGenreArgs) args: CreateOneGenreArgs): Promise<Genre> {
+  async createOneGenre(@TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Info() info: GraphQLResolveInfo, @TypeGraphQL.Args() args: CreateOneGenreArgs): Promise<Genre> {
     const { _count } = transformInfoIntoPrismaArgs(info);
     return getPrismaFromContext(ctx).genre.create({
       ...args,
@@ -57,7 +57,7 @@ export class GenreCrudResolver {
   @TypeGraphQL.Mutation(_returns => AffectedRowsOutput, {
     nullable: false
   })
-  async deleteManyGenre(@TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Info() info: GraphQLResolveInfo, @TypeGraphQL.Args(_type => DeleteManyGenreArgs) args: DeleteManyGenreArgs): Promise<AffectedRowsOutput> {
+  async deleteManyGenre(@TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Info() info: GraphQLResolveInfo, @TypeGraphQL.Args() args: DeleteManyGenreArgs): Promise<AffectedRowsOutput> {
     const { _count } = transformInfoIntoPrismaArgs(info);
     return getPrismaFromContext(ctx).genre.deleteMany({
       ...args,
@@ -68,7 +68,7 @@ export class GenreCrudResolver {
   @TypeGraphQL.Mutation(_returns => Genre, {
     nullable: true
   })
-  async deleteOneGenre(@TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Info() info: GraphQLResolveInfo, @TypeGraphQL.Args(_type => DeleteOneGenreArgs) args: DeleteOneGenreArgs): Promise<Genre | null> {
+  async deleteOneGenre(@TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Info() info: GraphQLResolveInfo, @TypeGraphQL.Args() args: DeleteOneGenreArgs): Promise<Genre | null> {
     const { _count } = transformInfoIntoPrismaArgs(info);
     return getPrismaFromContext(ctx).genre.delete({
       ...args,
@@ -79,7 +79,7 @@ export class GenreCrudResolver {
   @TypeGraphQL.Query(_returns => Genre, {
     nullable: true
   })
-  async findFirstGenre(@TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Info() info: GraphQLResolveInfo, @TypeGraphQL.Args(_type => FindFirstGenreArgs) args: FindFirstGenreArgs): Promise<Genre | null> {
+  async findFirstGenre(@TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Info() info: GraphQLResolveInfo, @TypeGraphQL.Args() args: FindFirstGenreArgs): Promise<Genre | null> {
     const { _count } = transformInfoIntoPrismaArgs(info);
     return getPrismaFromContext(ctx).genre.findFirst({
       ...args,
@@ -90,7 +90,7 @@ export class GenreCrudResolver {
   @TypeGraphQL.Query(_returns => Genre, {
     nullable: true
   })
-  async findFirstGenreOrThrow(@TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Info() info: GraphQLResolveInfo, @TypeGraphQL.Args(_type => FindFirstGenreOrThrowArgs) args: FindFirstGenreOrThrowArgs): Promise<Genre | null> {
+  async findFirstGenreOrThrow(@TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Info() info: GraphQLResolveInfo, @TypeGraphQL.Args() args: FindFirstGenreOrThrowArgs): Promise<Genre | null> {
     const { _count } = transformInfoIntoPrismaArgs(info);
     return getPrismaFromContext(ctx).genre.findFirstOrThrow({
       ...args,
@@ -101,7 +101,7 @@ export class GenreCrudResolver {
   @TypeGraphQL.Query(_returns => [Genre], {
     nullable: false
   })
-  async genres(@TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Info() info: GraphQLResolveInfo, @TypeGraphQL.Args(_type => FindManyGenreArgs) args: FindManyGenreArgs): Promise<Genre[]> {
+  async genres(@TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Info() info: GraphQLResolveInfo, @TypeGraphQL.Args() args: FindManyGenreArgs): Promise<Genre[]> {
     const { _count } = transformInfoIntoPrismaArgs(info);
     return getPrismaFromContext(ctx).genre.findMany({
       ...args,
@@ -112,7 +112,7 @@ export class GenreCrudResolver {
   @TypeGraphQL.Query(_returns => Genre, {
     nullable: true
   })
-  async genre(@TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Info() info: GraphQLResolveInfo, @TypeGraphQL.Args(_type => FindUniqueGenreArgs) args: FindUniqueGenreArgs): Promise<Genre | null> {
+  async genre(@TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Info() info: GraphQLResolveInfo, @TypeGraphQL.Args() args: FindUniqueGenreArgs): Promise<Genre | null> {
     const { _count } = transformInfoIntoPrismaArgs(info);
     return getPrismaFromContext(ctx).genre.findUnique({
       ...args,
@@ -123,7 +123,7 @@ export class GenreCrudResolver {
   @TypeGraphQL.Query(_returns => Genre, {
     nullable: true
   })
-  async getGenre(@TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Info() info: GraphQLResolveInfo, @TypeGraphQL.Args(_type => FindUniqueGenreOrThrowArgs) args: FindUniqueGenreOrThrowArgs): Promise<Genre | null> {
+  async getGenre(@TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Info() info: GraphQLResolveInfo, @TypeGraphQL.Args() args: FindUniqueGenreOrThrowArgs): Promise<Genre | null> {
     const { _count } = transformInfoIntoPrismaArgs(info);
     return getPrismaFromContext(ctx).genre.findUniqueOrThrow({
       ...args,
@@ -134,7 +134,7 @@ export class GenreCrudResolver {
   @TypeGraphQL.Query(_returns => [GenreGroupBy], {
     nullable: false
   })
-  async groupByGenre(@TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Info() info: GraphQLResolveInfo, @TypeGraphQL.Args(_type => GroupByGenreArgs) args: GroupByGenreArgs): Promise<GenreGroupBy[]> {
+  async groupByGenre(@TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Info() info: GraphQLResolveInfo, @TypeGraphQL.Args() args: GroupByGenreArgs): Promise<GenreGroupBy[]> {
     const { _count, _avg, _sum, _min, _max } = transformInfoIntoPrismaArgs(info);
     return getPrismaFromContext(ctx).genre.groupBy({
       ...args,
@@ -147,7 +147,7 @@ export class GenreCrudResolver {
   @TypeGraphQL.Mutation(_returns => AffectedRowsOutput, {
     nullable: false
   })
-  async updateManyGenre(@TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Info() info: GraphQLResolveInfo, @TypeGraphQL.Args(_type => UpdateManyGenreArgs) args: UpdateManyGenreArgs): Promise<AffectedRowsOutput> {
+  async updateManyGenre(@TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Info() info: GraphQLResolveInfo, @TypeGraphQL.Args() args: UpdateManyGenreArgs): Promise<AffectedRowsOutput> {
     const { _count } = transformInfoIntoPrismaArgs(info);
     return getPrismaFromContext(ctx).genre.updateMany({
       ...args,
@@ -158,7 +158,7 @@ export class GenreCrudResolver {
   @TypeGraphQL.Mutation(_returns => Genre, {
     nullable: true
   })
-  async updateOneGenre(@TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Info() info: GraphQLResolveInfo, @TypeGraphQL.Args(_type => UpdateOneGenreArgs) args: UpdateOneGenreArgs): Promise<Genre | null> {
+  async updateOneGenre(@TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Info() info: GraphQLResolveInfo, @TypeGraphQL.Args() args: UpdateOneGenreArgs): Promise<Genre | null> {
     const { _count } = transformInfoIntoPrismaArgs(info);
     return getPrismaFromContext(ctx).genre.update({
       ...args,
@@ -169,7 +169,7 @@ export class GenreCrudResolver {
   @TypeGraphQL.Mutation(_returns => Genre, {
     nullable: false
   })
-  async upsertOneGenre(@TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Info() info: GraphQLResolveInfo, @TypeGraphQL.Args(_type => UpsertOneGenreArgs) args: UpsertOneGenreArgs): Promise<Genre> {
+  async upsertOneGenre(@TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Info() info: GraphQLResolveInfo, @TypeGraphQL.Args() args: UpsertOneGenreArgs): Promise<Genre> {
     const { _count } = transformInfoIntoPrismaArgs(info);
     return getPrismaFromContext(ctx).genre.upsert({
       ...args,

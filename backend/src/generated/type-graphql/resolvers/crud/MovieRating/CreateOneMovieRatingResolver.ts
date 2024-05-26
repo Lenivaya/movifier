@@ -9,7 +9,7 @@ export class CreateOneMovieRatingResolver {
   @TypeGraphQL.Mutation(_returns => MovieRating, {
     nullable: false
   })
-  async createOneMovieRating(@TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Info() info: GraphQLResolveInfo, @TypeGraphQL.Args(_type => CreateOneMovieRatingArgs) args: CreateOneMovieRatingArgs): Promise<MovieRating> {
+  async createOneMovieRating(@TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Info() info: GraphQLResolveInfo, @TypeGraphQL.Args() args: CreateOneMovieRatingArgs): Promise<MovieRating> {
     const { _count } = transformInfoIntoPrismaArgs(info);
     return getPrismaFromContext(ctx).movieRating.create({
       ...args,

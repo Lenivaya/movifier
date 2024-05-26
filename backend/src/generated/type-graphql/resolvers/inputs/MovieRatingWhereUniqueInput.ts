@@ -4,6 +4,7 @@ import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../../scalars";
 import { DateTimeFilter } from "../inputs/DateTimeFilter";
 import { IntFilter } from "../inputs/IntFilter";
+import { MovieRatingUserIdMovieIdCompoundUniqueInput } from "../inputs/MovieRatingUserIdMovieIdCompoundUniqueInput";
 import { MovieRatingWhereInput } from "../inputs/MovieRatingWhereInput";
 import { MovieRelationFilter } from "../inputs/MovieRelationFilter";
 import { MovieReviewNullableRelationFilter } from "../inputs/MovieReviewNullableRelationFilter";
@@ -17,10 +18,10 @@ export class MovieRatingWhereUniqueInput {
   })
   id?: string | undefined;
 
-  @TypeGraphQL.Field(_type => String, {
+  @TypeGraphQL.Field(_type => MovieRatingUserIdMovieIdCompoundUniqueInput, {
     nullable: true
   })
-  movieId?: string | undefined;
+  userId_movieId?: MovieRatingUserIdMovieIdCompoundUniqueInput | undefined;
 
   @TypeGraphQL.Field(_type => [MovieRatingWhereInput], {
     nullable: true
@@ -55,12 +56,17 @@ export class MovieRatingWhereUniqueInput {
   @TypeGraphQL.Field(_type => StringFilter, {
     nullable: true
   })
+  movieId?: StringFilter | undefined;
+
+  @TypeGraphQL.Field(_type => StringFilter, {
+    nullable: true
+  })
   userId?: StringFilter | undefined;
 
   @TypeGraphQL.Field(_type => MovieReviewNullableRelationFilter, {
     nullable: true
   })
-  Review?: MovieReviewNullableRelationFilter | undefined;
+  review?: MovieReviewNullableRelationFilter | undefined;
 
   @TypeGraphQL.Field(_type => MovieRelationFilter, {
     nullable: true

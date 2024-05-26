@@ -2,7 +2,7 @@ import * as TypeGraphQL from "type-graphql";
 import * as GraphQLScalars from "graphql-scalars";
 import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../../scalars";
-import { MovieListCreateNestedOneWithoutMovieListStatsInput } from "../inputs/MovieListCreateNestedOneWithoutMovieListStatsInput";
+import { MovieListCreateNestedOneWithoutStatsInput } from "../inputs/MovieListCreateNestedOneWithoutStatsInput";
 
 @TypeGraphQL.InputType("MovieListStatsCreateInput", {})
 export class MovieListStatsCreateInput {
@@ -31,8 +31,8 @@ export class MovieListStatsCreateInput {
   })
   likes!: number;
 
-  @TypeGraphQL.Field(_type => MovieListCreateNestedOneWithoutMovieListStatsInput, {
+  @TypeGraphQL.Field(_type => MovieListCreateNestedOneWithoutStatsInput, {
     nullable: false
   })
-  MovieList!: MovieListCreateNestedOneWithoutMovieListStatsInput;
+  MovieList!: MovieListCreateNestedOneWithoutStatsInput;
 }

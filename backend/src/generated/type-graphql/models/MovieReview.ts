@@ -3,6 +3,8 @@ import * as GraphQLScalars from "graphql-scalars";
 import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../scalars";
 import { MovieRating } from "../models/MovieRating";
+import { MovieReviewLikedByUser } from "../models/MovieReviewLikedByUser";
+import { MovieReviewCount } from "../resolvers/outputs/MovieReviewCount";
 
 @TypeGraphQL.ObjectType("MovieReview", {})
 export class MovieReview {
@@ -32,4 +34,11 @@ export class MovieReview {
   ratingId!: string;
 
   rating?: MovieRating;
+
+  likedBy?: MovieReviewLikedByUser[];
+
+  @TypeGraphQL.Field(_type => MovieReviewCount, {
+    nullable: true
+  })
+  _count?: MovieReviewCount | null;
 }

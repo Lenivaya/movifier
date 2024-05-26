@@ -10,7 +10,7 @@ export class GroupByGenreResolver {
   @TypeGraphQL.Query(_returns => [GenreGroupBy], {
     nullable: false
   })
-  async groupByGenre(@TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Info() info: GraphQLResolveInfo, @TypeGraphQL.Args(_type => GroupByGenreArgs) args: GroupByGenreArgs): Promise<GenreGroupBy[]> {
+  async groupByGenre(@TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Info() info: GraphQLResolveInfo, @TypeGraphQL.Args() args: GroupByGenreArgs): Promise<GenreGroupBy[]> {
     const { _count, _avg, _sum, _min, _max } = transformInfoIntoPrismaArgs(info);
     return getPrismaFromContext(ctx).genre.groupBy({
       ...args,

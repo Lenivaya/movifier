@@ -4,8 +4,8 @@ import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../../scalars";
 import { DateTimeFieldUpdateOperationsInput } from "../inputs/DateTimeFieldUpdateOperationsInput";
 import { IntFieldUpdateOperationsInput } from "../inputs/IntFieldUpdateOperationsInput";
-import { MovieUpdateOneRequiredWithoutRatingsNestedInput } from "../inputs/MovieUpdateOneRequiredWithoutRatingsNestedInput";
-import { MovifierAppUserUpdateOneRequiredWithoutRatingNestedInput } from "../inputs/MovifierAppUserUpdateOneRequiredWithoutRatingNestedInput";
+import { MovieUpdateOneRequiredWithoutRatedByNestedInput } from "../inputs/MovieUpdateOneRequiredWithoutRatedByNestedInput";
+import { MovifierAppUserUpdateOneRequiredWithoutRatedMoviesNestedInput } from "../inputs/MovifierAppUserUpdateOneRequiredWithoutRatedMoviesNestedInput";
 import { StringFieldUpdateOperationsInput } from "../inputs/StringFieldUpdateOperationsInput";
 
 @TypeGraphQL.InputType("MovieRatingUpdateWithoutReviewInput", {})
@@ -30,13 +30,13 @@ export class MovieRatingUpdateWithoutReviewInput {
   })
   rating?: IntFieldUpdateOperationsInput | undefined;
 
-  @TypeGraphQL.Field(_type => MovieUpdateOneRequiredWithoutRatingsNestedInput, {
+  @TypeGraphQL.Field(_type => MovieUpdateOneRequiredWithoutRatedByNestedInput, {
     nullable: true
   })
-  movie?: MovieUpdateOneRequiredWithoutRatingsNestedInput | undefined;
+  movie?: MovieUpdateOneRequiredWithoutRatedByNestedInput | undefined;
 
-  @TypeGraphQL.Field(_type => MovifierAppUserUpdateOneRequiredWithoutRatingNestedInput, {
+  @TypeGraphQL.Field(_type => MovifierAppUserUpdateOneRequiredWithoutRatedMoviesNestedInput, {
     nullable: true
   })
-  user?: MovifierAppUserUpdateOneRequiredWithoutRatingNestedInput | undefined;
+  user?: MovifierAppUserUpdateOneRequiredWithoutRatedMoviesNestedInput | undefined;
 }

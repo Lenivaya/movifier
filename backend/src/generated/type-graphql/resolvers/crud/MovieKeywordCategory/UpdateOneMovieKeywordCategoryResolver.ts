@@ -9,7 +9,7 @@ export class UpdateOneMovieKeywordCategoryResolver {
   @TypeGraphQL.Mutation(_returns => MovieKeywordCategory, {
     nullable: true
   })
-  async updateOneMovieKeywordCategory(@TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Info() info: GraphQLResolveInfo, @TypeGraphQL.Args(_type => UpdateOneMovieKeywordCategoryArgs) args: UpdateOneMovieKeywordCategoryArgs): Promise<MovieKeywordCategory | null> {
+  async updateOneMovieKeywordCategory(@TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Info() info: GraphQLResolveInfo, @TypeGraphQL.Args() args: UpdateOneMovieKeywordCategoryArgs): Promise<MovieKeywordCategory | null> {
     const { _count } = transformInfoIntoPrismaArgs(info);
     return getPrismaFromContext(ctx).movieKeywordCategory.update({
       ...args,

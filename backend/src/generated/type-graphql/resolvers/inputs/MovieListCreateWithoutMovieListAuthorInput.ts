@@ -4,6 +4,8 @@ import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../../scalars";
 import { MovieCreateNestedManyWithoutMovieListsInput } from "../inputs/MovieCreateNestedManyWithoutMovieListsInput";
 import { MovieListCommentCreateNestedManyWithoutMovieListInput } from "../inputs/MovieListCommentCreateNestedManyWithoutMovieListInput";
+import { MovieListCreatetagsInput } from "../inputs/MovieListCreatetagsInput";
+import { MovieListLikedByUserCreateNestedManyWithoutMovieListInput } from "../inputs/MovieListLikedByUserCreateNestedManyWithoutMovieListInput";
 import { MovieListStatsCreateNestedOneWithoutMovieListInput } from "../inputs/MovieListStatsCreateNestedOneWithoutMovieListInput";
 
 @TypeGraphQL.InputType("MovieListCreateWithoutMovieListAuthorInput", {})
@@ -28,6 +30,16 @@ export class MovieListCreateWithoutMovieListAuthorInput {
   })
   name!: string;
 
+  @TypeGraphQL.Field(_type => String, {
+    nullable: false
+  })
+  description!: string;
+
+  @TypeGraphQL.Field(_type => MovieListCreatetagsInput, {
+    nullable: true
+  })
+  tags?: MovieListCreatetagsInput | undefined;
+
   @TypeGraphQL.Field(_type => MovieCreateNestedManyWithoutMovieListsInput, {
     nullable: true
   })
@@ -36,10 +48,15 @@ export class MovieListCreateWithoutMovieListAuthorInput {
   @TypeGraphQL.Field(_type => MovieListStatsCreateNestedOneWithoutMovieListInput, {
     nullable: true
   })
-  MovieListStats?: MovieListStatsCreateNestedOneWithoutMovieListInput | undefined;
+  stats?: MovieListStatsCreateNestedOneWithoutMovieListInput | undefined;
 
   @TypeGraphQL.Field(_type => MovieListCommentCreateNestedManyWithoutMovieListInput, {
     nullable: true
   })
-  movieListComments?: MovieListCommentCreateNestedManyWithoutMovieListInput | undefined;
+  comments?: MovieListCommentCreateNestedManyWithoutMovieListInput | undefined;
+
+  @TypeGraphQL.Field(_type => MovieListLikedByUserCreateNestedManyWithoutMovieListInput, {
+    nullable: true
+  })
+  likedBy?: MovieListLikedByUserCreateNestedManyWithoutMovieListInput | undefined;
 }

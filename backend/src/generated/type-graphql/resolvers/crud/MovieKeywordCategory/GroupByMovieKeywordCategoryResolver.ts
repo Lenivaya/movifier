@@ -10,7 +10,7 @@ export class GroupByMovieKeywordCategoryResolver {
   @TypeGraphQL.Query(_returns => [MovieKeywordCategoryGroupBy], {
     nullable: false
   })
-  async groupByMovieKeywordCategory(@TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Info() info: GraphQLResolveInfo, @TypeGraphQL.Args(_type => GroupByMovieKeywordCategoryArgs) args: GroupByMovieKeywordCategoryArgs): Promise<MovieKeywordCategoryGroupBy[]> {
+  async groupByMovieKeywordCategory(@TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Info() info: GraphQLResolveInfo, @TypeGraphQL.Args() args: GroupByMovieKeywordCategoryArgs): Promise<MovieKeywordCategoryGroupBy[]> {
     const { _count, _avg, _sum, _min, _max } = transformInfoIntoPrismaArgs(info);
     return getPrismaFromContext(ctx).movieKeywordCategory.groupBy({
       ...args,

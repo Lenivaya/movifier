@@ -9,7 +9,7 @@ export class FindFirstMovieReviewOrThrowResolver {
   @TypeGraphQL.Query(_returns => MovieReview, {
     nullable: true
   })
-  async findFirstMovieReviewOrThrow(@TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Info() info: GraphQLResolveInfo, @TypeGraphQL.Args(_type => FindFirstMovieReviewOrThrowArgs) args: FindFirstMovieReviewOrThrowArgs): Promise<MovieReview | null> {
+  async findFirstMovieReviewOrThrow(@TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Info() info: GraphQLResolveInfo, @TypeGraphQL.Args() args: FindFirstMovieReviewOrThrowArgs): Promise<MovieReview | null> {
     const { _count } = transformInfoIntoPrismaArgs(info);
     return getPrismaFromContext(ctx).movieReview.findFirstOrThrow({
       ...args,
