@@ -5,6 +5,7 @@ import { Rating as ReactRating, ThinStar } from '@smastrom/react-rating'
 import { MovieReviewCardItemFragment } from '@/lib'
 import { Link } from 'next-view-transitions'
 import { MovieReviewLikeButton } from '@/components/movifier/movie-reviews/MovieReviewCard/MovieReviewLikeButton'
+import { useCurrentUser } from '@/lib/hooks/CurrentUser'
 
 export const MovieReviewCardFragment = gql`
   fragment MovieReviewCardItem on MovieReview {
@@ -20,6 +21,10 @@ export const MovieReviewCardFragment = gql`
         username
       }
     }
+
+    _count {
+      likedBy
+    }
   }
 `
 
@@ -28,9 +33,12 @@ const MAX_RATING = 10
 export const MovieReviewCard: FC<MovieReviewCardItemFragment> = ({
   id,
   content,
-  rating
+  rating,
+  _count
 }) => {
-  const composeKey = { movieReviewId: id, userId: rating.user.id }
+  const user = useCurrentUser()
+  const composeKey = { movieReviewId: id, userId: user?.id ?? '' }
+  const likesCount = _count?.likedBy
 
   return (
     <Card>
@@ -67,8 +75,11 @@ export const MovieReviewCard: FC<MovieReviewCardItemFragment> = ({
           {content}
         </article>
 
-        <div className={'mt-5'}>
+        <div className={'mt-5 flex flex-row gap-5'}>
           <MovieReviewLikeButton composeKey={composeKey} />
+          <span className={'text-sm'}>
+            <span className={'mr-1'}>{likesCount}</span> Likes
+          </span>
         </div>
       </CardContent>
     </Card>

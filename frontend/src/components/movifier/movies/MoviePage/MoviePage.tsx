@@ -12,19 +12,17 @@ import {
   CardHeader,
   Separator
 } from '@/components/ui'
-import {
-  cn,
-  MoviePageItemFragment,
-  MoviePageReviewsListItemsFragment
-} from '@/lib'
+import { cn, MoviePageItemFragment } from '@/lib'
 import { useCurrentUser } from '@/lib/hooks/CurrentUser'
 import { isSome } from '@/lib/types'
 import { gql } from '@apollo/client'
 import '@smastrom/react-rating/style.css'
 import { Link } from 'next-view-transitions'
 import { Imbue } from 'next/font/google'
-import { FC } from 'react'
-import { MovieReviewCard } from '@/components/movifier/movie-reviews/MovieReviewCard/MovieReviewCard'
+import { FC, Suspense } from 'react'
+import { AppLoader } from '@/components/movifier/generic'
+import { MoviePageTopPopularReviewsList } from '@/components/movifier/movies/MoviePage/MoviePageTopPopularReviewsList'
+import { MoviePageTopRecentReviewsList } from '@/components/movifier/movies/MoviePage/MoviePageTopRecentReviewsList'
 
 const imbue = Imbue({ subsets: ['latin'] })
 
@@ -43,7 +41,6 @@ export const MoviePageFragment = gql`
     ...DirectorNamesTitleItem
     ...MoviePagePosterItem
     ...MoviePageDetailsTabsItem
-    ...MoviePageReviewsListItems
   }
 `
 
@@ -61,11 +58,11 @@ export const MoviePage: FC<{
 
   return (
     <div className={'h-lvh w-full pt-5 pb-5'}>
-      <div className={'h-full max-md:w-full max-lg:w-3/4 w-5/6 mx-auto'}>
-        <div className='relative h-full grid grid-cols-[20%_80%] mx-auto gap-4 w-auto justify-start align-top'>
+      <div className={'max-md:w-full max-lg:w-3/4 w-5/6 mx-auto'}>
+        <div className='relative  grid grid-cols-[20%_80%] mx-auto gap-4 w-auto justify-start align-top'>
           <MoviePagePoster {...movie} />
 
-          <Card className={'h-full mb-5 w-auto justify-self-stretch'}>
+          <Card className={'mb-5 w-auto justify-self-stretch'}>
             <CardHeader className='flex flex-row gap-4 items-baseline'>
               <h1
                 className={cn(
@@ -102,7 +99,12 @@ export const MoviePage: FC<{
 
                   <Separator className='mt-5 mb-5' />
 
-                  <MoviePageReviewsList {...movie} />
+                  <Suspense fallback={<AppLoader />}>
+                    <MoviePageTopPopularReviewsList movieId={movie.id} />
+                  </Suspense>
+                  <Suspense fallback={<AppLoader />}>
+                    <MoviePageTopRecentReviewsList movieId={movie.id} />
+                  </Suspense>
                 </section>
 
                 <aside
@@ -139,31 +141,6 @@ export const MoviePage: FC<{
           </Card>
         </div>
       </div>
-    </div>
-  )
-}
-
-export const MoviePageReviewsListFragment = gql`
-  fragment MoviePageReviewsListItems on Movie {
-    ratedBy(take: 5, orderBy: [{ updatedAt: asc }]) {
-      review {
-        ...MovieReviewCardItem
-      }
-    }
-  }
-`
-
-export const MoviePageReviewsList: FC<MoviePageReviewsListItemsFragment> = ({
-  ratedBy
-}) => {
-  return (
-    <div className={'grid grid-cols-1 gap-5'}>
-      {ratedBy
-        .map(({ review }) => review)
-        .filter(isSome)
-        .map((review) => (
-          <MovieReviewCard key={review.id} {...review} />
-        ))}
     </div>
   )
 }

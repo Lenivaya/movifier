@@ -1,43 +1,69 @@
-import { FC, useState } from 'react'
+'use client'
+
+import { FC } from 'react'
 import { ComposeKeyMovieReviewUser } from '@/components/movifier/movie-reviews/MovieReviewCard/types'
 import {
   cn,
+  IsMovieReviewLikedByUserDocument,
+  MovieReview,
   useIsMovieReviewLikedByUserQuery,
   useMarkMovieReviewLikedMutation,
   useUnmarkMovieReviewLikedMutation
 } from '@/lib'
-import { isSome } from '@/lib/types'
+import { isNone, isSome } from '@/lib/types'
 import { toast } from '@/components/ui/use-toast'
 import { motion } from 'framer-motion'
 import { HeartIcon } from 'lucide-react'
+import { useCurrentUser, useIsSignedIn } from '@/lib/hooks/CurrentUser'
+import { isReference } from '@apollo/client'
+import { create } from 'mutative'
 
 export const MovieReviewLikeButton: FC<{
   composeKey: ComposeKeyMovieReviewUser
 }> = ({ composeKey }) => {
-  const [isReviewLiked, setIsReviewLiked] = useState(false)
-  useIsMovieReviewLikedByUserQuery({
+  const isSignedIn = useIsSignedIn()
+  const { data } = useIsMovieReviewLikedByUserQuery({
     variables: composeKey,
-    fetchPolicy: 'cache-and-network',
-    onCompleted: (data) => {
-      console.log(data)
-      setIsReviewLiked(isSome(data.movieReviewLikedByUser?.movieReviewId))
-    }
+    skip: !isSignedIn
   })
+  const isReviewLiked = isSome(data?.movieReviewLikedByUser?.movieReviewId)
+
+  const user = useCurrentUser()
+  const isAuthenticated = isSome(user)
 
   const [markMovieReviewLiked] = useMarkMovieReviewLikedMutation()
   const [unmarkMovieReviewLiked] = useUnmarkMovieReviewLikedMutation()
 
-  const handleMarkMovieReviewWatched = async () => {
+  const handleMarkMovieReviewLiked = async () => {
     await markMovieReviewLiked({
       variables: composeKey,
       onError: (error) => {
-        console.error(error)
+        console.error(error.message)
         toast({
           title: 'Error liking movie review'
         })
       },
-      onCompleted: () => {
-        setIsReviewLiked(true)
+      update: (cache, { data }) => {
+        cache.writeQuery({
+          query: IsMovieReviewLikedByUserDocument,
+          variables: composeKey,
+          data: {
+            movieReviewLikedByUser: {
+              movieReviewId: data?.createOneMovieReviewLikedByUser.movieReviewId
+            }
+          }
+        })
+        cache.modify<MovieReview>({
+          id: 'MovieReview:' + composeKey.movieReviewId,
+          fields: {
+            _count: (existing) => {
+              if (isReference(existing) || isNone(existing)) return existing
+              return create({ ...existing }, (draft) => {
+                draft.likedBy += 1
+              })
+            }
+          }
+        })
       }
     })
   }
@@ -46,21 +72,42 @@ export const MovieReviewLikeButton: FC<{
     await unmarkMovieReviewLiked({
       variables: composeKey,
       onError: (error) => {
-        console.error(error)
+        console.error(error.message)
         toast({
           title: 'Error unsetting movie review liked'
         })
       },
-      onCompleted: () => {
-        setIsReviewLiked(false)
+      update: (cache, data) => {
+        cache.writeQuery({
+          query: IsMovieReviewLikedByUserDocument,
+          variables: composeKey,
+          data: {
+            movieReviewLikedByUser: null
+          }
+        })
+        cache.modify<MovieReview>({
+          id: 'MovieReview:' + composeKey.movieReviewId,
+          fields: {
+            _count: (existing) => {
+              if (isReference(existing) || isNone(existing)) return existing
+              return create({ ...existing }, (draft) => {
+                if (draft.likedBy >= 1) draft.likedBy -= 1
+              })
+            }
+          }
+        })
       }
     })
   }
 
-  const handleMovieReviewLiked = async () =>
+  const handleMovieReviewLiked = async () => {
+    if (!isAuthenticated)
+      return toast({ title: 'Please sign in to like a review' })
+
     isReviewLiked
       ? await handleMovieReviewUnsetLiked()
-      : await handleMarkMovieReviewWatched()
+      : await handleMarkMovieReviewLiked()
+  }
 
   return (
     <div className='flex flex-col items-start gap-2'>

@@ -8,7 +8,7 @@ export const MARK_MOVIE_REVIEW_LIKED = gql`
         user: { connect: { id: $userId } }
       }
     ) {
-      createdAt
+      movieReviewId
     }
   }
 `

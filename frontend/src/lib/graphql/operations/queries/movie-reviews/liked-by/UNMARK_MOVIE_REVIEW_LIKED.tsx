@@ -7,7 +7,7 @@ export const UNMARK_MOVIE_REVIEW_LIKED = gql`
         userId_movieReviewId: { movieReviewId: $movieReviewId, userId: $userId }
       }
     ) {
-      createdAt
+      movieReviewId
     }
   }
 `

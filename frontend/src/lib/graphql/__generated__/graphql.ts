@@ -6308,14 +6308,14 @@ export type GetMovieForPageQueryVariables = Exact<{
 }>;
 
 
-export type GetMovieForPageQuery = { __typename?: 'Query', movie?: { __typename?: 'Movie', id: string, movieInfo?: { __typename?: 'MovieInfo', id: string, title: string, description: string, releaseDate: any, durationInMinutes: number, posterUrl: string, alternativeTitles: Array<string> } | null, crewMembers: Array<{ __typename?: 'MovieCrewMemberOnMovie', movieCrewMemberType: { __typename?: 'MovieCrewMemberType', id: string, name: string }, crewMember: { __typename?: 'MovieCrewMember', name: string, id: string } }>, studios: Array<{ __typename?: 'MovieStudio', name: string }>, genres: Array<{ __typename?: 'Genre', name: string }>, keywordCategories: Array<{ __typename?: 'MovieKeywordCategory', id: string, name: string }>, spokenLanguages: Array<{ __typename?: 'MovieSpokenLanguage', language: string }>, ratedBy: Array<{ __typename?: 'MovieRating', review?: { __typename?: 'MovieReview', id: string, content: string, rating: { __typename?: 'MovieRating', id: string, rating: number, user: { __typename?: 'MovifierAppUser', id: string, username: string } } } | null }> } | null };
+export type GetMovieForPageQuery = { __typename?: 'Query', movie?: { __typename?: 'Movie', id: string, movieInfo?: { __typename?: 'MovieInfo', id: string, title: string, description: string, releaseDate: any, durationInMinutes: number, posterUrl: string, alternativeTitles: Array<string> } | null, crewMembers: Array<{ __typename?: 'MovieCrewMemberOnMovie', movieCrewMemberType: { __typename?: 'MovieCrewMemberType', id: string, name: string }, crewMember: { __typename?: 'MovieCrewMember', name: string, id: string } }>, studios: Array<{ __typename?: 'MovieStudio', name: string }>, genres: Array<{ __typename?: 'Genre', name: string }>, keywordCategories: Array<{ __typename?: 'MovieKeywordCategory', id: string, name: string }>, spokenLanguages: Array<{ __typename?: 'MovieSpokenLanguage', language: string }> } | null };
 
 export type GetMoviesForHomePageQueryVariables = Exact<{ [key: string]: never; }>;
 
 
 export type GetMoviesForHomePageQuery = { __typename?: 'Query', movies: Array<{ __typename?: 'Movie', id: string, movieInfo?: { __typename?: 'MovieInfo', title: string, posterUrl: string } | null }> };
 
-export type MovieReviewCardItemFragment = { __typename?: 'MovieReview', id: string, content: string, rating: { __typename?: 'MovieRating', id: string, rating: number, user: { __typename?: 'MovifierAppUser', id: string, username: string } } };
+export type MovieReviewCardItemFragment = { __typename?: 'MovieReview', id: string, content: string, rating: { __typename?: 'MovieRating', id: string, rating: number, user: { __typename?: 'MovifierAppUser', id: string, username: string } }, _count?: { __typename?: 'MovieReviewCount', likedBy: number } | null };
 
 export type GetMovieRatingReviewQueryVariables = Exact<{
   ratingId: Scalars['String']['input'];
@@ -6336,9 +6336,21 @@ export type MovieCardItemFragment = { __typename?: 'Movie', id: string, movieInf
 
 export type DirectorNamesTitleItemFragment = { __typename?: 'Movie', crewMembers: Array<{ __typename?: 'MovieCrewMemberOnMovie', movieCrewMemberType: { __typename?: 'MovieCrewMemberType', id: string, name: string }, crewMember: { __typename?: 'MovieCrewMember', name: string, id: string } }> };
 
-export type MoviePageItemFragment = { __typename?: 'Movie', id: string, movieInfo?: { __typename?: 'MovieInfo', id: string, title: string, description: string, releaseDate: any, durationInMinutes: number, posterUrl: string, alternativeTitles: Array<string> } | null, crewMembers: Array<{ __typename?: 'MovieCrewMemberOnMovie', movieCrewMemberType: { __typename?: 'MovieCrewMemberType', id: string, name: string }, crewMember: { __typename?: 'MovieCrewMember', name: string, id: string } }>, studios: Array<{ __typename?: 'MovieStudio', name: string }>, genres: Array<{ __typename?: 'Genre', name: string }>, keywordCategories: Array<{ __typename?: 'MovieKeywordCategory', id: string, name: string }>, spokenLanguages: Array<{ __typename?: 'MovieSpokenLanguage', language: string }>, ratedBy: Array<{ __typename?: 'MovieRating', review?: { __typename?: 'MovieReview', id: string, content: string, rating: { __typename?: 'MovieRating', id: string, rating: number, user: { __typename?: 'MovifierAppUser', id: string, username: string } } } | null }> };
+export type MoviePageItemFragment = { __typename?: 'Movie', id: string, movieInfo?: { __typename?: 'MovieInfo', id: string, title: string, description: string, releaseDate: any, durationInMinutes: number, posterUrl: string, alternativeTitles: Array<string> } | null, crewMembers: Array<{ __typename?: 'MovieCrewMemberOnMovie', movieCrewMemberType: { __typename?: 'MovieCrewMemberType', id: string, name: string }, crewMember: { __typename?: 'MovieCrewMember', name: string, id: string } }>, studios: Array<{ __typename?: 'MovieStudio', name: string }>, genres: Array<{ __typename?: 'Genre', name: string }>, keywordCategories: Array<{ __typename?: 'MovieKeywordCategory', id: string, name: string }>, spokenLanguages: Array<{ __typename?: 'MovieSpokenLanguage', language: string }> };
 
-export type MoviePageReviewsListItemsFragment = { __typename?: 'Movie', ratedBy: Array<{ __typename?: 'MovieRating', review?: { __typename?: 'MovieReview', id: string, content: string, rating: { __typename?: 'MovieRating', id: string, rating: number, user: { __typename?: 'MovifierAppUser', id: string, username: string } } } | null }> };
+export type PopularMovieReviewsQueryVariables = Exact<{
+  movieId: Scalars['String']['input'];
+}>;
+
+
+export type PopularMovieReviewsQuery = { __typename?: 'Query', movieReviews: Array<{ __typename?: 'MovieReview', id: string, content: string, rating: { __typename?: 'MovieRating', id: string, rating: number, user: { __typename?: 'MovifierAppUser', id: string, username: string } }, _count?: { __typename?: 'MovieReviewCount', likedBy: number } | null }> };
+
+export type RecentMovieReviewsQueryVariables = Exact<{
+  movieId: Scalars['String']['input'];
+}>;
+
+
+export type RecentMovieReviewsQuery = { __typename?: 'Query', movieReviews: Array<{ __typename?: 'MovieReview', id: string, content: string, rating: { __typename?: 'MovieRating', id: string, rating: number, user: { __typename?: 'MovifierAppUser', id: string, username: string } }, _count?: { __typename?: 'MovieReviewCount', likedBy: number } | null }> };
 
 export type MoviePageDetailsTabsItemFragment = { __typename?: 'Movie', movieInfo?: { __typename?: 'MovieInfo', alternativeTitles: Array<string> } | null, crewMembers: Array<{ __typename?: 'MovieCrewMemberOnMovie', movieCrewMemberType: { __typename?: 'MovieCrewMemberType', id: string, name: string }, crewMember: { __typename?: 'MovieCrewMember', name: string, id: string } }>, studios: Array<{ __typename?: 'MovieStudio', name: string }>, genres: Array<{ __typename?: 'Genre', name: string }>, keywordCategories: Array<{ __typename?: 'MovieKeywordCategory', id: string, name: string }>, spokenLanguages: Array<{ __typename?: 'MovieSpokenLanguage', language: string }> };
 
@@ -6397,7 +6409,7 @@ export type MarkMovieReviewLikedMutationVariables = Exact<{
 }>;
 
 
-export type MarkMovieReviewLikedMutation = { __typename?: 'Mutation', createOneMovieReviewLikedByUser: { __typename?: 'MovieReviewLikedByUser', createdAt: any } };
+export type MarkMovieReviewLikedMutation = { __typename?: 'Mutation', createOneMovieReviewLikedByUser: { __typename?: 'MovieReviewLikedByUser', movieReviewId: string } };
 
 export type UnmarkMovieReviewLikedMutationVariables = Exact<{
   movieReviewId: Scalars['String']['input'];
@@ -6405,7 +6417,7 @@ export type UnmarkMovieReviewLikedMutationVariables = Exact<{
 }>;
 
 
-export type UnmarkMovieReviewLikedMutation = { __typename?: 'Mutation', deleteOneMovieReviewLikedByUser?: { __typename?: 'MovieReviewLikedByUser', createdAt: any } | null };
+export type UnmarkMovieReviewLikedMutation = { __typename?: 'Mutation', deleteOneMovieReviewLikedByUser?: { __typename?: 'MovieReviewLikedByUser', movieReviewId: string } | null };
 
 export type IsMovieLikedByUserQueryVariables = Exact<{
   movieId: Scalars['String']['input'];
@@ -8566,6 +8578,23 @@ export type DirectiveResolvers<ContextType = any> = ResolversObject<{
   client?: ClientDirectiveResolver<any, any, ContextType>;
 }>;
 
+export const MovieReviewCardItemFragmentDoc = gql`
+    fragment MovieReviewCardItem on MovieReview {
+  id
+  content
+  rating {
+    id
+    rating
+    user {
+      id
+      username
+    }
+  }
+  _count {
+    likedBy
+  }
+}
+    `;
 export const MovieCardItemFragmentDoc = gql`
     fragment MovieCardItem on Movie {
   id
@@ -8627,29 +8656,6 @@ export const MoviePageDetailsTabsItemFragmentDoc = gql`
   }
 }
     `;
-export const MovieReviewCardItemFragmentDoc = gql`
-    fragment MovieReviewCardItem on MovieReview {
-  id
-  content
-  rating {
-    id
-    rating
-    user {
-      id
-      username
-    }
-  }
-}
-    `;
-export const MoviePageReviewsListItemsFragmentDoc = gql`
-    fragment MoviePageReviewsListItems on Movie {
-  ratedBy(take: 5, orderBy: [{updatedAt: asc}]) {
-    review {
-      ...MovieReviewCardItem
-    }
-  }
-}
-    ${MovieReviewCardItemFragmentDoc}`;
 export const MoviePageItemFragmentDoc = gql`
     fragment MoviePageItem on Movie {
   id
@@ -8663,12 +8669,10 @@ export const MoviePageItemFragmentDoc = gql`
   ...DirectorNamesTitleItem
   ...MoviePagePosterItem
   ...MoviePageDetailsTabsItem
-  ...MoviePageReviewsListItems
 }
     ${DirectorNamesTitleItemFragmentDoc}
 ${MoviePagePosterItemFragmentDoc}
-${MoviePageDetailsTabsItemFragmentDoc}
-${MoviePageReviewsListItemsFragmentDoc}`;
+${MoviePageDetailsTabsItemFragmentDoc}`;
 export const CurrentUserFragmentDoc = gql`
     fragment CurrentUser on MovifierAppUser {
   id
@@ -8835,6 +8839,92 @@ export function useUpsertMovieRatingReviewMutation(baseOptions?: Apollo.Mutation
 export type UpsertMovieRatingReviewMutationHookResult = ReturnType<typeof useUpsertMovieRatingReviewMutation>;
 export type UpsertMovieRatingReviewMutationResult = Apollo.MutationResult<UpsertMovieRatingReviewMutation>;
 export type UpsertMovieRatingReviewMutationOptions = Apollo.BaseMutationOptions<UpsertMovieRatingReviewMutation, UpsertMovieRatingReviewMutationVariables>;
+export const PopularMovieReviewsDocument = gql`
+    query PopularMovieReviews($movieId: String!) {
+  movieReviews(
+    orderBy: [{likedBy: {_count: desc}}]
+    where: {rating: {is: {movieId: {equals: $movieId}}}}
+  ) {
+    ...MovieReviewCardItem
+  }
+}
+    ${MovieReviewCardItemFragmentDoc}`;
+
+/**
+ * __usePopularMovieReviewsQuery__
+ *
+ * To run a query within a React component, call `usePopularMovieReviewsQuery` and pass it any options that fit your needs.
+ * When your component renders, `usePopularMovieReviewsQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = usePopularMovieReviewsQuery({
+ *   variables: {
+ *      movieId: // value for 'movieId'
+ *   },
+ * });
+ */
+export function usePopularMovieReviewsQuery(baseOptions: Apollo.QueryHookOptions<PopularMovieReviewsQuery, PopularMovieReviewsQueryVariables> & ({ variables: PopularMovieReviewsQueryVariables; skip?: boolean; } | { skip: boolean; }) ) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<PopularMovieReviewsQuery, PopularMovieReviewsQueryVariables>(PopularMovieReviewsDocument, options);
+      }
+export function usePopularMovieReviewsLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<PopularMovieReviewsQuery, PopularMovieReviewsQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<PopularMovieReviewsQuery, PopularMovieReviewsQueryVariables>(PopularMovieReviewsDocument, options);
+        }
+export function usePopularMovieReviewsSuspenseQuery(baseOptions?: Apollo.SuspenseQueryHookOptions<PopularMovieReviewsQuery, PopularMovieReviewsQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useSuspenseQuery<PopularMovieReviewsQuery, PopularMovieReviewsQueryVariables>(PopularMovieReviewsDocument, options);
+        }
+export type PopularMovieReviewsQueryHookResult = ReturnType<typeof usePopularMovieReviewsQuery>;
+export type PopularMovieReviewsLazyQueryHookResult = ReturnType<typeof usePopularMovieReviewsLazyQuery>;
+export type PopularMovieReviewsSuspenseQueryHookResult = ReturnType<typeof usePopularMovieReviewsSuspenseQuery>;
+export type PopularMovieReviewsQueryResult = Apollo.QueryResult<PopularMovieReviewsQuery, PopularMovieReviewsQueryVariables>;
+export const RecentMovieReviewsDocument = gql`
+    query RecentMovieReviews($movieId: String!) {
+  movieReviews(
+    orderBy: [{updatedAt: desc}]
+    where: {rating: {is: {movieId: {equals: $movieId}}}}
+  ) {
+    ...MovieReviewCardItem
+  }
+}
+    ${MovieReviewCardItemFragmentDoc}`;
+
+/**
+ * __useRecentMovieReviewsQuery__
+ *
+ * To run a query within a React component, call `useRecentMovieReviewsQuery` and pass it any options that fit your needs.
+ * When your component renders, `useRecentMovieReviewsQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useRecentMovieReviewsQuery({
+ *   variables: {
+ *      movieId: // value for 'movieId'
+ *   },
+ * });
+ */
+export function useRecentMovieReviewsQuery(baseOptions: Apollo.QueryHookOptions<RecentMovieReviewsQuery, RecentMovieReviewsQueryVariables> & ({ variables: RecentMovieReviewsQueryVariables; skip?: boolean; } | { skip: boolean; }) ) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<RecentMovieReviewsQuery, RecentMovieReviewsQueryVariables>(RecentMovieReviewsDocument, options);
+      }
+export function useRecentMovieReviewsLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<RecentMovieReviewsQuery, RecentMovieReviewsQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<RecentMovieReviewsQuery, RecentMovieReviewsQueryVariables>(RecentMovieReviewsDocument, options);
+        }
+export function useRecentMovieReviewsSuspenseQuery(baseOptions?: Apollo.SuspenseQueryHookOptions<RecentMovieReviewsQuery, RecentMovieReviewsQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useSuspenseQuery<RecentMovieReviewsQuery, RecentMovieReviewsQueryVariables>(RecentMovieReviewsDocument, options);
+        }
+export type RecentMovieReviewsQueryHookResult = ReturnType<typeof useRecentMovieReviewsQuery>;
+export type RecentMovieReviewsLazyQueryHookResult = ReturnType<typeof useRecentMovieReviewsLazyQuery>;
+export type RecentMovieReviewsSuspenseQueryHookResult = ReturnType<typeof useRecentMovieReviewsSuspenseQuery>;
+export type RecentMovieReviewsQueryResult = Apollo.QueryResult<RecentMovieReviewsQuery, RecentMovieReviewsQueryVariables>;
 export const GetMovieRatingByUserDocument = gql`
     query GetMovieRatingByUser($movieId: String!, $userId: String!) {
   movieRating(where: {userId_movieId: {movieId: $movieId, userId: $userId}}) {
@@ -9073,7 +9163,7 @@ export const MarkMovieReviewLikedDocument = gql`
   createOneMovieReviewLikedByUser(
     data: {movieReview: {connect: {id: $movieReviewId}}, user: {connect: {id: $userId}}}
   ) {
-    createdAt
+    movieReviewId
   }
 }
     `;
@@ -9109,7 +9199,7 @@ export const UnmarkMovieReviewLikedDocument = gql`
   deleteOneMovieReviewLikedByUser(
     where: {userId_movieReviewId: {movieReviewId: $movieReviewId, userId: $userId}}
   ) {
-    createdAt
+    movieReviewId
   }
 }
     `;
