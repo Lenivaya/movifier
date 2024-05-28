@@ -1,15 +1,29 @@
 import { ComposeKeyMovieUser } from '@/components/movifier/movies/MoviePage/types'
-import { useCallback, useState } from 'react'
+import { toast } from '@/components/ui/use-toast'
 import {
+  IsMovieWatchedByUserDocument,
   useDeleteMovieRatingForUserMutation,
   useGetMovieRatingByUserQuery,
+  useMarkMovieWatchedMutation,
   useUpsertMovieRatingForUserMutation
 } from '@/lib'
-import { toast } from '@/components/ui/use-toast'
-import { X } from 'lucide-react'
-import { Separator } from '@/components/ui'
-import { Rating as ReactRating, ThinStar } from '@smastrom/react-rating'
 import { gql } from '@apollo/client'
+import { Rating as ReactRating, ThinStar } from '@smastrom/react-rating'
+import { MessageSquareText, X } from 'lucide-react'
+import { FC, useCallback, useState } from 'react'
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger
+} from '@/components/ui/dialog'
+import { AppTooltip } from '@/index'
+import { Separator } from '@/components/ui'
+import { Option } from '@mobily/ts-belt'
+import { isSome } from '@/lib/types'
+import { CreateReviewForm } from '@/components/movifier/movie-reviews/forms/CreateReviewForm'
 
 export const GET_MOVIE_RATING_BY_USER = gql`
   query GetMovieRatingByUser($movieId: String!, $userId: String!) {
@@ -21,6 +35,7 @@ export const GET_MOVIE_RATING_BY_USER = gql`
     }
   }
 `
+
 export const UPSERT_MOVIE_RATING_FOR_USER = gql`
   mutation UpsertMovieRatingForUser(
     $movieId: String!
@@ -53,6 +68,7 @@ export const DELETE_MOVIE_RATING_FOR_USER = gql`
 
 export function MovieRating(props: { composeKey: ComposeKeyMovieUser }) {
   const [rating, setRating] = useState(0)
+  const [ratingId, setRatingId] = useState<Option<string>>(null)
   const isRated = rating !== 0
 
   useGetMovieRatingByUserQuery({
@@ -61,18 +77,35 @@ export function MovieRating(props: { composeKey: ComposeKeyMovieUser }) {
     onCompleted: ({ movieRating }) => {
       if (!movieRating) return
       setRating(movieRating.rating)
+      setRatingId(movieRating.id)
     }
   })
 
   const [upsertRating] = useUpsertMovieRatingForUserMutation()
+  const [markWatched] = useMarkMovieWatchedMutation()
+
+  const onRatingChangedSetWatched = useCallback(async () => {
+    await markWatched({
+      variables: props.composeKey,
+      refetchQueries: [IsMovieWatchedByUserDocument],
+      onError: (error) => {
+        toast({
+          title: 'Error marking movie watched'
+        })
+        console.error(error)
+      }
+    })
+  }, [props.composeKey])
+
   const onRatingChange = useCallback(
     async (change: number) => {
-      setRating(change)
       await upsertRating({
         variables: { ...props.composeKey, rating: change },
         onCompleted: ({ upsertOneMovieRating }) => {
           if (!upsertOneMovieRating) return
           setRating(upsertOneMovieRating.rating)
+          setRatingId(upsertOneMovieRating.id)
+          if (!isRated) onRatingChangedSetWatched()
         },
         onError: (error) => {
           toast({
@@ -82,7 +115,7 @@ export function MovieRating(props: { composeKey: ComposeKeyMovieUser }) {
         }
       })
     },
-    [props.composeKey, upsertRating]
+    [onRatingChangedSetWatched, props.composeKey, isRated]
   )
 
   const [deleteRating] = useDeleteMovieRatingForUserMutation()
@@ -99,7 +132,11 @@ export function MovieRating(props: { composeKey: ComposeKeyMovieUser }) {
     })
 
   return (
-    <div className={'flex flex-row gap-2 align-baseline content-baseline'}>
+    <div
+      className={
+        'flex flex-row gap-2 align-baseline content-baseline ml-5 mr-5'
+      }
+    >
       {isRated && (
         <>
           <X
@@ -111,9 +148,10 @@ export function MovieRating(props: { composeKey: ComposeKeyMovieUser }) {
       )}
 
       <ReactRating
-        style={{ maxWidth: 200 }}
+        className='w-auto'
         value={rating}
         radius={'large'}
+        items={10}
         itemStyles={{
           itemShapes: ThinStar,
           activeFillColor: '#3fc400',
@@ -121,6 +159,37 @@ export function MovieRating(props: { composeKey: ComposeKeyMovieUser }) {
         }}
         onChange={onRatingChange}
       />
+
+      {isRated && isSome(ratingId) && (
+        <AppTooltip text={'Create or update review for given rating'}>
+          <>
+            <Separator orientation={'vertical'} />
+            <CreateMovieReviewButton ratingId={ratingId} />
+          </>
+        </AppTooltip>
+      )}
     </div>
+  )
+}
+
+export const CreateMovieReviewButton: FC<{ ratingId: string }> = ({
+  ratingId
+}) => {
+  return (
+    <Dialog>
+      <DialogTrigger asChild>
+        <MessageSquareText className='cursor-pointer h-full' />
+      </DialogTrigger>
+      <DialogContent className='min-h-[65vh]'>
+        <DialogHeader>
+          <DialogTitle>Create movie review</DialogTitle>
+          <DialogDescription>
+            Leave your thoughts on movie besides giving it a rating.
+          </DialogDescription>
+        </DialogHeader>
+
+        <CreateReviewForm ratingId={ratingId} />
+      </DialogContent>
+    </Dialog>
   )
 }

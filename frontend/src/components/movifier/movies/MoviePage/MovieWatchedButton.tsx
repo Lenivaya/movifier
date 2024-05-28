@@ -22,6 +22,7 @@ export const MovieWatchedButton: FC<{
     skip: !isSignedIn,
     fetchPolicy: 'cache-and-network',
     onCompleted: (data) => {
+      console.log(data)
       setIsMovieWatched(isSome(data.movieWatchedByUser?.movieId))
     }
   })

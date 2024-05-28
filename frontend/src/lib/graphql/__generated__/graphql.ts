@@ -6350,6 +6350,21 @@ export type DeleteMovieRatingForUserMutationVariables = Exact<{
 
 export type DeleteMovieRatingForUserMutation = { __typename?: 'Mutation', deleteOneMovieRating?: { __typename?: 'MovieRating', id: string } | null };
 
+export type GetMovieRatingReviewQueryVariables = Exact<{
+  ratingId: Scalars['String']['input'];
+}>;
+
+
+export type GetMovieRatingReviewQuery = { __typename?: 'Query', movieReview?: { __typename?: 'MovieReview', id: string, content: string } | null };
+
+export type UpsertMovieRatingReviewMutationVariables = Exact<{
+  ratingId: Scalars['String']['input'];
+  content: Scalars['String']['input'];
+}>;
+
+
+export type UpsertMovieRatingReviewMutation = { __typename?: 'Mutation', upsertOneMovieReview: { __typename?: 'MovieReview', id: string, content: string } };
+
 export type LoginUserMutationVariables = Exact<{
   data: UserLoginInput;
 }>;
@@ -8805,6 +8820,86 @@ export function useDeleteMovieRatingForUserMutation(baseOptions?: Apollo.Mutatio
 export type DeleteMovieRatingForUserMutationHookResult = ReturnType<typeof useDeleteMovieRatingForUserMutation>;
 export type DeleteMovieRatingForUserMutationResult = Apollo.MutationResult<DeleteMovieRatingForUserMutation>;
 export type DeleteMovieRatingForUserMutationOptions = Apollo.BaseMutationOptions<DeleteMovieRatingForUserMutation, DeleteMovieRatingForUserMutationVariables>;
+export const GetMovieRatingReviewDocument = gql`
+    query GetMovieRatingReview($ratingId: String!) {
+  movieReview(where: {ratingId: $ratingId}) {
+    id
+    content
+  }
+}
+    `;
+
+/**
+ * __useGetMovieRatingReviewQuery__
+ *
+ * To run a query within a React component, call `useGetMovieRatingReviewQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetMovieRatingReviewQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetMovieRatingReviewQuery({
+ *   variables: {
+ *      ratingId: // value for 'ratingId'
+ *   },
+ * });
+ */
+export function useGetMovieRatingReviewQuery(baseOptions: Apollo.QueryHookOptions<GetMovieRatingReviewQuery, GetMovieRatingReviewQueryVariables> & ({ variables: GetMovieRatingReviewQueryVariables; skip?: boolean; } | { skip: boolean; }) ) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<GetMovieRatingReviewQuery, GetMovieRatingReviewQueryVariables>(GetMovieRatingReviewDocument, options);
+      }
+export function useGetMovieRatingReviewLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetMovieRatingReviewQuery, GetMovieRatingReviewQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<GetMovieRatingReviewQuery, GetMovieRatingReviewQueryVariables>(GetMovieRatingReviewDocument, options);
+        }
+export function useGetMovieRatingReviewSuspenseQuery(baseOptions?: Apollo.SuspenseQueryHookOptions<GetMovieRatingReviewQuery, GetMovieRatingReviewQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useSuspenseQuery<GetMovieRatingReviewQuery, GetMovieRatingReviewQueryVariables>(GetMovieRatingReviewDocument, options);
+        }
+export type GetMovieRatingReviewQueryHookResult = ReturnType<typeof useGetMovieRatingReviewQuery>;
+export type GetMovieRatingReviewLazyQueryHookResult = ReturnType<typeof useGetMovieRatingReviewLazyQuery>;
+export type GetMovieRatingReviewSuspenseQueryHookResult = ReturnType<typeof useGetMovieRatingReviewSuspenseQuery>;
+export type GetMovieRatingReviewQueryResult = Apollo.QueryResult<GetMovieRatingReviewQuery, GetMovieRatingReviewQueryVariables>;
+export const UpsertMovieRatingReviewDocument = gql`
+    mutation UpsertMovieRatingReview($ratingId: String!, $content: String!) {
+  upsertOneMovieReview(
+    where: {ratingId: $ratingId}
+    update: {content: {set: $content}}
+    create: {rating: {connect: {id: $ratingId}}, content: $content}
+  ) {
+    id
+    content
+  }
+}
+    `;
+export type UpsertMovieRatingReviewMutationFn = Apollo.MutationFunction<UpsertMovieRatingReviewMutation, UpsertMovieRatingReviewMutationVariables>;
+
+/**
+ * __useUpsertMovieRatingReviewMutation__
+ *
+ * To run a mutation, you first call `useUpsertMovieRatingReviewMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useUpsertMovieRatingReviewMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [upsertMovieRatingReviewMutation, { data, loading, error }] = useUpsertMovieRatingReviewMutation({
+ *   variables: {
+ *      ratingId: // value for 'ratingId'
+ *      content: // value for 'content'
+ *   },
+ * });
+ */
+export function useUpsertMovieRatingReviewMutation(baseOptions?: Apollo.MutationHookOptions<UpsertMovieRatingReviewMutation, UpsertMovieRatingReviewMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<UpsertMovieRatingReviewMutation, UpsertMovieRatingReviewMutationVariables>(UpsertMovieRatingReviewDocument, options);
+      }
+export type UpsertMovieRatingReviewMutationHookResult = ReturnType<typeof useUpsertMovieRatingReviewMutation>;
+export type UpsertMovieRatingReviewMutationResult = Apollo.MutationResult<UpsertMovieRatingReviewMutation>;
+export type UpsertMovieRatingReviewMutationOptions = Apollo.BaseMutationOptions<UpsertMovieRatingReviewMutation, UpsertMovieRatingReviewMutationVariables>;
 export const LoginUserDocument = gql`
     mutation LoginUser($data: UserLoginInput!) {
   loginUser(data: $data) {

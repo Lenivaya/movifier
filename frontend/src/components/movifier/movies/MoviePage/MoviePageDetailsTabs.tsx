@@ -76,6 +76,7 @@ export const MoviePageDetailsTabs: FC<MoviePageDetailsTabsItemFragment> = ({
                 .map((member) => (
                   <Link
                     href={`/person/${member.crewMember.id}`}
+                    key={member.crewMember.id}
                     className={
                       'text-white rounded-3xl p-2 grow text-center text-xs bg-gradient-to-r from-slate-900 to-slate-700'
                     }
@@ -98,7 +99,7 @@ export const MoviePageDetailsTabs: FC<MoviePageDetailsTabsItemFragment> = ({
             <MoviePageDetailsSectionContainer>
               <MoviePageDetailSection title={'Studios'}>
                 {studios.map((studio) => (
-                  <Link href={`/movies/studio/${studio.name}`}>
+                  <Link href={`/movies/studio/${studio.name}`} key={studio.name}>
                     <Badge>{studio.name}</Badge>
                   </Link>
                 ))}
@@ -106,7 +107,7 @@ export const MoviePageDetailsTabs: FC<MoviePageDetailsTabsItemFragment> = ({
 
               <MoviePageDetailSection title={'Spoken languages'}>
                 {spokenLanguages.map((lang) => (
-                  <Link href={`/movies/language/${lang.language}`}>
+                  <Link href={`/movies/language/${lang.language}`} key={lang.language}>
                     <Badge>{lang.language}</Badge>
                   </Link>
                 ))}
@@ -114,7 +115,7 @@ export const MoviePageDetailsTabs: FC<MoviePageDetailsTabsItemFragment> = ({
 
               <MoviePageDetailSection title={'Alternative titles'}>
                 {movieInfo?.alternativeTitles.map((title) => (
-                  <Badge>{title}</Badge>
+                  <Badge key={title}>{title}</Badge>
                 ))}
               </MoviePageDetailSection>
             </MoviePageDetailsSectionContainer>

@@ -1,6 +1,5 @@
 'use client'
 
-import Image from 'next/image'
 import { gql } from '@apollo/client'
 import { FC, Suspense } from 'react'
 import { useGetMoviesForHomePageSuspenseQuery } from '@/lib'

@@ -1,7 +1,10 @@
-import { gql } from '@apollo/client'
-import { Imbue } from 'next/font/google'
-import { cn, MoviePageItemFragment } from '@/lib'
-import { FC } from 'react'
+import { DirectorNamesTitle } from '@/components/movifier/movies/MoviePage/DirectorNamesTitle'
+import { MovieLikedButton } from '@/components/movifier/movies/MoviePage/MovieLikedButton'
+import { MoviePageDetailsTabs } from '@/components/movifier/movies/MoviePage/MoviePageDetailsTabs'
+import { MoviePagePoster } from '@/components/movifier/movies/MoviePage/MoviePagePoster'
+import { MovieRating } from '@/components/movifier/movies/MoviePage/MovieRating'
+import { MovieWatchedButton } from '@/components/movifier/movies/MoviePage/MovieWatchedButton'
+import { ComposeKeyMovieUser } from '@/components/movifier/movies/MoviePage/types'
 import {
   Button,
   Card,
@@ -9,17 +12,14 @@ import {
   CardHeader,
   Separator
 } from '@/components/ui'
-import { Link } from 'next-view-transitions'
-import { DirectorNamesTitle } from '@/components/movifier/movies/MoviePage/DirectorNamesTitle'
-import { MoviePagePoster } from '@/components/movifier/movies/MoviePage/MoviePagePoster'
+import { cn, MoviePageItemFragment } from '@/lib'
 import { useCurrentUser } from '@/lib/hooks/CurrentUser'
 import { isSome } from '@/lib/types'
+import { gql } from '@apollo/client'
 import '@smastrom/react-rating/style.css'
-import { MoviePageDetailsTabs } from '@/components/movifier/movies/MoviePage/MoviePageDetailsTabs'
-import { MovieWatchedButton } from '@/components/movifier/movies/MoviePage/MovieWatchedButton'
-import { MovieLikedButton } from '@/components/movifier/movies/MoviePage/MovieLikedButton'
-import { ComposeKeyMovieUser } from '@/components/movifier/movies/MoviePage/types'
-import { MovieRating } from '@/components/movifier/movies/MoviePage/MovieRating'
+import { Link } from 'next-view-transitions'
+import { Imbue } from 'next/font/google'
+import { FC } from 'react'
 
 const imbue = Imbue({ subsets: ['latin'] })
 
