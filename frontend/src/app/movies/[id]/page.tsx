@@ -17,15 +17,9 @@ const GET_MOVIE_FOR_PAGE = gql`
 
 export default function OneMoviePage({ params }: { params: { id: string } }) {
   return (
-    <div
-    // className={
-    //   'p-5 min-h-svh max-lg:w-full w-5/6 mx-auto flex items-center justify-center'
-    // }
-    >
-      <Suspense fallback={<AppLoader />}>
-        <MoviePageSuspense id={params.id} />
-      </Suspense>
-    </div>
+    <Suspense fallback={<AppLoader />}>
+      <MoviePageSuspense id={params.id} />
+    </Suspense>
   )
 }
 
