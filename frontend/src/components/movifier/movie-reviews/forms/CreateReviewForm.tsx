@@ -61,7 +61,6 @@ export const CreateReviewForm: FC<{ ratingId: string }> = ({ ratingId }) => {
   const [upsertMovieReview, { loading }] = useUpsertMovieRatingReviewMutation()
 
   async function onSubmit(values: z.infer<typeof createReviewSchema>) {
-    console.log(values)
     await upsertMovieReview({
       variables: { ratingId, ...values },
       onCompleted: () => {

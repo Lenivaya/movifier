@@ -6308,18 +6308,37 @@ export type GetMovieForPageQueryVariables = Exact<{
 }>;
 
 
-export type GetMovieForPageQuery = { __typename?: 'Query', movie?: { __typename?: 'Movie', id: string, movieInfo?: { __typename?: 'MovieInfo', id: string, title: string, description: string, releaseDate: any, durationInMinutes: number, posterUrl: string, alternativeTitles: Array<string> } | null, crewMembers: Array<{ __typename?: 'MovieCrewMemberOnMovie', movieCrewMemberType: { __typename?: 'MovieCrewMemberType', id: string, name: string }, crewMember: { __typename?: 'MovieCrewMember', name: string, id: string } }>, studios: Array<{ __typename?: 'MovieStudio', name: string }>, genres: Array<{ __typename?: 'Genre', name: string }>, keywordCategories: Array<{ __typename?: 'MovieKeywordCategory', id: string, name: string }>, spokenLanguages: Array<{ __typename?: 'MovieSpokenLanguage', language: string }> } | null };
+export type GetMovieForPageQuery = { __typename?: 'Query', movie?: { __typename?: 'Movie', id: string, movieInfo?: { __typename?: 'MovieInfo', id: string, title: string, description: string, releaseDate: any, durationInMinutes: number, posterUrl: string, alternativeTitles: Array<string> } | null, crewMembers: Array<{ __typename?: 'MovieCrewMemberOnMovie', movieCrewMemberType: { __typename?: 'MovieCrewMemberType', id: string, name: string }, crewMember: { __typename?: 'MovieCrewMember', name: string, id: string } }>, studios: Array<{ __typename?: 'MovieStudio', name: string }>, genres: Array<{ __typename?: 'Genre', name: string }>, keywordCategories: Array<{ __typename?: 'MovieKeywordCategory', id: string, name: string }>, spokenLanguages: Array<{ __typename?: 'MovieSpokenLanguage', language: string }>, ratedBy: Array<{ __typename?: 'MovieRating', review?: { __typename?: 'MovieReview', id: string, content: string, rating: { __typename?: 'MovieRating', id: string, rating: number, user: { __typename?: 'MovifierAppUser', id: string, username: string } } } | null }> } | null };
 
 export type GetMoviesForHomePageQueryVariables = Exact<{ [key: string]: never; }>;
 
 
 export type GetMoviesForHomePageQuery = { __typename?: 'Query', movies: Array<{ __typename?: 'Movie', id: string, movieInfo?: { __typename?: 'MovieInfo', title: string, posterUrl: string } | null }> };
 
+export type MovieReviewCardItemFragment = { __typename?: 'MovieReview', id: string, content: string, rating: { __typename?: 'MovieRating', id: string, rating: number, user: { __typename?: 'MovifierAppUser', id: string, username: string } } };
+
+export type GetMovieRatingReviewQueryVariables = Exact<{
+  ratingId: Scalars['String']['input'];
+}>;
+
+
+export type GetMovieRatingReviewQuery = { __typename?: 'Query', movieReview?: { __typename?: 'MovieReview', id: string, content: string } | null };
+
+export type UpsertMovieRatingReviewMutationVariables = Exact<{
+  ratingId: Scalars['String']['input'];
+  content: Scalars['String']['input'];
+}>;
+
+
+export type UpsertMovieRatingReviewMutation = { __typename?: 'Mutation', upsertOneMovieReview: { __typename?: 'MovieReview', id: string, content: string } };
+
 export type MovieCardItemFragment = { __typename?: 'Movie', id: string, movieInfo?: { __typename?: 'MovieInfo', title: string, posterUrl: string } | null };
 
 export type DirectorNamesTitleItemFragment = { __typename?: 'Movie', crewMembers: Array<{ __typename?: 'MovieCrewMemberOnMovie', movieCrewMemberType: { __typename?: 'MovieCrewMemberType', id: string, name: string }, crewMember: { __typename?: 'MovieCrewMember', name: string, id: string } }> };
 
-export type MoviePageItemFragment = { __typename?: 'Movie', id: string, movieInfo?: { __typename?: 'MovieInfo', id: string, title: string, description: string, releaseDate: any, durationInMinutes: number, posterUrl: string, alternativeTitles: Array<string> } | null, crewMembers: Array<{ __typename?: 'MovieCrewMemberOnMovie', movieCrewMemberType: { __typename?: 'MovieCrewMemberType', id: string, name: string }, crewMember: { __typename?: 'MovieCrewMember', name: string, id: string } }>, studios: Array<{ __typename?: 'MovieStudio', name: string }>, genres: Array<{ __typename?: 'Genre', name: string }>, keywordCategories: Array<{ __typename?: 'MovieKeywordCategory', id: string, name: string }>, spokenLanguages: Array<{ __typename?: 'MovieSpokenLanguage', language: string }> };
+export type MoviePageItemFragment = { __typename?: 'Movie', id: string, movieInfo?: { __typename?: 'MovieInfo', id: string, title: string, description: string, releaseDate: any, durationInMinutes: number, posterUrl: string, alternativeTitles: Array<string> } | null, crewMembers: Array<{ __typename?: 'MovieCrewMemberOnMovie', movieCrewMemberType: { __typename?: 'MovieCrewMemberType', id: string, name: string }, crewMember: { __typename?: 'MovieCrewMember', name: string, id: string } }>, studios: Array<{ __typename?: 'MovieStudio', name: string }>, genres: Array<{ __typename?: 'Genre', name: string }>, keywordCategories: Array<{ __typename?: 'MovieKeywordCategory', id: string, name: string }>, spokenLanguages: Array<{ __typename?: 'MovieSpokenLanguage', language: string }>, ratedBy: Array<{ __typename?: 'MovieRating', review?: { __typename?: 'MovieReview', id: string, content: string, rating: { __typename?: 'MovieRating', id: string, rating: number, user: { __typename?: 'MovifierAppUser', id: string, username: string } } } | null }> };
+
+export type MoviePageReviewsListItemsFragment = { __typename?: 'Movie', ratedBy: Array<{ __typename?: 'MovieRating', review?: { __typename?: 'MovieReview', id: string, content: string, rating: { __typename?: 'MovieRating', id: string, rating: number, user: { __typename?: 'MovifierAppUser', id: string, username: string } } } | null }> };
 
 export type MoviePageDetailsTabsItemFragment = { __typename?: 'Movie', movieInfo?: { __typename?: 'MovieInfo', alternativeTitles: Array<string> } | null, crewMembers: Array<{ __typename?: 'MovieCrewMemberOnMovie', movieCrewMemberType: { __typename?: 'MovieCrewMemberType', id: string, name: string }, crewMember: { __typename?: 'MovieCrewMember', name: string, id: string } }>, studios: Array<{ __typename?: 'MovieStudio', name: string }>, genres: Array<{ __typename?: 'Genre', name: string }>, keywordCategories: Array<{ __typename?: 'MovieKeywordCategory', id: string, name: string }>, spokenLanguages: Array<{ __typename?: 'MovieSpokenLanguage', language: string }> };
 
@@ -6349,21 +6368,6 @@ export type DeleteMovieRatingForUserMutationVariables = Exact<{
 
 
 export type DeleteMovieRatingForUserMutation = { __typename?: 'Mutation', deleteOneMovieRating?: { __typename?: 'MovieRating', id: string } | null };
-
-export type GetMovieRatingReviewQueryVariables = Exact<{
-  ratingId: Scalars['String']['input'];
-}>;
-
-
-export type GetMovieRatingReviewQuery = { __typename?: 'Query', movieReview?: { __typename?: 'MovieReview', id: string, content: string } | null };
-
-export type UpsertMovieRatingReviewMutationVariables = Exact<{
-  ratingId: Scalars['String']['input'];
-  content: Scalars['String']['input'];
-}>;
-
-
-export type UpsertMovieRatingReviewMutation = { __typename?: 'Mutation', upsertOneMovieReview: { __typename?: 'MovieReview', id: string, content: string } };
 
 export type LoginUserMutationVariables = Exact<{
   data: UserLoginInput;
@@ -8599,6 +8603,29 @@ export const MoviePageDetailsTabsItemFragmentDoc = gql`
   }
 }
     `;
+export const MovieReviewCardItemFragmentDoc = gql`
+    fragment MovieReviewCardItem on MovieReview {
+  id
+  content
+  rating {
+    id
+    rating
+    user {
+      id
+      username
+    }
+  }
+}
+    `;
+export const MoviePageReviewsListItemsFragmentDoc = gql`
+    fragment MoviePageReviewsListItems on Movie {
+  ratedBy {
+    review {
+      ...MovieReviewCardItem
+    }
+  }
+}
+    ${MovieReviewCardItemFragmentDoc}`;
 export const MoviePageItemFragmentDoc = gql`
     fragment MoviePageItem on Movie {
   id
@@ -8612,10 +8639,12 @@ export const MoviePageItemFragmentDoc = gql`
   ...DirectorNamesTitleItem
   ...MoviePagePosterItem
   ...MoviePageDetailsTabsItem
+  ...MoviePageReviewsListItems
 }
     ${DirectorNamesTitleItemFragmentDoc}
 ${MoviePagePosterItemFragmentDoc}
-${MoviePageDetailsTabsItemFragmentDoc}`;
+${MoviePageDetailsTabsItemFragmentDoc}
+${MoviePageReviewsListItemsFragmentDoc}`;
 export const CurrentUserFragmentDoc = gql`
     fragment CurrentUser on MovifierAppUser {
   id
@@ -8702,6 +8731,86 @@ export type GetMoviesForHomePageQueryHookResult = ReturnType<typeof useGetMovies
 export type GetMoviesForHomePageLazyQueryHookResult = ReturnType<typeof useGetMoviesForHomePageLazyQuery>;
 export type GetMoviesForHomePageSuspenseQueryHookResult = ReturnType<typeof useGetMoviesForHomePageSuspenseQuery>;
 export type GetMoviesForHomePageQueryResult = Apollo.QueryResult<GetMoviesForHomePageQuery, GetMoviesForHomePageQueryVariables>;
+export const GetMovieRatingReviewDocument = gql`
+    query GetMovieRatingReview($ratingId: String!) {
+  movieReview(where: {ratingId: $ratingId}) {
+    id
+    content
+  }
+}
+    `;
+
+/**
+ * __useGetMovieRatingReviewQuery__
+ *
+ * To run a query within a React component, call `useGetMovieRatingReviewQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetMovieRatingReviewQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetMovieRatingReviewQuery({
+ *   variables: {
+ *      ratingId: // value for 'ratingId'
+ *   },
+ * });
+ */
+export function useGetMovieRatingReviewQuery(baseOptions: Apollo.QueryHookOptions<GetMovieRatingReviewQuery, GetMovieRatingReviewQueryVariables> & ({ variables: GetMovieRatingReviewQueryVariables; skip?: boolean; } | { skip: boolean; }) ) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<GetMovieRatingReviewQuery, GetMovieRatingReviewQueryVariables>(GetMovieRatingReviewDocument, options);
+      }
+export function useGetMovieRatingReviewLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetMovieRatingReviewQuery, GetMovieRatingReviewQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<GetMovieRatingReviewQuery, GetMovieRatingReviewQueryVariables>(GetMovieRatingReviewDocument, options);
+        }
+export function useGetMovieRatingReviewSuspenseQuery(baseOptions?: Apollo.SuspenseQueryHookOptions<GetMovieRatingReviewQuery, GetMovieRatingReviewQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useSuspenseQuery<GetMovieRatingReviewQuery, GetMovieRatingReviewQueryVariables>(GetMovieRatingReviewDocument, options);
+        }
+export type GetMovieRatingReviewQueryHookResult = ReturnType<typeof useGetMovieRatingReviewQuery>;
+export type GetMovieRatingReviewLazyQueryHookResult = ReturnType<typeof useGetMovieRatingReviewLazyQuery>;
+export type GetMovieRatingReviewSuspenseQueryHookResult = ReturnType<typeof useGetMovieRatingReviewSuspenseQuery>;
+export type GetMovieRatingReviewQueryResult = Apollo.QueryResult<GetMovieRatingReviewQuery, GetMovieRatingReviewQueryVariables>;
+export const UpsertMovieRatingReviewDocument = gql`
+    mutation UpsertMovieRatingReview($ratingId: String!, $content: String!) {
+  upsertOneMovieReview(
+    where: {ratingId: $ratingId}
+    update: {content: {set: $content}}
+    create: {rating: {connect: {id: $ratingId}}, content: $content}
+  ) {
+    id
+    content
+  }
+}
+    `;
+export type UpsertMovieRatingReviewMutationFn = Apollo.MutationFunction<UpsertMovieRatingReviewMutation, UpsertMovieRatingReviewMutationVariables>;
+
+/**
+ * __useUpsertMovieRatingReviewMutation__
+ *
+ * To run a mutation, you first call `useUpsertMovieRatingReviewMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useUpsertMovieRatingReviewMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [upsertMovieRatingReviewMutation, { data, loading, error }] = useUpsertMovieRatingReviewMutation({
+ *   variables: {
+ *      ratingId: // value for 'ratingId'
+ *      content: // value for 'content'
+ *   },
+ * });
+ */
+export function useUpsertMovieRatingReviewMutation(baseOptions?: Apollo.MutationHookOptions<UpsertMovieRatingReviewMutation, UpsertMovieRatingReviewMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<UpsertMovieRatingReviewMutation, UpsertMovieRatingReviewMutationVariables>(UpsertMovieRatingReviewDocument, options);
+      }
+export type UpsertMovieRatingReviewMutationHookResult = ReturnType<typeof useUpsertMovieRatingReviewMutation>;
+export type UpsertMovieRatingReviewMutationResult = Apollo.MutationResult<UpsertMovieRatingReviewMutation>;
+export type UpsertMovieRatingReviewMutationOptions = Apollo.BaseMutationOptions<UpsertMovieRatingReviewMutation, UpsertMovieRatingReviewMutationVariables>;
 export const GetMovieRatingByUserDocument = gql`
     query GetMovieRatingByUser($movieId: String!, $userId: String!) {
   movieRating(where: {userId_movieId: {movieId: $movieId, userId: $userId}}) {
@@ -8820,86 +8929,6 @@ export function useDeleteMovieRatingForUserMutation(baseOptions?: Apollo.Mutatio
 export type DeleteMovieRatingForUserMutationHookResult = ReturnType<typeof useDeleteMovieRatingForUserMutation>;
 export type DeleteMovieRatingForUserMutationResult = Apollo.MutationResult<DeleteMovieRatingForUserMutation>;
 export type DeleteMovieRatingForUserMutationOptions = Apollo.BaseMutationOptions<DeleteMovieRatingForUserMutation, DeleteMovieRatingForUserMutationVariables>;
-export const GetMovieRatingReviewDocument = gql`
-    query GetMovieRatingReview($ratingId: String!) {
-  movieReview(where: {ratingId: $ratingId}) {
-    id
-    content
-  }
-}
-    `;
-
-/**
- * __useGetMovieRatingReviewQuery__
- *
- * To run a query within a React component, call `useGetMovieRatingReviewQuery` and pass it any options that fit your needs.
- * When your component renders, `useGetMovieRatingReviewQuery` returns an object from Apollo Client that contains loading, error, and data properties
- * you can use to render your UI.
- *
- * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
- *
- * @example
- * const { data, loading, error } = useGetMovieRatingReviewQuery({
- *   variables: {
- *      ratingId: // value for 'ratingId'
- *   },
- * });
- */
-export function useGetMovieRatingReviewQuery(baseOptions: Apollo.QueryHookOptions<GetMovieRatingReviewQuery, GetMovieRatingReviewQueryVariables> & ({ variables: GetMovieRatingReviewQueryVariables; skip?: boolean; } | { skip: boolean; }) ) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<GetMovieRatingReviewQuery, GetMovieRatingReviewQueryVariables>(GetMovieRatingReviewDocument, options);
-      }
-export function useGetMovieRatingReviewLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetMovieRatingReviewQuery, GetMovieRatingReviewQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<GetMovieRatingReviewQuery, GetMovieRatingReviewQueryVariables>(GetMovieRatingReviewDocument, options);
-        }
-export function useGetMovieRatingReviewSuspenseQuery(baseOptions?: Apollo.SuspenseQueryHookOptions<GetMovieRatingReviewQuery, GetMovieRatingReviewQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useSuspenseQuery<GetMovieRatingReviewQuery, GetMovieRatingReviewQueryVariables>(GetMovieRatingReviewDocument, options);
-        }
-export type GetMovieRatingReviewQueryHookResult = ReturnType<typeof useGetMovieRatingReviewQuery>;
-export type GetMovieRatingReviewLazyQueryHookResult = ReturnType<typeof useGetMovieRatingReviewLazyQuery>;
-export type GetMovieRatingReviewSuspenseQueryHookResult = ReturnType<typeof useGetMovieRatingReviewSuspenseQuery>;
-export type GetMovieRatingReviewQueryResult = Apollo.QueryResult<GetMovieRatingReviewQuery, GetMovieRatingReviewQueryVariables>;
-export const UpsertMovieRatingReviewDocument = gql`
-    mutation UpsertMovieRatingReview($ratingId: String!, $content: String!) {
-  upsertOneMovieReview(
-    where: {ratingId: $ratingId}
-    update: {content: {set: $content}}
-    create: {rating: {connect: {id: $ratingId}}, content: $content}
-  ) {
-    id
-    content
-  }
-}
-    `;
-export type UpsertMovieRatingReviewMutationFn = Apollo.MutationFunction<UpsertMovieRatingReviewMutation, UpsertMovieRatingReviewMutationVariables>;
-
-/**
- * __useUpsertMovieRatingReviewMutation__
- *
- * To run a mutation, you first call `useUpsertMovieRatingReviewMutation` within a React component and pass it any options that fit your needs.
- * When your component renders, `useUpsertMovieRatingReviewMutation` returns a tuple that includes:
- * - A mutate function that you can call at any time to execute the mutation
- * - An object with fields that represent the current status of the mutation's execution
- *
- * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
- *
- * @example
- * const [upsertMovieRatingReviewMutation, { data, loading, error }] = useUpsertMovieRatingReviewMutation({
- *   variables: {
- *      ratingId: // value for 'ratingId'
- *      content: // value for 'content'
- *   },
- * });
- */
-export function useUpsertMovieRatingReviewMutation(baseOptions?: Apollo.MutationHookOptions<UpsertMovieRatingReviewMutation, UpsertMovieRatingReviewMutationVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useMutation<UpsertMovieRatingReviewMutation, UpsertMovieRatingReviewMutationVariables>(UpsertMovieRatingReviewDocument, options);
-      }
-export type UpsertMovieRatingReviewMutationHookResult = ReturnType<typeof useUpsertMovieRatingReviewMutation>;
-export type UpsertMovieRatingReviewMutationResult = Apollo.MutationResult<UpsertMovieRatingReviewMutation>;
-export type UpsertMovieRatingReviewMutationOptions = Apollo.BaseMutationOptions<UpsertMovieRatingReviewMutation, UpsertMovieRatingReviewMutationVariables>;
 export const LoginUserDocument = gql`
     mutation LoginUser($data: UserLoginInput!) {
   loginUser(data: $data) {
