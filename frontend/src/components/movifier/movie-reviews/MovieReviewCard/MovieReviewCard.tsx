@@ -4,6 +4,7 @@ import { Card, CardContent, CardHeader } from '@/components/ui'
 import { Rating as ReactRating, ThinStar } from '@smastrom/react-rating'
 import { MovieReviewCardItemFragment } from '@/lib'
 import { Link } from 'next-view-transitions'
+import { MovieReviewLikeButton } from '@/components/movifier/movie-reviews/MovieReviewCard/MovieReviewLikeButton'
 
 export const MovieReviewCardFragment = gql`
   fragment MovieReviewCardItem on MovieReview {
@@ -29,6 +30,8 @@ export const MovieReviewCard: FC<MovieReviewCardItemFragment> = ({
   content,
   rating
 }) => {
+  const composeKey = { movieReviewId: id, userId: rating.user.id }
+
   return (
     <Card>
       <CardHeader>
@@ -63,6 +66,10 @@ export const MovieReviewCard: FC<MovieReviewCardItemFragment> = ({
         <article className={'prose prose-sm whitespace-pre-line'}>
           {content}
         </article>
+
+        <div className={'mt-5'}>
+          <MovieReviewLikeButton composeKey={composeKey} />
+        </div>
       </CardContent>
     </Card>
   )

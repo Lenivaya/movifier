@@ -6383,6 +6383,30 @@ export type RegisterUserMutationVariables = Exact<{
 
 export type RegisterUserMutation = { __typename?: 'Mutation', createOneMovifierAppUser: { __typename?: 'UserRegisterOutput', token: string, user: { __typename?: 'MovifierAppUser', id: string, role: MoviefireAppUserRole, name: string } } };
 
+export type IsMovieReviewLikedByUserQueryVariables = Exact<{
+  movieReviewId: Scalars['String']['input'];
+  userId: Scalars['String']['input'];
+}>;
+
+
+export type IsMovieReviewLikedByUserQuery = { __typename?: 'Query', movieReviewLikedByUser?: { __typename?: 'MovieReviewLikedByUser', movieReviewId: string } | null };
+
+export type MarkMovieReviewLikedMutationVariables = Exact<{
+  movieReviewId: Scalars['String']['input'];
+  userId: Scalars['String']['input'];
+}>;
+
+
+export type MarkMovieReviewLikedMutation = { __typename?: 'Mutation', createOneMovieReviewLikedByUser: { __typename?: 'MovieReviewLikedByUser', createdAt: any } };
+
+export type UnmarkMovieReviewLikedMutationVariables = Exact<{
+  movieReviewId: Scalars['String']['input'];
+  userId: Scalars['String']['input'];
+}>;
+
+
+export type UnmarkMovieReviewLikedMutation = { __typename?: 'Mutation', deleteOneMovieReviewLikedByUser?: { __typename?: 'MovieReviewLikedByUser', createdAt: any } | null };
+
 export type IsMovieLikedByUserQueryVariables = Exact<{
   movieId: Scalars['String']['input'];
   userId: Scalars['String']['input'];
@@ -8619,7 +8643,7 @@ export const MovieReviewCardItemFragmentDoc = gql`
     `;
 export const MoviePageReviewsListItemsFragmentDoc = gql`
     fragment MoviePageReviewsListItems on Movie {
-  ratedBy {
+  ratedBy(take: 5, orderBy: [{updatedAt: asc}]) {
     review {
       ...MovieReviewCardItem
     }
@@ -9001,6 +9025,121 @@ export function useRegisterUserMutation(baseOptions?: Apollo.MutationHookOptions
 export type RegisterUserMutationHookResult = ReturnType<typeof useRegisterUserMutation>;
 export type RegisterUserMutationResult = Apollo.MutationResult<RegisterUserMutation>;
 export type RegisterUserMutationOptions = Apollo.BaseMutationOptions<RegisterUserMutation, RegisterUserMutationVariables>;
+export const IsMovieReviewLikedByUserDocument = gql`
+    query IsMovieReviewLikedByUser($movieReviewId: String!, $userId: String!) {
+  movieReviewLikedByUser(
+    where: {userId_movieReviewId: {movieReviewId: $movieReviewId, userId: $userId}}
+  ) {
+    movieReviewId
+  }
+}
+    `;
+
+/**
+ * __useIsMovieReviewLikedByUserQuery__
+ *
+ * To run a query within a React component, call `useIsMovieReviewLikedByUserQuery` and pass it any options that fit your needs.
+ * When your component renders, `useIsMovieReviewLikedByUserQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useIsMovieReviewLikedByUserQuery({
+ *   variables: {
+ *      movieReviewId: // value for 'movieReviewId'
+ *      userId: // value for 'userId'
+ *   },
+ * });
+ */
+export function useIsMovieReviewLikedByUserQuery(baseOptions: Apollo.QueryHookOptions<IsMovieReviewLikedByUserQuery, IsMovieReviewLikedByUserQueryVariables> & ({ variables: IsMovieReviewLikedByUserQueryVariables; skip?: boolean; } | { skip: boolean; }) ) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<IsMovieReviewLikedByUserQuery, IsMovieReviewLikedByUserQueryVariables>(IsMovieReviewLikedByUserDocument, options);
+      }
+export function useIsMovieReviewLikedByUserLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<IsMovieReviewLikedByUserQuery, IsMovieReviewLikedByUserQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<IsMovieReviewLikedByUserQuery, IsMovieReviewLikedByUserQueryVariables>(IsMovieReviewLikedByUserDocument, options);
+        }
+export function useIsMovieReviewLikedByUserSuspenseQuery(baseOptions?: Apollo.SuspenseQueryHookOptions<IsMovieReviewLikedByUserQuery, IsMovieReviewLikedByUserQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useSuspenseQuery<IsMovieReviewLikedByUserQuery, IsMovieReviewLikedByUserQueryVariables>(IsMovieReviewLikedByUserDocument, options);
+        }
+export type IsMovieReviewLikedByUserQueryHookResult = ReturnType<typeof useIsMovieReviewLikedByUserQuery>;
+export type IsMovieReviewLikedByUserLazyQueryHookResult = ReturnType<typeof useIsMovieReviewLikedByUserLazyQuery>;
+export type IsMovieReviewLikedByUserSuspenseQueryHookResult = ReturnType<typeof useIsMovieReviewLikedByUserSuspenseQuery>;
+export type IsMovieReviewLikedByUserQueryResult = Apollo.QueryResult<IsMovieReviewLikedByUserQuery, IsMovieReviewLikedByUserQueryVariables>;
+export const MarkMovieReviewLikedDocument = gql`
+    mutation MarkMovieReviewLiked($movieReviewId: String!, $userId: String!) {
+  createOneMovieReviewLikedByUser(
+    data: {movieReview: {connect: {id: $movieReviewId}}, user: {connect: {id: $userId}}}
+  ) {
+    createdAt
+  }
+}
+    `;
+export type MarkMovieReviewLikedMutationFn = Apollo.MutationFunction<MarkMovieReviewLikedMutation, MarkMovieReviewLikedMutationVariables>;
+
+/**
+ * __useMarkMovieReviewLikedMutation__
+ *
+ * To run a mutation, you first call `useMarkMovieReviewLikedMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useMarkMovieReviewLikedMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [markMovieReviewLikedMutation, { data, loading, error }] = useMarkMovieReviewLikedMutation({
+ *   variables: {
+ *      movieReviewId: // value for 'movieReviewId'
+ *      userId: // value for 'userId'
+ *   },
+ * });
+ */
+export function useMarkMovieReviewLikedMutation(baseOptions?: Apollo.MutationHookOptions<MarkMovieReviewLikedMutation, MarkMovieReviewLikedMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<MarkMovieReviewLikedMutation, MarkMovieReviewLikedMutationVariables>(MarkMovieReviewLikedDocument, options);
+      }
+export type MarkMovieReviewLikedMutationHookResult = ReturnType<typeof useMarkMovieReviewLikedMutation>;
+export type MarkMovieReviewLikedMutationResult = Apollo.MutationResult<MarkMovieReviewLikedMutation>;
+export type MarkMovieReviewLikedMutationOptions = Apollo.BaseMutationOptions<MarkMovieReviewLikedMutation, MarkMovieReviewLikedMutationVariables>;
+export const UnmarkMovieReviewLikedDocument = gql`
+    mutation UnmarkMovieReviewLiked($movieReviewId: String!, $userId: String!) {
+  deleteOneMovieReviewLikedByUser(
+    where: {userId_movieReviewId: {movieReviewId: $movieReviewId, userId: $userId}}
+  ) {
+    createdAt
+  }
+}
+    `;
+export type UnmarkMovieReviewLikedMutationFn = Apollo.MutationFunction<UnmarkMovieReviewLikedMutation, UnmarkMovieReviewLikedMutationVariables>;
+
+/**
+ * __useUnmarkMovieReviewLikedMutation__
+ *
+ * To run a mutation, you first call `useUnmarkMovieReviewLikedMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useUnmarkMovieReviewLikedMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [unmarkMovieReviewLikedMutation, { data, loading, error }] = useUnmarkMovieReviewLikedMutation({
+ *   variables: {
+ *      movieReviewId: // value for 'movieReviewId'
+ *      userId: // value for 'userId'
+ *   },
+ * });
+ */
+export function useUnmarkMovieReviewLikedMutation(baseOptions?: Apollo.MutationHookOptions<UnmarkMovieReviewLikedMutation, UnmarkMovieReviewLikedMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<UnmarkMovieReviewLikedMutation, UnmarkMovieReviewLikedMutationVariables>(UnmarkMovieReviewLikedDocument, options);
+      }
+export type UnmarkMovieReviewLikedMutationHookResult = ReturnType<typeof useUnmarkMovieReviewLikedMutation>;
+export type UnmarkMovieReviewLikedMutationResult = Apollo.MutationResult<UnmarkMovieReviewLikedMutation>;
+export type UnmarkMovieReviewLikedMutationOptions = Apollo.BaseMutationOptions<UnmarkMovieReviewLikedMutation, UnmarkMovieReviewLikedMutationVariables>;
 export const IsMovieLikedByUserDocument = gql`
     query IsMovieLikedByUser($movieId: String!, $userId: String!) {
   movieLikedByUser(where: {userId_movieId: {movieId: $movieId, userId: $userId}}) {

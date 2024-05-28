@@ -15,4 +15,4 @@ export const renderGraphiqlWithApolloPlayground = () =>
       // advanced options: https://www.apollographql.com/docs/studio/explorer/sandbox#embedding-sandbox
       </script>
       </body>
-    </html>`;
+    </html>`
