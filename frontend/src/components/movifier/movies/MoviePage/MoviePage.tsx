@@ -23,6 +23,7 @@ import { FC, Suspense } from 'react'
 import { AppLoader } from '@/components/movifier/generic'
 import { MoviePageTopPopularReviewsList } from '@/components/movifier/movies/MoviePage/MoviePageTopPopularReviewsList'
 import { MoviePageTopRecentReviewsList } from '@/components/movifier/movies/MoviePage/MoviePageTopRecentReviewsList'
+import { UserAuthenticationDialog } from '@/components/movifier/users/UserAuthenticationDialog'
 
 const imbue = Imbue({ subsets: ['latin'] })
 
@@ -113,9 +114,11 @@ export const MoviePage: FC<{
                   <Separator orientation={'vertical'} className={'absolute'} />
 
                   {!isSignedIn && (
-                    <Button variant={'outline'} className='!mx-auto'>
-                      Sign in to log, rate and review
-                    </Button>
+                    <UserAuthenticationDialog>
+                      <Button variant={'outline'} className='!mx-auto'>
+                        Sign in to log, rate and review
+                      </Button>
+                    </UserAuthenticationDialog>
                   )}
 
                   {isSignedIn && (

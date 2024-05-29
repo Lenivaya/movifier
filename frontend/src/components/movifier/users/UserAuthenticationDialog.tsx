@@ -6,17 +6,16 @@ import {
   DialogTitle,
   DialogTrigger
 } from '@/components/ui/dialog'
-import { Button } from '@/components/ui'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { LoginUserForm } from '@/components/movifier/users/forms/LoginUserForm'
 import { RegisterUserForm } from '@/components/movifier/users/forms/RegisterUserForm'
-import React from 'react'
+import React, { FC, ReactNode } from 'react'
 
-export const UserAuthenticationDialog = () => (
+export const UserAuthenticationDialog: FC<{
+  children: ReactNode
+}> = ({ children }) => (
   <Dialog>
-    <DialogTrigger asChild>
-      <Button variant='outline'>Login | Register</Button>
-    </DialogTrigger>
+    <DialogTrigger asChild>{children}</DialogTrigger>
     <DialogContent className=''>
       <DialogHeader>
         <DialogTitle>Login / Register</DialogTitle>

@@ -4,7 +4,7 @@ import React, { FC, useCallback } from 'react'
 import { useCurrentUser, useLogout } from '@/lib/hooks/CurrentUser'
 import { isSome } from '@/lib/types'
 import { Button } from '@/components/ui'
-import { UserAuthenticationDialog } from '@/components/movifier/layout/navbar/UserAuthenticationDialog'
+import { UserAuthenticationDialog } from '@/components/movifier/users/UserAuthenticationDialog'
 
 export const NavbarUser: FC = () => {
   const user = useCurrentUser()
@@ -30,7 +30,9 @@ export const NavbarUser: FC = () => {
               </Button>
             </div>
           ) : (
-            <UserAuthenticationDialog />
+            <UserAuthenticationDialog>
+              <Button variant='outline'>Login | Register</Button>
+            </UserAuthenticationDialog>
           )}
         </ul>
       </nav>
