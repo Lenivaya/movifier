@@ -5,6 +5,7 @@ import { Providers } from '@/app/providers'
 import { ViewTransitions } from 'next-view-transitions'
 import { Navbar } from '@/components/movifier/layout/navbar'
 import { Toaster } from '@/components/ui/toaster'
+import { cn } from '@/lib'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -21,7 +22,7 @@ export default function RootLayout({
   return (
     <ViewTransitions>
       <html lang='en'>
-        <body className={inter.className}>
+        <body className={cn(inter.className, 'h-screen')}>
           <Providers>
             <Navbar />
           </Providers>

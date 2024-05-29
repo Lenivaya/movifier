@@ -66,7 +66,7 @@ export const DELETE_MOVIE_RATING_FOR_USER = gql`
   }
 `
 
-export function MovieRating(props: { composeKey: ComposeKeyMovieUser }) {
+export function MovieRatingInput(props: { composeKey: ComposeKeyMovieUser }) {
   const [rating, setRating] = useState(0)
   const [ratingId, setRatingId] = useState<Option<string>>(null)
   const isRated = rating !== 0

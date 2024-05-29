@@ -22,7 +22,7 @@ export const MoviePagePoster: FC<MoviePagePosterItemFragment> = ({
           src={movieInfo?.posterUrl}
           alt={movieInfo?.title}
           className={
-            'w-[230px] h-[345px] justify-self-end rounded-lg max-w-full object-scale-down sticky top-0 overflow-hidden'
+            'w-[230px] h-[345px] justify-self-end rounded-lg max-w-full object-scale-down sticky top-5 overflow-hidden'
           }
           whileHover={{
             scale: 1.05,

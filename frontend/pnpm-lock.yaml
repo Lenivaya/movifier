@@ -71,6 +71,9 @@ importers:
       lucide-react:
         specifier: ^0.378.0
         version: 0.378.0(react@18.3.1)
+      mutative:
+        specifier: ^1.0.5
+        version: 1.0.5
       next:
         specifier: 14.2.3
         version: 14.2.3(@babel/core@7.24.5)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -2893,6 +2896,10 @@ packages:
 
   multiformats@13.1.0:
     resolution: {integrity: sha512-HzdtdBwxsIkzpeXzhQ5mAhhuxcHbjEHH+JQoxt7hG/2HGFjjwyolLo7hbaexcnhoEuV4e0TNJ8kkpMjiEYY4VQ==}
+
+  mutative@1.0.5:
+    resolution: {integrity: sha512-uN4rD54sN8NRG2wuIO3K8nI0sB4Kk/wmjG5UbZa3amFU3bdF1k80OojBGQMomCeEIphq2hzIvK5T7f4hoZdkWA==}
+    engines: {node: '>=14.0'}
 
   mute-stream@0.0.8:
     resolution: {integrity: sha512-nnbWWOkoWyUsTjKrhgD0dcz22mdkSnpYqbEjIm2nhwhuxlSkpywJmBo8h0ZqJdkp73mb90SssHkN4rsRaBAfAA==}
@@ -7258,6 +7265,8 @@ snapshots:
   ms@2.1.3: {}
 
   multiformats@13.1.0: {}
+
+  mutative@1.0.5: {}
 
   mute-stream@0.0.8: {}
 
