@@ -1,8 +1,5 @@
-import * as TypeGraphQL from 'type-graphql'
-import { NonEmptyArray, Query, Resolver } from 'type-graphql'
+import { NonEmptyArray } from 'type-graphql'
 import {
-  FindUniqueMovieArgs,
-  Movie,
   MovieCrewMemberOnMovieRelationsResolver,
   MovieCrudResolver,
   MovieRatingCrudResolver,
@@ -11,14 +8,10 @@ import {
   MovieWatchedByUserCrudResolver,
   MovieWatchedByUserRelationsResolver
 } from '@/generated/type-graphql'
-import { GraphQLResolveInfo } from 'graphql/index'
-import {
-  getPrismaFromContext,
-  transformCountFieldIntoSelectRelationsCount,
-  transformInfoIntoPrismaArgs
-} from '@/generated/type-graphql/helpers'
+import { CustomMoviesResolver } from '@/graphql/movies/customMoviesResolver'
 
 export const moviesResolvers: NonEmptyArray<Function> = [
+  CustomMoviesResolver,
   MovieCrudResolver,
   MovieRelationsResolver,
   MovieCrewMemberOnMovieRelationsResolver,

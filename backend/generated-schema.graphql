@@ -4403,6 +4403,10 @@ enum MoviefireAppUserRole {
   USER
 }
 
+input MoviesSearchCriteriaInput {
+  search: String
+}
+
 type MovifierAppUser {
   _count: MovifierAppUserCount
   createdAt: DateTimeISO!
@@ -5306,6 +5310,7 @@ type Query {
   movieWatchedByUsers(cursor: MovieWatchedByUserWhereUniqueInput, distinct: [MovieWatchedByUserScalarFieldEnum!], orderBy: [MovieWatchedByUserOrderByWithRelationAndSearchRelevanceInput!], skip: Int, take: Int, where: MovieWatchedByUserWhereInput): [MovieWatchedByUser!]!
   movies(cursor: MovieWhereUniqueInput, distinct: [MovieScalarFieldEnum!], orderBy: [MovieOrderByWithRelationAndSearchRelevanceInput!], skip: Int, take: Int, where: MovieWhereInput): [Movie!]!
   movifierAppUsers(cursor: MovifierAppUserWhereUniqueInput, distinct: [MovifierAppUserScalarFieldEnum!], orderBy: [MovifierAppUserOrderByWithRelationAndSearchRelevanceInput!], skip: Int, take: Int, where: MovifierAppUserWhereInput): [MovifierAppUser!]!
+  searchMovies(cursor: MovieWhereUniqueInput, distinct: [MovieScalarFieldEnum!], orderBy: [MovieOrderByWithRelationAndSearchRelevanceInput!], searchCriteria: MoviesSearchCriteriaInput!, skip: Int, take: Int, where: MovieWhereInput): [Movie!]!
 }
 
 enum QueryMode {
