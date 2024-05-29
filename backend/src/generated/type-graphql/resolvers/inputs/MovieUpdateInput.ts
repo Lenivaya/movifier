@@ -14,8 +14,8 @@ import { MovieSpokenLanguageUpdateManyWithoutMoviesNestedInput } from "../inputs
 import { MovieStatsUpdateOneWithoutMovieNestedInput } from "../inputs/MovieStatsUpdateOneWithoutMovieNestedInput";
 import { MovieStudioUpdateManyWithoutMoviesNestedInput } from "../inputs/MovieStudioUpdateManyWithoutMoviesNestedInput";
 import { MovieWatchedByUserUpdateManyWithoutMovieNestedInput } from "../inputs/MovieWatchedByUserUpdateManyWithoutMovieNestedInput";
-import { MovifierAppUserUpdateManyWithoutWatchlistNestedInput } from "../inputs/MovifierAppUserUpdateManyWithoutWatchlistNestedInput";
 import { StringFieldUpdateOperationsInput } from "../inputs/StringFieldUpdateOperationsInput";
+import { UserMovieWatchlistUpdateManyWithoutMovieNestedInput } from "../inputs/UserMovieWatchlistUpdateManyWithoutMovieNestedInput";
 
 @TypeGraphQL.InputType("MovieUpdateInput", {})
 export class MovieUpdateInput {
@@ -74,11 +74,6 @@ export class MovieUpdateInput {
   })
   movieLists?: MovieListUpdateManyWithoutMoviesNestedInput | undefined;
 
-  @TypeGraphQL.Field(_type => MovifierAppUserUpdateManyWithoutWatchlistNestedInput, {
-    nullable: true
-  })
-  inWatchlistByUsers?: MovifierAppUserUpdateManyWithoutWatchlistNestedInput | undefined;
-
   @TypeGraphQL.Field(_type => MovieSpokenLanguageUpdateManyWithoutMoviesNestedInput, {
     nullable: true
   })
@@ -93,4 +88,9 @@ export class MovieUpdateInput {
     nullable: true
   })
   likedBy?: MovieLikedByUserUpdateManyWithoutMovieNestedInput | undefined;
+
+  @TypeGraphQL.Field(_type => UserMovieWatchlistUpdateManyWithoutMovieNestedInput, {
+    nullable: true
+  })
+  inWatchlistByUsers?: UserMovieWatchlistUpdateManyWithoutMovieNestedInput | undefined;
 }

@@ -18,3 +18,4 @@ export { MovieStatsRelationsResolver } from "./MovieStats/MovieStatsRelationsRes
 export { MovieStudioRelationsResolver } from "./MovieStudio/MovieStudioRelationsResolver";
 export { MovieWatchedByUserRelationsResolver } from "./MovieWatchedByUser/MovieWatchedByUserRelationsResolver";
 export { MovifierAppUserRelationsResolver } from "./MovifierAppUser/MovifierAppUserRelationsResolver";
+export { UserMovieWatchlistRelationsResolver } from "./UserMovieWatchlist/UserMovieWatchlistRelationsResolver";

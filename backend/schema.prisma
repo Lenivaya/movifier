@@ -34,10 +34,10 @@ model Movie {
   keywordCategories  MovieKeywordCategory[]
   ratedBy            MovieRating[]
   movieLists         MovieList[]
-  inWatchlistByUsers MovifierAppUser[]
   spokenLanguages    MovieSpokenLanguage[]
   watchedBy          MovieWatchedByUser[]
   likedBy            MovieLikedByUser[]
+  inWatchlistByUsers UserMovieWatchlist[]
 }
 
 model MovieStats {
@@ -139,7 +139,7 @@ model MovifierAppUser {
   password             String
   name                 String
   role                 MoviefireAppUserRole     @default(USER)
-  watchlist            Movie[]
+  watchlist            UserMovieWatchlist[]
   ratedMovies          MovieRating[]
   watchedMovies        MovieWatchedByUser[]
   likedMovies          MovieLikedByUser[]
@@ -147,6 +147,18 @@ model MovifierAppUser {
   movieListsComments   MovieListComment[]
   likedMovieReviews    MovieReviewLikedByUser[]
   MovieListLikedByUser MovieListLikedByUser[]
+}
+
+model UserMovieWatchlist {
+  createdAt DateTime @default(now())
+
+  userId  String
+  movieId String
+
+  movie Movie           @relation(fields: [movieId], references: [id])
+  user  MovifierAppUser @relation(fields: [userId], references: [id])
+
+  @@id([userId, movieId])
 }
 
 model MovieList {

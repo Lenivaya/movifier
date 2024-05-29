@@ -1,6 +1,5 @@
 import * as TypeGraphQL from "type-graphql";
 import type { GraphQLResolveInfo } from "graphql";
-import { Movie } from "../../../models/Movie";
 import { MovieLikedByUser } from "../../../models/MovieLikedByUser";
 import { MovieList } from "../../../models/MovieList";
 import { MovieListComment } from "../../../models/MovieListComment";
@@ -9,6 +8,7 @@ import { MovieRating } from "../../../models/MovieRating";
 import { MovieReviewLikedByUser } from "../../../models/MovieReviewLikedByUser";
 import { MovieWatchedByUser } from "../../../models/MovieWatchedByUser";
 import { MovifierAppUser } from "../../../models/MovifierAppUser";
+import { UserMovieWatchlist } from "../../../models/UserMovieWatchlist";
 import { MovifierAppUserLikedMovieReviewsArgs } from "./args/MovifierAppUserLikedMovieReviewsArgs";
 import { MovifierAppUserLikedMoviesArgs } from "./args/MovifierAppUserLikedMoviesArgs";
 import { MovifierAppUserMovieListLikedByUserArgs } from "./args/MovifierAppUserMovieListLikedByUserArgs";
@@ -21,10 +21,10 @@ import { transformInfoIntoPrismaArgs, getPrismaFromContext, transformCountFieldI
 
 @TypeGraphQL.Resolver(_of => MovifierAppUser)
 export class MovifierAppUserRelationsResolver {
-  @TypeGraphQL.FieldResolver(_type => [Movie], {
+  @TypeGraphQL.FieldResolver(_type => [UserMovieWatchlist], {
     nullable: false
   })
-  async watchlist(@TypeGraphQL.Root() movifierAppUser: MovifierAppUser, @TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Info() info: GraphQLResolveInfo, @TypeGraphQL.Args() args: MovifierAppUserWatchlistArgs): Promise<Movie[]> {
+  async watchlist(@TypeGraphQL.Root() movifierAppUser: MovifierAppUser, @TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Info() info: GraphQLResolveInfo, @TypeGraphQL.Args() args: MovifierAppUserWatchlistArgs): Promise<UserMovieWatchlist[]> {
     const { _count } = transformInfoIntoPrismaArgs(info);
     return getPrismaFromContext(ctx).movifierAppUser.findUniqueOrThrow({
       where: {

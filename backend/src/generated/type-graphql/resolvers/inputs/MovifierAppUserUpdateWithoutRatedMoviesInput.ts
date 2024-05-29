@@ -9,9 +9,9 @@ import { MovieListCommentUpdateManyWithoutUserNestedInput } from "../inputs/Movi
 import { MovieListLikedByUserUpdateManyWithoutUserNestedInput } from "../inputs/MovieListLikedByUserUpdateManyWithoutUserNestedInput";
 import { MovieListUpdateManyWithoutMovieListAuthorNestedInput } from "../inputs/MovieListUpdateManyWithoutMovieListAuthorNestedInput";
 import { MovieReviewLikedByUserUpdateManyWithoutUserNestedInput } from "../inputs/MovieReviewLikedByUserUpdateManyWithoutUserNestedInput";
-import { MovieUpdateManyWithoutInWatchlistByUsersNestedInput } from "../inputs/MovieUpdateManyWithoutInWatchlistByUsersNestedInput";
 import { MovieWatchedByUserUpdateManyWithoutUserNestedInput } from "../inputs/MovieWatchedByUserUpdateManyWithoutUserNestedInput";
 import { StringFieldUpdateOperationsInput } from "../inputs/StringFieldUpdateOperationsInput";
+import { UserMovieWatchlistUpdateManyWithoutUserNestedInput } from "../inputs/UserMovieWatchlistUpdateManyWithoutUserNestedInput";
 
 @TypeGraphQL.InputType("MovifierAppUserUpdateWithoutRatedMoviesInput", {})
 export class MovifierAppUserUpdateWithoutRatedMoviesInput {
@@ -55,10 +55,10 @@ export class MovifierAppUserUpdateWithoutRatedMoviesInput {
   })
   role?: EnumMoviefireAppUserRoleFieldUpdateOperationsInput | undefined;
 
-  @TypeGraphQL.Field(_type => MovieUpdateManyWithoutInWatchlistByUsersNestedInput, {
+  @TypeGraphQL.Field(_type => UserMovieWatchlistUpdateManyWithoutUserNestedInput, {
     nullable: true
   })
-  watchlist?: MovieUpdateManyWithoutInWatchlistByUsersNestedInput | undefined;
+  watchlist?: UserMovieWatchlistUpdateManyWithoutUserNestedInput | undefined;
 
   @TypeGraphQL.Field(_type => MovieWatchedByUserUpdateManyWithoutUserNestedInput, {
     nullable: true

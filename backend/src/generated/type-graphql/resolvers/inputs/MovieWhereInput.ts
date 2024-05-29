@@ -14,8 +14,8 @@ import { MovieSpokenLanguageListRelationFilter } from "../inputs/MovieSpokenLang
 import { MovieStatsNullableRelationFilter } from "../inputs/MovieStatsNullableRelationFilter";
 import { MovieStudioListRelationFilter } from "../inputs/MovieStudioListRelationFilter";
 import { MovieWatchedByUserListRelationFilter } from "../inputs/MovieWatchedByUserListRelationFilter";
-import { MovifierAppUserListRelationFilter } from "../inputs/MovifierAppUserListRelationFilter";
 import { StringFilter } from "../inputs/StringFilter";
+import { UserMovieWatchlistListRelationFilter } from "../inputs/UserMovieWatchlistListRelationFilter";
 
 @TypeGraphQL.InputType("MovieWhereInput", {})
 export class MovieWhereInput {
@@ -89,11 +89,6 @@ export class MovieWhereInput {
   })
   movieLists?: MovieListListRelationFilter | undefined;
 
-  @TypeGraphQL.Field(_type => MovifierAppUserListRelationFilter, {
-    nullable: true
-  })
-  inWatchlistByUsers?: MovifierAppUserListRelationFilter | undefined;
-
   @TypeGraphQL.Field(_type => MovieSpokenLanguageListRelationFilter, {
     nullable: true
   })
@@ -108,4 +103,9 @@ export class MovieWhereInput {
     nullable: true
   })
   likedBy?: MovieLikedByUserListRelationFilter | undefined;
+
+  @TypeGraphQL.Field(_type => UserMovieWatchlistListRelationFilter, {
+    nullable: true
+  })
+  inWatchlistByUsers?: UserMovieWatchlistListRelationFilter | undefined;
 }

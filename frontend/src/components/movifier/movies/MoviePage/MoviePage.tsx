@@ -24,6 +24,7 @@ import { AppLoader } from '@/components/movifier/generic'
 import { MoviePageTopPopularReviewsList } from '@/components/movifier/movies/MoviePage/MoviePageTopPopularReviewsList'
 import { MoviePageTopRecentReviewsList } from '@/components/movifier/movies/MoviePage/MoviePageTopRecentReviewsList'
 import { UserAuthenticationDialog } from '@/components/movifier/users/UserAuthenticationDialog'
+import { MovieWatchListButton } from '@/components/movifier/movies/MoviePage/MovieWatchListButton'
 
 const imbue = Imbue({ subsets: ['latin'] })
 
@@ -130,6 +131,11 @@ export const MoviePage: FC<{
                         />
 
                         <MovieLikedButton
+                          composeKey={composeKeyWithUser}
+                          isSignedIn={isSignedIn}
+                        />
+
+                        <MovieWatchListButton
                           composeKey={composeKeyWithUser}
                           isSignedIn={isSignedIn}
                         />

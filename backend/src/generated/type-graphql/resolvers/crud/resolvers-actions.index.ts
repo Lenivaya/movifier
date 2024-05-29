@@ -278,3 +278,17 @@ export { GroupByMovifierAppUserResolver } from "./MovifierAppUser/GroupByMovifie
 export { UpdateManyMovifierAppUserResolver } from "./MovifierAppUser/UpdateManyMovifierAppUserResolver";
 export { UpdateOneMovifierAppUserResolver } from "./MovifierAppUser/UpdateOneMovifierAppUserResolver";
 export { UpsertOneMovifierAppUserResolver } from "./MovifierAppUser/UpsertOneMovifierAppUserResolver";
+export { AggregateUserMovieWatchlistResolver } from "./UserMovieWatchlist/AggregateUserMovieWatchlistResolver";
+export { CreateManyUserMovieWatchlistResolver } from "./UserMovieWatchlist/CreateManyUserMovieWatchlistResolver";
+export { CreateOneUserMovieWatchlistResolver } from "./UserMovieWatchlist/CreateOneUserMovieWatchlistResolver";
+export { DeleteManyUserMovieWatchlistResolver } from "./UserMovieWatchlist/DeleteManyUserMovieWatchlistResolver";
+export { DeleteOneUserMovieWatchlistResolver } from "./UserMovieWatchlist/DeleteOneUserMovieWatchlistResolver";
+export { FindFirstUserMovieWatchlistResolver } from "./UserMovieWatchlist/FindFirstUserMovieWatchlistResolver";
+export { FindFirstUserMovieWatchlistOrThrowResolver } from "./UserMovieWatchlist/FindFirstUserMovieWatchlistOrThrowResolver";
+export { FindManyUserMovieWatchlistResolver } from "./UserMovieWatchlist/FindManyUserMovieWatchlistResolver";
+export { FindUniqueUserMovieWatchlistResolver } from "./UserMovieWatchlist/FindUniqueUserMovieWatchlistResolver";
+export { FindUniqueUserMovieWatchlistOrThrowResolver } from "./UserMovieWatchlist/FindUniqueUserMovieWatchlistOrThrowResolver";
+export { GroupByUserMovieWatchlistResolver } from "./UserMovieWatchlist/GroupByUserMovieWatchlistResolver";
+export { UpdateManyUserMovieWatchlistResolver } from "./UserMovieWatchlist/UpdateManyUserMovieWatchlistResolver";
+export { UpdateOneUserMovieWatchlistResolver } from "./UserMovieWatchlist/UpdateOneUserMovieWatchlistResolver";
+export { UpsertOneUserMovieWatchlistResolver } from "./UserMovieWatchlist/UpsertOneUserMovieWatchlistResolver";
