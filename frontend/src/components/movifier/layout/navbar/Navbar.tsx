@@ -1,5 +1,3 @@
-'use client'
-
 import { FC } from 'react'
 import { NavbarHeader } from '@/components/movifier/layout/navbar/NavbarHeader'
 import { HeaderMenuWithPopover } from '@/components/movifier/layout/navbar/HeaderMenuWithPopover'

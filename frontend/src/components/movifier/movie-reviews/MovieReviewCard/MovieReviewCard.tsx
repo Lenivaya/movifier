@@ -43,7 +43,7 @@ export const MovieReviewCard: FC<MovieReviewCardItemFragment> = ({
   return (
     <Card>
       <CardHeader>
-        <div className='flex flex-row gap-3 align-baseline content-baseline text-md'>
+        <div className='flex flex-row gap-3 align-baseline content-baseline text-sm'>
           <Link href={`/users/${rating.user.id}/reviews/${id}`}>
             <span className={'text-slate-500 hover:text-black'}>
               Review by{' '}
@@ -75,10 +75,10 @@ export const MovieReviewCard: FC<MovieReviewCardItemFragment> = ({
           {content}
         </article>
 
-        <div className={'mt-5 flex flex-row gap-5'}>
+        <div className={'mt-5 flex flex-row items-center gap-3'}>
           <MovieReviewLikeButton composeKey={composeKey} />
-          <span className={'text-sm'}>
-            <span className={'mr-1'}>{likesCount}</span> Likes
+          <span className={'text-xs'}>
+            <span className={'mr-0.5'}>{likesCount}</span> Likes
           </span>
         </div>
       </CardContent>

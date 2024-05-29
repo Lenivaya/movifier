@@ -23,6 +23,7 @@ import { FC, Suspense } from 'react'
 import { AppLoader } from '@/components/movifier/generic'
 import { MoviePageTopPopularReviewsList } from '@/components/movifier/movies/MoviePage/MoviePageTopPopularReviewsList'
 import { MoviePageTopRecentReviewsList } from '@/components/movifier/movies/MoviePage/MoviePageTopRecentReviewsList'
+import { UserAuthenticationDialog } from '@/components/movifier/users/UserAuthenticationDialog'
 
 const imbue = Imbue({ subsets: ['latin'] })
 
@@ -58,8 +59,8 @@ export const MoviePage: FC<{
 
   return (
     <div className={'h-lvh w-full pt-5 pb-5'}>
-      <div className={'max-md:w-full max-lg:w-3/4 w-5/6 mx-auto'}>
-        <div className='relative  grid grid-cols-[20%_80%] mx-auto gap-4 w-auto justify-start align-top'>
+      <div className={'max-md:w-full max-lg:w-5/6 max-xl:w-3/4 w-7/12 mx-auto'}>
+        <div className='relative grid grid-cols-[20%_80%] mx-auto gap-4 w-auto justify-start align-top'>
           <MoviePagePoster {...movie} />
 
           <Card className={'mb-5 w-auto justify-self-stretch'}>
@@ -113,9 +114,11 @@ export const MoviePage: FC<{
                   <Separator orientation={'vertical'} className={'absolute'} />
 
                   {!isSignedIn && (
-                    <Button variant={'outline'} className='!mx-auto'>
-                      Sign in to log, rate and review
-                    </Button>
+                    <UserAuthenticationDialog>
+                      <Button variant={'outline'} className='!mx-auto'>
+                        Sign in to log, rate and review
+                      </Button>
+                    </UserAuthenticationDialog>
                   )}
 
                   {isSignedIn && (

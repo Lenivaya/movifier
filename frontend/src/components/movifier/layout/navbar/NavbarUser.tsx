@@ -4,7 +4,9 @@ import React, { FC, useCallback } from 'react'
 import { useCurrentUser, useLogout } from '@/lib/hooks/CurrentUser'
 import { isSome } from '@/lib/types'
 import { Button } from '@/components/ui'
-import { UserAuthenticationDialog } from '@/components/movifier/layout/navbar/UserAuthenticationDialog'
+import { UserAuthenticationDialog } from '@/components/movifier/users/UserAuthenticationDialog'
+import { DoorClosedIcon } from 'lucide-react'
+import { AppTooltip } from '@/components/movifier/generic'
 
 export const NavbarUser: FC = () => {
   const user = useCurrentUser()
@@ -21,16 +23,20 @@ export const NavbarUser: FC = () => {
   return (
     <div className='flex'>
       <nav className='text-sm font-semibold leading-6 text-slate-700'>
-        <ul className='flex items-center space-x-8'>
+        <ul className='flex items-baseline space-x-8'>
           {isSignedIn ? (
-            <div className={'flex gap-3 content-center'}>
+            <div className={'flex gap-1.5 content-center'}>
               <span className={'my-auto'}>{user?.name}</span>
-              <Button variant='ghost' onClick={onLogoutClick}>
-                🚪
-              </Button>
+              <AppTooltip text={'Logout from account'}>
+                <Button variant='ghost' onClick={onLogoutClick}>
+                  <DoorClosedIcon className='w-5 h-5' />
+                </Button>
+              </AppTooltip>
             </div>
           ) : (
-            <UserAuthenticationDialog />
+            <UserAuthenticationDialog>
+              <Button variant='outline'>Login | Register</Button>
+            </UserAuthenticationDialog>
           )}
         </ul>
       </nav>

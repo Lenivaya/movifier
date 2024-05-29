@@ -24,6 +24,7 @@ import { Separator } from '@/components/ui'
 import { Option } from '@mobily/ts-belt'
 import { isSome } from '@/lib/types'
 import { CreateReviewForm } from '@/components/movifier/movie-reviews/forms/CreateReviewForm'
+import { apolloObjectRemover } from '@/lib/graphql/ApolloClient/cache/helpers/utils'
 
 export const GET_MOVIE_RATING_BY_USER = gql`
   query GetMovieRatingByUser($movieId: String!, $userId: String!) {
@@ -95,7 +96,7 @@ export function MovieRatingInput(props: { composeKey: ComposeKeyMovieUser }) {
         console.error(error)
       }
     })
-  }, [props.composeKey])
+  }, [props.composeKey, markWatched])
 
   const onRatingChange = useCallback(
     async (change: number) => {
@@ -115,7 +116,7 @@ export function MovieRatingInput(props: { composeKey: ComposeKeyMovieUser }) {
         }
       })
     },
-    [onRatingChangedSetWatched, props.composeKey, isRated]
+    [onRatingChangedSetWatched, props.composeKey, upsertRating, isRated]
   )
 
   const [deleteRating] = useDeleteMovieRatingForUserMutation()
@@ -128,6 +129,9 @@ export function MovieRatingInput(props: { composeKey: ComposeKeyMovieUser }) {
           title: 'Error deleting rating'
         })
         console.error(error)
+      },
+      update: (cache, { data, errors }) => {
+        apolloObjectRemover(cache, data?.deleteOneMovieRating, errors)
       }
     })
 
