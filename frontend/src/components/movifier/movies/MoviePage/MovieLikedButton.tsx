@@ -11,6 +11,7 @@ import { motion } from 'framer-motion'
 import { HeartIcon } from 'lucide-react'
 
 import { ComposeKeyMovieUser } from '@/components/movifier/movies/MoviePage/types'
+import { apolloObjectRemover } from '@/lib/graphql/ApolloClient/cache/helpers/utils'
 
 export const MovieLikedButton: FC<{
   composeKey: ComposeKeyMovieUser
@@ -55,6 +56,9 @@ export const MovieLikedButton: FC<{
       },
       onCompleted: () => {
         setIsMovieLiked(false)
+      },
+      update: (cache, { data, errors }) => {
+        apolloObjectRemover(cache, data?.deleteOneMovieLikedByUser, errors)
       }
     })
   }

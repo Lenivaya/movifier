@@ -11,6 +11,7 @@ import { motion } from 'framer-motion'
 import { EyeIcon } from 'lucide-react'
 
 import { ComposeKeyMovieUser } from '@/components/movifier/movies/MoviePage/types'
+import { apolloObjectRemover } from '@/lib/graphql/ApolloClient/cache/helpers/utils'
 
 export const MovieWatchedButton: FC<{
   composeKey: ComposeKeyMovieUser
@@ -57,6 +58,9 @@ export const MovieWatchedButton: FC<{
       },
       onCompleted: () => {
         setIsMovieWatched(false)
+      },
+      update: (cache, { data, errors }) => {
+        apolloObjectRemover(cache, data?.deleteOneMovieWatchedByUser, errors)
       }
     })
   }
