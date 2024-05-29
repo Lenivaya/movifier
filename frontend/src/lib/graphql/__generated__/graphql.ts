@@ -4670,6 +4670,10 @@ export type MoviefireAppUserRole =
   | 'ADMIN'
   | 'USER';
 
+export type MoviesSearchCriteriaInput = {
+  search?: InputMaybe<Scalars['String']['input']>;
+};
+
 export type MovifierAppUser = {
   __typename?: 'MovifierAppUser';
   _count?: Maybe<MovifierAppUserCount>;
@@ -5865,6 +5869,7 @@ export type Query = {
   movieWatchedByUsers: Array<MovieWatchedByUser>;
   movies: Array<Movie>;
   movifierAppUsers: Array<MovifierAppUser>;
+  searchMovies: Array<Movie>;
 };
 
 
@@ -6231,6 +6236,17 @@ export type QueryMovifierAppUsersArgs = {
   where?: InputMaybe<MovifierAppUserWhereInput>;
 };
 
+
+export type QuerySearchMoviesArgs = {
+  cursor?: InputMaybe<MovieWhereUniqueInput>;
+  distinct?: InputMaybe<Array<MovieScalarFieldEnum>>;
+  orderBy?: InputMaybe<Array<MovieOrderByWithRelationAndSearchRelevanceInput>>;
+  searchCriteria: MoviesSearchCriteriaInput;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+  take?: InputMaybe<Scalars['Int']['input']>;
+  where?: InputMaybe<MovieWhereInput>;
+};
+
 export type QueryMode =
   | 'default'
   | 'insensitive';
@@ -6311,11 +6327,11 @@ export type GetMovieForPageQueryVariables = Exact<{
 export type GetMovieForPageQuery = { __typename?: 'Query', movie?: { __typename?: 'Movie', id: string, movieInfo?: { __typename?: 'MovieInfo', id: string, title: string, description: string, releaseDate: any, durationInMinutes: number, posterUrl: string, alternativeTitles: Array<string> } | null, crewMembers: Array<{ __typename?: 'MovieCrewMemberOnMovie', movieCrewMemberType: { __typename?: 'MovieCrewMemberType', id: string, name: string }, crewMember: { __typename?: 'MovieCrewMember', name: string, id: string } }>, studios: Array<{ __typename?: 'MovieStudio', name: string }>, genres: Array<{ __typename?: 'Genre', name: string }>, keywordCategories: Array<{ __typename?: 'MovieKeywordCategory', id: string, name: string }>, spokenLanguages: Array<{ __typename?: 'MovieSpokenLanguage', language: string }> } | null };
 
 export type SearchMoviesQueryVariables = Exact<{
-  search?: InputMaybe<Scalars['String']['input']>;
+  searchCriteria: MoviesSearchCriteriaInput;
 }>;
 
 
-export type SearchMoviesQuery = { __typename?: 'Query', movies: Array<{ __typename?: 'Movie', id: string, movieInfo?: { __typename?: 'MovieInfo', title: string, posterUrl: string } | null }> };
+export type SearchMoviesQuery = { __typename?: 'Query', searchMovies: Array<{ __typename?: 'Movie', id: string, movieInfo?: { __typename?: 'MovieInfo', title: string, posterUrl: string } | null }> };
 
 export type GetMoviesForHomePageQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -7140,6 +7156,7 @@ export type ResolversTypes = ResolversObject<{
   MovieWhereInput: MovieWhereInput;
   MovieWhereUniqueInput: MovieWhereUniqueInput;
   MoviefireAppUserRole: MoviefireAppUserRole;
+  MoviesSearchCriteriaInput: MoviesSearchCriteriaInput;
   MovifierAppUser: ResolverTypeWrapper<MovifierAppUser>;
   MovifierAppUserCount: ResolverTypeWrapper<MovifierAppUserCount>;
   MovifierAppUserCreateInput: MovifierAppUserCreateInput;
@@ -7788,6 +7805,7 @@ export type ResolversParentTypes = ResolversObject<{
   MovieWatchedByUserWhereUniqueInput: MovieWatchedByUserWhereUniqueInput;
   MovieWhereInput: MovieWhereInput;
   MovieWhereUniqueInput: MovieWhereUniqueInput;
+  MoviesSearchCriteriaInput: MoviesSearchCriteriaInput;
   MovifierAppUser: MovifierAppUser;
   MovifierAppUserCount: MovifierAppUserCount;
   MovifierAppUserCreateInput: MovifierAppUserCreateInput;
@@ -8503,6 +8521,7 @@ export type QueryResolvers<ContextType = any, ParentType extends ResolversParent
   movieWatchedByUsers?: Resolver<Array<ResolversTypes['MovieWatchedByUser']>, ParentType, ContextType, Partial<QueryMovieWatchedByUsersArgs>>;
   movies?: Resolver<Array<ResolversTypes['Movie']>, ParentType, ContextType, Partial<QueryMoviesArgs>>;
   movifierAppUsers?: Resolver<Array<ResolversTypes['MovifierAppUser']>, ParentType, ContextType, Partial<QueryMovifierAppUsersArgs>>;
+  searchMovies?: Resolver<Array<ResolversTypes['Movie']>, ParentType, ContextType, RequireFields<QuerySearchMoviesArgs, 'searchCriteria'>>;
 }>;
 
 export type UserLoginOutputResolvers<ContextType = any, ParentType extends ResolversParentTypes['UserLoginOutput'] = ResolversParentTypes['UserLoginOutput']> = ResolversObject<{
@@ -8732,11 +8751,8 @@ export type GetMovieForPageLazyQueryHookResult = ReturnType<typeof useGetMovieFo
 export type GetMovieForPageSuspenseQueryHookResult = ReturnType<typeof useGetMovieForPageSuspenseQuery>;
 export type GetMovieForPageQueryResult = Apollo.QueryResult<GetMovieForPageQuery, GetMovieForPageQueryVariables>;
 export const SearchMoviesDocument = gql`
-    query SearchMovies($search: String) {
-  movies(
-    take: 5
-    where: {OR: [{movieInfo: {is: {OR: [{title: {contains: $search, mode: insensitive}}, {description: {contains: $search, mode: insensitive}}, {imdbId: {contains: $search, mode: insensitive}}, {alternativeTitles: {has: $search}}]}}}, {crewMembers: {some: {OR: [{crewMember: {is: {OR: [{name: {contains: $search}}, {imdbId: {contains: $search}}]}}}]}}}, {genres: {some: {OR: [{name: {contains: $search}}]}}}, {studios: {some: {OR: [{name: {contains: $search}}]}}}, {spokenLanguages: {some: {OR: [{language: {contains: $search}}]}}}, {keywordCategories: {some: {OR: [{name: {contains: $search}}]}}}]}
-  ) {
+    query SearchMovies($searchCriteria: MoviesSearchCriteriaInput!) {
+  searchMovies(take: 5, searchCriteria: $searchCriteria) {
     ...MovieCardItem
   }
 }
@@ -8754,11 +8770,11 @@ export const SearchMoviesDocument = gql`
  * @example
  * const { data, loading, error } = useSearchMoviesQuery({
  *   variables: {
- *      search: // value for 'search'
+ *      searchCriteria: // value for 'searchCriteria'
  *   },
  * });
  */
-export function useSearchMoviesQuery(baseOptions?: Apollo.QueryHookOptions<SearchMoviesQuery, SearchMoviesQueryVariables>) {
+export function useSearchMoviesQuery(baseOptions: Apollo.QueryHookOptions<SearchMoviesQuery, SearchMoviesQueryVariables> & ({ variables: SearchMoviesQueryVariables; skip?: boolean; } | { skip: boolean; }) ) {
         const options = {...defaultOptions, ...baseOptions}
         return Apollo.useQuery<SearchMoviesQuery, SearchMoviesQueryVariables>(SearchMoviesDocument, options);
       }
@@ -10072,7 +10088,7 @@ export type MutationFieldPolicy = {
 	upsertOneMovieReviewLikedByUser?: FieldPolicy<any> | FieldReadFunction<any>,
 	upsertOneMovieWatchedByUser?: FieldPolicy<any> | FieldReadFunction<any>
 };
-export type QueryKeySpecifier = ('aggregateMovie' | 'aggregateMovieLikedByUser' | 'aggregateMovieRating' | 'aggregateMovieReview' | 'aggregateMovieReviewLikedByUser' | 'aggregateMovieWatchedByUser' | 'findFirstMovie' | 'findFirstMovieLikedByUser' | 'findFirstMovieLikedByUserOrThrow' | 'findFirstMovieOrThrow' | 'findFirstMovieRating' | 'findFirstMovieRatingOrThrow' | 'findFirstMovieReview' | 'findFirstMovieReviewLikedByUser' | 'findFirstMovieReviewLikedByUserOrThrow' | 'findFirstMovieReviewOrThrow' | 'findFirstMovieWatchedByUser' | 'findFirstMovieWatchedByUserOrThrow' | 'getMovie' | 'getMovieLikedByUser' | 'getMovieRating' | 'getMovieReview' | 'getMovieReviewLikedByUser' | 'getMovieWatchedByUser' | 'groupByMovie' | 'groupByMovieLikedByUser' | 'groupByMovieRating' | 'groupByMovieReview' | 'groupByMovieReviewLikedByUser' | 'groupByMovieWatchedByUser' | 'me' | 'movie' | 'movieLikedByUser' | 'movieLikedByUsers' | 'movieRating' | 'movieRatings' | 'movieReview' | 'movieReviewLikedByUser' | 'movieReviewLikedByUsers' | 'movieReviews' | 'movieWatchedByUser' | 'movieWatchedByUsers' | 'movies' | 'movifierAppUsers' | QueryKeySpecifier)[];
+export type QueryKeySpecifier = ('aggregateMovie' | 'aggregateMovieLikedByUser' | 'aggregateMovieRating' | 'aggregateMovieReview' | 'aggregateMovieReviewLikedByUser' | 'aggregateMovieWatchedByUser' | 'findFirstMovie' | 'findFirstMovieLikedByUser' | 'findFirstMovieLikedByUserOrThrow' | 'findFirstMovieOrThrow' | 'findFirstMovieRating' | 'findFirstMovieRatingOrThrow' | 'findFirstMovieReview' | 'findFirstMovieReviewLikedByUser' | 'findFirstMovieReviewLikedByUserOrThrow' | 'findFirstMovieReviewOrThrow' | 'findFirstMovieWatchedByUser' | 'findFirstMovieWatchedByUserOrThrow' | 'getMovie' | 'getMovieLikedByUser' | 'getMovieRating' | 'getMovieReview' | 'getMovieReviewLikedByUser' | 'getMovieWatchedByUser' | 'groupByMovie' | 'groupByMovieLikedByUser' | 'groupByMovieRating' | 'groupByMovieReview' | 'groupByMovieReviewLikedByUser' | 'groupByMovieWatchedByUser' | 'me' | 'movie' | 'movieLikedByUser' | 'movieLikedByUsers' | 'movieRating' | 'movieRatings' | 'movieReview' | 'movieReviewLikedByUser' | 'movieReviewLikedByUsers' | 'movieReviews' | 'movieWatchedByUser' | 'movieWatchedByUsers' | 'movies' | 'movifierAppUsers' | 'searchMovies' | QueryKeySpecifier)[];
 export type QueryFieldPolicy = {
 	aggregateMovie?: FieldPolicy<any> | FieldReadFunction<any>,
 	aggregateMovieLikedByUser?: FieldPolicy<any> | FieldReadFunction<any>,
@@ -10117,7 +10133,8 @@ export type QueryFieldPolicy = {
 	movieWatchedByUser?: FieldPolicy<any> | FieldReadFunction<any>,
 	movieWatchedByUsers?: FieldPolicy<any> | FieldReadFunction<any>,
 	movies?: FieldPolicy<any> | FieldReadFunction<any>,
-	movifierAppUsers?: FieldPolicy<any> | FieldReadFunction<any>
+	movifierAppUsers?: FieldPolicy<any> | FieldReadFunction<any>,
+	searchMovies?: FieldPolicy<any> | FieldReadFunction<any>
 };
 export type UserLoginOutputKeySpecifier = ('token' | 'user' | UserLoginOutputKeySpecifier)[];
 export type UserLoginOutputFieldPolicy = {

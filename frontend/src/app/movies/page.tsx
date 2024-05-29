@@ -6,81 +6,25 @@ import { useMutative } from 'use-mutative'
 import { FC, Suspense } from 'react'
 import { MovieCardList } from '@/components/movifier/movies/MovieCardList'
 import { AppLoader } from '@/components/movifier/generic'
-import { useSearchMoviesSuspenseQuery } from '@/lib'
+import { MoviesSearchCriteriaInput, useSearchMoviesSuspenseQuery } from '@/lib'
 
 export const SearchMovies = gql`
-  query SearchMovies($search: String) {
-    movies(
-      take: 5
-      where: {
-        OR: [
-          {
-            movieInfo: {
-              is: {
-                OR: [
-                  { title: { contains: $search, mode: insensitive } }
-                  { description: { contains: $search, mode: insensitive } }
-                  { imdbId: { contains: $search, mode: insensitive } }
-                  { alternativeTitles: { has: $search } }
-                ]
-              }
-            }
-          }
-          {
-            crewMembers: {
-              some: {
-                crewMember: {
-                  is: {
-                    OR: [
-                      { name: { contains: $search, mode: insensitive } }
-                      { imdbId: { contains: $search, mode: insensitive } }
-                    ]
-                  }
-                }
-              }
-            }
-          }
-          {
-            genres: {
-              some: { OR: [{ name: { contains: $search, mode: insensitive } }] }
-            }
-          }
-          {
-            studios: {
-              some: { OR: [{ name: { contains: $search, mode: insensitive } }] }
-            }
-          }
-          {
-            spokenLanguages: {
-              some: {
-                OR: [{ language: { contains: $search, mode: insensitive } }]
-              }
-            }
-          }
-          {
-            keywordCategories: {
-              some: { OR: [{ name: { contains: $search, mode: insensitive } }] }
-            }
-          }
-        ]
-      }
-    ) {
+  query SearchMovies($searchCriteria: MoviesSearchCriteriaInput!) {
+    searchMovies(take: 5, searchCriteria: $searchCriteria) {
       ...MovieCardItem
     }
   }
 `
 
-export type MovieSearchCriteria = {
-  search: string
-}
-
 export default function MoviesPage() {
-  const [searchCriteria, setSearchCriteria] = useMutative<MovieSearchCriteria>({
-    search: ''
-  })
+  const [searchCriteria, setSearchCriteria] =
+    useMutative<MoviesSearchCriteriaInput>({
+      search: ''
+    })
 
-  const criteriaChanger = (field: string) => (value: string) =>
-    setSearchCriteria((prev) => ({ [field]: value }))
+  const criteriaChanger =
+    (field: keyof MoviesSearchCriteriaInput) => (value: string) =>
+      setSearchCriteria((prev) => ({ [field]: value }))
 
   return (
     <main className='relative flex min-h-[100vh] w-full flex-col gap-5 items-center justify-between max-md:pt-5 pt-7'>
@@ -102,18 +46,18 @@ export default function MoviesPage() {
 }
 
 const ParcelsPageCardListSuspense: FC<{
-  searchCriteria: MovieSearchCriteria
+  searchCriteria: MoviesSearchCriteriaInput
 }> = ({ searchCriteria }) => {
   const { data } = useSearchMoviesSuspenseQuery({
     variables: {
-      ...searchCriteria
+      searchCriteria
     },
     fetchPolicy: 'cache-and-network'
   })
 
   return (
     <div className={'flex flex-col w-full h-full justify-start max-w-5xl'}>
-      <MovieCardList movies={data?.movies} />
+      <MovieCardList movies={data?.searchMovies} />
     </div>
   )
 }
