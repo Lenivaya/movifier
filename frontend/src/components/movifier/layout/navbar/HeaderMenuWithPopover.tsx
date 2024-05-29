@@ -9,9 +9,9 @@ import { Link } from 'next-view-transitions'
 
 export function HeaderMenuWithPopover() {
   return (
-    <div className='flex my-auto align-baseline justify-center items-center'>
+    <div className='flex my-auto'>
       <Popover autoFocus={false}>
-        <PopoverButton className='text-sm/6 font-semibold my-auto text-center self-baseline text-black focus:outline-none data-[active]:text-black/50 data-[hover]:text-black data-[focus]:outline-1 data-[focus]:outline-black'>
+        <PopoverButton className='text-sm/6 font-semibold my-auto h-full text-center self-baseline text-black focus:outline-none data-[active]:text-black/50 data-[hover]:text-black data-[focus]:outline-1 data-[focus]:outline-black'>
           <Menu className={'h-full'} />
         </PopoverButton>
         <Transition
