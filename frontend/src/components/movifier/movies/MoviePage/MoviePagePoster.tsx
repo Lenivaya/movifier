@@ -22,7 +22,7 @@ export const MoviePagePoster: FC<MoviePagePosterItemFragment> = ({
       <DialogTrigger asChild>
         <motion.div
           className={
-            'w-auto h-[400px] justify-self-end align-top rounded-lg max-w-full sticky top-5 overflow-hidden'
+            'w-auto h-[400px] justify-self-end align-top rounded-lg max-w-full sticky top-5 overflow-hidden shadow-2xl drop-shadow-lg'
           }
           whileHover={{
             scale: 1.05,
@@ -33,12 +33,12 @@ export const MoviePagePoster: FC<MoviePagePosterItemFragment> = ({
           <img
             src={movieInfo?.posterUrl}
             alt={movieInfo?.title}
-            className='object-scale-down rounded-lg w-full'
+            className='object-scale-down rounded-lg h-full'
           />
         </motion.div>
       </DialogTrigger>
 
-      <DialogContent className='bg-transparent border-0 shadow-none drop-shadow-none'>
+      <DialogContent className='bg-transparent border-0'>
         <motion.img
           src={movieInfo?.posterUrl}
           alt={movieInfo?.title}
