@@ -13,6 +13,7 @@ import { Link } from 'next-view-transitions'
 import { MoviePageDetailsSectionContainer } from '@/components/movifier/movies/MoviePage/MoviePageDetailsSectionContainer'
 import { MoviePageDetailSection } from '@/components/movifier/movies/MoviePage/MoviePageDetailSection'
 import { Badge } from '@/components/ui/badge'
+import { ShowMoreList } from '@/components/generic/ShowMoreList'
 
 export const MoviePageDetailsTabsFragment = gql`
   fragment MoviePageDetailsTabsItem on Movie {
@@ -54,6 +55,28 @@ export const MoviePageDetailsTabs: FC<MoviePageDetailsTabsItemFragment> = ({
   genres,
   keywordCategories
 }) => {
+  const renderShowMoreButtonCast = (
+    showAll: boolean,
+    toggleShowMore: () => void
+  ) => (
+    <div
+      key='show-more-button'
+      onClick={toggleShowMore}
+      className='text-white rounded-3xl p-2 grow text-center text-xs bg-gradient-to-r from-slate-900 to-slate-700 cursor-pointer'
+    >
+      {showAll ? 'Show less' : 'Show more'}
+    </div>
+  )
+
+  const renderShowMoreButtonBadge = (
+    showAll: boolean,
+    toggleShowMore: () => void
+  ) => (
+    <Badge onClick={toggleShowMore}>
+      {showAll ? 'Show less' : 'Show more'}
+    </Badge>
+  )
+
   return (
     <Tabs defaultValue='cast' className='w-[400px] mx-auto'>
       <TabsList className='grid w-full grid-cols-3'>
@@ -69,11 +92,11 @@ export const MoviePageDetailsTabs: FC<MoviePageDetailsTabsItemFragment> = ({
           </CardHeader>
           <CardContent className='space-y-2'>
             <div className={'flex flex-grow flex-wrap gap-3 w-full'}>
-              {crewMembers
-                .filter(
+              <ShowMoreList
+                items={crewMembers.filter(
                   (member) => member.movieCrewMemberType?.name === 'Actor'
-                )
-                .map((member) => (
+                )}
+                renderItem={(member) => (
                   <Link
                     href={`/person/${member.crewMember.id}`}
                     key={member.crewMember.id}
@@ -83,7 +106,9 @@ export const MoviePageDetailsTabs: FC<MoviePageDetailsTabsItemFragment> = ({
                   >
                     {member.crewMember.name}
                   </Link>
-                ))}
+                )}
+                renderShowMoreButton={renderShowMoreButtonCast}
+              />
             </div>
           </CardContent>
         </Card>
@@ -98,31 +123,42 @@ export const MoviePageDetailsTabs: FC<MoviePageDetailsTabsItemFragment> = ({
           <CardContent className='space-y-2'>
             <MoviePageDetailsSectionContainer>
               <MoviePageDetailSection title={'Studios'}>
-                {studios.map((studio) => (
-                  <Link
-                    href={`/movies/studio/${studio.name}`}
-                    key={studio.name}
-                  >
-                    <Badge>{studio.name}</Badge>
-                  </Link>
-                ))}
+                <ShowMoreList
+                  items={studios}
+                  renderItem={(studio) => (
+                    <Link
+                      href={`/movies/studio/${studio.name}`}
+                      key={studio.name}
+                    >
+                      <Badge>{studio.name}</Badge>
+                    </Link>
+                  )}
+                  renderShowMoreButton={renderShowMoreButtonBadge}
+                />
               </MoviePageDetailSection>
 
               <MoviePageDetailSection title={'Spoken languages'}>
-                {spokenLanguages.map((lang) => (
-                  <Link
-                    href={`/movies/language/${lang.language}`}
-                    key={lang.language}
-                  >
-                    <Badge>{lang.language}</Badge>
-                  </Link>
-                ))}
+                <ShowMoreList
+                  items={spokenLanguages}
+                  renderItem={(lang) => (
+                    <Link
+                      href={`/movies/language/${lang.language}`}
+                      key={lang.language}
+                    >
+                      <Badge>{lang.language}</Badge>
+                    </Link>
+                  )}
+                  renderShowMoreButton={renderShowMoreButtonBadge}
+                />
               </MoviePageDetailSection>
 
               <MoviePageDetailSection title={'Alternative titles'}>
-                {movieInfo?.alternativeTitles.map((title) => (
-                  <Badge key={title}>{title}</Badge>
-                ))}
+                <ShowMoreList
+                  items={movieInfo?.alternativeTitles ?? []}
+                  renderItem={(title) => <Badge key={title}>{title}</Badge>}
+                  renderShowMoreButton={renderShowMoreButtonBadge}
+                  initialCount={5}
+                />
               </MoviePageDetailSection>
             </MoviePageDetailsSectionContainer>
           </CardContent>
@@ -138,22 +174,30 @@ export const MoviePageDetailsTabs: FC<MoviePageDetailsTabsItemFragment> = ({
           <CardContent className='space-y-2'>
             <MoviePageDetailsSectionContainer>
               <MoviePageDetailSection title={'Genres'}>
-                {genres.map((genre) => (
-                  <Link href={`/movies/genre/${genre.name}`} key={genre.name}>
-                    <Badge>{genre.name}</Badge>
-                  </Link>
-                ))}
+                <ShowMoreList
+                  items={genres}
+                  renderItem={(genre) => (
+                    <Link href={`/movies/genre/${genre.name}`} key={genre.name}>
+                      <Badge>{genre.name}</Badge>
+                    </Link>
+                  )}
+                  renderShowMoreButton={renderShowMoreButtonBadge}
+                />
               </MoviePageDetailSection>
 
               <MoviePageDetailSection title={'Keyword categories'}>
-                {keywordCategories.map((keyword) => (
-                  <Link
-                    href={`/movies/keyword/${keyword.name}`}
-                    key={keyword.id}
-                  >
-                    <Badge>{keyword.name}</Badge>
-                  </Link>
-                ))}
+                <ShowMoreList
+                  items={keywordCategories}
+                  renderItem={(keyword) => (
+                    <Link
+                      href={`/movies/keyword/${keyword.name}`}
+                      key={keyword.id}
+                    >
+                      <Badge>{keyword.name}</Badge>
+                    </Link>
+                  )}
+                  renderShowMoreButton={renderShowMoreButtonBadge}
+                />
               </MoviePageDetailSection>
             </MoviePageDetailsSectionContainer>
           </CardContent>
