@@ -6,7 +6,9 @@ import {
   MovieRatingRelationsResolver,
   MovieRelationsResolver,
   MovieWatchedByUserCrudResolver,
-  MovieWatchedByUserRelationsResolver
+  MovieWatchedByUserRelationsResolver,
+  UserMovieWatchlistCrudResolver,
+  UserMovieWatchlistRelationsResolver
 } from '@/generated/type-graphql'
 import { CustomMoviesResolver } from '@/graphql/movies/customMoviesResolver'
 
@@ -18,5 +20,7 @@ export const moviesResolvers: NonEmptyArray<Function> = [
   MovieWatchedByUserCrudResolver,
   MovieWatchedByUserRelationsResolver,
   MovieRatingCrudResolver,
-  MovieRatingRelationsResolver
+  MovieRatingRelationsResolver,
+  UserMovieWatchlistCrudResolver,
+  UserMovieWatchlistRelationsResolver
 ]

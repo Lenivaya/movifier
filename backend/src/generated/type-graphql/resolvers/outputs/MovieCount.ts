@@ -21,10 +21,10 @@ export class MovieCount {
   keywordCategories!: number;
   ratedBy!: number;
   movieLists!: number;
-  inWatchlistByUsers!: number;
   spokenLanguages!: number;
   watchedBy!: number;
   likedBy!: number;
+  inWatchlistByUsers!: number;
 
   @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
     name: "crewMembers",
@@ -75,14 +75,6 @@ export class MovieCount {
   }
 
   @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
-    name: "inWatchlistByUsers",
-    nullable: false
-  })
-  getInWatchlistByUsers(@TypeGraphQL.Root() root: MovieCount, @TypeGraphQL.Args() args: MovieCountInWatchlistByUsersArgs): number {
-    return root.inWatchlistByUsers;
-  }
-
-  @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
     name: "spokenLanguages",
     nullable: false
   })
@@ -104,5 +96,13 @@ export class MovieCount {
   })
   getLikedBy(@TypeGraphQL.Root() root: MovieCount, @TypeGraphQL.Args() args: MovieCountLikedByArgs): number {
     return root.likedBy;
+  }
+
+  @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
+    name: "inWatchlistByUsers",
+    nullable: false
+  })
+  getInWatchlistByUsers(@TypeGraphQL.Root() root: MovieCount, @TypeGraphQL.Args() args: MovieCountInWatchlistByUsersArgs): number {
+    return root.inWatchlistByUsers;
   }
 }

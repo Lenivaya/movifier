@@ -42,3 +42,5 @@ export { MovifierAppUserScalarFieldEnum } from "./MovifierAppUserScalarFieldEnum
 export { QueryMode } from "./QueryMode";
 export { SortOrder } from "./SortOrder";
 export { TransactionIsolationLevel } from "./TransactionIsolationLevel";
+export { UserMovieWatchlistOrderByRelevanceFieldEnum } from "./UserMovieWatchlistOrderByRelevanceFieldEnum";
+export { UserMovieWatchlistScalarFieldEnum } from "./UserMovieWatchlistScalarFieldEnum";

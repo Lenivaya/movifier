@@ -12,7 +12,7 @@ import { MovieSpokenLanguage } from "../../../models/MovieSpokenLanguage";
 import { MovieStats } from "../../../models/MovieStats";
 import { MovieStudio } from "../../../models/MovieStudio";
 import { MovieWatchedByUser } from "../../../models/MovieWatchedByUser";
-import { MovifierAppUser } from "../../../models/MovifierAppUser";
+import { UserMovieWatchlist } from "../../../models/UserMovieWatchlist";
 import { MovieCrewMembersArgs } from "./args/MovieCrewMembersArgs";
 import { MovieGenresArgs } from "./args/MovieGenresArgs";
 import { MovieInWatchlistByUsersArgs } from "./args/MovieInWatchlistByUsersArgs";
@@ -149,21 +149,6 @@ export class MovieRelationsResolver {
     });
   }
 
-  @TypeGraphQL.FieldResolver(_type => [MovifierAppUser], {
-    nullable: false
-  })
-  async inWatchlistByUsers(@TypeGraphQL.Root() movie: Movie, @TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Info() info: GraphQLResolveInfo, @TypeGraphQL.Args() args: MovieInWatchlistByUsersArgs): Promise<MovifierAppUser[]> {
-    const { _count } = transformInfoIntoPrismaArgs(info);
-    return getPrismaFromContext(ctx).movie.findUniqueOrThrow({
-      where: {
-        id: movie.id,
-      },
-    }).inWatchlistByUsers({
-      ...args,
-      ...(_count && transformCountFieldIntoSelectRelationsCount(_count)),
-    });
-  }
-
   @TypeGraphQL.FieldResolver(_type => [MovieSpokenLanguage], {
     nullable: false
   })
@@ -204,6 +189,21 @@ export class MovieRelationsResolver {
         id: movie.id,
       },
     }).likedBy({
+      ...args,
+      ...(_count && transformCountFieldIntoSelectRelationsCount(_count)),
+    });
+  }
+
+  @TypeGraphQL.FieldResolver(_type => [UserMovieWatchlist], {
+    nullable: false
+  })
+  async inWatchlistByUsers(@TypeGraphQL.Root() movie: Movie, @TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Info() info: GraphQLResolveInfo, @TypeGraphQL.Args() args: MovieInWatchlistByUsersArgs): Promise<UserMovieWatchlist[]> {
+    const { _count } = transformInfoIntoPrismaArgs(info);
+    return getPrismaFromContext(ctx).movie.findUniqueOrThrow({
+      where: {
+        id: movie.id,
+      },
+    }).inWatchlistByUsers({
       ...args,
       ...(_count && transformCountFieldIntoSelectRelationsCount(_count)),
     });
