@@ -99,7 +99,10 @@ export const MoviePageDetailsTabs: FC<MoviePageDetailsTabsItemFragment> = ({
             <MoviePageDetailsSectionContainer>
               <MoviePageDetailSection title={'Studios'}>
                 {studios.map((studio) => (
-                  <Link href={`/movies/studio/${studio.name}`} key={studio.name}>
+                  <Link
+                    href={`/movies/studio/${studio.name}`}
+                    key={studio.name}
+                  >
                     <Badge>{studio.name}</Badge>
                   </Link>
                 ))}
@@ -107,7 +110,10 @@ export const MoviePageDetailsTabs: FC<MoviePageDetailsTabsItemFragment> = ({
 
               <MoviePageDetailSection title={'Spoken languages'}>
                 {spokenLanguages.map((lang) => (
-                  <Link href={`/movies/language/${lang.language}`} key={lang.language}>
+                  <Link
+                    href={`/movies/language/${lang.language}`}
+                    key={lang.language}
+                  >
                     <Badge>{lang.language}</Badge>
                   </Link>
                 ))}

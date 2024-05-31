@@ -44,7 +44,7 @@ export const MovieCard: FC<MovieCardItemFragment> = ({ movieInfo, id }) => {
   return (
     <Link href={`/movies/${id}`} passHref>
       <motion.div
-        className='flex flex-col justify-between max-w-64 w-64 max-h-full relative group'
+        className='flex flex-col justify-between max-w-52 w-52 max-h-full relative group'
         whileHover={{
           scale: 1.05,
           transition: { duration: 0.5 }
@@ -58,9 +58,8 @@ export const MovieCard: FC<MovieCardItemFragment> = ({ movieInfo, id }) => {
           >
             <img
               src={movieInfo?.posterUrl ?? ''}
-              width={300}
-              height={300}
               alt={movieInfo?.title ?? ''}
+              className='object-fill w-full'
             ></img>
 
             {hovering && (
