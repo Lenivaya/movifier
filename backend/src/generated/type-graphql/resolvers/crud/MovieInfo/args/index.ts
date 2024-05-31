@@ -1,0 +1,14 @@
+export { AggregateMovieInfoArgs } from "./AggregateMovieInfoArgs";
+export { CreateManyMovieInfoArgs } from "./CreateManyMovieInfoArgs";
+export { CreateOneMovieInfoArgs } from "./CreateOneMovieInfoArgs";
+export { DeleteManyMovieInfoArgs } from "./DeleteManyMovieInfoArgs";
+export { DeleteOneMovieInfoArgs } from "./DeleteOneMovieInfoArgs";
+export { FindFirstMovieInfoArgs } from "./FindFirstMovieInfoArgs";
+export { FindFirstMovieInfoOrThrowArgs } from "./FindFirstMovieInfoOrThrowArgs";
+export { FindManyMovieInfoArgs } from "./FindManyMovieInfoArgs";
+export { FindUniqueMovieInfoArgs } from "./FindUniqueMovieInfoArgs";
+export { FindUniqueMovieInfoOrThrowArgs } from "./FindUniqueMovieInfoOrThrowArgs";
+export { GroupByMovieInfoArgs } from "./GroupByMovieInfoArgs";
+export { UpdateManyMovieInfoArgs } from "./UpdateManyMovieInfoArgs";
+export { UpdateOneMovieInfoArgs } from "./UpdateOneMovieInfoArgs";
+export { UpsertOneMovieInfoArgs } from "./UpsertOneMovieInfoArgs";

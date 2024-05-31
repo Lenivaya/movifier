@@ -1,0 +1,281 @@
+datasource movifier_db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider        = "prisma-client-js"
+  previewFeatures = ["fullTextSearch"]
+}
+
+generator typegraphql {
+  provider = "typegraphql-prisma"
+  output   = "./src/generated/type-graphql"
+  // emitRedundantTypesInfo = true
+}
+
+model MovieStudio {
+  id        String   @id @unique @default(cuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  name      String   @unique
+  movies    Movie[]
+}
+
+model Movie {
+  id                 String                   @id @unique @default(cuid())
+  createdAt          DateTime                 @default(now())
+  updatedAt          DateTime                 @updatedAt
+  movieInfo          MovieInfo?
+  movieStats         MovieStats?
+  crewMembers        MovieCrewMemberOnMovie[]
+  studios            MovieStudio[]
+  genres             Genre[]
+  keywordCategories  MovieKeywordCategory[]
+  ratedBy            MovieRating[]
+  movieLists         MovieList[]
+  spokenLanguages    MovieSpokenLanguage[]
+  watchedBy          MovieWatchedByUser[]
+  likedBy            MovieLikedByUser[]
+  inWatchlistByUsers UserMovieWatchlist[]
+}
+
+model MovieStats {
+  id                String @id @default(cuid())
+  timesWatchedCount Int
+  totalRatingsCount Int
+  totalLikesCount   Int
+  overallPlaceInTop Int
+  avgRating         Float
+  movieId           String @unique
+  movie             Movie  @relation(fields: [movieId], references: [id], onDelete: Cascade)
+}
+
+model MovieInfo {
+  id                String   @id @unique @default(cuid())
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+  imdbId            String   @unique
+  title             String
+  description       String
+  alternativeTitles String[] @default([])
+  durationInMinutes Int
+  posterUrl         String
+  releaseDate       DateTime
+  movieId           String   @unique
+  movie             Movie    @relation(fields: [movieId], references: [id], onDelete: Cascade)
+
+  @@index([title, description, imdbId], map: "movie_info_pgroonga_idx")
+}
+
+model MovieSpokenLanguage {
+  language  String   @id @unique
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  movies    Movie[]
+}
+
+model MovieCrewMemberOnMovie {
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  movieId               String
+  movieCrewMemberId     String
+  movieCrewMemberTypeId String
+
+  movie               Movie               @relation(fields: [movieId], references: [id])
+  crewMember          MovieCrewMember     @relation(fields: [movieCrewMemberId], references: [id])
+  movieCrewMemberType MovieCrewMemberType @relation(fields: [movieCrewMemberTypeId], references: [id])
+
+  @@id([movieId, movieCrewMemberId, movieCrewMemberTypeId])
+}
+
+model MovieCrewMember {
+  id          String                   @id @unique @default(cuid())
+  createdAt   DateTime                 @default(now())
+  updatedAt   DateTime                 @updatedAt
+  name        String
+  photoUrl    String
+  description String
+  imdbId      String                   @unique
+  movies      MovieCrewMemberOnMovie[]
+}
+
+model MovieCrewMemberType {
+  id               String                   @id @unique @default(cuid())
+  name             String                   @unique
+  movieCrewMembers MovieCrewMemberOnMovie[]
+}
+
+model Genre {
+  name      String   @id @unique
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  movies    Movie[]
+
+  @@index([name], map: "genre_pgroonga_idx")
+}
+
+model MovieKeywordCategory {
+  id     String  @id @unique @default(cuid())
+  name   String  @unique
+  movies Movie[]
+
+  @@index([name], map: "movie_keyword_category_pgroonga_idx")
+}
+
+enum MoviefireAppUserRole {
+  USER
+  ADMIN
+}
+
+model MovifierAppUser {
+  id                   String                   @id @unique @default(cuid())
+  createdAt            DateTime                 @default(now())
+  updatedAt            DateTime                 @updatedAt
+  email                String                   @unique
+  username             String                   @unique
+  /// @TypeGraphQL.omit(output: true)
+  password             String
+  name                 String
+  role                 MoviefireAppUserRole     @default(USER)
+  watchlist            UserMovieWatchlist[]
+  ratedMovies          MovieRating[]
+  watchedMovies        MovieWatchedByUser[]
+  likedMovies          MovieLikedByUser[]
+  movieLists           MovieList[]
+  movieListsComments   MovieListComment[]
+  likedMovieReviews    MovieReviewLikedByUser[]
+  MovieListLikedByUser MovieListLikedByUser[]
+}
+
+model UserMovieWatchlist {
+  createdAt DateTime @default(now())
+
+  userId  String
+  movieId String
+
+  movie Movie           @relation(fields: [movieId], references: [id])
+  user  MovifierAppUser @relation(fields: [userId], references: [id])
+
+  @@id([userId, movieId])
+}
+
+model MovieList {
+  id          String   @id @unique @default(cuid())
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  name        String
+  description String
+  tags        String[]
+  movies      Movie[]
+
+  userId          String
+  movieListAuthor MovifierAppUser @relation(fields: [userId], references: [id])
+
+  stats    MovieListStats?
+  comments MovieListComment[]
+  likedBy  MovieListLikedByUser[]
+
+  @@index([name, description], map: "movie_list_pgroonga_idx")
+}
+
+model MovieListStats {
+  id        String   @id @unique @default(cuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  views     Int
+  likes     Int
+
+  movieListId String    @unique
+  MovieList   MovieList @relation(fields: [movieListId], references: [id])
+}
+
+model MovieListComment {
+  id        String   @id @unique @default(cuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  content   String
+
+  movieListId String
+  movieList   MovieList @relation(fields: [movieListId], references: [id])
+
+  userId String
+  user   MovifierAppUser @relation(fields: [userId], references: [id])
+}
+
+model MovieListLikedByUser {
+  createdAt DateTime @default(now())
+
+  userId      String
+  movieListId String
+
+  movieList MovieList       @relation(fields: [movieListId], references: [id])
+  user      MovifierAppUser @relation(fields: [userId], references: [id])
+
+  @@id([userId, movieListId])
+}
+
+model MovieWatchedByUser {
+  createdAt DateTime @default(now())
+
+  userId  String
+  movieId String
+
+  movie Movie           @relation(fields: [movieId], references: [id])
+  user  MovifierAppUser @relation(fields: [userId], references: [id])
+
+  @@id([userId, movieId])
+}
+
+model MovieLikedByUser {
+  createdAt DateTime @default(now())
+
+  userId  String
+  movieId String
+
+  movie Movie           @relation(fields: [movieId], references: [id])
+  user  MovifierAppUser @relation(fields: [userId], references: [id])
+
+  @@id([userId, movieId])
+}
+
+model MovieRating {
+  id        String       @id @unique @default(cuid())
+  createdAt DateTime     @default(now())
+  updatedAt DateTime     @updatedAt
+  rating    Int
+  review    MovieReview?
+
+  movieId String
+  movie   Movie  @relation(fields: [movieId], references: [id], onDelete: Cascade)
+
+  userId String
+  user   MovifierAppUser @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, movieId])
+}
+
+model MovieReview {
+  id        String   @id @unique @default(cuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  content   String
+
+  ratingId String      @unique
+  rating   MovieRating @relation(fields: [ratingId], references: [id], onDelete: Cascade)
+
+  likedBy MovieReviewLikedByUser[]
+}
+
+model MovieReviewLikedByUser {
+  createdAt DateTime @default(now())
+
+  userId        String
+  movieReviewId String
+
+  movieReview MovieReview     @relation(fields: [movieReviewId], references: [id], onDelete: Cascade)
+  user        MovifierAppUser @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@id([userId, movieReviewId])
+}

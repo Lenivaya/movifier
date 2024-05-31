@@ -1,0 +1,28 @@
+services:
+  database:
+    container_name: movifier-db
+    image: groonga/pgroonga:latest-alpine-16
+    environment:
+      POSTGRES_USER: movifier-db
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: movifier-db
+    ports:
+      - "5432:5432"
+    volumes:
+      - movifier-db-data:/var/lib/postgresql/data
+
+  redis:
+    container_name: movifier-redis
+    image: redis:7.2.4-alpine
+    ports:
+      - "6379:6379"
+    expose:
+      - "6379"
+    networks:
+      - movifier-network
+
+volumes:
+  movifier-db-data:
+networks:
+  movifier-network:
+    driver: bridge

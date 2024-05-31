@@ -1,0 +1,25 @@
+{
+    "options": [
+        {
+            "mode": "create",
+            "project": "./tsconfig.json",
+            "fileFirst": true,
+            "useBanner": false,
+            "useTimestamp": false,
+            "quote": "'",
+            "useSemicolon": false,
+            "directive": "",
+            "fileExt": "none",
+            "overwrite": true,
+            "backup": false,
+            "generationStyle": "auto",
+            "include": [
+                "**/*.ts",
+                "**/*.tsx",
+            ],
+            "exclude": [],
+            "skipEmptyDir": true,
+            "startFrom": "./src",
+        }
+    ]
+}
