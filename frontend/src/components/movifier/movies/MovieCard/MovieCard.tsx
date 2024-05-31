@@ -8,7 +8,7 @@ import {
   CardTitle
 } from '@/components/ui/card'
 import { gql } from '@apollo/client'
-import { MovieCardItemFragment } from '@/lib/graphql/__generated__'
+import { MovieCardItemFragment } from '@/lib/'
 import { Separator } from '@/components/ui'
 import { Link } from 'next-view-transitions'
 import { useCurrentUser } from '@/lib/hooks/CurrentUser'

@@ -6713,6 +6713,14 @@ export type GetUserWatchlistQueryVariables = Exact<{
 
 export type GetUserWatchlistQuery = { __typename?: 'Query', searchMovies: Array<{ __typename?: 'Movie', id: string, movieInfo?: { __typename?: 'MovieInfo', id: string, title: string, posterUrl: string } | null }> };
 
+export type GetUserWatchedMoviesQueryVariables = Exact<{
+  searchCriteria: MoviesSearchCriteriaInput;
+  userId: Scalars['String']['input'];
+}>;
+
+
+export type GetUserWatchedMoviesQuery = { __typename?: 'Query', searchMovies: Array<{ __typename?: 'Movie', id: string, movieInfo?: { __typename?: 'MovieInfo', id: string, title: string, posterUrl: string } | null }> };
+
 export type MovieReviewCardItemFragment = { __typename?: 'MovieReview', id: string, content: string, rating: { __typename?: 'MovieRating', id: string, rating: number, user: { __typename?: 'MovifierAppUser', id: string, username: string } }, _count?: { __typename?: 'MovieReviewCount', likedBy: number } | null };
 
 export type GetMovieRatingReviewQueryVariables = Exact<{
@@ -9463,6 +9471,51 @@ export type GetUserWatchlistQueryHookResult = ReturnType<typeof useGetUserWatchl
 export type GetUserWatchlistLazyQueryHookResult = ReturnType<typeof useGetUserWatchlistLazyQuery>;
 export type GetUserWatchlistSuspenseQueryHookResult = ReturnType<typeof useGetUserWatchlistSuspenseQuery>;
 export type GetUserWatchlistQueryResult = Apollo.QueryResult<GetUserWatchlistQuery, GetUserWatchlistQueryVariables>;
+export const GetUserWatchedMoviesDocument = gql`
+    query GetUserWatchedMovies($searchCriteria: MoviesSearchCriteriaInput!, $userId: String!) {
+  searchMovies(
+    searchCriteria: $searchCriteria
+    where: {watchedBy: {some: {userId: {equals: $userId}}}}
+    orderBy: [{createdAt: desc}]
+  ) {
+    ...MovieCardItem
+  }
+}
+    ${MovieCardItemFragmentDoc}`;
+
+/**
+ * __useGetUserWatchedMoviesQuery__
+ *
+ * To run a query within a React component, call `useGetUserWatchedMoviesQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetUserWatchedMoviesQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetUserWatchedMoviesQuery({
+ *   variables: {
+ *      searchCriteria: // value for 'searchCriteria'
+ *      userId: // value for 'userId'
+ *   },
+ * });
+ */
+export function useGetUserWatchedMoviesQuery(baseOptions: Apollo.QueryHookOptions<GetUserWatchedMoviesQuery, GetUserWatchedMoviesQueryVariables> & ({ variables: GetUserWatchedMoviesQueryVariables; skip?: boolean; } | { skip: boolean; }) ) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<GetUserWatchedMoviesQuery, GetUserWatchedMoviesQueryVariables>(GetUserWatchedMoviesDocument, options);
+      }
+export function useGetUserWatchedMoviesLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetUserWatchedMoviesQuery, GetUserWatchedMoviesQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<GetUserWatchedMoviesQuery, GetUserWatchedMoviesQueryVariables>(GetUserWatchedMoviesDocument, options);
+        }
+export function useGetUserWatchedMoviesSuspenseQuery(baseOptions?: Apollo.SuspenseQueryHookOptions<GetUserWatchedMoviesQuery, GetUserWatchedMoviesQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useSuspenseQuery<GetUserWatchedMoviesQuery, GetUserWatchedMoviesQueryVariables>(GetUserWatchedMoviesDocument, options);
+        }
+export type GetUserWatchedMoviesQueryHookResult = ReturnType<typeof useGetUserWatchedMoviesQuery>;
+export type GetUserWatchedMoviesLazyQueryHookResult = ReturnType<typeof useGetUserWatchedMoviesLazyQuery>;
+export type GetUserWatchedMoviesSuspenseQueryHookResult = ReturnType<typeof useGetUserWatchedMoviesSuspenseQuery>;
+export type GetUserWatchedMoviesQueryResult = Apollo.QueryResult<GetUserWatchedMoviesQuery, GetUserWatchedMoviesQueryVariables>;
 export const GetMovieRatingReviewDocument = gql`
     query GetMovieRatingReview($ratingId: String!) {
   movieReview(where: {ratingId: $ratingId}) {

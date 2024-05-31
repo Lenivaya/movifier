@@ -1,6 +1,7 @@
 'use client'
 
 import * as React from 'react'
+import { Suspense, useEffect } from 'react'
 import Link from 'next/link'
 import {
   ChevronLeft,
@@ -46,24 +47,23 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { gql } from '@apollo/client'
 import {
   MoviesSearchCriteriaInput,
-  useGetUserWatchlistSuspenseQuery
+  useGetUserWatchedMoviesSuspenseQuery
 } from '@/lib'
 import { useCurrentUser } from '@/lib/hooks/CurrentUser'
 import { MovieCardList } from '@/components/movifier/movies/MovieCardList'
 import { useMutative } from 'use-mutative'
 import { F } from '@mobily/ts-belt'
 import { useSettingsPage } from '@/app/user/dashboard/settingsPageContext'
-import { Suspense, useEffect } from 'react'
 import { AppLoader } from '@/components/movifier/generic'
 
-const GET_USER_WATCHLIST = gql`
-  query GetUserWatchlist(
+const GET_USER_WATCHED_MOVIES = gql`
+  query GetUserWatchedMovies(
     $searchCriteria: MoviesSearchCriteriaInput!
     $userId: String!
   ) {
     searchMovies(
       searchCriteria: $searchCriteria
-      where: { inWatchlistByUsers: { some: { userId: { equals: $userId } } } }
+      where: { watchedBy: { some: { userId: { equals: $userId } } } }
       orderBy: [{ createdAt: desc }]
     ) {
       ...MovieCardItem
@@ -71,11 +71,11 @@ const GET_USER_WATCHLIST = gql`
   }
 `
 
-export default function SettingsWatchlistPage() {
-  return <Watchlist />
+export default function SettingsWatchedMoviesPage() {
+  return <WatchedMovies />
 }
 
-export function Watchlist() {
+export function WatchedMovies() {
   const { setSettingsPageContext } = useSettingsPage()
 
   const [searchCriteria, setSearchCriteria] =
@@ -88,7 +88,10 @@ export function Watchlist() {
       setSearchCriteria((_prev) => ({ [field]: value }))
 
   useEffect(() => {
-    setSettingsPageContext((prev) => ({ ...prev, currentPage: 'Watchlist' }))
+    setSettingsPageContext((prev) => ({
+      ...prev,
+      currentPage: 'WatchedMovies'
+    }))
   }, [])
 
   return (
@@ -104,7 +107,7 @@ export function Watchlist() {
             <BreadcrumbSeparator />
             <BreadcrumbItem>
               <BreadcrumbLink asChild>
-                <Link href='#'>Watchlist</Link>
+                <Link href='#'>Watched movies</Link>
               </BreadcrumbLink>
             </BreadcrumbItem>
           </BreadcrumbList>
@@ -128,9 +131,9 @@ export function Watchlist() {
           <div className='grid'>
             <Card className='sm:col-span-2' x-chunk='dashboard-05-chunk-0'>
               <CardHeader className='pb-3 w-full'>
-                <CardTitle>Your watchlist</CardTitle>
+                <CardTitle>Your watched movies</CardTitle>
                 <CardDescription className='max-w-lg text-balance leading-relaxed'>
-                  Here are the movies you wanted to watch sometime later.
+                  Movies you have already watched
                 </CardDescription>
               </CardHeader>
             </Card>
@@ -181,10 +184,8 @@ export function Watchlist() {
             <TabsContent value='week'>
               <Card x-chunk='dashboard-05-chunk-3'>
                 <CardHeader className='px-7'>
-                  <CardTitle>Watchlist</CardTitle>
-                  <CardDescription>
-                    Recent movies from your watchlist
-                  </CardDescription>
+                  <CardTitle>Watched movies</CardTitle>
+                  <CardDescription>Recent movies you watched</CardDescription>
                 </CardHeader>
                 <CardContent>
                   <Suspense fallback={<AppLoader />}>
@@ -201,7 +202,7 @@ export function Watchlist() {
             <CardHeader className='flex flex-row items-start bg-muted/50'>
               <div className='grid gap-0.5'>
                 <CardTitle className='group flex items-center gap-2 text-lg'>
-                  Watch list statistics
+                  Watched movies statistics
                   <Button
                     size='icon'
                     variant='outline'
@@ -337,7 +338,7 @@ const MovieCardListSuspense = ({
   searchCriteria: MoviesSearchCriteriaInput
 }) => {
   const user = useCurrentUser()
-  const { data } = useGetUserWatchlistSuspenseQuery({
+  const { data } = useGetUserWatchedMoviesSuspenseQuery({
     variables: { searchCriteria, userId: user?.id ?? '' },
     fetchPolicy: 'cache-and-network'
   })

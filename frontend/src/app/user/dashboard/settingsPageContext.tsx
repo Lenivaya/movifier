@@ -7,7 +7,7 @@ import {
   useState
 } from 'react'
 
-export type SettingsPage = 'Home' | 'Watchlist' | 'Liked'
+export type SettingsPage = 'Home' | 'Watchlist' | 'Liked' | 'WatchedMovies'
 export type SettingsPageContextT = {
   currentPage: SettingsPage
 }
