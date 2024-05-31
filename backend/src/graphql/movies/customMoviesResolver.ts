@@ -10,6 +10,7 @@ import {
   transformInfoIntoPrismaArgs
 } from '@/generated/type-graphql/helpers'
 
+@TypeGraphQL.Resolver()
 export class CustomMoviesResolver {
   @TypeGraphQL.Query((_returns) => [Movie], {
     nullable: false

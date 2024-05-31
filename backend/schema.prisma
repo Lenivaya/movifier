@@ -83,7 +83,7 @@ model MovieCrewMemberOnMovie {
   movieCrewMemberId     String
   movieCrewMemberTypeId String
 
-  movie               Movie               @relation(fields: [movieId], references: [id])
+  movie               Movie               @relation(fields: [movieId], references: [id], onDelete: Cascade)
   crewMember          MovieCrewMember     @relation(fields: [movieCrewMemberId], references: [id])
   movieCrewMemberType MovieCrewMemberType @relation(fields: [movieCrewMemberTypeId], references: [id])
 
