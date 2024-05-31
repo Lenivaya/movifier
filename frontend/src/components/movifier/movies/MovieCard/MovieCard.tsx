@@ -17,6 +17,7 @@ import { MovieWatchedButton } from '@/components/movifier/movies/MoviePage/Movie
 import { isSome } from '@/lib/types'
 import { MovieLikedButton } from '@/components/movifier/movies/MoviePage/MovieLikedButton'
 import { MovieWatchListButton } from '@/components/movifier/movies/MoviePage/MovieWatchListButton'
+import { useHover } from '@uidotdev/usehooks'
 
 export const MovieCardFragment = gql`
   fragment MovieCardItem on Movie {
@@ -38,6 +39,8 @@ export const MovieCard: FC<MovieCardItemFragment> = ({ movieInfo, id }) => {
     userId: user?.id ?? ''
   }
 
+  const [hoveringRef, hovering] = useHover()
+
   return (
     <Link href={`/movies/${id}`}>
       <motion.div
@@ -49,7 +52,10 @@ export const MovieCard: FC<MovieCardItemFragment> = ({ movieInfo, id }) => {
         transition={{ type: 'spring', duration: 0.8 }}
       >
         <Card>
-          <CardHeader className={'!m-0 p-0 hover:shadow-lg relative'}>
+          <CardHeader
+            ref={hoveringRef}
+            className={'!m-0 p-0 hover:shadow-lg relative'}
+          >
             <img
               src={movieInfo?.posterUrl ?? ''}
               width={300}
@@ -57,23 +63,25 @@ export const MovieCard: FC<MovieCardItemFragment> = ({ movieInfo, id }) => {
               alt={movieInfo?.title ?? ''}
             ></img>
 
-            <div className='absolute bottom-5 flex-row items-center gap-1 hidden group-hover:flex h-[3em] w-full p-3 bg-black/60'>
-              <MovieWatchedButton
-                className={'w-1/3 h-full'}
-                composeKey={composeKey}
-                isSignedIn={isSignedIn}
-              />
-              <MovieLikedButton
-                className={'w-1/3 h-full'}
-                composeKey={composeKey}
-                isSignedIn={isSignedIn}
-              />
-              <MovieWatchListButton
-                className={'w-1/3 h-full'}
-                composeKey={composeKey}
-                isSignedIn={isSignedIn}
-              />
-            </div>
+            {hovering && (
+              <div className='absolute bottom-5 flex-row items-center gap-1 hidden group-hover:flex h-[3em] w-full p-3 bg-black/60'>
+                <MovieWatchedButton
+                  className={'w-1/3 h-full'}
+                  composeKey={composeKey}
+                  isSignedIn={isSignedIn}
+                />
+                <MovieLikedButton
+                  className={'w-1/3 h-full'}
+                  composeKey={composeKey}
+                  isSignedIn={isSignedIn}
+                />
+                <MovieWatchListButton
+                  className={'w-1/3 h-full'}
+                  composeKey={composeKey}
+                  isSignedIn={isSignedIn}
+                />
+              </div>
+            )}
           </CardHeader>
 
           <Separator orientation={'horizontal'} className={'mb-5'} />
