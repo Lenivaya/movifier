@@ -24,29 +24,34 @@ export class CustomMoviesResolver {
 
     const search = searchCriteriaArgs.searchCriteria?.search
     if (isSome(search)) {
-      const words = search.split(' ')
+      const patterns = search
+        .split(' ')
+        .filter((word) => word.length > 0)
+        .map((word) => `%${word}%`)
 
-      if (!where.OR) where.OR = []
-      words.forEach((word) => {
-        where.OR!.push({
+      let and: Prisma.MovieWhereInput[] = []
+      patterns.forEach((pattern) => {
+        let or: Prisma.MovieWhereInput[] = []
+
+        or.push({
           movieInfo: {
             OR: [
-              { title: { contains: word, mode: 'insensitive' } },
-              { description: { contains: word, mode: 'insensitive' } },
-              { imdbId: { contains: word, mode: 'insensitive' } },
-              { alternativeTitles: { has: word } }
+              { title: { contains: pattern, mode: 'insensitive' } },
+              { description: { contains: pattern, mode: 'insensitive' } },
+              { imdbId: { contains: pattern, mode: 'insensitive' } },
+              { alternativeTitles: { has: pattern } }
             ]
           }
         })
 
-        where.OR!.push({
+        or.push({
           crewMembers: {
             some: {
               crewMember: {
                 is: {
                   OR: [
-                    { name: { contains: search, mode: 'insensitive' } },
-                    { imdbId: { contains: search, mode: 'insensitive' } }
+                    { name: { contains: pattern, mode: 'insensitive' } },
+                    { imdbId: { contains: pattern, mode: 'insensitive' } }
                   ]
                 }
               }
@@ -54,38 +59,42 @@ export class CustomMoviesResolver {
           }
         })
 
-        where.OR!.push({
+        or.push({
           genres: {
             some: {
-              OR: [{ name: { contains: search, mode: 'insensitive' } }]
+              OR: [{ name: { contains: pattern, mode: 'insensitive' } }]
             }
           }
         })
 
-        where.OR!.push({
+        or.push({
           studios: {
             some: {
-              OR: [{ name: { contains: search, mode: 'insensitive' } }]
+              OR: [{ name: { contains: pattern, mode: 'insensitive' } }]
             }
           }
         })
 
-        where.OR!.push({
+        or.push({
           spokenLanguages: {
             some: {
-              OR: [{ language: { contains: search, mode: 'insensitive' } }]
+              OR: [{ language: { contains: pattern, mode: 'insensitive' } }]
             }
           }
         })
 
-        where.OR!.push({
-          spokenLanguages: {
+        or.push({
+          keywordCategories: {
             some: {
-              OR: [{ language: { contains: search, mode: 'insensitive' } }]
+              OR: [{ name: { contains: pattern, mode: 'insensitive' } }]
             }
           }
         })
+
+        and.push({ OR: or })
       })
+
+      where.AND = and
     }
 
     // @ts-ignore
