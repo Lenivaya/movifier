@@ -42,7 +42,7 @@ export const MovieCard: FC<MovieCardItemFragment> = ({ movieInfo, id }) => {
   const [hoveringRef, hovering] = useHover()
 
   return (
-    <Link href={`/movies/${id}`}>
+    <Link href={`/movies/${id}`} passHref>
       <motion.div
         className='flex flex-col justify-between max-w-64 w-64 max-h-full relative group'
         whileHover={{
@@ -64,7 +64,7 @@ export const MovieCard: FC<MovieCardItemFragment> = ({ movieInfo, id }) => {
             ></img>
 
             {hovering && (
-              <div className='absolute bottom-5 flex-row items-center gap-1 hidden group-hover:flex h-[3em] w-full p-3 bg-black/60'>
+              <div className='absolute bottom-5 flex-row items-center gap-1 hidden group-hover:flex h-[3em] w-full p-3 bg-black/80'>
                 <MovieWatchedButton
                   className={'w-1/3 h-full'}
                   composeKey={composeKey}

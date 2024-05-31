@@ -95,7 +95,7 @@ export const MovieWatchedButton: FC<
       >
         <EyeIcon
           className={cn('cursor-pointer w-full h-full', {
-            'text-green-900': !isMovieWatched,
+            'text-green-800': !isMovieWatched,
             'text-green-500': isMovieWatched
           })}
           onClick={onClick}

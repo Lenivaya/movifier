@@ -92,7 +92,7 @@ export const MovieLikedButton: FC<
           fill={'currentColor'}
           onClick={onClick}
           className={cn('cursor-pointer w-full h-full', {
-            'text-red-900 brightness-75': !isMovieLiked,
+            'text-red-800': !isMovieLiked,
             'text-red-500': isMovieLiked
           })}
         />

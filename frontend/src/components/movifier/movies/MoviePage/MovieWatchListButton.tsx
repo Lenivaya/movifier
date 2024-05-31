@@ -98,7 +98,7 @@ export const MovieWatchListButton: FC<
         <Clock
           onClick={onClick}
           className={cn('cursor-pointer w-full h-full', {
-            'text-blue-900': !isMovieInWatchlist,
+            'text-blue-800': !isMovieInWatchlist,
             'text-blue-500': isMovieInWatchlist
           })}
         />
