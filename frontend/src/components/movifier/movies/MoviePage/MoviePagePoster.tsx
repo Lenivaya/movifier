@@ -7,6 +7,7 @@ import { motion } from 'framer-motion'
 export const MoviePagePosterFragment = gql`
   fragment MoviePagePosterItem on Movie {
     movieInfo {
+      id
       posterUrl
       title
     }
@@ -21,7 +22,7 @@ export const MoviePagePoster: FC<MoviePagePosterItemFragment> = ({
       <DialogTrigger asChild>
         <motion.div
           className={
-            'w-[230px] h-[345px] justify-self-end align-top rounded-lg max-w-full sticky top-5 overflow-hidden'
+            'w-auto h-[400px] justify-self-end align-top rounded-lg max-w-full sticky top-5 overflow-hidden'
           }
           whileHover={{
             scale: 1.05,

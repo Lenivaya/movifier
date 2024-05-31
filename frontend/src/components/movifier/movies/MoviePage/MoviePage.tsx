@@ -61,7 +61,7 @@ export const MoviePage: FC<{
   return (
     <div className={'h-lvh w-full pt-5 pb-5'}>
       <div className={'max-md:w-full max-lg:w-5/6 max-xl:w-3/4 w-7/12 mx-auto'}>
-        <div className='relative grid grid-cols-[20%_80%] mx-auto gap-4 w-auto justify-start align-top'>
+        <div className='relative grid grid-cols-[25%_75%] mx-auto gap-4 w-auto justify-start align-top'>
           <MoviePagePoster {...movie} />
 
           <Card className={'mb-5 w-auto justify-self-stretch'}>
