@@ -2,6 +2,7 @@
   "scripts": {
     "dev": "ts-node --transpile-only src/index.ts",
     "dev:watch": "nodemon --transpile-only --watch src src/index.ts | pino-pretty",
+    "run:clustered": "ts-node --transpile-only src/clustered.ts",
     "gen:schema": "ts-node --transpile-only scripts/generate-schema.ts",
     "gen:schema:watch": "nodemon --transpile-only --watch src scripts/generate-schema.ts",
     "code:format": "prettier --write src/",
