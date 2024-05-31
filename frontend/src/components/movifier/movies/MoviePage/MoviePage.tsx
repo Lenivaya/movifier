@@ -126,16 +126,19 @@ export const MoviePage: FC<{
                     <div className='flex flex-col items-center gap-5'>
                       <div className='flex flex-row gap-5'>
                         <MovieWatchedButton
+                          className={'!w-9 !h-9'}
                           composeKey={composeKeyWithUser}
                           isSignedIn={isSignedIn}
                         />
 
                         <MovieLikedButton
+                          className={'!w-9 !h-9'}
                           composeKey={composeKeyWithUser}
                           isSignedIn={isSignedIn}
                         />
 
                         <MovieWatchListButton
+                          className={'!w-9 !h-9'}
                           composeKey={composeKeyWithUser}
                           isSignedIn={isSignedIn}
                         />

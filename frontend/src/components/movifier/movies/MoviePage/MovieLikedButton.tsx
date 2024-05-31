@@ -1,4 +1,4 @@
-import { FC, useState } from 'react'
+import React, { FC, useCallback, useState } from 'react'
 import {
   cn,
   useIsMovieLikedByUserQuery,
@@ -13,10 +13,12 @@ import { HeartIcon } from 'lucide-react'
 import { ComposeKeyMovieUser } from '@/components/movifier/movies/MoviePage/types'
 import { apolloObjectRemover } from '@/lib/graphql/ApolloClient/cache/helpers/utils'
 
-export const MovieLikedButton: FC<{
-  composeKey: ComposeKeyMovieUser
-  isSignedIn?: boolean
-}> = ({ composeKey, isSignedIn = false }) => {
+export const MovieLikedButton: FC<
+  {
+    composeKey: ComposeKeyMovieUser
+    isSignedIn?: boolean
+  } & React.HTMLAttributes<HTMLDivElement>
+> = ({ composeKey, isSignedIn = false, className }) => {
   const [isMovieLiked, setIsMovieLiked] = useState(false)
   useIsMovieLikedByUserQuery({
     variables: composeKey,
@@ -31,6 +33,8 @@ export const MovieLikedButton: FC<{
   const [unmarkMovieLiked] = useUnmarkMovieLikedMutation()
 
   const handleMovieSetLiked = async () => {
+    if (!isSignedIn) return toast({ title: 'Please sign in to like movie' })
+
     await markMovieLiked({
       variables: composeKey,
       onError: (error) => {
@@ -63,11 +67,18 @@ export const MovieLikedButton: FC<{
     })
   }
 
-  const handleMovieLiked = async () =>
-    isMovieLiked ? await handleMovieUnsetLiked() : await handleMovieSetLiked()
+  const onClick = useCallback(
+    async (event: React.MouseEvent<SVGSVGElement>) => {
+      event.stopPropagation()
+      event.preventDefault()
+
+      isMovieLiked ? await handleMovieUnsetLiked() : await handleMovieSetLiked()
+    },
+    [isMovieLiked]
+  )
 
   return (
-    <div className='flex flex-col items-center gap-2'>
+    <div className={cn('flex flex-col items-center gap-2', className)}>
       <motion.div
         whileHover={{
           scale: 1.4,
@@ -75,14 +86,13 @@ export const MovieLikedButton: FC<{
         }}
         whileTap={{ scale: 0.9 }}
         transition={{ type: 'spring', duration: 0.8 }}
+        className={'w-full h-full'}
       >
         <HeartIcon
-          fill={cn({
-            currentColor: isMovieLiked
-          })}
-          onClick={handleMovieLiked}
-          className={cn('w-10 h-10 cursor-pointer', {
-            'text-slate-700': !isMovieLiked,
+          fill={'currentColor'}
+          onClick={onClick}
+          className={cn('cursor-pointer w-full h-full', {
+            'text-red-900 brightness-75': !isMovieLiked,
             'text-red-500': isMovieLiked
           })}
         />

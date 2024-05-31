@@ -1,4 +1,4 @@
-import { FC, useState } from 'react'
+import React, { FC, useState, forwardRef, useCallback } from 'react'
 import {
   cn,
   useIsMovieWatchedByUserQuery,
@@ -13,10 +13,12 @@ import { EyeIcon } from 'lucide-react'
 import { ComposeKeyMovieUser } from '@/components/movifier/movies/MoviePage/types'
 import { apolloObjectRemover } from '@/lib/graphql/ApolloClient/cache/helpers/utils'
 
-export const MovieWatchedButton: FC<{
-  composeKey: ComposeKeyMovieUser
-  isSignedIn?: boolean
-}> = ({ composeKey, isSignedIn = false }) => {
+export const MovieWatchedButton: FC<
+  {
+    composeKey: ComposeKeyMovieUser
+    isSignedIn?: boolean
+  } & React.HTMLAttributes<HTMLDivElement>
+> = ({ composeKey, isSignedIn = false, className }) => {
   const [isMovieWatched, setIsMovieWatched] = useState(false)
   useIsMovieWatchedByUserQuery({
     variables: composeKey,
@@ -31,6 +33,9 @@ export const MovieWatchedButton: FC<{
   const [unmarkMovieWatched] = useUnmarkMovieWatchedMutation()
 
   const handleMovieSetWatched = async () => {
+    if (!isSignedIn)
+      return toast({ title: 'Please sign in to mark movie as watched' })
+
     await markMovieWatched({
       variables: composeKey,
       onError: (error) => {
@@ -65,13 +70,20 @@ export const MovieWatchedButton: FC<{
     })
   }
 
-  const handleMovieWatched = async () =>
-    isMovieWatched
-      ? await handleMovieUnsetWatched()
-      : await handleMovieSetWatched()
+  const onClick = useCallback(
+    async (event: React.MouseEvent<SVGSVGElement>) => {
+      event.stopPropagation()
+      event.preventDefault()
+
+      isMovieWatched
+        ? await handleMovieUnsetWatched()
+        : await handleMovieSetWatched()
+    },
+    [isMovieWatched]
+  )
 
   return (
-    <div className='flex flex-col items-center gap-2'>
+    <div className={cn('flex flex-col items-center gap-2', className)}>
       <motion.div
         whileHover={{
           scale: 1.4,
@@ -79,13 +91,14 @@ export const MovieWatchedButton: FC<{
         }}
         whileTap={{ scale: 0.9 }}
         transition={{ type: 'spring', duration: 0.8 }}
+        className={'w-full h-full'}
       >
         <EyeIcon
-          onClick={handleMovieWatched}
-          className={cn('w-10 h-10 cursor-pointer', {
-            'text-slate-700': !isMovieWatched,
+          className={cn('cursor-pointer w-full h-full', {
+            'text-green-900': !isMovieWatched,
             'text-green-500': isMovieWatched
           })}
+          onClick={onClick}
         />
       </motion.div>
     </div>
