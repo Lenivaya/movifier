@@ -18,4 +18,3 @@ export { MovieStatsCrudResolver } from "./MovieStats/MovieStatsCrudResolver";
 export { MovieStudioCrudResolver } from "./MovieStudio/MovieStudioCrudResolver";
 export { MovieWatchedByUserCrudResolver } from "./MovieWatchedByUser/MovieWatchedByUserCrudResolver";
 export { MovifierAppUserCrudResolver } from "./MovifierAppUser/MovifierAppUserCrudResolver";
-export { UserMovieWatchlistCrudResolver } from "./UserMovieWatchlist/UserMovieWatchlistCrudResolver";

@@ -1,26 +1,26 @@
 import * as TypeGraphQL from "type-graphql";
 import * as GraphQLScalars from "graphql-scalars";
-import { UserMovieWatchlistOrderByWithRelationAndSearchRelevanceInput } from "../../../inputs/UserMovieWatchlistOrderByWithRelationAndSearchRelevanceInput";
-import { UserMovieWatchlistWhereInput } from "../../../inputs/UserMovieWatchlistWhereInput";
-import { UserMovieWatchlistWhereUniqueInput } from "../../../inputs/UserMovieWatchlistWhereUniqueInput";
-import { UserMovieWatchlistScalarFieldEnum } from "../../../../enums/UserMovieWatchlistScalarFieldEnum";
+import { MovifierAppUserOrderByWithRelationAndSearchRelevanceInput } from "../../../inputs/MovifierAppUserOrderByWithRelationAndSearchRelevanceInput";
+import { MovifierAppUserWhereInput } from "../../../inputs/MovifierAppUserWhereInput";
+import { MovifierAppUserWhereUniqueInput } from "../../../inputs/MovifierAppUserWhereUniqueInput";
+import { MovifierAppUserScalarFieldEnum } from "../../../../enums/MovifierAppUserScalarFieldEnum";
 
 @TypeGraphQL.ArgsType()
 export class MovieInWatchlistByUsersArgs {
-  @TypeGraphQL.Field(_type => UserMovieWatchlistWhereInput, {
+  @TypeGraphQL.Field(_type => MovifierAppUserWhereInput, {
     nullable: true
   })
-  where?: UserMovieWatchlistWhereInput | undefined;
+  where?: MovifierAppUserWhereInput | undefined;
 
-  @TypeGraphQL.Field(_type => [UserMovieWatchlistOrderByWithRelationAndSearchRelevanceInput], {
+  @TypeGraphQL.Field(_type => [MovifierAppUserOrderByWithRelationAndSearchRelevanceInput], {
     nullable: true
   })
-  orderBy?: UserMovieWatchlistOrderByWithRelationAndSearchRelevanceInput[] | undefined;
+  orderBy?: MovifierAppUserOrderByWithRelationAndSearchRelevanceInput[] | undefined;
 
-  @TypeGraphQL.Field(_type => UserMovieWatchlistWhereUniqueInput, {
+  @TypeGraphQL.Field(_type => MovifierAppUserWhereUniqueInput, {
     nullable: true
   })
-  cursor?: UserMovieWatchlistWhereUniqueInput | undefined;
+  cursor?: MovifierAppUserWhereUniqueInput | undefined;
 
   @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
     nullable: true
@@ -32,8 +32,8 @@ export class MovieInWatchlistByUsersArgs {
   })
   skip?: number | undefined;
 
-  @TypeGraphQL.Field(_type => [UserMovieWatchlistScalarFieldEnum], {
+  @TypeGraphQL.Field(_type => [MovifierAppUserScalarFieldEnum], {
     nullable: true
   })
-  distinct?: Array<"createdAt" | "userId" | "movieId"> | undefined;
+  distinct?: Array<"id" | "createdAt" | "updatedAt" | "email" | "username" | "password" | "name" | "role"> | undefined;
 }

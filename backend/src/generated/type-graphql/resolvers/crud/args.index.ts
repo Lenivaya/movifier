@@ -18,4 +18,3 @@ export * from "./MovieStats/args";
 export * from "./MovieStudio/args";
 export * from "./MovieWatchedByUser/args";
 export * from "./MovifierAppUser/args";
-export * from "./UserMovieWatchlist/args";

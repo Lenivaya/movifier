@@ -2,6 +2,7 @@ import * as TypeGraphQL from "type-graphql";
 import * as GraphQLScalars from "graphql-scalars";
 import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../../scalars";
+import { MovieCreateNestedManyWithoutInWatchlistByUsersInput } from "../inputs/MovieCreateNestedManyWithoutInWatchlistByUsersInput";
 import { MovieLikedByUserCreateNestedManyWithoutUserInput } from "../inputs/MovieLikedByUserCreateNestedManyWithoutUserInput";
 import { MovieListCommentCreateNestedManyWithoutUserInput } from "../inputs/MovieListCommentCreateNestedManyWithoutUserInput";
 import { MovieListCreateNestedManyWithoutMovieListAuthorInput } from "../inputs/MovieListCreateNestedManyWithoutMovieListAuthorInput";
@@ -9,7 +10,6 @@ import { MovieListLikedByUserCreateNestedManyWithoutUserInput } from "../inputs/
 import { MovieRatingCreateNestedManyWithoutUserInput } from "../inputs/MovieRatingCreateNestedManyWithoutUserInput";
 import { MovieReviewLikedByUserCreateNestedManyWithoutUserInput } from "../inputs/MovieReviewLikedByUserCreateNestedManyWithoutUserInput";
 import { MovieWatchedByUserCreateNestedManyWithoutUserInput } from "../inputs/MovieWatchedByUserCreateNestedManyWithoutUserInput";
-import { UserMovieWatchlistCreateNestedManyWithoutUserInput } from "../inputs/UserMovieWatchlistCreateNestedManyWithoutUserInput";
 import { MoviefireAppUserRole } from "../../enums/MoviefireAppUserRole";
 
 @TypeGraphQL.InputType("MovifierAppUserCreateInput", {})
@@ -54,10 +54,10 @@ export class MovifierAppUserCreateInput {
   })
   role?: "USER" | "ADMIN" | undefined;
 
-  @TypeGraphQL.Field(_type => UserMovieWatchlistCreateNestedManyWithoutUserInput, {
+  @TypeGraphQL.Field(_type => MovieCreateNestedManyWithoutInWatchlistByUsersInput, {
     nullable: true
   })
-  watchlist?: UserMovieWatchlistCreateNestedManyWithoutUserInput | undefined;
+  watchlist?: MovieCreateNestedManyWithoutInWatchlistByUsersInput | undefined;
 
   @TypeGraphQL.Field(_type => MovieRatingCreateNestedManyWithoutUserInput, {
     nullable: true

@@ -6,11 +6,11 @@ import { MovieLikedByUserOrderByRelationAggregateInput } from "../inputs/MovieLi
 import { MovieListCommentOrderByRelationAggregateInput } from "../inputs/MovieListCommentOrderByRelationAggregateInput";
 import { MovieListLikedByUserOrderByRelationAggregateInput } from "../inputs/MovieListLikedByUserOrderByRelationAggregateInput";
 import { MovieListOrderByRelationAggregateInput } from "../inputs/MovieListOrderByRelationAggregateInput";
+import { MovieOrderByRelationAggregateInput } from "../inputs/MovieOrderByRelationAggregateInput";
 import { MovieRatingOrderByRelationAggregateInput } from "../inputs/MovieRatingOrderByRelationAggregateInput";
 import { MovieReviewLikedByUserOrderByRelationAggregateInput } from "../inputs/MovieReviewLikedByUserOrderByRelationAggregateInput";
 import { MovieWatchedByUserOrderByRelationAggregateInput } from "../inputs/MovieWatchedByUserOrderByRelationAggregateInput";
 import { MovifierAppUserOrderByRelevanceInput } from "../inputs/MovifierAppUserOrderByRelevanceInput";
-import { UserMovieWatchlistOrderByRelationAggregateInput } from "../inputs/UserMovieWatchlistOrderByRelationAggregateInput";
 import { SortOrder } from "../../enums/SortOrder";
 
 @TypeGraphQL.InputType("MovifierAppUserOrderByWithRelationAndSearchRelevanceInput", {})
@@ -55,10 +55,10 @@ export class MovifierAppUserOrderByWithRelationAndSearchRelevanceInput {
   })
   role?: "asc" | "desc" | undefined;
 
-  @TypeGraphQL.Field(_type => UserMovieWatchlistOrderByRelationAggregateInput, {
+  @TypeGraphQL.Field(_type => MovieOrderByRelationAggregateInput, {
     nullable: true
   })
-  watchlist?: UserMovieWatchlistOrderByRelationAggregateInput | undefined;
+  watchlist?: MovieOrderByRelationAggregateInput | undefined;
 
   @TypeGraphQL.Field(_type => MovieRatingOrderByRelationAggregateInput, {
     nullable: true

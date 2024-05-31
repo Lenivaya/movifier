@@ -14,7 +14,7 @@ import { MovieSpokenLanguageOrderByRelationAggregateInput } from "../inputs/Movi
 import { MovieStatsOrderByWithRelationAndSearchRelevanceInput } from "../inputs/MovieStatsOrderByWithRelationAndSearchRelevanceInput";
 import { MovieStudioOrderByRelationAggregateInput } from "../inputs/MovieStudioOrderByRelationAggregateInput";
 import { MovieWatchedByUserOrderByRelationAggregateInput } from "../inputs/MovieWatchedByUserOrderByRelationAggregateInput";
-import { UserMovieWatchlistOrderByRelationAggregateInput } from "../inputs/UserMovieWatchlistOrderByRelationAggregateInput";
+import { MovifierAppUserOrderByRelationAggregateInput } from "../inputs/MovifierAppUserOrderByRelationAggregateInput";
 import { SortOrder } from "../../enums/SortOrder";
 
 @TypeGraphQL.InputType("MovieOrderByWithRelationAndSearchRelevanceInput", {})
@@ -74,6 +74,11 @@ export class MovieOrderByWithRelationAndSearchRelevanceInput {
   })
   movieLists?: MovieListOrderByRelationAggregateInput | undefined;
 
+  @TypeGraphQL.Field(_type => MovifierAppUserOrderByRelationAggregateInput, {
+    nullable: true
+  })
+  inWatchlistByUsers?: MovifierAppUserOrderByRelationAggregateInput | undefined;
+
   @TypeGraphQL.Field(_type => MovieSpokenLanguageOrderByRelationAggregateInput, {
     nullable: true
   })
@@ -88,11 +93,6 @@ export class MovieOrderByWithRelationAndSearchRelevanceInput {
     nullable: true
   })
   likedBy?: MovieLikedByUserOrderByRelationAggregateInput | undefined;
-
-  @TypeGraphQL.Field(_type => UserMovieWatchlistOrderByRelationAggregateInput, {
-    nullable: true
-  })
-  inWatchlistByUsers?: UserMovieWatchlistOrderByRelationAggregateInput | undefined;
 
   @TypeGraphQL.Field(_type => MovieOrderByRelevanceInput, {
     nullable: true

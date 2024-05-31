@@ -18,4 +18,3 @@ export { MovieStats } from "./MovieStats";
 export { MovieStudio } from "./MovieStudio";
 export { MovieWatchedByUser } from "./MovieWatchedByUser";
 export { MovifierAppUser } from "./MovifierAppUser";
-export { UserMovieWatchlist } from "./UserMovieWatchlist";

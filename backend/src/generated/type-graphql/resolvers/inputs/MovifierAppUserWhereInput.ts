@@ -8,11 +8,11 @@ import { MovieLikedByUserListRelationFilter } from "../inputs/MovieLikedByUserLi
 import { MovieListCommentListRelationFilter } from "../inputs/MovieListCommentListRelationFilter";
 import { MovieListLikedByUserListRelationFilter } from "../inputs/MovieListLikedByUserListRelationFilter";
 import { MovieListListRelationFilter } from "../inputs/MovieListListRelationFilter";
+import { MovieListRelationFilter } from "../inputs/MovieListRelationFilter";
 import { MovieRatingListRelationFilter } from "../inputs/MovieRatingListRelationFilter";
 import { MovieReviewLikedByUserListRelationFilter } from "../inputs/MovieReviewLikedByUserListRelationFilter";
 import { MovieWatchedByUserListRelationFilter } from "../inputs/MovieWatchedByUserListRelationFilter";
 import { StringFilter } from "../inputs/StringFilter";
-import { UserMovieWatchlistListRelationFilter } from "../inputs/UserMovieWatchlistListRelationFilter";
 
 @TypeGraphQL.InputType("MovifierAppUserWhereInput", {})
 export class MovifierAppUserWhereInput {
@@ -71,10 +71,10 @@ export class MovifierAppUserWhereInput {
   })
   role?: EnumMoviefireAppUserRoleFilter | undefined;
 
-  @TypeGraphQL.Field(_type => UserMovieWatchlistListRelationFilter, {
+  @TypeGraphQL.Field(_type => MovieListRelationFilter, {
     nullable: true
   })
-  watchlist?: UserMovieWatchlistListRelationFilter | undefined;
+  watchlist?: MovieListRelationFilter | undefined;
 
   @TypeGraphQL.Field(_type => MovieRatingListRelationFilter, {
     nullable: true

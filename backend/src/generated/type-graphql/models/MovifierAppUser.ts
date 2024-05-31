@@ -2,6 +2,7 @@ import * as TypeGraphQL from "type-graphql";
 import * as GraphQLScalars from "graphql-scalars";
 import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../scalars";
+import { Movie } from "../models/Movie";
 import { MovieLikedByUser } from "../models/MovieLikedByUser";
 import { MovieList } from "../models/MovieList";
 import { MovieListComment } from "../models/MovieListComment";
@@ -9,7 +10,6 @@ import { MovieListLikedByUser } from "../models/MovieListLikedByUser";
 import { MovieRating } from "../models/MovieRating";
 import { MovieReviewLikedByUser } from "../models/MovieReviewLikedByUser";
 import { MovieWatchedByUser } from "../models/MovieWatchedByUser";
-import { UserMovieWatchlist } from "../models/UserMovieWatchlist";
 import { MoviefireAppUserRole } from "../enums/MoviefireAppUserRole";
 import { MovifierAppUserCount } from "../resolvers/outputs/MovifierAppUserCount";
 
@@ -52,7 +52,7 @@ export class MovifierAppUser {
   })
   role!: "USER" | "ADMIN";
 
-  watchlist?: UserMovieWatchlist[];
+  watchlist?: Movie[];
 
   ratedMovies?: MovieRating[];
 

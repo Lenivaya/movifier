@@ -1,11 +1,11 @@
 import * as TypeGraphQL from "type-graphql";
 import * as GraphQLScalars from "graphql-scalars";
-import { UserMovieWatchlistWhereInput } from "../../inputs/UserMovieWatchlistWhereInput";
+import { MovieWhereInput } from "../../inputs/MovieWhereInput";
 
 @TypeGraphQL.ArgsType()
 export class MovifierAppUserCountWatchlistArgs {
-  @TypeGraphQL.Field(_type => UserMovieWatchlistWhereInput, {
+  @TypeGraphQL.Field(_type => MovieWhereInput, {
     nullable: true
   })
-  where?: UserMovieWatchlistWhereInput | undefined;
+  where?: MovieWhereInput | undefined;
 }

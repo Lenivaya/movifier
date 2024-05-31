@@ -13,7 +13,7 @@ import { MovieSpokenLanguage } from "../models/MovieSpokenLanguage";
 import { MovieStats } from "../models/MovieStats";
 import { MovieStudio } from "../models/MovieStudio";
 import { MovieWatchedByUser } from "../models/MovieWatchedByUser";
-import { UserMovieWatchlist } from "../models/UserMovieWatchlist";
+import { MovifierAppUser } from "../models/MovifierAppUser";
 import { MovieCount } from "../resolvers/outputs/MovieCount";
 
 @TypeGraphQL.ObjectType("Movie", {})
@@ -49,13 +49,13 @@ export class Movie {
 
   movieLists?: MovieList[];
 
+  inWatchlistByUsers?: MovifierAppUser[];
+
   spokenLanguages?: MovieSpokenLanguage[];
 
   watchedBy?: MovieWatchedByUser[];
 
   likedBy?: MovieLikedByUser[];
-
-  inWatchlistByUsers?: UserMovieWatchlist[];
 
   @TypeGraphQL.Field(_type => MovieCount, {
     nullable: true

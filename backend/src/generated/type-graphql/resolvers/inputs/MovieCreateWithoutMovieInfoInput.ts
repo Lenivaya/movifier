@@ -12,7 +12,7 @@ import { MovieSpokenLanguageCreateNestedManyWithoutMoviesInput } from "../inputs
 import { MovieStatsCreateNestedOneWithoutMovieInput } from "../inputs/MovieStatsCreateNestedOneWithoutMovieInput";
 import { MovieStudioCreateNestedManyWithoutMoviesInput } from "../inputs/MovieStudioCreateNestedManyWithoutMoviesInput";
 import { MovieWatchedByUserCreateNestedManyWithoutMovieInput } from "../inputs/MovieWatchedByUserCreateNestedManyWithoutMovieInput";
-import { UserMovieWatchlistCreateNestedManyWithoutMovieInput } from "../inputs/UserMovieWatchlistCreateNestedManyWithoutMovieInput";
+import { MovifierAppUserCreateNestedManyWithoutWatchlistInput } from "../inputs/MovifierAppUserCreateNestedManyWithoutWatchlistInput";
 
 @TypeGraphQL.InputType("MovieCreateWithoutMovieInfoInput", {})
 export class MovieCreateWithoutMovieInfoInput {
@@ -66,6 +66,11 @@ export class MovieCreateWithoutMovieInfoInput {
   })
   movieLists?: MovieListCreateNestedManyWithoutMoviesInput | undefined;
 
+  @TypeGraphQL.Field(_type => MovifierAppUserCreateNestedManyWithoutWatchlistInput, {
+    nullable: true
+  })
+  inWatchlistByUsers?: MovifierAppUserCreateNestedManyWithoutWatchlistInput | undefined;
+
   @TypeGraphQL.Field(_type => MovieSpokenLanguageCreateNestedManyWithoutMoviesInput, {
     nullable: true
   })
@@ -80,9 +85,4 @@ export class MovieCreateWithoutMovieInfoInput {
     nullable: true
   })
   likedBy?: MovieLikedByUserCreateNestedManyWithoutMovieInput | undefined;
-
-  @TypeGraphQL.Field(_type => UserMovieWatchlistCreateNestedManyWithoutMovieInput, {
-    nullable: true
-  })
-  inWatchlistByUsers?: UserMovieWatchlistCreateNestedManyWithoutMovieInput | undefined;
 }

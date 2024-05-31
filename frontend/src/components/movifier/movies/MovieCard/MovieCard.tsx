@@ -17,6 +17,7 @@ export const MovieCardFragment = gql`
     id
 
     movieInfo {
+      id
       title
       posterUrl
     }
@@ -47,7 +48,7 @@ export const MovieCard: FC<MovieCardItemFragment> = ({ movieInfo, id }) => {
           <Separator orientation={'horizontal'} className={'mb-5'} />
 
           <CardContent>
-            <CardTitle>{movieInfo?.title}</CardTitle>
+            <CardTitle className={'text-center'}>{movieInfo?.title}</CardTitle>
           </CardContent>
 
           <CardFooter></CardFooter>
