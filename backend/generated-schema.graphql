@@ -499,6 +499,7 @@ type MovieCrewMember {
   imdbId: String!
   name: String!
   photoUrl: String!
+  popularity: Float!
   updatedAt: DateTimeISO!
 }
 
@@ -524,6 +525,7 @@ input MovieCrewMemberCreateWithoutMoviesInput {
   imdbId: String!
   name: String!
   photoUrl: String!
+  popularity: Float
   updatedAt: DateTimeISO
 }
 
@@ -535,6 +537,7 @@ type MovieCrewMemberOnMovie {
   movieCrewMemberType: MovieCrewMemberType!
   movieCrewMemberTypeId: String!
   movieId: String!
+  order: Int!
   updatedAt: DateTimeISO!
 }
 
@@ -542,6 +545,7 @@ input MovieCrewMemberOnMovieCreateManyMovieInput {
   createdAt: DateTimeISO
   movieCrewMemberId: String!
   movieCrewMemberTypeId: String!
+  order: Int
   updatedAt: DateTimeISO
 }
 
@@ -566,6 +570,7 @@ input MovieCrewMemberOnMovieCreateWithoutMovieInput {
   createdAt: DateTimeISO
   crewMember: MovieCrewMemberCreateNestedOneWithoutMoviesInput!
   movieCrewMemberType: MovieCrewMemberTypeCreateNestedOneWithoutMovieCrewMembersInput!
+  order: Int
   updatedAt: DateTimeISO
 }
 
@@ -606,6 +611,7 @@ input MovieCrewMemberOnMovieOrderByWithRelationAndSearchRelevanceInput {
   movieCrewMemberType: MovieCrewMemberTypeOrderByWithRelationAndSearchRelevanceInput
   movieCrewMemberTypeId: SortOrder
   movieId: SortOrder
+  order: SortOrder
   updatedAt: SortOrder
 }
 
@@ -614,6 +620,7 @@ enum MovieCrewMemberOnMovieScalarFieldEnum {
   movieCrewMemberId
   movieCrewMemberTypeId
   movieId
+  order
   updatedAt
 }
 
@@ -625,11 +632,13 @@ input MovieCrewMemberOnMovieScalarWhereInput {
   movieCrewMemberId: StringFilter
   movieCrewMemberTypeId: StringFilter
   movieId: StringFilter
+  order: IntFilter
   updatedAt: DateTimeFilter
 }
 
 input MovieCrewMemberOnMovieUpdateManyMutationInput {
   createdAt: DateTimeFieldUpdateOperationsInput
+  order: IntFieldUpdateOperationsInput
   updatedAt: DateTimeFieldUpdateOperationsInput
 }
 
@@ -661,6 +670,7 @@ input MovieCrewMemberOnMovieUpdateWithoutMovieInput {
   createdAt: DateTimeFieldUpdateOperationsInput
   crewMember: MovieCrewMemberUpdateOneRequiredWithoutMoviesNestedInput
   movieCrewMemberType: MovieCrewMemberTypeUpdateOneRequiredWithoutMovieCrewMembersNestedInput
+  order: IntFieldUpdateOperationsInput
   updatedAt: DateTimeFieldUpdateOperationsInput
 }
 
@@ -681,6 +691,7 @@ input MovieCrewMemberOnMovieWhereInput {
   movieCrewMemberType: MovieCrewMemberTypeRelationFilter
   movieCrewMemberTypeId: StringFilter
   movieId: StringFilter
+  order: IntFilter
   updatedAt: DateTimeFilter
 }
 
@@ -696,6 +707,7 @@ input MovieCrewMemberOnMovieWhereUniqueInput {
   movieCrewMemberTypeId: StringFilter
   movieId: StringFilter
   movieId_movieCrewMemberId_movieCrewMemberTypeId: MovieCrewMemberOnMovieMovieIdMovieCrewMemberIdMovieCrewMemberTypeIdCompoundUniqueInput
+  order: IntFilter
   updatedAt: DateTimeFilter
 }
 
@@ -722,6 +734,7 @@ input MovieCrewMemberOrderByWithRelationAndSearchRelevanceInput {
   movies: MovieCrewMemberOnMovieOrderByRelationAggregateInput
   name: SortOrder
   photoUrl: SortOrder
+  popularity: SortOrder
   updatedAt: SortOrder
 }
 
@@ -841,6 +854,7 @@ input MovieCrewMemberUpdateWithoutMoviesInput {
   imdbId: StringFieldUpdateOperationsInput
   name: StringFieldUpdateOperationsInput
   photoUrl: StringFieldUpdateOperationsInput
+  popularity: FloatFieldUpdateOperationsInput
   updatedAt: DateTimeFieldUpdateOperationsInput
 }
 
@@ -861,6 +875,7 @@ input MovieCrewMemberWhereInput {
   movies: MovieCrewMemberOnMovieListRelationFilter
   name: StringFilter
   photoUrl: StringFilter
+  popularity: FloatFilter
   updatedAt: DateTimeFilter
 }
 
@@ -875,6 +890,7 @@ input MovieCrewMemberWhereUniqueInput {
   movies: MovieCrewMemberOnMovieListRelationFilter
   name: StringFilter
   photoUrl: StringFilter
+  popularity: FloatFilter
   updatedAt: DateTimeFilter
 }
 
@@ -5096,6 +5112,7 @@ type Mutation {
   deleteOneMovieReviewLikedByUser(where: MovieReviewLikedByUserWhereUniqueInput!): MovieReviewLikedByUser
   deleteOneMovieWatchedByUser(where: MovieWatchedByUserWhereUniqueInput!): MovieWatchedByUser
   deleteOneUserMovieWatchlist(where: UserMovieWatchlistWhereUniqueInput!): UserMovieWatchlist
+  fetchMovieFromTmdb(imdbId: String!): Movie
   loginUser(data: UserLoginInput!): UserLoginOutput!
   updateManyMovie(data: MovieUpdateManyMutationInput!, where: MovieWhereInput): AffectedRowsOutput!
   updateManyMovieLikedByUser(data: MovieLikedByUserUpdateManyMutationInput!, where: MovieLikedByUserWhereInput): AffectedRowsOutput!

@@ -5,7 +5,9 @@ import { Link } from 'next-view-transitions'
 
 export const DirectorNamesTitleFragment = gql`
   fragment DirectorNamesTitleItem on Movie {
-    crewMembers {
+    crewMembers(
+      orderBy: [{ crewMember: { popularity: desc } }, { order: asc }]
+    ) {
       movieCrewMemberType {
         id
         name

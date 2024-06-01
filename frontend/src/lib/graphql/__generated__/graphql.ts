@@ -690,6 +690,7 @@ export type MovieCrewMember = {
   imdbId: Scalars['String']['output'];
   name: Scalars['String']['output'];
   photoUrl: Scalars['String']['output'];
+  popularity: Scalars['Float']['output'];
   updatedAt: Scalars['DateTimeISO']['output'];
 };
 
@@ -721,6 +722,7 @@ export type MovieCrewMemberCreateWithoutMoviesInput = {
   imdbId: Scalars['String']['input'];
   name: Scalars['String']['input'];
   photoUrl: Scalars['String']['input'];
+  popularity?: InputMaybe<Scalars['Float']['input']>;
   updatedAt?: InputMaybe<Scalars['DateTimeISO']['input']>;
 };
 
@@ -733,6 +735,7 @@ export type MovieCrewMemberOnMovie = {
   movieCrewMemberType: MovieCrewMemberType;
   movieCrewMemberTypeId: Scalars['String']['output'];
   movieId: Scalars['String']['output'];
+  order: Scalars['Int']['output'];
   updatedAt: Scalars['DateTimeISO']['output'];
 };
 
@@ -740,6 +743,7 @@ export type MovieCrewMemberOnMovieCreateManyMovieInput = {
   createdAt?: InputMaybe<Scalars['DateTimeISO']['input']>;
   movieCrewMemberId: Scalars['String']['input'];
   movieCrewMemberTypeId: Scalars['String']['input'];
+  order?: InputMaybe<Scalars['Int']['input']>;
   updatedAt?: InputMaybe<Scalars['DateTimeISO']['input']>;
 };
 
@@ -764,6 +768,7 @@ export type MovieCrewMemberOnMovieCreateWithoutMovieInput = {
   createdAt?: InputMaybe<Scalars['DateTimeISO']['input']>;
   crewMember: MovieCrewMemberCreateNestedOneWithoutMoviesInput;
   movieCrewMemberType: MovieCrewMemberTypeCreateNestedOneWithoutMovieCrewMembersInput;
+  order?: InputMaybe<Scalars['Int']['input']>;
   updatedAt?: InputMaybe<Scalars['DateTimeISO']['input']>;
 };
 
@@ -803,6 +808,7 @@ export type MovieCrewMemberOnMovieOrderByWithRelationAndSearchRelevanceInput = {
   movieCrewMemberType?: InputMaybe<MovieCrewMemberTypeOrderByWithRelationAndSearchRelevanceInput>;
   movieCrewMemberTypeId?: InputMaybe<SortOrder>;
   movieId?: InputMaybe<SortOrder>;
+  order?: InputMaybe<SortOrder>;
   updatedAt?: InputMaybe<SortOrder>;
 };
 
@@ -811,6 +817,7 @@ export type MovieCrewMemberOnMovieScalarFieldEnum =
   | 'movieCrewMemberId'
   | 'movieCrewMemberTypeId'
   | 'movieId'
+  | 'order'
   | 'updatedAt';
 
 export type MovieCrewMemberOnMovieScalarWhereInput = {
@@ -821,11 +828,13 @@ export type MovieCrewMemberOnMovieScalarWhereInput = {
   movieCrewMemberId?: InputMaybe<StringFilter>;
   movieCrewMemberTypeId?: InputMaybe<StringFilter>;
   movieId?: InputMaybe<StringFilter>;
+  order?: InputMaybe<IntFilter>;
   updatedAt?: InputMaybe<DateTimeFilter>;
 };
 
 export type MovieCrewMemberOnMovieUpdateManyMutationInput = {
   createdAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+  order?: InputMaybe<IntFieldUpdateOperationsInput>;
   updatedAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
 };
 
@@ -857,6 +866,7 @@ export type MovieCrewMemberOnMovieUpdateWithoutMovieInput = {
   createdAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   crewMember?: InputMaybe<MovieCrewMemberUpdateOneRequiredWithoutMoviesNestedInput>;
   movieCrewMemberType?: InputMaybe<MovieCrewMemberTypeUpdateOneRequiredWithoutMovieCrewMembersNestedInput>;
+  order?: InputMaybe<IntFieldUpdateOperationsInput>;
   updatedAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
 };
 
@@ -877,6 +887,7 @@ export type MovieCrewMemberOnMovieWhereInput = {
   movieCrewMemberType?: InputMaybe<MovieCrewMemberTypeRelationFilter>;
   movieCrewMemberTypeId?: InputMaybe<StringFilter>;
   movieId?: InputMaybe<StringFilter>;
+  order?: InputMaybe<IntFilter>;
   updatedAt?: InputMaybe<DateTimeFilter>;
 };
 
@@ -892,6 +903,7 @@ export type MovieCrewMemberOnMovieWhereUniqueInput = {
   movieCrewMemberTypeId?: InputMaybe<StringFilter>;
   movieId?: InputMaybe<StringFilter>;
   movieId_movieCrewMemberId_movieCrewMemberTypeId?: InputMaybe<MovieCrewMemberOnMovieMovieIdMovieCrewMemberIdMovieCrewMemberTypeIdCompoundUniqueInput>;
+  order?: InputMaybe<IntFilter>;
   updatedAt?: InputMaybe<DateTimeFilter>;
 };
 
@@ -917,6 +929,7 @@ export type MovieCrewMemberOrderByWithRelationAndSearchRelevanceInput = {
   movies?: InputMaybe<MovieCrewMemberOnMovieOrderByRelationAggregateInput>;
   name?: InputMaybe<SortOrder>;
   photoUrl?: InputMaybe<SortOrder>;
+  popularity?: InputMaybe<SortOrder>;
   updatedAt?: InputMaybe<SortOrder>;
 };
 
@@ -1042,6 +1055,7 @@ export type MovieCrewMemberUpdateWithoutMoviesInput = {
   imdbId?: InputMaybe<StringFieldUpdateOperationsInput>;
   name?: InputMaybe<StringFieldUpdateOperationsInput>;
   photoUrl?: InputMaybe<StringFieldUpdateOperationsInput>;
+  popularity?: InputMaybe<FloatFieldUpdateOperationsInput>;
   updatedAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
 };
 
@@ -1062,6 +1076,7 @@ export type MovieCrewMemberWhereInput = {
   movies?: InputMaybe<MovieCrewMemberOnMovieListRelationFilter>;
   name?: InputMaybe<StringFilter>;
   photoUrl?: InputMaybe<StringFilter>;
+  popularity?: InputMaybe<FloatFilter>;
   updatedAt?: InputMaybe<DateTimeFilter>;
 };
 
@@ -1076,6 +1091,7 @@ export type MovieCrewMemberWhereUniqueInput = {
   movies?: InputMaybe<MovieCrewMemberOnMovieListRelationFilter>;
   name?: InputMaybe<StringFilter>;
   photoUrl?: InputMaybe<StringFilter>;
+  popularity?: InputMaybe<FloatFilter>;
   updatedAt?: InputMaybe<DateTimeFilter>;
 };
 
@@ -5405,6 +5421,7 @@ export type Mutation = {
   deleteOneMovieReviewLikedByUser?: Maybe<MovieReviewLikedByUser>;
   deleteOneMovieWatchedByUser?: Maybe<MovieWatchedByUser>;
   deleteOneUserMovieWatchlist?: Maybe<UserMovieWatchlist>;
+  fetchMovieFromTmdb?: Maybe<Movie>;
   loginUser: UserLoginOutput;
   updateManyMovie: AffectedRowsOutput;
   updateManyMovieLikedByUser: AffectedRowsOutput;
@@ -5579,6 +5596,11 @@ export type MutationDeleteOneMovieWatchedByUserArgs = {
 
 export type MutationDeleteOneUserMovieWatchlistArgs = {
   where: UserMovieWatchlistWhereUniqueInput;
+};
+
+
+export type MutationFetchMovieFromTmdbArgs = {
+  imdbId: Scalars['String']['input'];
 };
 
 
@@ -6746,7 +6768,7 @@ export type MoviePageItemFragment = { __typename?: 'Movie', id: string, movieInf
 
 export type MoviePageDetailsTabsItemFragment = { __typename?: 'Movie', movieInfo?: { __typename?: 'MovieInfo', alternativeTitles: Array<string> } | null, crewMembers: Array<{ __typename?: 'MovieCrewMemberOnMovie', movieCrewMemberType: { __typename?: 'MovieCrewMemberType', id: string, name: string }, crewMember: { __typename?: 'MovieCrewMember', name: string, id: string } }>, studios: Array<{ __typename?: 'MovieStudio', name: string }>, genres: Array<{ __typename?: 'Genre', name: string }>, keywordCategories: Array<{ __typename?: 'MovieKeywordCategory', id: string, name: string }>, spokenLanguages: Array<{ __typename?: 'MovieSpokenLanguage', language: string }> };
 
-export type MoviePagePosterItemFragment = { __typename?: 'Movie', movieInfo?: { __typename?: 'MovieInfo', posterUrl: string, title: string } | null };
+export type MoviePagePosterItemFragment = { __typename?: 'Movie', movieInfo?: { __typename?: 'MovieInfo', id: string, posterUrl: string, title: string } | null };
 
 export type PopularMovieReviewsQueryVariables = Exact<{
   movieId: Scalars['String']['input'];
@@ -8505,6 +8527,7 @@ export type MovieCrewMemberResolvers<ContextType = any, ParentType extends Resol
   imdbId?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   name?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   photoUrl?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  popularity?: Resolver<ResolversTypes['Float'], ParentType, ContextType>;
   updatedAt?: Resolver<ResolversTypes['DateTimeISO'], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 }>;
@@ -8522,6 +8545,7 @@ export type MovieCrewMemberOnMovieResolvers<ContextType = any, ParentType extend
   movieCrewMemberType?: Resolver<ResolversTypes['MovieCrewMemberType'], ParentType, ContextType>;
   movieCrewMemberTypeId?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   movieId?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  order?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
   updatedAt?: Resolver<ResolversTypes['DateTimeISO'], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 }>;
@@ -8949,6 +8973,7 @@ export type MutationResolvers<ContextType = any, ParentType extends ResolversPar
   deleteOneMovieReviewLikedByUser?: Resolver<Maybe<ResolversTypes['MovieReviewLikedByUser']>, ParentType, ContextType, RequireFields<MutationDeleteOneMovieReviewLikedByUserArgs, 'where'>>;
   deleteOneMovieWatchedByUser?: Resolver<Maybe<ResolversTypes['MovieWatchedByUser']>, ParentType, ContextType, RequireFields<MutationDeleteOneMovieWatchedByUserArgs, 'where'>>;
   deleteOneUserMovieWatchlist?: Resolver<Maybe<ResolversTypes['UserMovieWatchlist']>, ParentType, ContextType, RequireFields<MutationDeleteOneUserMovieWatchlistArgs, 'where'>>;
+  fetchMovieFromTmdb?: Resolver<Maybe<ResolversTypes['Movie']>, ParentType, ContextType, RequireFields<MutationFetchMovieFromTmdbArgs, 'imdbId'>>;
   loginUser?: Resolver<ResolversTypes['UserLoginOutput'], ParentType, ContextType, RequireFields<MutationLoginUserArgs, 'data'>>;
   updateManyMovie?: Resolver<ResolversTypes['AffectedRowsOutput'], ParentType, ContextType, RequireFields<MutationUpdateManyMovieArgs, 'data'>>;
   updateManyMovieLikedByUser?: Resolver<ResolversTypes['AffectedRowsOutput'], ParentType, ContextType, RequireFields<MutationUpdateManyMovieLikedByUserArgs, 'data'>>;
@@ -9188,7 +9213,7 @@ export const MovieCardItemFragmentDoc = gql`
     `;
 export const DirectorNamesTitleItemFragmentDoc = gql`
     fragment DirectorNamesTitleItem on Movie {
-  crewMembers {
+  crewMembers(orderBy: [{crewMember: {popularity: desc}}, {order: asc}]) {
     movieCrewMemberType {
       id
       name
@@ -9203,6 +9228,7 @@ export const DirectorNamesTitleItemFragmentDoc = gql`
 export const MoviePagePosterItemFragmentDoc = gql`
     fragment MoviePagePosterItem on Movie {
   movieInfo {
+    id
     posterUrl
     title
   }
@@ -9213,7 +9239,7 @@ export const MoviePageDetailsTabsItemFragmentDoc = gql`
   movieInfo {
     alternativeTitles
   }
-  crewMembers {
+  crewMembers(orderBy: [{crewMember: {popularity: desc}}, {order: asc}]) {
     movieCrewMemberType {
       id
       name
@@ -10478,7 +10504,7 @@ export type MovieCountAggregateFieldPolicy = {
 	id?: FieldPolicy<any> | FieldReadFunction<any>,
 	updatedAt?: FieldPolicy<any> | FieldReadFunction<any>
 };
-export type MovieCrewMemberKeySpecifier = ('_count' | 'createdAt' | 'description' | 'id' | 'imdbId' | 'name' | 'photoUrl' | 'updatedAt' | MovieCrewMemberKeySpecifier)[];
+export type MovieCrewMemberKeySpecifier = ('_count' | 'createdAt' | 'description' | 'id' | 'imdbId' | 'name' | 'photoUrl' | 'popularity' | 'updatedAt' | MovieCrewMemberKeySpecifier)[];
 export type MovieCrewMemberFieldPolicy = {
 	_count?: FieldPolicy<any> | FieldReadFunction<any>,
 	createdAt?: FieldPolicy<any> | FieldReadFunction<any>,
@@ -10487,13 +10513,14 @@ export type MovieCrewMemberFieldPolicy = {
 	imdbId?: FieldPolicy<any> | FieldReadFunction<any>,
 	name?: FieldPolicy<any> | FieldReadFunction<any>,
 	photoUrl?: FieldPolicy<any> | FieldReadFunction<any>,
+	popularity?: FieldPolicy<any> | FieldReadFunction<any>,
 	updatedAt?: FieldPolicy<any> | FieldReadFunction<any>
 };
 export type MovieCrewMemberCountKeySpecifier = ('movies' | MovieCrewMemberCountKeySpecifier)[];
 export type MovieCrewMemberCountFieldPolicy = {
 	movies?: FieldPolicy<any> | FieldReadFunction<any>
 };
-export type MovieCrewMemberOnMovieKeySpecifier = ('createdAt' | 'crewMember' | 'movie' | 'movieCrewMemberId' | 'movieCrewMemberType' | 'movieCrewMemberTypeId' | 'movieId' | 'updatedAt' | MovieCrewMemberOnMovieKeySpecifier)[];
+export type MovieCrewMemberOnMovieKeySpecifier = ('createdAt' | 'crewMember' | 'movie' | 'movieCrewMemberId' | 'movieCrewMemberType' | 'movieCrewMemberTypeId' | 'movieId' | 'order' | 'updatedAt' | MovieCrewMemberOnMovieKeySpecifier)[];
 export type MovieCrewMemberOnMovieFieldPolicy = {
 	createdAt?: FieldPolicy<any> | FieldReadFunction<any>,
 	crewMember?: FieldPolicy<any> | FieldReadFunction<any>,
@@ -10502,6 +10529,7 @@ export type MovieCrewMemberOnMovieFieldPolicy = {
 	movieCrewMemberType?: FieldPolicy<any> | FieldReadFunction<any>,
 	movieCrewMemberTypeId?: FieldPolicy<any> | FieldReadFunction<any>,
 	movieId?: FieldPolicy<any> | FieldReadFunction<any>,
+	order?: FieldPolicy<any> | FieldReadFunction<any>,
 	updatedAt?: FieldPolicy<any> | FieldReadFunction<any>
 };
 export type MovieCrewMemberTypeKeySpecifier = ('_count' | 'id' | 'name' | MovieCrewMemberTypeKeySpecifier)[];
@@ -10852,7 +10880,7 @@ export type MovifierAppUserCountFieldPolicy = {
 	watchedMovies?: FieldPolicy<any> | FieldReadFunction<any>,
 	watchlist?: FieldPolicy<any> | FieldReadFunction<any>
 };
-export type MutationKeySpecifier = ('createManyMovie' | 'createManyMovieLikedByUser' | 'createManyMovieRating' | 'createManyMovieReview' | 'createManyMovieReviewLikedByUser' | 'createManyMovieWatchedByUser' | 'createManyUserMovieWatchlist' | 'createOneMovie' | 'createOneMovieLikedByUser' | 'createOneMovieRating' | 'createOneMovieReview' | 'createOneMovieReviewLikedByUser' | 'createOneMovieWatchedByUser' | 'createOneMovifierAppUser' | 'createOneUserMovieWatchlist' | 'deleteManyMovie' | 'deleteManyMovieLikedByUser' | 'deleteManyMovieRating' | 'deleteManyMovieReview' | 'deleteManyMovieReviewLikedByUser' | 'deleteManyMovieWatchedByUser' | 'deleteManyUserMovieWatchlist' | 'deleteOneMovie' | 'deleteOneMovieLikedByUser' | 'deleteOneMovieRating' | 'deleteOneMovieReview' | 'deleteOneMovieReviewLikedByUser' | 'deleteOneMovieWatchedByUser' | 'deleteOneUserMovieWatchlist' | 'loginUser' | 'updateManyMovie' | 'updateManyMovieLikedByUser' | 'updateManyMovieRating' | 'updateManyMovieReview' | 'updateManyMovieReviewLikedByUser' | 'updateManyMovieWatchedByUser' | 'updateManyUserMovieWatchlist' | 'updateOneMovie' | 'updateOneMovieLikedByUser' | 'updateOneMovieRating' | 'updateOneMovieReview' | 'updateOneMovieReviewLikedByUser' | 'updateOneMovieWatchedByUser' | 'updateOneUserMovieWatchlist' | 'upsertOneMovie' | 'upsertOneMovieLikedByUser' | 'upsertOneMovieRating' | 'upsertOneMovieReview' | 'upsertOneMovieReviewLikedByUser' | 'upsertOneMovieWatchedByUser' | 'upsertOneUserMovieWatchlist' | MutationKeySpecifier)[];
+export type MutationKeySpecifier = ('createManyMovie' | 'createManyMovieLikedByUser' | 'createManyMovieRating' | 'createManyMovieReview' | 'createManyMovieReviewLikedByUser' | 'createManyMovieWatchedByUser' | 'createManyUserMovieWatchlist' | 'createOneMovie' | 'createOneMovieLikedByUser' | 'createOneMovieRating' | 'createOneMovieReview' | 'createOneMovieReviewLikedByUser' | 'createOneMovieWatchedByUser' | 'createOneMovifierAppUser' | 'createOneUserMovieWatchlist' | 'deleteManyMovie' | 'deleteManyMovieLikedByUser' | 'deleteManyMovieRating' | 'deleteManyMovieReview' | 'deleteManyMovieReviewLikedByUser' | 'deleteManyMovieWatchedByUser' | 'deleteManyUserMovieWatchlist' | 'deleteOneMovie' | 'deleteOneMovieLikedByUser' | 'deleteOneMovieRating' | 'deleteOneMovieReview' | 'deleteOneMovieReviewLikedByUser' | 'deleteOneMovieWatchedByUser' | 'deleteOneUserMovieWatchlist' | 'fetchMovieFromTmdb' | 'loginUser' | 'updateManyMovie' | 'updateManyMovieLikedByUser' | 'updateManyMovieRating' | 'updateManyMovieReview' | 'updateManyMovieReviewLikedByUser' | 'updateManyMovieWatchedByUser' | 'updateManyUserMovieWatchlist' | 'updateOneMovie' | 'updateOneMovieLikedByUser' | 'updateOneMovieRating' | 'updateOneMovieReview' | 'updateOneMovieReviewLikedByUser' | 'updateOneMovieWatchedByUser' | 'updateOneUserMovieWatchlist' | 'upsertOneMovie' | 'upsertOneMovieLikedByUser' | 'upsertOneMovieRating' | 'upsertOneMovieReview' | 'upsertOneMovieReviewLikedByUser' | 'upsertOneMovieWatchedByUser' | 'upsertOneUserMovieWatchlist' | MutationKeySpecifier)[];
 export type MutationFieldPolicy = {
 	createManyMovie?: FieldPolicy<any> | FieldReadFunction<any>,
 	createManyMovieLikedByUser?: FieldPolicy<any> | FieldReadFunction<any>,
@@ -10883,6 +10911,7 @@ export type MutationFieldPolicy = {
 	deleteOneMovieReviewLikedByUser?: FieldPolicy<any> | FieldReadFunction<any>,
 	deleteOneMovieWatchedByUser?: FieldPolicy<any> | FieldReadFunction<any>,
 	deleteOneUserMovieWatchlist?: FieldPolicy<any> | FieldReadFunction<any>,
+	fetchMovieFromTmdb?: FieldPolicy<any> | FieldReadFunction<any>,
 	loginUser?: FieldPolicy<any> | FieldReadFunction<any>,
 	updateManyMovie?: FieldPolicy<any> | FieldReadFunction<any>,
 	updateManyMovieLikedByUser?: FieldPolicy<any> | FieldReadFunction<any>,

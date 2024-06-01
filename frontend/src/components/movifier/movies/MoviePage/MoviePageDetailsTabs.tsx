@@ -21,7 +21,9 @@ export const MoviePageDetailsTabsFragment = gql`
       alternativeTitles
     }
 
-    crewMembers {
+    crewMembers(
+      orderBy: [{ crewMember: { popularity: desc } }, { order: asc }]
+    ) {
       movieCrewMemberType {
         id
         name
