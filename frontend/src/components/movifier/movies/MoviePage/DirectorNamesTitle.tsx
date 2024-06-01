@@ -19,6 +19,7 @@ export const DirectorNamesTitleFragment = gql`
     }
   }
 `
+
 export const DirectorNamesTitle: FC<DirectorNamesTitleItemFragment> = ({
   crewMembers
 }) => {

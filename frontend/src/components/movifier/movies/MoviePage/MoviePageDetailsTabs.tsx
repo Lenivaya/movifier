@@ -1,5 +1,5 @@
 import { gql } from '@apollo/client'
-import { FC } from 'react'
+import { FC, useMemo } from 'react'
 import { MoviePageDetailsTabsItemFragment } from '@/lib'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import {
@@ -14,6 +14,7 @@ import { MoviePageDetailsSectionContainer } from '@/components/movifier/movies/M
 import { MoviePageDetailSection } from '@/components/movifier/movies/MoviePage/MoviePageDetailSection'
 import { Badge } from '@/components/ui/badge'
 import { ShowMoreList } from '@/components/generic/ShowMoreList'
+import { A, F, pipe } from '@mobily/ts-belt'
 
 export const MoviePageDetailsTabsFragment = gql`
   fragment MoviePageDetailsTabsItem on Movie {
@@ -79,10 +80,32 @@ export const MoviePageDetailsTabs: FC<MoviePageDetailsTabsItemFragment> = ({
     </Badge>
   )
 
+  const [cast, crew] = pipe(
+    crewMembers,
+    A.partition((member) => member.movieCrewMemberType?.name === 'Actor')
+  )
+
+  const groupedCrewMembers = useMemo(() => {
+    const groupMap = new Map<
+      string,
+      MoviePageDetailsTabsItemFragment['crewMembers']
+    >()
+
+    crew.forEach((member) => {
+      const typeName = member.movieCrewMemberType?.name
+      if (!typeName) return
+      if (!groupMap.has(typeName)) groupMap.set(typeName, [])
+      groupMap.get(typeName)!.push(member)
+    })
+
+    return groupMap
+  }, [crew])
+
   return (
     <Tabs defaultValue='cast' className='w-[400px] mx-auto'>
-      <TabsList className='grid w-full grid-cols-3'>
+      <TabsList className='grid w-full grid-cols-4'>
         <TabsTrigger value='cast'>Cast</TabsTrigger>
+        <TabsTrigger value='crew'>Crew</TabsTrigger>
         <TabsTrigger value='details'>Details</TabsTrigger>
         <TabsTrigger value='genres'>Genres</TabsTrigger>
       </TabsList>
@@ -95,9 +118,7 @@ export const MoviePageDetailsTabs: FC<MoviePageDetailsTabsItemFragment> = ({
           <CardContent className='space-y-2'>
             <div className={'flex flex-grow flex-wrap gap-3 w-full'}>
               <ShowMoreList
-                items={crewMembers.filter(
-                  (member) => member.movieCrewMemberType?.name === 'Actor'
-                )}
+                items={F.toMutable(cast)}
                 renderItem={(member) => (
                   <Link
                     href={`/person/${member.crewMember.id}`}
@@ -112,6 +133,38 @@ export const MoviePageDetailsTabs: FC<MoviePageDetailsTabsItemFragment> = ({
                 renderShowMoreButton={renderShowMoreButtonCast}
               />
             </div>
+          </CardContent>
+        </Card>
+      </TabsContent>
+
+      <TabsContent value='crew'>
+        <Card>
+          <CardHeader>
+            <CardTitle>Crew</CardTitle>
+            <CardDescription>Movie crew</CardDescription>
+          </CardHeader>
+          <CardContent className='space-y-2'>
+            {Array.from(groupedCrewMembers.entries()).map(
+              ([typeName, members]) => (
+                <MoviePageDetailsSectionContainer>
+                  <MoviePageDetailSection title={typeName}>
+                    <ShowMoreList
+                      items={members}
+                      renderShowMoreButton={renderShowMoreButtonBadge}
+                      initialCount={5}
+                      renderItem={(member) => (
+                        <Link
+                          href={`/person/${member.crewMember.id}`}
+                          key={member.crewMember.id}
+                        >
+                          <Badge>{member.crewMember.name}</Badge>
+                        </Link>
+                      )}
+                    />
+                  </MoviePageDetailSection>
+                </MoviePageDetailsSectionContainer>
+              )
+            )}
           </CardContent>
         </Card>
       </TabsContent>
