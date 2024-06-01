@@ -8,7 +8,7 @@ import { MovieCardList } from '@/components/movifier/movies/MovieCardList'
 import { AppLoader } from '@/components/movifier/generic'
 import { MoviesSearchCriteriaInput, useSearchMoviesSuspenseQuery } from '@/lib'
 
-export const SearchMovies = gql`
+const SearchMovies = gql`
   query SearchMovies($searchCriteria: MoviesSearchCriteriaInput!) {
     searchMovies(take: 5, searchCriteria: $searchCriteria) {
       ...MovieCardItem

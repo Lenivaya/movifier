@@ -26,7 +26,6 @@ export const DirectorNamesTitle: FC<DirectorNamesTitleItemFragment> = ({
   const directors = crewMembers?.filter(
     (member) => member.movieCrewMemberType?.name === 'Director'
   )
-
   const isMoreThanOneDirector = directors?.length > 1
 
   return (

@@ -1,4 +1,4 @@
-import { FC } from 'react'
+import { FC, HTMLAttributes } from 'react'
 import { motion } from 'framer-motion'
 import {
   Card,
@@ -8,7 +8,7 @@ import {
   CardTitle
 } from '@/components/ui/card'
 import { gql } from '@apollo/client'
-import { MovieCardItemFragment } from '@/lib/'
+import { cn, MovieCardItemFragment } from '@/lib/'
 import { Separator } from '@/components/ui'
 import { Link } from 'next-view-transitions'
 import { useCurrentUser } from '@/lib/hooks/CurrentUser'
@@ -31,7 +31,9 @@ export const MovieCardFragment = gql`
   }
 `
 
-export const MovieCard: FC<MovieCardItemFragment> = ({ movieInfo, id }) => {
+export const MovieCard: FC<
+  MovieCardItemFragment & HTMLAttributes<HTMLDivElement>
+> = ({ movieInfo, id, className }) => {
   const user = useCurrentUser()
   const isSignedIn = isSome(user)
   const composeKey: ComposeKeyMovieUser = {
@@ -44,7 +46,10 @@ export const MovieCard: FC<MovieCardItemFragment> = ({ movieInfo, id }) => {
   return (
     <Link href={`/movies/${id}`} passHref>
       <motion.div
-        className='flex flex-col justify-between max-w-52 w-52 max-h-full relative group'
+        className={cn(
+          'flex flex-col justify-between max-w-52 w-52 max-h-full relative group',
+          className
+        )}
         whileHover={{
           scale: 1.05,
           transition: { duration: 0.5 }

@@ -42,6 +42,7 @@ const registerUserSchema = z.object({
   email: z.string().email(),
   password: z.string().min(8)
 })
+
 export const RegisterUserForm: FC = () => {
   const form = useForm<z.infer<typeof registerUserSchema>>({
     resolver: zodResolver(registerUserSchema)
