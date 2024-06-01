@@ -15,6 +15,11 @@ export class MovieCrewMemberOnMovieMaxAggregate {
   })
   updatedAt!: Date | null;
 
+  @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
+    nullable: true
+  })
+  order!: number | null;
+
   @TypeGraphQL.Field(_type => String, {
     nullable: true
   })

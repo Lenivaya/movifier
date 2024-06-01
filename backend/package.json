@@ -6,7 +6,8 @@
     "gen:schema": "ts-node --transpile-only scripts/generate-schema.ts",
     "gen:schema:watch": "nodemon --transpile-only --watch src scripts/generate-schema.ts",
     "code:format": "prettier --write src/",
-    "db:seed": "ts-node --transpile-only scripts/db/seed.ts"
+    "db:seed": "ts-node --transpile-only scripts/db/seed.ts",
+    "db:seed:tmdb": "ts-node --transpile-only scripts/db/seed-tmdb.ts"
   },
   "devDependencies": {
     "@types/bcrypt": "^5.0.2",

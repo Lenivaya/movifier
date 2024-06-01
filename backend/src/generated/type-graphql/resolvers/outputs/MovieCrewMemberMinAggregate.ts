@@ -35,6 +35,11 @@ export class MovieCrewMemberMinAggregate {
   })
   description!: string | null;
 
+  @TypeGraphQL.Field(_type => TypeGraphQL.Float, {
+    nullable: true
+  })
+  popularity!: number | null;
+
   @TypeGraphQL.Field(_type => String, {
     nullable: true
   })

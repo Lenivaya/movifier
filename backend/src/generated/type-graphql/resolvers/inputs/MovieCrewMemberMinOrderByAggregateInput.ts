@@ -39,5 +39,10 @@ export class MovieCrewMemberMinOrderByAggregateInput {
   @TypeGraphQL.Field(_type => SortOrder, {
     nullable: true
   })
+  popularity?: "asc" | "desc" | undefined;
+
+  @TypeGraphQL.Field(_type => SortOrder, {
+    nullable: true
+  })
   imdbId?: "asc" | "desc" | undefined;
 }

@@ -37,6 +37,11 @@ export class MovieCrewMember {
   })
   description!: string;
 
+  @TypeGraphQL.Field(_type => TypeGraphQL.Float, {
+    nullable: false
+  })
+  popularity!: number;
+
   @TypeGraphQL.Field(_type => String, {
     nullable: false
   })

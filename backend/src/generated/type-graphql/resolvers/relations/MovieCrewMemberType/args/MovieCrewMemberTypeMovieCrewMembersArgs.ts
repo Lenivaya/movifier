@@ -35,5 +35,5 @@ export class MovieCrewMemberTypeMovieCrewMembersArgs {
   @TypeGraphQL.Field(_type => [MovieCrewMemberOnMovieScalarFieldEnum], {
     nullable: true
   })
-  distinct?: Array<"createdAt" | "updatedAt" | "movieId" | "movieCrewMemberId" | "movieCrewMemberTypeId"> | undefined;
+  distinct?: Array<"createdAt" | "updatedAt" | "order" | "movieId" | "movieCrewMemberId" | "movieCrewMemberTypeId"> | undefined;
 }

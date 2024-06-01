@@ -35,6 +35,11 @@ export class MovieCrewMemberCreateManyInput {
   })
   description!: string;
 
+  @TypeGraphQL.Field(_type => TypeGraphQL.Float, {
+    nullable: true
+  })
+  popularity?: number | undefined;
+
   @TypeGraphQL.Field(_type => String, {
     nullable: false
   })

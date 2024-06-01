@@ -20,7 +20,7 @@ export class GroupByMovieCrewMemberOnMovieArgs {
   @TypeGraphQL.Field(_type => [MovieCrewMemberOnMovieScalarFieldEnum], {
     nullable: false
   })
-  by!: Array<"createdAt" | "updatedAt" | "movieId" | "movieCrewMemberId" | "movieCrewMemberTypeId">;
+  by!: Array<"createdAt" | "updatedAt" | "order" | "movieId" | "movieCrewMemberId" | "movieCrewMemberTypeId">;
 
   @TypeGraphQL.Field(_type => MovieCrewMemberOnMovieScalarWhereWithAggregatesInput, {
     nullable: true

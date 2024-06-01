@@ -8,7 +8,7 @@ import {
   transformCountFieldIntoSelectRelationsCount,
   transformInfoIntoPrismaArgs
 } from '@/generated/type-graphql/helpers'
-import { ExternalId, MovieDb } from 'moviedb-promise'
+import { Cast, Crew, ExternalId, MovieDb } from 'moviedb-promise'
 import { PrismaClient } from '@prisma/client'
 import { isNone, isSome } from '@/lib/types/option'
 
@@ -38,7 +38,7 @@ export class CustomMoviesTmdbResolver {
   }
 }
 
-async function fetchAndInsertMovieData(
+export async function fetchAndInsertMovieData(
   imdbId: string,
   tmdb: MovieDb,
   prisma: PrismaClient
@@ -84,7 +84,7 @@ async function fetchAndInsertMovieData(
   }
 }
 
-async function fetchDetailedMovieData(imdbId: string, tmdb: MovieDb) {
+export async function fetchDetailedMovieData(imdbId: string, tmdb: MovieDb) {
   const response = await tmdb.find({
     id: imdbId,
     external_source: ExternalId.ImdbId
@@ -173,12 +173,13 @@ async function fetchDetailedMovieData(imdbId: string, tmdb: MovieDb) {
   }
 }
 
-async function getPersonInfo(person: any, tmdb: MovieDb, job: string) {
-  const personInfo = await tmdb.personInfo({ id: person.id })
+async function getPersonInfo(person: Cast | Crew, tmdb: MovieDb, job: string) {
+  const personInfo = await tmdb.personInfo({ id: person.id! })
 
   if (isNone(personInfo.imdb_id)) return null
 
   return {
+    order: isCast(person) ? person.order : 0,
     crewMember: {
       connectOrCreate: {
         where: { imdbId: personInfo.imdb_id },
@@ -186,7 +187,8 @@ async function getPersonInfo(person: any, tmdb: MovieDb, job: string) {
           name: person.name,
           imdbId: personInfo.imdb_id,
           description: personInfo.biography,
-          photoUrl: `https://image.tmdb.org/t/p/w500${personInfo.profile_path}`
+          photoUrl: `https://image.tmdb.org/t/p/w500${personInfo.profile_path}`,
+          popularity: person.popularity ?? 0
         }
       }
     },
@@ -197,4 +199,8 @@ async function getPersonInfo(person: any, tmdb: MovieDb, job: string) {
       }
     }
   }
+}
+
+const isCast = (crewMember: Cast | Crew): crewMember is Cast => {
+  return 'order' in crewMember
 }

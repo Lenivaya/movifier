@@ -35,5 +35,5 @@ export class FindFirstMovieCrewMemberOrThrowArgs {
   @TypeGraphQL.Field(_type => [MovieCrewMemberScalarFieldEnum], {
     nullable: true
   })
-  distinct?: Array<"id" | "createdAt" | "updatedAt" | "name" | "photoUrl" | "description" | "imdbId"> | undefined;
+  distinct?: Array<"id" | "createdAt" | "updatedAt" | "name" | "photoUrl" | "description" | "popularity" | "imdbId"> | undefined;
 }
