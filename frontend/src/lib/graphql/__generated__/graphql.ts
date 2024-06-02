@@ -7081,6 +7081,11 @@ export type UserRegisterOutput = {
   user: MovifierAppUser;
 };
 
+export type MovieListsQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type MovieListsQuery = { __typename?: 'Query', movieLists: Array<{ __typename?: 'MovieList', id: string, name: string, description: string, movies: Array<{ __typename?: 'Movie', id: string, movieInfo?: { __typename?: 'MovieInfo', id: string, title: string, posterUrl: string } | null }>, movieListAuthor: { __typename?: 'MovifierAppUser', id: string, username: string } }> };
+
 export type GetMovieForPageQueryVariables = Exact<{
   id: Scalars['String']['input'];
 }>;
@@ -7123,6 +7128,8 @@ export type GetUserWatchedMoviesQueryVariables = Exact<{
 
 
 export type GetUserWatchedMoviesQuery = { __typename?: 'Query', searchMovies: Array<{ __typename?: 'Movie', id: string, movieInfo?: { __typename?: 'MovieInfo', id: string, title: string, posterUrl: string } | null }> };
+
+export type MovieListCardItemFragment = { __typename?: 'MovieList', id: string, name: string, description: string, movies: Array<{ __typename?: 'Movie', id: string, movieInfo?: { __typename?: 'MovieInfo', id: string, title: string, posterUrl: string } | null }>, movieListAuthor: { __typename?: 'MovifierAppUser', id: string, username: string } };
 
 export type SearchMoviesForListCreationQueryVariables = Exact<{
   search: Scalars['String']['input'];
@@ -9740,6 +9747,25 @@ export type DirectiveResolvers<ContextType = any> = ResolversObject<{
   client?: ClientDirectiveResolver<any, any, ContextType>;
 }>;
 
+export const MovieListCardItemFragmentDoc = gql`
+    fragment MovieListCardItem on MovieList {
+  id
+  name
+  description
+  movies(take: 5) {
+    id
+    movieInfo {
+      id
+      title
+      posterUrl
+    }
+  }
+  movieListAuthor {
+    id
+    username
+  }
+}
+    `;
 export const MinimalisticMovieSearchCardFragmentItemFragmentDoc = gql`
     fragment MinimalisticMovieSearchCardFragmentItem on Movie {
   id
@@ -9864,6 +9890,45 @@ export const CurrentUserFragmentDoc = gql`
   name
 }
     `;
+export const MovieListsDocument = gql`
+    query MovieLists {
+  movieLists {
+    ...MovieListCardItem
+  }
+}
+    ${MovieListCardItemFragmentDoc}`;
+
+/**
+ * __useMovieListsQuery__
+ *
+ * To run a query within a React component, call `useMovieListsQuery` and pass it any options that fit your needs.
+ * When your component renders, `useMovieListsQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useMovieListsQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useMovieListsQuery(baseOptions?: Apollo.QueryHookOptions<MovieListsQuery, MovieListsQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<MovieListsQuery, MovieListsQueryVariables>(MovieListsDocument, options);
+      }
+export function useMovieListsLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<MovieListsQuery, MovieListsQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<MovieListsQuery, MovieListsQueryVariables>(MovieListsDocument, options);
+        }
+export function useMovieListsSuspenseQuery(baseOptions?: Apollo.SuspenseQueryHookOptions<MovieListsQuery, MovieListsQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useSuspenseQuery<MovieListsQuery, MovieListsQueryVariables>(MovieListsDocument, options);
+        }
+export type MovieListsQueryHookResult = ReturnType<typeof useMovieListsQuery>;
+export type MovieListsLazyQueryHookResult = ReturnType<typeof useMovieListsLazyQuery>;
+export type MovieListsSuspenseQueryHookResult = ReturnType<typeof useMovieListsSuspenseQuery>;
+export type MovieListsQueryResult = Apollo.QueryResult<MovieListsQuery, MovieListsQueryVariables>;
 export const GetMovieForPageDocument = gql`
     query GetMovieForPage($id: String!) {
   movie(where: {id: $id}) {

@@ -110,6 +110,11 @@ export const MovieListCreateForm: FC = ({}) => {
   async function onSubmit(values: z.infer<typeof createMovieListSchema>) {
     console.log(values)
 
+    if (!isSignedIn)
+      return toast({
+        title: 'You need to be signed in'
+      })
+
     if (listMovieIds.length <= 0)
       return toast({
         title: 'No movies selected'
