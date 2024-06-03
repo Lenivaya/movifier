@@ -1,4 +1,4 @@
-import React, { Dispatch, FC, SetStateAction, useState } from 'react'
+import React, { Dispatch, FC, SetStateAction, useEffect, useState } from 'react'
 import { z } from 'zod'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
@@ -24,11 +24,12 @@ import { Textarea } from '@/components/ui/textarea'
 import { Badge } from '@/components/ui/badge'
 import { gql } from '@apollo/client'
 import {
-  useCreateMovieListMutation,
+  GetMovieListForUpdateQuery,
   useGetSelectedMovieListMoviesSuspenseQuery,
-  useSearchMoviesForListCreationSuspenseQuery
+  useSearchMoviesForListCreationSuspenseQuery,
+  useUpsertMovieListMutation
 } from '@/lib'
-import { D, F } from '@mobily/ts-belt'
+import { D, F, Option } from '@mobily/ts-belt'
 import {
   Command,
   CommandEmpty,
@@ -47,7 +48,7 @@ import { MovieCard } from '@/components/movifier/movies/MovieCard'
 import { useCurrentUser } from '@/lib/hooks/CurrentUser'
 import { toast } from '@/components/ui/use-toast'
 
-const SearchMovies = gql`
+export const SearchMovies = gql`
   query SearchMoviesForListCreation(
     $search: String!
     $alreadySelectedMovies: [String!]!
@@ -62,7 +63,7 @@ const SearchMovies = gql`
   }
 `
 
-const GetSelectedMovieListMovies = gql`
+export const GetSelectedMovieListMovies = gql`
   query GetSelectedMovieListMovies($movieIds: [String!]!) {
     movies(where: { id: { in: $movieIds } }) {
       ...MovieCardItem
@@ -70,9 +71,17 @@ const GetSelectedMovieListMovies = gql`
   }
 `
 
-export const CreateMovieList = gql`
-  mutation CreateMovieList($data: MovieListCreateInput!) {
-    createOneMovieList(data: $data) {
+export const UpsertMovieList = gql`
+  mutation UpsertMovieList(
+    $data: MovieListCreateInput!
+    $updateData: MovieListUpdateInput!
+    $existingListId: String!
+  ) {
+    upsertOneMovieList(
+      where: { id: $existingListId }
+      update: $updateData
+      create: $data
+    ) {
       id
     }
   }
@@ -84,7 +93,9 @@ const createMovieListSchema = z.object({
   tags: z.string().optional()
 })
 
-export const MovieListCreateForm: FC = ({}) => {
+export const MovieListCreateForm: FC<{
+  movieListToUpdate?: Option<GetMovieListForUpdateQuery['movieList']>
+}> = ({ movieListToUpdate = null }) => {
   const form = useForm<z.infer<typeof createMovieListSchema>>({
     resolver: zodResolver(createMovieListSchema)
   })
@@ -102,14 +113,24 @@ export const MovieListCreateForm: FC = ({}) => {
   const isMoviesFound =
     isSome(movieSearch) && movieSearchData?.searchMovies.length > 0
 
+  const isUpadting = isSome(movieListToUpdate)
+
   const user = useCurrentUser()
   const isSignedIn = isSome(user)
 
-  const [createMovieList] = useCreateMovieListMutation()
+  const [upsertMovieList] = useUpsertMovieListMutation()
+
+  useEffect(() => {
+    form.reset({
+      name: movieListToUpdate?.name ?? '',
+      description: movieListToUpdate?.description ?? '',
+      tags: movieListToUpdate?.tags?.join(' ') ?? ''
+    })
+    setTags(movieListToUpdate?.tags ?? [])
+    setListMovieIds(movieListToUpdate?.movies.map((movie) => movie.id) ?? [])
+  }, [movieListToUpdate])
 
   async function onSubmit(values: z.infer<typeof createMovieListSchema>) {
-    console.log(values)
-
     if (!isSignedIn)
       return toast({
         title: 'You need to be signed in'
@@ -120,8 +141,20 @@ export const MovieListCreateForm: FC = ({}) => {
         title: 'No movies selected'
       })
 
-    await createMovieList({
+    await upsertMovieList({
+      refetchQueries: ['MovieLists'],
       variables: {
+        existingListId: movieListToUpdate?.id ?? '',
+        updateData: {
+          movies: {
+            connect: listMovieIds.map((id) => ({ id }))
+          },
+          tags: {
+            set: tags
+          },
+          name: { set: values.name },
+          description: { set: values.description }
+        },
         data: {
           movieListAuthor: {
             connect: { id: user?.id }
@@ -137,13 +170,13 @@ export const MovieListCreateForm: FC = ({}) => {
       },
       onCompleted: () => {
         toast({
-          title: 'Movie list created'
+          title: `Movie list ${isUpadting ? 'updated' : 'created'}!`
         })
       },
       onError: (error) => {
         console.error(error)
         toast({
-          title: "Couldn't create movie list"
+          title: `Couldn't ${isUpadting ? 'update' : 'create'} movie list`
         })
       }
     })
@@ -153,7 +186,9 @@ export const MovieListCreateForm: FC = ({}) => {
     <Card className={'h-full'}>
       <CardHeader>
         <CardTitle>Movie list</CardTitle>
-        <CardDescription>Create new movie list</CardDescription>
+        <CardDescription>
+          {isUpadting ? 'Update' : 'Create'} movie list
+        </CardDescription>
       </CardHeader>
 
       <Separator className={'mb-5'} />

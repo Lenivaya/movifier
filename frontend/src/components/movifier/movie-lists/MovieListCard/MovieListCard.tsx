@@ -2,6 +2,7 @@ import { FC } from 'react'
 import { gql } from '@apollo/client'
 import { MovieListCardItemFragment } from '@/lib'
 import {
+  Button,
   Card,
   CardContent,
   CardDescription,
@@ -11,6 +12,9 @@ import {
   Separator
 } from '@/components/ui'
 import { Film } from 'lucide-react'
+import { useCurrentUser } from '@/lib/hooks/CurrentUser'
+import { isSome } from '@/lib/types'
+import { Link } from 'next-view-transitions'
 
 export const MovieListCardFragment = gql`
   fragment MovieListCardItem on MovieList {
@@ -41,6 +45,11 @@ export const MovieListCard: FC<MovieListCardItemFragment> = ({
   movies,
   movieListAuthor
 }) => {
+  const user = useCurrentUser()
+  const isSignedIn = isSome(user)
+
+  const isAuthor = isSignedIn && user?.id === movieListAuthor.id
+
   return (
     <Card>
       <CardHeader>
@@ -76,13 +85,21 @@ export const MovieListCard: FC<MovieListCardItemFragment> = ({
         </div>
       </CardContent>
 
-      <CardFooter>
+      <CardFooter className={'flex flex-col justify-start items-start gap-5'}>
         <p className='text-sm text-gray-500'>
           By{' '}
           <span className={'underline hover:text-black'}>
             {movieListAuthor.username}
           </span>{' '}
         </p>
+
+        {isAuthor && (
+          <div className={'grid grid-cols-2 mx-auto'}>
+            <Link href={`/movie-lists/${id}/edit`}>
+              <Button>Edit</Button>
+            </Link>
+          </div>
+        )}
       </CardFooter>
     </Card>
   )

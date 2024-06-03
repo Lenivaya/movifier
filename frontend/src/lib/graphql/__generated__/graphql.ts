@@ -7153,7 +7153,23 @@ export type CreateMovieListMutationVariables = Exact<{
 
 export type CreateMovieListMutation = { __typename?: 'Mutation', createOneMovieList: { __typename?: 'MovieList', id: string } };
 
+export type UpsertMovieListMutationVariables = Exact<{
+  data: MovieListCreateInput;
+  updateData: MovieListUpdateInput;
+  existingListId: Scalars['String']['input'];
+}>;
+
+
+export type UpsertMovieListMutation = { __typename?: 'Mutation', upsertOneMovieList: { __typename?: 'MovieList', id: string } };
+
 export type MinimalisticMovieSearchCardFragmentItemFragment = { __typename?: 'Movie', id: string, movieInfo?: { __typename?: 'MovieInfo', id: string, title: string, releaseDate: any } | null, crewMembers: Array<{ __typename?: 'MovieCrewMemberOnMovie', crewMember: { __typename?: 'MovieCrewMember', id: string, name: string }, movieCrewMemberType: { __typename?: 'MovieCrewMemberType', id: string, name: string } }> };
+
+export type GetMovieListForUpdateQueryVariables = Exact<{
+  id: Scalars['String']['input'];
+}>;
+
+
+export type GetMovieListForUpdateQuery = { __typename?: 'Query', movieList?: { __typename?: 'MovieList', id: string, name: string, description: string, tags: Array<string>, movies: Array<{ __typename?: 'Movie', id: string }> } | null };
 
 export type MovieReviewCardItemFragment = { __typename?: 'MovieReview', id: string, content: string, rating: { __typename?: 'MovieRating', id: string, rating: number, user: { __typename?: 'MovifierAppUser', id: string, username: string } }, _count?: { __typename?: 'MovieReviewCount', likedBy: number } | null };
 
@@ -10301,6 +10317,91 @@ export function useCreateMovieListMutation(baseOptions?: Apollo.MutationHookOpti
 export type CreateMovieListMutationHookResult = ReturnType<typeof useCreateMovieListMutation>;
 export type CreateMovieListMutationResult = Apollo.MutationResult<CreateMovieListMutation>;
 export type CreateMovieListMutationOptions = Apollo.BaseMutationOptions<CreateMovieListMutation, CreateMovieListMutationVariables>;
+export const UpsertMovieListDocument = gql`
+    mutation UpsertMovieList($data: MovieListCreateInput!, $updateData: MovieListUpdateInput!, $existingListId: String!) {
+  upsertOneMovieList(
+    where: {id: $existingListId}
+    update: $updateData
+    create: $data
+  ) {
+    id
+  }
+}
+    `;
+export type UpsertMovieListMutationFn = Apollo.MutationFunction<UpsertMovieListMutation, UpsertMovieListMutationVariables>;
+
+/**
+ * __useUpsertMovieListMutation__
+ *
+ * To run a mutation, you first call `useUpsertMovieListMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useUpsertMovieListMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [upsertMovieListMutation, { data, loading, error }] = useUpsertMovieListMutation({
+ *   variables: {
+ *      data: // value for 'data'
+ *      updateData: // value for 'updateData'
+ *      existingListId: // value for 'existingListId'
+ *   },
+ * });
+ */
+export function useUpsertMovieListMutation(baseOptions?: Apollo.MutationHookOptions<UpsertMovieListMutation, UpsertMovieListMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<UpsertMovieListMutation, UpsertMovieListMutationVariables>(UpsertMovieListDocument, options);
+      }
+export type UpsertMovieListMutationHookResult = ReturnType<typeof useUpsertMovieListMutation>;
+export type UpsertMovieListMutationResult = Apollo.MutationResult<UpsertMovieListMutation>;
+export type UpsertMovieListMutationOptions = Apollo.BaseMutationOptions<UpsertMovieListMutation, UpsertMovieListMutationVariables>;
+export const GetMovieListForUpdateDocument = gql`
+    query GetMovieListForUpdate($id: String!) {
+  movieList(where: {id: $id}) {
+    id
+    name
+    description
+    tags
+    movies {
+      id
+    }
+  }
+}
+    `;
+
+/**
+ * __useGetMovieListForUpdateQuery__
+ *
+ * To run a query within a React component, call `useGetMovieListForUpdateQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetMovieListForUpdateQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetMovieListForUpdateQuery({
+ *   variables: {
+ *      id: // value for 'id'
+ *   },
+ * });
+ */
+export function useGetMovieListForUpdateQuery(baseOptions: Apollo.QueryHookOptions<GetMovieListForUpdateQuery, GetMovieListForUpdateQueryVariables> & ({ variables: GetMovieListForUpdateQueryVariables; skip?: boolean; } | { skip: boolean; }) ) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<GetMovieListForUpdateQuery, GetMovieListForUpdateQueryVariables>(GetMovieListForUpdateDocument, options);
+      }
+export function useGetMovieListForUpdateLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetMovieListForUpdateQuery, GetMovieListForUpdateQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<GetMovieListForUpdateQuery, GetMovieListForUpdateQueryVariables>(GetMovieListForUpdateDocument, options);
+        }
+export function useGetMovieListForUpdateSuspenseQuery(baseOptions?: Apollo.SuspenseQueryHookOptions<GetMovieListForUpdateQuery, GetMovieListForUpdateQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useSuspenseQuery<GetMovieListForUpdateQuery, GetMovieListForUpdateQueryVariables>(GetMovieListForUpdateDocument, options);
+        }
+export type GetMovieListForUpdateQueryHookResult = ReturnType<typeof useGetMovieListForUpdateQuery>;
+export type GetMovieListForUpdateLazyQueryHookResult = ReturnType<typeof useGetMovieListForUpdateLazyQuery>;
+export type GetMovieListForUpdateSuspenseQueryHookResult = ReturnType<typeof useGetMovieListForUpdateSuspenseQuery>;
+export type GetMovieListForUpdateQueryResult = Apollo.QueryResult<GetMovieListForUpdateQuery, GetMovieListForUpdateQueryVariables>;
 export const GetMovieRatingReviewDocument = gql`
     query GetMovieRatingReview($ratingId: String!) {
   movieReview(where: {ratingId: $ratingId}) {
