@@ -7084,7 +7084,7 @@ export type UserRegisterOutput = {
 export type MovieListsQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type MovieListsQuery = { __typename?: 'Query', movieLists: Array<{ __typename?: 'MovieList', id: string, name: string, description: string, movies: Array<{ __typename?: 'Movie', id: string, movieInfo?: { __typename?: 'MovieInfo', id: string, title: string, posterUrl: string } | null }>, movieListAuthor: { __typename?: 'MovifierAppUser', id: string, username: string } }> };
+export type MovieListsQuery = { __typename?: 'Query', movieLists: Array<{ __typename?: 'MovieList', id: string, name: string, description: string, tags: Array<string>, movies: Array<{ __typename?: 'Movie', id: string, movieInfo?: { __typename?: 'MovieInfo', id: string, title: string, posterUrl: string } | null }>, movieListAuthor: { __typename?: 'MovifierAppUser', id: string, username: string } }> };
 
 export type GetMovieForPageQueryVariables = Exact<{
   id: Scalars['String']['input'];
@@ -7129,7 +7129,7 @@ export type GetUserWatchedMoviesQueryVariables = Exact<{
 
 export type GetUserWatchedMoviesQuery = { __typename?: 'Query', searchMovies: Array<{ __typename?: 'Movie', id: string, movieInfo?: { __typename?: 'MovieInfo', id: string, title: string, posterUrl: string } | null }> };
 
-export type MovieListCardItemFragment = { __typename?: 'MovieList', id: string, name: string, description: string, movies: Array<{ __typename?: 'Movie', id: string, movieInfo?: { __typename?: 'MovieInfo', id: string, title: string, posterUrl: string } | null }>, movieListAuthor: { __typename?: 'MovifierAppUser', id: string, username: string } };
+export type MovieListCardItemFragment = { __typename?: 'MovieList', id: string, name: string, description: string, tags: Array<string>, movies: Array<{ __typename?: 'Movie', id: string, movieInfo?: { __typename?: 'MovieInfo', id: string, title: string, posterUrl: string } | null }>, movieListAuthor: { __typename?: 'MovifierAppUser', id: string, username: string } };
 
 export type SearchMoviesForListCreationQueryVariables = Exact<{
   search: Scalars['String']['input'];
@@ -7145,13 +7145,6 @@ export type GetSelectedMovieListMoviesQueryVariables = Exact<{
 
 
 export type GetSelectedMovieListMoviesQuery = { __typename?: 'Query', movies: Array<{ __typename?: 'Movie', id: string, movieInfo?: { __typename?: 'MovieInfo', id: string, title: string, posterUrl: string } | null }> };
-
-export type CreateMovieListMutationVariables = Exact<{
-  data: MovieListCreateInput;
-}>;
-
-
-export type CreateMovieListMutation = { __typename?: 'Mutation', createOneMovieList: { __typename?: 'MovieList', id: string } };
 
 export type UpsertMovieListMutationVariables = Exact<{
   data: MovieListCreateInput;
@@ -9768,6 +9761,7 @@ export const MovieListCardItemFragmentDoc = gql`
   id
   name
   description
+  tags
   movies(take: 5) {
     id
     movieInfo {
@@ -10284,39 +10278,6 @@ export type GetSelectedMovieListMoviesQueryHookResult = ReturnType<typeof useGet
 export type GetSelectedMovieListMoviesLazyQueryHookResult = ReturnType<typeof useGetSelectedMovieListMoviesLazyQuery>;
 export type GetSelectedMovieListMoviesSuspenseQueryHookResult = ReturnType<typeof useGetSelectedMovieListMoviesSuspenseQuery>;
 export type GetSelectedMovieListMoviesQueryResult = Apollo.QueryResult<GetSelectedMovieListMoviesQuery, GetSelectedMovieListMoviesQueryVariables>;
-export const CreateMovieListDocument = gql`
-    mutation CreateMovieList($data: MovieListCreateInput!) {
-  createOneMovieList(data: $data) {
-    id
-  }
-}
-    `;
-export type CreateMovieListMutationFn = Apollo.MutationFunction<CreateMovieListMutation, CreateMovieListMutationVariables>;
-
-/**
- * __useCreateMovieListMutation__
- *
- * To run a mutation, you first call `useCreateMovieListMutation` within a React component and pass it any options that fit your needs.
- * When your component renders, `useCreateMovieListMutation` returns a tuple that includes:
- * - A mutate function that you can call at any time to execute the mutation
- * - An object with fields that represent the current status of the mutation's execution
- *
- * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
- *
- * @example
- * const [createMovieListMutation, { data, loading, error }] = useCreateMovieListMutation({
- *   variables: {
- *      data: // value for 'data'
- *   },
- * });
- */
-export function useCreateMovieListMutation(baseOptions?: Apollo.MutationHookOptions<CreateMovieListMutation, CreateMovieListMutationVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useMutation<CreateMovieListMutation, CreateMovieListMutationVariables>(CreateMovieListDocument, options);
-      }
-export type CreateMovieListMutationHookResult = ReturnType<typeof useCreateMovieListMutation>;
-export type CreateMovieListMutationResult = Apollo.MutationResult<CreateMovieListMutation>;
-export type CreateMovieListMutationOptions = Apollo.BaseMutationOptions<CreateMovieListMutation, CreateMovieListMutationVariables>;
 export const UpsertMovieListDocument = gql`
     mutation UpsertMovieList($data: MovieListCreateInput!, $updateData: MovieListUpdateInput!, $existingListId: String!) {
   upsertOneMovieList(

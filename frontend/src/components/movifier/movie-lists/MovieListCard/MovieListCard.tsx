@@ -15,12 +15,14 @@ import { Film } from 'lucide-react'
 import { useCurrentUser } from '@/lib/hooks/CurrentUser'
 import { isSome } from '@/lib/types'
 import { Link } from 'next-view-transitions'
+import { Badge } from '@/components/ui/badge'
 
 export const MovieListCardFragment = gql`
   fragment MovieListCardItem on MovieList {
     id
     name
     description
+    tags
 
     movies(take: 5) {
       id
@@ -41,6 +43,7 @@ export const MovieListCardFragment = gql`
 export const MovieListCard: FC<MovieListCardItemFragment> = ({
   id,
   name,
+  tags,
   description,
   movies,
   movieListAuthor
@@ -51,13 +54,23 @@ export const MovieListCard: FC<MovieListCardItemFragment> = ({
   const isAuthor = isSignedIn && user?.id === movieListAuthor.id
 
   return (
-    <Card>
+    <Card className={'w-[30em]'}>
       <CardHeader>
         <CardTitle>{name}</CardTitle>
         <CardDescription>
-          <div className={'flex align-baseline items-center gap-1'}>
-            <span>{movies.length}</span>
-            <Film />
+          <div className='flex-col flex gap-5'>
+            <div className={'flex align-baseline items-center gap-1'}>
+              <span>{movies.length}</span>
+              <Film />
+            </div>
+
+            <div className='flex flex-wrap items-center flex-grow gap-1.5'>
+              {tags.map((tag) => (
+                <Badge key={tag} className={'mr-2 flex-grow'}>
+                  <p className={'text-center mx-auto'}>{tag}</p>
+                </Badge>
+              ))}
+            </div>
           </div>
         </CardDescription>
       </CardHeader>
