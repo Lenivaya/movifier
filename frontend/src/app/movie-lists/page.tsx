@@ -13,7 +13,9 @@ const MovieListsQuery = gql`
 `
 
 export default function MovieLists() {
-  const { data } = useMovieListsSuspenseQuery()
+  const { data } = useMovieListsSuspenseQuery({
+    fetchPolicy: 'cache-and-network'
+  })
 
   return (
     <main className={'p-5'}>

@@ -1,8 +1,7 @@
 import { FC } from 'react'
 import { gql } from '@apollo/client'
-import { MovieListCardItemFragment } from '@/lib'
+import { MovieListCardItemFragment, useDeleteMovieListMutation } from '@/lib'
 import {
-  Button,
   Card,
   CardContent,
   CardDescription,
@@ -11,11 +10,22 @@ import {
   CardTitle,
   Separator
 } from '@/components/ui'
-import { Film } from 'lucide-react'
+import { FilePenLine, Film, Trash } from 'lucide-react'
 import { useCurrentUser } from '@/lib/hooks/CurrentUser'
 import { isSome } from '@/lib/types'
 import { Link } from 'next-view-transitions'
 import { Badge } from '@/components/ui/badge'
+import { AppTooltip } from '@/components/movifier/generic'
+import { toast } from '@/components/ui/use-toast'
+import { apolloObjectRemover } from '@/lib/graphql/ApolloClient/cache/helpers/utils'
+
+export const DeleteMovieList = gql`
+  mutation DeleteMovieList($id: String!) {
+    deleteOneMovieList(where: { id: $id }) {
+      id
+    }
+  }
+`
 
 export const MovieListCardFragment = gql`
   fragment MovieListCardItem on MovieList {
@@ -52,6 +62,30 @@ export const MovieListCard: FC<MovieListCardItemFragment> = ({
   const isSignedIn = isSome(user)
 
   const isAuthor = isSignedIn && user?.id === movieListAuthor.id
+
+  const [deleteMovieList] = useDeleteMovieListMutation()
+
+  async function handleDelete() {
+    await deleteMovieList({
+      variables: {
+        id
+      },
+      onError: (error) => {
+        console.error(error)
+        toast({
+          title: 'Error deleting movie list'
+        })
+      },
+      onCompleted: () => {
+        toast({
+          title: 'Movie list deleted'
+        })
+      },
+      update: (cache, { data, errors }) => {
+        return apolloObjectRemover(cache, data?.deleteOneMovieList, errors)
+      }
+    })
+  }
 
   return (
     <Card className={'w-[30em]'}>
@@ -107,10 +141,16 @@ export const MovieListCard: FC<MovieListCardItemFragment> = ({
         </p>
 
         {isAuthor && (
-          <div className={'grid grid-cols-2 mx-auto'}>
-            <Link href={`/movie-lists/${id}/edit`}>
-              <Button>Edit</Button>
-            </Link>
+          <div className={'grid grid-cols-2 mx-auto gap-5'}>
+            <AppTooltip text={'Edit movie list'}>
+              <Link href={`/movie-lists/${id}/edit`}>
+                <FilePenLine />
+              </Link>
+            </AppTooltip>
+
+            <AppTooltip text={'Delete movie list'}>
+              <Trash onClick={handleDelete} />
+            </AppTooltip>
           </div>
         )}
       </CardFooter>

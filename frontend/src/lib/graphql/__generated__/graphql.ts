@@ -7129,6 +7129,13 @@ export type GetUserWatchedMoviesQueryVariables = Exact<{
 
 export type GetUserWatchedMoviesQuery = { __typename?: 'Query', searchMovies: Array<{ __typename?: 'Movie', id: string, movieInfo?: { __typename?: 'MovieInfo', id: string, title: string, posterUrl: string } | null }> };
 
+export type DeleteMovieListMutationVariables = Exact<{
+  id: Scalars['String']['input'];
+}>;
+
+
+export type DeleteMovieListMutation = { __typename?: 'Mutation', deleteOneMovieList?: { __typename?: 'MovieList', id: string } | null };
+
 export type MovieListCardItemFragment = { __typename?: 'MovieList', id: string, name: string, description: string, tags: Array<string>, movies: Array<{ __typename?: 'Movie', id: string, movieInfo?: { __typename?: 'MovieInfo', id: string, title: string, posterUrl: string } | null }>, movieListAuthor: { __typename?: 'MovifierAppUser', id: string, username: string } };
 
 export type SearchMoviesForListCreationQueryVariables = Exact<{
@@ -10193,6 +10200,39 @@ export type GetUserWatchedMoviesQueryHookResult = ReturnType<typeof useGetUserWa
 export type GetUserWatchedMoviesLazyQueryHookResult = ReturnType<typeof useGetUserWatchedMoviesLazyQuery>;
 export type GetUserWatchedMoviesSuspenseQueryHookResult = ReturnType<typeof useGetUserWatchedMoviesSuspenseQuery>;
 export type GetUserWatchedMoviesQueryResult = Apollo.QueryResult<GetUserWatchedMoviesQuery, GetUserWatchedMoviesQueryVariables>;
+export const DeleteMovieListDocument = gql`
+    mutation DeleteMovieList($id: String!) {
+  deleteOneMovieList(where: {id: $id}) {
+    id
+  }
+}
+    `;
+export type DeleteMovieListMutationFn = Apollo.MutationFunction<DeleteMovieListMutation, DeleteMovieListMutationVariables>;
+
+/**
+ * __useDeleteMovieListMutation__
+ *
+ * To run a mutation, you first call `useDeleteMovieListMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useDeleteMovieListMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [deleteMovieListMutation, { data, loading, error }] = useDeleteMovieListMutation({
+ *   variables: {
+ *      id: // value for 'id'
+ *   },
+ * });
+ */
+export function useDeleteMovieListMutation(baseOptions?: Apollo.MutationHookOptions<DeleteMovieListMutation, DeleteMovieListMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<DeleteMovieListMutation, DeleteMovieListMutationVariables>(DeleteMovieListDocument, options);
+      }
+export type DeleteMovieListMutationHookResult = ReturnType<typeof useDeleteMovieListMutation>;
+export type DeleteMovieListMutationResult = Apollo.MutationResult<DeleteMovieListMutation>;
+export type DeleteMovieListMutationOptions = Apollo.BaseMutationOptions<DeleteMovieListMutation, DeleteMovieListMutationVariables>;
 export const SearchMoviesForListCreationDocument = gql`
     query SearchMoviesForListCreation($search: String!, $alreadySelectedMovies: [String!]!) {
   searchMovies(
