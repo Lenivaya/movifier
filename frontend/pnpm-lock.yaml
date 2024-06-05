@@ -96,10 +96,10 @@ importers:
         specifier: ^0.1.1
         version: 0.1.1(next@14.2.3(@babel/core@7.24.5)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       react:
-        specifier: ^18
+        specifier: ^18.3.1
         version: 18.3.1
       react-dom:
-        specifier: ^18
+        specifier: ^18.3.1
         version: 18.3.1(react@18.3.1)
       react-hook-form:
         specifier: ^7.51.5
@@ -127,8 +127,8 @@ importers:
         specifier: ^3.10.4
         version: 3.10.4(@types/react@18.3.2)(graphql-ws@5.16.0(graphql@16.8.1))(graphql@16.8.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@apollo/experimental-nextjs-app-support':
-        specifier: ^0.10.1
-        version: 0.10.1(@apollo/client@3.10.4(@types/react@18.3.2)(graphql-ws@5.16.0(graphql@16.8.1))(graphql@16.8.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(next@14.2.3(@babel/core@7.24.5)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react@18.3.1)
+        specifier: ^0.11.0
+        version: 0.11.0(@apollo/client@3.10.4(@types/react@18.3.2)(graphql-ws@5.16.0(graphql@16.8.1))(graphql@16.8.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(next@14.2.3(@babel/core@7.24.5)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react@18.3.1)
       '@graphql-codegen/cli':
         specifier: ^5.0.2
         version: 5.0.2(@parcel/watcher@2.4.1)(@types/node@20.12.12)(graphql@16.8.1)(typescript@5.4.5)
@@ -157,13 +157,13 @@ importers:
         specifier: ^0.5.13
         version: 0.5.13(tailwindcss@3.4.3)
       '@types/node':
-        specifier: ^20
+        specifier: ^20.12.12
         version: 20.12.12
       '@types/react':
-        specifier: ^18
+        specifier: ^18.3.2
         version: 18.3.2
       '@types/react-dom':
-        specifier: ^18
+        specifier: ^18.3.0
         version: 18.3.0
       apollo3-cache-persist:
         specifier: ^0.15.0
@@ -172,13 +172,13 @@ importers:
         specifier: ^2.4.4
         version: 2.4.4
       eslint:
-        specifier: ^8
+        specifier: ^8.57.0
         version: 8.57.0
       eslint-config-next:
         specifier: 14.2.3
         version: 14.2.3(eslint@8.57.0)(typescript@5.4.5)
       postcss:
-        specifier: ^8
+        specifier: ^8.4.38
         version: 8.4.38
       prettier:
         specifier: ^3.2.5
@@ -196,10 +196,10 @@ importers:
         specifier: ^0.5.14
         version: 0.5.14(prettier@3.2.5)
       tailwindcss:
-        specifier: ^3.4.1
+        specifier: ^3.4.3
         version: 3.4.3
       typescript:
-        specifier: ^5
+        specifier: ^5.4.5
         version: 5.4.5
 
 packages:
@@ -212,10 +212,10 @@ packages:
     resolution: {integrity: sha512-30iZtAPgz+LTIYoeivqYo853f02jBYSd5uGnGpkFV0M3xOt9aN73erkgYAmZU43x4VfqcnLxW9Kpg3R5LC4YYw==}
     engines: {node: '>=6.0.0'}
 
-  '@apollo/client-react-streaming@0.10.1':
-    resolution: {integrity: sha512-8wM4y2Q1sSo4BTsemsI5G/G4U2pTM1r0BbwrCL/R2xMF4nSdJBTFO69fDGV+gaGt52bmNtV+MGbV2nJdURH2OQ==}
+  '@apollo/client-react-streaming@0.11.0':
+    resolution: {integrity: sha512-F8pK1lVCaXKTwXQvXHO9bXtXqGIlpX3201uTqFl44oc9a0L+LGTSigthrB/KA19ihyMT6cB1GnnXiyWcUSW+3A==}
     peerDependencies:
-      '@apollo/client': ^3.9.6
+      '@apollo/client': ^3.10.4
       react: ^18
 
   '@apollo/client@3.10.4':
@@ -236,11 +236,11 @@ packages:
       subscriptions-transport-ws:
         optional: true
 
-  '@apollo/experimental-nextjs-app-support@0.10.1':
-    resolution: {integrity: sha512-oPDHqSq+cxpE+vm5GsQCYWnj68nTul0wQx/i8MHdjhSBcwmCbOO6oJtfZpXGX8FTzY8Hvb85FrMqIeqQtFTsMw==}
+  '@apollo/experimental-nextjs-app-support@0.11.0':
+    resolution: {integrity: sha512-e5SpE4JHwXq5TGDGL2qjPcG4X1ZWI7kStg2HtpjLxAM9BpwvE2X5EM5cgMNkOkFOrzt/qsrfCt8fI+lkeBD/5A==}
     peerDependencies:
-      '@apollo/client': ^3.9.6
-      next: ^13.4.1 || ^14.0.0
+      '@apollo/client': ^3.10.4
+      next: ^13.4.1 || ^14.0.0 || 15.0.0-rc.0
       react: ^18
 
   '@ardatan/relay-compiler@12.0.0':
@@ -1971,10 +1971,6 @@ packages:
   convert-source-map@2.0.0:
     resolution: {integrity: sha512-Kvp459HrV2FEJ1CAsi1Ku+MY3kasH19TFykTz2xWmMeq6bk2NU3XXvfJ+Q61m0xktWwt+1HSYf3JZsTms3aRJg==}
 
-  copy-anything@3.0.5:
-    resolution: {integrity: sha512-yCEafptTtb4bk7GLEQoM8KVJpxAfdBJYaXyzQEgQQQgYrZiDp8SJmGKlYza6CYjEDNstAdNdKA3UuoULlEbS6w==}
-    engines: {node: '>=12.13'}
-
   cosmiconfig@8.3.6:
     resolution: {integrity: sha512-kcZ6+W5QzcJ3P1Mt+83OUv/oHFqZHIx8DuxG6eZ5RGMERoLqp4BuGjhHLYGK+Kf5XVkQvqBSmAy/nGWN3qDgEA==}
     engines: {node: '>=14'}
@@ -2746,10 +2742,6 @@ packages:
   is-weakset@2.0.3:
     resolution: {integrity: sha512-LvIm3/KWzS9oRFHugab7d+M/GcBXuXX5xZkzPmN+NxihdQlZUQ4dWuSV1xR/sq6upL1TJEDrfBgRepHFdBtSNQ==}
     engines: {node: '>= 0.4'}
-
-  is-what@4.1.16:
-    resolution: {integrity: sha512-ZhMwEosbFJkA0YhFnNDgTM4ZxDRsS6HqTo7qsZM08fehyRYIYa0yHu5R6mgo1n/8MgaPBXiPimPD77baVFYg+A==}
-    engines: {node: '>=12.13'}
 
   is-windows@1.0.2:
     resolution: {integrity: sha512-eXK1UInq2bPmjyX6e3VHIzMLobc4J94i4AWn+Hpq3OU5KkrRC96OAcR3PRJ/pGu6m8TRnBHP9dkXQVsT/COVIA==}
@@ -3705,10 +3697,6 @@ packages:
     engines: {node: '>=16 || 14 >=14.17'}
     hasBin: true
 
-  superjson@2.2.1:
-    resolution: {integrity: sha512-8iGv75BYOa0xRJHK5vRLEjE2H/i4lulTjzpUXic3Eg8akftYjkmQDa8JARQ42rlczXyFR3IeRoeFCc7RxHsYZA==}
-    engines: {node: '>=16'}
-
   supports-color@5.5.0:
     resolution: {integrity: sha512-QjVjwdXIt408MIiAqCX4oUKsgU2EqAGzs2Ppkm4aQYbjm+ZEWEcW4SfFNTr4uMNZma0ey4f5lgLrkB0aX0QMow==}
     engines: {node: '>=4'}
@@ -4057,11 +4045,10 @@ snapshots:
       '@jridgewell/gen-mapping': 0.3.5
       '@jridgewell/trace-mapping': 0.3.25
 
-  '@apollo/client-react-streaming@0.10.1(@apollo/client@3.10.4(@types/react@18.3.2)(graphql-ws@5.16.0(graphql@16.8.1))(graphql@16.8.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react@18.3.1)':
+  '@apollo/client-react-streaming@0.11.0(@apollo/client@3.10.4(@types/react@18.3.2)(graphql-ws@5.16.0(graphql@16.8.1))(graphql@16.8.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react@18.3.1)':
     dependencies:
       '@apollo/client': 3.10.4(@types/react@18.3.2)(graphql-ws@5.16.0(graphql@16.8.1))(graphql@16.8.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       react: 18.3.1
-      superjson: 2.2.1
       ts-invariant: 0.10.3
 
   '@apollo/client@3.10.4(@types/react@18.3.2)(graphql-ws@5.16.0(graphql@16.8.1))(graphql@16.8.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
@@ -4088,10 +4075,10 @@ snapshots:
     transitivePeerDependencies:
       - '@types/react'
 
-  '@apollo/experimental-nextjs-app-support@0.10.1(@apollo/client@3.10.4(@types/react@18.3.2)(graphql-ws@5.16.0(graphql@16.8.1))(graphql@16.8.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(next@14.2.3(@babel/core@7.24.5)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react@18.3.1)':
+  '@apollo/experimental-nextjs-app-support@0.11.0(@apollo/client@3.10.4(@types/react@18.3.2)(graphql-ws@5.16.0(graphql@16.8.1))(graphql@16.8.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(next@14.2.3(@babel/core@7.24.5)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react@18.3.1)':
     dependencies:
       '@apollo/client': 3.10.4(@types/react@18.3.2)(graphql-ws@5.16.0(graphql@16.8.1))(graphql@16.8.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@apollo/client-react-streaming': 0.10.1(@apollo/client@3.10.4(@types/react@18.3.2)(graphql-ws@5.16.0(graphql@16.8.1))(graphql@16.8.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react@18.3.1)
+      '@apollo/client-react-streaming': 0.11.0(@apollo/client@3.10.4(@types/react@18.3.2)(graphql-ws@5.16.0(graphql@16.8.1))(graphql@16.8.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react@18.3.1)
       next: 14.2.3(@babel/core@7.24.5)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       react: 18.3.1
 
@@ -6279,10 +6266,6 @@ snapshots:
 
   convert-source-map@2.0.0: {}
 
-  copy-anything@3.0.5:
-    dependencies:
-      is-what: 4.1.16
-
   cosmiconfig@8.3.6(typescript@5.4.5):
     dependencies:
       import-fresh: 3.3.0
@@ -7240,8 +7223,6 @@ snapshots:
       call-bind: 1.0.7
       get-intrinsic: 1.2.4
 
-  is-what@4.1.16: {}
-
   is-windows@1.0.2: {}
 
   isarray@2.0.5: {}
@@ -8127,10 +8108,6 @@ snapshots:
       mz: 2.7.0
       pirates: 4.0.6
       ts-interface-checker: 0.1.13
-
-  superjson@2.2.1:
-    dependencies:
-      copy-anything: 3.0.5
 
   supports-color@5.5.0:
     dependencies:
