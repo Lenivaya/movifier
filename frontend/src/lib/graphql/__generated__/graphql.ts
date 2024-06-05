@@ -7097,17 +7097,19 @@ export type UserRegisterOutput = {
   user: MovifierAppUser;
 };
 
-export type MovieListsQueryVariables = Exact<{ [key: string]: never; }>;
+export type GetMovieListForPageQueryVariables = Exact<{
+  id: Scalars['String']['input'];
+}>;
 
 
-export type MovieListsQuery = { __typename?: 'Query', movieLists: Array<{ __typename?: 'MovieList', id: string, name: string, description: string, tags: Array<string>, movies: Array<{ __typename?: 'Movie', id: string, movieInfo?: { __typename?: 'MovieInfo', id: string, title: string, posterUrl: string } | null }>, movieListAuthor: { __typename?: 'MovifierAppUser', id: string, username: string } }> };
+export type GetMovieListForPageQuery = { __typename?: 'Query', movieList?: { __typename?: 'MovieList', id: string, name: string, description: string, tags: Array<string>, movies: Array<{ __typename?: 'Movie', id: string, movieInfo?: { __typename?: 'MovieInfo', id: string, title: string, posterUrl: string } | null }>, movieListAuthor: { __typename?: 'MovifierAppUser', id: string, username: string } } | null };
 
 export type SearchMovieListsQueryVariables = Exact<{
   searchCriteria: MovieListSearchCriteriaInput;
 }>;
 
 
-export type SearchMovieListsQuery = { __typename?: 'Query', searchMovieLists: Array<{ __typename?: 'MovieList', id: string, name: string, description: string, tags: Array<string>, movies: Array<{ __typename?: 'Movie', id: string, movieInfo?: { __typename?: 'MovieInfo', id: string, title: string, posterUrl: string } | null }>, movieListAuthor: { __typename?: 'MovifierAppUser', id: string, username: string } }> };
+export type SearchMovieListsQuery = { __typename?: 'Query', searchMovieLists: Array<{ __typename?: 'MovieList', id: string, name: string, tags: Array<string>, movies: Array<{ __typename?: 'Movie', id: string, movieInfo?: { __typename?: 'MovieInfo', id: string, title: string, posterUrl: string } | null }>, movieListAuthor: { __typename?: 'MovifierAppUser', id: string, username: string } }> };
 
 export type GetMovieForPageQueryVariables = Exact<{
   id: Scalars['String']['input'];
@@ -7159,7 +7161,9 @@ export type DeleteMovieListMutationVariables = Exact<{
 
 export type DeleteMovieListMutation = { __typename?: 'Mutation', deleteOneMovieList?: { __typename?: 'MovieList', id: string } | null };
 
-export type MovieListCardItemFragment = { __typename?: 'MovieList', id: string, name: string, description: string, tags: Array<string>, movies: Array<{ __typename?: 'Movie', id: string, movieInfo?: { __typename?: 'MovieInfo', id: string, title: string, posterUrl: string } | null }>, movieListAuthor: { __typename?: 'MovifierAppUser', id: string, username: string } };
+export type MovieListCardItemFragment = { __typename?: 'MovieList', id: string, name: string, tags: Array<string>, movies: Array<{ __typename?: 'Movie', id: string, movieInfo?: { __typename?: 'MovieInfo', id: string, title: string, posterUrl: string } | null }>, movieListAuthor: { __typename?: 'MovifierAppUser', id: string, username: string } };
+
+export type MovieListPageItemFragment = { __typename?: 'MovieList', id: string, name: string, description: string, tags: Array<string>, movies: Array<{ __typename?: 'Movie', id: string, movieInfo?: { __typename?: 'MovieInfo', id: string, title: string, posterUrl: string } | null }>, movieListAuthor: { __typename?: 'MovifierAppUser', id: string, username: string } };
 
 export type SearchMoviesForListCreationQueryVariables = Exact<{
   search: Scalars['String']['input'];
@@ -9793,7 +9797,6 @@ export const MovieListCardItemFragmentDoc = gql`
     fragment MovieListCardItem on MovieList {
   id
   name
-  description
   tags
   movies(take: 5) {
     id
@@ -9809,6 +9812,32 @@ export const MovieListCardItemFragmentDoc = gql`
   }
 }
     `;
+export const MovieCardItemFragmentDoc = gql`
+    fragment MovieCardItem on Movie {
+  id
+  movieInfo {
+    id
+    title
+    posterUrl
+  }
+}
+    `;
+export const MovieListPageItemFragmentDoc = gql`
+    fragment MovieListPageItem on MovieList {
+  id
+  name
+  description
+  tags
+  movies {
+    id
+    ...MovieCardItem
+  }
+  movieListAuthor {
+    id
+    username
+  }
+}
+    ${MovieCardItemFragmentDoc}`;
 export const MinimalisticMovieSearchCardFragmentItemFragmentDoc = gql`
     fragment MinimalisticMovieSearchCardFragmentItem on Movie {
   id
@@ -9843,16 +9872,6 @@ export const MovieReviewCardItemFragmentDoc = gql`
   }
   _count {
     likedBy
-  }
-}
-    `;
-export const MovieCardItemFragmentDoc = gql`
-    fragment MovieCardItem on Movie {
-  id
-  movieInfo {
-    id
-    title
-    posterUrl
   }
 }
     `;
@@ -9933,45 +9952,46 @@ export const CurrentUserFragmentDoc = gql`
   name
 }
     `;
-export const MovieListsDocument = gql`
-    query MovieLists {
-  movieLists {
-    ...MovieListCardItem
+export const GetMovieListForPageDocument = gql`
+    query GetMovieListForPage($id: String!) {
+  movieList(where: {id: $id}) {
+    ...MovieListPageItem
   }
 }
-    ${MovieListCardItemFragmentDoc}`;
+    ${MovieListPageItemFragmentDoc}`;
 
 /**
- * __useMovieListsQuery__
+ * __useGetMovieListForPageQuery__
  *
- * To run a query within a React component, call `useMovieListsQuery` and pass it any options that fit your needs.
- * When your component renders, `useMovieListsQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * To run a query within a React component, call `useGetMovieListForPageQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetMovieListForPageQuery` returns an object from Apollo Client that contains loading, error, and data properties
  * you can use to render your UI.
  *
  * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
  *
  * @example
- * const { data, loading, error } = useMovieListsQuery({
+ * const { data, loading, error } = useGetMovieListForPageQuery({
  *   variables: {
+ *      id: // value for 'id'
  *   },
  * });
  */
-export function useMovieListsQuery(baseOptions?: Apollo.QueryHookOptions<MovieListsQuery, MovieListsQueryVariables>) {
+export function useGetMovieListForPageQuery(baseOptions: Apollo.QueryHookOptions<GetMovieListForPageQuery, GetMovieListForPageQueryVariables> & ({ variables: GetMovieListForPageQueryVariables; skip?: boolean; } | { skip: boolean; }) ) {
         const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<MovieListsQuery, MovieListsQueryVariables>(MovieListsDocument, options);
+        return Apollo.useQuery<GetMovieListForPageQuery, GetMovieListForPageQueryVariables>(GetMovieListForPageDocument, options);
       }
-export function useMovieListsLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<MovieListsQuery, MovieListsQueryVariables>) {
+export function useGetMovieListForPageLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetMovieListForPageQuery, GetMovieListForPageQueryVariables>) {
           const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<MovieListsQuery, MovieListsQueryVariables>(MovieListsDocument, options);
+          return Apollo.useLazyQuery<GetMovieListForPageQuery, GetMovieListForPageQueryVariables>(GetMovieListForPageDocument, options);
         }
-export function useMovieListsSuspenseQuery(baseOptions?: Apollo.SuspenseQueryHookOptions<MovieListsQuery, MovieListsQueryVariables>) {
+export function useGetMovieListForPageSuspenseQuery(baseOptions?: Apollo.SuspenseQueryHookOptions<GetMovieListForPageQuery, GetMovieListForPageQueryVariables>) {
           const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useSuspenseQuery<MovieListsQuery, MovieListsQueryVariables>(MovieListsDocument, options);
+          return Apollo.useSuspenseQuery<GetMovieListForPageQuery, GetMovieListForPageQueryVariables>(GetMovieListForPageDocument, options);
         }
-export type MovieListsQueryHookResult = ReturnType<typeof useMovieListsQuery>;
-export type MovieListsLazyQueryHookResult = ReturnType<typeof useMovieListsLazyQuery>;
-export type MovieListsSuspenseQueryHookResult = ReturnType<typeof useMovieListsSuspenseQuery>;
-export type MovieListsQueryResult = Apollo.QueryResult<MovieListsQuery, MovieListsQueryVariables>;
+export type GetMovieListForPageQueryHookResult = ReturnType<typeof useGetMovieListForPageQuery>;
+export type GetMovieListForPageLazyQueryHookResult = ReturnType<typeof useGetMovieListForPageLazyQuery>;
+export type GetMovieListForPageSuspenseQueryHookResult = ReturnType<typeof useGetMovieListForPageSuspenseQuery>;
+export type GetMovieListForPageQueryResult = Apollo.QueryResult<GetMovieListForPageQuery, GetMovieListForPageQueryVariables>;
 export const SearchMovieListsDocument = gql`
     query SearchMovieLists($searchCriteria: MovieListSearchCriteriaInput!) {
   searchMovieLists(take: 5, searchCriteria: $searchCriteria) {

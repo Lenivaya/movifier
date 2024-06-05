@@ -47,6 +47,8 @@ import { dateFormatterYear } from '@/components/movifier/generic'
 import { MovieCard } from '@/components/movifier/movies/MovieCard'
 import { useCurrentUser } from '@/lib/hooks/CurrentUser'
 import { toast } from '@/components/ui/use-toast'
+import { Link } from 'next-view-transitions'
+import { ToastAction } from '@/components/ui/toast'
 
 export const SearchMovies = gql`
   query SearchMoviesForListCreation(
@@ -168,9 +170,14 @@ export const MovieListCreateForm: FC<{
           ...D.deleteKeys(values, ['tags'])
         }
       },
-      onCompleted: () => {
+      onCompleted: ({ upsertOneMovieList }) => {
         toast({
-          title: `Movie list ${isUpadting ? 'updated' : 'created'}!`
+          title: `Movie list ${isUpadting ? 'updated' : 'created'}!`,
+          action: (
+            <Link href={'/movie-lists/' + upsertOneMovieList.id}>
+              <ToastAction altText='View movie list'>View</ToastAction>
+            </Link>
+          )
         })
       },
       onError: (error) => {
