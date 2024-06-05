@@ -38,14 +38,14 @@ export default function MoviesPage() {
 
       <div className='w-full mx-auto my-auto min-h-[90vh] flex justify-center pb-5'>
         <Suspense fallback={<AppLoader />}>
-          <ParcelsPageCardListSuspense searchCriteria={searchCriteria} />
+          <MoviesPageCardListSuspense searchCriteria={searchCriteria} />
         </Suspense>
       </div>
     </main>
   )
 }
 
-const ParcelsPageCardListSuspense: FC<{
+const MoviesPageCardListSuspense: FC<{
   searchCriteria: MoviesSearchCriteriaInput
 }> = ({ searchCriteria }) => {
   const { data } = useSearchMoviesSuspenseQuery({

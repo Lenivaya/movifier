@@ -54,7 +54,6 @@ export const MovieListCard: FC<MovieListCardItemFragment> = ({
   id,
   name,
   tags,
-  description,
   movies,
   movieListAuthor
 }) => {

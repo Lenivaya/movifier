@@ -33,7 +33,7 @@ const moviesLinks: { title: string; href: string; description: string }[] = [
   },
   {
     title: 'Movie lists',
-    href: '/movies/lists',
+    href: '/movie-lists',
     description: 'Explore movie lists created by other users'
   },
   {

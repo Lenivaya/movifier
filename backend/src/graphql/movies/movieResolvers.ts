@@ -14,10 +14,12 @@ import {
 } from '@/generated/type-graphql'
 import { CustomMoviesResolver } from '@/graphql/movies/customMoviesResolver'
 import { CustomMoviesTmdbResolver } from '@/graphql/movies/moviesTmdbFetcher/customMoviesTmdbResolver'
+import { CustomMovieListResolver } from '@/graphql/movies/movieList/customMovieListResolver'
 
 export const moviesResolvers: NonEmptyArray<Function> = [
   CustomMoviesResolver,
   CustomMoviesTmdbResolver,
+  CustomMovieListResolver,
   MovieCrudResolver,
   MovieRelationsResolver,
   MovieCrewMemberOnMovieRelationsResolver,

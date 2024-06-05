@@ -142,7 +142,7 @@ export const MovieListCreateForm: FC<{
       })
 
     await upsertMovieList({
-      refetchQueries: ['MovieLists'],
+      refetchQueries: ['SearchMovieLists'],
       variables: {
         existingListId: movieListToUpdate?.id ?? '',
         updateData: {

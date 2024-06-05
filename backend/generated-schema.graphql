@@ -2252,6 +2252,10 @@ input MovieListScalarWhereWithAggregatesInput {
   userId: StringWithAggregatesFilter
 }
 
+input MovieListSearchCriteriaInput {
+  search: String
+}
+
 type MovieListStats {
   createdAt: DateTimeISO!
   id: String!
@@ -5533,6 +5537,7 @@ type Query {
   movieWatchedByUsers(cursor: MovieWatchedByUserWhereUniqueInput, distinct: [MovieWatchedByUserScalarFieldEnum!], orderBy: [MovieWatchedByUserOrderByWithRelationAndSearchRelevanceInput!], skip: Int, take: Int, where: MovieWatchedByUserWhereInput): [MovieWatchedByUser!]!
   movies(cursor: MovieWhereUniqueInput, distinct: [MovieScalarFieldEnum!], orderBy: [MovieOrderByWithRelationAndSearchRelevanceInput!], skip: Int, take: Int, where: MovieWhereInput): [Movie!]!
   movifierAppUsers(cursor: MovifierAppUserWhereUniqueInput, distinct: [MovifierAppUserScalarFieldEnum!], orderBy: [MovifierAppUserOrderByWithRelationAndSearchRelevanceInput!], skip: Int, take: Int, where: MovifierAppUserWhereInput): [MovifierAppUser!]!
+  searchMovieLists(cursor: MovieListWhereUniqueInput, distinct: [MovieListScalarFieldEnum!], orderBy: [MovieListOrderByWithRelationAndSearchRelevanceInput!], searchCriteria: MovieListSearchCriteriaInput!, skip: Int, take: Int, where: MovieListWhereInput): [MovieList!]!
   searchMovies(cursor: MovieWhereUniqueInput, distinct: [MovieScalarFieldEnum!], orderBy: [MovieOrderByWithRelationAndSearchRelevanceInput!], searchCriteria: MoviesSearchCriteriaInput!, skip: Int, take: Int, where: MovieWhereInput): [Movie!]!
   userMovieWatchlist(where: UserMovieWatchlistWhereUniqueInput!): UserMovieWatchlist
   userMovieWatchlists(cursor: UserMovieWatchlistWhereUniqueInput, distinct: [UserMovieWatchlistScalarFieldEnum!], orderBy: [UserMovieWatchlistOrderByWithRelationAndSearchRelevanceInput!], skip: Int, take: Int, where: UserMovieWatchlistWhereInput): [UserMovieWatchlist!]!
