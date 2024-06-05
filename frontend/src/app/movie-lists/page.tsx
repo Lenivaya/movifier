@@ -10,6 +10,9 @@ import { useMutative } from 'use-mutative'
 import { FC, Suspense } from 'react'
 import { AppLoader } from '@/components/movifier/generic'
 import { SearchBar } from '@/components/movifier/generic/search'
+import { motion } from 'framer-motion'
+import { PlusCircledIcon, PlusIcon } from '@radix-ui/react-icons'
+import { Link } from 'next-view-transitions'
 
 const SearchMovieLists = gql`
   query SearchMovieLists($searchCriteria: MovieListSearchCriteriaInput!) {
@@ -35,13 +38,25 @@ export default function MovieLists() {
         <SearchBar
           search={searchCriteria.search || ''}
           handleSearch={criteriaChanger('search')}
-          placeholder='Search for a movie'
+          placeholder='Search for a movie list'
         />
       </div>
 
       <Suspense fallback={<AppLoader />}>
         <MovieListPageCardListSuspense searchCriteria={searchCriteria} />
       </Suspense>
+
+      <Link href={'/movie-lists/new'} passHref>
+        <motion.div
+          className='fixed z-50 bottom-[90px] -right-10 focus:ring-0 focus:ring-transparent focus:ring-offset-0'
+          whileHover={{ scale: 1.3 }}
+          whileTap={{ scale: 0.9 }}
+          animate={{ x: -90 }}
+          transition={{ type: 'spring', duration: 0.8 }}
+        >
+          <PlusCircledIcon opacity={100} className={'h-[2.5em] w-auto'} />
+        </motion.div>
+      </Link>
     </main>
   )
 }
