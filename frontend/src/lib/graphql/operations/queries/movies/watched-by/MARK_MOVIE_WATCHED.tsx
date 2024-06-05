@@ -8,7 +8,7 @@ export const MARK_MOVIE_WATCHED = gql`
         user: { connect: { id: $userId } }
       }
     ) {
-      createdAt
+      movieId
     }
   }
 `

@@ -14,6 +14,7 @@
     "code:graphql:watch": "graphql-codegen --watch 'src/**/*.{ts,tsx}'"
   },
   "dependencies": {
+    "@carbon/charts-react": "^1.16.3",
     "@headlessui/react": "^2.0.3",
     "@hookform/resolvers": "^3.4.2",
     "@noble/hashes": "^1.4.0",
@@ -35,6 +36,9 @@
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
     "cmdk": "^1.0.0",
+    "d3": "^7.9.0",
+    "d3-cloud": "^1.2.7",
+    "d3-sankey": "^0.12.3",
     "date-fns": "^3.6.0",
     "framer-motion": "^11.2.4",
     "graphql": "^16.8.1",
@@ -46,6 +50,7 @@
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-hook-form": "^7.51.5",
+    "recharts": "^2.12.7",
     "tailwind-merge": "^2.3.0",
     "tailwindcss-animate": "^1.0.7",
     "ts-pattern": "^5.1.1",

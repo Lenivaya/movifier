@@ -37,6 +37,7 @@ export const MovieLikedButton: FC<
 
     await markMovieLiked({
       variables: composeKey,
+      refetchQueries: ['GetUserLikedMovieIdsInMovieList'],
       onError: (error) => {
         console.error(error.message)
         toast({
@@ -52,6 +53,7 @@ export const MovieLikedButton: FC<
   const handleMovieUnsetLiked = async () => {
     await unmarkMovieLiked({
       variables: composeKey,
+      refetchQueries: ['GetUserLikedMovieIdsInMovieList'],
       onError: (error) => {
         console.error(error)
         toast({

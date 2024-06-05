@@ -1,11 +1,13 @@
 import React, { FC, useState, forwardRef, useCallback } from 'react'
 import {
   cn,
+  GetUserWatchedMovieIdsInMovieListDocument,
+  GetUserWatchedMovieIdsInMovieListQuery,
   useIsMovieWatchedByUserQuery,
   useMarkMovieWatchedMutation,
   useUnmarkMovieWatchedMutation
 } from '@/lib'
-import { isSome } from '@/lib/types'
+import { isNone, isSome } from '@/lib/types'
 import { toast } from '@/components/ui/use-toast'
 import { motion } from 'framer-motion'
 import { EyeIcon } from 'lucide-react'
@@ -38,6 +40,7 @@ export const MovieWatchedButton: FC<
 
     await markMovieWatched({
       variables: composeKey,
+      refetchQueries: ['GetUserWatchedMovieIdsInMovieList'],
       onError: (error) => {
         console.error(error)
         toast({
@@ -54,6 +57,7 @@ export const MovieWatchedButton: FC<
   const handleMovieUnsetWatched = async () => {
     await unmarkMovieWatched({
       variables: composeKey,
+      refetchQueries: ['GetUserWatchedMovieIdsInMovieList'],
       onError: (error) => {
         console.error(error)
         toast({

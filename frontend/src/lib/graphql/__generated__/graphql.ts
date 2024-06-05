@@ -7165,6 +7165,22 @@ export type MovieListCardItemFragment = { __typename?: 'MovieList', id: string, 
 
 export type MovieListPageItemFragment = { __typename?: 'MovieList', id: string, name: string, description: string, tags: Array<string>, movies: Array<{ __typename?: 'Movie', id: string, movieInfo?: { __typename?: 'MovieInfo', id: string, title: string, posterUrl: string } | null }>, movieListAuthor: { __typename?: 'MovifierAppUser', id: string, username: string } };
 
+export type GetUserWatchedMovieIdsInMovieListQueryVariables = Exact<{
+  userId: Scalars['String']['input'];
+  movieListId: Scalars['String']['input'];
+}>;
+
+
+export type GetUserWatchedMovieIdsInMovieListQuery = { __typename?: 'Query', movies: Array<{ __typename?: 'Movie', id: string }> };
+
+export type GetUserLikedMovieIdsInMovieListQueryVariables = Exact<{
+  userId: Scalars['String']['input'];
+  movieListId: Scalars['String']['input'];
+}>;
+
+
+export type GetUserLikedMovieIdsInMovieListQuery = { __typename?: 'Query', movies: Array<{ __typename?: 'Movie', id: string }> };
+
 export type SearchMoviesForListCreationQueryVariables = Exact<{
   search: Scalars['String']['input'];
   alreadySelectedMovies: Array<Scalars['String']['input']> | Scalars['String']['input'];
@@ -7344,7 +7360,7 @@ export type MarkMovieWatchedMutationVariables = Exact<{
 }>;
 
 
-export type MarkMovieWatchedMutation = { __typename?: 'Mutation', createOneMovieWatchedByUser: { __typename?: 'MovieWatchedByUser', createdAt: any } };
+export type MarkMovieWatchedMutation = { __typename?: 'Mutation', createOneMovieWatchedByUser: { __typename?: 'MovieWatchedByUser', movieId: string } };
 
 export type UnmarkMovieWatchedMutationVariables = Exact<{
   movieId: Scalars['String']['input'];
@@ -7352,7 +7368,7 @@ export type UnmarkMovieWatchedMutationVariables = Exact<{
 }>;
 
 
-export type UnmarkMovieWatchedMutation = { __typename?: 'Mutation', deleteOneMovieWatchedByUser?: { __typename?: 'MovieWatchedByUser', createdAt: any } | null };
+export type UnmarkMovieWatchedMutation = { __typename?: 'Mutation', deleteOneMovieWatchedByUser?: { __typename?: 'MovieWatchedByUser', movieId: string } | null };
 
 export type AddMovieToUserWatchlistMutationVariables = Exact<{
   movieId: Scalars['String']['input'];
@@ -10319,6 +10335,92 @@ export function useDeleteMovieListMutation(baseOptions?: Apollo.MutationHookOpti
 export type DeleteMovieListMutationHookResult = ReturnType<typeof useDeleteMovieListMutation>;
 export type DeleteMovieListMutationResult = Apollo.MutationResult<DeleteMovieListMutation>;
 export type DeleteMovieListMutationOptions = Apollo.BaseMutationOptions<DeleteMovieListMutation, DeleteMovieListMutationVariables>;
+export const GetUserWatchedMovieIdsInMovieListDocument = gql`
+    query GetUserWatchedMovieIdsInMovieList($userId: String!, $movieListId: String!) {
+  movies(
+    where: {watchedBy: {some: {userId: {equals: $userId}}}, movieLists: {some: {id: {equals: $movieListId}}}}
+  ) {
+    id
+  }
+}
+    `;
+
+/**
+ * __useGetUserWatchedMovieIdsInMovieListQuery__
+ *
+ * To run a query within a React component, call `useGetUserWatchedMovieIdsInMovieListQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetUserWatchedMovieIdsInMovieListQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetUserWatchedMovieIdsInMovieListQuery({
+ *   variables: {
+ *      userId: // value for 'userId'
+ *      movieListId: // value for 'movieListId'
+ *   },
+ * });
+ */
+export function useGetUserWatchedMovieIdsInMovieListQuery(baseOptions: Apollo.QueryHookOptions<GetUserWatchedMovieIdsInMovieListQuery, GetUserWatchedMovieIdsInMovieListQueryVariables> & ({ variables: GetUserWatchedMovieIdsInMovieListQueryVariables; skip?: boolean; } | { skip: boolean; }) ) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<GetUserWatchedMovieIdsInMovieListQuery, GetUserWatchedMovieIdsInMovieListQueryVariables>(GetUserWatchedMovieIdsInMovieListDocument, options);
+      }
+export function useGetUserWatchedMovieIdsInMovieListLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetUserWatchedMovieIdsInMovieListQuery, GetUserWatchedMovieIdsInMovieListQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<GetUserWatchedMovieIdsInMovieListQuery, GetUserWatchedMovieIdsInMovieListQueryVariables>(GetUserWatchedMovieIdsInMovieListDocument, options);
+        }
+export function useGetUserWatchedMovieIdsInMovieListSuspenseQuery(baseOptions?: Apollo.SuspenseQueryHookOptions<GetUserWatchedMovieIdsInMovieListQuery, GetUserWatchedMovieIdsInMovieListQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useSuspenseQuery<GetUserWatchedMovieIdsInMovieListQuery, GetUserWatchedMovieIdsInMovieListQueryVariables>(GetUserWatchedMovieIdsInMovieListDocument, options);
+        }
+export type GetUserWatchedMovieIdsInMovieListQueryHookResult = ReturnType<typeof useGetUserWatchedMovieIdsInMovieListQuery>;
+export type GetUserWatchedMovieIdsInMovieListLazyQueryHookResult = ReturnType<typeof useGetUserWatchedMovieIdsInMovieListLazyQuery>;
+export type GetUserWatchedMovieIdsInMovieListSuspenseQueryHookResult = ReturnType<typeof useGetUserWatchedMovieIdsInMovieListSuspenseQuery>;
+export type GetUserWatchedMovieIdsInMovieListQueryResult = Apollo.QueryResult<GetUserWatchedMovieIdsInMovieListQuery, GetUserWatchedMovieIdsInMovieListQueryVariables>;
+export const GetUserLikedMovieIdsInMovieListDocument = gql`
+    query GetUserLikedMovieIdsInMovieList($userId: String!, $movieListId: String!) {
+  movies(
+    where: {likedBy: {some: {userId: {equals: $userId}}}, movieLists: {some: {id: {equals: $movieListId}}}}
+  ) {
+    id
+  }
+}
+    `;
+
+/**
+ * __useGetUserLikedMovieIdsInMovieListQuery__
+ *
+ * To run a query within a React component, call `useGetUserLikedMovieIdsInMovieListQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetUserLikedMovieIdsInMovieListQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetUserLikedMovieIdsInMovieListQuery({
+ *   variables: {
+ *      userId: // value for 'userId'
+ *      movieListId: // value for 'movieListId'
+ *   },
+ * });
+ */
+export function useGetUserLikedMovieIdsInMovieListQuery(baseOptions: Apollo.QueryHookOptions<GetUserLikedMovieIdsInMovieListQuery, GetUserLikedMovieIdsInMovieListQueryVariables> & ({ variables: GetUserLikedMovieIdsInMovieListQueryVariables; skip?: boolean; } | { skip: boolean; }) ) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<GetUserLikedMovieIdsInMovieListQuery, GetUserLikedMovieIdsInMovieListQueryVariables>(GetUserLikedMovieIdsInMovieListDocument, options);
+      }
+export function useGetUserLikedMovieIdsInMovieListLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetUserLikedMovieIdsInMovieListQuery, GetUserLikedMovieIdsInMovieListQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<GetUserLikedMovieIdsInMovieListQuery, GetUserLikedMovieIdsInMovieListQueryVariables>(GetUserLikedMovieIdsInMovieListDocument, options);
+        }
+export function useGetUserLikedMovieIdsInMovieListSuspenseQuery(baseOptions?: Apollo.SuspenseQueryHookOptions<GetUserLikedMovieIdsInMovieListQuery, GetUserLikedMovieIdsInMovieListQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useSuspenseQuery<GetUserLikedMovieIdsInMovieListQuery, GetUserLikedMovieIdsInMovieListQueryVariables>(GetUserLikedMovieIdsInMovieListDocument, options);
+        }
+export type GetUserLikedMovieIdsInMovieListQueryHookResult = ReturnType<typeof useGetUserLikedMovieIdsInMovieListQuery>;
+export type GetUserLikedMovieIdsInMovieListLazyQueryHookResult = ReturnType<typeof useGetUserLikedMovieIdsInMovieListLazyQuery>;
+export type GetUserLikedMovieIdsInMovieListSuspenseQueryHookResult = ReturnType<typeof useGetUserLikedMovieIdsInMovieListSuspenseQuery>;
+export type GetUserLikedMovieIdsInMovieListQueryResult = Apollo.QueryResult<GetUserLikedMovieIdsInMovieListQuery, GetUserLikedMovieIdsInMovieListQueryVariables>;
 export const SearchMoviesForListCreationDocument = gql`
     query SearchMoviesForListCreation($search: String!, $alreadySelectedMovies: [String!]!) {
   searchMovies(
@@ -11129,7 +11231,7 @@ export const MarkMovieWatchedDocument = gql`
   createOneMovieWatchedByUser(
     data: {movie: {connect: {id: $movieId}}, user: {connect: {id: $userId}}}
   ) {
-    createdAt
+    movieId
   }
 }
     `;
@@ -11165,7 +11267,7 @@ export const UnmarkMovieWatchedDocument = gql`
   deleteOneMovieWatchedByUser(
     where: {userId_movieId: {movieId: $movieId, userId: $userId}}
   ) {
-    createdAt
+    movieId
   }
 }
     `;
