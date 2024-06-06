@@ -1,6 +1,7 @@
 import React, { FC, Suspense, useState } from 'react'
 import {
   MoviesSearchCriteriaInput,
+  useDecadesQuery,
   useGenresQuery,
   useSearchMoviesSuspenseQuery
 } from '@/lib'
@@ -27,18 +28,11 @@ const SearchMovies = gql`
   }
 `
 
-const GetGenres = gql`
-  query Genres {
-    genres {
-      name
-    }
-  }
-`
-
 export function MoviesPage({
   initialSearchCriteria = {
     search: '',
-    genre: null
+    genre: null,
+    decade: null
   }
 }: {
   initialSearchCriteria?: MoviesSearchCriteriaInput
@@ -47,15 +41,20 @@ export function MoviesPage({
     useMutative<MoviesSearchCriteriaInput>(initialSearchCriteria)
 
   const criteriaChanger =
-    (field: keyof MoviesSearchCriteriaInput) => (value: string) =>
+    <T,>(field: keyof MoviesSearchCriteriaInput) =>
+    (value: T) =>
       setSearchCriteria((prev) => ({ ...prev, [field]: value }))
 
   return (
     <main className='relative flex min-h-[100vh] w-full flex-col gap-5 items-center justify-between max-md:pt-5 pt-7'>
-      <div className='w-5/6 ml-10 mr-10 p-3 flex justify-center bg-slate-200/30 rounded-lg shadow-lg '>
+      <div className='w-5/6 ml-10 mr-10 p-3 gap-5 flex justify-center bg-slate-200/30 rounded-lg shadow-lg '>
         <MoviesPageGenreSelect
           criteria={searchCriteria}
           setGenre={criteriaChanger('genre')}
+        />
+        <MoviesPageDecadesSelect
+          criteria={searchCriteria}
+          setDecade={criteriaChanger<number>('decade')}
         />
       </div>
 
@@ -75,6 +74,61 @@ export function MoviesPage({
     </main>
   )
 }
+
+const GetDecades = gql`
+  query Decades {
+    getMovieDecades {
+      decades
+    }
+  }
+`
+
+function MoviesPageDecadesSelect({
+  criteria,
+  setDecade
+}: {
+  criteria: MoviesSearchCriteriaInput
+  setDecade: (value: number) => void
+}) {
+  const { data, loading } = useDecadesQuery({
+    fetchPolicy: 'cache-and-network',
+    nextFetchPolicy: 'cache-only'
+  })
+  const [selectedDecade, setSelectedDecade] = useState(
+    criteria.decade ?? undefined
+  )
+
+  return (
+    <Select
+      defaultValue={selectedDecade?.toString()}
+      onValueChange={(newValue) => {
+        setSelectedDecade(+newValue)
+        setDecade(+newValue)
+      }}
+    >
+      <SelectTrigger className='w-[180px]'>
+        <SelectValue placeholder='Decade' />
+      </SelectTrigger>
+      <SelectContent>
+        {data?.getMovieDecades.decades.map((decade) => (
+          <Link href={`/movies/decade/${decade}`} passHref>
+            <div>
+              <SelectItem value={decade.toString()}>{decade}</SelectItem>
+            </div>
+          </Link>
+        ))}
+      </SelectContent>
+    </Select>
+  )
+}
+
+const GetGenres = gql`
+  query Genres {
+    genres {
+      name
+    }
+  }
+`
 
 function MoviesPageGenreSelect({
   criteria,

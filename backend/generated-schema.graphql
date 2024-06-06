@@ -97,6 +97,10 @@ input DateTimeWithAggregatesFilter {
   notIn: [DateTimeISO!]
 }
 
+type Decades {
+  decades: [Float!]!
+}
+
 input EnumMoviefireAppUserRoleFieldUpdateOperationsInput {
   set: MoviefireAppUserRole
 }
@@ -4814,6 +4818,7 @@ enum MoviefireAppUserRole {
 }
 
 input MoviesSearchCriteriaInput {
+  decade: Float
   genre: String
   search: String
 }
@@ -5685,6 +5690,7 @@ type Query {
   genres(cursor: GenreWhereUniqueInput, distinct: [GenreScalarFieldEnum!], orderBy: [GenreOrderByWithRelationAndSearchRelevanceInput!], skip: Int, take: Int, where: GenreWhereInput): [Genre!]!
   getGenre(where: GenreWhereUniqueInput!): Genre
   getMovie(where: MovieWhereUniqueInput!): Movie
+  getMovieDecades: Decades!
   getMovieLikedByUser(where: MovieLikedByUserWhereUniqueInput!): MovieLikedByUser
   getMovieList(where: MovieListWhereUniqueInput!): MovieList
   getMovieRating(where: MovieRatingWhereUniqueInput!): MovieRating

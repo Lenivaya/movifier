@@ -9,6 +9,14 @@ import {
   transformCountFieldIntoSelectRelationsCount,
   transformInfoIntoPrismaArgs
 } from '@/generated/type-graphql/helpers'
+import { AppContext } from '@/graphql/context'
+import { GraphQLError } from 'graphql/index'
+
+@TypeGraphQL.ObjectType()
+class Decades {
+  @TypeGraphQL.Field(() => [Number])
+  decades!: number[]
+}
 
 @TypeGraphQL.Resolver()
 export class CustomMoviesResolver {
@@ -102,10 +110,25 @@ export class CustomMoviesResolver {
     const genre = searchCriteriaArgs.searchCriteria?.genre
     if (isSome(genre)) {
       where.genres = {
+        ...where.genres,
         some: {
           name: {
             contains: genre
           }
+        }
+      }
+    }
+
+    const decade = searchCriteriaArgs.searchCriteria?.decade
+    if (isSome(decade)) {
+      const startDate = new Date(decade, 0, 1)
+      const endDate = new Date(decade + 10, 0, 1)
+
+      where.movieInfo = {
+        // ...where.movieInfo,
+        releaseDate: {
+          gte: startDate,
+          lt: endDate
         }
       }
     }
@@ -121,5 +144,38 @@ export class CustomMoviesResolver {
       ...args,
       ...(_count && transformCountFieldIntoSelectRelationsCount(_count))
     })
+  }
+
+  @TypeGraphQL.Query(() => Decades)
+  async getMovieDecades(@TypeGraphQL.Ctx() ctx: AppContext): Promise<Decades> {
+    const prisma = getPrismaFromContext(ctx)
+
+    const movies = await prisma.movieInfo.aggregate({
+      _min: {
+        releaseDate: true
+      },
+      _max: {
+        releaseDate: true
+      }
+    })
+
+    const oldestDate = movies._min.releaseDate
+    const newestDate = movies._max.releaseDate
+
+    if (!oldestDate || !newestDate) throw new GraphQLError('No movies found')
+
+    const oldestYear = new Date(oldestDate).getFullYear()
+    const newestYear = new Date(newestDate).getFullYear()
+
+    const decades: number[] = []
+    for (
+      let year = Math.floor(oldestYear / 10) * 10;
+      year <= newestYear;
+      year += 10
+    ) {
+      decades.push(year)
+    }
+
+    return { decades }
   }
 }

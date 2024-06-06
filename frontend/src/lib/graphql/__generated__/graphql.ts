@@ -121,6 +121,11 @@ export type DateTimeWithAggregatesFilter = {
   notIn?: InputMaybe<Array<Scalars['DateTimeISO']['input']>>;
 };
 
+export type Decades = {
+  __typename?: 'Decades';
+  decades: Array<Scalars['Float']['output']>;
+};
+
 export type EnumMoviefireAppUserRoleFieldUpdateOperationsInput = {
   set?: InputMaybe<MoviefireAppUserRole>;
 };
@@ -5136,6 +5141,7 @@ export type MoviefireAppUserRole =
   | 'USER';
 
 export type MoviesSearchCriteriaInput = {
+  decade?: InputMaybe<Scalars['Float']['input']>;
   genre?: InputMaybe<Scalars['String']['input']>;
   search?: InputMaybe<Scalars['String']['input']>;
 };
@@ -6424,6 +6430,7 @@ export type Query = {
   genres: Array<Genre>;
   getGenre?: Maybe<Genre>;
   getMovie?: Maybe<Movie>;
+  getMovieDecades: Decades;
   getMovieLikedByUser?: Maybe<MovieLikedByUser>;
   getMovieList?: Maybe<MovieList>;
   getMovieRating?: Maybe<MovieRating>;
@@ -7578,6 +7585,11 @@ export type SearchMoviesQueryVariables = Exact<{
 
 export type SearchMoviesQuery = { __typename?: 'Query', searchMovies: Array<{ __typename?: 'Movie', id: string, movieInfo?: { __typename?: 'MovieInfo', id: string, title: string, posterUrl: string } | null }> };
 
+export type DecadesQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type DecadesQuery = { __typename?: 'Query', getMovieDecades: { __typename?: 'Decades', decades: Array<number> } };
+
 export type GenresQueryVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -7787,6 +7799,7 @@ export type ResolversTypes = ResolversObject<{
   DateTimeFilter: DateTimeFilter;
   DateTimeISO: ResolverTypeWrapper<Scalars['DateTimeISO']['output']>;
   DateTimeWithAggregatesFilter: DateTimeWithAggregatesFilter;
+  Decades: ResolverTypeWrapper<Decades>;
   EnumMoviefireAppUserRoleFieldUpdateOperationsInput: EnumMoviefireAppUserRoleFieldUpdateOperationsInput;
   EnumMoviefireAppUserRoleFilter: EnumMoviefireAppUserRoleFilter;
   Float: ResolverTypeWrapper<Scalars['Float']['output']>;
@@ -8551,6 +8564,7 @@ export type ResolversParentTypes = ResolversObject<{
   DateTimeFilter: DateTimeFilter;
   DateTimeISO: Scalars['DateTimeISO']['output'];
   DateTimeWithAggregatesFilter: DateTimeWithAggregatesFilter;
+  Decades: Decades;
   EnumMoviefireAppUserRoleFieldUpdateOperationsInput: EnumMoviefireAppUserRoleFieldUpdateOperationsInput;
   EnumMoviefireAppUserRoleFilter: EnumMoviefireAppUserRoleFilter;
   Float: Scalars['Float']['output'];
@@ -9336,6 +9350,11 @@ export interface DateTimeIsoScalarConfig extends GraphQLScalarTypeConfig<Resolve
   name: 'DateTimeISO';
 }
 
+export type DecadesResolvers<ContextType = any, ParentType extends ResolversParentTypes['Decades'] = ResolversParentTypes['Decades']> = ResolversObject<{
+  decades?: Resolver<Array<ResolversTypes['Float']>, ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+}>;
+
 export type GenreResolvers<ContextType = any, ParentType extends ResolversParentTypes['Genre'] = ResolversParentTypes['Genre']> = ResolversObject<{
   _count?: Resolver<Maybe<ResolversTypes['GenreCount']>, ParentType, ContextType>;
   createdAt?: Resolver<ResolversTypes['DateTimeISO'], ParentType, ContextType>;
@@ -10027,6 +10046,7 @@ export type QueryResolvers<ContextType = any, ParentType extends ResolversParent
   genres?: Resolver<Array<ResolversTypes['Genre']>, ParentType, ContextType, Partial<QueryGenresArgs>>;
   getGenre?: Resolver<Maybe<ResolversTypes['Genre']>, ParentType, ContextType, RequireFields<QueryGetGenreArgs, 'where'>>;
   getMovie?: Resolver<Maybe<ResolversTypes['Movie']>, ParentType, ContextType, RequireFields<QueryGetMovieArgs, 'where'>>;
+  getMovieDecades?: Resolver<ResolversTypes['Decades'], ParentType, ContextType>;
   getMovieLikedByUser?: Resolver<Maybe<ResolversTypes['MovieLikedByUser']>, ParentType, ContextType, RequireFields<QueryGetMovieLikedByUserArgs, 'where'>>;
   getMovieList?: Resolver<Maybe<ResolversTypes['MovieList']>, ParentType, ContextType, RequireFields<QueryGetMovieListArgs, 'where'>>;
   getMovieRating?: Resolver<Maybe<ResolversTypes['MovieRating']>, ParentType, ContextType, RequireFields<QueryGetMovieRatingArgs, 'where'>>;
@@ -10130,6 +10150,7 @@ export type Resolvers<ContextType = any> = ResolversObject<{
   AggregateMovieWatchedByUser?: AggregateMovieWatchedByUserResolvers<ContextType>;
   AggregateUserMovieWatchlist?: AggregateUserMovieWatchlistResolvers<ContextType>;
   DateTimeISO?: GraphQLScalarType;
+  Decades?: DecadesResolvers<ContextType>;
   Genre?: GenreResolvers<ContextType>;
   GenreCount?: GenreCountResolvers<ContextType>;
   GenreCountAggregate?: GenreCountAggregateResolvers<ContextType>;
@@ -11283,6 +11304,45 @@ export type SearchMoviesQueryHookResult = ReturnType<typeof useSearchMoviesQuery
 export type SearchMoviesLazyQueryHookResult = ReturnType<typeof useSearchMoviesLazyQuery>;
 export type SearchMoviesSuspenseQueryHookResult = ReturnType<typeof useSearchMoviesSuspenseQuery>;
 export type SearchMoviesQueryResult = Apollo.QueryResult<SearchMoviesQuery, SearchMoviesQueryVariables>;
+export const DecadesDocument = gql`
+    query Decades {
+  getMovieDecades {
+    decades
+  }
+}
+    `;
+
+/**
+ * __useDecadesQuery__
+ *
+ * To run a query within a React component, call `useDecadesQuery` and pass it any options that fit your needs.
+ * When your component renders, `useDecadesQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useDecadesQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useDecadesQuery(baseOptions?: Apollo.QueryHookOptions<DecadesQuery, DecadesQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<DecadesQuery, DecadesQueryVariables>(DecadesDocument, options);
+      }
+export function useDecadesLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<DecadesQuery, DecadesQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<DecadesQuery, DecadesQueryVariables>(DecadesDocument, options);
+        }
+export function useDecadesSuspenseQuery(baseOptions?: Apollo.SuspenseQueryHookOptions<DecadesQuery, DecadesQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useSuspenseQuery<DecadesQuery, DecadesQueryVariables>(DecadesDocument, options);
+        }
+export type DecadesQueryHookResult = ReturnType<typeof useDecadesQuery>;
+export type DecadesLazyQueryHookResult = ReturnType<typeof useDecadesLazyQuery>;
+export type DecadesSuspenseQueryHookResult = ReturnType<typeof useDecadesSuspenseQuery>;
+export type DecadesQueryResult = Apollo.QueryResult<DecadesQuery, DecadesQueryVariables>;
 export const GenresDocument = gql`
     query Genres {
   genres {
@@ -11954,6 +12014,10 @@ export type AggregateUserMovieWatchlistFieldPolicy = {
 	_max?: FieldPolicy<any> | FieldReadFunction<any>,
 	_min?: FieldPolicy<any> | FieldReadFunction<any>
 };
+export type DecadesKeySpecifier = ('decades' | DecadesKeySpecifier)[];
+export type DecadesFieldPolicy = {
+	decades?: FieldPolicy<any> | FieldReadFunction<any>
+};
 export type GenreKeySpecifier = ('_count' | 'createdAt' | 'movies' | 'name' | 'updatedAt' | GenreKeySpecifier)[];
 export type GenreFieldPolicy = {
 	_count?: FieldPolicy<any> | FieldReadFunction<any>,
@@ -12549,7 +12613,7 @@ export type MutationFieldPolicy = {
 	upsertOneMovieWatchedByUser?: FieldPolicy<any> | FieldReadFunction<any>,
 	upsertOneUserMovieWatchlist?: FieldPolicy<any> | FieldReadFunction<any>
 };
-export type QueryKeySpecifier = ('aggregateGenre' | 'aggregateMovie' | 'aggregateMovieLikedByUser' | 'aggregateMovieList' | 'aggregateMovieRating' | 'aggregateMovieReview' | 'aggregateMovieReviewLikedByUser' | 'aggregateMovieWatchedByUser' | 'aggregateUserMovieWatchlist' | 'findFirstGenre' | 'findFirstGenreOrThrow' | 'findFirstMovie' | 'findFirstMovieLikedByUser' | 'findFirstMovieLikedByUserOrThrow' | 'findFirstMovieList' | 'findFirstMovieListOrThrow' | 'findFirstMovieOrThrow' | 'findFirstMovieRating' | 'findFirstMovieRatingOrThrow' | 'findFirstMovieReview' | 'findFirstMovieReviewLikedByUser' | 'findFirstMovieReviewLikedByUserOrThrow' | 'findFirstMovieReviewOrThrow' | 'findFirstMovieWatchedByUser' | 'findFirstMovieWatchedByUserOrThrow' | 'findFirstUserMovieWatchlist' | 'findFirstUserMovieWatchlistOrThrow' | 'genre' | 'genres' | 'getGenre' | 'getMovie' | 'getMovieLikedByUser' | 'getMovieList' | 'getMovieRating' | 'getMovieReview' | 'getMovieReviewLikedByUser' | 'getMovieWatchedByUser' | 'getUserMovieWatchlist' | 'groupByGenre' | 'groupByMovie' | 'groupByMovieLikedByUser' | 'groupByMovieList' | 'groupByMovieRating' | 'groupByMovieReview' | 'groupByMovieReviewLikedByUser' | 'groupByMovieWatchedByUser' | 'groupByUserMovieWatchlist' | 'me' | 'movie' | 'movieLikedByUser' | 'movieLikedByUsers' | 'movieList' | 'movieLists' | 'movieRating' | 'movieRatings' | 'movieReview' | 'movieReviewLikedByUser' | 'movieReviewLikedByUsers' | 'movieReviews' | 'movieWatchedByUser' | 'movieWatchedByUsers' | 'movies' | 'movifierAppUsers' | 'searchMovieLists' | 'searchMovies' | 'userMovieWatchlist' | 'userMovieWatchlists' | QueryKeySpecifier)[];
+export type QueryKeySpecifier = ('aggregateGenre' | 'aggregateMovie' | 'aggregateMovieLikedByUser' | 'aggregateMovieList' | 'aggregateMovieRating' | 'aggregateMovieReview' | 'aggregateMovieReviewLikedByUser' | 'aggregateMovieWatchedByUser' | 'aggregateUserMovieWatchlist' | 'findFirstGenre' | 'findFirstGenreOrThrow' | 'findFirstMovie' | 'findFirstMovieLikedByUser' | 'findFirstMovieLikedByUserOrThrow' | 'findFirstMovieList' | 'findFirstMovieListOrThrow' | 'findFirstMovieOrThrow' | 'findFirstMovieRating' | 'findFirstMovieRatingOrThrow' | 'findFirstMovieReview' | 'findFirstMovieReviewLikedByUser' | 'findFirstMovieReviewLikedByUserOrThrow' | 'findFirstMovieReviewOrThrow' | 'findFirstMovieWatchedByUser' | 'findFirstMovieWatchedByUserOrThrow' | 'findFirstUserMovieWatchlist' | 'findFirstUserMovieWatchlistOrThrow' | 'genre' | 'genres' | 'getGenre' | 'getMovie' | 'getMovieDecades' | 'getMovieLikedByUser' | 'getMovieList' | 'getMovieRating' | 'getMovieReview' | 'getMovieReviewLikedByUser' | 'getMovieWatchedByUser' | 'getUserMovieWatchlist' | 'groupByGenre' | 'groupByMovie' | 'groupByMovieLikedByUser' | 'groupByMovieList' | 'groupByMovieRating' | 'groupByMovieReview' | 'groupByMovieReviewLikedByUser' | 'groupByMovieWatchedByUser' | 'groupByUserMovieWatchlist' | 'me' | 'movie' | 'movieLikedByUser' | 'movieLikedByUsers' | 'movieList' | 'movieLists' | 'movieRating' | 'movieRatings' | 'movieReview' | 'movieReviewLikedByUser' | 'movieReviewLikedByUsers' | 'movieReviews' | 'movieWatchedByUser' | 'movieWatchedByUsers' | 'movies' | 'movifierAppUsers' | 'searchMovieLists' | 'searchMovies' | 'userMovieWatchlist' | 'userMovieWatchlists' | QueryKeySpecifier)[];
 export type QueryFieldPolicy = {
 	aggregateGenre?: FieldPolicy<any> | FieldReadFunction<any>,
 	aggregateMovie?: FieldPolicy<any> | FieldReadFunction<any>,
@@ -12582,6 +12646,7 @@ export type QueryFieldPolicy = {
 	genres?: FieldPolicy<any> | FieldReadFunction<any>,
 	getGenre?: FieldPolicy<any> | FieldReadFunction<any>,
 	getMovie?: FieldPolicy<any> | FieldReadFunction<any>,
+	getMovieDecades?: FieldPolicy<any> | FieldReadFunction<any>,
 	getMovieLikedByUser?: FieldPolicy<any> | FieldReadFunction<any>,
 	getMovieList?: FieldPolicy<any> | FieldReadFunction<any>,
 	getMovieRating?: FieldPolicy<any> | FieldReadFunction<any>,
@@ -12705,6 +12770,10 @@ export type StrictTypedTypePolicies = {
 	AggregateUserMovieWatchlist?: Omit<TypePolicy, "fields" | "keyFields"> & {
 		keyFields?: false | AggregateUserMovieWatchlistKeySpecifier | (() => undefined | AggregateUserMovieWatchlistKeySpecifier),
 		fields?: AggregateUserMovieWatchlistFieldPolicy,
+	},
+	Decades?: Omit<TypePolicy, "fields" | "keyFields"> & {
+		keyFields?: false | DecadesKeySpecifier | (() => undefined | DecadesKeySpecifier),
+		fields?: DecadesFieldPolicy,
 	},
 	Genre?: Omit<TypePolicy, "fields" | "keyFields"> & {
 		keyFields?: false | GenreKeySpecifier | (() => undefined | GenreKeySpecifier),
