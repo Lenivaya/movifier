@@ -17,6 +17,8 @@ import {
 import { MovieCardList } from '@/components/movifier/movies/MovieCardList'
 import { useCurrentUser } from '@/lib/hooks/CurrentUser'
 import { Progress } from '@/components/ui/progress'
+import { EyeOpenIcon } from '@radix-ui/react-icons'
+import { HeartIcon } from 'lucide-react'
 
 export const MovieListPageFragment = gql`
   fragment MovieListPageItem on MovieList {
@@ -73,7 +75,8 @@ export const MovieListPage: FC<MovieListPageItemFragment> = ({
   id,
   name,
   description,
-  movies
+  movies,
+  movieListAuthor
 }) => {
   const user = useCurrentUser()
 
@@ -103,60 +106,74 @@ export const MovieListPage: FC<MovieListPageItemFragment> = ({
   )
 
   return (
-    <Card>
+    <Card className={'h-full'}>
       <CardHeader>
         <CardTitle className={'text-3xl'}>{name}</CardTitle>
         <CardDescription>
           <article className={'prose-slate prose-lg whitespace-pre-line'}>
             {description}
           </article>
+          <p className='text-sm text-gray-500'>
+            By{' '}
+            <span className={'underline hover:text-black'}>
+              {movieListAuthor.username}
+            </span>{' '}
+          </p>
         </CardDescription>
       </CardHeader>
 
       <Separator className={'mb-10'} />
 
-      <CardContent>
-        <div className='grid grid-cols-[60%_40%] gap-2 items-center content-center place-content-center'>
+      <CardContent className={'h-[80%]'}>
+        <div className='grid grid-cols-[60%_40%] gap-2 h-full'>
           <MovieCardList movies={movies} />
 
-          <div className={'flex flex-col gap-5'}>
-            <Card className={'h-min w-full'}>
-              <CardHeader>
-                <CardTitle>Watched Movies</CardTitle>
-              </CardHeader>
-              <CardContent
-                className={
-                  'grid grid-cols-[70%_40%] align-baseline gap-5 items-baseline'
-                }
-              >
-                <Progress value={watchedPercent} />
-                <h1 className={'text-3xl font-bold'}>{watchedPercent} %</h1>
-              </CardContent>
-              <CardFooter>
-                <p className={'text-xs italic'}>
-                  You've watched {userWatchedMovieIdsData.movies.length ?? 0} of{' '}
-                  {movies.length} movies in this list
-                </p>
-              </CardFooter>
-            </Card>
+          <div className='flex gap-5 w-full'>
+            <Separator orientation={'vertical'} />
 
-            <Card className={'h-min w-full'}>
-              <CardHeader>
-                <CardTitle>Liked Movies</CardTitle>
-              </CardHeader>
-              <CardContent
-                className={'grid grid-cols-[80%_20%] gap-5 items-baseline'}
-              >
-                <Progress value={likedPercent} />
-                <h1 className={'text-3xl font-bold'}>{likedPercent} %</h1>
-              </CardContent>
-              <CardFooter>
-                <p className={'text-xs italic'}>
-                  You've liked {userLikedMovieIdsData.movies.length ?? 0} of{' '}
-                  {movies.length} movies in this list
-                </p>
-              </CardFooter>
-            </Card>
+            <div className={'flex flex-col gap-2 w-full'}>
+              <Card className={'h-min w-full'}>
+                <CardHeader>
+                  <CardTitle>Watched Movies</CardTitle>
+                  <CardDescription>
+                    <EyeOpenIcon className={'h-[2.5em] w-auto'} />
+                  </CardDescription>
+                </CardHeader>
+                <CardContent
+                  className={'flex align-baseline gap-5 items-baseline'}
+                >
+                  <Progress value={watchedPercent} />
+                  <h1 className={'text-3xl font-bold'}>{watchedPercent}%</h1>
+                </CardContent>
+                <CardFooter>
+                  <p className={'text-xs italic'}>
+                    You've watched {userWatchedMovieIdsData.movies.length ?? 0}{' '}
+                    of {movies.length} movies in this list
+                  </p>
+                </CardFooter>
+              </Card>
+
+              <Card className={'h-min w-full'}>
+                <CardHeader>
+                  <CardTitle>Liked Movies</CardTitle>
+                  <CardDescription>
+                    <HeartIcon className={'h-[2.5em] w-auto'} />
+                  </CardDescription>
+                </CardHeader>
+                <CardContent
+                  className={'flex align-baseline gap-5 items-baseline'}
+                >
+                  <Progress value={likedPercent} />
+                  <h1 className={'text-3xl font-bold'}>{likedPercent}%</h1>
+                </CardContent>
+                <CardFooter>
+                  <p className={'text-xs italic'}>
+                    You've liked {userLikedMovieIdsData.movies.length ?? 0} of{' '}
+                    {movies.length} movies in this list
+                  </p>
+                </CardFooter>
+              </Card>
+            </div>
           </div>
         </div>
       </CardContent>

@@ -21,7 +21,7 @@ export default function OneMovieListPage({
   params: { id: string }
 }) {
   return (
-    <main className={'p-10'}>
+    <main className={'p-5 h-screen max-w-full overflow-hidden'}>
       <Suspense fallback={<AppLoader />}>
         <SuspenseMovieListPage id={params.id} />
       </Suspense>
@@ -35,5 +35,7 @@ function SuspenseMovieListPage({ id }: { id: string }) {
     fetchPolicy: 'cache-and-network'
   })
 
-  return isNone(data.movieList) || <MovieListPage {...data.movieList} />
+  if (isNone(data.movieList)) return null
+
+  return <MovieListPage {...data.movieList} />
 }
