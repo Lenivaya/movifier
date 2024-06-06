@@ -7,4 +7,7 @@ export class MoviesSearchCriteriaInput {
     nullable: true
   })
   search?: Option<string>
+
+  @TypeGraphQL.Field((_type) => String, { nullable: true })
+  genre?: Option<string>
 }

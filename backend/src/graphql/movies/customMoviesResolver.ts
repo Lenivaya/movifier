@@ -99,6 +99,17 @@ export class CustomMoviesResolver {
       where.AND = and
     }
 
+    const genre = searchCriteriaArgs.searchCriteria?.genre
+    if (isSome(genre)) {
+      where.genres = {
+        some: {
+          name: {
+            contains: genre
+          }
+        }
+      }
+    }
+
     // @ts-ignore
     args.where = {
       ...args.where,
