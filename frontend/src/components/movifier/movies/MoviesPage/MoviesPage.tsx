@@ -15,10 +15,14 @@ import {
   Select,
   SelectContent,
   SelectItem,
+  SelectSeparator,
   SelectTrigger,
   SelectValue
 } from '@/components/ui/select'
 import { Link } from 'next-view-transitions'
+import { Button } from '@/components/ui'
+import { Option } from '@mobily/ts-belt'
+import { isSome } from '@/lib/types'
 
 const SearchMovies = gql`
   query SearchMovies($searchCriteria: MoviesSearchCriteriaInput!) {
@@ -54,7 +58,7 @@ export function MoviesPage({
         />
         <MoviesPageDecadesSelect
           criteria={searchCriteria}
-          setDecade={criteriaChanger<number>('decade')}
+          setDecade={criteriaChanger<Option<number>>('decade')}
         />
       </div>
 
@@ -88,8 +92,9 @@ function MoviesPageDecadesSelect({
   setDecade
 }: {
   criteria: MoviesSearchCriteriaInput
-  setDecade: (value: number) => void
+  setDecade: (value: Option<number>) => void
 }) {
+  const [keyForResetting, setKeyForResetting] = React.useState(+new Date())
   const { data, loading } = useDecadesQuery({
     fetchPolicy: 'cache-and-network',
     nextFetchPolicy: 'cache-only'
@@ -100,7 +105,9 @@ function MoviesPageDecadesSelect({
 
   return (
     <Select
+      key={keyForResetting}
       defaultValue={selectedDecade?.toString()}
+      value={isSome(selectedDecade) ? selectedDecade?.toString() : undefined}
       onValueChange={(newValue) => {
         setSelectedDecade(+newValue)
         setDecade(+newValue)
@@ -117,6 +124,21 @@ function MoviesPageDecadesSelect({
             </div>
           </Link>
         ))}
+        <SelectSeparator />
+
+        <Button
+          className='w-full px-2'
+          variant='secondary'
+          size='sm'
+          onClick={(e) => {
+            e.stopPropagation()
+            setSelectedDecade(undefined)
+            setDecade(null)
+            setKeyForResetting(+new Date())
+          }}
+        >
+          Clear
+        </Button>
       </SelectContent>
     </Select>
   )
@@ -137,6 +159,7 @@ function MoviesPageGenreSelect({
   criteria: MoviesSearchCriteriaInput
   setGenre: (value: string) => void
 }) {
+  const [keyForResetting, setKeyForResetting] = React.useState(+new Date())
   const { data, loading } = useGenresQuery({
     fetchPolicy: 'cache-and-network',
     nextFetchPolicy: 'cache-only'
@@ -147,6 +170,7 @@ function MoviesPageGenreSelect({
 
   return (
     <Select
+      key={keyForResetting}
       defaultValue={selectedGenre}
       onValueChange={(newValue) => {
         setSelectedGenre(newValue)
@@ -166,6 +190,22 @@ function MoviesPageGenreSelect({
             </div>
           </Link>
         ))}
+
+        <SelectSeparator />
+
+        <Button
+          className='w-full px-2'
+          variant='secondary'
+          size='sm'
+          onClick={(e) => {
+            e.stopPropagation()
+            setSelectedGenre(undefined)
+            setGenre(null)
+            setKeyForResetting(+new Date())
+          }}
+        >
+          Clear
+        </Button>
       </SelectContent>
     </Select>
   )
