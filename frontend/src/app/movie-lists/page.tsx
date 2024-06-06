@@ -73,9 +73,15 @@ const MovieListPageCardListSuspense: FC<{
 
   return (
     <div className={'flex flex-col w-full h-full justify-start max-w-5xl'}>
-      <div className={'flex flex-row flex-wrap justify-center gap-10'}>
+      <div
+        className={
+          'flex flex-row flex-shrink flex-wrap justify-center items-stretch gap-10'
+        }
+      >
         {data?.searchMovieLists.map((movieList) => (
-          <MovieListCard key={movieList.id} {...movieList} />
+          <div key={movieList.id} className='flex-1 min-h-full'>
+            <MovieListCard key={movieList.id} {...movieList} />
+          </div>
         ))}
       </div>
     </div>

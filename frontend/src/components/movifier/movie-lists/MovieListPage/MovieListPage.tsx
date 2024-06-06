@@ -111,7 +111,7 @@ export const MovieListPage: FC<MovieListPageItemFragment> = ({
   )
 
   return (
-    <Card className={'h-full'}>
+    <Card className={'h-full overflow-scroll'}>
       <CardHeader className={'relative'}>
         <CardTitle className={'text-3xl'}>{name}</CardTitle>
         <CardDescription>
@@ -146,7 +146,9 @@ export const MovieListPage: FC<MovieListPageItemFragment> = ({
 
       <CardContent className={'h-[80%]'}>
         <div className='grid grid-cols-[60%_40%] gap-2 h-full'>
-          <MovieCardList movies={movies} />
+          <div className='pb-10'>
+            <MovieCardList movies={movies} />
+          </div>
 
           <div className='flex gap-5 w-full'>
             <Separator orientation={'vertical'} />

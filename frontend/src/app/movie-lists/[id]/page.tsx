@@ -21,7 +21,7 @@ export default function OneMovieListPage({
   params: { id: string }
 }) {
   return (
-    <main className={'p-5 h-screen max-w-full overflow-hidden'}>
+    <main className={'p-5 h-dvh max-w-full overflow-hidden'}>
       <Suspense fallback={<AppLoader />}>
         <SuspenseMovieListPage id={params.id} />
       </Suspense>

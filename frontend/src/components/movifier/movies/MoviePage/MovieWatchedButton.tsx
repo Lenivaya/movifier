@@ -1,17 +1,14 @@
-import React, { FC, useState, forwardRef, useCallback } from 'react'
+import React, { FC, useCallback, useState } from 'react'
 import {
   cn,
-  GetUserWatchedMovieIdsInMovieListDocument,
-  GetUserWatchedMovieIdsInMovieListQuery,
   useIsMovieWatchedByUserQuery,
   useMarkMovieWatchedMutation,
   useUnmarkMovieWatchedMutation
 } from '@/lib'
-import { isNone, isSome } from '@/lib/types'
+import { isSome } from '@/lib/types'
 import { toast } from '@/components/ui/use-toast'
 import { motion } from 'framer-motion'
 import { EyeIcon } from 'lucide-react'
-
 import { ComposeKeyMovieUser } from '@/components/movifier/movies/MoviePage/types'
 import { apolloObjectRemover } from '@/lib/graphql/ApolloClient/cache/helpers/utils'
 
