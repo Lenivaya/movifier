@@ -1,28 +1,13 @@
-import React, { FC, Suspense, useState } from 'react'
-import {
-  MoviesSearchCriteriaInput,
-  useDecadesQuery,
-  useGenresQuery,
-  useSearchMoviesSuspenseQuery
-} from '@/lib'
+import React, { FC, Suspense } from 'react'
+import { MoviesSearchCriteriaInput, useSearchMoviesSuspenseQuery } from '@/lib'
 import { MovieCardList } from '@/components/movifier/movies/MovieCardList'
 import { gql } from '@apollo/client'
 import { useMutative } from 'use-mutative'
 import { SearchBar } from '@/components/movifier/generic/search'
 import { AppLoader } from '@/components/movifier/generic'
-
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectSeparator,
-  SelectTrigger,
-  SelectValue
-} from '@/components/ui/select'
-import { Link } from 'next-view-transitions'
-import { Button } from '@/components/ui'
 import { Option } from '@mobily/ts-belt'
-import { isSome } from '@/lib/types'
+import { MoviesPageGenreSelect } from '@/components/movifier/movies/MoviesPage/MoviesPageGenreSelect'
+import { MoviesPageDecadesSelect } from '@/components/movifier/movies/MoviesPage/MoviesPageDecadesSelect'
 
 const SearchMovies = gql`
   query SearchMovies($searchCriteria: MoviesSearchCriteriaInput!) {
@@ -76,138 +61,6 @@ export function MoviesPage({
         </Suspense>
       </div>
     </main>
-  )
-}
-
-const GetDecades = gql`
-  query Decades {
-    getMovieDecades {
-      decades
-    }
-  }
-`
-
-function MoviesPageDecadesSelect({
-  criteria,
-  setDecade
-}: {
-  criteria: MoviesSearchCriteriaInput
-  setDecade: (value: Option<number>) => void
-}) {
-  const [keyForResetting, setKeyForResetting] = React.useState(+new Date())
-  const { data, loading } = useDecadesQuery({
-    fetchPolicy: 'cache-and-network',
-    nextFetchPolicy: 'cache-only'
-  })
-  const [selectedDecade, setSelectedDecade] = useState(
-    criteria.decade ?? undefined
-  )
-
-  return (
-    <Select
-      key={keyForResetting}
-      defaultValue={selectedDecade?.toString()}
-      value={isSome(selectedDecade) ? selectedDecade?.toString() : undefined}
-      onValueChange={(newValue) => {
-        setSelectedDecade(+newValue)
-        setDecade(+newValue)
-      }}
-    >
-      <SelectTrigger className='w-[180px]'>
-        <SelectValue placeholder='Decade' />
-      </SelectTrigger>
-      <SelectContent>
-        {data?.getMovieDecades.decades.map((decade) => (
-          <Link href={`/movies/decade/${decade}`} passHref>
-            <div>
-              <SelectItem value={decade.toString()}>{decade}</SelectItem>
-            </div>
-          </Link>
-        ))}
-        <SelectSeparator />
-
-        <Button
-          className='w-full px-2'
-          variant='secondary'
-          size='sm'
-          onClick={(e) => {
-            e.stopPropagation()
-            setSelectedDecade(undefined)
-            setDecade(null)
-            setKeyForResetting(+new Date())
-          }}
-        >
-          Clear
-        </Button>
-      </SelectContent>
-    </Select>
-  )
-}
-
-const GetGenres = gql`
-  query Genres {
-    genres {
-      name
-    }
-  }
-`
-
-function MoviesPageGenreSelect({
-  criteria,
-  setGenre
-}: {
-  criteria: MoviesSearchCriteriaInput
-  setGenre: (value: string) => void
-}) {
-  const [keyForResetting, setKeyForResetting] = React.useState(+new Date())
-  const { data, loading } = useGenresQuery({
-    fetchPolicy: 'cache-and-network',
-    nextFetchPolicy: 'cache-only'
-  })
-  const [selectedGenre, setSelectedGenre] = useState(
-    criteria.genre ?? undefined
-  )
-
-  return (
-    <Select
-      key={keyForResetting}
-      defaultValue={selectedGenre}
-      onValueChange={(newValue) => {
-        setSelectedGenre(newValue)
-        setGenre(newValue)
-        // TODO https://github.com/shuding/next-view-transitions/pull/18
-        // router.push(`/movies/genre/${newValue}`)
-      }}
-    >
-      <SelectTrigger className='w-[180px]'>
-        <SelectValue placeholder='Genre' />
-      </SelectTrigger>
-      <SelectContent>
-        {data?.genres.map((genre) => (
-          <Link href={`/movies/genre/${genre.name}`} passHref>
-            <div>
-              <SelectItem value={genre.name}>{genre.name}</SelectItem>
-            </div>
-          </Link>
-        ))}
-
-        <SelectSeparator />
-
-        <Button
-          className='w-full px-2'
-          variant='secondary'
-          size='sm'
-          onClick={(e) => {
-            e.stopPropagation()
-            setSelectedGenre(undefined)
-            setGenre(null)
-            setKeyForResetting(+new Date())
-          }}
-        >
-          Clear
-        </Button>
-      </SelectContent>
-    </Select>
   )
 }
 
