@@ -6,6 +6,7 @@ import {
   useGetUserWatchedMovieIdsInMovieListSuspenseQuery
 } from '@/lib'
 import {
+  Button,
   Card,
   CardContent,
   CardDescription,
@@ -18,7 +19,11 @@ import { MovieCardList } from '@/components/movifier/movies/MovieCardList'
 import { useCurrentUser } from '@/lib/hooks/CurrentUser'
 import { Progress } from '@/components/ui/progress'
 import { EyeOpenIcon } from '@radix-ui/react-icons'
-import { HeartIcon } from 'lucide-react'
+import { FilePenLine, HeartIcon } from 'lucide-react'
+import { AppTooltip } from '@/components/movifier/generic'
+import { Link } from 'next-view-transitions'
+
+import { DeleteMovieListButton } from '@/components/movifier/movie-lists/DeleteMovieListButton'
 
 export const MovieListPageFragment = gql`
   fragment MovieListPageItem on MovieList {
@@ -107,7 +112,7 @@ export const MovieListPage: FC<MovieListPageItemFragment> = ({
 
   return (
     <Card className={'h-full'}>
-      <CardHeader>
+      <CardHeader className={'relative'}>
         <CardTitle className={'text-3xl'}>{name}</CardTitle>
         <CardDescription>
           <article className={'prose-slate prose-lg whitespace-pre-line'}>
@@ -120,6 +125,21 @@ export const MovieListPage: FC<MovieListPageItemFragment> = ({
             </span>{' '}
           </p>
         </CardDescription>
+
+        <div className={'absolute flex flex-col right-10 gap-3'}>
+          <AppTooltip text={'Edit movie list'}>
+            <Link href={`/movie-lists/${id}/edit`}>
+              <Button>
+                <FilePenLine />
+              </Button>
+            </Link>
+          </AppTooltip>
+          <AppTooltip text={'Delete movie list'}>
+            <Button variant={'destructive'}>
+              <DeleteMovieListButton id={id} />
+            </Button>
+          </AppTooltip>
+        </div>
       </CardHeader>
 
       <Separator className={'mb-10'} />
