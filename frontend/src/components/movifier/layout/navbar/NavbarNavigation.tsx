@@ -28,7 +28,7 @@ const moviesLinks: { title: string; href: string; description: string }[] = [
   },
   {
     title: 'Genres',
-    href: '/movies/genre',
+    href: '/movies/genres',
     description: 'Browse movies by genre. Find the best movies by genre.'
   },
   {
