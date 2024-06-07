@@ -44,19 +44,19 @@ export const MovieCard: FC<
   const [hoveringRef, hovering] = useHover()
 
   return (
-    <Link href={`/movies/${id}`} passHref>
-      <motion.div
-        className={cn(
-          'flex flex-col justify-between max-w-52 w-52 max-h-full relative group',
-          className
-        )}
-        whileHover={{
-          scale: 1.05,
-          transition: { duration: 0.5 }
-        }}
-        transition={{ type: 'spring', duration: 0.8 }}
-      >
-        <Card>
+    <motion.div
+      className={cn(
+        'flex flex-col justify-between max-w-52 w-52 relative group min-h-full',
+        className
+      )}
+      whileHover={{
+        scale: 1.05,
+        transition: { duration: 0.5 }
+      }}
+      transition={{ type: 'spring', duration: 0.8 }}
+    >
+      <Link href={`/movies/${id}`} passHref>
+        <Card className={'min-h-full'}>
           <CardHeader
             ref={hoveringRef}
             className={'!m-0 p-0 hover:shadow-lg relative'}
@@ -96,7 +96,7 @@ export const MovieCard: FC<
 
           <CardFooter></CardFooter>
         </Card>
-      </motion.div>
-    </Link>
+      </Link>
+    </motion.div>
   )
 }

@@ -59,6 +59,7 @@ export function MoviesPage({
         <MoviesPageDecadesSelect
           criteria={searchCriteria}
           setDecade={criteriaChanger<Option<number>>('decade')}
+          setYear={criteriaChanger<Option<number>>('year')}
         />
         <MoviesPageOrderBySelect orderBy={orderBy} setOrderBy={setOrderBy} />
       </div>

@@ -38,7 +38,7 @@ const moviesLinks: { title: string; href: string; description: string }[] = [
   },
   {
     title: 'Watchlist',
-    href: '/movies/watchlist',
+    href: '/user/dashboard/watchlist',
     description: 'Create your watchlist'
   }
 ]
@@ -96,7 +96,7 @@ export function NavbarNavigationMenu() {
           </NavigationMenuContent>
         </NavigationMenuItem>
         <NavigationMenuItem>
-          <Link href='/docs' legacyBehavior passHref>
+          <Link href='/movie-lists' legacyBehavior passHref>
             <NavigationMenuLink className={navigationMenuTriggerStyle()}>
               Movie lists
             </NavigationMenuLink>

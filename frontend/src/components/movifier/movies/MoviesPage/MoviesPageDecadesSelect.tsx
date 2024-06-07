@@ -24,10 +24,12 @@ const GetDecades = gql`
 
 export function MoviesPageDecadesSelect({
   criteria,
-  setDecade
+  setDecade,
+  setYear
 }: {
   criteria: MoviesSearchCriteriaInput
   setDecade: (value: Option<number>) => void
+  setYear: (value: Option<number>) => void
 }) {
   const [keyForResetting, setKeyForResetting] = React.useState(+new Date())
   const { data, loading } = useDecadesQuery({
@@ -69,6 +71,7 @@ export function MoviesPageDecadesSelect({
             e.stopPropagation()
             setSelectedDecade(undefined)
             setDecade(null)
+            setYear(null)
             setKeyForResetting(+new Date())
           }}
         >
