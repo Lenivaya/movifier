@@ -121,7 +121,7 @@ export const MoviePageDetailsTabs: FC<MoviePageDetailsTabsItemFragment> = ({
                 items={F.toMutable(cast)}
                 renderItem={(member) => (
                   <Link
-                    href={`/person/${member.crewMember.id}`}
+                    href={`/persons/${member.crewMember.id}`}
                     key={member.crewMember.id}
                     className={
                       'text-white rounded-3xl p-2 grow text-center text-xs bg-gradient-to-r from-slate-900 to-slate-700'
@@ -154,7 +154,7 @@ export const MoviePageDetailsTabs: FC<MoviePageDetailsTabsItemFragment> = ({
                       initialCount={5}
                       renderItem={(member) => (
                         <Link
-                          href={`/person/${member.crewMember.id}`}
+                          href={`/persons/${member.crewMember.id}`}
                           key={member.crewMember.id}
                         >
                           <Badge>{member.crewMember.name}</Badge>

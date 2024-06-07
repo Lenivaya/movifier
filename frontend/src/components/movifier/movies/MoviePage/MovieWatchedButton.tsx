@@ -37,7 +37,10 @@ export const MovieWatchedButton: FC<
 
     await markMovieWatched({
       variables: composeKey,
-      refetchQueries: ['GetUserWatchedMovieIdsInMovieList'],
+      refetchQueries: [
+        'GetUserWatchedMovieIdsInMovieList',
+        'GetUserWatchedPersonMovieIds'
+      ],
       onError: (error) => {
         console.error(error)
         toast({
@@ -54,7 +57,10 @@ export const MovieWatchedButton: FC<
   const handleMovieUnsetWatched = async () => {
     await unmarkMovieWatched({
       variables: composeKey,
-      refetchQueries: ['GetUserWatchedMovieIdsInMovieList'],
+      refetchQueries: [
+        'GetUserWatchedMovieIdsInMovieList',
+        'GetUserWatchedPersonMovieIds'
+      ],
       onError: (error) => {
         console.error(error)
         toast({
