@@ -1,5 +1,9 @@
 import React, { FC, Suspense } from 'react'
-import { MoviesSearchCriteriaInput, useSearchMoviesSuspenseQuery } from '@/lib'
+import {
+  MovieOrderByWithRelationAndSearchRelevanceInput,
+  MoviesSearchCriteriaInput,
+  useSearchMoviesSuspenseQuery
+} from '@/lib'
 import { MovieCardList } from '@/components/movifier/movies/MovieCardList'
 import { gql } from '@apollo/client'
 import { useMutative } from 'use-mutative'
@@ -9,10 +13,15 @@ import { Option } from '@mobily/ts-belt'
 import { MoviesPageGenreSelect } from '@/components/movifier/movies/MoviesPage/MoviesPageGenreSelect'
 import { MoviesPageDecadesSelect } from '@/components/movifier/movies/MoviesPage/MoviesPageDecadesSelect'
 import { MoviesPageYearSelect } from '@/components/movifier/movies/MoviesPage/MoviesPageYearSelect'
+import { isSome } from '@/lib/types'
+import { MoviesPageOrderBySelect } from '@/components/movifier/movies/MoviesPage/MoviesPageOrderBySelect'
 
 const SearchMovies = gql`
-  query SearchMovies($searchCriteria: MoviesSearchCriteriaInput!) {
-    searchMovies(take: 5, searchCriteria: $searchCriteria) {
+  query SearchMovies(
+    $searchCriteria: MoviesSearchCriteriaInput!
+    $orderBy: [MovieOrderByWithRelationAndSearchRelevanceInput!]
+  ) {
+    searchMovies(take: 5, searchCriteria: $searchCriteria, orderBy: $orderBy) {
       ...MovieCardItem
     }
   }
@@ -31,6 +40,9 @@ export function MoviesPage({
   const [searchCriteria, setSearchCriteria] =
     useMutative<MoviesSearchCriteriaInput>(initialSearchCriteria)
 
+  const [orderBy, setOrderBy] =
+    useMutative<Option<MovieOrderByWithRelationAndSearchRelevanceInput>>(null)
+
   const criteriaChanger =
     <T,>(field: keyof MoviesSearchCriteriaInput) =>
     (value: T) =>
@@ -47,6 +59,7 @@ export function MoviesPage({
           criteria={searchCriteria}
           setDecade={criteriaChanger<Option<number>>('decade')}
         />
+        <MoviesPageOrderBySelect orderBy={orderBy} setOrderBy={setOrderBy} />
       </div>
 
       <MoviesPageYearSelect
@@ -65,7 +78,10 @@ export function MoviesPage({
 
       <div className='w-full mx-auto my-auto min-h-[90vh] flex justify-center pb-5'>
         <Suspense fallback={<AppLoader />}>
-          <MoviesPageCardListSuspense searchCriteria={searchCriteria} />
+          <MoviesPageCardListSuspense
+            searchCriteria={searchCriteria}
+            orderBy={orderBy}
+          />
         </Suspense>
       </div>
     </main>
@@ -74,10 +90,12 @@ export function MoviesPage({
 
 const MoviesPageCardListSuspense: FC<{
   searchCriteria: MoviesSearchCriteriaInput
-}> = ({ searchCriteria }) => {
+  orderBy: Option<MovieOrderByWithRelationAndSearchRelevanceInput>
+}> = ({ searchCriteria, orderBy }) => {
   const { data } = useSearchMoviesSuspenseQuery({
     variables: {
-      searchCriteria
+      searchCriteria,
+      orderBy: isSome(orderBy) ? [orderBy] : []
     },
     fetchPolicy: 'cache-and-network'
   })

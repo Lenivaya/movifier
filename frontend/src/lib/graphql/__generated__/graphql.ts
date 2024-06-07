@@ -7581,6 +7581,7 @@ export type DeleteMovieRatingForUserMutation = { __typename?: 'Mutation', delete
 
 export type SearchMoviesQueryVariables = Exact<{
   searchCriteria: MoviesSearchCriteriaInput;
+  orderBy?: InputMaybe<Array<MovieOrderByWithRelationAndSearchRelevanceInput> | MovieOrderByWithRelationAndSearchRelevanceInput>;
 }>;
 
 
@@ -11266,8 +11267,8 @@ export type DeleteMovieRatingForUserMutationHookResult = ReturnType<typeof useDe
 export type DeleteMovieRatingForUserMutationResult = Apollo.MutationResult<DeleteMovieRatingForUserMutation>;
 export type DeleteMovieRatingForUserMutationOptions = Apollo.BaseMutationOptions<DeleteMovieRatingForUserMutation, DeleteMovieRatingForUserMutationVariables>;
 export const SearchMoviesDocument = gql`
-    query SearchMovies($searchCriteria: MoviesSearchCriteriaInput!) {
-  searchMovies(take: 5, searchCriteria: $searchCriteria) {
+    query SearchMovies($searchCriteria: MoviesSearchCriteriaInput!, $orderBy: [MovieOrderByWithRelationAndSearchRelevanceInput!]) {
+  searchMovies(take: 5, searchCriteria: $searchCriteria, orderBy: $orderBy) {
     ...MovieCardItem
   }
 }
@@ -11286,6 +11287,7 @@ export const SearchMoviesDocument = gql`
  * const { data, loading, error } = useSearchMoviesQuery({
  *   variables: {
  *      searchCriteria: // value for 'searchCriteria'
+ *      orderBy: // value for 'orderBy'
  *   },
  * });
  */
