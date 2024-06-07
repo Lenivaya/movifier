@@ -36,7 +36,7 @@ export const DirectorNamesTitle: FC<DirectorNamesTitleItemFragment> = ({
 
         return (
           <Link
-            href={`/person/${director.crewMember?.id}`}
+            href={`/persons/${director.crewMember?.id}`}
             key={director.crewMember.name}
           >
             <span className={'font-semibold underline underline-offset-2'}>
