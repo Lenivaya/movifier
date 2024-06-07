@@ -15,6 +15,7 @@ import { MoviesPageDecadesSelect } from '@/components/movifier/movies/MoviesPage
 import { MoviesPageYearSelect } from '@/components/movifier/movies/MoviesPage/MoviesPageYearSelect'
 import { isSome } from '@/lib/types'
 import { MoviesPageOrderBySelect } from '@/components/movifier/movies/MoviesPage/MoviesPageOrderBySelect'
+import { MoviesPageLanguageSelect } from '@/components/movifier/movies/MoviesPage/MoviesPageLanguageSelect'
 
 const SearchMovies = gql`
   query SearchMovies(
@@ -33,7 +34,8 @@ export function MoviesPage({
     genre: null,
     decade: null,
     year: null,
-    keyword: null
+    keyword: null,
+    language: null
   }
 }: {
   initialSearchCriteria?: MoviesSearchCriteriaInput
@@ -55,6 +57,10 @@ export function MoviesPage({
         <MoviesPageGenreSelect
           criteria={searchCriteria}
           setGenre={criteriaChanger('genre')}
+        />
+        <MoviesPageLanguageSelect
+          criteria={searchCriteria}
+          setLanguage={criteriaChanger('language')}
         />
         <MoviesPageDecadesSelect
           criteria={searchCriteria}

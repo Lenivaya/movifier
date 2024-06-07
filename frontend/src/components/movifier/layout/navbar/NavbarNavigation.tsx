@@ -27,9 +27,15 @@ const moviesLinks: { title: string; href: string; description: string }[] = [
       'Browse movies by years. Find the best movies by year of release.'
   },
   {
-    title: 'Genres',
+    title: 'By genres',
     href: '/movies/genres',
     description: 'Browse movies by genre. Find the best movies by genre.'
+  },
+  {
+    title: 'By spoken languages',
+    href: '/movies/languages',
+    description:
+      'Browse movies by spoken language. Find the best movies by language.'
   },
   {
     title: 'Movie lists',
