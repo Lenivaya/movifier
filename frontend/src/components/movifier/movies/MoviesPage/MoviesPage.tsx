@@ -32,7 +32,8 @@ export function MoviesPage({
     search: '',
     genre: null,
     decade: null,
-    year: null
+    year: null,
+    keyword: null
   }
 }: {
   initialSearchCriteria?: MoviesSearchCriteriaInput

@@ -146,6 +146,18 @@ export class CustomMoviesResolver {
       })
     }
 
+    const keyword = searchCriteriaArgs.searchCriteria?.keyword
+    if (isSome(keyword)) {
+      where.keywordCategories = {
+        some: {
+          name: {
+            contains: `%${keyword}%`,
+            mode: 'insensitive'
+          }
+        }
+      }
+    }
+
     // @ts-ignore
     args.where = {
       ...args.where,

@@ -11,6 +11,7 @@ import {
 } from '@/components/ui/select'
 import { Link } from 'next-view-transitions'
 import { Button } from '@/components/ui'
+import { Option } from '@mobily/ts-belt'
 
 const GetGenres = gql`
   query Genres {
@@ -25,7 +26,7 @@ export function MoviesPageGenreSelect({
   setGenre
 }: {
   criteria: MoviesSearchCriteriaInput
-  setGenre: (value: string) => void
+  setGenre: (value: Option<string>) => void
 }) {
   const [keyForResetting, setKeyForResetting] = React.useState(+new Date())
   const { data, loading } = useGenresQuery({

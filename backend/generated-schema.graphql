@@ -4820,6 +4820,7 @@ enum MoviefireAppUserRole {
 input MoviesSearchCriteriaInput {
   decade: Float
   genre: String
+  keyword: String
   search: String
   year: Float
 }

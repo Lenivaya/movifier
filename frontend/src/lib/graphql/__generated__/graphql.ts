@@ -5143,6 +5143,7 @@ export type MoviefireAppUserRole =
 export type MoviesSearchCriteriaInput = {
   decade?: InputMaybe<Scalars['Float']['input']>;
   genre?: InputMaybe<Scalars['String']['input']>;
+  keyword?: InputMaybe<Scalars['String']['input']>;
   search?: InputMaybe<Scalars['String']['input']>;
   year?: InputMaybe<Scalars['Float']['input']>;
 };
