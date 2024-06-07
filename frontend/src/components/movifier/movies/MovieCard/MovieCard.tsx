@@ -13,10 +13,10 @@ import { Separator } from '@/components/ui'
 import { Link } from 'next-view-transitions'
 import { useCurrentUser } from '@/lib/hooks/CurrentUser'
 import { ComposeKeyMovieUser } from '@/components/movifier/movies/MoviePage/types'
-import { MovieWatchedButton } from '@/components/movifier/movies/MoviePage/MovieWatchedButton'
+import { MovieWatchedButton } from '@/components/movifier/movies/MovieWatchedButton'
 import { isSome } from '@/lib/types'
-import { MovieLikedButton } from '@/components/movifier/movies/MoviePage/MovieLikedButton'
-import { MovieWatchListButton } from '@/components/movifier/movies/MoviePage/MovieWatchListButton'
+import { MovieLikedButton } from '@/components/movifier/movies/MovieLikedButton'
+import { MovieWatchListButton } from '@/components/movifier/movies/MovieWatchListButton'
 import { useHover } from '@uidotdev/usehooks'
 
 export const MovieCardFragment = gql`
