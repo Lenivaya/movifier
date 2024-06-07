@@ -170,6 +170,18 @@ export class CustomMoviesResolver {
       }
     }
 
+    const studio = searchCriteriaArgs.searchCriteria?.studio
+    if (isSome(studio)) {
+      where.studios = {
+        some: {
+          name: {
+            contains: `%${studio}%`,
+            mode: 'insensitive'
+          }
+        }
+      }
+    }
+
     // @ts-ignore
     args.where = {
       ...args.where,
