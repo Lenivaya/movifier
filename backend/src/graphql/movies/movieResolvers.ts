@@ -7,6 +7,8 @@ import {
   MovieRatingCrudResolver,
   MovieRatingRelationsResolver,
   MovieRelationsResolver,
+  MovieSpokenLanguageCrudResolver,
+  MovieSpokenLanguageRelationsResolver,
   MovieWatchedByUserCrudResolver,
   MovieWatchedByUserRelationsResolver,
   UserMovieWatchlistCrudResolver,
@@ -30,5 +32,7 @@ export const moviesResolvers: NonEmptyArray<Function> = [
   UserMovieWatchlistCrudResolver,
   UserMovieWatchlistRelationsResolver,
   MovieListCrudResolver,
-  MovieListRelationsResolver
+  MovieListRelationsResolver,
+  MovieSpokenLanguageCrudResolver,
+  MovieSpokenLanguageRelationsResolver
 ]

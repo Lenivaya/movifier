@@ -19,4 +19,7 @@ export class MoviesSearchCriteriaInput {
 
   @TypeGraphQL.Field((_type) => String, { nullable: true })
   keyword?: Option<string>
+
+  @TypeGraphQL.Field((_type) => String, { nullable: true })
+  language?: Option<string>
 }

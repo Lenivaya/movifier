@@ -158,6 +158,18 @@ export class CustomMoviesResolver {
       }
     }
 
+    const language = searchCriteriaArgs.searchCriteria?.language
+    if (isSome(language)) {
+      where.spokenLanguages = {
+        some: {
+          language: {
+            contains: `%${language}%`,
+            mode: 'insensitive'
+          }
+        }
+      }
+    }
+
     // @ts-ignore
     args.where = {
       ...args.where,

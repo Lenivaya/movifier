@@ -6,7 +6,7 @@ import { D } from '@mobily/ts-belt'
 import { match } from 'ts-pattern'
 
 type MovieFilters = Omit<MoviesSearchCriteriaInput, 'search'>
-const expectedFilters = ['genre', 'decade', 'year', 'keyword']
+const expectedFilters = ['genre', 'decade', 'year', 'keyword', 'language']
 
 export default function Page({ params }: { params: { filters: string[] } }) {
   const parsedFilters = parseFilters(params.filters)
