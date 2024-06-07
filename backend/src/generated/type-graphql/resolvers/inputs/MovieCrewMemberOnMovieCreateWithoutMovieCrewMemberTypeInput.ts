@@ -17,6 +17,11 @@ export class MovieCrewMemberOnMovieCreateWithoutMovieCrewMemberTypeInput {
   })
   updatedAt?: Date | undefined;
 
+  @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
+    nullable: true
+  })
+  order?: number | undefined;
+
   @TypeGraphQL.Field(_type => MovieCreateNestedOneWithoutCrewMembersInput, {
     nullable: false
   })

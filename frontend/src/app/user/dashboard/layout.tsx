@@ -5,6 +5,7 @@ import { ReactNode } from 'react'
 import { SettingsPageProviders } from '@/app/user/dashboard/settingsPageProviders'
 import {
   Clock,
+  GalleryVerticalEnd,
   HeartIcon,
   Home,
   LineChart,
@@ -80,6 +81,7 @@ export function SettingsPageNavbar() {
             <TooltipContent side='right'>Watchlist</TooltipContent>
           </Tooltip>
         </TooltipProvider>
+
         <TooltipProvider>
           <Tooltip>
             <TooltipTrigger asChild>
@@ -93,6 +95,22 @@ export function SettingsPageNavbar() {
               </SettingsNavigationButton>
             </TooltipTrigger>
             <TooltipContent side='right'>Liked movies</TooltipContent>
+          </Tooltip>
+        </TooltipProvider>
+
+        <TooltipProvider delayDuration={100}>
+          <Tooltip>
+            <TooltipTrigger asChild>
+              <SettingsNavigationButton
+                isActive={settingsPageContext.currentPage === 'WatchedMovies'}
+              >
+                <Link href='/user/dashboard/watched-movies'>
+                  <GalleryVerticalEnd className='h-5 w-5' />
+                  <span className='sr-only'>Watched movies</span>
+                </Link>
+              </SettingsNavigationButton>
+            </TooltipTrigger>
+            <TooltipContent side='right'>Watched movies</TooltipContent>
           </Tooltip>
         </TooltipProvider>
 
@@ -146,7 +164,7 @@ export function SettingsPageNavbar() {
   )
 }
 
-export const SettingsNavigationButton = ({
+const SettingsNavigationButton = ({
   isActive = false,
   children
 }: {

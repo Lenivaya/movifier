@@ -5,7 +5,7 @@ export const UNMARK_MOVIE_WATCHED = gql`
     deleteOneMovieWatchedByUser(
       where: { userId_movieId: { movieId: $movieId, userId: $userId } }
     ) {
-      createdAt
+      movieId
     }
   }
 `

@@ -15,6 +15,11 @@ export class MovieCrewMemberOnMovieCreateManyCrewMemberInput {
   })
   updatedAt?: Date | undefined;
 
+  @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
+    nullable: true
+  })
+  order?: number | undefined;
+
   @TypeGraphQL.Field(_type => String, {
     nullable: false
   })

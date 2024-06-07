@@ -2,10 +2,12 @@
   "scripts": {
     "dev": "ts-node --transpile-only src/index.ts",
     "dev:watch": "nodemon --transpile-only --watch src src/index.ts | pino-pretty",
+    "run:clustered": "ts-node --transpile-only src/clustered.ts",
     "gen:schema": "ts-node --transpile-only scripts/generate-schema.ts",
     "gen:schema:watch": "nodemon --transpile-only --watch src scripts/generate-schema.ts",
     "code:format": "prettier --write src/",
-    "db:seed": "ts-node --transpile-only scripts/db/seed.ts"
+    "db:seed": "ts-node --transpile-only scripts/db/seed.ts",
+    "db:seed:tmdb": "ts-node --transpile-only scripts/db/seed-tmdb.ts"
   },
   "devDependencies": {
     "@types/bcrypt": "^5.0.2",
@@ -44,6 +46,7 @@
     "bcrypt": "^5.1.1",
     "class-validator": "^0.14.1",
     "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
     "fastify": "^4.27.0",
     "graphql": "^16.8.1",
     "graphql-fields": "^2.0.3",
@@ -51,6 +54,7 @@
     "graphql-yoga": "^5.3.1",
     "ioredis": "^5.4.1",
     "jsonwebtoken": "^9.0.2",
+    "moviedb-promise": "^4.0.6",
     "mutative": "^1.0.5",
     "nodemon": "^3.1.0",
     "pino-pretty": "^11.0.0",

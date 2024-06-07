@@ -3,6 +3,7 @@ import * as GraphQLScalars from "graphql-scalars";
 import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../../scalars";
 import { DateTimeFilter } from "../inputs/DateTimeFilter";
+import { FloatFilter } from "../inputs/FloatFilter";
 import { MovieCrewMemberOnMovieListRelationFilter } from "../inputs/MovieCrewMemberOnMovieListRelationFilter";
 import { MovieCrewMemberWhereInput } from "../inputs/MovieCrewMemberWhereInput";
 import { StringFilter } from "../inputs/StringFilter";
@@ -58,6 +59,11 @@ export class MovieCrewMemberWhereUniqueInput {
     nullable: true
   })
   description?: StringFilter | undefined;
+
+  @TypeGraphQL.Field(_type => FloatFilter, {
+    nullable: true
+  })
+  popularity?: FloatFilter | undefined;
 
   @TypeGraphQL.Field(_type => MovieCrewMemberOnMovieListRelationFilter, {
     nullable: true

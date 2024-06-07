@@ -2,9 +2,11 @@ import * as TypeGraphQL from "type-graphql";
 import * as GraphQLScalars from "graphql-scalars";
 import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../../scalars";
+import { MovieCrewMemberAvgAggregate } from "../outputs/MovieCrewMemberAvgAggregate";
 import { MovieCrewMemberCountAggregate } from "../outputs/MovieCrewMemberCountAggregate";
 import { MovieCrewMemberMaxAggregate } from "../outputs/MovieCrewMemberMaxAggregate";
 import { MovieCrewMemberMinAggregate } from "../outputs/MovieCrewMemberMinAggregate";
+import { MovieCrewMemberSumAggregate } from "../outputs/MovieCrewMemberSumAggregate";
 
 @TypeGraphQL.ObjectType("MovieCrewMemberGroupBy", {})
 export class MovieCrewMemberGroupBy {
@@ -38,6 +40,11 @@ export class MovieCrewMemberGroupBy {
   })
   description!: string;
 
+  @TypeGraphQL.Field(_type => TypeGraphQL.Float, {
+    nullable: false
+  })
+  popularity!: number;
+
   @TypeGraphQL.Field(_type => String, {
     nullable: false
   })
@@ -47,6 +54,16 @@ export class MovieCrewMemberGroupBy {
     nullable: true
   })
   _count!: MovieCrewMemberCountAggregate | null;
+
+  @TypeGraphQL.Field(_type => MovieCrewMemberAvgAggregate, {
+    nullable: true
+  })
+  _avg!: MovieCrewMemberAvgAggregate | null;
+
+  @TypeGraphQL.Field(_type => MovieCrewMemberSumAggregate, {
+    nullable: true
+  })
+  _sum!: MovieCrewMemberSumAggregate | null;
 
   @TypeGraphQL.Field(_type => MovieCrewMemberMinAggregate, {
     nullable: true

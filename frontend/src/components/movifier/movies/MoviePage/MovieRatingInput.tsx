@@ -4,6 +4,7 @@ import {
   IsMovieWatchedByUserDocument,
   useDeleteMovieRatingForUserMutation,
   useGetMovieRatingByUserQuery,
+  useIsMovieWatchedByUserQuery,
   useMarkMovieWatchedMutation,
   useUpsertMovieRatingForUserMutation
 } from '@/lib'
@@ -68,9 +69,19 @@ export const DELETE_MOVIE_RATING_FOR_USER = gql`
 `
 
 export function MovieRatingInput(props: { composeKey: ComposeKeyMovieUser }) {
+  const [isWatched, setIsWatched] = useState(false)
   const [rating, setRating] = useState(0)
   const [ratingId, setRatingId] = useState<Option<string>>(null)
   const isRated = rating !== 0
+
+  useIsMovieWatchedByUserQuery({
+    variables: props.composeKey,
+    fetchPolicy: 'cache-and-network',
+    onCompleted: ({ movieWatchedByUser }) => {
+      if (!movieWatchedByUser) return
+      setIsWatched(true)
+    }
+  })
 
   useGetMovieRatingByUserQuery({
     variables: props.composeKey,
@@ -86,9 +97,10 @@ export function MovieRatingInput(props: { composeKey: ComposeKeyMovieUser }) {
   const [markWatched] = useMarkMovieWatchedMutation()
 
   const onRatingChangedSetWatched = useCallback(async () => {
+    if (isWatched) return
     await markWatched({
       variables: props.composeKey,
-      refetchQueries: [IsMovieWatchedByUserDocument],
+      refetchQueries: ['IsMovieWatchedByUser'],
       onError: (error) => {
         toast({
           title: 'Error marking movie watched'
@@ -96,7 +108,7 @@ export function MovieRatingInput(props: { composeKey: ComposeKeyMovieUser }) {
         console.error(error)
       }
     })
-  }, [props.composeKey, markWatched])
+  }, [props.composeKey, markWatched, isWatched])
 
   const onRatingChange = useCallback(
     async (change: number) => {
@@ -106,7 +118,7 @@ export function MovieRatingInput(props: { composeKey: ComposeKeyMovieUser }) {
           if (!upsertOneMovieRating) return
           setRating(upsertOneMovieRating.rating)
           setRatingId(upsertOneMovieRating.id)
-          if (!isRated) onRatingChangedSetWatched()
+          onRatingChangedSetWatched()
         },
         onError: (error) => {
           toast({
@@ -116,7 +128,7 @@ export function MovieRatingInput(props: { composeKey: ComposeKeyMovieUser }) {
         }
       })
     },
-    [onRatingChangedSetWatched, props.composeKey, upsertRating, isRated]
+    [onRatingChangedSetWatched, props.composeKey, upsertRating]
   )
 
   const [deleteRating] = useDeleteMovieRatingForUserMutation()

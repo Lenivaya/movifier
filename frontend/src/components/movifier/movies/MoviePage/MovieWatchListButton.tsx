@@ -1,4 +1,4 @@
-import { FC, useState } from 'react'
+import React, { FC, useCallback, useState } from 'react'
 import { ComposeKeyMovieUser } from '@/components/movifier/movies/MoviePage/types'
 import {
   cn,
@@ -12,10 +12,12 @@ import { apolloObjectRemover } from '@/lib/graphql/ApolloClient/cache/helpers/ut
 import { motion } from 'framer-motion'
 import { Clock } from 'lucide-react'
 
-export const MovieWatchListButton: FC<{
-  composeKey: ComposeKeyMovieUser
-  isSignedIn?: boolean
-}> = ({ composeKey, isSignedIn = false }) => {
+export const MovieWatchListButton: FC<
+  {
+    composeKey: ComposeKeyMovieUser
+    isSignedIn?: boolean
+  } & React.HTMLAttributes<HTMLDivElement>
+> = ({ composeKey, isSignedIn = false, className }) => {
   const [isMovieInWatchlist, setIsMovieInWatchlist] = useState(false)
   useIsMovieInUserWatchlistQuery({
     variables: composeKey,
@@ -30,8 +32,12 @@ export const MovieWatchListButton: FC<{
   const [removeMovieFromWatchList] = useRemoveMovieFromWatchlistMutation()
 
   const handleAddMovieToWatchList = async () => {
+    if (!isSignedIn)
+      return toast({ title: 'Please sign in to add movie to watchlist' })
+
     await addMovieToWatchList({
       variables: composeKey,
+      refetchQueries: ['GetUserWatchlist'],
       onError: (error) => {
         console.error(error.message)
         toast({
@@ -50,6 +56,7 @@ export const MovieWatchListButton: FC<{
   const handleRemoveMovieFromWatchList = async () => {
     await removeMovieFromWatchList({
       variables: composeKey,
+      refetchQueries: ['GetUserWatchlist'],
       onError: (error) => {
         console.error(error)
         toast({
@@ -65,13 +72,20 @@ export const MovieWatchListButton: FC<{
     })
   }
 
-  const handleMovieWatchList = async () =>
-    isMovieInWatchlist
-      ? await handleRemoveMovieFromWatchList()
-      : await handleAddMovieToWatchList()
+  const onClick = useCallback(
+    async (event: React.MouseEvent<SVGSVGElement>) => {
+      event.stopPropagation()
+      event.preventDefault()
+
+      isMovieInWatchlist
+        ? await handleRemoveMovieFromWatchList()
+        : await handleAddMovieToWatchList()
+    },
+    [isMovieInWatchlist]
+  )
 
   return (
-    <div className='flex flex-col items-center gap-2'>
+    <div className={cn('flex flex-col items-center gap-2', className)}>
       <motion.div
         whileHover={{
           scale: 1.4,
@@ -79,11 +93,12 @@ export const MovieWatchListButton: FC<{
         }}
         whileTap={{ scale: 0.9 }}
         transition={{ type: 'spring', duration: 0.8 }}
+        className={'w-full h-full'}
       >
         <Clock
-          onClick={handleMovieWatchList}
-          className={cn('w-10 h-10 cursor-pointer', {
-            'text-slate-700': !isMovieInWatchlist,
+          onClick={onClick}
+          className={cn('cursor-pointer w-full h-full', {
+            'text-blue-800': !isMovieInWatchlist,
             'text-blue-500': isMovieInWatchlist
           })}
         />

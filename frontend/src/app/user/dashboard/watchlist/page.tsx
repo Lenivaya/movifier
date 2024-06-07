@@ -56,7 +56,7 @@ import { useSettingsPage } from '@/app/user/dashboard/settingsPageContext'
 import { Suspense, useEffect } from 'react'
 import { AppLoader } from '@/components/movifier/generic'
 
-export const GET_USER_WATCHLIST = gql`
+const GET_USER_WATCHLIST = gql`
   query GetUserWatchlist(
     $searchCriteria: MoviesSearchCriteriaInput!
     $userId: String!
@@ -331,7 +331,7 @@ export function Watchlist() {
   )
 }
 
-export const MovieCardListSuspense = ({
+const MovieCardListSuspense = ({
   searchCriteria
 }: {
   searchCriteria: MoviesSearchCriteriaInput

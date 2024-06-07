@@ -79,11 +79,13 @@ model MovieCrewMemberOnMovie {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
+  order Int @default(0)
+
   movieId               String
   movieCrewMemberId     String
   movieCrewMemberTypeId String
 
-  movie               Movie               @relation(fields: [movieId], references: [id])
+  movie               Movie               @relation(fields: [movieId], references: [id], onDelete: Cascade)
   crewMember          MovieCrewMember     @relation(fields: [movieCrewMemberId], references: [id])
   movieCrewMemberType MovieCrewMemberType @relation(fields: [movieCrewMemberTypeId], references: [id])
 
@@ -97,6 +99,7 @@ model MovieCrewMember {
   name        String
   photoUrl    String
   description String
+  popularity  Float                    @default(0)
   imdbId      String                   @unique
   movies      MovieCrewMemberOnMovie[]
 }

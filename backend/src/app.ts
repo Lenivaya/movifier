@@ -24,6 +24,7 @@ import { maxTokensPlugin } from '@escape.tech/graphql-armor-max-tokens'
 import { maxDepthPlugin } from '@escape.tech/graphql-armor-max-depth'
 import { maxDirectivesPlugin } from '@escape.tech/graphql-armor-max-directives'
 import { maxAliasesPlugin } from '@escape.tech/graphql-armor-max-aliases'
+import { MovieDb } from 'moviedb-promise'
 
 export const app = fastify({
   logger: true
@@ -60,6 +61,8 @@ export async function buildApp() {
   })
   await prisma.$connect()
 
+  const tmdb = new MovieDb(app.config.TMDB_API_KEY)
+
   const graphqlServer = createYoga<{
     req: FastifyRequest
     reply: FastifyReply
@@ -86,7 +89,8 @@ export async function buildApp() {
       credentials: true
     },
     context: ({}): AppContext => ({
-      prisma
+      prisma,
+      tmdb
     }),
     plugins: [
       ...graphqlArmorPlugins,

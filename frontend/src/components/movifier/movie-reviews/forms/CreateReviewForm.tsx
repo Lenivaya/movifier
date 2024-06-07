@@ -4,7 +4,6 @@ import { FC } from 'react'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import {
-  RecentMovieReviewsDocument,
   useGetMovieRatingReviewQuery,
   useUpsertMovieRatingReviewMutation
 } from '@/lib'
@@ -65,7 +64,7 @@ export const CreateReviewForm: FC<{ ratingId: string }> = ({ ratingId }) => {
   async function onSubmit(values: z.infer<typeof createReviewSchema>) {
     await upsertMovieReview({
       variables: { ratingId, ...values },
-      refetchQueries: [RecentMovieReviewsDocument],
+      refetchQueries: ['RecentMovieReviews'],
       onCompleted: () => {
         toast({
           title: 'Review saved'

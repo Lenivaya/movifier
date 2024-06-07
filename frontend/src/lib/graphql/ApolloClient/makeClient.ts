@@ -2,10 +2,10 @@ import { ApolloLink, HttpLink, split } from '@apollo/client'
 import { authLink, HTTP_ENDPOINT, persistedQueryLink, wsLink } from '@/lib'
 import { getMainDefinition } from '@apollo/client/utilities'
 import {
-  NextSSRApolloClient,
-  NextSSRInMemoryCache,
+  ApolloClient,
+  InMemoryCache,
   SSRMultipartLink
-} from '@apollo/experimental-nextjs-app-support/ssr'
+} from '@apollo/experimental-nextjs-app-support'
 import { appTypePolicies } from '@/lib/graphql/ApolloClient/cache/appTypePolicies'
 import { isBrowser } from 'browser-or-node'
 import { LocalStorageWrapper, persistCache } from 'apollo3-cache-persist'
@@ -27,7 +27,7 @@ export const makeClient = () => {
     httpLink
   )
 
-  const cache = new NextSSRInMemoryCache({ typePolicies: appTypePolicies })
+  const cache = new InMemoryCache({ typePolicies: appTypePolicies })
 
   isBrowser &&
     persistCache({
@@ -35,7 +35,7 @@ export const makeClient = () => {
       storage: new LocalStorageWrapper(window.localStorage)
     })
 
-  return new NextSSRApolloClient({
+  return new ApolloClient({
     connectToDevTools: process.env.NODE_ENV === 'development',
     cache,
     link: isBrowser

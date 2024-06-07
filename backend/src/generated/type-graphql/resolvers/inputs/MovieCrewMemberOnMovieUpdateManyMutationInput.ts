@@ -3,6 +3,7 @@ import * as GraphQLScalars from "graphql-scalars";
 import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../../scalars";
 import { DateTimeFieldUpdateOperationsInput } from "../inputs/DateTimeFieldUpdateOperationsInput";
+import { IntFieldUpdateOperationsInput } from "../inputs/IntFieldUpdateOperationsInput";
 
 @TypeGraphQL.InputType("MovieCrewMemberOnMovieUpdateManyMutationInput", {})
 export class MovieCrewMemberOnMovieUpdateManyMutationInput {
@@ -15,4 +16,9 @@ export class MovieCrewMemberOnMovieUpdateManyMutationInput {
     nullable: true
   })
   updatedAt?: DateTimeFieldUpdateOperationsInput | undefined;
+
+  @TypeGraphQL.Field(_type => IntFieldUpdateOperationsInput, {
+    nullable: true
+  })
+  order?: IntFieldUpdateOperationsInput | undefined;
 }
