@@ -24,6 +24,9 @@ import { AppTooltip } from '@/components/movifier/generic'
 import { Link } from 'next-view-transitions'
 
 import { DeleteMovieListButton } from '@/components/movifier/movie-lists/DeleteMovieListButton'
+import { MovieListLikedButton } from '@/components/movifier/movie-lists/MovieListLikedButton'
+import { isSome } from '@/lib/types'
+import { z } from 'zod'
 
 export const MovieListPageFragment = gql`
   fragment MovieListPageItem on MovieList {
@@ -84,6 +87,7 @@ export const MovieListPage: FC<MovieListPageItemFragment> = ({
   movieListAuthor
 }) => {
   const user = useCurrentUser()
+  const isSignedIn = isSome(user)
 
   const { data: userWatchedMovieIdsData } =
     useGetUserWatchedMovieIdsInMovieListSuspenseQuery({
@@ -124,6 +128,11 @@ export const MovieListPage: FC<MovieListPageItemFragment> = ({
               {movieListAuthor.username}
             </span>{' '}
           </p>
+          <MovieListLikedButton
+            className={'w-5 mt-5'}
+            composeKey={{ movieListId: id, userId: user?.id ?? '' }}
+            isSignedIn={isSignedIn}
+          />
         </CardDescription>
 
         <div className={'absolute flex flex-col right-10 gap-3'}>

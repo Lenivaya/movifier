@@ -1,12 +1,12 @@
 import { NonEmptyArray } from 'type-graphql'
 import {
-  MovieCrewMember,
   MovieCrewMemberCrudResolver,
   MovieCrewMemberOnMovieRelationsResolver,
-  MovieCrewMemberRelationFilter,
   MovieCrewMemberRelationsResolver,
   MovieCrudResolver,
   MovieListCrudResolver,
+  MovieListLikedByUserCrudResolver,
+  MovieListLikedByUserRelationsResolver,
   MovieListRelationsResolver,
   MovieRatingCrudResolver,
   MovieRatingRelationsResolver,
@@ -40,5 +40,7 @@ export const moviesResolvers: NonEmptyArray<Function> = [
   MovieSpokenLanguageCrudResolver,
   MovieSpokenLanguageRelationsResolver,
   MovieCrewMemberCrudResolver,
-  MovieCrewMemberRelationsResolver
+  MovieCrewMemberRelationsResolver,
+  MovieListLikedByUserCrudResolver,
+  MovieListLikedByUserRelationsResolver
 ]

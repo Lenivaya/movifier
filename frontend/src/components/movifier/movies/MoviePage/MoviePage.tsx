@@ -1,9 +1,9 @@
 import { DirectorNamesTitle } from '@/components/movifier/movies/MoviePage/DirectorNamesTitle'
-import { MovieLikedButton } from '@/components/movifier/movies/MoviePage/MovieLikedButton'
+import { MovieLikedButton } from '@/components/movifier/movies/MovieLikedButton'
 import { MoviePageDetailsTabs } from '@/components/movifier/movies/MoviePage/MoviePageDetailsTabs'
 import { MoviePagePoster } from '@/components/movifier/movies/MoviePage/MoviePagePoster'
 import { MovieRatingInput } from '@/components/movifier/movies/MoviePage/MovieRatingInput'
-import { MovieWatchedButton } from '@/components/movifier/movies/MoviePage/MovieWatchedButton'
+import { MovieWatchedButton } from '@/components/movifier/movies/MovieWatchedButton'
 import { ComposeKeyMovieUser } from '@/components/movifier/movies/MoviePage/types'
 import {
   Button,
@@ -24,7 +24,7 @@ import { AppLoader } from '@/components/movifier/generic'
 import { MoviePageTopPopularReviewsList } from '@/components/movifier/movies/MoviePage/MoviePageTopPopularReviewsList'
 import { MoviePageTopRecentReviewsList } from '@/components/movifier/movies/MoviePage/MoviePageTopRecentReviewsList'
 import { UserAuthenticationDialog } from '@/components/movifier/users/UserAuthenticationDialog'
-import { MovieWatchListButton } from '@/components/movifier/movies/MoviePage/MovieWatchListButton'
+import { MovieWatchListButton } from '@/components/movifier/movies/MovieWatchListButton'
 
 const imbue = Imbue({ subsets: ['latin'] })
 
