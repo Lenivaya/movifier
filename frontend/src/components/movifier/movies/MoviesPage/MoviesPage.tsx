@@ -8,6 +8,7 @@ import { AppLoader } from '@/components/movifier/generic'
 import { Option } from '@mobily/ts-belt'
 import { MoviesPageGenreSelect } from '@/components/movifier/movies/MoviesPage/MoviesPageGenreSelect'
 import { MoviesPageDecadesSelect } from '@/components/movifier/movies/MoviesPage/MoviesPageDecadesSelect'
+import { MoviesPageYearSelect } from '@/components/movifier/movies/MoviesPage/MoviesPageYearSelect'
 
 const SearchMovies = gql`
   query SearchMovies($searchCriteria: MoviesSearchCriteriaInput!) {
@@ -21,7 +22,8 @@ export function MoviesPage({
   initialSearchCriteria = {
     search: '',
     genre: null,
-    decade: null
+    decade: null,
+    year: null
   }
 }: {
   initialSearchCriteria?: MoviesSearchCriteriaInput
@@ -46,6 +48,12 @@ export function MoviesPage({
           setDecade={criteriaChanger<Option<number>>('decade')}
         />
       </div>
+
+      <MoviesPageYearSelect
+        decade={searchCriteria.decade}
+        year={searchCriteria.year}
+        setYear={criteriaChanger<Option<number>>('year')}
+      />
 
       <div className={'max-lg:w-full w-5/6 pl-2 pr-2'}>
         <SearchBar

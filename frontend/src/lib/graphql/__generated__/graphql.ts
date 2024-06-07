@@ -5144,6 +5144,7 @@ export type MoviesSearchCriteriaInput = {
   decade?: InputMaybe<Scalars['Float']['input']>;
   genre?: InputMaybe<Scalars['String']['input']>;
   search?: InputMaybe<Scalars['String']['input']>;
+  year?: InputMaybe<Scalars['Float']['input']>;
 };
 
 export type MovifierAppUser = {

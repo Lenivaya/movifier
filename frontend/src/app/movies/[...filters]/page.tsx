@@ -5,7 +5,7 @@ import { MoviesPage } from '@/components/movifier/movies/MoviesPage/MoviesPage'
 import { D } from '@mobily/ts-belt'
 
 type MovieFilters = Omit<MoviesSearchCriteriaInput, 'search'>
-const expectedFilters = ['genre', 'search']
+const expectedFilters = ['genre', 'decade', 'year']
 
 export default function Page({ params }: { params: { filters: string[] } }) {
   const parsedFilters = parseFilters(params.filters)

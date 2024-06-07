@@ -11,6 +11,7 @@ import {
 } from '@/generated/type-graphql/helpers'
 import { AppContext } from '@/graphql/context'
 import { GraphQLError } from 'graphql/index'
+import { D } from '@mobily/ts-belt'
 
 @TypeGraphQL.ObjectType()
 class Decades {
@@ -124,13 +125,25 @@ export class CustomMoviesResolver {
       const startDate = new Date(decade, 0, 1)
       const endDate = new Date(decade + 10, 0, 1)
 
-      where.movieInfo = {
-        // ...where.movieInfo,
+      where.movieInfo = D.merge(where.movieInfo, {
         releaseDate: {
           gte: startDate,
           lt: endDate
         }
-      }
+      })
+    }
+
+    const year = searchCriteriaArgs.searchCriteria?.year
+    if (isSome(year)) {
+      const startDate = new Date(year, 0, 1)
+      const endDate = new Date(year + 1, 0, 1)
+
+      where.movieInfo = D.merge(where.movieInfo, {
+        releaseDate: {
+          gte: startDate,
+          lt: endDate
+        }
+      })
     }
 
     // @ts-ignore

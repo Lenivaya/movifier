@@ -13,4 +13,7 @@ export class MoviesSearchCriteriaInput {
 
   @TypeGraphQL.Field((_type) => Number, { nullable: true })
   decade?: Option<number>
+
+  @TypeGraphQL.Field((_type) => Number, { nullable: true })
+  year?: Option<number>
 }

@@ -4821,6 +4821,7 @@ input MoviesSearchCriteriaInput {
   decade: Float
   genre: String
   search: String
+  year: Float
 }
 
 type MovifierAppUser {
