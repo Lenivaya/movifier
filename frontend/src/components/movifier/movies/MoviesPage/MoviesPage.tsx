@@ -36,9 +36,19 @@ export function MoviesPage({
     year: null,
     keyword: null,
     language: null
-  }
+  },
+  render = (searchCriteria, orderBy) => (
+    <MoviesPageCardListSuspense
+      searchCriteria={searchCriteria}
+      orderBy={orderBy}
+    />
+  )
 }: {
   initialSearchCriteria?: MoviesSearchCriteriaInput
+  render?: (
+    searchCriteria: MoviesSearchCriteriaInput,
+    orderBy: Option<MovieOrderByWithRelationAndSearchRelevanceInput>
+  ) => React.ReactNode
 }) {
   const [searchCriteria, setSearchCriteria] =
     useMutative<MoviesSearchCriteriaInput>(initialSearchCriteria)
@@ -53,7 +63,7 @@ export function MoviesPage({
 
   return (
     <main className='relative flex min-h-[100vh] w-full flex-col gap-5 items-center justify-between max-md:pt-5 pt-7'>
-      <div className='w-5/6 ml-10 mr-10 p-3 gap-5 flex justify-center bg-slate-200/30 rounded-lg shadow-lg '>
+      <div className='w-5/6 ml-10 mr-10 p-3 gap-5 flex flex-wrap justify-center bg-slate-200/30 rounded-lg shadow-lg '>
         <MoviesPageGenreSelect
           criteria={searchCriteria}
           setGenre={criteriaChanger('genre')}
@@ -86,10 +96,7 @@ export function MoviesPage({
 
       <div className='w-full mx-auto my-auto min-h-[90vh] flex justify-center pb-5'>
         <Suspense fallback={<AppLoader />}>
-          <MoviesPageCardListSuspense
-            searchCriteria={searchCriteria}
-            orderBy={orderBy}
-          />
+          {render(searchCriteria, orderBy)}
         </Suspense>
       </div>
     </main>

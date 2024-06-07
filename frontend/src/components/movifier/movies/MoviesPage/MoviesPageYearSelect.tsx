@@ -31,7 +31,7 @@ export function MoviesPageYearSelect({
   )
 
   return (
-    <div className='w-5/6 ml-10 mr-10 p-3 gap-5 flex justify-center bg-slate-200/30 rounded-lg shadow-lg '>
+    <div className='w-5/6 ml-10 mr-10 p-3 gap-5 flex justify-center bg-slate-200/30 rounded-lg shadow-lg flex-wrap'>
       {years.map((givenYear) => {
         const isSelected = givenYear === year
 
