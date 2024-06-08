@@ -5,6 +5,7 @@ import { ReactNode } from 'react'
 import { DashboardPageProviders } from '@/app/user/dashboard/dashboardPageProviders'
 import {
   Clock,
+  EyeIcon,
   GalleryVerticalEnd,
   HeartIcon,
   Home,
@@ -105,12 +106,28 @@ export function SettingsPageNavbar() {
                 isActive={dashboardPageContext.currentPage === 'WatchedMovies'}
               >
                 <Link href='/user/dashboard/watched-movies'>
-                  <GalleryVerticalEnd className='h-5 w-5' />
+                  <EyeIcon className='h-5 w-5' />
                   <span className='sr-only'>Watched movies</span>
                 </Link>
               </SettingsNavigationButton>
             </TooltipTrigger>
             <TooltipContent side='right'>Watched movies</TooltipContent>
+          </Tooltip>
+        </TooltipProvider>
+
+        <TooltipProvider delayDuration={100}>
+          <Tooltip>
+            <TooltipTrigger asChild>
+              <SettingsNavigationButton
+                isActive={dashboardPageContext.currentPage === 'MovieLists'}
+              >
+                <Link href='/user/dashboard/movie-lists'>
+                  <GalleryVerticalEnd className='h-5 w-5' />
+                  <span className='sr-only'>Movie lists</span>
+                </Link>
+              </SettingsNavigationButton>
+            </TooltipTrigger>
+            <TooltipContent side='right'>Movie lists</TooltipContent>
           </Tooltip>
         </TooltipProvider>
 

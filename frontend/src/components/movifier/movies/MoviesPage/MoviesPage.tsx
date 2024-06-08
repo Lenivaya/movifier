@@ -6,7 +6,7 @@ import {
 } from '@/lib'
 import { MovieCardList } from '@/components/movifier/movies/MovieCardList'
 import { gql } from '@apollo/client'
-import { Updater, useMutative } from 'use-mutative'
+import { useMutative } from 'use-mutative'
 import { SearchBar } from '@/components/movifier/generic/search'
 import { AppLoader } from '@/components/movifier/generic'
 import { Option } from '@mobily/ts-belt'
@@ -16,14 +16,6 @@ import { MoviesPageYearSelect } from '@/components/movifier/movies/MoviesPage/Mo
 import { isSome } from '@/lib/types'
 import { MoviesPageOrderBySelect } from '@/components/movifier/movies/MoviesPage/MoviesPageOrderBySelect'
 import { MoviesPageLanguageSelect } from '@/components/movifier/movies/MoviesPage/MoviesPageLanguageSelect'
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger
-} from '@/components/ui/popover'
-import { Button } from '@/components/ui'
-import { Settings } from 'lucide-react'
-import { Checkbox } from '@/components/ui/checkbox'
 
 const SearchMovies = gql`
   query SearchMovies(

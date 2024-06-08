@@ -8401,13 +8401,6 @@ export type GetMovieListForPageQueryVariables = Exact<{
 
 export type GetMovieListForPageQuery = { __typename?: 'Query', movieList?: { __typename?: 'MovieList', id: string, name: string, description: string, tags: Array<string>, movies: Array<{ __typename?: 'Movie', id: string, movieInfo?: { __typename?: 'MovieInfo', id: string, title: string, posterUrl: string } | null }>, movieListAuthor: { __typename?: 'MovifierAppUser', id: string, username: string } } | null };
 
-export type SearchMovieListsQueryVariables = Exact<{
-  searchCriteria: MovieListSearchCriteriaInput;
-}>;
-
-
-export type SearchMovieListsQuery = { __typename?: 'Query', searchMovieLists: Array<{ __typename?: 'MovieList', id: string, name: string, tags: Array<string>, movies: Array<{ __typename?: 'Movie', id: string, movieInfo?: { __typename?: 'MovieInfo', id: string, title: string, posterUrl: string } | null }>, movieListAuthor: { __typename?: 'MovifierAppUser', id: string, username: string } }> };
-
 export type GetMovieForPageQueryVariables = Exact<{
   id: Scalars['String']['input'];
 }>;
@@ -8440,6 +8433,22 @@ export type GetUserLikedMoviesQueryVariables = Exact<{
 
 
 export type GetUserLikedMoviesQuery = { __typename?: 'Query', searchMovies: Array<{ __typename?: 'Movie', id: string, movieInfo?: { __typename?: 'MovieInfo', id: string, title: string, posterUrl: string } | null }> };
+
+export type GetUserCreatedMovieListsQueryVariables = Exact<{
+  searchCriteria: MovieListSearchCriteriaInput;
+  userId: Scalars['String']['input'];
+}>;
+
+
+export type GetUserCreatedMovieListsQuery = { __typename?: 'Query', searchMovieLists: Array<{ __typename?: 'MovieList', id: string, name: string, tags: Array<string>, movies: Array<{ __typename?: 'Movie', id: string, movieInfo?: { __typename?: 'MovieInfo', id: string, title: string, posterUrl: string } | null }>, movieListAuthor: { __typename?: 'MovifierAppUser', id: string, username: string } }> };
+
+export type GetUserLikedMovieListsQueryVariables = Exact<{
+  searchCriteria: MovieListSearchCriteriaInput;
+  userId: Scalars['String']['input'];
+}>;
+
+
+export type GetUserLikedMovieListsQuery = { __typename?: 'Query', searchMovieLists: Array<{ __typename?: 'MovieList', id: string, name: string, tags: Array<string>, movies: Array<{ __typename?: 'Movie', id: string, movieInfo?: { __typename?: 'MovieInfo', id: string, title: string, posterUrl: string } | null }>, movieListAuthor: { __typename?: 'MovifierAppUser', id: string, username: string } }> };
 
 export type GetUserWatchedMoviesQueryVariables = Exact<{
   searchCriteria: MoviesSearchCriteriaInput;
@@ -8485,6 +8494,13 @@ export type GetUserLikedMovieIdsInMovieListQueryVariables = Exact<{
 
 
 export type GetUserLikedMovieIdsInMovieListQuery = { __typename?: 'Query', movies: Array<{ __typename?: 'Movie', id: string }> };
+
+export type SearchMovieListsQueryVariables = Exact<{
+  searchCriteria: MovieListSearchCriteriaInput;
+}>;
+
+
+export type SearchMovieListsQuery = { __typename?: 'Query', searchMovieLists: Array<{ __typename?: 'MovieList', id: string, name: string, tags: Array<string>, movies: Array<{ __typename?: 'Movie', id: string, movieInfo?: { __typename?: 'MovieInfo', id: string, title: string, posterUrl: string } | null }>, movieListAuthor: { __typename?: 'MovifierAppUser', id: string, username: string } }> };
 
 export type SearchMoviesForListCreationQueryVariables = Exact<{
   search: Scalars['String']['input'];
@@ -11874,46 +11890,6 @@ export type GetMovieListForPageQueryHookResult = ReturnType<typeof useGetMovieLi
 export type GetMovieListForPageLazyQueryHookResult = ReturnType<typeof useGetMovieListForPageLazyQuery>;
 export type GetMovieListForPageSuspenseQueryHookResult = ReturnType<typeof useGetMovieListForPageSuspenseQuery>;
 export type GetMovieListForPageQueryResult = Apollo.QueryResult<GetMovieListForPageQuery, GetMovieListForPageQueryVariables>;
-export const SearchMovieListsDocument = gql`
-    query SearchMovieLists($searchCriteria: MovieListSearchCriteriaInput!) {
-  searchMovieLists(take: 5, searchCriteria: $searchCriteria) {
-    ...MovieListCardItem
-  }
-}
-    ${MovieListCardItemFragmentDoc}`;
-
-/**
- * __useSearchMovieListsQuery__
- *
- * To run a query within a React component, call `useSearchMovieListsQuery` and pass it any options that fit your needs.
- * When your component renders, `useSearchMovieListsQuery` returns an object from Apollo Client that contains loading, error, and data properties
- * you can use to render your UI.
- *
- * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
- *
- * @example
- * const { data, loading, error } = useSearchMovieListsQuery({
- *   variables: {
- *      searchCriteria: // value for 'searchCriteria'
- *   },
- * });
- */
-export function useSearchMovieListsQuery(baseOptions: Apollo.QueryHookOptions<SearchMovieListsQuery, SearchMovieListsQueryVariables> & ({ variables: SearchMovieListsQueryVariables; skip?: boolean; } | { skip: boolean; }) ) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<SearchMovieListsQuery, SearchMovieListsQueryVariables>(SearchMovieListsDocument, options);
-      }
-export function useSearchMovieListsLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<SearchMovieListsQuery, SearchMovieListsQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<SearchMovieListsQuery, SearchMovieListsQueryVariables>(SearchMovieListsDocument, options);
-        }
-export function useSearchMovieListsSuspenseQuery(baseOptions?: Apollo.SuspenseQueryHookOptions<SearchMovieListsQuery, SearchMovieListsQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useSuspenseQuery<SearchMovieListsQuery, SearchMovieListsQueryVariables>(SearchMovieListsDocument, options);
-        }
-export type SearchMovieListsQueryHookResult = ReturnType<typeof useSearchMovieListsQuery>;
-export type SearchMovieListsLazyQueryHookResult = ReturnType<typeof useSearchMovieListsLazyQuery>;
-export type SearchMovieListsSuspenseQueryHookResult = ReturnType<typeof useSearchMovieListsSuspenseQuery>;
-export type SearchMovieListsQueryResult = Apollo.QueryResult<SearchMovieListsQuery, SearchMovieListsQueryVariables>;
 export const GetMovieForPageDocument = gql`
     query GetMovieForPage($id: String!) {
   movie(where: {id: $id}) {
@@ -12118,6 +12094,94 @@ export type GetUserLikedMoviesQueryHookResult = ReturnType<typeof useGetUserLike
 export type GetUserLikedMoviesLazyQueryHookResult = ReturnType<typeof useGetUserLikedMoviesLazyQuery>;
 export type GetUserLikedMoviesSuspenseQueryHookResult = ReturnType<typeof useGetUserLikedMoviesSuspenseQuery>;
 export type GetUserLikedMoviesQueryResult = Apollo.QueryResult<GetUserLikedMoviesQuery, GetUserLikedMoviesQueryVariables>;
+export const GetUserCreatedMovieListsDocument = gql`
+    query GetUserCreatedMovieLists($searchCriteria: MovieListSearchCriteriaInput!, $userId: String!) {
+  searchMovieLists(
+    searchCriteria: $searchCriteria
+    where: {movieListAuthor: {is: {id: {equals: $userId}}}}
+  ) {
+    ...MovieListCardItem
+  }
+}
+    ${MovieListCardItemFragmentDoc}`;
+
+/**
+ * __useGetUserCreatedMovieListsQuery__
+ *
+ * To run a query within a React component, call `useGetUserCreatedMovieListsQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetUserCreatedMovieListsQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetUserCreatedMovieListsQuery({
+ *   variables: {
+ *      searchCriteria: // value for 'searchCriteria'
+ *      userId: // value for 'userId'
+ *   },
+ * });
+ */
+export function useGetUserCreatedMovieListsQuery(baseOptions: Apollo.QueryHookOptions<GetUserCreatedMovieListsQuery, GetUserCreatedMovieListsQueryVariables> & ({ variables: GetUserCreatedMovieListsQueryVariables; skip?: boolean; } | { skip: boolean; }) ) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<GetUserCreatedMovieListsQuery, GetUserCreatedMovieListsQueryVariables>(GetUserCreatedMovieListsDocument, options);
+      }
+export function useGetUserCreatedMovieListsLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetUserCreatedMovieListsQuery, GetUserCreatedMovieListsQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<GetUserCreatedMovieListsQuery, GetUserCreatedMovieListsQueryVariables>(GetUserCreatedMovieListsDocument, options);
+        }
+export function useGetUserCreatedMovieListsSuspenseQuery(baseOptions?: Apollo.SuspenseQueryHookOptions<GetUserCreatedMovieListsQuery, GetUserCreatedMovieListsQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useSuspenseQuery<GetUserCreatedMovieListsQuery, GetUserCreatedMovieListsQueryVariables>(GetUserCreatedMovieListsDocument, options);
+        }
+export type GetUserCreatedMovieListsQueryHookResult = ReturnType<typeof useGetUserCreatedMovieListsQuery>;
+export type GetUserCreatedMovieListsLazyQueryHookResult = ReturnType<typeof useGetUserCreatedMovieListsLazyQuery>;
+export type GetUserCreatedMovieListsSuspenseQueryHookResult = ReturnType<typeof useGetUserCreatedMovieListsSuspenseQuery>;
+export type GetUserCreatedMovieListsQueryResult = Apollo.QueryResult<GetUserCreatedMovieListsQuery, GetUserCreatedMovieListsQueryVariables>;
+export const GetUserLikedMovieListsDocument = gql`
+    query GetUserLikedMovieLists($searchCriteria: MovieListSearchCriteriaInput!, $userId: String!) {
+  searchMovieLists(
+    searchCriteria: $searchCriteria
+    where: {likedBy: {some: {userId: {equals: $userId}}}}
+  ) {
+    ...MovieListCardItem
+  }
+}
+    ${MovieListCardItemFragmentDoc}`;
+
+/**
+ * __useGetUserLikedMovieListsQuery__
+ *
+ * To run a query within a React component, call `useGetUserLikedMovieListsQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetUserLikedMovieListsQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetUserLikedMovieListsQuery({
+ *   variables: {
+ *      searchCriteria: // value for 'searchCriteria'
+ *      userId: // value for 'userId'
+ *   },
+ * });
+ */
+export function useGetUserLikedMovieListsQuery(baseOptions: Apollo.QueryHookOptions<GetUserLikedMovieListsQuery, GetUserLikedMovieListsQueryVariables> & ({ variables: GetUserLikedMovieListsQueryVariables; skip?: boolean; } | { skip: boolean; }) ) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<GetUserLikedMovieListsQuery, GetUserLikedMovieListsQueryVariables>(GetUserLikedMovieListsDocument, options);
+      }
+export function useGetUserLikedMovieListsLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetUserLikedMovieListsQuery, GetUserLikedMovieListsQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<GetUserLikedMovieListsQuery, GetUserLikedMovieListsQueryVariables>(GetUserLikedMovieListsDocument, options);
+        }
+export function useGetUserLikedMovieListsSuspenseQuery(baseOptions?: Apollo.SuspenseQueryHookOptions<GetUserLikedMovieListsQuery, GetUserLikedMovieListsQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useSuspenseQuery<GetUserLikedMovieListsQuery, GetUserLikedMovieListsQueryVariables>(GetUserLikedMovieListsDocument, options);
+        }
+export type GetUserLikedMovieListsQueryHookResult = ReturnType<typeof useGetUserLikedMovieListsQuery>;
+export type GetUserLikedMovieListsLazyQueryHookResult = ReturnType<typeof useGetUserLikedMovieListsLazyQuery>;
+export type GetUserLikedMovieListsSuspenseQueryHookResult = ReturnType<typeof useGetUserLikedMovieListsSuspenseQuery>;
+export type GetUserLikedMovieListsQueryResult = Apollo.QueryResult<GetUserLikedMovieListsQuery, GetUserLikedMovieListsQueryVariables>;
 export const GetUserWatchedMoviesDocument = gql`
     query GetUserWatchedMovies($searchCriteria: MoviesSearchCriteriaInput!, $orderBy: [MovieOrderByWithRelationAndSearchRelevanceInput!], $userId: String!) {
   searchMovies(
@@ -12329,6 +12393,46 @@ export type GetUserLikedMovieIdsInMovieListQueryHookResult = ReturnType<typeof u
 export type GetUserLikedMovieIdsInMovieListLazyQueryHookResult = ReturnType<typeof useGetUserLikedMovieIdsInMovieListLazyQuery>;
 export type GetUserLikedMovieIdsInMovieListSuspenseQueryHookResult = ReturnType<typeof useGetUserLikedMovieIdsInMovieListSuspenseQuery>;
 export type GetUserLikedMovieIdsInMovieListQueryResult = Apollo.QueryResult<GetUserLikedMovieIdsInMovieListQuery, GetUserLikedMovieIdsInMovieListQueryVariables>;
+export const SearchMovieListsDocument = gql`
+    query SearchMovieLists($searchCriteria: MovieListSearchCriteriaInput!) {
+  searchMovieLists(take: 5, searchCriteria: $searchCriteria) {
+    ...MovieListCardItem
+  }
+}
+    ${MovieListCardItemFragmentDoc}`;
+
+/**
+ * __useSearchMovieListsQuery__
+ *
+ * To run a query within a React component, call `useSearchMovieListsQuery` and pass it any options that fit your needs.
+ * When your component renders, `useSearchMovieListsQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useSearchMovieListsQuery({
+ *   variables: {
+ *      searchCriteria: // value for 'searchCriteria'
+ *   },
+ * });
+ */
+export function useSearchMovieListsQuery(baseOptions: Apollo.QueryHookOptions<SearchMovieListsQuery, SearchMovieListsQueryVariables> & ({ variables: SearchMovieListsQueryVariables; skip?: boolean; } | { skip: boolean; }) ) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<SearchMovieListsQuery, SearchMovieListsQueryVariables>(SearchMovieListsDocument, options);
+      }
+export function useSearchMovieListsLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<SearchMovieListsQuery, SearchMovieListsQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<SearchMovieListsQuery, SearchMovieListsQueryVariables>(SearchMovieListsDocument, options);
+        }
+export function useSearchMovieListsSuspenseQuery(baseOptions?: Apollo.SuspenseQueryHookOptions<SearchMovieListsQuery, SearchMovieListsQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useSuspenseQuery<SearchMovieListsQuery, SearchMovieListsQueryVariables>(SearchMovieListsDocument, options);
+        }
+export type SearchMovieListsQueryHookResult = ReturnType<typeof useSearchMovieListsQuery>;
+export type SearchMovieListsLazyQueryHookResult = ReturnType<typeof useSearchMovieListsLazyQuery>;
+export type SearchMovieListsSuspenseQueryHookResult = ReturnType<typeof useSearchMovieListsSuspenseQuery>;
+export type SearchMovieListsQueryResult = Apollo.QueryResult<SearchMovieListsQuery, SearchMovieListsQueryVariables>;
 export const SearchMoviesForListCreationDocument = gql`
     query SearchMoviesForListCreation($search: String!, $alreadySelectedMovies: [String!]!) {
   searchMovies(

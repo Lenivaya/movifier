@@ -53,7 +53,7 @@ export const MovieListCard: FC<MovieListCardItemFragment> = ({
   const isAuthor = isSignedIn && user?.id === movieListAuthor.id
 
   return (
-    <Card className={'w-[30em] min-h-full'}>
+    <Card className={'w-[30em] min-h-full flex-1'}>
       <CardHeader>
         <Link href={`/movie-lists/${id}`} className={'h-full grow'}>
           <CardTitle>{name}</CardTitle>

@@ -7,7 +7,13 @@ import {
   useState
 } from 'react'
 
-export type DashboardPage = 'Home' | 'Watchlist' | 'Liked' | 'WatchedMovies'
+export type DashboardPage =
+  | 'Home'
+  | 'Watchlist'
+  | 'Liked'
+  | 'WatchedMovies'
+  | 'MovieLists'
+
 export type DashboardPageContextT = {
   currentPage: DashboardPage
 }
