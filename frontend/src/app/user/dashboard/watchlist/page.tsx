@@ -89,7 +89,13 @@ export function Watchlist() {
           <Card x-chunk='dashboard-05-chunk-3'>
             <CardContent>
               <MoviesPage
-                render={(searchCriteria, orderBy) => {
+                render={(
+                  searchCriteria,
+                  orderBy,
+                  _pagination,
+                  setPagination,
+                  _paginationResult
+                ) => {
                   const { data } = useGetUserWatchlistSuspenseQuery({
                     variables: {
                       searchCriteria,
@@ -98,6 +104,14 @@ export function Watchlist() {
                     },
                     fetchPolicy: 'cache-and-network'
                   })
+
+                  useEffect(() => {
+                    setPagination((prev) => ({
+                      ...prev,
+                      currentPage: 1,
+                      totalCount: data?.searchMovies.length
+                    }))
+                  }, [data])
 
                   return <MovieCardList movies={data?.searchMovies} />
                 }}

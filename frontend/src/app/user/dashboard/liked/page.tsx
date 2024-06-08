@@ -94,7 +94,13 @@ export function LikedMovies() {
             <CardContent>
               <div className='h-full'>
                 <MoviesPage
-                  render={(searchCriteria, orderBy) => {
+                  render={(
+                    searchCriteria,
+                    orderBy,
+                    _pagination,
+                    setPagination,
+                    _paginationResult
+                  ) => {
                     const { data } = useGetUserLikedMoviesSuspenseQuery({
                       variables: {
                         searchCriteria,
@@ -103,6 +109,14 @@ export function LikedMovies() {
                       },
                       fetchPolicy: 'cache-and-network'
                     })
+
+                    useEffect(() => {
+                      setPagination((prev) => ({
+                        ...prev,
+                        currentPage: 1,
+                        totalCount: data?.searchMovies.length
+                      }))
+                    }, [data])
 
                     return <MovieCardList movies={data?.searchMovies} />
                   }}

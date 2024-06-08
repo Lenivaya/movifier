@@ -8715,6 +8715,8 @@ export type DeleteMovieRatingForUserMutation = { __typename?: 'Mutation', delete
 export type SearchMoviesQueryVariables = Exact<{
   searchCriteria: MoviesSearchCriteriaInput;
   orderBy?: InputMaybe<Array<MovieOrderByWithRelationAndSearchRelevanceInput> | MovieOrderByWithRelationAndSearchRelevanceInput>;
+  take?: Scalars['Int']['input'];
+  skip?: Scalars['Int']['input'];
 }>;
 
 
@@ -13366,8 +13368,13 @@ export type DeleteMovieRatingForUserMutationHookResult = ReturnType<typeof useDe
 export type DeleteMovieRatingForUserMutationResult = Apollo.MutationResult<DeleteMovieRatingForUserMutation>;
 export type DeleteMovieRatingForUserMutationOptions = Apollo.BaseMutationOptions<DeleteMovieRatingForUserMutation, DeleteMovieRatingForUserMutationVariables>;
 export const SearchMoviesDocument = gql`
-    query SearchMovies($searchCriteria: MoviesSearchCriteriaInput!, $orderBy: [MovieOrderByWithRelationAndSearchRelevanceInput!]) {
-  searchMovies(take: 5, searchCriteria: $searchCriteria, orderBy: $orderBy) {
+    query SearchMovies($searchCriteria: MoviesSearchCriteriaInput!, $orderBy: [MovieOrderByWithRelationAndSearchRelevanceInput!], $take: Int! = 5, $skip: Int! = 0) {
+  searchMovies(
+    take: $take
+    skip: $skip
+    searchCriteria: $searchCriteria
+    orderBy: $orderBy
+  ) {
     ...MovieCardItem
   }
 }
@@ -13387,6 +13394,8 @@ export const SearchMoviesDocument = gql`
  *   variables: {
  *      searchCriteria: // value for 'searchCriteria'
  *      orderBy: // value for 'orderBy'
+ *      take: // value for 'take'
+ *      skip: // value for 'skip'
  *   },
  * });
  */
