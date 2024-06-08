@@ -8,7 +8,12 @@ export class MovieSpokenLanguageCreateManyInput {
   @TypeGraphQL.Field(_type => String, {
     nullable: false
   })
-  language!: string;
+  iso_639_1!: string;
+
+  @TypeGraphQL.Field(_type => String, {
+    nullable: false
+  })
+  name!: string;
 
   @TypeGraphQL.Field(_type => Date, {
     nullable: true

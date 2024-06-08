@@ -10,7 +10,8 @@ import { gql } from '@apollo/client'
 const GetLanguages = gql`
   query GetSpokenLanguages {
     movieSpokenLanguages {
-      language
+      iso_639_1
+      name
     }
   }
 `
@@ -35,10 +36,10 @@ function LanguagesListSuspense() {
   return (
     <div className={'grid grid-cols-3 gap-5 mx-auto justify-center'}>
       {data.movieSpokenLanguages.map((lang) => (
-        <Link href={`/movies/language/${lang.language}`}>
+        <Link href={`/movies/language/${lang.iso_639_1}`}>
           <Card>
             <CardHeader>
-              <CardTitle>{lang.language}</CardTitle>
+              <CardTitle>{lang.name}</CardTitle>
             </CardHeader>
           </Card>
         </Link>

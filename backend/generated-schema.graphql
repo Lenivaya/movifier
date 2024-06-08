@@ -4266,8 +4266,9 @@ input MovieScalarWhereWithAggregatesInput {
 type MovieSpokenLanguage {
   _count: MovieSpokenLanguageCount
   createdAt: DateTimeISO!
-  language: String!
+  iso_639_1: String!
   movies(cursor: MovieWhereUniqueInput, distinct: [MovieScalarFieldEnum!], orderBy: [MovieOrderByWithRelationAndSearchRelevanceInput!], skip: Int, take: Int, where: MovieWhereInput): [Movie!]!
+  name: String!
   updatedAt: DateTimeISO!
 }
 
@@ -4278,26 +4279,30 @@ type MovieSpokenLanguageCount {
 type MovieSpokenLanguageCountAggregate {
   _all: Int!
   createdAt: Int!
-  language: Int!
+  iso_639_1: Int!
+  name: Int!
   updatedAt: Int!
 }
 
 input MovieSpokenLanguageCountOrderByAggregateInput {
   createdAt: SortOrder
-  language: SortOrder
+  iso_639_1: SortOrder
+  name: SortOrder
   updatedAt: SortOrder
 }
 
 input MovieSpokenLanguageCreateInput {
   createdAt: DateTimeISO
-  language: String!
+  iso_639_1: String!
   movies: MovieCreateNestedManyWithoutSpokenLanguagesInput
+  name: String!
   updatedAt: DateTimeISO
 }
 
 input MovieSpokenLanguageCreateManyInput {
   createdAt: DateTimeISO
-  language: String!
+  iso_639_1: String!
+  name: String!
   updatedAt: DateTimeISO
 }
 
@@ -4314,7 +4319,8 @@ input MovieSpokenLanguageCreateOrConnectWithoutMoviesInput {
 
 input MovieSpokenLanguageCreateWithoutMoviesInput {
   createdAt: DateTimeISO
-  language: String!
+  iso_639_1: String!
+  name: String!
   updatedAt: DateTimeISO
 }
 
@@ -4323,7 +4329,8 @@ type MovieSpokenLanguageGroupBy {
   _max: MovieSpokenLanguageMaxAggregate
   _min: MovieSpokenLanguageMinAggregate
   createdAt: DateTimeISO!
-  language: String!
+  iso_639_1: String!
+  name: String!
   updatedAt: DateTimeISO!
 }
 
@@ -4335,25 +4342,29 @@ input MovieSpokenLanguageListRelationFilter {
 
 type MovieSpokenLanguageMaxAggregate {
   createdAt: DateTimeISO
-  language: String
+  iso_639_1: String
+  name: String
   updatedAt: DateTimeISO
 }
 
 input MovieSpokenLanguageMaxOrderByAggregateInput {
   createdAt: SortOrder
-  language: SortOrder
+  iso_639_1: SortOrder
+  name: SortOrder
   updatedAt: SortOrder
 }
 
 type MovieSpokenLanguageMinAggregate {
   createdAt: DateTimeISO
-  language: String
+  iso_639_1: String
+  name: String
   updatedAt: DateTimeISO
 }
 
 input MovieSpokenLanguageMinOrderByAggregateInput {
   createdAt: SortOrder
-  language: SortOrder
+  iso_639_1: SortOrder
+  name: SortOrder
   updatedAt: SortOrder
 }
 
@@ -4362,7 +4373,8 @@ input MovieSpokenLanguageOrderByRelationAggregateInput {
 }
 
 enum MovieSpokenLanguageOrderByRelevanceFieldEnum {
-  language
+  iso_639_1
+  name
 }
 
 input MovieSpokenLanguageOrderByRelevanceInput {
@@ -4376,21 +4388,24 @@ input MovieSpokenLanguageOrderByWithAggregationInput {
   _max: MovieSpokenLanguageMaxOrderByAggregateInput
   _min: MovieSpokenLanguageMinOrderByAggregateInput
   createdAt: SortOrder
-  language: SortOrder
+  iso_639_1: SortOrder
+  name: SortOrder
   updatedAt: SortOrder
 }
 
 input MovieSpokenLanguageOrderByWithRelationAndSearchRelevanceInput {
   _relevance: MovieSpokenLanguageOrderByRelevanceInput
   createdAt: SortOrder
-  language: SortOrder
+  iso_639_1: SortOrder
   movies: MovieOrderByRelationAggregateInput
+  name: SortOrder
   updatedAt: SortOrder
 }
 
 enum MovieSpokenLanguageScalarFieldEnum {
   createdAt
-  language
+  iso_639_1
+  name
   updatedAt
 }
 
@@ -4399,7 +4414,8 @@ input MovieSpokenLanguageScalarWhereInput {
   NOT: [MovieSpokenLanguageScalarWhereInput!]
   OR: [MovieSpokenLanguageScalarWhereInput!]
   createdAt: DateTimeFilter
-  language: StringFilter
+  iso_639_1: StringFilter
+  name: StringFilter
   updatedAt: DateTimeFilter
 }
 
@@ -4408,20 +4424,23 @@ input MovieSpokenLanguageScalarWhereWithAggregatesInput {
   NOT: [MovieSpokenLanguageScalarWhereWithAggregatesInput!]
   OR: [MovieSpokenLanguageScalarWhereWithAggregatesInput!]
   createdAt: DateTimeWithAggregatesFilter
-  language: StringWithAggregatesFilter
+  iso_639_1: StringWithAggregatesFilter
+  name: StringWithAggregatesFilter
   updatedAt: DateTimeWithAggregatesFilter
 }
 
 input MovieSpokenLanguageUpdateInput {
   createdAt: DateTimeFieldUpdateOperationsInput
-  language: StringFieldUpdateOperationsInput
+  iso_639_1: StringFieldUpdateOperationsInput
   movies: MovieUpdateManyWithoutSpokenLanguagesNestedInput
+  name: StringFieldUpdateOperationsInput
   updatedAt: DateTimeFieldUpdateOperationsInput
 }
 
 input MovieSpokenLanguageUpdateManyMutationInput {
   createdAt: DateTimeFieldUpdateOperationsInput
-  language: StringFieldUpdateOperationsInput
+  iso_639_1: StringFieldUpdateOperationsInput
+  name: StringFieldUpdateOperationsInput
   updatedAt: DateTimeFieldUpdateOperationsInput
 }
 
@@ -4450,7 +4469,8 @@ input MovieSpokenLanguageUpdateWithWhereUniqueWithoutMoviesInput {
 
 input MovieSpokenLanguageUpdateWithoutMoviesInput {
   createdAt: DateTimeFieldUpdateOperationsInput
-  language: StringFieldUpdateOperationsInput
+  iso_639_1: StringFieldUpdateOperationsInput
+  name: StringFieldUpdateOperationsInput
   updatedAt: DateTimeFieldUpdateOperationsInput
 }
 
@@ -4465,8 +4485,9 @@ input MovieSpokenLanguageWhereInput {
   NOT: [MovieSpokenLanguageWhereInput!]
   OR: [MovieSpokenLanguageWhereInput!]
   createdAt: DateTimeFilter
-  language: StringFilter
+  iso_639_1: StringFilter
   movies: MovieListRelationFilter
+  name: StringFilter
   updatedAt: DateTimeFilter
 }
 
@@ -4475,8 +4496,9 @@ input MovieSpokenLanguageWhereUniqueInput {
   NOT: [MovieSpokenLanguageWhereInput!]
   OR: [MovieSpokenLanguageWhereInput!]
   createdAt: DateTimeFilter
-  language: String
+  iso_639_1: String
   movies: MovieListRelationFilter
+  name: String
   updatedAt: DateTimeFilter
 }
 

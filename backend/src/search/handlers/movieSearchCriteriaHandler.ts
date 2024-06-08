@@ -69,7 +69,10 @@ export class MovieSearchCriteriaHandler
         or.push({
           spokenLanguages: {
             some: {
-              OR: [{ language: { contains: pattern, mode: 'insensitive' } }]
+              OR: [
+                { iso_639_1: { contains: pattern, mode: 'insensitive' } },
+                { name: { contains: pattern, mode: 'insensitive' } }
+              ]
             }
           }
         })
@@ -142,7 +145,11 @@ export class MovieSearchCriteriaHandler
     if (isSome(language)) {
       where.spokenLanguages = {
         some: {
-          language: {
+          name: {
+            contains: `%${language}%`,
+            mode: 'insensitive'
+          },
+          iso_639_1: {
             contains: `%${language}%`,
             mode: 'insensitive'
           }

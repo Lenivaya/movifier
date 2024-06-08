@@ -69,7 +69,8 @@ model MovieInfo {
 }
 
 model MovieSpokenLanguage {
-  language  String   @id @unique
+  iso_639_1 String   @id @unique
+  name      String   @unique
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   movies    Movie[]

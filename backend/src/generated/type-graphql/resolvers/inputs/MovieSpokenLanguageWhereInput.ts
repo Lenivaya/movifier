@@ -26,7 +26,12 @@ export class MovieSpokenLanguageWhereInput {
   @TypeGraphQL.Field(_type => StringFilter, {
     nullable: true
   })
-  language?: StringFilter | undefined;
+  iso_639_1?: StringFilter | undefined;
+
+  @TypeGraphQL.Field(_type => StringFilter, {
+    nullable: true
+  })
+  name?: StringFilter | undefined;
 
   @TypeGraphQL.Field(_type => DateTimeFilter, {
     nullable: true

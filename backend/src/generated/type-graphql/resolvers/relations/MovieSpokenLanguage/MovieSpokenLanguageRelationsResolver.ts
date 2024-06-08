@@ -14,7 +14,7 @@ export class MovieSpokenLanguageRelationsResolver {
     const { _count } = transformInfoIntoPrismaArgs(info);
     return getPrismaFromContext(ctx).movieSpokenLanguage.findUniqueOrThrow({
       where: {
-        language: movieSpokenLanguage.language,
+        iso_639_1: movieSpokenLanguage.iso_639_1,
       },
     }).movies({
       ...args,

@@ -30,6 +30,7 @@ export class MovieRatingCreateWithoutReviewInput {
   @TypeGraphQL.Field((_type) => MovieCreateNestedOneWithoutRatedByInput, {
     nullable: false
   })
+  // @ts-ignore
   movie!
 
   @TypeGraphQL.Field(

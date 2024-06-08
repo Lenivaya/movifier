@@ -10,7 +10,7 @@ export class MovieSpokenLanguageOrderByRelevanceInput {
   @TypeGraphQL.Field(_type => [MovieSpokenLanguageOrderByRelevanceFieldEnum], {
     nullable: false
   })
-  fields!: "language"[];
+  fields!: Array<"iso_639_1" | "name">;
 
   @TypeGraphQL.Field(_type => SortOrder, {
     nullable: false

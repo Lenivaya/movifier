@@ -1,7 +1,8 @@
 import * as TypeGraphQL from "type-graphql";
 
 export enum MovieSpokenLanguageOrderByRelevanceFieldEnum {
-  language = "language"
+  iso_639_1 = "iso_639_1",
+  name = "name"
 }
 TypeGraphQL.registerEnumType(MovieSpokenLanguageOrderByRelevanceFieldEnum, {
   name: "MovieSpokenLanguageOrderByRelevanceFieldEnum",

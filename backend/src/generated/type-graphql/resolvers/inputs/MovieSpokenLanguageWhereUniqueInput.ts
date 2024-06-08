@@ -11,7 +11,12 @@ export class MovieSpokenLanguageWhereUniqueInput {
   @TypeGraphQL.Field(_type => String, {
     nullable: true
   })
-  language?: string | undefined;
+  iso_639_1?: string | undefined;
+
+  @TypeGraphQL.Field(_type => String, {
+    nullable: true
+  })
+  name?: string | undefined;
 
   @TypeGraphQL.Field(_type => [MovieSpokenLanguageWhereInput], {
     nullable: true

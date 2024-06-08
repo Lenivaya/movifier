@@ -42,10 +42,10 @@ export function MoviesPageLanguageSelect({
       </SelectTrigger>
       <SelectContent>
         {data?.movieSpokenLanguages.map((spokenLanguage) => (
-          <Link href={`/movies/language/${spokenLanguage.language}`} passHref>
+          <Link href={`/movies/language/${spokenLanguage.iso_639_1}`} passHref>
             <div>
-              <SelectItem value={spokenLanguage.language}>
-                {spokenLanguage.language}
+              <SelectItem value={spokenLanguage.iso_639_1}>
+                {spokenLanguage.name}
               </SelectItem>
             </div>
           </Link>

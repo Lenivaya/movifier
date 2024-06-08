@@ -4600,8 +4600,9 @@ export type MovieSpokenLanguage = {
   __typename?: 'MovieSpokenLanguage';
   _count?: Maybe<MovieSpokenLanguageCount>;
   createdAt: Scalars['DateTimeISO']['output'];
-  language: Scalars['String']['output'];
+  iso_639_1: Scalars['String']['output'];
   movies: Array<Movie>;
+  name: Scalars['String']['output'];
   updatedAt: Scalars['DateTimeISO']['output'];
 };
 
@@ -4629,26 +4630,30 @@ export type MovieSpokenLanguageCountAggregate = {
   __typename?: 'MovieSpokenLanguageCountAggregate';
   _all: Scalars['Int']['output'];
   createdAt: Scalars['Int']['output'];
-  language: Scalars['Int']['output'];
+  iso_639_1: Scalars['Int']['output'];
+  name: Scalars['Int']['output'];
   updatedAt: Scalars['Int']['output'];
 };
 
 export type MovieSpokenLanguageCountOrderByAggregateInput = {
   createdAt?: InputMaybe<SortOrder>;
-  language?: InputMaybe<SortOrder>;
+  iso_639_1?: InputMaybe<SortOrder>;
+  name?: InputMaybe<SortOrder>;
   updatedAt?: InputMaybe<SortOrder>;
 };
 
 export type MovieSpokenLanguageCreateInput = {
   createdAt?: InputMaybe<Scalars['DateTimeISO']['input']>;
-  language: Scalars['String']['input'];
+  iso_639_1: Scalars['String']['input'];
   movies?: InputMaybe<MovieCreateNestedManyWithoutSpokenLanguagesInput>;
+  name: Scalars['String']['input'];
   updatedAt?: InputMaybe<Scalars['DateTimeISO']['input']>;
 };
 
 export type MovieSpokenLanguageCreateManyInput = {
   createdAt?: InputMaybe<Scalars['DateTimeISO']['input']>;
-  language: Scalars['String']['input'];
+  iso_639_1: Scalars['String']['input'];
+  name: Scalars['String']['input'];
   updatedAt?: InputMaybe<Scalars['DateTimeISO']['input']>;
 };
 
@@ -4665,7 +4670,8 @@ export type MovieSpokenLanguageCreateOrConnectWithoutMoviesInput = {
 
 export type MovieSpokenLanguageCreateWithoutMoviesInput = {
   createdAt?: InputMaybe<Scalars['DateTimeISO']['input']>;
-  language: Scalars['String']['input'];
+  iso_639_1: Scalars['String']['input'];
+  name: Scalars['String']['input'];
   updatedAt?: InputMaybe<Scalars['DateTimeISO']['input']>;
 };
 
@@ -4675,7 +4681,8 @@ export type MovieSpokenLanguageGroupBy = {
   _max?: Maybe<MovieSpokenLanguageMaxAggregate>;
   _min?: Maybe<MovieSpokenLanguageMinAggregate>;
   createdAt: Scalars['DateTimeISO']['output'];
-  language: Scalars['String']['output'];
+  iso_639_1: Scalars['String']['output'];
+  name: Scalars['String']['output'];
   updatedAt: Scalars['DateTimeISO']['output'];
 };
 
@@ -4688,26 +4695,30 @@ export type MovieSpokenLanguageListRelationFilter = {
 export type MovieSpokenLanguageMaxAggregate = {
   __typename?: 'MovieSpokenLanguageMaxAggregate';
   createdAt?: Maybe<Scalars['DateTimeISO']['output']>;
-  language?: Maybe<Scalars['String']['output']>;
+  iso_639_1?: Maybe<Scalars['String']['output']>;
+  name?: Maybe<Scalars['String']['output']>;
   updatedAt?: Maybe<Scalars['DateTimeISO']['output']>;
 };
 
 export type MovieSpokenLanguageMaxOrderByAggregateInput = {
   createdAt?: InputMaybe<SortOrder>;
-  language?: InputMaybe<SortOrder>;
+  iso_639_1?: InputMaybe<SortOrder>;
+  name?: InputMaybe<SortOrder>;
   updatedAt?: InputMaybe<SortOrder>;
 };
 
 export type MovieSpokenLanguageMinAggregate = {
   __typename?: 'MovieSpokenLanguageMinAggregate';
   createdAt?: Maybe<Scalars['DateTimeISO']['output']>;
-  language?: Maybe<Scalars['String']['output']>;
+  iso_639_1?: Maybe<Scalars['String']['output']>;
+  name?: Maybe<Scalars['String']['output']>;
   updatedAt?: Maybe<Scalars['DateTimeISO']['output']>;
 };
 
 export type MovieSpokenLanguageMinOrderByAggregateInput = {
   createdAt?: InputMaybe<SortOrder>;
-  language?: InputMaybe<SortOrder>;
+  iso_639_1?: InputMaybe<SortOrder>;
+  name?: InputMaybe<SortOrder>;
   updatedAt?: InputMaybe<SortOrder>;
 };
 
@@ -4716,7 +4727,8 @@ export type MovieSpokenLanguageOrderByRelationAggregateInput = {
 };
 
 export type MovieSpokenLanguageOrderByRelevanceFieldEnum =
-  | 'language';
+  | 'iso_639_1'
+  | 'name';
 
 export type MovieSpokenLanguageOrderByRelevanceInput = {
   fields: Array<MovieSpokenLanguageOrderByRelevanceFieldEnum>;
@@ -4729,21 +4741,24 @@ export type MovieSpokenLanguageOrderByWithAggregationInput = {
   _max?: InputMaybe<MovieSpokenLanguageMaxOrderByAggregateInput>;
   _min?: InputMaybe<MovieSpokenLanguageMinOrderByAggregateInput>;
   createdAt?: InputMaybe<SortOrder>;
-  language?: InputMaybe<SortOrder>;
+  iso_639_1?: InputMaybe<SortOrder>;
+  name?: InputMaybe<SortOrder>;
   updatedAt?: InputMaybe<SortOrder>;
 };
 
 export type MovieSpokenLanguageOrderByWithRelationAndSearchRelevanceInput = {
   _relevance?: InputMaybe<MovieSpokenLanguageOrderByRelevanceInput>;
   createdAt?: InputMaybe<SortOrder>;
-  language?: InputMaybe<SortOrder>;
+  iso_639_1?: InputMaybe<SortOrder>;
   movies?: InputMaybe<MovieOrderByRelationAggregateInput>;
+  name?: InputMaybe<SortOrder>;
   updatedAt?: InputMaybe<SortOrder>;
 };
 
 export type MovieSpokenLanguageScalarFieldEnum =
   | 'createdAt'
-  | 'language'
+  | 'iso_639_1'
+  | 'name'
   | 'updatedAt';
 
 export type MovieSpokenLanguageScalarWhereInput = {
@@ -4751,7 +4766,8 @@ export type MovieSpokenLanguageScalarWhereInput = {
   NOT?: InputMaybe<Array<MovieSpokenLanguageScalarWhereInput>>;
   OR?: InputMaybe<Array<MovieSpokenLanguageScalarWhereInput>>;
   createdAt?: InputMaybe<DateTimeFilter>;
-  language?: InputMaybe<StringFilter>;
+  iso_639_1?: InputMaybe<StringFilter>;
+  name?: InputMaybe<StringFilter>;
   updatedAt?: InputMaybe<DateTimeFilter>;
 };
 
@@ -4760,20 +4776,23 @@ export type MovieSpokenLanguageScalarWhereWithAggregatesInput = {
   NOT?: InputMaybe<Array<MovieSpokenLanguageScalarWhereWithAggregatesInput>>;
   OR?: InputMaybe<Array<MovieSpokenLanguageScalarWhereWithAggregatesInput>>;
   createdAt?: InputMaybe<DateTimeWithAggregatesFilter>;
-  language?: InputMaybe<StringWithAggregatesFilter>;
+  iso_639_1?: InputMaybe<StringWithAggregatesFilter>;
+  name?: InputMaybe<StringWithAggregatesFilter>;
   updatedAt?: InputMaybe<DateTimeWithAggregatesFilter>;
 };
 
 export type MovieSpokenLanguageUpdateInput = {
   createdAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
-  language?: InputMaybe<StringFieldUpdateOperationsInput>;
+  iso_639_1?: InputMaybe<StringFieldUpdateOperationsInput>;
   movies?: InputMaybe<MovieUpdateManyWithoutSpokenLanguagesNestedInput>;
+  name?: InputMaybe<StringFieldUpdateOperationsInput>;
   updatedAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
 };
 
 export type MovieSpokenLanguageUpdateManyMutationInput = {
   createdAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
-  language?: InputMaybe<StringFieldUpdateOperationsInput>;
+  iso_639_1?: InputMaybe<StringFieldUpdateOperationsInput>;
+  name?: InputMaybe<StringFieldUpdateOperationsInput>;
   updatedAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
 };
 
@@ -4802,7 +4821,8 @@ export type MovieSpokenLanguageUpdateWithWhereUniqueWithoutMoviesInput = {
 
 export type MovieSpokenLanguageUpdateWithoutMoviesInput = {
   createdAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
-  language?: InputMaybe<StringFieldUpdateOperationsInput>;
+  iso_639_1?: InputMaybe<StringFieldUpdateOperationsInput>;
+  name?: InputMaybe<StringFieldUpdateOperationsInput>;
   updatedAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
 };
 
@@ -4817,8 +4837,9 @@ export type MovieSpokenLanguageWhereInput = {
   NOT?: InputMaybe<Array<MovieSpokenLanguageWhereInput>>;
   OR?: InputMaybe<Array<MovieSpokenLanguageWhereInput>>;
   createdAt?: InputMaybe<DateTimeFilter>;
-  language?: InputMaybe<StringFilter>;
+  iso_639_1?: InputMaybe<StringFilter>;
   movies?: InputMaybe<MovieListRelationFilter>;
+  name?: InputMaybe<StringFilter>;
   updatedAt?: InputMaybe<DateTimeFilter>;
 };
 
@@ -4827,8 +4848,9 @@ export type MovieSpokenLanguageWhereUniqueInput = {
   NOT?: InputMaybe<Array<MovieSpokenLanguageWhereInput>>;
   OR?: InputMaybe<Array<MovieSpokenLanguageWhereInput>>;
   createdAt?: InputMaybe<DateTimeFilter>;
-  language?: InputMaybe<Scalars['String']['input']>;
+  iso_639_1?: InputMaybe<Scalars['String']['input']>;
   movies?: InputMaybe<MovieListRelationFilter>;
+  name?: InputMaybe<Scalars['String']['input']>;
   updatedAt?: InputMaybe<DateTimeFilter>;
 };
 
@@ -8430,12 +8452,12 @@ export type GetMovieForPageQueryVariables = Exact<{
 }>;
 
 
-export type GetMovieForPageQuery = { __typename?: 'Query', movie?: { __typename?: 'Movie', id: string, movieInfo?: { __typename?: 'MovieInfo', id: string, title: string, description: string, releaseDate: any, durationInMinutes: number, posterUrl: string, alternativeTitles: Array<string> } | null, crewMembers: Array<{ __typename?: 'MovieCrewMemberOnMovie', movieCrewMemberType: { __typename?: 'MovieCrewMemberType', id: string, name: string }, crewMember: { __typename?: 'MovieCrewMember', name: string, id: string } }>, studios: Array<{ __typename?: 'MovieStudio', name: string }>, genres: Array<{ __typename?: 'Genre', name: string }>, keywordCategories: Array<{ __typename?: 'MovieKeywordCategory', id: string, name: string }>, spokenLanguages: Array<{ __typename?: 'MovieSpokenLanguage', language: string }> } | null };
+export type GetMovieForPageQuery = { __typename?: 'Query', movie?: { __typename?: 'Movie', id: string, movieInfo?: { __typename?: 'MovieInfo', id: string, title: string, description: string, releaseDate: any, durationInMinutes: number, posterUrl: string, alternativeTitles: Array<string> } | null, crewMembers: Array<{ __typename?: 'MovieCrewMemberOnMovie', movieCrewMemberType: { __typename?: 'MovieCrewMemberType', id: string, name: string }, crewMember: { __typename?: 'MovieCrewMember', name: string, id: string } }>, studios: Array<{ __typename?: 'MovieStudio', name: string }>, genres: Array<{ __typename?: 'Genre', name: string }>, keywordCategories: Array<{ __typename?: 'MovieKeywordCategory', id: string, name: string }>, spokenLanguages: Array<{ __typename?: 'MovieSpokenLanguage', iso_639_1: string, name: string }> } | null };
 
 export type GetSpokenLanguagesQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type GetSpokenLanguagesQuery = { __typename?: 'Query', movieSpokenLanguages: Array<{ __typename?: 'MovieSpokenLanguage', language: string }> };
+export type GetSpokenLanguagesQuery = { __typename?: 'Query', movieSpokenLanguages: Array<{ __typename?: 'MovieSpokenLanguage', iso_639_1: string, name: string }> };
 
 export type GetMoviesForHomePageQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -8641,9 +8663,9 @@ export type MovieCardItemFragment = { __typename?: 'Movie', id: string, movieInf
 
 export type DirectorNamesTitleItemFragment = { __typename?: 'Movie', crewMembers: Array<{ __typename?: 'MovieCrewMemberOnMovie', movieCrewMemberType: { __typename?: 'MovieCrewMemberType', id: string, name: string }, crewMember: { __typename?: 'MovieCrewMember', name: string, id: string } }> };
 
-export type MoviePageItemFragment = { __typename?: 'Movie', id: string, movieInfo?: { __typename?: 'MovieInfo', id: string, title: string, description: string, releaseDate: any, durationInMinutes: number, posterUrl: string, alternativeTitles: Array<string> } | null, crewMembers: Array<{ __typename?: 'MovieCrewMemberOnMovie', movieCrewMemberType: { __typename?: 'MovieCrewMemberType', id: string, name: string }, crewMember: { __typename?: 'MovieCrewMember', name: string, id: string } }>, studios: Array<{ __typename?: 'MovieStudio', name: string }>, genres: Array<{ __typename?: 'Genre', name: string }>, keywordCategories: Array<{ __typename?: 'MovieKeywordCategory', id: string, name: string }>, spokenLanguages: Array<{ __typename?: 'MovieSpokenLanguage', language: string }> };
+export type MoviePageItemFragment = { __typename?: 'Movie', id: string, movieInfo?: { __typename?: 'MovieInfo', id: string, title: string, description: string, releaseDate: any, durationInMinutes: number, posterUrl: string, alternativeTitles: Array<string> } | null, crewMembers: Array<{ __typename?: 'MovieCrewMemberOnMovie', movieCrewMemberType: { __typename?: 'MovieCrewMemberType', id: string, name: string }, crewMember: { __typename?: 'MovieCrewMember', name: string, id: string } }>, studios: Array<{ __typename?: 'MovieStudio', name: string }>, genres: Array<{ __typename?: 'Genre', name: string }>, keywordCategories: Array<{ __typename?: 'MovieKeywordCategory', id: string, name: string }>, spokenLanguages: Array<{ __typename?: 'MovieSpokenLanguage', iso_639_1: string, name: string }> };
 
-export type MoviePageDetailsTabsItemFragment = { __typename?: 'Movie', movieInfo?: { __typename?: 'MovieInfo', alternativeTitles: Array<string> } | null, crewMembers: Array<{ __typename?: 'MovieCrewMemberOnMovie', movieCrewMemberType: { __typename?: 'MovieCrewMemberType', id: string, name: string }, crewMember: { __typename?: 'MovieCrewMember', name: string, id: string } }>, studios: Array<{ __typename?: 'MovieStudio', name: string }>, genres: Array<{ __typename?: 'Genre', name: string }>, keywordCategories: Array<{ __typename?: 'MovieKeywordCategory', id: string, name: string }>, spokenLanguages: Array<{ __typename?: 'MovieSpokenLanguage', language: string }> };
+export type MoviePageDetailsTabsItemFragment = { __typename?: 'Movie', movieInfo?: { __typename?: 'MovieInfo', alternativeTitles: Array<string> } | null, crewMembers: Array<{ __typename?: 'MovieCrewMemberOnMovie', movieCrewMemberType: { __typename?: 'MovieCrewMemberType', id: string, name: string }, crewMember: { __typename?: 'MovieCrewMember', name: string, id: string } }>, studios: Array<{ __typename?: 'MovieStudio', name: string }>, genres: Array<{ __typename?: 'Genre', name: string }>, keywordCategories: Array<{ __typename?: 'MovieKeywordCategory', id: string, name: string }>, spokenLanguages: Array<{ __typename?: 'MovieSpokenLanguage', iso_639_1: string, name: string }> };
 
 export type MoviePagePosterItemFragment = { __typename?: 'Movie', movieInfo?: { __typename?: 'MovieInfo', id: string, posterUrl: string, title: string } | null };
 
@@ -11283,8 +11305,9 @@ export type MovieReviewMinAggregateResolvers<ContextType = any, ParentType exten
 export type MovieSpokenLanguageResolvers<ContextType = any, ParentType extends ResolversParentTypes['MovieSpokenLanguage'] = ResolversParentTypes['MovieSpokenLanguage']> = ResolversObject<{
   _count?: Resolver<Maybe<ResolversTypes['MovieSpokenLanguageCount']>, ParentType, ContextType>;
   createdAt?: Resolver<ResolversTypes['DateTimeISO'], ParentType, ContextType>;
-  language?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  iso_639_1?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   movies?: Resolver<Array<ResolversTypes['Movie']>, ParentType, ContextType, Partial<MovieSpokenLanguageMoviesArgs>>;
+  name?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   updatedAt?: Resolver<ResolversTypes['DateTimeISO'], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 }>;
@@ -11297,7 +11320,8 @@ export type MovieSpokenLanguageCountResolvers<ContextType = any, ParentType exte
 export type MovieSpokenLanguageCountAggregateResolvers<ContextType = any, ParentType extends ResolversParentTypes['MovieSpokenLanguageCountAggregate'] = ResolversParentTypes['MovieSpokenLanguageCountAggregate']> = ResolversObject<{
   _all?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
   createdAt?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
-  language?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
+  iso_639_1?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
+  name?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
   updatedAt?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 }>;
@@ -11307,21 +11331,24 @@ export type MovieSpokenLanguageGroupByResolvers<ContextType = any, ParentType ex
   _max?: Resolver<Maybe<ResolversTypes['MovieSpokenLanguageMaxAggregate']>, ParentType, ContextType>;
   _min?: Resolver<Maybe<ResolversTypes['MovieSpokenLanguageMinAggregate']>, ParentType, ContextType>;
   createdAt?: Resolver<ResolversTypes['DateTimeISO'], ParentType, ContextType>;
-  language?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  iso_639_1?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  name?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   updatedAt?: Resolver<ResolversTypes['DateTimeISO'], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 }>;
 
 export type MovieSpokenLanguageMaxAggregateResolvers<ContextType = any, ParentType extends ResolversParentTypes['MovieSpokenLanguageMaxAggregate'] = ResolversParentTypes['MovieSpokenLanguageMaxAggregate']> = ResolversObject<{
   createdAt?: Resolver<Maybe<ResolversTypes['DateTimeISO']>, ParentType, ContextType>;
-  language?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  iso_639_1?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  name?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   updatedAt?: Resolver<Maybe<ResolversTypes['DateTimeISO']>, ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 }>;
 
 export type MovieSpokenLanguageMinAggregateResolvers<ContextType = any, ParentType extends ResolversParentTypes['MovieSpokenLanguageMinAggregate'] = ResolversParentTypes['MovieSpokenLanguageMinAggregate']> = ResolversObject<{
   createdAt?: Resolver<Maybe<ResolversTypes['DateTimeISO']>, ParentType, ContextType>;
-  language?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  iso_639_1?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  name?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   updatedAt?: Resolver<Maybe<ResolversTypes['DateTimeISO']>, ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 }>;
@@ -11908,7 +11935,8 @@ export const MoviePageDetailsTabsItemFragmentDoc = gql`
     name
   }
   spokenLanguages {
-    language
+    iso_639_1
+    name
   }
 }
     `;
@@ -12035,7 +12063,8 @@ export type GetMovieForPageQueryResult = Apollo.QueryResult<GetMovieForPageQuery
 export const GetSpokenLanguagesDocument = gql`
     query GetSpokenLanguages {
   movieSpokenLanguages {
-    language
+    iso_639_1
+    name
   }
 }
     `;
@@ -14929,44 +14958,49 @@ export type MovieReviewMinAggregateFieldPolicy = {
 	ratingId?: FieldPolicy<any> | FieldReadFunction<any>,
 	updatedAt?: FieldPolicy<any> | FieldReadFunction<any>
 };
-export type MovieSpokenLanguageKeySpecifier = ('_count' | 'createdAt' | 'language' | 'movies' | 'updatedAt' | MovieSpokenLanguageKeySpecifier)[];
+export type MovieSpokenLanguageKeySpecifier = ('_count' | 'createdAt' | 'iso_639_1' | 'movies' | 'name' | 'updatedAt' | MovieSpokenLanguageKeySpecifier)[];
 export type MovieSpokenLanguageFieldPolicy = {
 	_count?: FieldPolicy<any> | FieldReadFunction<any>,
 	createdAt?: FieldPolicy<any> | FieldReadFunction<any>,
-	language?: FieldPolicy<any> | FieldReadFunction<any>,
+	iso_639_1?: FieldPolicy<any> | FieldReadFunction<any>,
 	movies?: FieldPolicy<any> | FieldReadFunction<any>,
+	name?: FieldPolicy<any> | FieldReadFunction<any>,
 	updatedAt?: FieldPolicy<any> | FieldReadFunction<any>
 };
 export type MovieSpokenLanguageCountKeySpecifier = ('movies' | MovieSpokenLanguageCountKeySpecifier)[];
 export type MovieSpokenLanguageCountFieldPolicy = {
 	movies?: FieldPolicy<any> | FieldReadFunction<any>
 };
-export type MovieSpokenLanguageCountAggregateKeySpecifier = ('_all' | 'createdAt' | 'language' | 'updatedAt' | MovieSpokenLanguageCountAggregateKeySpecifier)[];
+export type MovieSpokenLanguageCountAggregateKeySpecifier = ('_all' | 'createdAt' | 'iso_639_1' | 'name' | 'updatedAt' | MovieSpokenLanguageCountAggregateKeySpecifier)[];
 export type MovieSpokenLanguageCountAggregateFieldPolicy = {
 	_all?: FieldPolicy<any> | FieldReadFunction<any>,
 	createdAt?: FieldPolicy<any> | FieldReadFunction<any>,
-	language?: FieldPolicy<any> | FieldReadFunction<any>,
+	iso_639_1?: FieldPolicy<any> | FieldReadFunction<any>,
+	name?: FieldPolicy<any> | FieldReadFunction<any>,
 	updatedAt?: FieldPolicy<any> | FieldReadFunction<any>
 };
-export type MovieSpokenLanguageGroupByKeySpecifier = ('_count' | '_max' | '_min' | 'createdAt' | 'language' | 'updatedAt' | MovieSpokenLanguageGroupByKeySpecifier)[];
+export type MovieSpokenLanguageGroupByKeySpecifier = ('_count' | '_max' | '_min' | 'createdAt' | 'iso_639_1' | 'name' | 'updatedAt' | MovieSpokenLanguageGroupByKeySpecifier)[];
 export type MovieSpokenLanguageGroupByFieldPolicy = {
 	_count?: FieldPolicy<any> | FieldReadFunction<any>,
 	_max?: FieldPolicy<any> | FieldReadFunction<any>,
 	_min?: FieldPolicy<any> | FieldReadFunction<any>,
 	createdAt?: FieldPolicy<any> | FieldReadFunction<any>,
-	language?: FieldPolicy<any> | FieldReadFunction<any>,
+	iso_639_1?: FieldPolicy<any> | FieldReadFunction<any>,
+	name?: FieldPolicy<any> | FieldReadFunction<any>,
 	updatedAt?: FieldPolicy<any> | FieldReadFunction<any>
 };
-export type MovieSpokenLanguageMaxAggregateKeySpecifier = ('createdAt' | 'language' | 'updatedAt' | MovieSpokenLanguageMaxAggregateKeySpecifier)[];
+export type MovieSpokenLanguageMaxAggregateKeySpecifier = ('createdAt' | 'iso_639_1' | 'name' | 'updatedAt' | MovieSpokenLanguageMaxAggregateKeySpecifier)[];
 export type MovieSpokenLanguageMaxAggregateFieldPolicy = {
 	createdAt?: FieldPolicy<any> | FieldReadFunction<any>,
-	language?: FieldPolicy<any> | FieldReadFunction<any>,
+	iso_639_1?: FieldPolicy<any> | FieldReadFunction<any>,
+	name?: FieldPolicy<any> | FieldReadFunction<any>,
 	updatedAt?: FieldPolicy<any> | FieldReadFunction<any>
 };
-export type MovieSpokenLanguageMinAggregateKeySpecifier = ('createdAt' | 'language' | 'updatedAt' | MovieSpokenLanguageMinAggregateKeySpecifier)[];
+export type MovieSpokenLanguageMinAggregateKeySpecifier = ('createdAt' | 'iso_639_1' | 'name' | 'updatedAt' | MovieSpokenLanguageMinAggregateKeySpecifier)[];
 export type MovieSpokenLanguageMinAggregateFieldPolicy = {
 	createdAt?: FieldPolicy<any> | FieldReadFunction<any>,
-	language?: FieldPolicy<any> | FieldReadFunction<any>,
+	iso_639_1?: FieldPolicy<any> | FieldReadFunction<any>,
+	name?: FieldPolicy<any> | FieldReadFunction<any>,
 	updatedAt?: FieldPolicy<any> | FieldReadFunction<any>
 };
 export type MovieStatsKeySpecifier = ('avgRating' | 'id' | 'movieId' | 'overallPlaceInTop' | 'timesWatchedCount' | 'totalLikesCount' | 'totalRatingsCount' | MovieStatsKeySpecifier)[];
