@@ -12102,7 +12102,7 @@ export type GetSpokenLanguagesSuspenseQueryHookResult = ReturnType<typeof useGet
 export type GetSpokenLanguagesQueryResult = Apollo.QueryResult<GetSpokenLanguagesQuery, GetSpokenLanguagesQueryVariables>;
 export const GetMoviesForHomePageDocument = gql`
     query GetMoviesForHomePage {
-  movies {
+  movies(orderBy: {movieInfo: {releaseDate: desc}}, take: 15) {
     ...MovieCardItem
   }
 }

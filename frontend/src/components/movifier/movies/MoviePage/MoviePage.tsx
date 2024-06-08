@@ -59,9 +59,13 @@ export const MoviePage: FC<{
   }
 
   return (
-    <div className={'h-lvh w-full pt-5 pb-5'}>
-      <div className={'max-md:w-full max-lg:w-5/6 max-xl:w-3/4 w-7/12 mx-auto'}>
-        <div className='relative grid grid-cols-[25%_75%] mx-auto gap-4 w-auto justify-start align-top'>
+    <div className={'h-[120vh] w-full pt-5 pb-5'}>
+      <div
+        className={
+          'max-md:w-full h-full max-lg:w-5/6 max-xl:w-3/4 w-7/12 mx-auto'
+        }
+      >
+        <div className='relative h-full mb-10 grid grid-cols-[25%_75%] mx-auto gap-4 w-auto justify-start align-top'>
           <MoviePagePoster {...movie} />
 
           <Card className={'mb-5 w-auto justify-self-stretch'}>
@@ -86,7 +90,7 @@ export const MoviePage: FC<{
 
             <CardContent className={'mt-5'}>
               <div className='grid grid-cols-[60%_40%] gap-5 h-full'>
-                <section>
+                <section className={'flex flex-col justify-between h-full'}>
                   <article className={'prose prose-lg prose-slate'}>
                     <p>{movie.movieInfo?.description}</p>
                   </article>
