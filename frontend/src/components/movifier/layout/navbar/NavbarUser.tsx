@@ -78,7 +78,9 @@ export const UserProfileDropDownMenu: FC<{ children: ReactNode }> = ({
         <Link href={'/user/dashboard/watchlist'} passHref>
           <DropdownMenuItem>Watchlist</DropdownMenuItem>
         </Link>
-        <DropdownMenuItem>Reviews</DropdownMenuItem>
+        <Link href={'/user/dashboard/reviews'} passHref>
+          <DropdownMenuItem>Reviews</DropdownMenuItem>
+        </Link>
         <DropdownMenuItem>Movie lists</DropdownMenuItem>
         <DropdownMenuSeparator />
         <AppTooltip text={'Logout from account'}>

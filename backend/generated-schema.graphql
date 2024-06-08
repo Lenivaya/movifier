@@ -6376,10 +6376,12 @@ type Query {
   movieLists(cursor: MovieListWhereUniqueInput, distinct: [MovieListScalarFieldEnum!], orderBy: [MovieListOrderByWithRelationAndSearchRelevanceInput!], skip: Int, take: Int, where: MovieListWhereInput): [MovieList!]!
   movieRating(where: MovieRatingWhereUniqueInput!): MovieRating
   movieRatings(cursor: MovieRatingWhereUniqueInput, distinct: [MovieRatingScalarFieldEnum!], orderBy: [MovieRatingOrderByWithRelationAndSearchRelevanceInput!], skip: Int, take: Int, where: MovieRatingWhereInput): [MovieRating!]!
+  movieRatingsSearchWithMovies(cursor: MovieRatingWhereUniqueInput, distinct: [MovieRatingScalarFieldEnum!], orderBy: [MovieRatingOrderByWithRelationAndSearchRelevanceInput!], searchCriteria: MoviesSearchCriteriaInput!, skip: Int, take: Int, where: MovieRatingWhereInput): [MovieRating!]!
   movieReview(where: MovieReviewWhereUniqueInput!): MovieReview
   movieReviewLikedByUser(where: MovieReviewLikedByUserWhereUniqueInput!): MovieReviewLikedByUser
   movieReviewLikedByUsers(cursor: MovieReviewLikedByUserWhereUniqueInput, distinct: [MovieReviewLikedByUserScalarFieldEnum!], orderBy: [MovieReviewLikedByUserOrderByWithRelationAndSearchRelevanceInput!], skip: Int, take: Int, where: MovieReviewLikedByUserWhereInput): [MovieReviewLikedByUser!]!
   movieReviews(cursor: MovieReviewWhereUniqueInput, distinct: [MovieReviewScalarFieldEnum!], orderBy: [MovieReviewOrderByWithRelationAndSearchRelevanceInput!], skip: Int, take: Int, where: MovieReviewWhereInput): [MovieReview!]!
+  movieReviewsSearchWithMovies(cursor: MovieReviewWhereUniqueInput, distinct: [MovieReviewScalarFieldEnum!], orderBy: [MovieReviewOrderByWithRelationAndSearchRelevanceInput!], searchCriteria: MoviesSearchCriteriaInput!, skip: Int, take: Int, where: MovieReviewWhereInput): [MovieReview!]!
   movieSpokenLanguage(where: MovieSpokenLanguageWhereUniqueInput!): MovieSpokenLanguage
   movieSpokenLanguages(cursor: MovieSpokenLanguageWhereUniqueInput, distinct: [MovieSpokenLanguageScalarFieldEnum!], orderBy: [MovieSpokenLanguageOrderByWithRelationAndSearchRelevanceInput!], skip: Int, take: Int, where: MovieSpokenLanguageWhereInput): [MovieSpokenLanguage!]!
   movieWatchedByUser(where: MovieWatchedByUserWhereUniqueInput!): MovieWatchedByUser

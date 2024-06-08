@@ -31,8 +31,6 @@ export const moviesResolvers: NonEmptyArray<Function> = [
   MovieCrewMemberOnMovieRelationsResolver,
   MovieWatchedByUserCrudResolver,
   MovieWatchedByUserRelationsResolver,
-  MovieRatingCrudResolver,
-  MovieRatingRelationsResolver,
   UserMovieWatchlistCrudResolver,
   UserMovieWatchlistRelationsResolver,
   MovieListCrudResolver,

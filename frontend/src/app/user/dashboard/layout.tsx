@@ -10,6 +10,7 @@ import {
   HeartIcon,
   Home,
   LineChart,
+  MessageSquare,
   Package2,
   Settings,
   Users2
@@ -127,6 +128,22 @@ export function SettingsPageNavbar() {
               </SettingsNavigationButton>
             </TooltipTrigger>
             <TooltipContent side='right'>Movie lists</TooltipContent>
+          </Tooltip>
+        </TooltipProvider>
+
+        <TooltipProvider delayDuration={100}>
+          <Tooltip>
+            <TooltipTrigger asChild>
+              <SettingsNavigationButton
+                isActive={dashboardPageContext.currentPage === 'Reviews'}
+              >
+                <Link href='/user/dashboard/reviews'>
+                  <MessageSquare className='h-5 w-5' />
+                  <span className='sr-only'>Movie reviews</span>
+                </Link>
+              </SettingsNavigationButton>
+            </TooltipTrigger>
+            <TooltipContent side='right'>Movie reviews</TooltipContent>
           </Tooltip>
         </TooltipProvider>
 

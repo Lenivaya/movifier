@@ -13,6 +13,7 @@ import { useDashboardPage } from '@/app/user/dashboard/dashboardPageContext'
 import { gql } from '@apollo/client'
 import {
   useGetTotalMovieListsCreatedQuery,
+  useGetTotalMovieReviewsWrittenQuery,
   useGetTotalMoviesInWatchlistQuery,
   useGetTotalMoviesLikedQuery,
   useGetTotalMoviesWatchedQuery
@@ -26,7 +27,8 @@ import {
   CircleUser,
   ClockIcon,
   GalleryVerticalEnd,
-  HeartIcon
+  HeartIcon,
+  MessageSquare
 } from 'lucide-react'
 import { Link } from 'next-view-transitions'
 
@@ -55,6 +57,12 @@ const GetMoviesStats = gql`
     movieLists(
       where: { movieListAuthor: { is: { id: { equals: $userId } } } }
     ) {
+      id
+    }
+  }
+
+  query GetTotalMovieReviewsWritten($userId: String!) {
+    movieReviews(where: { rating: { is: { userId: { equals: $userId } } } }) {
       id
     }
   }
@@ -95,6 +103,12 @@ export function HomeDashboard() {
       fetchPolicy: 'cache-and-network',
       skip: !isSignedIn
     })
+  const { data: totalMovieReviewsWrittenData } =
+    useGetTotalMovieReviewsWrittenQuery({
+      variables: { userId: user?.id ?? '' },
+      fetchPolicy: 'cache-and-network',
+      skip: !isSignedIn
+    })
 
   return (
     <div className='flex flex-col sm:gap-4 sm:py-4 sm:pl-14'>
@@ -125,9 +139,11 @@ export function HomeDashboard() {
 
           <div className='grid grid-cols-3 gap-5 mx-auto my-auto'>
             <Link href={'/user/dashboard/watched-movies'}>
-              <Card className={'h-[10em] w-[10em]'}>
+              <Card
+                className={'h-[10em] w-[10em] flex flex-col !justify-between'}
+              >
                 <CardHeader>
-                  <CardTitle>Total Movies Watched</CardTitle>
+                  <CardTitle>Movies watched</CardTitle>
                 </CardHeader>
 
                 <CardContent className={'flex gap-5'}>
@@ -143,9 +159,11 @@ export function HomeDashboard() {
             </Link>
 
             <Link href={'/user/dashboard/liked'}>
-              <Card className={'h-[10em] w-[10em]'}>
+              <Card
+                className={'h-[10em] w-[10em] flex flex-col !justify-between'}
+              >
                 <CardHeader>
-                  <CardTitle>Total Movies Liked</CardTitle>
+                  <CardTitle>Movies liked</CardTitle>
                 </CardHeader>
 
                 <CardContent className={'flex gap-5'}>
@@ -161,9 +179,11 @@ export function HomeDashboard() {
             </Link>
 
             <Link href={'/user/dashboard/watchlist'}>
-              <Card className={'h-[10em] w-[10em]'}>
+              <Card
+                className={'h-[10em] w-[10em] flex flex-col !justify-between'}
+              >
                 <CardHeader>
-                  <CardTitle>Total Movies in watchlist</CardTitle>
+                  <CardTitle>Movies in watchlist</CardTitle>
                 </CardHeader>
 
                 <CardContent className={'flex gap-5'}>
@@ -179,9 +199,11 @@ export function HomeDashboard() {
             </Link>
 
             <Link href={'/user/dashboard/movie-lists'}>
-              <Card className={'h-[10em] w-[10em]'}>
+              <Card
+                className={'h-[10em] w-[10em] flex flex-col !justify-between'}
+              >
                 <CardHeader>
-                  <CardTitle>Total movie lists created</CardTitle>
+                  <CardTitle>Movie lists created</CardTitle>
                 </CardHeader>
 
                 <CardContent className={'flex gap-5'}>
@@ -189,6 +211,26 @@ export function HomeDashboard() {
                     {totalMovieListsCreatedData?.movieLists.length}
                   </p>
                   <GalleryVerticalEnd
+                    color={'#b6aaaa'}
+                    className={'my-auto h-auto w-[2em]'}
+                  />
+                </CardContent>
+              </Card>
+            </Link>
+
+            <Link href={'/user/dashboard/reviews'}>
+              <Card
+                className={'h-[10em] w-[10em] flex flex-col !justify-between'}
+              >
+                <CardHeader>
+                  <CardTitle>Movie reviews</CardTitle>
+                </CardHeader>
+
+                <CardContent className={'flex gap-5'}>
+                  <p className='text-4xl font-bold'>
+                    {totalMovieReviewsWrittenData?.movieReviews.length}
+                  </p>
+                  <MessageSquare
                     color={'#b6aaaa'}
                     className={'my-auto h-auto w-[2em]'}
                   />

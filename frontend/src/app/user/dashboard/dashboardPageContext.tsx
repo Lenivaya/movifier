@@ -13,6 +13,7 @@ export type DashboardPage =
   | 'Liked'
   | 'WatchedMovies'
   | 'MovieLists'
+  | 'Reviews'
 
 export type DashboardPageContextT = {
   currentPage: DashboardPage

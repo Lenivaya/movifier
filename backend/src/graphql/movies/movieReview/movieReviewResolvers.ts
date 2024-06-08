@@ -1,15 +1,14 @@
 import { NonEmptyArray } from 'type-graphql'
 import {
-  AggregateMovieReviewLikedByUserResolver,
   GroupByMovieReviewLikedByUserResolver,
   GroupByMovieReviewResolver,
-  MovieReviewCrudResolver,
   MovieReviewRelationsResolver
 } from '@/generated/type-graphql'
-import { movieReviewLikesResolvers } from '@/graphql/movies/movieReviewLikes/movieReviewLikesResolvers'
+import { CustomMovieReviewCrudResolver } from '@/graphql/movies/movieReview/customMovieReviewCrudResolver'
 
 export const movieReviewResolvers: NonEmptyArray<Function> = [
-  MovieReviewCrudResolver,
+  // MovieReviewCrudResolver,
+  CustomMovieReviewCrudResolver,
   MovieReviewRelationsResolver,
   GroupByMovieReviewResolver,
   GroupByMovieReviewLikedByUserResolver

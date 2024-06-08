@@ -1,10 +1,8 @@
 import { NonEmptyArray } from 'type-graphql'
-import {
-  MovieRatingCrudResolver,
-  MovieRatingRelationsResolver
-} from '@/generated/type-graphql'
+import { MovieRatingRelationsResolver } from '@/generated/type-graphql'
+import { CustomMovieRatingCrudResolver } from '@/graphql/movies/movieRating/customMovieRatingCrudResolver'
 
 export const movieRatingResolvers: NonEmptyArray<Function> = [
-  // MovieRatingCrudResolver,
+  CustomMovieRatingCrudResolver,
   MovieRatingRelationsResolver
 ]

@@ -42,13 +42,15 @@ export function MoviesPage({
       searchCriteria={searchCriteria}
       orderBy={orderBy}
     />
-  )
+  ),
+  hideOrdering = false
 }: {
   initialSearchCriteria?: MoviesSearchCriteriaInput
   render?: (
     searchCriteria: MoviesSearchCriteriaInput,
     orderBy: Option<MovieOrderByWithRelationAndSearchRelevanceInput>
   ) => React.ReactNode
+  hideOrdering?: boolean
 }) {
   const [searchCriteria, setSearchCriteria] =
     useMutative<MoviesSearchCriteriaInput>(initialSearchCriteria)
@@ -77,7 +79,9 @@ export function MoviesPage({
           setDecade={criteriaChanger<Option<number>>('decade')}
           setYear={criteriaChanger<Option<number>>('year')}
         />
-        <MoviesPageOrderBySelect orderBy={orderBy} setOrderBy={setOrderBy} />
+        {hideOrdering ? null : (
+          <MoviesPageOrderBySelect orderBy={orderBy} setOrderBy={setOrderBy} />
+        )}
       </div>
 
       <MoviesPageYearSelect

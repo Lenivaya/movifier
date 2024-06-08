@@ -16,6 +16,7 @@ export const GET_POPULAR_MOVIE_REVIEWS = gql`
     }
   }
 `
+
 export const MoviePageTopPopularReviewsList: FC<{ movieId: string }> = ({
   movieId
 }) => {
