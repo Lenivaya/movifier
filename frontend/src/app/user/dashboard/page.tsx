@@ -1,7 +1,7 @@
 'use client'
 
 import * as React from 'react'
-import Link from 'next/link'
+import { useEffect } from 'react'
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -9,21 +9,92 @@ import {
   BreadcrumbList,
   BreadcrumbSeparator
 } from '@/components/ui/breadcrumb'
-import { gql } from '@apollo/client'
-import { useCurrentUser } from '@/lib/hooks/CurrentUser'
-import { useEffect } from 'react'
 import { useDashboardPage } from '@/app/user/dashboard/dashboardPageContext'
+import { gql } from '@apollo/client'
+import {
+  useGetTotalMovieListsCreatedQuery,
+  useGetTotalMoviesInWatchlistQuery,
+  useGetTotalMoviesLikedQuery,
+  useGetTotalMoviesWatchedQuery
+} from '@/lib'
+import { useCurrentUser } from '@/lib/hooks/CurrentUser'
+import { isSome } from '@/lib/types'
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui'
+import { Skeleton } from '@/components/ui/skeleton'
+import { EyeOpenIcon } from '@radix-ui/react-icons'
+import {
+  CircleUser,
+  ClockIcon,
+  GalleryVerticalEnd,
+  HeartIcon
+} from 'lucide-react'
+import { Link } from 'next-view-transitions'
+
+const GetMoviesStats = gql`
+  query GetTotalMoviesWatched($userId: String!) {
+    movies(where: { watchedBy: { some: { userId: { equals: $userId } } } }) {
+      id
+    }
+  }
+
+  query GetTotalMoviesLiked($userId: String!) {
+    movies(where: { likedBy: { some: { userId: { equals: $userId } } } }) {
+      id
+    }
+  }
+
+  query GetTotalMoviesInWatchlist($userId: String!) {
+    movies(
+      where: { inWatchlistByUsers: { some: { userId: { equals: $userId } } } }
+    ) {
+      id
+    }
+  }
+
+  query GetTotalMovieListsCreated($userId: String!) {
+    movieLists(
+      where: { movieListAuthor: { is: { id: { equals: $userId } } } }
+    ) {
+      id
+    }
+  }
+`
 
 export default function SettingsPage() {
-  return <SettingsHomeDashboard />
+  return <HomeDashboard />
 }
 
-export function SettingsHomeDashboard() {
-  const { setDashboardPageContext } = useDashboardPage()
+export function HomeDashboard() {
+  const user = useCurrentUser()
+  const isSignedIn = isSome(user)
 
+  const { setDashboardPageContext } = useDashboardPage()
   useEffect(() => {
     setDashboardPageContext((prev) => ({ ...prev, currentPage: 'Home' }))
   }, [])
+
+  const { data: totalMoviesLikedData } = useGetTotalMoviesLikedQuery({
+    variables: { userId: user?.id ?? '' },
+    fetchPolicy: 'cache-and-network',
+    skip: !isSignedIn
+  })
+  const { data: totalMoviesWatchedData } = useGetTotalMoviesWatchedQuery({
+    variables: { userId: user?.id ?? '' },
+    fetchPolicy: 'cache-and-network',
+    skip: !isSignedIn
+  })
+  const { data: totalMoviesInWatchlistData } =
+    useGetTotalMoviesInWatchlistQuery({
+      variables: { userId: user?.id ?? '' },
+      fetchPolicy: 'cache-and-network',
+      skip: !isSignedIn
+    })
+  const { data: totalMovieListsCreatedData } =
+    useGetTotalMovieListsCreatedQuery({
+      variables: { userId: user?.id ?? '' },
+      fetchPolicy: 'cache-and-network',
+      skip: !isSignedIn
+    })
 
   return (
     <div className='flex flex-col sm:gap-4 sm:py-4 sm:pl-14'>
@@ -32,7 +103,7 @@ export function SettingsHomeDashboard() {
           <BreadcrumbList>
             <BreadcrumbItem>
               <BreadcrumbLink asChild>
-                <Link href='#'>Settings</Link>
+                <Link href='#'>Dashboard</Link>
               </BreadcrumbLink>
             </BreadcrumbItem>
             <BreadcrumbSeparator />
@@ -45,7 +116,100 @@ export function SettingsHomeDashboard() {
         </Breadcrumb>
       </header>
 
-      <main className='grid flex-1 items-start gap-4 p-4 sm:px-6 sm:py-0 md:gap-8 lg:grid-cols-3 xl:grid-cols-3'></main>
+      <main className='grid flex-1 items-start gap-4 p-4 sm:px-6 sm:py-0 md:gap-8 h-dvh'>
+        <div className='grid auto-rows-max items-start gap-4 md:gap-8 lg:col-span-2'>
+          <div className='flex gap-5 rounded-xl border bg-card text-card-foreground shadow p-5'>
+            <CircleUser />
+            <span>{user?.name}</span>
+          </div>
+
+          <div className='grid grid-cols-3 gap-5 mx-auto my-auto'>
+            <Link href={'/user/dashboard/watched-movies'}>
+              <Card className={'h-[10em] w-[10em]'}>
+                <CardHeader>
+                  <CardTitle>Total Movies Watched</CardTitle>
+                </CardHeader>
+
+                <CardContent className={'flex gap-5'}>
+                  <p className='text-4xl font-bold'>
+                    {totalMoviesWatchedData?.movies.length}
+                  </p>
+                  <EyeOpenIcon
+                    color={'#b6aaaa'}
+                    className={'my-auto h-auto w-[2em]'}
+                  />
+                </CardContent>
+              </Card>
+            </Link>
+
+            <Link href={'/user/dashboard/liked'}>
+              <Card className={'h-[10em] w-[10em]'}>
+                <CardHeader>
+                  <CardTitle>Total Movies Liked</CardTitle>
+                </CardHeader>
+
+                <CardContent className={'flex gap-5'}>
+                  <p className='text-4xl font-bold'>
+                    {totalMoviesLikedData?.movies.length}
+                  </p>
+                  <HeartIcon
+                    color={'#b6aaaa'}
+                    className={'my-auto h-auto w-[2em]'}
+                  />
+                </CardContent>
+              </Card>
+            </Link>
+
+            <Link href={'/user/dashboard/watchlist'}>
+              <Card className={'h-[10em] w-[10em]'}>
+                <CardHeader>
+                  <CardTitle>Total Movies in watchlist</CardTitle>
+                </CardHeader>
+
+                <CardContent className={'flex gap-5'}>
+                  <p className='text-4xl font-bold'>
+                    {totalMoviesInWatchlistData?.movies.length}
+                  </p>
+                  <ClockIcon
+                    color={'#b6aaaa'}
+                    className={'my-auto h-auto w-[2em]'}
+                  />
+                </CardContent>
+              </Card>
+            </Link>
+
+            <Link href={'/user/dashboard/movie-lists'}>
+              <Card className={'h-[10em] w-[10em]'}>
+                <CardHeader>
+                  <CardTitle>Total movie lists created</CardTitle>
+                </CardHeader>
+
+                <CardContent className={'flex gap-5'}>
+                  <p className='text-4xl font-bold'>
+                    {totalMovieListsCreatedData?.movieLists.length}
+                  </p>
+                  <GalleryVerticalEnd
+                    color={'#b6aaaa'}
+                    className={'my-auto h-auto w-[2em]'}
+                  />
+                </CardContent>
+              </Card>
+            </Link>
+          </div>
+        </div>
+      </main>
+    </div>
+  )
+}
+
+function SkeletonCard() {
+  return (
+    <div className='flex flex-col space-y-3'>
+      <Skeleton className='h-[125px] w-[250px] rounded-xl' />
+      <div className='space-y-2'>
+        <Skeleton className='h-4 w-[250px]' />
+        <Skeleton className='h-4 w-[200px]' />
+      </div>
     </div>
   )
 }

@@ -8450,6 +8450,34 @@ export type GetUserLikedMovieListsQueryVariables = Exact<{
 
 export type GetUserLikedMovieListsQuery = { __typename?: 'Query', searchMovieLists: Array<{ __typename?: 'MovieList', id: string, name: string, tags: Array<string>, movies: Array<{ __typename?: 'Movie', id: string, movieInfo?: { __typename?: 'MovieInfo', id: string, title: string, posterUrl: string } | null }>, movieListAuthor: { __typename?: 'MovifierAppUser', id: string, username: string } }> };
 
+export type GetTotalMoviesWatchedQueryVariables = Exact<{
+  userId: Scalars['String']['input'];
+}>;
+
+
+export type GetTotalMoviesWatchedQuery = { __typename?: 'Query', movies: Array<{ __typename?: 'Movie', id: string }> };
+
+export type GetTotalMoviesLikedQueryVariables = Exact<{
+  userId: Scalars['String']['input'];
+}>;
+
+
+export type GetTotalMoviesLikedQuery = { __typename?: 'Query', movies: Array<{ __typename?: 'Movie', id: string }> };
+
+export type GetTotalMoviesInWatchlistQueryVariables = Exact<{
+  userId: Scalars['String']['input'];
+}>;
+
+
+export type GetTotalMoviesInWatchlistQuery = { __typename?: 'Query', movies: Array<{ __typename?: 'Movie', id: string }> };
+
+export type GetTotalMovieListsCreatedQueryVariables = Exact<{
+  userId: Scalars['String']['input'];
+}>;
+
+
+export type GetTotalMovieListsCreatedQuery = { __typename?: 'Query', movieLists: Array<{ __typename?: 'MovieList', id: string }> };
+
 export type GetUserWatchedMoviesQueryVariables = Exact<{
   searchCriteria: MoviesSearchCriteriaInput;
   orderBy?: InputMaybe<Array<MovieOrderByWithRelationAndSearchRelevanceInput> | MovieOrderByWithRelationAndSearchRelevanceInput>;
@@ -12182,6 +12210,166 @@ export type GetUserLikedMovieListsQueryHookResult = ReturnType<typeof useGetUser
 export type GetUserLikedMovieListsLazyQueryHookResult = ReturnType<typeof useGetUserLikedMovieListsLazyQuery>;
 export type GetUserLikedMovieListsSuspenseQueryHookResult = ReturnType<typeof useGetUserLikedMovieListsSuspenseQuery>;
 export type GetUserLikedMovieListsQueryResult = Apollo.QueryResult<GetUserLikedMovieListsQuery, GetUserLikedMovieListsQueryVariables>;
+export const GetTotalMoviesWatchedDocument = gql`
+    query GetTotalMoviesWatched($userId: String!) {
+  movies(where: {watchedBy: {some: {userId: {equals: $userId}}}}) {
+    id
+  }
+}
+    `;
+
+/**
+ * __useGetTotalMoviesWatchedQuery__
+ *
+ * To run a query within a React component, call `useGetTotalMoviesWatchedQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetTotalMoviesWatchedQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetTotalMoviesWatchedQuery({
+ *   variables: {
+ *      userId: // value for 'userId'
+ *   },
+ * });
+ */
+export function useGetTotalMoviesWatchedQuery(baseOptions: Apollo.QueryHookOptions<GetTotalMoviesWatchedQuery, GetTotalMoviesWatchedQueryVariables> & ({ variables: GetTotalMoviesWatchedQueryVariables; skip?: boolean; } | { skip: boolean; }) ) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<GetTotalMoviesWatchedQuery, GetTotalMoviesWatchedQueryVariables>(GetTotalMoviesWatchedDocument, options);
+      }
+export function useGetTotalMoviesWatchedLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetTotalMoviesWatchedQuery, GetTotalMoviesWatchedQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<GetTotalMoviesWatchedQuery, GetTotalMoviesWatchedQueryVariables>(GetTotalMoviesWatchedDocument, options);
+        }
+export function useGetTotalMoviesWatchedSuspenseQuery(baseOptions?: Apollo.SuspenseQueryHookOptions<GetTotalMoviesWatchedQuery, GetTotalMoviesWatchedQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useSuspenseQuery<GetTotalMoviesWatchedQuery, GetTotalMoviesWatchedQueryVariables>(GetTotalMoviesWatchedDocument, options);
+        }
+export type GetTotalMoviesWatchedQueryHookResult = ReturnType<typeof useGetTotalMoviesWatchedQuery>;
+export type GetTotalMoviesWatchedLazyQueryHookResult = ReturnType<typeof useGetTotalMoviesWatchedLazyQuery>;
+export type GetTotalMoviesWatchedSuspenseQueryHookResult = ReturnType<typeof useGetTotalMoviesWatchedSuspenseQuery>;
+export type GetTotalMoviesWatchedQueryResult = Apollo.QueryResult<GetTotalMoviesWatchedQuery, GetTotalMoviesWatchedQueryVariables>;
+export const GetTotalMoviesLikedDocument = gql`
+    query GetTotalMoviesLiked($userId: String!) {
+  movies(where: {likedBy: {some: {userId: {equals: $userId}}}}) {
+    id
+  }
+}
+    `;
+
+/**
+ * __useGetTotalMoviesLikedQuery__
+ *
+ * To run a query within a React component, call `useGetTotalMoviesLikedQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetTotalMoviesLikedQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetTotalMoviesLikedQuery({
+ *   variables: {
+ *      userId: // value for 'userId'
+ *   },
+ * });
+ */
+export function useGetTotalMoviesLikedQuery(baseOptions: Apollo.QueryHookOptions<GetTotalMoviesLikedQuery, GetTotalMoviesLikedQueryVariables> & ({ variables: GetTotalMoviesLikedQueryVariables; skip?: boolean; } | { skip: boolean; }) ) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<GetTotalMoviesLikedQuery, GetTotalMoviesLikedQueryVariables>(GetTotalMoviesLikedDocument, options);
+      }
+export function useGetTotalMoviesLikedLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetTotalMoviesLikedQuery, GetTotalMoviesLikedQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<GetTotalMoviesLikedQuery, GetTotalMoviesLikedQueryVariables>(GetTotalMoviesLikedDocument, options);
+        }
+export function useGetTotalMoviesLikedSuspenseQuery(baseOptions?: Apollo.SuspenseQueryHookOptions<GetTotalMoviesLikedQuery, GetTotalMoviesLikedQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useSuspenseQuery<GetTotalMoviesLikedQuery, GetTotalMoviesLikedQueryVariables>(GetTotalMoviesLikedDocument, options);
+        }
+export type GetTotalMoviesLikedQueryHookResult = ReturnType<typeof useGetTotalMoviesLikedQuery>;
+export type GetTotalMoviesLikedLazyQueryHookResult = ReturnType<typeof useGetTotalMoviesLikedLazyQuery>;
+export type GetTotalMoviesLikedSuspenseQueryHookResult = ReturnType<typeof useGetTotalMoviesLikedSuspenseQuery>;
+export type GetTotalMoviesLikedQueryResult = Apollo.QueryResult<GetTotalMoviesLikedQuery, GetTotalMoviesLikedQueryVariables>;
+export const GetTotalMoviesInWatchlistDocument = gql`
+    query GetTotalMoviesInWatchlist($userId: String!) {
+  movies(where: {inWatchlistByUsers: {some: {userId: {equals: $userId}}}}) {
+    id
+  }
+}
+    `;
+
+/**
+ * __useGetTotalMoviesInWatchlistQuery__
+ *
+ * To run a query within a React component, call `useGetTotalMoviesInWatchlistQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetTotalMoviesInWatchlistQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetTotalMoviesInWatchlistQuery({
+ *   variables: {
+ *      userId: // value for 'userId'
+ *   },
+ * });
+ */
+export function useGetTotalMoviesInWatchlistQuery(baseOptions: Apollo.QueryHookOptions<GetTotalMoviesInWatchlistQuery, GetTotalMoviesInWatchlistQueryVariables> & ({ variables: GetTotalMoviesInWatchlistQueryVariables; skip?: boolean; } | { skip: boolean; }) ) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<GetTotalMoviesInWatchlistQuery, GetTotalMoviesInWatchlistQueryVariables>(GetTotalMoviesInWatchlistDocument, options);
+      }
+export function useGetTotalMoviesInWatchlistLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetTotalMoviesInWatchlistQuery, GetTotalMoviesInWatchlistQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<GetTotalMoviesInWatchlistQuery, GetTotalMoviesInWatchlistQueryVariables>(GetTotalMoviesInWatchlistDocument, options);
+        }
+export function useGetTotalMoviesInWatchlistSuspenseQuery(baseOptions?: Apollo.SuspenseQueryHookOptions<GetTotalMoviesInWatchlistQuery, GetTotalMoviesInWatchlistQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useSuspenseQuery<GetTotalMoviesInWatchlistQuery, GetTotalMoviesInWatchlistQueryVariables>(GetTotalMoviesInWatchlistDocument, options);
+        }
+export type GetTotalMoviesInWatchlistQueryHookResult = ReturnType<typeof useGetTotalMoviesInWatchlistQuery>;
+export type GetTotalMoviesInWatchlistLazyQueryHookResult = ReturnType<typeof useGetTotalMoviesInWatchlistLazyQuery>;
+export type GetTotalMoviesInWatchlistSuspenseQueryHookResult = ReturnType<typeof useGetTotalMoviesInWatchlistSuspenseQuery>;
+export type GetTotalMoviesInWatchlistQueryResult = Apollo.QueryResult<GetTotalMoviesInWatchlistQuery, GetTotalMoviesInWatchlistQueryVariables>;
+export const GetTotalMovieListsCreatedDocument = gql`
+    query GetTotalMovieListsCreated($userId: String!) {
+  movieLists(where: {movieListAuthor: {is: {id: {equals: $userId}}}}) {
+    id
+  }
+}
+    `;
+
+/**
+ * __useGetTotalMovieListsCreatedQuery__
+ *
+ * To run a query within a React component, call `useGetTotalMovieListsCreatedQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetTotalMovieListsCreatedQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetTotalMovieListsCreatedQuery({
+ *   variables: {
+ *      userId: // value for 'userId'
+ *   },
+ * });
+ */
+export function useGetTotalMovieListsCreatedQuery(baseOptions: Apollo.QueryHookOptions<GetTotalMovieListsCreatedQuery, GetTotalMovieListsCreatedQueryVariables> & ({ variables: GetTotalMovieListsCreatedQueryVariables; skip?: boolean; } | { skip: boolean; }) ) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<GetTotalMovieListsCreatedQuery, GetTotalMovieListsCreatedQueryVariables>(GetTotalMovieListsCreatedDocument, options);
+      }
+export function useGetTotalMovieListsCreatedLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetTotalMovieListsCreatedQuery, GetTotalMovieListsCreatedQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<GetTotalMovieListsCreatedQuery, GetTotalMovieListsCreatedQueryVariables>(GetTotalMovieListsCreatedDocument, options);
+        }
+export function useGetTotalMovieListsCreatedSuspenseQuery(baseOptions?: Apollo.SuspenseQueryHookOptions<GetTotalMovieListsCreatedQuery, GetTotalMovieListsCreatedQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useSuspenseQuery<GetTotalMovieListsCreatedQuery, GetTotalMovieListsCreatedQueryVariables>(GetTotalMovieListsCreatedDocument, options);
+        }
+export type GetTotalMovieListsCreatedQueryHookResult = ReturnType<typeof useGetTotalMovieListsCreatedQuery>;
+export type GetTotalMovieListsCreatedLazyQueryHookResult = ReturnType<typeof useGetTotalMovieListsCreatedLazyQuery>;
+export type GetTotalMovieListsCreatedSuspenseQueryHookResult = ReturnType<typeof useGetTotalMovieListsCreatedSuspenseQuery>;
+export type GetTotalMovieListsCreatedQueryResult = Apollo.QueryResult<GetTotalMovieListsCreatedQuery, GetTotalMovieListsCreatedQueryVariables>;
 export const GetUserWatchedMoviesDocument = gql`
     query GetUserWatchedMovies($searchCriteria: MoviesSearchCriteriaInput!, $orderBy: [MovieOrderByWithRelationAndSearchRelevanceInput!], $userId: String!) {
   searchMovies(
