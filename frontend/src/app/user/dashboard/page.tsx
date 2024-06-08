@@ -12,6 +12,8 @@ import {
 import { useDashboardPage } from '@/app/user/dashboard/dashboardPageContext'
 import { gql } from '@apollo/client'
 import {
+  useGetRecentLikedMoviesQuery,
+  useGetRecentWatchedMoviesQuery,
   useGetTotalMovieListsCreatedQuery,
   useGetTotalMovieReviewsWrittenQuery,
   useGetTotalMoviesInWatchlistQuery,
@@ -20,7 +22,14 @@ import {
 } from '@/lib'
 import { useCurrentUser } from '@/lib/hooks/CurrentUser'
 import { isSome } from '@/lib/types'
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui'
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+  Separator
+} from '@/components/ui'
 import { Skeleton } from '@/components/ui/skeleton'
 import { EyeOpenIcon } from '@radix-ui/react-icons'
 import {
@@ -28,9 +37,12 @@ import {
   ClockIcon,
   GalleryVerticalEnd,
   HeartIcon,
-  MessageSquare
+  MessageSquare,
+  SquareArrowRight
 } from 'lucide-react'
 import { Link } from 'next-view-transitions'
+import { MovieCardList } from '@/components/movifier/movies/MovieCardList'
+import { AppTooltip } from '@/components/movifier/generic'
 
 const GetMoviesStats = gql`
   query GetTotalMoviesWatched($userId: String!) {
@@ -64,6 +76,32 @@ const GetMoviesStats = gql`
   query GetTotalMovieReviewsWritten($userId: String!) {
     movieReviews(where: { rating: { is: { userId: { equals: $userId } } } }) {
       id
+    }
+  }
+`
+
+const GetMoviesRecentActivity = gql`
+  query GetRecentWatchedMovies($userId: String!, $take: Int! = 5) {
+    movieWatchedByUsers(
+      take: $take
+      where: { userId: { equals: $userId } }
+      orderBy: [{ createdAt: desc }]
+    ) {
+      movie {
+        ...MovieCardItem
+      }
+    }
+  }
+
+  query GetRecentLikedMovies($userId: String!, $take: Int! = 5) {
+    movieLikedByUsers(
+      take: $take
+      where: { userId: { equals: $userId } }
+      orderBy: [{ createdAt: desc }]
+    ) {
+      movie {
+        ...MovieCardItem
+      }
     }
   }
 `
@@ -109,6 +147,17 @@ export function HomeDashboard() {
       fetchPolicy: 'cache-and-network',
       skip: !isSignedIn
     })
+
+  const { data: recentWatchedMoviesData } = useGetRecentWatchedMoviesQuery({
+    variables: { userId: user?.id ?? '' },
+    fetchPolicy: 'cache-and-network',
+    skip: !isSignedIn
+  })
+  const { data: recentLikedMoviesData } = useGetRecentLikedMoviesQuery({
+    variables: { userId: user?.id ?? '' },
+    fetchPolicy: 'cache-and-network',
+    skip: !isSignedIn
+  })
 
   return (
     <div className='flex flex-col sm:gap-4 sm:py-4 sm:pl-14'>
@@ -238,20 +287,52 @@ export function HomeDashboard() {
               </Card>
             </Link>
           </div>
+
+          <Card>
+            <CardHeader className='pb-3 w-full flex justify-between relative'>
+              <CardTitle>Recently watched movies</CardTitle>
+              <AppTooltip text={'See all watched movies'}>
+                <Link href={'/user/dashboard/watched-movies'}>
+                  <SquareArrowRight />
+                </Link>
+              </AppTooltip>
+            </CardHeader>
+
+            <Separator className={'mb-5'} />
+
+            <CardContent>
+              <MovieCardList
+                movies={
+                  recentWatchedMoviesData?.movieWatchedByUsers.map(
+                    (watchedBy) => watchedBy.movie
+                  ) ?? []
+                }
+              />
+            </CardContent>
+          </Card>
+
+          <Card className=''>
+            <CardHeader className='pb-3 w-full flex justify-between'>
+              <CardTitle>Recently liked movies</CardTitle>
+              <AppTooltip text={'See all liked movies'}>
+                <Link href={'/user/dashboard/liked'}>
+                  <SquareArrowRight />
+                </Link>
+              </AppTooltip>
+            </CardHeader>
+
+            <CardContent>
+              <MovieCardList
+                movies={
+                  recentLikedMoviesData?.movieLikedByUsers.map(
+                    (watchedBy) => watchedBy.movie
+                  ) ?? []
+                }
+              />
+            </CardContent>
+          </Card>
         </div>
       </main>
-    </div>
-  )
-}
-
-function SkeletonCard() {
-  return (
-    <div className='flex flex-col space-y-3'>
-      <Skeleton className='h-[125px] w-[250px] rounded-xl' />
-      <div className='space-y-2'>
-        <Skeleton className='h-4 w-[250px]' />
-        <Skeleton className='h-4 w-[200px]' />
-      </div>
     </div>
   )
 }
