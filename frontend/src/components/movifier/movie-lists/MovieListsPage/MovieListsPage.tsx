@@ -1,6 +1,14 @@
-import React, { FC, Suspense } from 'react'
+import React, {
+  Dispatch,
+  FC,
+  SetStateAction,
+  Suspense,
+  useEffect,
+  useState
+} from 'react'
 import {
   MovieListSearchCriteriaInput,
+  MovieOrderByWithRelationAndSearchRelevanceInput,
   useSearchMovieListsSuspenseQuery
 } from '@/lib'
 import { useMutative } from 'use-mutative'
@@ -11,6 +19,12 @@ import { motion } from 'framer-motion'
 import { PlusCircledIcon } from '@radix-ui/react-icons'
 import { gql } from '@apollo/client'
 import { MovieListCardList } from '@/components/movifier/movie-lists/MovieListCardList'
+import {
+  ClientSideOffsetPagination,
+  IClientSideOffsetPagination,
+  IClientSideOffsetPaginationResult
+} from '@/components/movifier/generic/pagination/ClientSideOffsetPagination/ClientSideOffsetPagination'
+import { Option } from '@mobily/ts-belt'
 
 const SearchMovieLists = gql`
   query SearchMovieLists($searchCriteria: MovieListSearchCriteriaInput!) {
@@ -20,28 +34,70 @@ const SearchMovieLists = gql`
   }
 `
 
+export const DEFAULT_PAGE_SIZE = 5
+
+const DEFAULT_PAGINATION: IClientSideOffsetPagination = {
+  currentPage: 1,
+  totalCount: 0,
+  pageSize: DEFAULT_PAGE_SIZE * 10
+}
+
+const DEFAULT_PAGINATION_RESULT: IClientSideOffsetPaginationResult = {
+  startIndex: 0,
+  endIndex: DEFAULT_PAGE_SIZE
+}
+
 export function MovieListsPage({
   showCreateButton = false,
-  render = (searchCriteria: MovieListSearchCriteriaInput) => (
+  render = (
+    searchCriteria: MovieListSearchCriteriaInput,
+    pagination,
+    setPagination,
+    paginationResult
+  ) => (
     <Suspense fallback={<AppLoader />}>
-      <MovieListPageCardListSuspense searchCriteria={searchCriteria} />
+      <MovieListPageCardListSuspense
+        searchCriteria={searchCriteria}
+        pagination={pagination}
+        setPagination={setPagination}
+        paginationResult={paginationResult}
+      />
     </Suspense>
   )
 }: {
   showCreateButton?: boolean
-  render?: (searchCriteria: MovieListSearchCriteriaInput) => React.ReactNode
+  render?: (
+    searchCriteria: MovieListSearchCriteriaInput,
+    pagination: IClientSideOffsetPagination,
+    setPagination: Dispatch<SetStateAction<IClientSideOffsetPagination>>,
+    paginationResult: IClientSideOffsetPaginationResult
+  ) => React.ReactNode
 }) {
   const [searchCriteria, setSearchCriteria] =
     useMutative<MovieListSearchCriteriaInput>({
       search: ''
     })
 
+  const [pagination, setPagination] =
+    useState<IClientSideOffsetPagination>(DEFAULT_PAGINATION)
+  const [paginationResult, setPaginationResult] =
+    useMutative<IClientSideOffsetPaginationResult>(DEFAULT_PAGINATION_RESULT)
+
+  useEffect(
+    () => setPagination((prev) => ({ ...prev, currentPage: 1 })),
+    [searchCriteria]
+  )
+  useEffect(
+    () => setPaginationResult(DEFAULT_PAGINATION_RESULT),
+    [searchCriteria]
+  )
+
   const criteriaChanger =
     (field: keyof MovieListSearchCriteriaInput) => (value: string) =>
       setSearchCriteria((prev) => ({ ...prev, [field]: value }))
 
   return (
-    <main className='relative flex min-h-[100vh] w-full flex-col gap-5 items-center max-md:pt-5 pt-7'>
+    <main className='relative flex min-h-[100vh] w-full flex-col gap-5 items-center justify-between max-md:pt-5 pt-7'>
       <div className={'max-lg:w-full w-5/6 pl-2 pr-2'}>
         <SearchBar
           search={searchCriteria.search || ''}
@@ -50,7 +106,7 @@ export function MovieListsPage({
         />
       </div>
 
-      {render(searchCriteria)}
+      {render(searchCriteria, pagination, setPagination, paginationResult)}
 
       {showCreateButton && (
         <Link href={'/movie-lists/new'} passHref>
@@ -65,13 +121,25 @@ export function MovieListsPage({
           </motion.div>
         </Link>
       )}
+
+      <div className='sticky bottom-0 pt-3 h-[6vh] w-full overflow-hidden bg-neutral-100/80 transition-all hover:h-[8vh] dark:bg-transparent/60'>
+        <ClientSideOffsetPagination
+          pagination={pagination}
+          setPagination={setPagination}
+          paginationResult={paginationResult}
+          setPaginationResult={setPaginationResult}
+        />
+      </div>
     </main>
   )
 }
 
 const MovieListPageCardListSuspense: FC<{
   searchCriteria: MovieListSearchCriteriaInput
-}> = ({ searchCriteria }) => {
+  pagination: IClientSideOffsetPagination
+  setPagination: Dispatch<SetStateAction<IClientSideOffsetPagination>>
+  paginationResult: IClientSideOffsetPaginationResult
+}> = ({ searchCriteria, pagination, setPagination, paginationResult }) => {
   const { data } = useSearchMovieListsSuspenseQuery({
     variables: {
       searchCriteria
@@ -79,5 +147,20 @@ const MovieListPageCardListSuspense: FC<{
     fetchPolicy: 'cache-and-network'
   })
 
-  return <MovieListCardList movieLists={data?.searchMovieLists} />
+  useEffect(() => {
+    setPagination((prev) => ({
+      ...prev,
+      currentPage: 1,
+      totalCount: data?.searchMovieLists.length
+    }))
+  }, [data])
+
+  return (
+    <MovieListCardList
+      movieLists={data?.searchMovieLists.slice(
+        paginationResult.startIndex,
+        paginationResult.endIndex
+      )}
+    />
+  )
 }

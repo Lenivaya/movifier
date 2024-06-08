@@ -98,13 +98,11 @@ export function MoviesPage({
 }) {
   const [searchCriteria, setSearchCriteria] =
     useMutative<MoviesSearchCriteriaInput>(initialSearchCriteria)
-
   const [orderBy, setOrderBy] =
     useMutative<Option<MovieOrderByWithRelationAndSearchRelevanceInput>>(null)
 
   const [pagination, setPagination] =
     useState<IClientSideOffsetPagination>(DEFAULT_PAGINATION)
-
   const [paginationResult, setPaginationResult] =
     useMutative<IClientSideOffsetPaginationResult>(DEFAULT_PAGINATION_RESULT)
 
@@ -169,7 +167,7 @@ export function MoviesPage({
         </Suspense>
       </div>
 
-      <div className='sticky bottom-0 pt-3 my-auto h-[6vh] w-full overflow-hidden bg-neutral-100/80 transition-all hover:h-[8vh] dark:bg-transparent/60'>
+      <div className='sticky bottom-0 pt-3 h-[6vh] w-full overflow-hidden bg-neutral-100/80 transition-all hover:h-[8vh] dark:bg-transparent/60'>
         <ClientSideOffsetPagination
           pagination={pagination}
           setPagination={setPagination}
