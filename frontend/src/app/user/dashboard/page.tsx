@@ -12,32 +12,17 @@ import {
 import { gql } from '@apollo/client'
 import { useCurrentUser } from '@/lib/hooks/CurrentUser'
 import { useEffect } from 'react'
-import { useSettingsPage } from '@/app/user/dashboard/settingsPageContext'
-
-export const GET_USER_WATCHLIST = gql`
-  query GetUserWatchlist(
-    $searchCriteria: MoviesSearchCriteriaInput!
-    $userId: String!
-  ) {
-    searchMovies(
-      searchCriteria: $searchCriteria
-      where: { inWatchlistByUsers: { some: { userId: { equals: $userId } } } }
-      orderBy: [{ createdAt: desc }]
-    ) {
-      ...MovieCardItem
-    }
-  }
-`
+import { useDashboardPage } from '@/app/user/dashboard/dashboardPageContext'
 
 export default function SettingsPage() {
   return <SettingsHomeDashboard />
 }
 
 export function SettingsHomeDashboard() {
-  const { setSettingsPageContext } = useSettingsPage()
+  const { setDashboardPageContext } = useDashboardPage()
 
   useEffect(() => {
-    setSettingsPageContext((prev) => ({ ...prev, currentPage: 'Home' }))
+    setDashboardPageContext((prev) => ({ ...prev, currentPage: 'Home' }))
   }, [])
 
   return (

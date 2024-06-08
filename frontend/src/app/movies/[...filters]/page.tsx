@@ -29,6 +29,7 @@ function parseFilters(filters: string[]): MovieFilters {
       // @ts-ignore
       acc[curr] = match(curr)
         .with('decade', () => parseInt(value))
+        .with('year', () => parseInt(value))
         .otherwise(() => value.replace(/%20/g, ' '))
     }
     return acc

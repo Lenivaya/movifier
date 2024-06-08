@@ -6,7 +6,7 @@ export const MovieCardList: FC<{ movies: MovieCardItemFragment[] }> = ({
   movies
 }) => {
   return (
-    <div className='flex flex-shrink flex-wrap justify-center gap-5'>
+    <div className='flex flex-wrap justify-center gap-5'>
       {movies.map((movie) => (
         <MovieCard key={movie.id} {...movie} />
       ))}

@@ -74,7 +74,7 @@ export const MoviePage: FC<{
               >
                 {movie.movieInfo?.title}
               </h1>
-              <Link href={`/movies/years/${movieYear}`}>
+              <Link href={`/movies/year/${movieYear}`}>
                 <h2 className={'font-semibold underline underline-offset-2'}>
                   {movieYear}
                 </h2>

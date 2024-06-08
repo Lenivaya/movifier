@@ -114,7 +114,7 @@ export function MoviesPage({
 const MoviesPageCardListSuspense: FC<{
   searchCriteria: MoviesSearchCriteriaInput
   orderBy: Option<MovieOrderByWithRelationAndSearchRelevanceInput>
-}> = ({ searchCriteria, orderBy, extraSettings }) => {
+}> = ({ searchCriteria, orderBy }) => {
   const { data } = useSearchMoviesSuspenseQuery({
     variables: {
       searchCriteria,

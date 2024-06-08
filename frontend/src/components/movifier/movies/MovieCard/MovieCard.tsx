@@ -46,7 +46,7 @@ export const MovieCard: FC<
   return (
     <motion.div
       className={cn(
-        'flex flex-col justify-between max-w-52 w-52 relative group min-h-full',
+        'flex flex-col justify-between max-w-52 w-52 relative group',
         className
       )}
       whileHover={{
@@ -56,7 +56,7 @@ export const MovieCard: FC<
       transition={{ type: 'spring', duration: 0.8 }}
     >
       <Link href={`/movies/${id}`} passHref>
-        <Card className={'min-h-full'}>
+        <Card className={''}>
           <CardHeader
             ref={hoveringRef}
             className={'!m-0 p-0 hover:shadow-lg relative'}

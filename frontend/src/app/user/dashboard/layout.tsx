@@ -2,7 +2,7 @@
 
 import * as React from 'react'
 import { ReactNode } from 'react'
-import { SettingsPageProviders } from '@/app/user/dashboard/settingsPageProviders'
+import { DashboardPageProviders } from '@/app/user/dashboard/dashboardPageProviders'
 import {
   Clock,
   GalleryVerticalEnd,
@@ -22,7 +22,7 @@ import {
 } from '@/components/ui'
 import { Link } from 'next-view-transitions'
 import { cn } from '@/lib'
-import { useSettingsPage } from '@/app/user/dashboard/settingsPageContext'
+import { useDashboardPage } from '@/app/user/dashboard/dashboardPageContext'
 
 export default function SettingsPageLayout({
   children
@@ -30,17 +30,17 @@ export default function SettingsPageLayout({
   children: ReactNode
 }) {
   return (
-    <SettingsPageProviders>
-      <div className='flex relative h-dvh w-full flex-col bg-muted/40'>
+    <DashboardPageProviders>
+      <div className='flex relative h-lvh w-full flex-col bg-muted/40'>
         <SettingsPageNavbar />
         {children}
       </div>
-    </SettingsPageProviders>
+    </DashboardPageProviders>
   )
 }
 
 export function SettingsPageNavbar() {
-  const { settingsPageContext } = useSettingsPage()
+  const { dashboardPageContext } = useDashboardPage()
 
   return (
     <aside className='fixed inset-y-0 left-0 z-10 hidden w-14 flex-col border-r bg-background sm:flex'>
@@ -57,7 +57,7 @@ export function SettingsPageNavbar() {
           <Tooltip>
             <TooltipTrigger asChild>
               <SettingsNavigationButton
-                isActive={settingsPageContext.currentPage === 'Home'}
+                isActive={dashboardPageContext.currentPage === 'Home'}
               >
                 <Link href='/user/dashboard'>
                   <Home className='h-5 w-5' />
@@ -70,7 +70,7 @@ export function SettingsPageNavbar() {
           <Tooltip>
             <TooltipTrigger asChild>
               <SettingsNavigationButton
-                isActive={settingsPageContext.currentPage === 'Watchlist'}
+                isActive={dashboardPageContext.currentPage === 'Watchlist'}
               >
                 <Link href='/user/dashboard/watchlist'>
                   <Clock className='h-5 w-5' />
@@ -86,7 +86,7 @@ export function SettingsPageNavbar() {
           <Tooltip>
             <TooltipTrigger asChild>
               <SettingsNavigationButton
-                isActive={settingsPageContext.currentPage === 'Liked'}
+                isActive={dashboardPageContext.currentPage === 'Liked'}
               >
                 <Link href='/user/dashboard/liked'>
                   <HeartIcon className='h-5 w-5' />
@@ -102,7 +102,7 @@ export function SettingsPageNavbar() {
           <Tooltip>
             <TooltipTrigger asChild>
               <SettingsNavigationButton
-                isActive={settingsPageContext.currentPage === 'WatchedMovies'}
+                isActive={dashboardPageContext.currentPage === 'WatchedMovies'}
               >
                 <Link href='/user/dashboard/watched-movies'>
                   <GalleryVerticalEnd className='h-5 w-5' />
