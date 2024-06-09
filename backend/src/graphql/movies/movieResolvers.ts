@@ -3,13 +3,13 @@ import {
   MovieCrewMemberCrudResolver,
   MovieCrewMemberOnMovieRelationsResolver,
   MovieCrewMemberRelationsResolver,
+  MovieCrewMemberTypeCrudResolver,
+  MovieCrewMemberTypeRelationsResolver,
   MovieCrudResolver,
   MovieListCrudResolver,
   MovieListLikedByUserCrudResolver,
   MovieListLikedByUserRelationsResolver,
   MovieListRelationsResolver,
-  MovieRatingCrudResolver,
-  MovieRatingRelationsResolver,
   MovieRelationsResolver,
   MovieSpokenLanguageCrudResolver,
   MovieSpokenLanguageRelationsResolver,
@@ -40,5 +40,7 @@ export const moviesResolvers: NonEmptyArray<Function> = [
   MovieCrewMemberCrudResolver,
   MovieCrewMemberRelationsResolver,
   MovieListLikedByUserCrudResolver,
-  MovieListLikedByUserRelationsResolver
+  MovieListLikedByUserRelationsResolver,
+  MovieCrewMemberTypeCrudResolver,
+  MovieCrewMemberTypeRelationsResolver
 ]

@@ -1,8 +1,8 @@
 import * as React from 'react'
-import { useEffect } from 'react'
-import { useCurrentUser } from '@/lib/hooks/CurrentUser'
-import { useDashboardPage } from '@/app/user/dashboard/dashboardPageContext'
-import { useGetMovieGenresForAdminQuery } from '@/lib'
+import {
+  useGetMovieGenresForAdminQuery,
+  useGetMovieGenresForAdminSuspenseQuery
+} from '@/lib'
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -21,15 +21,18 @@ import {
 import { MovieGenreCard } from '@/components/movifier/genres/MovieGenreCard/MovieGenreCard'
 import { motion } from 'framer-motion'
 import { PlusCircledIcon } from '@radix-ui/react-icons'
+import { gql } from '@apollo/client'
 
-export default function GenresPage() {
-  return <MovieGenresAdminPage />
-}
+const GET_MOVIE_GENRES = gql`
+  query GetMovieGenresForAdmin {
+    genres {
+      ...MovieGenreCardItem
+    }
+  }
+`
 
 export function MovieGenresAdminPage() {
-  const user = useCurrentUser()
-
-  const { data } = useGetMovieGenresForAdminQuery({
+  const { data } = useGetMovieGenresForAdminSuspenseQuery({
     fetchPolicy: 'cache-and-network'
   })
 

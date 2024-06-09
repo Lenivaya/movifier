@@ -12,10 +12,10 @@ const GetMovieGenreForUpdate = gql`
   }
 `
 export const MovieGenreUpdateForm: FC<{ movieGenreId: string }> = ({
-  movieGenreId
+  movieCrewMemberTypeId
 }) => {
   const { data } = useGetMovieGenreForUpdateQuery({
-    variables: { id: movieGenreId },
+    variables: { id: movieCrewMemberTypeId },
     fetchPolicy: 'network-only'
   })
 

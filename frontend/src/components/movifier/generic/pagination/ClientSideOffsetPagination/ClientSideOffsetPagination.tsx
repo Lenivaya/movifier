@@ -48,8 +48,6 @@ export function ClientSideOffsetPagination({
   const totalPages = Math.ceil(pagination.totalCount / pageSize)
   const isPaginationNeeded = totalPages > 1 || alwaysShowPagination
 
-  console.log(pagination)
-
   // if (!isPaginationNeeded) return null
 
   const handlePaginationChange = (newCurrentPage: number) => {

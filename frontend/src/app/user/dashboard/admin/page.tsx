@@ -13,7 +13,9 @@ import * as React from 'react'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { MovieGenresAdminPage } from '@/components/movifier/genres/MovieGenresAdminPage/MovieGenresAdminPage'
 import { useDashboardPage } from '@/app/user/dashboard/dashboardPageContext'
-import { useEffect } from 'react'
+import { Suspense, useEffect } from 'react'
+import { MovieCrewMemberTypesAdminPage } from '@/components/movifier/crew-member-types/MovieCrewMemberTypesAdminPage/MovieCrewMemberTypesAdminPage'
+import { AppLoader } from '@/components/movifier/generic'
 
 export default function AdminPage() {
   const { setDashboardPageContext } = useDashboardPage()
@@ -64,11 +66,15 @@ export default function AdminPage() {
             </TabsList>
 
             <TabsContent value='genres'>
-              <MovieGenresAdminPage />
+              <Suspense fallback={<AppLoader />}>
+                <MovieGenresAdminPage />
+              </Suspense>
             </TabsContent>
 
             <TabsContent value='crew-member-types'>
-              <p>yes</p>
+              <Suspense fallback={<AppLoader />}>
+                <MovieCrewMemberTypesAdminPage />
+              </Suspense>
             </TabsContent>
           </Tabs>
         </div>

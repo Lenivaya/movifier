@@ -1,11 +1,9 @@
 'use client'
 
 import { gql } from '@apollo/client'
+import * as React from 'react'
+import { MovieCrewMemberTypesAdminPage } from '@/components/movifier/crew-member-types/MovieCrewMemberTypesAdminPage/MovieCrewMemberTypesAdminPage'
 
-const GET_MOVIE_GENRES = gql`
-  query GetMovieGenresForAdmin {
-    genres {
-      ...MovieGenreCardItem
-    }
-  }
-`
+export default function GenresPage() {
+  return <MovieCrewMemberTypesAdminPage />
+}
