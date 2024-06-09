@@ -56,7 +56,9 @@ export const SearchLanguagesForMovieCreation = gql`
       ...MinimalisticLanguageSearchCardItem
     }
   }
+`
 
+const MinimalisticLanguageSearchCardFragment = gql`
   fragment MinimalisticLanguageSearchCardItem on MovieSpokenLanguage {
     iso_639_1
     name
