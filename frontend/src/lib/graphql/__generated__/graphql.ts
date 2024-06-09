@@ -9455,6 +9455,8 @@ export type GetSelectedMovieStudiosQuery = { __typename?: 'Query', movieStudios:
 
 export type MinimalisticStudioSearchItemFragment = { __typename?: 'MovieStudio', id: string, name: string };
 
+export type PersonCardItemFragment = { __typename?: 'MovieCrewMember', id: string, name: string, photoUrl: string };
+
 export type PersonPageItemFragment = { __typename?: 'MovieCrewMember', id: string, name: string, imdbId: string, description: string, popularity: number, photoUrl: string };
 
 export type GetUserWatchedPersonMovieIdsQueryVariables = Exact<{
@@ -9490,6 +9492,15 @@ export type GetMoviesForPersonPageQueryVariables = Exact<{
 export type GetMoviesForPersonPageQuery = { __typename?: 'Query', searchMovies: Array<{ __typename?: 'Movie', id: string, movieInfo?: { __typename?: 'MovieInfo', id: string, title: string, posterUrl: string } | null }> };
 
 export type PersonPagePosterItemFragment = { __typename?: 'MovieCrewMember', photoUrl: string, name: string };
+
+export type SearchPersonsQueryVariables = Exact<{
+  search?: Scalars['String']['input'];
+  take?: Scalars['Int']['input'];
+  skip?: Scalars['Int']['input'];
+}>;
+
+
+export type SearchPersonsQuery = { __typename?: 'Query', movieCrewMembers: Array<{ __typename?: 'MovieCrewMember', id: string, name: string, photoUrl: string }> };
 
 export type LoginUserMutationVariables = Exact<{
   data: UserLoginInput;
@@ -12931,6 +12942,13 @@ export const MinimalisticStudioSearchItemFragmentDoc = gql`
   name
 }
     `;
+export const PersonCardItemFragmentDoc = gql`
+    fragment PersonCardItem on MovieCrewMember {
+  id
+  name
+  photoUrl
+}
+    `;
 export const PersonPagePosterItemFragmentDoc = gql`
     fragment PersonPagePosterItem on MovieCrewMember {
   photoUrl
@@ -15239,6 +15257,52 @@ export type GetMoviesForPersonPageQueryHookResult = ReturnType<typeof useGetMovi
 export type GetMoviesForPersonPageLazyQueryHookResult = ReturnType<typeof useGetMoviesForPersonPageLazyQuery>;
 export type GetMoviesForPersonPageSuspenseQueryHookResult = ReturnType<typeof useGetMoviesForPersonPageSuspenseQuery>;
 export type GetMoviesForPersonPageQueryResult = Apollo.QueryResult<GetMoviesForPersonPageQuery, GetMoviesForPersonPageQueryVariables>;
+export const SearchPersonsDocument = gql`
+    query SearchPersons($search: String! = "", $take: Int! = 5, $skip: Int! = 0) {
+  movieCrewMembers(
+    take: $take
+    skip: $skip
+    where: {OR: [{name: {contains: $search, mode: insensitive}}, {description: {contains: $search, mode: insensitive}}]}
+  ) {
+    ...PersonCardItem
+  }
+}
+    ${PersonCardItemFragmentDoc}`;
+
+/**
+ * __useSearchPersonsQuery__
+ *
+ * To run a query within a React component, call `useSearchPersonsQuery` and pass it any options that fit your needs.
+ * When your component renders, `useSearchPersonsQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useSearchPersonsQuery({
+ *   variables: {
+ *      search: // value for 'search'
+ *      take: // value for 'take'
+ *      skip: // value for 'skip'
+ *   },
+ * });
+ */
+export function useSearchPersonsQuery(baseOptions?: Apollo.QueryHookOptions<SearchPersonsQuery, SearchPersonsQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<SearchPersonsQuery, SearchPersonsQueryVariables>(SearchPersonsDocument, options);
+      }
+export function useSearchPersonsLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<SearchPersonsQuery, SearchPersonsQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<SearchPersonsQuery, SearchPersonsQueryVariables>(SearchPersonsDocument, options);
+        }
+export function useSearchPersonsSuspenseQuery(baseOptions?: Apollo.SuspenseQueryHookOptions<SearchPersonsQuery, SearchPersonsQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useSuspenseQuery<SearchPersonsQuery, SearchPersonsQueryVariables>(SearchPersonsDocument, options);
+        }
+export type SearchPersonsQueryHookResult = ReturnType<typeof useSearchPersonsQuery>;
+export type SearchPersonsLazyQueryHookResult = ReturnType<typeof useSearchPersonsLazyQuery>;
+export type SearchPersonsSuspenseQueryHookResult = ReturnType<typeof useSearchPersonsSuspenseQuery>;
+export type SearchPersonsQueryResult = Apollo.QueryResult<SearchPersonsQuery, SearchPersonsQueryVariables>;
 export const LoginUserDocument = gql`
     mutation LoginUser($data: UserLoginInput!) {
   loginUser(data: $data) {
