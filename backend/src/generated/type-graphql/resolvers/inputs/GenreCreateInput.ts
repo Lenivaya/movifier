@@ -7,6 +7,11 @@ import { MovieCreateNestedManyWithoutGenresInput } from "../inputs/MovieCreateNe
 @TypeGraphQL.InputType("GenreCreateInput", {})
 export class GenreCreateInput {
   @TypeGraphQL.Field(_type => String, {
+    nullable: true
+  })
+  id?: string | undefined;
+
+  @TypeGraphQL.Field(_type => String, {
     nullable: false
   })
   name!: string;

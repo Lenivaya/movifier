@@ -35,5 +35,5 @@ export class FindManyGenreArgs {
   @TypeGraphQL.Field(_type => [GenreScalarFieldEnum], {
     nullable: true
   })
-  distinct?: Array<"name" | "createdAt" | "updatedAt"> | undefined;
+  distinct?: Array<"id" | "name" | "createdAt" | "updatedAt"> | undefined;
 }

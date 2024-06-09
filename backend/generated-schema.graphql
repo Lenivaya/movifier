@@ -170,6 +170,7 @@ input FloatWithAggregatesFilter {
 type Genre {
   _count: GenreCount
   createdAt: DateTimeISO!
+  id: String!
   movies(cursor: MovieWhereUniqueInput, distinct: [MovieScalarFieldEnum!], orderBy: [MovieOrderByWithRelationAndSearchRelevanceInput!], skip: Int, take: Int, where: MovieWhereInput): [Movie!]!
   name: String!
   updatedAt: DateTimeISO!
@@ -182,18 +183,21 @@ type GenreCount {
 type GenreCountAggregate {
   _all: Int!
   createdAt: Int!
+  id: Int!
   name: Int!
   updatedAt: Int!
 }
 
 input GenreCountOrderByAggregateInput {
   createdAt: SortOrder
+  id: SortOrder
   name: SortOrder
   updatedAt: SortOrder
 }
 
 input GenreCreateInput {
   createdAt: DateTimeISO
+  id: String
   movies: MovieCreateNestedManyWithoutGenresInput
   name: String!
   updatedAt: DateTimeISO
@@ -201,6 +205,7 @@ input GenreCreateInput {
 
 input GenreCreateManyInput {
   createdAt: DateTimeISO
+  id: String
   name: String!
   updatedAt: DateTimeISO
 }
@@ -218,6 +223,7 @@ input GenreCreateOrConnectWithoutMoviesInput {
 
 input GenreCreateWithoutMoviesInput {
   createdAt: DateTimeISO
+  id: String
   name: String!
   updatedAt: DateTimeISO
 }
@@ -227,6 +233,7 @@ type GenreGroupBy {
   _max: GenreMaxAggregate
   _min: GenreMinAggregate
   createdAt: DateTimeISO!
+  id: String!
   name: String!
   updatedAt: DateTimeISO!
 }
@@ -239,24 +246,28 @@ input GenreListRelationFilter {
 
 type GenreMaxAggregate {
   createdAt: DateTimeISO
+  id: String
   name: String
   updatedAt: DateTimeISO
 }
 
 input GenreMaxOrderByAggregateInput {
   createdAt: SortOrder
+  id: SortOrder
   name: SortOrder
   updatedAt: SortOrder
 }
 
 type GenreMinAggregate {
   createdAt: DateTimeISO
+  id: String
   name: String
   updatedAt: DateTimeISO
 }
 
 input GenreMinOrderByAggregateInput {
   createdAt: SortOrder
+  id: SortOrder
   name: SortOrder
   updatedAt: SortOrder
 }
@@ -266,6 +277,7 @@ input GenreOrderByRelationAggregateInput {
 }
 
 enum GenreOrderByRelevanceFieldEnum {
+  id
   name
 }
 
@@ -280,6 +292,7 @@ input GenreOrderByWithAggregationInput {
   _max: GenreMaxOrderByAggregateInput
   _min: GenreMinOrderByAggregateInput
   createdAt: SortOrder
+  id: SortOrder
   name: SortOrder
   updatedAt: SortOrder
 }
@@ -287,6 +300,7 @@ input GenreOrderByWithAggregationInput {
 input GenreOrderByWithRelationAndSearchRelevanceInput {
   _relevance: GenreOrderByRelevanceInput
   createdAt: SortOrder
+  id: SortOrder
   movies: MovieOrderByRelationAggregateInput
   name: SortOrder
   updatedAt: SortOrder
@@ -294,6 +308,7 @@ input GenreOrderByWithRelationAndSearchRelevanceInput {
 
 enum GenreScalarFieldEnum {
   createdAt
+  id
   name
   updatedAt
 }
@@ -303,6 +318,7 @@ input GenreScalarWhereInput {
   NOT: [GenreScalarWhereInput!]
   OR: [GenreScalarWhereInput!]
   createdAt: DateTimeFilter
+  id: StringFilter
   name: StringFilter
   updatedAt: DateTimeFilter
 }
@@ -312,12 +328,14 @@ input GenreScalarWhereWithAggregatesInput {
   NOT: [GenreScalarWhereWithAggregatesInput!]
   OR: [GenreScalarWhereWithAggregatesInput!]
   createdAt: DateTimeWithAggregatesFilter
+  id: StringWithAggregatesFilter
   name: StringWithAggregatesFilter
   updatedAt: DateTimeWithAggregatesFilter
 }
 
 input GenreUpdateInput {
   createdAt: DateTimeFieldUpdateOperationsInput
+  id: StringFieldUpdateOperationsInput
   movies: MovieUpdateManyWithoutGenresNestedInput
   name: StringFieldUpdateOperationsInput
   updatedAt: DateTimeFieldUpdateOperationsInput
@@ -325,6 +343,7 @@ input GenreUpdateInput {
 
 input GenreUpdateManyMutationInput {
   createdAt: DateTimeFieldUpdateOperationsInput
+  id: StringFieldUpdateOperationsInput
   name: StringFieldUpdateOperationsInput
   updatedAt: DateTimeFieldUpdateOperationsInput
 }
@@ -354,6 +373,7 @@ input GenreUpdateWithWhereUniqueWithoutMoviesInput {
 
 input GenreUpdateWithoutMoviesInput {
   createdAt: DateTimeFieldUpdateOperationsInput
+  id: StringFieldUpdateOperationsInput
   name: StringFieldUpdateOperationsInput
   updatedAt: DateTimeFieldUpdateOperationsInput
 }
@@ -369,6 +389,7 @@ input GenreWhereInput {
   NOT: [GenreWhereInput!]
   OR: [GenreWhereInput!]
   createdAt: DateTimeFilter
+  id: StringFilter
   movies: MovieListRelationFilter
   name: StringFilter
   updatedAt: DateTimeFilter
@@ -379,6 +400,7 @@ input GenreWhereUniqueInput {
   NOT: [GenreWhereInput!]
   OR: [GenreWhereInput!]
   createdAt: DateTimeFilter
+  id: String
   movies: MovieListRelationFilter
   name: String
   updatedAt: DateTimeFilter

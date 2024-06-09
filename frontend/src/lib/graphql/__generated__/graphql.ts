@@ -199,6 +199,7 @@ export type Genre = {
   __typename?: 'Genre';
   _count?: Maybe<GenreCount>;
   createdAt: Scalars['DateTimeISO']['output'];
+  id: Scalars['String']['output'];
   movies: Array<Movie>;
   name: Scalars['String']['output'];
   updatedAt: Scalars['DateTimeISO']['output'];
@@ -228,18 +229,21 @@ export type GenreCountAggregate = {
   __typename?: 'GenreCountAggregate';
   _all: Scalars['Int']['output'];
   createdAt: Scalars['Int']['output'];
+  id: Scalars['Int']['output'];
   name: Scalars['Int']['output'];
   updatedAt: Scalars['Int']['output'];
 };
 
 export type GenreCountOrderByAggregateInput = {
   createdAt?: InputMaybe<SortOrder>;
+  id?: InputMaybe<SortOrder>;
   name?: InputMaybe<SortOrder>;
   updatedAt?: InputMaybe<SortOrder>;
 };
 
 export type GenreCreateInput = {
   createdAt?: InputMaybe<Scalars['DateTimeISO']['input']>;
+  id?: InputMaybe<Scalars['String']['input']>;
   movies?: InputMaybe<MovieCreateNestedManyWithoutGenresInput>;
   name: Scalars['String']['input'];
   updatedAt?: InputMaybe<Scalars['DateTimeISO']['input']>;
@@ -247,6 +251,7 @@ export type GenreCreateInput = {
 
 export type GenreCreateManyInput = {
   createdAt?: InputMaybe<Scalars['DateTimeISO']['input']>;
+  id?: InputMaybe<Scalars['String']['input']>;
   name: Scalars['String']['input'];
   updatedAt?: InputMaybe<Scalars['DateTimeISO']['input']>;
 };
@@ -264,6 +269,7 @@ export type GenreCreateOrConnectWithoutMoviesInput = {
 
 export type GenreCreateWithoutMoviesInput = {
   createdAt?: InputMaybe<Scalars['DateTimeISO']['input']>;
+  id?: InputMaybe<Scalars['String']['input']>;
   name: Scalars['String']['input'];
   updatedAt?: InputMaybe<Scalars['DateTimeISO']['input']>;
 };
@@ -274,6 +280,7 @@ export type GenreGroupBy = {
   _max?: Maybe<GenreMaxAggregate>;
   _min?: Maybe<GenreMinAggregate>;
   createdAt: Scalars['DateTimeISO']['output'];
+  id: Scalars['String']['output'];
   name: Scalars['String']['output'];
   updatedAt: Scalars['DateTimeISO']['output'];
 };
@@ -287,12 +294,14 @@ export type GenreListRelationFilter = {
 export type GenreMaxAggregate = {
   __typename?: 'GenreMaxAggregate';
   createdAt?: Maybe<Scalars['DateTimeISO']['output']>;
+  id?: Maybe<Scalars['String']['output']>;
   name?: Maybe<Scalars['String']['output']>;
   updatedAt?: Maybe<Scalars['DateTimeISO']['output']>;
 };
 
 export type GenreMaxOrderByAggregateInput = {
   createdAt?: InputMaybe<SortOrder>;
+  id?: InputMaybe<SortOrder>;
   name?: InputMaybe<SortOrder>;
   updatedAt?: InputMaybe<SortOrder>;
 };
@@ -300,12 +309,14 @@ export type GenreMaxOrderByAggregateInput = {
 export type GenreMinAggregate = {
   __typename?: 'GenreMinAggregate';
   createdAt?: Maybe<Scalars['DateTimeISO']['output']>;
+  id?: Maybe<Scalars['String']['output']>;
   name?: Maybe<Scalars['String']['output']>;
   updatedAt?: Maybe<Scalars['DateTimeISO']['output']>;
 };
 
 export type GenreMinOrderByAggregateInput = {
   createdAt?: InputMaybe<SortOrder>;
+  id?: InputMaybe<SortOrder>;
   name?: InputMaybe<SortOrder>;
   updatedAt?: InputMaybe<SortOrder>;
 };
@@ -315,6 +326,7 @@ export type GenreOrderByRelationAggregateInput = {
 };
 
 export type GenreOrderByRelevanceFieldEnum =
+  | 'id'
   | 'name';
 
 export type GenreOrderByRelevanceInput = {
@@ -328,6 +340,7 @@ export type GenreOrderByWithAggregationInput = {
   _max?: InputMaybe<GenreMaxOrderByAggregateInput>;
   _min?: InputMaybe<GenreMinOrderByAggregateInput>;
   createdAt?: InputMaybe<SortOrder>;
+  id?: InputMaybe<SortOrder>;
   name?: InputMaybe<SortOrder>;
   updatedAt?: InputMaybe<SortOrder>;
 };
@@ -335,6 +348,7 @@ export type GenreOrderByWithAggregationInput = {
 export type GenreOrderByWithRelationAndSearchRelevanceInput = {
   _relevance?: InputMaybe<GenreOrderByRelevanceInput>;
   createdAt?: InputMaybe<SortOrder>;
+  id?: InputMaybe<SortOrder>;
   movies?: InputMaybe<MovieOrderByRelationAggregateInput>;
   name?: InputMaybe<SortOrder>;
   updatedAt?: InputMaybe<SortOrder>;
@@ -342,6 +356,7 @@ export type GenreOrderByWithRelationAndSearchRelevanceInput = {
 
 export type GenreScalarFieldEnum =
   | 'createdAt'
+  | 'id'
   | 'name'
   | 'updatedAt';
 
@@ -350,6 +365,7 @@ export type GenreScalarWhereInput = {
   NOT?: InputMaybe<Array<GenreScalarWhereInput>>;
   OR?: InputMaybe<Array<GenreScalarWhereInput>>;
   createdAt?: InputMaybe<DateTimeFilter>;
+  id?: InputMaybe<StringFilter>;
   name?: InputMaybe<StringFilter>;
   updatedAt?: InputMaybe<DateTimeFilter>;
 };
@@ -359,12 +375,14 @@ export type GenreScalarWhereWithAggregatesInput = {
   NOT?: InputMaybe<Array<GenreScalarWhereWithAggregatesInput>>;
   OR?: InputMaybe<Array<GenreScalarWhereWithAggregatesInput>>;
   createdAt?: InputMaybe<DateTimeWithAggregatesFilter>;
+  id?: InputMaybe<StringWithAggregatesFilter>;
   name?: InputMaybe<StringWithAggregatesFilter>;
   updatedAt?: InputMaybe<DateTimeWithAggregatesFilter>;
 };
 
 export type GenreUpdateInput = {
   createdAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+  id?: InputMaybe<StringFieldUpdateOperationsInput>;
   movies?: InputMaybe<MovieUpdateManyWithoutGenresNestedInput>;
   name?: InputMaybe<StringFieldUpdateOperationsInput>;
   updatedAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
@@ -372,6 +390,7 @@ export type GenreUpdateInput = {
 
 export type GenreUpdateManyMutationInput = {
   createdAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+  id?: InputMaybe<StringFieldUpdateOperationsInput>;
   name?: InputMaybe<StringFieldUpdateOperationsInput>;
   updatedAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
 };
@@ -401,6 +420,7 @@ export type GenreUpdateWithWhereUniqueWithoutMoviesInput = {
 
 export type GenreUpdateWithoutMoviesInput = {
   createdAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+  id?: InputMaybe<StringFieldUpdateOperationsInput>;
   name?: InputMaybe<StringFieldUpdateOperationsInput>;
   updatedAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
 };
@@ -416,6 +436,7 @@ export type GenreWhereInput = {
   NOT?: InputMaybe<Array<GenreWhereInput>>;
   OR?: InputMaybe<Array<GenreWhereInput>>;
   createdAt?: InputMaybe<DateTimeFilter>;
+  id?: InputMaybe<StringFilter>;
   movies?: InputMaybe<MovieListRelationFilter>;
   name?: InputMaybe<StringFilter>;
   updatedAt?: InputMaybe<DateTimeFilter>;
@@ -426,6 +447,7 @@ export type GenreWhereUniqueInput = {
   NOT?: InputMaybe<Array<GenreWhereInput>>;
   OR?: InputMaybe<Array<GenreWhereInput>>;
   createdAt?: InputMaybe<DateTimeFilter>;
+  id?: InputMaybe<Scalars['String']['input']>;
   movies?: InputMaybe<MovieListRelationFilter>;
   name?: InputMaybe<Scalars['String']['input']>;
   updatedAt?: InputMaybe<DateTimeFilter>;
@@ -8471,6 +8493,11 @@ export type GetPersonForPageQueryVariables = Exact<{
 
 export type GetPersonForPageQuery = { __typename?: 'Query', movieCrewMember?: { __typename?: 'MovieCrewMember', id: string, name: string, imdbId: string, description: string, popularity: number, photoUrl: string } | null };
 
+export type GetMovieGenresForAdminQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type GetMovieGenresForAdminQuery = { __typename?: 'Query', genres: Array<{ __typename?: 'Genre', id: string, name: string, _count?: { __typename?: 'GenreCount', movies: number } | null }> };
+
 export type GetUserLikedMoviesQueryVariables = Exact<{
   searchCriteria: MoviesSearchCriteriaInput;
   orderBy?: InputMaybe<Array<MovieOrderByWithRelationAndSearchRelevanceInput> | MovieOrderByWithRelationAndSearchRelevanceInput>;
@@ -8547,15 +8574,6 @@ export type GetRecentLikedMoviesQueryVariables = Exact<{
 
 export type GetRecentLikedMoviesQuery = { __typename?: 'Query', movieLikedByUsers: Array<{ __typename?: 'MovieLikedByUser', movie: { __typename?: 'Movie', id: string, movieInfo?: { __typename?: 'MovieInfo', id: string, title: string, posterUrl: string } | null } }> };
 
-export type GetUserWatchlistQueryVariables = Exact<{
-  searchCriteria: MoviesSearchCriteriaInput;
-  orderBy?: InputMaybe<Array<MovieOrderByWithRelationAndSearchRelevanceInput> | MovieOrderByWithRelationAndSearchRelevanceInput>;
-  userId: Scalars['String']['input'];
-}>;
-
-
-export type GetUserWatchlistQuery = { __typename?: 'Query', searchMovies: Array<{ __typename?: 'Movie', id: string, movieInfo?: { __typename?: 'MovieInfo', id: string, title: string, posterUrl: string } | null }> };
-
 export type UserMovieReviewCardItemFragment = { __typename?: 'MovieReview', id: string, createdAt: any, content: string, rating: { __typename?: 'MovieRating', id: string, rating: number, movie: { __typename?: 'Movie', id: string, movieInfo?: { __typename?: 'MovieInfo', id: string, title: string, posterUrl: string } | null } } };
 
 export type SearchUserMovieReviewsQueryVariables = Exact<{
@@ -8574,6 +8592,40 @@ export type GetUserWatchedMoviesQueryVariables = Exact<{
 
 
 export type GetUserWatchedMoviesQuery = { __typename?: 'Query', searchMovies: Array<{ __typename?: 'Movie', id: string, movieInfo?: { __typename?: 'MovieInfo', id: string, title: string, posterUrl: string } | null }> };
+
+export type GetUserWatchlistQueryVariables = Exact<{
+  searchCriteria: MoviesSearchCriteriaInput;
+  orderBy?: InputMaybe<Array<MovieOrderByWithRelationAndSearchRelevanceInput> | MovieOrderByWithRelationAndSearchRelevanceInput>;
+  userId: Scalars['String']['input'];
+}>;
+
+
+export type GetUserWatchlistQuery = { __typename?: 'Query', searchMovies: Array<{ __typename?: 'Movie', id: string, movieInfo?: { __typename?: 'MovieInfo', id: string, title: string, posterUrl: string } | null }> };
+
+export type DeleteMovieGenreMutationVariables = Exact<{
+  id: Scalars['String']['input'];
+}>;
+
+
+export type DeleteMovieGenreMutation = { __typename?: 'Mutation', deleteOneGenre?: { __typename?: 'Genre', id: string } | null };
+
+export type MovieGenreCardItemFragment = { __typename?: 'Genre', id: string, name: string, _count?: { __typename?: 'GenreCount', movies: number } | null };
+
+export type UpsertMovieGenreMutationVariables = Exact<{
+  data: GenreCreateInput;
+  updateData: GenreUpdateInput;
+  existingGenreId: Scalars['String']['input'];
+}>;
+
+
+export type UpsertMovieGenreMutation = { __typename?: 'Mutation', upsertOneGenre: { __typename?: 'Genre', id: string } };
+
+export type GetMovieGenreForUpdateQueryVariables = Exact<{
+  id: Scalars['String']['input'];
+}>;
+
+
+export type GetMovieGenreForUpdateQuery = { __typename?: 'Query', genre?: { __typename?: 'Genre', id: string, name: string } | null };
 
 export type DeleteMovieListMutationVariables = Exact<{
   id: Scalars['String']['input'];
@@ -10721,6 +10773,7 @@ export type DecadesResolvers<ContextType = any, ParentType extends ResolversPare
 export type GenreResolvers<ContextType = any, ParentType extends ResolversParentTypes['Genre'] = ResolversParentTypes['Genre']> = ResolversObject<{
   _count?: Resolver<Maybe<ResolversTypes['GenreCount']>, ParentType, ContextType>;
   createdAt?: Resolver<ResolversTypes['DateTimeISO'], ParentType, ContextType>;
+  id?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   movies?: Resolver<Array<ResolversTypes['Movie']>, ParentType, ContextType, Partial<GenreMoviesArgs>>;
   name?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   updatedAt?: Resolver<ResolversTypes['DateTimeISO'], ParentType, ContextType>;
@@ -10735,6 +10788,7 @@ export type GenreCountResolvers<ContextType = any, ParentType extends ResolversP
 export type GenreCountAggregateResolvers<ContextType = any, ParentType extends ResolversParentTypes['GenreCountAggregate'] = ResolversParentTypes['GenreCountAggregate']> = ResolversObject<{
   _all?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
   createdAt?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
+  id?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
   name?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
   updatedAt?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
@@ -10745,6 +10799,7 @@ export type GenreGroupByResolvers<ContextType = any, ParentType extends Resolver
   _max?: Resolver<Maybe<ResolversTypes['GenreMaxAggregate']>, ParentType, ContextType>;
   _min?: Resolver<Maybe<ResolversTypes['GenreMinAggregate']>, ParentType, ContextType>;
   createdAt?: Resolver<ResolversTypes['DateTimeISO'], ParentType, ContextType>;
+  id?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   name?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   updatedAt?: Resolver<ResolversTypes['DateTimeISO'], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
@@ -10752,6 +10807,7 @@ export type GenreGroupByResolvers<ContextType = any, ParentType extends Resolver
 
 export type GenreMaxAggregateResolvers<ContextType = any, ParentType extends ResolversParentTypes['GenreMaxAggregate'] = ResolversParentTypes['GenreMaxAggregate']> = ResolversObject<{
   createdAt?: Resolver<Maybe<ResolversTypes['DateTimeISO']>, ParentType, ContextType>;
+  id?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   name?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   updatedAt?: Resolver<Maybe<ResolversTypes['DateTimeISO']>, ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
@@ -10759,6 +10815,7 @@ export type GenreMaxAggregateResolvers<ContextType = any, ParentType extends Res
 
 export type GenreMinAggregateResolvers<ContextType = any, ParentType extends ResolversParentTypes['GenreMinAggregate'] = ResolversParentTypes['GenreMinAggregate']> = ResolversObject<{
   createdAt?: Resolver<Maybe<ResolversTypes['DateTimeISO']>, ParentType, ContextType>;
+  id?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   name?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   updatedAt?: Resolver<Maybe<ResolversTypes['DateTimeISO']>, ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
@@ -11816,6 +11873,15 @@ export const UserMovieReviewCardItemFragmentDoc = gql`
   }
 }
     ${MovieCardItemFragmentDoc}`;
+export const MovieGenreCardItemFragmentDoc = gql`
+    fragment MovieGenreCardItem on Genre {
+  id
+  name
+  _count {
+    movies
+  }
+}
+    `;
 export const MovieListCardItemFragmentDoc = gql`
     fragment MovieListCardItem on MovieList {
   id
@@ -12181,6 +12247,45 @@ export type GetPersonForPageQueryHookResult = ReturnType<typeof useGetPersonForP
 export type GetPersonForPageLazyQueryHookResult = ReturnType<typeof useGetPersonForPageLazyQuery>;
 export type GetPersonForPageSuspenseQueryHookResult = ReturnType<typeof useGetPersonForPageSuspenseQuery>;
 export type GetPersonForPageQueryResult = Apollo.QueryResult<GetPersonForPageQuery, GetPersonForPageQueryVariables>;
+export const GetMovieGenresForAdminDocument = gql`
+    query GetMovieGenresForAdmin {
+  genres {
+    ...MovieGenreCardItem
+  }
+}
+    ${MovieGenreCardItemFragmentDoc}`;
+
+/**
+ * __useGetMovieGenresForAdminQuery__
+ *
+ * To run a query within a React component, call `useGetMovieGenresForAdminQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetMovieGenresForAdminQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetMovieGenresForAdminQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useGetMovieGenresForAdminQuery(baseOptions?: Apollo.QueryHookOptions<GetMovieGenresForAdminQuery, GetMovieGenresForAdminQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<GetMovieGenresForAdminQuery, GetMovieGenresForAdminQueryVariables>(GetMovieGenresForAdminDocument, options);
+      }
+export function useGetMovieGenresForAdminLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetMovieGenresForAdminQuery, GetMovieGenresForAdminQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<GetMovieGenresForAdminQuery, GetMovieGenresForAdminQueryVariables>(GetMovieGenresForAdminDocument, options);
+        }
+export function useGetMovieGenresForAdminSuspenseQuery(baseOptions?: Apollo.SuspenseQueryHookOptions<GetMovieGenresForAdminQuery, GetMovieGenresForAdminQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useSuspenseQuery<GetMovieGenresForAdminQuery, GetMovieGenresForAdminQueryVariables>(GetMovieGenresForAdminDocument, options);
+        }
+export type GetMovieGenresForAdminQueryHookResult = ReturnType<typeof useGetMovieGenresForAdminQuery>;
+export type GetMovieGenresForAdminLazyQueryHookResult = ReturnType<typeof useGetMovieGenresForAdminLazyQuery>;
+export type GetMovieGenresForAdminSuspenseQueryHookResult = ReturnType<typeof useGetMovieGenresForAdminSuspenseQuery>;
+export type GetMovieGenresForAdminQueryResult = Apollo.QueryResult<GetMovieGenresForAdminQuery, GetMovieGenresForAdminQueryVariables>;
 export const GetUserLikedMoviesDocument = gql`
     query GetUserLikedMovies($searchCriteria: MoviesSearchCriteriaInput!, $orderBy: [MovieOrderByWithRelationAndSearchRelevanceInput!], $userId: String!) {
   searchMovies(
@@ -12609,52 +12714,6 @@ export type GetRecentLikedMoviesQueryHookResult = ReturnType<typeof useGetRecent
 export type GetRecentLikedMoviesLazyQueryHookResult = ReturnType<typeof useGetRecentLikedMoviesLazyQuery>;
 export type GetRecentLikedMoviesSuspenseQueryHookResult = ReturnType<typeof useGetRecentLikedMoviesSuspenseQuery>;
 export type GetRecentLikedMoviesQueryResult = Apollo.QueryResult<GetRecentLikedMoviesQuery, GetRecentLikedMoviesQueryVariables>;
-export const GetUserWatchlistDocument = gql`
-    query GetUserWatchlist($searchCriteria: MoviesSearchCriteriaInput!, $orderBy: [MovieOrderByWithRelationAndSearchRelevanceInput!], $userId: String!) {
-  searchMovies(
-    searchCriteria: $searchCriteria
-    orderBy: $orderBy
-    where: {inWatchlistByUsers: {some: {userId: {equals: $userId}}}}
-  ) {
-    ...MovieCardItem
-  }
-}
-    ${MovieCardItemFragmentDoc}`;
-
-/**
- * __useGetUserWatchlistQuery__
- *
- * To run a query within a React component, call `useGetUserWatchlistQuery` and pass it any options that fit your needs.
- * When your component renders, `useGetUserWatchlistQuery` returns an object from Apollo Client that contains loading, error, and data properties
- * you can use to render your UI.
- *
- * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
- *
- * @example
- * const { data, loading, error } = useGetUserWatchlistQuery({
- *   variables: {
- *      searchCriteria: // value for 'searchCriteria'
- *      orderBy: // value for 'orderBy'
- *      userId: // value for 'userId'
- *   },
- * });
- */
-export function useGetUserWatchlistQuery(baseOptions: Apollo.QueryHookOptions<GetUserWatchlistQuery, GetUserWatchlistQueryVariables> & ({ variables: GetUserWatchlistQueryVariables; skip?: boolean; } | { skip: boolean; }) ) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<GetUserWatchlistQuery, GetUserWatchlistQueryVariables>(GetUserWatchlistDocument, options);
-      }
-export function useGetUserWatchlistLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetUserWatchlistQuery, GetUserWatchlistQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<GetUserWatchlistQuery, GetUserWatchlistQueryVariables>(GetUserWatchlistDocument, options);
-        }
-export function useGetUserWatchlistSuspenseQuery(baseOptions?: Apollo.SuspenseQueryHookOptions<GetUserWatchlistQuery, GetUserWatchlistQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useSuspenseQuery<GetUserWatchlistQuery, GetUserWatchlistQueryVariables>(GetUserWatchlistDocument, options);
-        }
-export type GetUserWatchlistQueryHookResult = ReturnType<typeof useGetUserWatchlistQuery>;
-export type GetUserWatchlistLazyQueryHookResult = ReturnType<typeof useGetUserWatchlistLazyQuery>;
-export type GetUserWatchlistSuspenseQueryHookResult = ReturnType<typeof useGetUserWatchlistSuspenseQuery>;
-export type GetUserWatchlistQueryResult = Apollo.QueryResult<GetUserWatchlistQuery, GetUserWatchlistQueryVariables>;
 export const SearchUserMovieReviewsDocument = gql`
     query SearchUserMovieReviews($searchCriteria: MoviesSearchCriteriaInput!, $userId: String!) {
   movieReviewsSearchWithMovies(
@@ -12746,6 +12805,165 @@ export type GetUserWatchedMoviesQueryHookResult = ReturnType<typeof useGetUserWa
 export type GetUserWatchedMoviesLazyQueryHookResult = ReturnType<typeof useGetUserWatchedMoviesLazyQuery>;
 export type GetUserWatchedMoviesSuspenseQueryHookResult = ReturnType<typeof useGetUserWatchedMoviesSuspenseQuery>;
 export type GetUserWatchedMoviesQueryResult = Apollo.QueryResult<GetUserWatchedMoviesQuery, GetUserWatchedMoviesQueryVariables>;
+export const GetUserWatchlistDocument = gql`
+    query GetUserWatchlist($searchCriteria: MoviesSearchCriteriaInput!, $orderBy: [MovieOrderByWithRelationAndSearchRelevanceInput!], $userId: String!) {
+  searchMovies(
+    searchCriteria: $searchCriteria
+    orderBy: $orderBy
+    where: {inWatchlistByUsers: {some: {userId: {equals: $userId}}}}
+  ) {
+    ...MovieCardItem
+  }
+}
+    ${MovieCardItemFragmentDoc}`;
+
+/**
+ * __useGetUserWatchlistQuery__
+ *
+ * To run a query within a React component, call `useGetUserWatchlistQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetUserWatchlistQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetUserWatchlistQuery({
+ *   variables: {
+ *      searchCriteria: // value for 'searchCriteria'
+ *      orderBy: // value for 'orderBy'
+ *      userId: // value for 'userId'
+ *   },
+ * });
+ */
+export function useGetUserWatchlistQuery(baseOptions: Apollo.QueryHookOptions<GetUserWatchlistQuery, GetUserWatchlistQueryVariables> & ({ variables: GetUserWatchlistQueryVariables; skip?: boolean; } | { skip: boolean; }) ) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<GetUserWatchlistQuery, GetUserWatchlistQueryVariables>(GetUserWatchlistDocument, options);
+      }
+export function useGetUserWatchlistLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetUserWatchlistQuery, GetUserWatchlistQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<GetUserWatchlistQuery, GetUserWatchlistQueryVariables>(GetUserWatchlistDocument, options);
+        }
+export function useGetUserWatchlistSuspenseQuery(baseOptions?: Apollo.SuspenseQueryHookOptions<GetUserWatchlistQuery, GetUserWatchlistQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useSuspenseQuery<GetUserWatchlistQuery, GetUserWatchlistQueryVariables>(GetUserWatchlistDocument, options);
+        }
+export type GetUserWatchlistQueryHookResult = ReturnType<typeof useGetUserWatchlistQuery>;
+export type GetUserWatchlistLazyQueryHookResult = ReturnType<typeof useGetUserWatchlistLazyQuery>;
+export type GetUserWatchlistSuspenseQueryHookResult = ReturnType<typeof useGetUserWatchlistSuspenseQuery>;
+export type GetUserWatchlistQueryResult = Apollo.QueryResult<GetUserWatchlistQuery, GetUserWatchlistQueryVariables>;
+export const DeleteMovieGenreDocument = gql`
+    mutation DeleteMovieGenre($id: String!) {
+  deleteOneGenre(where: {id: $id}) {
+    id
+  }
+}
+    `;
+export type DeleteMovieGenreMutationFn = Apollo.MutationFunction<DeleteMovieGenreMutation, DeleteMovieGenreMutationVariables>;
+
+/**
+ * __useDeleteMovieGenreMutation__
+ *
+ * To run a mutation, you first call `useDeleteMovieGenreMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useDeleteMovieGenreMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [deleteMovieGenreMutation, { data, loading, error }] = useDeleteMovieGenreMutation({
+ *   variables: {
+ *      id: // value for 'id'
+ *   },
+ * });
+ */
+export function useDeleteMovieGenreMutation(baseOptions?: Apollo.MutationHookOptions<DeleteMovieGenreMutation, DeleteMovieGenreMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<DeleteMovieGenreMutation, DeleteMovieGenreMutationVariables>(DeleteMovieGenreDocument, options);
+      }
+export type DeleteMovieGenreMutationHookResult = ReturnType<typeof useDeleteMovieGenreMutation>;
+export type DeleteMovieGenreMutationResult = Apollo.MutationResult<DeleteMovieGenreMutation>;
+export type DeleteMovieGenreMutationOptions = Apollo.BaseMutationOptions<DeleteMovieGenreMutation, DeleteMovieGenreMutationVariables>;
+export const UpsertMovieGenreDocument = gql`
+    mutation UpsertMovieGenre($data: GenreCreateInput!, $updateData: GenreUpdateInput!, $existingGenreId: String!) {
+  upsertOneGenre(
+    where: {id: $existingGenreId}
+    update: $updateData
+    create: $data
+  ) {
+    id
+  }
+}
+    `;
+export type UpsertMovieGenreMutationFn = Apollo.MutationFunction<UpsertMovieGenreMutation, UpsertMovieGenreMutationVariables>;
+
+/**
+ * __useUpsertMovieGenreMutation__
+ *
+ * To run a mutation, you first call `useUpsertMovieGenreMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useUpsertMovieGenreMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [upsertMovieGenreMutation, { data, loading, error }] = useUpsertMovieGenreMutation({
+ *   variables: {
+ *      data: // value for 'data'
+ *      updateData: // value for 'updateData'
+ *      existingGenreId: // value for 'existingGenreId'
+ *   },
+ * });
+ */
+export function useUpsertMovieGenreMutation(baseOptions?: Apollo.MutationHookOptions<UpsertMovieGenreMutation, UpsertMovieGenreMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<UpsertMovieGenreMutation, UpsertMovieGenreMutationVariables>(UpsertMovieGenreDocument, options);
+      }
+export type UpsertMovieGenreMutationHookResult = ReturnType<typeof useUpsertMovieGenreMutation>;
+export type UpsertMovieGenreMutationResult = Apollo.MutationResult<UpsertMovieGenreMutation>;
+export type UpsertMovieGenreMutationOptions = Apollo.BaseMutationOptions<UpsertMovieGenreMutation, UpsertMovieGenreMutationVariables>;
+export const GetMovieGenreForUpdateDocument = gql`
+    query GetMovieGenreForUpdate($id: String!) {
+  genre(where: {id: $id}) {
+    id
+    name
+  }
+}
+    `;
+
+/**
+ * __useGetMovieGenreForUpdateQuery__
+ *
+ * To run a query within a React component, call `useGetMovieGenreForUpdateQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetMovieGenreForUpdateQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetMovieGenreForUpdateQuery({
+ *   variables: {
+ *      id: // value for 'id'
+ *   },
+ * });
+ */
+export function useGetMovieGenreForUpdateQuery(baseOptions: Apollo.QueryHookOptions<GetMovieGenreForUpdateQuery, GetMovieGenreForUpdateQueryVariables> & ({ variables: GetMovieGenreForUpdateQueryVariables; skip?: boolean; } | { skip: boolean; }) ) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<GetMovieGenreForUpdateQuery, GetMovieGenreForUpdateQueryVariables>(GetMovieGenreForUpdateDocument, options);
+      }
+export function useGetMovieGenreForUpdateLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetMovieGenreForUpdateQuery, GetMovieGenreForUpdateQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<GetMovieGenreForUpdateQuery, GetMovieGenreForUpdateQueryVariables>(GetMovieGenreForUpdateDocument, options);
+        }
+export function useGetMovieGenreForUpdateSuspenseQuery(baseOptions?: Apollo.SuspenseQueryHookOptions<GetMovieGenreForUpdateQuery, GetMovieGenreForUpdateQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useSuspenseQuery<GetMovieGenreForUpdateQuery, GetMovieGenreForUpdateQueryVariables>(GetMovieGenreForUpdateDocument, options);
+        }
+export type GetMovieGenreForUpdateQueryHookResult = ReturnType<typeof useGetMovieGenreForUpdateQuery>;
+export type GetMovieGenreForUpdateLazyQueryHookResult = ReturnType<typeof useGetMovieGenreForUpdateLazyQuery>;
+export type GetMovieGenreForUpdateSuspenseQueryHookResult = ReturnType<typeof useGetMovieGenreForUpdateSuspenseQuery>;
+export type GetMovieGenreForUpdateQueryResult = Apollo.QueryResult<GetMovieGenreForUpdateQuery, GetMovieGenreForUpdateQueryVariables>;
 export const DeleteMovieListDocument = gql`
     mutation DeleteMovieList($id: String!) {
   deleteOneMovieList(where: {id: $id}) {
@@ -14443,10 +14661,11 @@ export type DecadesKeySpecifier = ('decades' | DecadesKeySpecifier)[];
 export type DecadesFieldPolicy = {
 	decades?: FieldPolicy<any> | FieldReadFunction<any>
 };
-export type GenreKeySpecifier = ('_count' | 'createdAt' | 'movies' | 'name' | 'updatedAt' | GenreKeySpecifier)[];
+export type GenreKeySpecifier = ('_count' | 'createdAt' | 'id' | 'movies' | 'name' | 'updatedAt' | GenreKeySpecifier)[];
 export type GenreFieldPolicy = {
 	_count?: FieldPolicy<any> | FieldReadFunction<any>,
 	createdAt?: FieldPolicy<any> | FieldReadFunction<any>,
+	id?: FieldPolicy<any> | FieldReadFunction<any>,
 	movies?: FieldPolicy<any> | FieldReadFunction<any>,
 	name?: FieldPolicy<any> | FieldReadFunction<any>,
 	updatedAt?: FieldPolicy<any> | FieldReadFunction<any>
@@ -14455,31 +14674,35 @@ export type GenreCountKeySpecifier = ('movies' | GenreCountKeySpecifier)[];
 export type GenreCountFieldPolicy = {
 	movies?: FieldPolicy<any> | FieldReadFunction<any>
 };
-export type GenreCountAggregateKeySpecifier = ('_all' | 'createdAt' | 'name' | 'updatedAt' | GenreCountAggregateKeySpecifier)[];
+export type GenreCountAggregateKeySpecifier = ('_all' | 'createdAt' | 'id' | 'name' | 'updatedAt' | GenreCountAggregateKeySpecifier)[];
 export type GenreCountAggregateFieldPolicy = {
 	_all?: FieldPolicy<any> | FieldReadFunction<any>,
 	createdAt?: FieldPolicy<any> | FieldReadFunction<any>,
+	id?: FieldPolicy<any> | FieldReadFunction<any>,
 	name?: FieldPolicy<any> | FieldReadFunction<any>,
 	updatedAt?: FieldPolicy<any> | FieldReadFunction<any>
 };
-export type GenreGroupByKeySpecifier = ('_count' | '_max' | '_min' | 'createdAt' | 'name' | 'updatedAt' | GenreGroupByKeySpecifier)[];
+export type GenreGroupByKeySpecifier = ('_count' | '_max' | '_min' | 'createdAt' | 'id' | 'name' | 'updatedAt' | GenreGroupByKeySpecifier)[];
 export type GenreGroupByFieldPolicy = {
 	_count?: FieldPolicy<any> | FieldReadFunction<any>,
 	_max?: FieldPolicy<any> | FieldReadFunction<any>,
 	_min?: FieldPolicy<any> | FieldReadFunction<any>,
 	createdAt?: FieldPolicy<any> | FieldReadFunction<any>,
+	id?: FieldPolicy<any> | FieldReadFunction<any>,
 	name?: FieldPolicy<any> | FieldReadFunction<any>,
 	updatedAt?: FieldPolicy<any> | FieldReadFunction<any>
 };
-export type GenreMaxAggregateKeySpecifier = ('createdAt' | 'name' | 'updatedAt' | GenreMaxAggregateKeySpecifier)[];
+export type GenreMaxAggregateKeySpecifier = ('createdAt' | 'id' | 'name' | 'updatedAt' | GenreMaxAggregateKeySpecifier)[];
 export type GenreMaxAggregateFieldPolicy = {
 	createdAt?: FieldPolicy<any> | FieldReadFunction<any>,
+	id?: FieldPolicy<any> | FieldReadFunction<any>,
 	name?: FieldPolicy<any> | FieldReadFunction<any>,
 	updatedAt?: FieldPolicy<any> | FieldReadFunction<any>
 };
-export type GenreMinAggregateKeySpecifier = ('createdAt' | 'name' | 'updatedAt' | GenreMinAggregateKeySpecifier)[];
+export type GenreMinAggregateKeySpecifier = ('createdAt' | 'id' | 'name' | 'updatedAt' | GenreMinAggregateKeySpecifier)[];
 export type GenreMinAggregateFieldPolicy = {
 	createdAt?: FieldPolicy<any> | FieldReadFunction<any>,
+	id?: FieldPolicy<any> | FieldReadFunction<any>,
 	name?: FieldPolicy<any> | FieldReadFunction<any>,
 	updatedAt?: FieldPolicy<any> | FieldReadFunction<any>
 };

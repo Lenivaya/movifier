@@ -31,22 +31,6 @@ import { MovieCard } from '@/components/movifier/movies/MovieCard'
 import { ArrowDown } from 'lucide-react'
 import { MAX_RATING } from '@/components/movifier/movie-reviews/MovieReviewCard/MovieReviewCard'
 
-const GET_USER_WATCHLIST = gql`
-  query GetUserWatchlist(
-    $searchCriteria: MoviesSearchCriteriaInput!
-    $orderBy: [MovieOrderByWithRelationAndSearchRelevanceInput!]
-    $userId: String!
-  ) {
-    searchMovies(
-      searchCriteria: $searchCriteria
-      orderBy: $orderBy
-      where: { inWatchlistByUsers: { some: { userId: { equals: $userId } } } }
-    ) {
-      ...MovieCardItem
-    }
-  }
-`
-
 export default function DashboardReviewsPage() {
   return <Reviews />
 }

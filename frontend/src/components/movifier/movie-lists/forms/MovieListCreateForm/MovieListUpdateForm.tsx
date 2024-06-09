@@ -18,10 +18,10 @@ const GetMovieListForUpdate = gql`
 `
 
 export const MovieListUpdateForm: FC<{ movieListId: string }> = ({
-  movieListId
+  movieGenreId
 }) => {
   const { data } = useGetMovieListForUpdateQuery({
-    variables: { id: movieListId },
+    variables: { id: movieGenreId },
     fetchPolicy: 'network-only'
   })
 

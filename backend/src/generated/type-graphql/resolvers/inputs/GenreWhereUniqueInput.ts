@@ -11,6 +11,11 @@ export class GenreWhereUniqueInput {
   @TypeGraphQL.Field(_type => String, {
     nullable: true
   })
+  id?: string | undefined;
+
+  @TypeGraphQL.Field(_type => String, {
+    nullable: true
+  })
   name?: string | undefined;
 
   @TypeGraphQL.Field(_type => [GenreWhereInput], {

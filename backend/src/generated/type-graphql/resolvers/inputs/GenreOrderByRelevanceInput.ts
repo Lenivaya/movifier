@@ -10,7 +10,7 @@ export class GenreOrderByRelevanceInput {
   @TypeGraphQL.Field(_type => [GenreOrderByRelevanceFieldEnum], {
     nullable: false
   })
-  fields!: "name"[];
+  fields!: Array<"id" | "name">;
 
   @TypeGraphQL.Field(_type => SortOrder, {
     nullable: false
