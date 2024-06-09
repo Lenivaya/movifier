@@ -6,7 +6,7 @@ import React, {
   useEffect,
   useState
 } from 'react'
-import { MoviesSearchCriteriaInput, useSearchPersonsSuspenseQuery } from '@/lib'
+import { useSearchPersonsSuspenseQuery } from '@/lib'
 import { gql } from '@apollo/client'
 import { useMutative } from 'use-mutative'
 import { SearchBar } from '@/components/movifier/generic/search'
