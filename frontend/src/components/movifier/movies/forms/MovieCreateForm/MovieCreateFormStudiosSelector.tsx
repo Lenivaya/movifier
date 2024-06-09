@@ -151,7 +151,7 @@ export function MovieCreateFormStudiosSelector({
 
         <Input
           onChange={F.debounce((e) => setSearch(e.target.value), 150)}
-          placeholder={'Search for language...'}
+          placeholder={'Search for studio...'}
         ></Input>
       </div>
 

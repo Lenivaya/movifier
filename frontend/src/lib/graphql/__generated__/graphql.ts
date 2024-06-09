@@ -9187,7 +9187,9 @@ export type DeleteMovieCrewMemberTypeMutationVariables = Exact<{
 
 export type DeleteMovieCrewMemberTypeMutation = { __typename?: 'Mutation', deleteOneMovieCrewMemberType?: { __typename?: 'MovieCrewMemberType', id: string } | null };
 
-export type GetMovieCrewMemberTypesForAdminQueryVariables = Exact<{ [key: string]: never; }>;
+export type GetMovieCrewMemberTypesForAdminQueryVariables = Exact<{
+  search?: InputMaybe<Scalars['String']['input']>;
+}>;
 
 
 export type GetMovieCrewMemberTypesForAdminQuery = { __typename?: 'Query', movieCrewMemberTypes: Array<{ __typename?: 'MovieCrewMemberType', id: string, name: string, _count?: { __typename?: 'MovieCrewMemberTypeCount', movieCrewMembers: number } | null }> };
@@ -9420,6 +9422,23 @@ export type GetSelectedMovieGenresQueryVariables = Exact<{
 export type GetSelectedMovieGenresQuery = { __typename?: 'Query', genres: Array<{ __typename?: 'Genre', id: string, name: string, _count?: { __typename?: 'GenreCount', movies: number } | null }> };
 
 export type MinimalisticGenreSearchItemFragment = { __typename?: 'Genre', id: string, name: string };
+
+export type SearchPersonsForMovieCreationQueryVariables = Exact<{
+  search: Scalars['String']['input'];
+  alreadySelectedPersons: Array<Scalars['String']['input']> | Scalars['String']['input'];
+}>;
+
+
+export type SearchPersonsForMovieCreationQuery = { __typename?: 'Query', movieCrewMembers: Array<{ __typename?: 'MovieCrewMember', id: string, name: string, description: string, imdbId: string }> };
+
+export type GetSelectedPersonsQueryVariables = Exact<{
+  selectedIds: Array<Scalars['String']['input']> | Scalars['String']['input'];
+}>;
+
+
+export type GetSelectedPersonsQuery = { __typename?: 'Query', movieCrewMembers: Array<{ __typename?: 'MovieCrewMember', id: string, name: string, photoUrl: string }> };
+
+export type MinimalisticPersonSearchItemFragment = { __typename?: 'MovieCrewMember', id: string, name: string, description: string, imdbId: string };
 
 export type SearchLanguagesForMovieCreationQueryVariables = Exact<{
   search: Scalars['String']['input'];
@@ -12930,6 +12949,14 @@ export const MinimalisticGenreSearchItemFragmentDoc = gql`
   name
 }
     `;
+export const MinimalisticPersonSearchItemFragmentDoc = gql`
+    fragment MinimalisticPersonSearchItem on MovieCrewMember {
+  id
+  name
+  description
+  imdbId
+}
+    `;
 export const MinimalisticLanguageSearchCardItemFragmentDoc = gql`
     fragment MinimalisticLanguageSearchCardItem on MovieSpokenLanguage {
   iso_639_1
@@ -13770,8 +13797,8 @@ export type DeleteMovieCrewMemberTypeMutationHookResult = ReturnType<typeof useD
 export type DeleteMovieCrewMemberTypeMutationResult = Apollo.MutationResult<DeleteMovieCrewMemberTypeMutation>;
 export type DeleteMovieCrewMemberTypeMutationOptions = Apollo.BaseMutationOptions<DeleteMovieCrewMemberTypeMutation, DeleteMovieCrewMemberTypeMutationVariables>;
 export const GetMovieCrewMemberTypesForAdminDocument = gql`
-    query GetMovieCrewMemberTypesForAdmin {
-  movieCrewMemberTypes {
+    query GetMovieCrewMemberTypesForAdmin($search: String = "") {
+  movieCrewMemberTypes(where: {name: {contains: $search, mode: insensitive}}) {
     ...CrewMemberTypeCardItem
   }
 }
@@ -13789,6 +13816,7 @@ export const GetMovieCrewMemberTypesForAdminDocument = gql`
  * @example
  * const { data, loading, error } = useGetMovieCrewMemberTypesForAdminQuery({
  *   variables: {
+ *      search: // value for 'search'
  *   },
  * });
  */
@@ -14910,6 +14938,90 @@ export type GetSelectedMovieGenresQueryHookResult = ReturnType<typeof useGetSele
 export type GetSelectedMovieGenresLazyQueryHookResult = ReturnType<typeof useGetSelectedMovieGenresLazyQuery>;
 export type GetSelectedMovieGenresSuspenseQueryHookResult = ReturnType<typeof useGetSelectedMovieGenresSuspenseQuery>;
 export type GetSelectedMovieGenresQueryResult = Apollo.QueryResult<GetSelectedMovieGenresQuery, GetSelectedMovieGenresQueryVariables>;
+export const SearchPersonsForMovieCreationDocument = gql`
+    query SearchPersonsForMovieCreation($search: String!, $alreadySelectedPersons: [String!]!) {
+  movieCrewMembers(
+    take: 5
+    where: {AND: [{id: {notIn: $alreadySelectedPersons}}, {OR: [{name: {contains: $search, mode: insensitive}}]}]}
+  ) {
+    ...MinimalisticPersonSearchItem
+  }
+}
+    ${MinimalisticPersonSearchItemFragmentDoc}`;
+
+/**
+ * __useSearchPersonsForMovieCreationQuery__
+ *
+ * To run a query within a React component, call `useSearchPersonsForMovieCreationQuery` and pass it any options that fit your needs.
+ * When your component renders, `useSearchPersonsForMovieCreationQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useSearchPersonsForMovieCreationQuery({
+ *   variables: {
+ *      search: // value for 'search'
+ *      alreadySelectedPersons: // value for 'alreadySelectedPersons'
+ *   },
+ * });
+ */
+export function useSearchPersonsForMovieCreationQuery(baseOptions: Apollo.QueryHookOptions<SearchPersonsForMovieCreationQuery, SearchPersonsForMovieCreationQueryVariables> & ({ variables: SearchPersonsForMovieCreationQueryVariables; skip?: boolean; } | { skip: boolean; }) ) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<SearchPersonsForMovieCreationQuery, SearchPersonsForMovieCreationQueryVariables>(SearchPersonsForMovieCreationDocument, options);
+      }
+export function useSearchPersonsForMovieCreationLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<SearchPersonsForMovieCreationQuery, SearchPersonsForMovieCreationQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<SearchPersonsForMovieCreationQuery, SearchPersonsForMovieCreationQueryVariables>(SearchPersonsForMovieCreationDocument, options);
+        }
+export function useSearchPersonsForMovieCreationSuspenseQuery(baseOptions?: Apollo.SuspenseQueryHookOptions<SearchPersonsForMovieCreationQuery, SearchPersonsForMovieCreationQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useSuspenseQuery<SearchPersonsForMovieCreationQuery, SearchPersonsForMovieCreationQueryVariables>(SearchPersonsForMovieCreationDocument, options);
+        }
+export type SearchPersonsForMovieCreationQueryHookResult = ReturnType<typeof useSearchPersonsForMovieCreationQuery>;
+export type SearchPersonsForMovieCreationLazyQueryHookResult = ReturnType<typeof useSearchPersonsForMovieCreationLazyQuery>;
+export type SearchPersonsForMovieCreationSuspenseQueryHookResult = ReturnType<typeof useSearchPersonsForMovieCreationSuspenseQuery>;
+export type SearchPersonsForMovieCreationQueryResult = Apollo.QueryResult<SearchPersonsForMovieCreationQuery, SearchPersonsForMovieCreationQueryVariables>;
+export const GetSelectedPersonsDocument = gql`
+    query GetSelectedPersons($selectedIds: [String!]!) {
+  movieCrewMembers(where: {id: {in: $selectedIds}}) {
+    ...PersonCardItem
+  }
+}
+    ${PersonCardItemFragmentDoc}`;
+
+/**
+ * __useGetSelectedPersonsQuery__
+ *
+ * To run a query within a React component, call `useGetSelectedPersonsQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetSelectedPersonsQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetSelectedPersonsQuery({
+ *   variables: {
+ *      selectedIds: // value for 'selectedIds'
+ *   },
+ * });
+ */
+export function useGetSelectedPersonsQuery(baseOptions: Apollo.QueryHookOptions<GetSelectedPersonsQuery, GetSelectedPersonsQueryVariables> & ({ variables: GetSelectedPersonsQueryVariables; skip?: boolean; } | { skip: boolean; }) ) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<GetSelectedPersonsQuery, GetSelectedPersonsQueryVariables>(GetSelectedPersonsDocument, options);
+      }
+export function useGetSelectedPersonsLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetSelectedPersonsQuery, GetSelectedPersonsQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<GetSelectedPersonsQuery, GetSelectedPersonsQueryVariables>(GetSelectedPersonsDocument, options);
+        }
+export function useGetSelectedPersonsSuspenseQuery(baseOptions?: Apollo.SuspenseQueryHookOptions<GetSelectedPersonsQuery, GetSelectedPersonsQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useSuspenseQuery<GetSelectedPersonsQuery, GetSelectedPersonsQueryVariables>(GetSelectedPersonsDocument, options);
+        }
+export type GetSelectedPersonsQueryHookResult = ReturnType<typeof useGetSelectedPersonsQuery>;
+export type GetSelectedPersonsLazyQueryHookResult = ReturnType<typeof useGetSelectedPersonsLazyQuery>;
+export type GetSelectedPersonsSuspenseQueryHookResult = ReturnType<typeof useGetSelectedPersonsSuspenseQuery>;
+export type GetSelectedPersonsQueryResult = Apollo.QueryResult<GetSelectedPersonsQuery, GetSelectedPersonsQueryVariables>;
 export const SearchLanguagesForMovieCreationDocument = gql`
     query SearchLanguagesForMovieCreation($search: String!, $alreadySelectedLanguages: [String!]!) {
   movieSpokenLanguages(

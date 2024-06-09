@@ -1,5 +1,6 @@
 import * as React from 'react'
-import { useGetMovieCrewMemberTypesForAdminSuspenseQuery } from '@/lib'
+import { useEffect, useState } from 'react'
+import { useGetMovieCrewMemberTypesForAdminQuery } from '@/lib'
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -24,12 +25,14 @@ import {
   IClientSideOffsetPagination,
   IClientSideOffsetPaginationResult
 } from '@/components/movifier/generic/pagination/ClientSideOffsetPagination/ClientSideOffsetPagination'
-import { useEffect, useState } from 'react'
 import { useMutative } from 'use-mutative'
+import { SearchBar } from '@/components/movifier/generic/search'
 
 const GET_MOVIE_CREW_MEMBER_TYPES = gql`
-  query GetMovieCrewMemberTypesForAdmin {
-    movieCrewMemberTypes {
+  query GetMovieCrewMemberTypesForAdmin($search: String = "") {
+    movieCrewMemberTypes(
+      where: { name: { contains: $search, mode: insensitive } }
+    ) {
       ...CrewMemberTypeCardItem
     }
   }
@@ -49,8 +52,10 @@ const DEFAULT_PAGINATION_RESULT: IClientSideOffsetPaginationResult = {
 }
 
 export function MovieCrewMemberTypesAdminPage() {
-  const { data } = useGetMovieCrewMemberTypesForAdminSuspenseQuery({
-    fetchPolicy: 'cache-and-network'
+  const [search, setSearch] = useState('')
+  const { data } = useGetMovieCrewMemberTypesForAdminQuery({
+    fetchPolicy: 'cache-and-network',
+    variables: { search }
   })
 
   const [pagination, setPagination] =
@@ -62,7 +67,7 @@ export function MovieCrewMemberTypesAdminPage() {
     setPagination((prev) => ({
       ...prev,
       currentPage: 1,
-      totalCount: data?.movieCrewMemberTypes.length
+      totalCount: data?.movieCrewMemberTypes.length ?? 0
     }))
   }, [data])
 
@@ -101,6 +106,14 @@ export function MovieCrewMemberTypesAdminPage() {
 
           <Card className={'h-[80vh] relative flex flex-col justify-between'}>
             <CardContent className={'h-full relative'}>
+              <div className={'max-lg:w-full w-5/6 pl-2 pr-2 mx-auto mt-5'}>
+                <SearchBar
+                  search={search || ''}
+                  handleSearch={setSearch}
+                  placeholder='Search for a member type'
+                />
+              </div>
+
               <div className='grid grid-cols-3 justify-center gap-5 m-5'>
                 {data?.movieCrewMemberTypes
                   .slice(paginationResult.startIndex, paginationResult.endIndex)

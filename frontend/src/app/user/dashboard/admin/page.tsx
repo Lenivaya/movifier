@@ -80,9 +80,7 @@ export default function AdminPage() {
             </TabsContent>
 
             <TabsContent value='crew-member-types'>
-              <Suspense fallback={<AppLoader />}>
-                <MovieCrewMemberTypesAdminPage />
-              </Suspense>
+              <MovieCrewMemberTypesAdminPage />
             </TabsContent>
 
             <TabsContent value='movies'>

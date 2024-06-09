@@ -31,6 +31,9 @@ import { MovieCreateFormSpokenLanguagesSelector } from '@/components/movifier/mo
 import { MovieCreateFormGenresSelector } from '@/components/movifier/movies/forms/MovieCreateForm/MovieCreateFormGenresSelector'
 import { Badge } from '@/components/ui/badge'
 import { MovieCreateFormStudiosSelector } from '@/components/movifier/movies/forms/MovieCreateForm/MovieCreateFormStudiosSelector'
+import { MoviePersonsSelection } from '@/components/movifier/movies/forms/MovieCreateForm/types'
+import { MovieCreateFormPersonsSelector } from '@/components/movifier/movies/forms/MovieCreateForm/MovieCreateFormPersonsSelector'
+import { useMutative } from 'use-mutative'
 
 const imbue = Imbue({ subsets: ['latin'] })
 
@@ -69,6 +72,7 @@ export default function MovieCreateForm() {
   const [spokenLanguagesIds, setSpokenLanguagesIds] = useState<string[]>([])
   const [genresIds, setGenresIds] = useState<string[]>([])
   const [studiosIds, setStudiosIds] = useState<string[]>([])
+  const [crewMembers, setCrewMembers] = useMutative<MoviePersonsSelection[]>([])
 
   async function onSubmit(values: z.infer<typeof createMovieSchema>) {}
 
@@ -234,6 +238,13 @@ export default function MovieCreateForm() {
                   <MovieCreateFormStudiosSelector
                     studiosIds={studiosIds}
                     setStudiosIds={setStudiosIds}
+                  />
+
+                  <Separator className={'mb-5'} />
+
+                  <MovieCreateFormPersonsSelector
+                    crewMembers={crewMembers}
+                    setCrewMembers={setCrewMembers}
                   />
 
                   <Separator className={'mb-5'} />
