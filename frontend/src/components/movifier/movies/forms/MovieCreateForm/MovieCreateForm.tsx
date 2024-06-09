@@ -29,6 +29,7 @@ import { Textarea } from '@/components/ui/textarea'
 import { gql } from '@apollo/client'
 import { MovieCreateFormSpokenLanguagesSelector } from '@/components/movifier/movies/forms/MovieCreateForm/MovieCreateFormSpokenLanguagesSelector'
 import { MovieCreateFormGenresSelector } from '@/components/movifier/movies/forms/MovieCreateForm/MovieCreateFormGenresSelector'
+import { Badge } from '@/components/ui/badge'
 
 const imbue = Imbue({ subsets: ['latin'] })
 
@@ -63,6 +64,7 @@ export default function MovieCreateForm() {
 
   const isUpdating = false
 
+  const [alternativeTitles, setAlternativeTitles] = useState<string[]>([])
   const [spokenLanguagesIds, setSpokenLanguagesIds] = useState<string[]>([])
   const [genresIds, setGenresIds] = useState<string[]>([])
 
@@ -148,6 +150,40 @@ export default function MovieCreateForm() {
                               IMDB ID of the movie
                             </FormDescription>
                             <FormMessage />
+                          </FormItem>
+                        )}
+                      />
+
+                      <FormField
+                        control={form.control}
+                        name='alternativeTitles'
+                        render={({ field }) => (
+                          <FormItem>
+                            <FormLabel>Alternative titles</FormLabel>
+                            <FormControl>
+                              <Input
+                                placeholder={
+                                  'comma, separated, list, of, titles...'
+                                }
+                                type={'string'}
+                                {...field}
+                                onChange={(e) => {
+                                  field.onChange(e.target.value)
+                                  setAlternativeTitles(
+                                    e.target.value.split(',') ?? []
+                                  )
+                                }}
+                              />
+                            </FormControl>
+                            <FormMessage />
+
+                            <div className='flex flex-row w-full flex-wrap flex-grow flex-shrink gap-2'>
+                              {alternativeTitles.map((tag, index) => (
+                                <Badge key={index} className={'bg-slate-700'}>
+                                  {tag}
+                                </Badge>
+                              ))}
+                            </div>
                           </FormItem>
                         )}
                       />
