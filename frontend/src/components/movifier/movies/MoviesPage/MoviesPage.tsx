@@ -28,6 +28,10 @@ import {
   IClientSideOffsetPagination,
   IClientSideOffsetPaginationResult
 } from '@/components/movifier/generic/pagination/ClientSideOffsetPagination/ClientSideOffsetPagination'
+import { useIsAdmin } from '@/lib/hooks/CurrentUser'
+import { Link } from 'next-view-transitions'
+import { motion } from 'framer-motion'
+import { PlusCircledIcon } from '@radix-ui/react-icons'
 
 const SearchMovies = gql`
   query SearchMovies(
@@ -96,6 +100,8 @@ export function MoviesPage({
   ) => React.ReactNode
   hideOrdering?: boolean
 }) {
+  const isAdmin = useIsAdmin()
+
   const [searchCriteria, setSearchCriteria] =
     useMutative<MoviesSearchCriteriaInput>(initialSearchCriteria)
   const [orderBy, setOrderBy] =
@@ -166,6 +172,20 @@ export function MoviesPage({
           )}
         </Suspense>
       </div>
+
+      {isAdmin && (
+        <Link href={'/movies/new'} passHref>
+          <motion.div
+            className='absolute z-50 bottom-[90px] -right-10 focus:ring-0 focus:ring-transparent focus:ring-offset-0'
+            whileHover={{ scale: 1.3 }}
+            whileTap={{ scale: 0.9 }}
+            animate={{ x: -90 }}
+            transition={{ type: 'spring', duration: 0.8 }}
+          >
+            <PlusCircledIcon opacity={100} className={'h-[2.5em] w-auto'} />
+          </motion.div>
+        </Link>
+      )}
 
       <div className='sticky bottom-0 pt-3 h-[6vh] w-full overflow-hidden bg-neutral-100/80 transition-all hover:h-[8vh] dark:bg-transparent/60'>
         <ClientSideOffsetPagination

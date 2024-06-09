@@ -8,7 +8,13 @@ import {
   BreadcrumbSeparator
 } from '@/components/ui/breadcrumb'
 import { Link } from 'next-view-transitions'
-import { Card, CardDescription, CardHeader, CardTitle } from '@/components/ui'
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle
+} from '@/components/ui'
 import * as React from 'react'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { MovieGenresAdminPage } from '@/components/movifier/genres/MovieGenresAdminPage/MovieGenresAdminPage'
@@ -16,6 +22,7 @@ import { useDashboardPage } from '@/app/user/dashboard/dashboardPageContext'
 import { Suspense, useEffect } from 'react'
 import { MovieCrewMemberTypesAdminPage } from '@/components/movifier/crew-member-types/MovieCrewMemberTypesAdminPage/MovieCrewMemberTypesAdminPage'
 import { AppLoader } from '@/components/movifier/generic'
+import { MoviesPage } from '@/components/movifier/movies/MoviesPage/MoviesPage'
 
 export default function AdminPage() {
   const { setDashboardPageContext } = useDashboardPage()
@@ -58,11 +65,12 @@ export default function AdminPage() {
           </div>
 
           <Tabs defaultValue={'genres'} className={'h-full'}>
-            <TabsList className='grid w-full grid-cols-2 mb-5'>
+            <TabsList className='grid w-full grid-cols-3 mb-5'>
               <TabsTrigger value='genres'>Genres</TabsTrigger>
               <TabsTrigger value='crew-member-types'>
                 Crew member types
               </TabsTrigger>
+              <TabsTrigger value='movies'>Movies</TabsTrigger>
             </TabsList>
 
             <TabsContent value='genres'>
@@ -75,6 +83,16 @@ export default function AdminPage() {
               <Suspense fallback={<AppLoader />}>
                 <MovieCrewMemberTypesAdminPage />
               </Suspense>
+            </TabsContent>
+
+            <TabsContent value='movies'>
+              <Card className={'relative flex flex-col justify-between pb-0'}>
+                <CardContent className={'pb-0 pr-0 pl-0'}>
+                  <Suspense fallback={<AppLoader />}>
+                    <MoviesPage />
+                  </Suspense>
+                </CardContent>
+              </Card>
             </TabsContent>
           </Tabs>
         </div>

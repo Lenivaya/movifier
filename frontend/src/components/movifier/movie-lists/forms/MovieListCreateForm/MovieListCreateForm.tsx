@@ -60,7 +60,7 @@ export const SearchMovies = gql`
       searchCriteria: { search: $search }
       where: { id: { notIn: $alreadySelectedMovies } }
     ) {
-      ...MinimalisticMovieSearchCardFragmentItem
+      ...MinimalisticMovieSearchCardItem
     }
   }
 `
@@ -405,7 +405,7 @@ function SelectedMovies({
 }
 
 const MinimalisticMovieSearchCardFragment = gql`
-  fragment MinimalisticMovieSearchCardFragmentItem on Movie {
+  fragment MinimalisticMovieSearchCardItem on Movie {
     id
     movieInfo {
       id

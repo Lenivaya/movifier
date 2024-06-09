@@ -9002,7 +9002,7 @@ export type UpsertMovieListMutationVariables = Exact<{
 
 export type UpsertMovieListMutation = { __typename?: 'Mutation', upsertOneMovieList: { __typename?: 'MovieList', id: string } };
 
-export type MinimalisticMovieSearchCardFragmentItemFragment = { __typename?: 'Movie', id: string, movieInfo?: { __typename?: 'MovieInfo', id: string, title: string, releaseDate: any } | null, crewMembers: Array<{ __typename?: 'MovieCrewMemberOnMovie', crewMember: { __typename?: 'MovieCrewMember', id: string, name: string }, movieCrewMemberType: { __typename?: 'MovieCrewMemberType', id: string, name: string } }> };
+export type MinimalisticMovieSearchCardItemFragment = { __typename?: 'Movie', id: string, movieInfo?: { __typename?: 'MovieInfo', id: string, title: string, releaseDate: any } | null, crewMembers: Array<{ __typename?: 'MovieCrewMemberOnMovie', crewMember: { __typename?: 'MovieCrewMember', id: string, name: string }, movieCrewMemberType: { __typename?: 'MovieCrewMemberType', id: string, name: string } }> };
 
 export type GetMovieListForUpdateQueryVariables = Exact<{
   id: Scalars['String']['input'];
@@ -9100,6 +9100,32 @@ export type GenresQueryVariables = Exact<{ [key: string]: never; }>;
 
 
 export type GenresQuery = { __typename?: 'Query', genres: Array<{ __typename?: 'Genre', name: string }> };
+
+export type UpsertMovieMutationVariables = Exact<{
+  data: MovieCreateInput;
+  updateData: MovieUpdateInput;
+  existingMovieId: Scalars['String']['input'];
+}>;
+
+
+export type UpsertMovieMutation = { __typename?: 'Mutation', upsertOneMovie: { __typename?: 'Movie', id: string } };
+
+export type SearchLanguagesForMovieCreationQueryVariables = Exact<{
+  search: Scalars['String']['input'];
+  alreadySelectedLanguages: Array<Scalars['String']['input']> | Scalars['String']['input'];
+}>;
+
+
+export type SearchLanguagesForMovieCreationQuery = { __typename?: 'Query', movieSpokenLanguages: Array<{ __typename?: 'MovieSpokenLanguage', iso_639_1: string, name: string }> };
+
+export type GetSelectedMovieLanguagesQueryVariables = Exact<{
+  spokenLanguagesIds: Array<Scalars['String']['input']> | Scalars['String']['input'];
+}>;
+
+
+export type GetSelectedMovieLanguagesQuery = { __typename?: 'Query', movieSpokenLanguages: Array<{ __typename?: 'MovieSpokenLanguage', iso_639_1: string, name: string }> };
+
+export type MinimalisticLanguageSearchCardItemFragment = { __typename?: 'MovieSpokenLanguage', iso_639_1: string, name: string };
 
 export type PersonPageItemFragment = { __typename?: 'MovieCrewMember', id: string, name: string, imdbId: string, description: string, popularity: number, photoUrl: string };
 
@@ -12347,8 +12373,8 @@ export const MovieListPageItemFragmentDoc = gql`
   }
 }
     ${MovieCardItemFragmentDoc}`;
-export const MinimalisticMovieSearchCardFragmentItemFragmentDoc = gql`
-    fragment MinimalisticMovieSearchCardFragmentItem on Movie {
+export const MinimalisticMovieSearchCardItemFragmentDoc = gql`
+    fragment MinimalisticMovieSearchCardItem on Movie {
   id
   movieInfo {
     id
@@ -12455,6 +12481,12 @@ export const MoviePageItemFragmentDoc = gql`
     ${DirectorNamesTitleItemFragmentDoc}
 ${MoviePagePosterItemFragmentDoc}
 ${MoviePageDetailsTabsItemFragmentDoc}`;
+export const MinimalisticLanguageSearchCardItemFragmentDoc = gql`
+    fragment MinimalisticLanguageSearchCardItem on MovieSpokenLanguage {
+  iso_639_1
+  name
+}
+    `;
 export const PersonPagePosterItemFragmentDoc = gql`
     fragment PersonPagePosterItem on MovieCrewMember {
   photoUrl
@@ -13712,10 +13744,10 @@ export const SearchMoviesForListCreationDocument = gql`
     searchCriteria: {search: $search}
     where: {id: {notIn: $alreadySelectedMovies}}
   ) {
-    ...MinimalisticMovieSearchCardFragmentItem
+    ...MinimalisticMovieSearchCardItem
   }
 }
-    ${MinimalisticMovieSearchCardFragmentItemFragmentDoc}`;
+    ${MinimalisticMovieSearchCardItemFragmentDoc}`;
 
 /**
  * __useSearchMoviesForListCreationQuery__
@@ -14293,6 +14325,129 @@ export type GenresQueryHookResult = ReturnType<typeof useGenresQuery>;
 export type GenresLazyQueryHookResult = ReturnType<typeof useGenresLazyQuery>;
 export type GenresSuspenseQueryHookResult = ReturnType<typeof useGenresSuspenseQuery>;
 export type GenresQueryResult = Apollo.QueryResult<GenresQuery, GenresQueryVariables>;
+export const UpsertMovieDocument = gql`
+    mutation UpsertMovie($data: MovieCreateInput!, $updateData: MovieUpdateInput!, $existingMovieId: String!) {
+  upsertOneMovie(
+    where: {id: $existingMovieId}
+    create: $data
+    update: $updateData
+  ) {
+    id
+  }
+}
+    `;
+export type UpsertMovieMutationFn = Apollo.MutationFunction<UpsertMovieMutation, UpsertMovieMutationVariables>;
+
+/**
+ * __useUpsertMovieMutation__
+ *
+ * To run a mutation, you first call `useUpsertMovieMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useUpsertMovieMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [upsertMovieMutation, { data, loading, error }] = useUpsertMovieMutation({
+ *   variables: {
+ *      data: // value for 'data'
+ *      updateData: // value for 'updateData'
+ *      existingMovieId: // value for 'existingMovieId'
+ *   },
+ * });
+ */
+export function useUpsertMovieMutation(baseOptions?: Apollo.MutationHookOptions<UpsertMovieMutation, UpsertMovieMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<UpsertMovieMutation, UpsertMovieMutationVariables>(UpsertMovieDocument, options);
+      }
+export type UpsertMovieMutationHookResult = ReturnType<typeof useUpsertMovieMutation>;
+export type UpsertMovieMutationResult = Apollo.MutationResult<UpsertMovieMutation>;
+export type UpsertMovieMutationOptions = Apollo.BaseMutationOptions<UpsertMovieMutation, UpsertMovieMutationVariables>;
+export const SearchLanguagesForMovieCreationDocument = gql`
+    query SearchLanguagesForMovieCreation($search: String!, $alreadySelectedLanguages: [String!]!) {
+  movieSpokenLanguages(
+    take: 5
+    where: {AND: [{iso_639_1: {notIn: $alreadySelectedLanguages}}, {OR: [{name: {contains: $search, mode: insensitive}}, {iso_639_1: {contains: $search, mode: insensitive}}]}]}
+  ) {
+    ...MinimalisticLanguageSearchCardItem
+  }
+}
+    ${MinimalisticLanguageSearchCardItemFragmentDoc}`;
+
+/**
+ * __useSearchLanguagesForMovieCreationQuery__
+ *
+ * To run a query within a React component, call `useSearchLanguagesForMovieCreationQuery` and pass it any options that fit your needs.
+ * When your component renders, `useSearchLanguagesForMovieCreationQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useSearchLanguagesForMovieCreationQuery({
+ *   variables: {
+ *      search: // value for 'search'
+ *      alreadySelectedLanguages: // value for 'alreadySelectedLanguages'
+ *   },
+ * });
+ */
+export function useSearchLanguagesForMovieCreationQuery(baseOptions: Apollo.QueryHookOptions<SearchLanguagesForMovieCreationQuery, SearchLanguagesForMovieCreationQueryVariables> & ({ variables: SearchLanguagesForMovieCreationQueryVariables; skip?: boolean; } | { skip: boolean; }) ) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<SearchLanguagesForMovieCreationQuery, SearchLanguagesForMovieCreationQueryVariables>(SearchLanguagesForMovieCreationDocument, options);
+      }
+export function useSearchLanguagesForMovieCreationLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<SearchLanguagesForMovieCreationQuery, SearchLanguagesForMovieCreationQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<SearchLanguagesForMovieCreationQuery, SearchLanguagesForMovieCreationQueryVariables>(SearchLanguagesForMovieCreationDocument, options);
+        }
+export function useSearchLanguagesForMovieCreationSuspenseQuery(baseOptions?: Apollo.SuspenseQueryHookOptions<SearchLanguagesForMovieCreationQuery, SearchLanguagesForMovieCreationQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useSuspenseQuery<SearchLanguagesForMovieCreationQuery, SearchLanguagesForMovieCreationQueryVariables>(SearchLanguagesForMovieCreationDocument, options);
+        }
+export type SearchLanguagesForMovieCreationQueryHookResult = ReturnType<typeof useSearchLanguagesForMovieCreationQuery>;
+export type SearchLanguagesForMovieCreationLazyQueryHookResult = ReturnType<typeof useSearchLanguagesForMovieCreationLazyQuery>;
+export type SearchLanguagesForMovieCreationSuspenseQueryHookResult = ReturnType<typeof useSearchLanguagesForMovieCreationSuspenseQuery>;
+export type SearchLanguagesForMovieCreationQueryResult = Apollo.QueryResult<SearchLanguagesForMovieCreationQuery, SearchLanguagesForMovieCreationQueryVariables>;
+export const GetSelectedMovieLanguagesDocument = gql`
+    query GetSelectedMovieLanguages($spokenLanguagesIds: [String!]!) {
+  movieSpokenLanguages(where: {iso_639_1: {in: $spokenLanguagesIds}}) {
+    ...MinimalisticLanguageSearchCardItem
+  }
+}
+    ${MinimalisticLanguageSearchCardItemFragmentDoc}`;
+
+/**
+ * __useGetSelectedMovieLanguagesQuery__
+ *
+ * To run a query within a React component, call `useGetSelectedMovieLanguagesQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetSelectedMovieLanguagesQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetSelectedMovieLanguagesQuery({
+ *   variables: {
+ *      spokenLanguagesIds: // value for 'spokenLanguagesIds'
+ *   },
+ * });
+ */
+export function useGetSelectedMovieLanguagesQuery(baseOptions: Apollo.QueryHookOptions<GetSelectedMovieLanguagesQuery, GetSelectedMovieLanguagesQueryVariables> & ({ variables: GetSelectedMovieLanguagesQueryVariables; skip?: boolean; } | { skip: boolean; }) ) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<GetSelectedMovieLanguagesQuery, GetSelectedMovieLanguagesQueryVariables>(GetSelectedMovieLanguagesDocument, options);
+      }
+export function useGetSelectedMovieLanguagesLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetSelectedMovieLanguagesQuery, GetSelectedMovieLanguagesQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<GetSelectedMovieLanguagesQuery, GetSelectedMovieLanguagesQueryVariables>(GetSelectedMovieLanguagesDocument, options);
+        }
+export function useGetSelectedMovieLanguagesSuspenseQuery(baseOptions?: Apollo.SuspenseQueryHookOptions<GetSelectedMovieLanguagesQuery, GetSelectedMovieLanguagesQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useSuspenseQuery<GetSelectedMovieLanguagesQuery, GetSelectedMovieLanguagesQueryVariables>(GetSelectedMovieLanguagesDocument, options);
+        }
+export type GetSelectedMovieLanguagesQueryHookResult = ReturnType<typeof useGetSelectedMovieLanguagesQuery>;
+export type GetSelectedMovieLanguagesLazyQueryHookResult = ReturnType<typeof useGetSelectedMovieLanguagesLazyQuery>;
+export type GetSelectedMovieLanguagesSuspenseQueryHookResult = ReturnType<typeof useGetSelectedMovieLanguagesSuspenseQuery>;
+export type GetSelectedMovieLanguagesQueryResult = Apollo.QueryResult<GetSelectedMovieLanguagesQuery, GetSelectedMovieLanguagesQueryVariables>;
 export const GetUserWatchedPersonMovieIdsDocument = gql`
     query GetUserWatchedPersonMovieIds($userId: String!, $personId: String!) {
   movies(
