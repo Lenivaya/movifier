@@ -1,6 +1,8 @@
 import {
   useGetSelectedMovieGenresQuery,
-  useSearchGenresForMovieCreationQuery
+  useGetSelectedMovieStudiosQuery,
+  useSearchGenresForMovieCreationQuery,
+  useSearchStudiosForMovieCreationQuery
 } from '@/lib'
 import { Button } from '@/components/ui'
 import React, { Dispatch, SetStateAction, useState } from 'react'
@@ -21,60 +23,59 @@ import { F } from '@mobily/ts-belt'
 import { Minus } from 'lucide-react'
 import { gql } from '@apollo/client'
 import { MovieGenreCard } from '@/components/movifier/genres/MovieGenreCard/MovieGenreCard'
+import { Badge } from '@/components/ui/badge'
 
-export const SearchGenresForMovieCreation = gql`
-  query SearchGenresForMovieCreation(
+export const SearchStudiosForMovieCreation = gql`
+  query SearchStudiosForMovieCreation(
     $search: String!
-    $alreadySelectedGenres: [String!]!
+    $alreadySelectedStudios: [String!]!
   ) {
-    genres(
+    movieStudios(
       take: 5
       where: {
         AND: [
-          { id: { notIn: $alreadySelectedGenres } }
+          { id: { notIn: $alreadySelectedStudios } }
           { name: { contains: $search, mode: insensitive } }
         ]
       }
     ) {
-      ...MinimalisticGenreSearchItem
+      ...MinimalisticStudioSearchItem
     }
   }
 
-  query GetSelectedMovieGenres($genresIds: [String!]!) {
-    genres(where: { id: { in: $genresIds } }) {
-      ...MovieGenreCardItem
+  query GetSelectedMovieStudios($selectedIds: [String!]!) {
+    movieStudios(where: { id: { in: $selectedIds } }) {
+      ...MinimalisticStudioSearchItem
     }
   }
-`
 
-const MinimalisticGenreSearchFragment = gql`
-  fragment MinimalisticGenreSearchItem on Genre {
+  fragment MinimalisticStudioSearchItem on MovieStudio {
     id
     name
   }
 `
 
-function SelectedGenres({
-  genresIds,
-  setGenresIds
+function SelectedStudios({
+  studiosIds,
+  setStudiosIds
 }: {
-  genresIds: string[]
-  setGenresIds: Dispatch<SetStateAction<string[]>>
+  studiosIds: string[]
+  setStudiosIds: Dispatch<SetStateAction<string[]>>
 }) {
-  const { data } = useGetSelectedMovieGenresQuery({
-    variables: { genresIds: genresIds },
+  const { data } = useGetSelectedMovieStudiosQuery({
+    variables: { selectedIds: studiosIds },
     fetchPolicy: 'cache-and-network'
   })
 
   return (
     <div className='flex flex-shrink flex-grow flex-row flex-wrap justify-center gap-5'>
-      {data?.genres.map((genre) => (
-        <div key={genre.id} className={'flex flex-col gap-3'}>
-          <MovieGenreCard {...genre} />
+      {data?.movieStudios.map((studio) => (
+        <div key={studio.id} className={'flex flex-col gap-3'}>
+          <Badge>{studio.name}</Badge>
           <Button
             variant={'destructive'}
             onClick={(_) =>
-              setGenresIds((prev) => prev.filter((id) => id !== genre.id))
+              setStudiosIds((prev) => prev.filter((id) => id !== studio.id))
             }
           >
             <Minus />
@@ -85,30 +86,30 @@ function SelectedGenres({
   )
 }
 
-export function MovieCreateFormGenresSelector({
-  genresIds,
-  setGenresIds
+export function MovieCreateFormStudiosSelector({
+  studiosIds,
+  setStudiosIds
 }: {
-  genresIds: string[]
-  setGenresIds: Dispatch<SetStateAction<string[]>>
+  studiosIds: string[]
+  setStudiosIds: Dispatch<SetStateAction<string[]>>
 }) {
   const [search, setSearch] = useState('')
-  const { data: genresSearchData } = useSearchGenresForMovieCreationQuery({
+  const { data: studioSearchData } = useSearchStudiosForMovieCreationQuery({
     variables: {
       search: search,
-      alreadySelectedGenres: genresIds
+      alreadySelectedStudios: studiosIds
     },
     fetchPolicy: 'cache-and-network'
   })
-  const isGenresFound =
+  const isStudiosFound =
     isSome(search) &&
-    isSome(genresSearchData?.genres) &&
-    genresSearchData?.genres?.length > 0
+    isSome(studioSearchData?.movieStudios) &&
+    studioSearchData?.movieStudios?.length > 0
 
   return (
     <div className={'flex flex-col gap-5'}>
       <div className='grid grid-cols-[40%_60%] gap-2'>
-        <Popover open={isGenresFound && search.length > 0}>
+        <Popover open={isStudiosFound && search.length > 0}>
           <PopoverTrigger autoFocus={false}>
             <Button
               variant={'outline'}
@@ -117,7 +118,7 @@ export function MovieCreateFormGenresSelector({
               type={'button'}
               disabled
             >
-              Add genre
+              Add studio
             </Button>
           </PopoverTrigger>
           <PopoverContent
@@ -128,18 +129,18 @@ export function MovieCreateFormGenresSelector({
             <Command autoFocus={false}>
               <CommandEmpty>No genres found</CommandEmpty>
               <CommandList autoFocus={false}>
-                {(genresSearchData?.genres ?? []).map((genre) => {
+                {(studioSearchData?.movieStudios ?? []).map((studio) => {
                   return (
                     <CommandItem
                       autoFocus={false}
-                      key={genre.id}
-                      value={genre.name}
+                      key={studio.id}
+                      value={studio.name}
                       className={'flex flex-row gap-3'}
                       onSelect={(_e) => {
-                        setGenresIds((prev) => [...prev, genre.id])
+                        setStudiosIds((prev) => [...prev, studio.id])
                       }}
                     >
-                      {genre.name}
+                      {studio.name}
                     </CommandItem>
                   )
                 })}
@@ -154,7 +155,7 @@ export function MovieCreateFormGenresSelector({
         ></Input>
       </div>
 
-      <SelectedGenres {...{ genresIds, setGenresIds }} />
+      <SelectedStudios {...{ studiosIds, setStudiosIds }} />
     </div>
   )
 }

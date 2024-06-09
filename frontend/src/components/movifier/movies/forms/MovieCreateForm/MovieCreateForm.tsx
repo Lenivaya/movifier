@@ -30,6 +30,7 @@ import { gql } from '@apollo/client'
 import { MovieCreateFormSpokenLanguagesSelector } from '@/components/movifier/movies/forms/MovieCreateForm/MovieCreateFormSpokenLanguagesSelector'
 import { MovieCreateFormGenresSelector } from '@/components/movifier/movies/forms/MovieCreateForm/MovieCreateFormGenresSelector'
 import { Badge } from '@/components/ui/badge'
+import { MovieCreateFormStudiosSelector } from '@/components/movifier/movies/forms/MovieCreateForm/MovieCreateFormStudiosSelector'
 
 const imbue = Imbue({ subsets: ['latin'] })
 
@@ -67,6 +68,7 @@ export default function MovieCreateForm() {
   const [alternativeTitles, setAlternativeTitles] = useState<string[]>([])
   const [spokenLanguagesIds, setSpokenLanguagesIds] = useState<string[]>([])
   const [genresIds, setGenresIds] = useState<string[]>([])
+  const [studiosIds, setStudiosIds] = useState<string[]>([])
 
   async function onSubmit(values: z.infer<typeof createMovieSchema>) {}
 
@@ -225,6 +227,13 @@ export default function MovieCreateForm() {
                   <MovieCreateFormGenresSelector
                     genresIds={genresIds}
                     setGenresIds={setGenresIds}
+                  />
+
+                  <Separator className={'mb-5'} />
+
+                  <MovieCreateFormStudiosSelector
+                    studiosIds={studiosIds}
+                    setStudiosIds={setStudiosIds}
                   />
 
                   <Separator className={'mb-5'} />
