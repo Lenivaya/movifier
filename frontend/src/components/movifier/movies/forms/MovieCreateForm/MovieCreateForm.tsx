@@ -7,18 +7,8 @@ import {
   CardTitle,
   Separator
 } from '@/components/ui'
-import { cn, useUpsertMovieMutation } from '@/lib'
-import React, { Dispatch, SetStateAction, useState } from 'react'
-import { Imbue } from 'next/font/google'
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger
-} from '@/components/ui/dialog'
-import { motion } from 'framer-motion'
+import { cn, GetMovieForUpdateQuery, useUpsertMovieMutation } from '@/lib'
+import React, { useEffect, useState } from 'react'
 import { z } from 'zod'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
@@ -48,7 +38,6 @@ import { useCurrentUser } from '@/lib/hooks/CurrentUser'
 import { isSome } from '@/lib/types'
 import { toast } from '@/components/ui/use-toast'
 import { D, Option } from '@mobily/ts-belt'
-import { Skeleton } from '@/components/ui/skeleton'
 import { Calendar } from '@/components/ui/calendar'
 import {
   Popover,
@@ -59,8 +48,8 @@ import { format } from 'date-fns'
 import { CalendarIcon } from '@radix-ui/react-icons'
 import { Link } from 'next-view-transitions'
 import { ToastAction } from '@/components/ui/toast'
-
-const imbue = Imbue({ subsets: ['latin'] })
+import { create } from 'mutative'
+import { MoviePagePosterForm } from '@/components/movifier/movies/forms/MovieCreateForm/MoviePagePosterForm'
 
 export const UpsertMovie = gql`
   mutation UpsertMovie(
@@ -87,7 +76,11 @@ const createMovieSchema = z.object({
   releaseDate: z.date()
 })
 
-export default function MovieCreateForm() {
+export default function MovieCreateForm({
+  movieToUpdate
+}: {
+  movieToUpdate?: Option<GetMovieForUpdateQuery['movie']>
+}) {
   const user = useCurrentUser()
   const isSignedIn = isSome(user)
   const isAdmin = isSignedIn && user.role === 'ADMIN'
@@ -96,7 +89,7 @@ export default function MovieCreateForm() {
     resolver: zodResolver(createMovieSchema)
   })
 
-  const isUpdating = false
+  const isUpdating = isSome(movieToUpdate)
 
   const [posterUrl, setPosterUrl] = useState<Option<string>>(null)
   const [alternativeTitles, setAlternativeTitles] = useState<string[]>([])
@@ -106,6 +99,47 @@ export default function MovieCreateForm() {
   const [crewMembers, setCrewMembers] = useMutative<MoviePersonsSelection[]>([])
 
   const [upsertMovie] = useUpsertMovieMutation()
+
+  useEffect(() => {
+    form.reset({
+      title: movieToUpdate?.movieInfo?.title ?? '',
+      imdbId: movieToUpdate?.movieInfo?.imdbId ?? '',
+      description: movieToUpdate?.movieInfo?.description ?? '',
+      alternativeTitles:
+        movieToUpdate?.movieInfo?.alternativeTitles.join(' ') ?? '',
+      releaseDate: isSome(movieToUpdate?.movieInfo?.releaseDate)
+        ? new Date(movieToUpdate?.movieInfo?.releaseDate)
+        : new Date(),
+      durationInMinutes: movieToUpdate?.movieInfo?.durationInMinutes ?? 0
+    })
+    setPosterUrl(movieToUpdate?.movieInfo?.posterUrl ?? null)
+    setAlternativeTitles(movieToUpdate?.movieInfo?.alternativeTitles ?? [])
+    setSpokenLanguagesIds(
+      movieToUpdate?.spokenLanguages.map((lang) => lang.iso_639_1) ?? []
+    )
+    setGenresIds(movieToUpdate?.genres.map((genre) => genre.id) ?? [])
+    setStudiosIds(movieToUpdate?.studios.map((studio) => studio.id) ?? [])
+
+    const crewMembersTransformed = new Map<string, MoviePersonsSelection>()
+    for (const member of movieToUpdate?.crewMembers ?? []) {
+      const key = member.crewMember.id
+      const value = crewMembersTransformed.get(key)
+      if (value) {
+        crewMembersTransformed.set(
+          key,
+          create(value, (draft) => {
+            draft.personOnMovieRoles.push(member.movieCrewMemberType)
+          })
+        )
+      } else {
+        crewMembersTransformed.set(key, {
+          movieCrewMemberId: key,
+          personOnMovieRoles: [member.movieCrewMemberType]
+        })
+      }
+    }
+    setCrewMembers(Array.from(crewMembersTransformed.values()))
+  }, [movieToUpdate])
 
   async function onSubmit(values: z.infer<typeof createMovieSchema>) {
     if (!isAdmin)
@@ -142,13 +176,16 @@ export default function MovieCreateForm() {
 
     await upsertMovie({
       variables: {
-        existingMovieId: '',
+        existingMovieId: movieToUpdate?.id ?? '',
         data: {
           genres: {
             connect: genresIds.map((id) => ({ id }))
           },
           studios: {
             connect: studiosIds.map((id) => ({ id }))
+          },
+          spokenLanguages: {
+            connect: spokenLanguagesIds.map((id) => ({ iso_639_1: id }))
           },
           crewMembers: {
             create: crewMembersTransformed.map(([member, role]) => ({
@@ -177,22 +214,60 @@ export default function MovieCreateForm() {
           studios: {
             connect: studiosIds.map((id) => ({ id }))
           },
+          spokenLanguages: {
+            connect: spokenLanguagesIds.map((id) => ({ iso_639_1: id }))
+          },
           crewMembers: {
-            create: crewMembersTransformed.map(([member, role]) => ({
-              crewMember: {
-                connect: { id: member.movieCrewMemberId }
+            connectOrCreate: crewMembersTransformed.map(([member, role]) => ({
+              where: {
+                movieId_movieCrewMemberId_movieCrewMemberTypeId: {
+                  movieId: movieToUpdate?.id ?? '',
+                  movieCrewMemberId: member.movieCrewMemberId,
+                  movieCrewMemberTypeId: role.id
+                }
               },
-              movieCrewMemberType: {
-                connect: { id: role.id }
+              create: {
+                crewMember: {
+                  connect: { id: member.movieCrewMemberId }
+                },
+                movieCrewMemberType: {
+                  connect: { id: role.id }
+                }
               }
             }))
           },
           movieInfo: {
-            create: {
-              ...D.deleteKeys(values, ['alternativeTitles']),
-              posterUrl: posterUrl ?? '',
-              alternativeTitles: {
-                set: alternativeTitles
+            upsert: {
+              update: {
+                // ...D.deleteKeys(values, ['alternativeTitles']),
+                title: {
+                  set: values.title
+                },
+                description: {
+                  set: values.description
+                },
+                imdbId: {
+                  set: values.imdbId
+                },
+                durationInMinutes: {
+                  set: values.durationInMinutes
+                },
+                releaseDate: {
+                  set: values.releaseDate
+                },
+                posterUrl: {
+                  set: posterUrl ?? ''
+                },
+                alternativeTitles: {
+                  set: alternativeTitles
+                }
+              },
+              create: {
+                ...D.deleteKeys(values, ['alternativeTitles']),
+                posterUrl: posterUrl ?? '',
+                alternativeTitles: {
+                  set: alternativeTitles
+                }
               }
             }
           }
@@ -451,57 +526,5 @@ export default function MovieCreateForm() {
         </div>
       </div>
     </div>
-  )
-}
-
-export function MoviePagePosterForm({
-  posterUrl,
-  setPosterUrl
-}: {
-  posterUrl: Option<string>
-  setPosterUrl: Dispatch<SetStateAction<Option<string>>>
-}) {
-  return (
-    <Dialog>
-      <DialogTrigger asChild>
-        {isSome(posterUrl) ? (
-          <motion.img
-            src={posterUrl ?? ''}
-            className={
-              'w-auto justify-self-end align-top rounded-lg max-w-full sticky top-5 overflow-hidden shadow-2xl drop-shadow-lg'
-            }
-            whileHover={{
-              scale: 1.05,
-              transition: { duration: 0.5 }
-            }}
-            transition={{ type: 'spring', duration: 0.8 }}
-          ></motion.img>
-        ) : (
-          <motion.div
-            className='bg-cover overflow-hidden'
-            whileHover={{
-              scale: 1.05,
-              transition: { duration: 0.5 }
-            }}
-            transition={{ type: 'spring', duration: 0.8 }}
-          >
-            <Skeleton className={'w-[500px] h-[700px]'} />
-          </motion.div>
-        )}
-      </DialogTrigger>
-
-      <DialogContent className='border-0'>
-        <DialogHeader>
-          <DialogTitle>Movie poster</DialogTitle>
-          <DialogDescription>Create movie poster</DialogDescription>
-        </DialogHeader>
-
-        <Input
-          value={posterUrl ?? ''}
-          onChange={(e) => setPosterUrl(e.target.value)}
-          placeholder={'Specify poster url'}
-        ></Input>
-      </DialogContent>
-    </Dialog>
   )
 }
