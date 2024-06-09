@@ -22,6 +22,13 @@ import { MovieGenreCard } from '@/components/movifier/genres/MovieGenreCard/Movi
 import { motion } from 'framer-motion'
 import { PlusCircledIcon } from '@radix-ui/react-icons'
 import { gql } from '@apollo/client'
+import {
+  ClientSideOffsetPagination,
+  IClientSideOffsetPagination,
+  IClientSideOffsetPaginationResult
+} from '@/components/movifier/generic/pagination/ClientSideOffsetPagination/ClientSideOffsetPagination'
+import { useEffect, useState } from 'react'
+import { useMutative } from 'use-mutative'
 
 const GET_MOVIE_GENRES = gql`
   query GetMovieGenresForAdmin {
@@ -31,10 +38,36 @@ const GET_MOVIE_GENRES = gql`
   }
 `
 
+export const DEFAULT_PAGE_SIZE = 6
+
+const DEFAULT_PAGINATION: IClientSideOffsetPagination = {
+  currentPage: 1,
+  totalCount: 0,
+  pageSize: DEFAULT_PAGE_SIZE * 10
+}
+
+const DEFAULT_PAGINATION_RESULT: IClientSideOffsetPaginationResult = {
+  startIndex: 0,
+  endIndex: DEFAULT_PAGE_SIZE
+}
+
 export function MovieGenresAdminPage() {
   const { data } = useGetMovieGenresForAdminSuspenseQuery({
     fetchPolicy: 'cache-and-network'
   })
+
+  const [pagination, setPagination] =
+    useState<IClientSideOffsetPagination>(DEFAULT_PAGINATION)
+  const [paginationResult, setPaginationResult] =
+    useMutative<IClientSideOffsetPaginationResult>(DEFAULT_PAGINATION_RESULT)
+
+  useEffect(() => {
+    setPagination((prev) => ({
+      ...prev,
+      currentPage: 1,
+      totalCount: data?.genres.length
+    }))
+  }, [data])
 
   return (
     <div className='flex flex-col sm:gap-4 sm:py-4 sm:pl-14'>
@@ -69,12 +102,12 @@ export function MovieGenresAdminPage() {
             </Card>
           </div>
 
-          <Card className={'min-h-full'}>
+          <Card className={'h-[80vh] relative flex flex-col justify-between'}>
             <CardContent>
-              <div className='flex flex-wrap justify-center gap-5 m-5'>
-                {data?.genres.map((genre) => (
-                  <MovieGenreCard key={genre.id} {...genre} />
-                ))}
+              <div className='grid grid-cols-3 justify-center gap-5 m-5'>
+                {data?.genres
+                  .slice(paginationResult.startIndex, paginationResult.endIndex)
+                  .map((genre) => <MovieGenreCard key={genre.id} {...genre} />)}
               </div>
 
               <Link href={'/movies/genres/new'} passHref>
@@ -92,6 +125,14 @@ export function MovieGenresAdminPage() {
                 </motion.div>
               </Link>
             </CardContent>
+            <div className='sticky bottom-0 pt-3 h-[6vh] w-full overflow-hidden bg-neutral-100/80 transition-all hover:h-[8vh] dark:bg-transparent/60'>
+              <ClientSideOffsetPagination
+                pagination={pagination}
+                setPagination={setPagination}
+                paginationResult={paginationResult}
+                setPaginationResult={setPaginationResult}
+              />
+            </div>
           </Card>
         </div>
       </main>
