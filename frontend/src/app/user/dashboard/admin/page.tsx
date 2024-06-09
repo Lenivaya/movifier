@@ -74,9 +74,7 @@ export default function AdminPage() {
             </TabsList>
 
             <TabsContent value='genres'>
-              <Suspense fallback={<AppLoader />}>
-                <MovieGenresAdminPage />
-              </Suspense>
+              <MovieGenresAdminPage />
             </TabsContent>
 
             <TabsContent value='crew-member-types'>

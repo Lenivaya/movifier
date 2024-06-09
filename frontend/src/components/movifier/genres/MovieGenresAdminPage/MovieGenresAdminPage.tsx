@@ -1,8 +1,6 @@
 import * as React from 'react'
-import {
-  useGetMovieGenresForAdminQuery,
-  useGetMovieGenresForAdminSuspenseQuery
-} from '@/lib'
+import { useEffect, useState } from 'react'
+import { useGetMovieGenresForAdminQuery } from '@/lib'
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -27,12 +25,14 @@ import {
   IClientSideOffsetPagination,
   IClientSideOffsetPaginationResult
 } from '@/components/movifier/generic/pagination/ClientSideOffsetPagination/ClientSideOffsetPagination'
-import { useEffect, useState } from 'react'
 import { useMutative } from 'use-mutative'
+import { SearchBar } from '@/components/movifier/generic/search'
 
 const GET_MOVIE_GENRES = gql`
-  query GetMovieGenresForAdmin {
-    genres {
+  query GetMovieGenresForAdmin($search: String = "") {
+    genres(
+      where: { OR: [{ name: { contains: $search, mode: insensitive } }] }
+    ) {
       ...MovieGenreCardItem
     }
   }
@@ -52,8 +52,10 @@ const DEFAULT_PAGINATION_RESULT: IClientSideOffsetPaginationResult = {
 }
 
 export function MovieGenresAdminPage() {
-  const { data } = useGetMovieGenresForAdminSuspenseQuery({
-    fetchPolicy: 'cache-and-network'
+  const [search, setSearch] = useState('')
+  const { data } = useGetMovieGenresForAdminQuery({
+    fetchPolicy: 'cache-and-network',
+    variables: { search }
   })
 
   const [pagination, setPagination] =
@@ -65,7 +67,7 @@ export function MovieGenresAdminPage() {
     setPagination((prev) => ({
       ...prev,
       currentPage: 1,
-      totalCount: data?.genres.length
+      totalCount: data?.genres.length ?? 0
     }))
   }, [data])
 
@@ -104,6 +106,14 @@ export function MovieGenresAdminPage() {
 
           <Card className={'h-[80vh] relative flex flex-col justify-between'}>
             <CardContent>
+              <div className={'max-lg:w-full w-5/6 pl-2 pr-2 mx-auto mt-5'}>
+                <SearchBar
+                  search={search || ''}
+                  handleSearch={setSearch}
+                  placeholder='Search for a member type'
+                />
+              </div>
+
               <div className='grid grid-cols-3 justify-center gap-5 m-5'>
                 {data?.genres
                   .slice(paginationResult.startIndex, paginationResult.endIndex)

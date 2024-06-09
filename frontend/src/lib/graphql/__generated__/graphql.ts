@@ -9219,7 +9219,9 @@ export type DeleteMovieGenreMutation = { __typename?: 'Mutation', deleteOneGenre
 
 export type MovieGenreCardItemFragment = { __typename?: 'Genre', id: string, name: string, _count?: { __typename?: 'GenreCount', movies: number } | null };
 
-export type GetMovieGenresForAdminQueryVariables = Exact<{ [key: string]: never; }>;
+export type GetMovieGenresForAdminQueryVariables = Exact<{
+  search?: InputMaybe<Scalars['String']['input']>;
+}>;
 
 
 export type GetMovieGenresForAdminQuery = { __typename?: 'Query', genres: Array<{ __typename?: 'Genre', id: string, name: string, _count?: { __typename?: 'GenreCount', movies: number } | null }> };
@@ -13964,8 +13966,8 @@ export type DeleteMovieGenreMutationHookResult = ReturnType<typeof useDeleteMovi
 export type DeleteMovieGenreMutationResult = Apollo.MutationResult<DeleteMovieGenreMutation>;
 export type DeleteMovieGenreMutationOptions = Apollo.BaseMutationOptions<DeleteMovieGenreMutation, DeleteMovieGenreMutationVariables>;
 export const GetMovieGenresForAdminDocument = gql`
-    query GetMovieGenresForAdmin {
-  genres {
+    query GetMovieGenresForAdmin($search: String = "") {
+  genres(where: {OR: [{name: {contains: $search, mode: insensitive}}]}) {
     ...MovieGenreCardItem
   }
 }
@@ -13983,6 +13985,7 @@ export const GetMovieGenresForAdminDocument = gql`
  * @example
  * const { data, loading, error } = useGetMovieGenresForAdminQuery({
  *   variables: {
+ *      search: // value for 'search'
  *   },
  * });
  */
