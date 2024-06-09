@@ -22,6 +22,9 @@ export const PersonCardFragment = gql`
   }
 `
 
+const fallbackImageUrl =
+  'https://www.lighting.philips.com.sg/content/dam/b2b-philips-lighting/ecat-fallback.png?wid=93&hei=93&qlt=82' // Replace with your actual fallback image URL
+
 export const PersonCard: FC<
   PersonCardItemFragment & HTMLAttributes<HTMLDivElement>
 > = ({ className, id, name, photoUrl }) => {
@@ -47,6 +50,9 @@ export const PersonCard: FC<
               src={photoUrl ?? ''}
               alt={name ?? ''}
               className='object-fill w-full'
+              onError={(e) => {
+                e.currentTarget.src = fallbackImageUrl
+              }}
             ></img>
           </CardHeader>
 
