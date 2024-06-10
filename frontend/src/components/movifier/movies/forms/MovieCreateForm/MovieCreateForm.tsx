@@ -144,7 +144,7 @@ export default function MovieCreateForm({
   async function onSubmit(values: z.infer<typeof createMovieSchema>) {
     if (!isAdmin)
       return toast({
-        title: 'You need to be signed in and be an adming'
+        title: 'You need to be signed in and be an admin'
       })
 
     if (isNone(posterUrl))

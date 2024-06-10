@@ -1,11 +1,9 @@
-import React, { FC, useCallback, useState } from 'react'
+import React, { FC } from 'react'
 import { gql } from '@apollo/client'
 import {
   MovieListPageItemFragment,
   useGetUserLikedMovieIdsInMovieListSuspenseQuery,
-  useGetUserWatchedMovieIdsInMovieListSuspenseQuery,
-  useUpsertMovieListCommentMutation,
-  useUpsertMovieListMutation
+  useGetUserWatchedMovieIdsInMovieListSuspenseQuery
 } from '@/lib'
 import {
   Button,
@@ -28,8 +26,6 @@ import { Link } from 'next-view-transitions'
 import { DeleteMovieListButton } from '@/components/movifier/movie-lists/DeleteMovieListButton'
 import { MovieListLikedButton } from '@/components/movifier/movie-lists/MovieListLikedButton'
 import { isSome } from '@/lib/types'
-import { MovieListCommentCard } from '@/components/movifier/movie-lists/comments/MovieListCommentCard'
-import { Textarea } from '@/components/ui/textarea'
 
 export const MovieListPageFragment = gql`
   fragment MovieListPageItem on MovieList {

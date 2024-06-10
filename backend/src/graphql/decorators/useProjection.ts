@@ -1,5 +1,5 @@
-import { MiddlewareFn, UseMiddleware } from "type-graphql";
-import { PrismaSelect } from "@paljs/plugins";
+import { MiddlewareFn, UseMiddleware } from 'type-graphql'
+import { PrismaSelect } from '@paljs/plugins'
 
 // export function UseProjection() {
 //   return createMethodDecorator(async ({ args, context, info }, next) => {
@@ -18,11 +18,9 @@ import { PrismaSelect } from "@paljs/plugins";
 // }
 
 const ProjectionMiddleWare: MiddlewareFn = async ({ args, info }, next) => {
-  const select = new PrismaSelect(info).value;
-  args.select = select.select;
-  args.where = { aga: "da" };
-  console.log(args);
-  return next();
-};
+  const select = new PrismaSelect(info).value
+  args.select = select.select
+  return next()
+}
 
-export const UseProjection = () => UseMiddleware(ProjectionMiddleWare);
+export const UseProjection = () => UseMiddleware(ProjectionMiddleWare)

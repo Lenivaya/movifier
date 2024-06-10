@@ -24,6 +24,7 @@ import { maxTokensPlugin } from '@escape.tech/graphql-armor-max-tokens'
 import { maxDepthPlugin } from '@escape.tech/graphql-armor-max-depth'
 import { maxDirectivesPlugin } from '@escape.tech/graphql-armor-max-directives'
 import { maxAliasesPlugin } from '@escape.tech/graphql-armor-max-aliases'
+import authChecker from 'typegraphql-authchecker'
 import { MovieDb } from 'moviedb-promise'
 
 export const app = fastify({
@@ -53,7 +54,8 @@ export async function buildApp() {
   applyResolversEnhanceMap(resolversEnhanceMap)
   const schema = await buildSchema({
     resolvers,
-    validate: false
+    validate: false,
+    authChecker: authChecker
   })
 
   const prisma = new PrismaClient({
