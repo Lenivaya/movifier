@@ -21,8 +21,25 @@ services:
     networks:
       - movifier-network
 
+  imgpush:
+    image: hauxir/imgpush:latest
+    container_name: imgpush
+    volumes:
+      - data-images:/images
+    networks:
+      - movifier-network
+    ports:
+      - "5000:5000"
+    environment:
+      - MAX_UPLOADS_PER_MINUTE=100
+      - MAX_UPLOADS_PER_HOUR=5000
+      - MAX_UPLOADS_PER_DAY=100000
+      - NAME_STRATEGY=uuidv4
+#      - VALID_SIZES=[150,300,600,900,1200]
+
 volumes:
   movifier-db-data:
+  data-images:
 networks:
   movifier-network:
     driver: bridge

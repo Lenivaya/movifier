@@ -1,5 +1,5 @@
 import { Option } from '@mobily/ts-belt'
-import React, { Dispatch, SetStateAction } from 'react'
+import React, { Dispatch, SetStateAction, useEffect, useState } from 'react'
 import {
   Dialog,
   DialogContent,
@@ -12,6 +12,8 @@ import { isSome } from '@/lib/types'
 import { motion } from 'framer-motion'
 import { Skeleton } from '@/components/ui/skeleton'
 import { Input } from '@/components/ui/input'
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
+import { ImageUploader } from '@/components/movifier/generic/ImageUploader'
 
 export function MoviePagePosterForm({
   posterUrl,
@@ -20,10 +22,16 @@ export function MoviePagePosterForm({
   posterUrl: Option<string>
   setPosterUrl: Dispatch<SetStateAction<Option<string>>>
 }) {
+  const [errorLoadingImage, setErrorLoadingImage] = useState(false)
+
+  useEffect(() => {
+    setErrorLoadingImage(false)
+  }, [posterUrl])
+
   return (
     <Dialog>
       <DialogTrigger asChild>
-        {isSome(posterUrl) ? (
+        {isSome(posterUrl) && !errorLoadingImage ? (
           <motion.img
             src={posterUrl ?? ''}
             className={
@@ -34,6 +42,9 @@ export function MoviePagePosterForm({
               transition: { duration: 0.5 }
             }}
             transition={{ type: 'spring', duration: 0.8 }}
+            onError={(e) => {
+              setErrorLoadingImage(true)
+            }}
           ></motion.img>
         ) : (
           <motion.div
@@ -55,11 +66,24 @@ export function MoviePagePosterForm({
           <DialogDescription>Create movie poster</DialogDescription>
         </DialogHeader>
 
-        <Input
-          value={posterUrl ?? ''}
-          onChange={(e) => setPosterUrl(e.target.value)}
-          placeholder={'Specify poster url'}
-        ></Input>
+        <Tabs defaultValue={'url'} className={'w-auto mx-auto mb-5'}>
+          <TabsList className={'mb-5'}>
+            <TabsTrigger value={'url'}>Paste an url</TabsTrigger>
+            <TabsTrigger value={'upload'}>Upload an image</TabsTrigger>
+          </TabsList>
+
+          <TabsContent value={'url'}>
+            <Input
+              value={posterUrl ?? ''}
+              onChange={(e) => setPosterUrl(e.target.value)}
+              placeholder={'Specify poster url'}
+            ></Input>
+          </TabsContent>
+
+          <TabsContent value={'upload'}>
+            <ImageUploader imageUrl={posterUrl} setImageUrl={setPosterUrl} />
+          </TabsContent>
+        </Tabs>
       </DialogContent>
     </Dialog>
   )
