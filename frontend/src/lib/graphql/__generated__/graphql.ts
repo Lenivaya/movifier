@@ -9492,6 +9492,13 @@ export type GetMovieForUpdateQuery = { __typename?: 'Query', movie?: { __typenam
 
 export type PersonCardItemFragment = { __typename?: 'MovieCrewMember', id: string, name: string, photoUrl: string };
 
+export type DeletePersonMutationVariables = Exact<{
+  id: Scalars['String']['input'];
+}>;
+
+
+export type DeletePersonMutation = { __typename?: 'Mutation', deleteOneMovieCrewMember?: { __typename?: 'MovieCrewMember', id: string } | null };
+
 export type PersonPageItemFragment = { __typename?: 'MovieCrewMember', id: string, name: string, imdbId: string, description: string, popularity: number, photoUrl: string };
 
 export type GetUserWatchedPersonMovieIdsQueryVariables = Exact<{
@@ -9536,6 +9543,22 @@ export type SearchPersonsQueryVariables = Exact<{
 
 
 export type SearchPersonsQuery = { __typename?: 'Query', movieCrewMembers: Array<{ __typename?: 'MovieCrewMember', id: string, name: string, photoUrl: string }> };
+
+export type UpsertPersonMutationVariables = Exact<{
+  data: MovieCrewMemberCreateInput;
+  updateData: MovieCrewMemberUpdateInput;
+  existingId: Scalars['String']['input'];
+}>;
+
+
+export type UpsertPersonMutation = { __typename?: 'Mutation', upsertOneMovieCrewMember: { __typename?: 'MovieCrewMember', id: string } };
+
+export type GetPersonForUpdateQueryVariables = Exact<{
+  id: Scalars['String']['input'];
+}>;
+
+
+export type GetPersonForUpdateQuery = { __typename?: 'Query', movieCrewMember?: { __typename?: 'MovieCrewMember', id: string, name: string, photoUrl: string, description: string, popularity: number, imdbId: string } | null };
 
 export type LoginUserMutationVariables = Exact<{
   data: UserLoginInput;
@@ -15308,6 +15331,39 @@ export type GetMovieForUpdateQueryHookResult = ReturnType<typeof useGetMovieForU
 export type GetMovieForUpdateLazyQueryHookResult = ReturnType<typeof useGetMovieForUpdateLazyQuery>;
 export type GetMovieForUpdateSuspenseQueryHookResult = ReturnType<typeof useGetMovieForUpdateSuspenseQuery>;
 export type GetMovieForUpdateQueryResult = Apollo.QueryResult<GetMovieForUpdateQuery, GetMovieForUpdateQueryVariables>;
+export const DeletePersonDocument = gql`
+    mutation DeletePerson($id: String!) {
+  deleteOneMovieCrewMember(where: {id: $id}) {
+    id
+  }
+}
+    `;
+export type DeletePersonMutationFn = Apollo.MutationFunction<DeletePersonMutation, DeletePersonMutationVariables>;
+
+/**
+ * __useDeletePersonMutation__
+ *
+ * To run a mutation, you first call `useDeletePersonMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useDeletePersonMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [deletePersonMutation, { data, loading, error }] = useDeletePersonMutation({
+ *   variables: {
+ *      id: // value for 'id'
+ *   },
+ * });
+ */
+export function useDeletePersonMutation(baseOptions?: Apollo.MutationHookOptions<DeletePersonMutation, DeletePersonMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<DeletePersonMutation, DeletePersonMutationVariables>(DeletePersonDocument, options);
+      }
+export type DeletePersonMutationHookResult = ReturnType<typeof useDeletePersonMutation>;
+export type DeletePersonMutationResult = Apollo.MutationResult<DeletePersonMutation>;
+export type DeletePersonMutationOptions = Apollo.BaseMutationOptions<DeletePersonMutation, DeletePersonMutationVariables>;
 export const GetUserWatchedPersonMovieIdsDocument = gql`
     query GetUserWatchedPersonMovieIds($userId: String!, $personId: String!) {
   movies(
@@ -15533,6 +15589,90 @@ export type SearchPersonsQueryHookResult = ReturnType<typeof useSearchPersonsQue
 export type SearchPersonsLazyQueryHookResult = ReturnType<typeof useSearchPersonsLazyQuery>;
 export type SearchPersonsSuspenseQueryHookResult = ReturnType<typeof useSearchPersonsSuspenseQuery>;
 export type SearchPersonsQueryResult = Apollo.QueryResult<SearchPersonsQuery, SearchPersonsQueryVariables>;
+export const UpsertPersonDocument = gql`
+    mutation UpsertPerson($data: MovieCrewMemberCreateInput!, $updateData: MovieCrewMemberUpdateInput!, $existingId: String!) {
+  upsertOneMovieCrewMember(
+    where: {id: $existingId}
+    create: $data
+    update: $updateData
+  ) {
+    id
+  }
+}
+    `;
+export type UpsertPersonMutationFn = Apollo.MutationFunction<UpsertPersonMutation, UpsertPersonMutationVariables>;
+
+/**
+ * __useUpsertPersonMutation__
+ *
+ * To run a mutation, you first call `useUpsertPersonMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useUpsertPersonMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [upsertPersonMutation, { data, loading, error }] = useUpsertPersonMutation({
+ *   variables: {
+ *      data: // value for 'data'
+ *      updateData: // value for 'updateData'
+ *      existingId: // value for 'existingId'
+ *   },
+ * });
+ */
+export function useUpsertPersonMutation(baseOptions?: Apollo.MutationHookOptions<UpsertPersonMutation, UpsertPersonMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<UpsertPersonMutation, UpsertPersonMutationVariables>(UpsertPersonDocument, options);
+      }
+export type UpsertPersonMutationHookResult = ReturnType<typeof useUpsertPersonMutation>;
+export type UpsertPersonMutationResult = Apollo.MutationResult<UpsertPersonMutation>;
+export type UpsertPersonMutationOptions = Apollo.BaseMutationOptions<UpsertPersonMutation, UpsertPersonMutationVariables>;
+export const GetPersonForUpdateDocument = gql`
+    query GetPersonForUpdate($id: String!) {
+  movieCrewMember(where: {id: $id}) {
+    id
+    name
+    photoUrl
+    description
+    popularity
+    imdbId
+  }
+}
+    `;
+
+/**
+ * __useGetPersonForUpdateQuery__
+ *
+ * To run a query within a React component, call `useGetPersonForUpdateQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetPersonForUpdateQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetPersonForUpdateQuery({
+ *   variables: {
+ *      id: // value for 'id'
+ *   },
+ * });
+ */
+export function useGetPersonForUpdateQuery(baseOptions: Apollo.QueryHookOptions<GetPersonForUpdateQuery, GetPersonForUpdateQueryVariables> & ({ variables: GetPersonForUpdateQueryVariables; skip?: boolean; } | { skip: boolean; }) ) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<GetPersonForUpdateQuery, GetPersonForUpdateQueryVariables>(GetPersonForUpdateDocument, options);
+      }
+export function useGetPersonForUpdateLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetPersonForUpdateQuery, GetPersonForUpdateQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<GetPersonForUpdateQuery, GetPersonForUpdateQueryVariables>(GetPersonForUpdateDocument, options);
+        }
+export function useGetPersonForUpdateSuspenseQuery(baseOptions?: Apollo.SuspenseQueryHookOptions<GetPersonForUpdateQuery, GetPersonForUpdateQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useSuspenseQuery<GetPersonForUpdateQuery, GetPersonForUpdateQueryVariables>(GetPersonForUpdateDocument, options);
+        }
+export type GetPersonForUpdateQueryHookResult = ReturnType<typeof useGetPersonForUpdateQuery>;
+export type GetPersonForUpdateLazyQueryHookResult = ReturnType<typeof useGetPersonForUpdateLazyQuery>;
+export type GetPersonForUpdateSuspenseQueryHookResult = ReturnType<typeof useGetPersonForUpdateSuspenseQuery>;
+export type GetPersonForUpdateQueryResult = Apollo.QueryResult<GetPersonForUpdateQuery, GetPersonForUpdateQueryVariables>;
 export const LoginUserDocument = gql`
     mutation LoginUser($data: UserLoginInput!) {
   loginUser(data: $data) {

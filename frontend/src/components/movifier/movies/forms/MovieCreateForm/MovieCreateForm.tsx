@@ -35,7 +35,7 @@ import {
 import { MovieCreateFormPersonsSelector } from '@/components/movifier/movies/forms/MovieCreateForm/MovieCreateFormPersonsSelector'
 import { useMutative } from 'use-mutative'
 import { useCurrentUser } from '@/lib/hooks/CurrentUser'
-import { isSome } from '@/lib/types'
+import { isNone, isSome } from '@/lib/types'
 import { toast } from '@/components/ui/use-toast'
 import { D, Option } from '@mobily/ts-belt'
 import { Calendar } from '@/components/ui/calendar'
@@ -145,6 +145,11 @@ export default function MovieCreateForm({
     if (!isAdmin)
       return toast({
         title: 'You need to be signed in and be an adming'
+      })
+
+    if (isNone(posterUrl))
+      return toast({
+        title: 'No poster selected'
       })
 
     if (spokenLanguagesIds.length <= 0)

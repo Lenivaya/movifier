@@ -1,4 +1,5 @@
 import {
+  NaNtoZero,
   PersonPageItemFragment,
   useGetPersonMovieCountSuspenseQuery,
   useGetUserLikedPersonMovieIdsSuspenseQuery,
@@ -110,11 +111,11 @@ export function PersonPage(person: PersonPageItemFragment) {
 
   const moviesCount = moviesCountData?.movies.length
 
-  const watchedPercent = Math.round(
-    (userWatchedMovieIdsData?.movies.length / moviesCount) * 100
+  const watchedPercent = NaNtoZero(
+    Math.round((userWatchedMovieIdsData?.movies.length / moviesCount) * 100)
   )
-  const likedPercent = Math.round(
-    (userLikedMovieIdsData?.movies.length / moviesCount) * 100
+  const likedPercent = NaNtoZero(
+    Math.round((userLikedMovieIdsData?.movies.length / moviesCount) * 100)
   )
 
   return (

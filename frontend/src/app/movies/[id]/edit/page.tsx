@@ -1,6 +1,6 @@
 'use client'
 
-import { MovieUpdateForm } from '@/components/movifier/movies/forms/MovieCreateForm/MovieUpdateForm'
+import { MovieUpdateForm } from '@/components/movifier/movies/forms/MovieUpdateForm'
 
 export default function EditMoviePage({ params }: { params: { id: string } }) {
   return (

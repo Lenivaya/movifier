@@ -7,3 +7,5 @@ export function cn(...inputs: ClassValue[]) {
 
 export const isString = (value: any): value is string =>
   typeof value === 'string'
+
+export const NaNtoZero = (value: number) => (isNaN(value) ? 0 : value)

@@ -101,7 +101,7 @@ export function PersonsPage({
       </div>
 
       {isAdmin && (
-        <Link href={'/movies/new'} passHref>
+        <Link href={'/persons/new'} passHref>
           <motion.div
             className='absolute z-50 bottom-[90px] -right-10 focus:ring-0 focus:ring-transparent focus:ring-offset-0'
             whileHover={{ scale: 1.3 }}

@@ -1,4 +1,4 @@
-import { useDeleteMovieMutation } from '@/lib'
+import { useDeletePersonMutation } from '@/lib'
 import React, { useCallback, useState } from 'react'
 import { useIsAdmin } from '@/lib/hooks/CurrentUser'
 import { toast } from '@/components/ui/use-toast'
@@ -26,7 +26,7 @@ export const DeleteMovie = gql`
 `
 
 export function DeleteMovieButton({ id }: { id: string }) {
-  const [deleteMovie] = useDeleteMovieMutation()
+  const [deleteMovie] = useDeletePersonMutation()
   const [isDialogOpened, setIsDialogOpened] = useState(false)
 
   const isAdmin = useIsAdmin()
