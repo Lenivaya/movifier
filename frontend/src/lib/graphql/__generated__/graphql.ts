@@ -5343,8 +5343,19 @@ export type MovieStudio = {
   _count?: Maybe<MovieStudioCount>;
   createdAt: Scalars['DateTimeISO']['output'];
   id: Scalars['String']['output'];
+  movies: Array<Movie>;
   name: Scalars['String']['output'];
   updatedAt: Scalars['DateTimeISO']['output'];
+};
+
+
+export type MovieStudioMoviesArgs = {
+  cursor?: InputMaybe<MovieWhereUniqueInput>;
+  distinct?: InputMaybe<Array<MovieScalarFieldEnum>>;
+  orderBy?: InputMaybe<Array<MovieOrderByWithRelationAndSearchRelevanceInput>>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+  take?: InputMaybe<Scalars['Int']['input']>;
+  where?: InputMaybe<MovieWhereInput>;
 };
 
 export type MovieStudioCount = {
@@ -12634,6 +12645,7 @@ export type MovieStudioResolvers<ContextType = any, ParentType extends Resolvers
   _count?: Resolver<Maybe<ResolversTypes['MovieStudioCount']>, ParentType, ContextType>;
   createdAt?: Resolver<ResolversTypes['DateTimeISO'], ParentType, ContextType>;
   id?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  movies?: Resolver<Array<ResolversTypes['Movie']>, ParentType, ContextType, Partial<MovieStudioMoviesArgs>>;
   name?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   updatedAt?: Resolver<ResolversTypes['DateTimeISO'], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
@@ -17479,11 +17491,12 @@ export type MovieStatsFieldPolicy = {
 	totalLikesCount?: FieldPolicy<any> | FieldReadFunction<any>,
 	totalRatingsCount?: FieldPolicy<any> | FieldReadFunction<any>
 };
-export type MovieStudioKeySpecifier = ('_count' | 'createdAt' | 'id' | 'name' | 'updatedAt' | MovieStudioKeySpecifier)[];
+export type MovieStudioKeySpecifier = ('_count' | 'createdAt' | 'id' | 'movies' | 'name' | 'updatedAt' | MovieStudioKeySpecifier)[];
 export type MovieStudioFieldPolicy = {
 	_count?: FieldPolicy<any> | FieldReadFunction<any>,
 	createdAt?: FieldPolicy<any> | FieldReadFunction<any>,
 	id?: FieldPolicy<any> | FieldReadFunction<any>,
+	movies?: FieldPolicy<any> | FieldReadFunction<any>,
 	name?: FieldPolicy<any> | FieldReadFunction<any>,
 	updatedAt?: FieldPolicy<any> | FieldReadFunction<any>
 };

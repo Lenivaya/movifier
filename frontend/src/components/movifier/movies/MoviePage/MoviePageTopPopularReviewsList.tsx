@@ -18,10 +18,10 @@ export const GET_POPULAR_MOVIE_REVIEWS = gql`
 `
 
 export const MoviePageTopPopularReviewsList: FC<{ movieId: string }> = ({
-  personId
+  movieId
 }) => {
   const { data } = usePopularMovieReviewsSuspenseQuery({
-    variables: { personId: personId },
+    variables: { movieId: movieId },
     fetchPolicy: 'cache-and-network'
   })
 

@@ -17,10 +17,10 @@ export const GET_RECENT_MOVIE_REVIEWS = gql`
   }
 `
 export const MoviePageTopRecentReviewsList: FC<{ movieId: string }> = ({
-  personId
+  movieId
 }) => {
   const { data } = useRecentMovieReviewsSuspenseQuery({
-    variables: { personId: personId },
+    variables: { movieId },
     fetchPolicy: 'cache-and-network'
   })
 
