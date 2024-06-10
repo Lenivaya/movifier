@@ -9816,6 +9816,13 @@ export type UpsertMovieMutationVariables = Exact<{
 
 export type UpsertMovieMutation = { __typename?: 'Mutation', upsertOneMovie: { __typename?: 'Movie', id: string } };
 
+export type LoadFromTmdbMutationVariables = Exact<{
+  imdbId: Scalars['String']['input'];
+}>;
+
+
+export type LoadFromTmdbMutation = { __typename?: 'Mutation', fetchMovieFromTmdb?: { __typename?: 'Movie', id: string } | null };
+
 export type SearchPersonsForMovieCreationQueryVariables = Exact<{
   search: Scalars['String']['input'];
   alreadySelectedPersons: Array<Scalars['String']['input']> | Scalars['String']['input'];
@@ -15662,6 +15669,39 @@ export function useUpsertMovieMutation(baseOptions?: Apollo.MutationHookOptions<
 export type UpsertMovieMutationHookResult = ReturnType<typeof useUpsertMovieMutation>;
 export type UpsertMovieMutationResult = Apollo.MutationResult<UpsertMovieMutation>;
 export type UpsertMovieMutationOptions = Apollo.BaseMutationOptions<UpsertMovieMutation, UpsertMovieMutationVariables>;
+export const LoadFromTmdbDocument = gql`
+    mutation LoadFromTMDB($imdbId: String!) {
+  fetchMovieFromTmdb(imdbId: $imdbId) {
+    id
+  }
+}
+    `;
+export type LoadFromTmdbMutationFn = Apollo.MutationFunction<LoadFromTmdbMutation, LoadFromTmdbMutationVariables>;
+
+/**
+ * __useLoadFromTmdbMutation__
+ *
+ * To run a mutation, you first call `useLoadFromTmdbMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useLoadFromTmdbMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [loadFromTmdbMutation, { data, loading, error }] = useLoadFromTmdbMutation({
+ *   variables: {
+ *      imdbId: // value for 'imdbId'
+ *   },
+ * });
+ */
+export function useLoadFromTmdbMutation(baseOptions?: Apollo.MutationHookOptions<LoadFromTmdbMutation, LoadFromTmdbMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<LoadFromTmdbMutation, LoadFromTmdbMutationVariables>(LoadFromTmdbDocument, options);
+      }
+export type LoadFromTmdbMutationHookResult = ReturnType<typeof useLoadFromTmdbMutation>;
+export type LoadFromTmdbMutationResult = Apollo.MutationResult<LoadFromTmdbMutation>;
+export type LoadFromTmdbMutationOptions = Apollo.BaseMutationOptions<LoadFromTmdbMutation, LoadFromTmdbMutationVariables>;
 export const SearchPersonsForMovieCreationDocument = gql`
     query SearchPersonsForMovieCreation($search: String!, $alreadySelectedPersons: [String!]!) {
   movieCrewMembers(

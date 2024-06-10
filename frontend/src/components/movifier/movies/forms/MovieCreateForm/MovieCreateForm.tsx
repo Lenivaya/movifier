@@ -7,8 +7,13 @@ import {
   CardTitle,
   Separator
 } from '@/components/ui'
-import { cn, GetMovieForUpdateQuery, useUpsertMovieMutation } from '@/lib'
-import React, { useEffect, useState } from 'react'
+import {
+  cn,
+  GetMovieForUpdateQuery,
+  useLoadFromTmdbMutation,
+  useUpsertMovieMutation
+} from '@/lib'
+import React, { useCallback, useEffect, useState } from 'react'
 import { z } from 'zod'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
@@ -50,6 +55,8 @@ import { Link } from 'next-view-transitions'
 import { ToastAction } from '@/components/ui/toast'
 import { create } from 'mutative'
 import { MoviePagePosterForm } from '@/components/movifier/movies/forms/MovieCreateForm/MoviePagePosterForm'
+import { useRouter } from 'next/navigation'
+import { AppLoader } from '@/components/movifier/generic'
 
 export const UpsertMovie = gql`
   mutation UpsertMovie(
@@ -62,6 +69,14 @@ export const UpsertMovie = gql`
       create: $data
       update: $updateData
     ) {
+      id
+    }
+  }
+`
+
+export const LoadFromTMDB = gql`
+  mutation LoadFromTMDB($imdbId: String!) {
+    fetchMovieFromTmdb(imdbId: $imdbId) {
       id
     }
   }
@@ -81,6 +96,8 @@ export default function MovieCreateForm({
 }: {
   movieToUpdate?: Option<GetMovieForUpdateQuery['movie']>
 }) {
+  const router = useRouter()
+
   const user = useCurrentUser()
   const isSignedIn = isSome(user)
   const isAdmin = isSignedIn && user.role === 'ADMIN'
@@ -99,6 +116,7 @@ export default function MovieCreateForm({
   const [crewMembers, setCrewMembers] = useMutative<MoviePersonsSelection[]>([])
 
   const [upsertMovie] = useUpsertMovieMutation()
+  const [loadFromTmdb, { loading: tmdbLoading }] = useLoadFromTmdbMutation()
 
   useEffect(() => {
     form.reset({
@@ -106,7 +124,7 @@ export default function MovieCreateForm({
       imdbId: movieToUpdate?.movieInfo?.imdbId ?? '',
       description: movieToUpdate?.movieInfo?.description ?? '',
       alternativeTitles:
-        movieToUpdate?.movieInfo?.alternativeTitles.join(' ') ?? '',
+        movieToUpdate?.movieInfo?.alternativeTitles.join(',') ?? '',
       releaseDate: isSome(movieToUpdate?.movieInfo?.releaseDate)
         ? new Date(movieToUpdate?.movieInfo?.releaseDate)
         : new Date(),
@@ -140,6 +158,28 @@ export default function MovieCreateForm({
     }
     setCrewMembers(Array.from(crewMembersTransformed.values()))
   }, [movieToUpdate])
+
+  const onTmdbLoadClick = useCallback(
+    async (_event: React.MouseEvent<HTMLButtonElement>) => {
+      const valid = await form.trigger('imdbId')
+      if (!valid) return toast({ title: 'Imdb id is not valid' })
+
+      const imdbId = form.getValues('imdbId')
+      await loadFromTmdb({
+        variables: { imdbId },
+        onCompleted: ({ fetchMovieFromTmdb }) => {
+          router.push('/movies/' + fetchMovieFromTmdb?.id + '/edit')
+        },
+        onError: (error) => {
+          console.error(error)
+          toast({
+            title: "Couldn't fetch movie from tmdb"
+          })
+        }
+      })
+    },
+    [form, loadFromTmdb, router]
+  )
 
   async function onSubmit(values: z.infer<typeof createMovieSchema>) {
     if (!isAdmin)
@@ -297,6 +337,8 @@ export default function MovieCreateForm({
     })
   }
 
+  if (tmdbLoading) return <AppLoader />
+
   return (
     <div className={'h-[120vh] w-full pt-5 pb-5'}>
       <div className={'h-full'}>
@@ -370,13 +412,18 @@ export default function MovieCreateForm({
                         render={({ field }) => (
                           <FormItem>
                             <FormLabel>IMDB ID</FormLabel>
-                            <FormControl>
-                              <Input
-                                placeholder={'IMDB ID of the movie...'}
-                                type={'string'}
-                                {...field}
-                              />
-                            </FormControl>
+                            <div className='flex flex-row gap-5'>
+                              <FormControl>
+                                <Input
+                                  placeholder={'IMDB ID of the movie...'}
+                                  type={'string'}
+                                  {...field}
+                                />
+                              </FormControl>
+                              <Button type={'button'} onClick={onTmdbLoadClick}>
+                                Load from tmdb
+                              </Button>
+                            </div>
                             <FormDescription>
                               IMDB ID of the movie
                             </FormDescription>
@@ -523,7 +570,9 @@ export default function MovieCreateForm({
 
                   <Separator className={'mb-5'} />
 
-                  <Button type='submit'>Submit</Button>
+                  <Button type='submit' disabled={tmdbLoading}>
+                    Submit
+                  </Button>
                 </form>
               </Form>
             </CardContent>
