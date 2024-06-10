@@ -1,9 +1,11 @@
-import { FC } from 'react'
+import React, { FC, useCallback, useState } from 'react'
 import { gql } from '@apollo/client'
 import {
   MovieListPageItemFragment,
   useGetUserLikedMovieIdsInMovieListSuspenseQuery,
-  useGetUserWatchedMovieIdsInMovieListSuspenseQuery
+  useGetUserWatchedMovieIdsInMovieListSuspenseQuery,
+  useUpsertMovieListCommentMutation,
+  useUpsertMovieListMutation
 } from '@/lib'
 import {
   Button,
@@ -26,7 +28,8 @@ import { Link } from 'next-view-transitions'
 import { DeleteMovieListButton } from '@/components/movifier/movie-lists/DeleteMovieListButton'
 import { MovieListLikedButton } from '@/components/movifier/movie-lists/MovieListLikedButton'
 import { isSome } from '@/lib/types'
-import { z } from 'zod'
+import { MovieListCommentCard } from '@/components/movifier/movie-lists/comments/MovieListCommentCard'
+import { Textarea } from '@/components/ui/textarea'
 
 export const MovieListPageFragment = gql`
   fragment MovieListPageItem on MovieList {
@@ -38,6 +41,10 @@ export const MovieListPageFragment = gql`
     movies {
       id
       ...MovieCardItem
+    }
+
+    comments(take: 5, orderBy: [{ createdAt: desc }]) {
+      ...MovieListCommentCardItem
     }
 
     movieListAuthor {
@@ -84,7 +91,8 @@ export const MovieListPage: FC<MovieListPageItemFragment> = ({
   name,
   description,
   movies,
-  movieListAuthor
+  movieListAuthor,
+  comments
 }) => {
   const user = useCurrentUser()
   const isSignedIn = isSome(user)

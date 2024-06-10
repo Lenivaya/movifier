@@ -207,6 +207,8 @@ model MovieListComment {
 
   userId String
   user   MovifierAppUser @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, movieListId])
 }
 
 model MovieListLikedByUser {

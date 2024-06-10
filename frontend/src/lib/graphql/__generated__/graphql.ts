@@ -71,6 +71,13 @@ export type AggregateMovieList = {
   _min?: Maybe<MovieListMinAggregate>;
 };
 
+export type AggregateMovieListComment = {
+  __typename?: 'AggregateMovieListComment';
+  _count?: Maybe<MovieListCommentCountAggregate>;
+  _max?: Maybe<MovieListCommentMaxAggregate>;
+  _min?: Maybe<MovieListCommentMinAggregate>;
+};
+
 export type AggregateMovieListLikedByUser = {
   __typename?: 'AggregateMovieListLikedByUser';
   _count?: Maybe<MovieListLikedByUserCountAggregate>;
@@ -2484,9 +2491,49 @@ export type MovieListComment = {
   content: Scalars['String']['output'];
   createdAt: Scalars['DateTimeISO']['output'];
   id: Scalars['String']['output'];
+  movieList: MovieList;
   movieListId: Scalars['String']['output'];
   updatedAt: Scalars['DateTimeISO']['output'];
+  user: MovifierAppUser;
   userId: Scalars['String']['output'];
+};
+
+export type MovieListCommentCountAggregate = {
+  __typename?: 'MovieListCommentCountAggregate';
+  _all: Scalars['Int']['output'];
+  content: Scalars['Int']['output'];
+  createdAt: Scalars['Int']['output'];
+  id: Scalars['Int']['output'];
+  movieListId: Scalars['Int']['output'];
+  updatedAt: Scalars['Int']['output'];
+  userId: Scalars['Int']['output'];
+};
+
+export type MovieListCommentCountOrderByAggregateInput = {
+  content?: InputMaybe<SortOrder>;
+  createdAt?: InputMaybe<SortOrder>;
+  id?: InputMaybe<SortOrder>;
+  movieListId?: InputMaybe<SortOrder>;
+  updatedAt?: InputMaybe<SortOrder>;
+  userId?: InputMaybe<SortOrder>;
+};
+
+export type MovieListCommentCreateInput = {
+  content: Scalars['String']['input'];
+  createdAt?: InputMaybe<Scalars['DateTimeISO']['input']>;
+  id?: InputMaybe<Scalars['String']['input']>;
+  movieList: MovieListCreateNestedOneWithoutCommentsInput;
+  updatedAt?: InputMaybe<Scalars['DateTimeISO']['input']>;
+  user: MovifierAppUserCreateNestedOneWithoutMovieListsCommentsInput;
+};
+
+export type MovieListCommentCreateManyInput = {
+  content: Scalars['String']['input'];
+  createdAt?: InputMaybe<Scalars['DateTimeISO']['input']>;
+  id?: InputMaybe<Scalars['String']['input']>;
+  movieListId: Scalars['String']['input'];
+  updatedAt?: InputMaybe<Scalars['DateTimeISO']['input']>;
+  userId: Scalars['String']['input'];
 };
 
 export type MovieListCommentCreateManyMovieListInput = {
@@ -2555,10 +2602,61 @@ export type MovieListCommentCreateWithoutUserInput = {
   updatedAt?: InputMaybe<Scalars['DateTimeISO']['input']>;
 };
 
+export type MovieListCommentGroupBy = {
+  __typename?: 'MovieListCommentGroupBy';
+  _count?: Maybe<MovieListCommentCountAggregate>;
+  _max?: Maybe<MovieListCommentMaxAggregate>;
+  _min?: Maybe<MovieListCommentMinAggregate>;
+  content: Scalars['String']['output'];
+  createdAt: Scalars['DateTimeISO']['output'];
+  id: Scalars['String']['output'];
+  movieListId: Scalars['String']['output'];
+  updatedAt: Scalars['DateTimeISO']['output'];
+  userId: Scalars['String']['output'];
+};
+
 export type MovieListCommentListRelationFilter = {
   every?: InputMaybe<MovieListCommentWhereInput>;
   none?: InputMaybe<MovieListCommentWhereInput>;
   some?: InputMaybe<MovieListCommentWhereInput>;
+};
+
+export type MovieListCommentMaxAggregate = {
+  __typename?: 'MovieListCommentMaxAggregate';
+  content?: Maybe<Scalars['String']['output']>;
+  createdAt?: Maybe<Scalars['DateTimeISO']['output']>;
+  id?: Maybe<Scalars['String']['output']>;
+  movieListId?: Maybe<Scalars['String']['output']>;
+  updatedAt?: Maybe<Scalars['DateTimeISO']['output']>;
+  userId?: Maybe<Scalars['String']['output']>;
+};
+
+export type MovieListCommentMaxOrderByAggregateInput = {
+  content?: InputMaybe<SortOrder>;
+  createdAt?: InputMaybe<SortOrder>;
+  id?: InputMaybe<SortOrder>;
+  movieListId?: InputMaybe<SortOrder>;
+  updatedAt?: InputMaybe<SortOrder>;
+  userId?: InputMaybe<SortOrder>;
+};
+
+export type MovieListCommentMinAggregate = {
+  __typename?: 'MovieListCommentMinAggregate';
+  content?: Maybe<Scalars['String']['output']>;
+  createdAt?: Maybe<Scalars['DateTimeISO']['output']>;
+  id?: Maybe<Scalars['String']['output']>;
+  movieListId?: Maybe<Scalars['String']['output']>;
+  updatedAt?: Maybe<Scalars['DateTimeISO']['output']>;
+  userId?: Maybe<Scalars['String']['output']>;
+};
+
+export type MovieListCommentMinOrderByAggregateInput = {
+  content?: InputMaybe<SortOrder>;
+  createdAt?: InputMaybe<SortOrder>;
+  id?: InputMaybe<SortOrder>;
+  movieListId?: InputMaybe<SortOrder>;
+  updatedAt?: InputMaybe<SortOrder>;
+  userId?: InputMaybe<SortOrder>;
 };
 
 export type MovieListCommentOrderByRelationAggregateInput = {
@@ -2575,6 +2673,18 @@ export type MovieListCommentOrderByRelevanceInput = {
   fields: Array<MovieListCommentOrderByRelevanceFieldEnum>;
   search: Scalars['String']['input'];
   sort: SortOrder;
+};
+
+export type MovieListCommentOrderByWithAggregationInput = {
+  _count?: InputMaybe<MovieListCommentCountOrderByAggregateInput>;
+  _max?: InputMaybe<MovieListCommentMaxOrderByAggregateInput>;
+  _min?: InputMaybe<MovieListCommentMinOrderByAggregateInput>;
+  content?: InputMaybe<SortOrder>;
+  createdAt?: InputMaybe<SortOrder>;
+  id?: InputMaybe<SortOrder>;
+  movieListId?: InputMaybe<SortOrder>;
+  updatedAt?: InputMaybe<SortOrder>;
+  userId?: InputMaybe<SortOrder>;
 };
 
 export type MovieListCommentOrderByWithRelationAndSearchRelevanceInput = {
@@ -2607,6 +2717,27 @@ export type MovieListCommentScalarWhereInput = {
   movieListId?: InputMaybe<StringFilter>;
   updatedAt?: InputMaybe<DateTimeFilter>;
   userId?: InputMaybe<StringFilter>;
+};
+
+export type MovieListCommentScalarWhereWithAggregatesInput = {
+  AND?: InputMaybe<Array<MovieListCommentScalarWhereWithAggregatesInput>>;
+  NOT?: InputMaybe<Array<MovieListCommentScalarWhereWithAggregatesInput>>;
+  OR?: InputMaybe<Array<MovieListCommentScalarWhereWithAggregatesInput>>;
+  content?: InputMaybe<StringWithAggregatesFilter>;
+  createdAt?: InputMaybe<DateTimeWithAggregatesFilter>;
+  id?: InputMaybe<StringWithAggregatesFilter>;
+  movieListId?: InputMaybe<StringWithAggregatesFilter>;
+  updatedAt?: InputMaybe<DateTimeWithAggregatesFilter>;
+  userId?: InputMaybe<StringWithAggregatesFilter>;
+};
+
+export type MovieListCommentUpdateInput = {
+  content?: InputMaybe<StringFieldUpdateOperationsInput>;
+  createdAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+  id?: InputMaybe<StringFieldUpdateOperationsInput>;
+  movieList?: InputMaybe<MovieListUpdateOneRequiredWithoutCommentsNestedInput>;
+  updatedAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+  user?: InputMaybe<MovifierAppUserUpdateOneRequiredWithoutMovieListsCommentsNestedInput>;
 };
 
 export type MovieListCommentUpdateManyMutationInput = {
@@ -2692,6 +2823,11 @@ export type MovieListCommentUpsertWithWhereUniqueWithoutUserInput = {
   where: MovieListCommentWhereUniqueInput;
 };
 
+export type MovieListCommentUserIdMovieListIdCompoundUniqueInput = {
+  movieListId: Scalars['String']['input'];
+  userId: Scalars['String']['input'];
+};
+
 export type MovieListCommentWhereInput = {
   AND?: InputMaybe<Array<MovieListCommentWhereInput>>;
   NOT?: InputMaybe<Array<MovieListCommentWhereInput>>;
@@ -2718,6 +2854,7 @@ export type MovieListCommentWhereUniqueInput = {
   updatedAt?: InputMaybe<DateTimeFilter>;
   user?: InputMaybe<MovifierAppUserRelationFilter>;
   userId?: InputMaybe<StringFilter>;
+  userId_movieListId?: InputMaybe<MovieListCommentUserIdMovieListIdCompoundUniqueInput>;
 };
 
 export type MovieListCount = {
@@ -6897,6 +7034,7 @@ export type Mutation = {
   createManyMovieCrewMemberType: AffectedRowsOutput;
   createManyMovieLikedByUser: AffectedRowsOutput;
   createManyMovieList: AffectedRowsOutput;
+  createManyMovieListComment: AffectedRowsOutput;
   createManyMovieListLikedByUser: AffectedRowsOutput;
   createManyMovieRating: AffectedRowsOutput;
   createManyMovieReview: AffectedRowsOutput;
@@ -6911,6 +7049,7 @@ export type Mutation = {
   createOneMovieCrewMemberType: MovieCrewMemberType;
   createOneMovieLikedByUser: MovieLikedByUser;
   createOneMovieList: MovieList;
+  createOneMovieListComment: MovieListComment;
   createOneMovieListLikedByUser: MovieListLikedByUser;
   createOneMovieRating: MovieRating;
   createOneMovieReview: MovieReview;
@@ -6926,6 +7065,7 @@ export type Mutation = {
   deleteManyMovieCrewMemberType: AffectedRowsOutput;
   deleteManyMovieLikedByUser: AffectedRowsOutput;
   deleteManyMovieList: AffectedRowsOutput;
+  deleteManyMovieListComment: AffectedRowsOutput;
   deleteManyMovieListLikedByUser: AffectedRowsOutput;
   deleteManyMovieRating: AffectedRowsOutput;
   deleteManyMovieReview: AffectedRowsOutput;
@@ -6940,6 +7080,7 @@ export type Mutation = {
   deleteOneMovieCrewMemberType?: Maybe<MovieCrewMemberType>;
   deleteOneMovieLikedByUser?: Maybe<MovieLikedByUser>;
   deleteOneMovieList?: Maybe<MovieList>;
+  deleteOneMovieListComment?: Maybe<MovieListComment>;
   deleteOneMovieListLikedByUser?: Maybe<MovieListLikedByUser>;
   deleteOneMovieRating?: Maybe<MovieRating>;
   deleteOneMovieReview?: Maybe<MovieReview>;
@@ -6956,6 +7097,7 @@ export type Mutation = {
   updateManyMovieCrewMemberType: AffectedRowsOutput;
   updateManyMovieLikedByUser: AffectedRowsOutput;
   updateManyMovieList: AffectedRowsOutput;
+  updateManyMovieListComment: AffectedRowsOutput;
   updateManyMovieListLikedByUser: AffectedRowsOutput;
   updateManyMovieRating: AffectedRowsOutput;
   updateManyMovieReview: AffectedRowsOutput;
@@ -6970,6 +7112,7 @@ export type Mutation = {
   updateOneMovieCrewMemberType?: Maybe<MovieCrewMemberType>;
   updateOneMovieLikedByUser?: Maybe<MovieLikedByUser>;
   updateOneMovieList?: Maybe<MovieList>;
+  updateOneMovieListComment?: Maybe<MovieListComment>;
   updateOneMovieListLikedByUser?: Maybe<MovieListLikedByUser>;
   updateOneMovieRating?: Maybe<MovieRating>;
   updateOneMovieReview?: Maybe<MovieReview>;
@@ -6984,6 +7127,7 @@ export type Mutation = {
   upsertOneMovieCrewMemberType: MovieCrewMemberType;
   upsertOneMovieLikedByUser: MovieLikedByUser;
   upsertOneMovieList: MovieList;
+  upsertOneMovieListComment: MovieListComment;
   upsertOneMovieListLikedByUser: MovieListLikedByUser;
   upsertOneMovieRating: MovieRating;
   upsertOneMovieReview: MovieReview;
@@ -7027,6 +7171,12 @@ export type MutationCreateManyMovieLikedByUserArgs = {
 
 export type MutationCreateManyMovieListArgs = {
   data: Array<MovieListCreateManyInput>;
+  skipDuplicates?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+
+export type MutationCreateManyMovieListCommentArgs = {
+  data: Array<MovieListCommentCreateManyInput>;
   skipDuplicates?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
@@ -7109,6 +7259,11 @@ export type MutationCreateOneMovieListArgs = {
 };
 
 
+export type MutationCreateOneMovieListCommentArgs = {
+  data: MovieListCommentCreateInput;
+};
+
+
 export type MutationCreateOneMovieListLikedByUserArgs = {
   data: MovieListLikedByUserCreateInput;
 };
@@ -7184,6 +7339,11 @@ export type MutationDeleteManyMovieListArgs = {
 };
 
 
+export type MutationDeleteManyMovieListCommentArgs = {
+  where?: InputMaybe<MovieListCommentWhereInput>;
+};
+
+
 export type MutationDeleteManyMovieListLikedByUserArgs = {
   where?: InputMaybe<MovieListLikedByUserWhereInput>;
 };
@@ -7251,6 +7411,11 @@ export type MutationDeleteOneMovieLikedByUserArgs = {
 
 export type MutationDeleteOneMovieListArgs = {
   where: MovieListWhereUniqueInput;
+};
+
+
+export type MutationDeleteOneMovieListCommentArgs = {
+  where: MovieListCommentWhereUniqueInput;
 };
 
 
@@ -7340,6 +7505,12 @@ export type MutationUpdateManyMovieListArgs = {
 };
 
 
+export type MutationUpdateManyMovieListCommentArgs = {
+  data: MovieListCommentUpdateManyMutationInput;
+  where?: InputMaybe<MovieListCommentWhereInput>;
+};
+
+
 export type MutationUpdateManyMovieListLikedByUserArgs = {
   data: MovieListLikedByUserUpdateManyMutationInput;
   where?: InputMaybe<MovieListLikedByUserWhereInput>;
@@ -7421,6 +7592,12 @@ export type MutationUpdateOneMovieLikedByUserArgs = {
 export type MutationUpdateOneMovieListArgs = {
   data: MovieListUpdateInput;
   where: MovieListWhereUniqueInput;
+};
+
+
+export type MutationUpdateOneMovieListCommentArgs = {
+  data: MovieListCommentUpdateInput;
+  where: MovieListCommentWhereUniqueInput;
 };
 
 
@@ -7511,6 +7688,13 @@ export type MutationUpsertOneMovieListArgs = {
   create: MovieListCreateInput;
   update: MovieListUpdateInput;
   where: MovieListWhereUniqueInput;
+};
+
+
+export type MutationUpsertOneMovieListCommentArgs = {
+  create: MovieListCommentCreateInput;
+  update: MovieListCommentUpdateInput;
+  where: MovieListCommentWhereUniqueInput;
 };
 
 
@@ -7696,6 +7880,7 @@ export type Query = {
   aggregateMovieCrewMemberType: AggregateMovieCrewMemberType;
   aggregateMovieLikedByUser: AggregateMovieLikedByUser;
   aggregateMovieList: AggregateMovieList;
+  aggregateMovieListComment: AggregateMovieListComment;
   aggregateMovieListLikedByUser: AggregateMovieListLikedByUser;
   aggregateMovieRating: AggregateMovieRating;
   aggregateMovieReview: AggregateMovieReview;
@@ -7714,6 +7899,8 @@ export type Query = {
   findFirstMovieLikedByUser?: Maybe<MovieLikedByUser>;
   findFirstMovieLikedByUserOrThrow?: Maybe<MovieLikedByUser>;
   findFirstMovieList?: Maybe<MovieList>;
+  findFirstMovieListComment?: Maybe<MovieListComment>;
+  findFirstMovieListCommentOrThrow?: Maybe<MovieListComment>;
   findFirstMovieListLikedByUser?: Maybe<MovieListLikedByUser>;
   findFirstMovieListLikedByUserOrThrow?: Maybe<MovieListLikedByUser>;
   findFirstMovieListOrThrow?: Maybe<MovieList>;
@@ -7741,6 +7928,7 @@ export type Query = {
   getMovieDecades: Decades;
   getMovieLikedByUser?: Maybe<MovieLikedByUser>;
   getMovieList?: Maybe<MovieList>;
+  getMovieListComment?: Maybe<MovieListComment>;
   getMovieListLikedByUser?: Maybe<MovieListLikedByUser>;
   getMovieRating?: Maybe<MovieRating>;
   getMovieReview?: Maybe<MovieReview>;
@@ -7755,6 +7943,7 @@ export type Query = {
   groupByMovieCrewMemberType: Array<MovieCrewMemberTypeGroupBy>;
   groupByMovieLikedByUser: Array<MovieLikedByUserGroupBy>;
   groupByMovieList: Array<MovieListGroupBy>;
+  groupByMovieListComment: Array<MovieListCommentGroupBy>;
   groupByMovieListLikedByUser: Array<MovieListLikedByUserGroupBy>;
   groupByMovieRating: Array<MovieRatingGroupBy>;
   groupByMovieReview: Array<MovieReviewGroupBy>;
@@ -7772,6 +7961,8 @@ export type Query = {
   movieLikedByUser?: Maybe<MovieLikedByUser>;
   movieLikedByUsers: Array<MovieLikedByUser>;
   movieList?: Maybe<MovieList>;
+  movieListComment?: Maybe<MovieListComment>;
+  movieListComments: Array<MovieListComment>;
   movieListLikedByUser?: Maybe<MovieListLikedByUser>;
   movieListLikedByUsers: Array<MovieListLikedByUser>;
   movieLists: Array<MovieList>;
@@ -7849,6 +8040,15 @@ export type QueryAggregateMovieListArgs = {
   skip?: InputMaybe<Scalars['Int']['input']>;
   take?: InputMaybe<Scalars['Int']['input']>;
   where?: InputMaybe<MovieListWhereInput>;
+};
+
+
+export type QueryAggregateMovieListCommentArgs = {
+  cursor?: InputMaybe<MovieListCommentWhereUniqueInput>;
+  orderBy?: InputMaybe<Array<MovieListCommentOrderByWithRelationAndSearchRelevanceInput>>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+  take?: InputMaybe<Scalars['Int']['input']>;
+  where?: InputMaybe<MovieListCommentWhereInput>;
 };
 
 
@@ -8021,6 +8221,26 @@ export type QueryFindFirstMovieListArgs = {
   skip?: InputMaybe<Scalars['Int']['input']>;
   take?: InputMaybe<Scalars['Int']['input']>;
   where?: InputMaybe<MovieListWhereInput>;
+};
+
+
+export type QueryFindFirstMovieListCommentArgs = {
+  cursor?: InputMaybe<MovieListCommentWhereUniqueInput>;
+  distinct?: InputMaybe<Array<MovieListCommentScalarFieldEnum>>;
+  orderBy?: InputMaybe<Array<MovieListCommentOrderByWithRelationAndSearchRelevanceInput>>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+  take?: InputMaybe<Scalars['Int']['input']>;
+  where?: InputMaybe<MovieListCommentWhereInput>;
+};
+
+
+export type QueryFindFirstMovieListCommentOrThrowArgs = {
+  cursor?: InputMaybe<MovieListCommentWhereUniqueInput>;
+  distinct?: InputMaybe<Array<MovieListCommentScalarFieldEnum>>;
+  orderBy?: InputMaybe<Array<MovieListCommentOrderByWithRelationAndSearchRelevanceInput>>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+  take?: InputMaybe<Scalars['Int']['input']>;
+  where?: InputMaybe<MovieListCommentWhereInput>;
 };
 
 
@@ -8249,6 +8469,11 @@ export type QueryGetMovieListArgs = {
 };
 
 
+export type QueryGetMovieListCommentArgs = {
+  where: MovieListCommentWhereUniqueInput;
+};
+
+
 export type QueryGetMovieListLikedByUserArgs = {
   where: MovieListLikedByUserWhereUniqueInput;
 };
@@ -8346,6 +8571,16 @@ export type QueryGroupByMovieListArgs = {
   skip?: InputMaybe<Scalars['Int']['input']>;
   take?: InputMaybe<Scalars['Int']['input']>;
   where?: InputMaybe<MovieListWhereInput>;
+};
+
+
+export type QueryGroupByMovieListCommentArgs = {
+  by: Array<MovieListCommentScalarFieldEnum>;
+  having?: InputMaybe<MovieListCommentScalarWhereWithAggregatesInput>;
+  orderBy?: InputMaybe<Array<MovieListCommentOrderByWithAggregationInput>>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+  take?: InputMaybe<Scalars['Int']['input']>;
+  where?: InputMaybe<MovieListCommentWhereInput>;
 };
 
 
@@ -8481,6 +8716,21 @@ export type QueryMovieLikedByUsersArgs = {
 
 export type QueryMovieListArgs = {
   where: MovieListWhereUniqueInput;
+};
+
+
+export type QueryMovieListCommentArgs = {
+  where: MovieListCommentWhereUniqueInput;
+};
+
+
+export type QueryMovieListCommentsArgs = {
+  cursor?: InputMaybe<MovieListCommentWhereUniqueInput>;
+  distinct?: InputMaybe<Array<MovieListCommentScalarFieldEnum>>;
+  orderBy?: InputMaybe<Array<MovieListCommentOrderByWithRelationAndSearchRelevanceInput>>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+  take?: InputMaybe<Scalars['Int']['input']>;
+  where?: InputMaybe<MovieListCommentWhereInput>;
 };
 
 
@@ -9048,7 +9298,7 @@ export type GetMovieListForPageQueryVariables = Exact<{
 }>;
 
 
-export type GetMovieListForPageQuery = { __typename?: 'Query', movieList?: { __typename?: 'MovieList', id: string, name: string, description: string, tags: Array<string>, movies: Array<{ __typename?: 'Movie', id: string, movieInfo?: { __typename?: 'MovieInfo', id: string, title: string, posterUrl: string } | null }>, movieListAuthor: { __typename?: 'MovifierAppUser', id: string, username: string } } | null };
+export type GetMovieListForPageQuery = { __typename?: 'Query', movieList?: { __typename?: 'MovieList', id: string, name: string, description: string, tags: Array<string>, movies: Array<{ __typename?: 'Movie', id: string, movieInfo?: { __typename?: 'MovieInfo', id: string, title: string, posterUrl: string } | null }>, comments: Array<{ __typename?: 'MovieListComment', id: string, content: string, createdAt: any, user: { __typename?: 'MovifierAppUser', username: string } }>, movieListAuthor: { __typename?: 'MovifierAppUser', id: string, username: string } } | null };
 
 export type GetMovieForPageQueryVariables = Exact<{
   id: Scalars['String']['input'];
@@ -9251,7 +9501,7 @@ export type DeleteMovieListMutation = { __typename?: 'Mutation', deleteOneMovieL
 
 export type MovieListCardItemFragment = { __typename?: 'MovieList', id: string, name: string, tags: Array<string>, movies: Array<{ __typename?: 'Movie', id: string, movieInfo?: { __typename?: 'MovieInfo', id: string, title: string, posterUrl: string } | null }>, movieListAuthor: { __typename?: 'MovifierAppUser', id: string, username: string } };
 
-export type MovieListPageItemFragment = { __typename?: 'MovieList', id: string, name: string, description: string, tags: Array<string>, movies: Array<{ __typename?: 'Movie', id: string, movieInfo?: { __typename?: 'MovieInfo', id: string, title: string, posterUrl: string } | null }>, movieListAuthor: { __typename?: 'MovifierAppUser', id: string, username: string } };
+export type MovieListPageItemFragment = { __typename?: 'MovieList', id: string, name: string, description: string, tags: Array<string>, movies: Array<{ __typename?: 'Movie', id: string, movieInfo?: { __typename?: 'MovieInfo', id: string, title: string, posterUrl: string } | null }>, comments: Array<{ __typename?: 'MovieListComment', id: string, content: string, createdAt: any, user: { __typename?: 'MovifierAppUser', username: string } }>, movieListAuthor: { __typename?: 'MovifierAppUser', id: string, username: string } };
 
 export type GetUserWatchedMovieIdsInMovieListQueryVariables = Exact<{
   userId: Scalars['String']['input'];
@@ -9275,6 +9525,8 @@ export type SearchMovieListsQueryVariables = Exact<{
 
 
 export type SearchMovieListsQuery = { __typename?: 'Query', searchMovieLists: Array<{ __typename?: 'MovieList', id: string, name: string, tags: Array<string>, movies: Array<{ __typename?: 'Movie', id: string, movieInfo?: { __typename?: 'MovieInfo', id: string, title: string, posterUrl: string } | null }>, movieListAuthor: { __typename?: 'MovifierAppUser', id: string, username: string } }> };
+
+export type MovieListCommentCardItemFragment = { __typename?: 'MovieListComment', id: string, content: string, createdAt: any, user: { __typename?: 'MovifierAppUser', username: string } };
 
 export type SearchMoviesForListCreationQueryVariables = Exact<{
   search: Scalars['String']['input'];
@@ -9780,6 +10032,7 @@ export type ResolversTypes = ResolversObject<{
   AggregateMovieCrewMemberType: ResolverTypeWrapper<AggregateMovieCrewMemberType>;
   AggregateMovieLikedByUser: ResolverTypeWrapper<AggregateMovieLikedByUser>;
   AggregateMovieList: ResolverTypeWrapper<AggregateMovieList>;
+  AggregateMovieListComment: ResolverTypeWrapper<AggregateMovieListComment>;
   AggregateMovieListLikedByUser: ResolverTypeWrapper<AggregateMovieListLikedByUser>;
   AggregateMovieRating: ResolverTypeWrapper<AggregateMovieRating>;
   AggregateMovieReview: ResolverTypeWrapper<AggregateMovieReview>;
@@ -10056,6 +10309,10 @@ export type ResolversTypes = ResolversObject<{
   MovieLikedByUserWhereUniqueInput: MovieLikedByUserWhereUniqueInput;
   MovieList: ResolverTypeWrapper<MovieList>;
   MovieListComment: ResolverTypeWrapper<MovieListComment>;
+  MovieListCommentCountAggregate: ResolverTypeWrapper<MovieListCommentCountAggregate>;
+  MovieListCommentCountOrderByAggregateInput: MovieListCommentCountOrderByAggregateInput;
+  MovieListCommentCreateInput: MovieListCommentCreateInput;
+  MovieListCommentCreateManyInput: MovieListCommentCreateManyInput;
   MovieListCommentCreateManyMovieListInput: MovieListCommentCreateManyMovieListInput;
   MovieListCommentCreateManyMovieListInputEnvelope: MovieListCommentCreateManyMovieListInputEnvelope;
   MovieListCommentCreateManyUserInput: MovieListCommentCreateManyUserInput;
@@ -10066,13 +10323,21 @@ export type ResolversTypes = ResolversObject<{
   MovieListCommentCreateOrConnectWithoutUserInput: MovieListCommentCreateOrConnectWithoutUserInput;
   MovieListCommentCreateWithoutMovieListInput: MovieListCommentCreateWithoutMovieListInput;
   MovieListCommentCreateWithoutUserInput: MovieListCommentCreateWithoutUserInput;
+  MovieListCommentGroupBy: ResolverTypeWrapper<MovieListCommentGroupBy>;
   MovieListCommentListRelationFilter: MovieListCommentListRelationFilter;
+  MovieListCommentMaxAggregate: ResolverTypeWrapper<MovieListCommentMaxAggregate>;
+  MovieListCommentMaxOrderByAggregateInput: MovieListCommentMaxOrderByAggregateInput;
+  MovieListCommentMinAggregate: ResolverTypeWrapper<MovieListCommentMinAggregate>;
+  MovieListCommentMinOrderByAggregateInput: MovieListCommentMinOrderByAggregateInput;
   MovieListCommentOrderByRelationAggregateInput: MovieListCommentOrderByRelationAggregateInput;
   MovieListCommentOrderByRelevanceFieldEnum: MovieListCommentOrderByRelevanceFieldEnum;
   MovieListCommentOrderByRelevanceInput: MovieListCommentOrderByRelevanceInput;
+  MovieListCommentOrderByWithAggregationInput: MovieListCommentOrderByWithAggregationInput;
   MovieListCommentOrderByWithRelationAndSearchRelevanceInput: MovieListCommentOrderByWithRelationAndSearchRelevanceInput;
   MovieListCommentScalarFieldEnum: MovieListCommentScalarFieldEnum;
   MovieListCommentScalarWhereInput: MovieListCommentScalarWhereInput;
+  MovieListCommentScalarWhereWithAggregatesInput: MovieListCommentScalarWhereWithAggregatesInput;
+  MovieListCommentUpdateInput: MovieListCommentUpdateInput;
   MovieListCommentUpdateManyMutationInput: MovieListCommentUpdateManyMutationInput;
   MovieListCommentUpdateManyWithWhereWithoutMovieListInput: MovieListCommentUpdateManyWithWhereWithoutMovieListInput;
   MovieListCommentUpdateManyWithWhereWithoutUserInput: MovieListCommentUpdateManyWithWhereWithoutUserInput;
@@ -10084,6 +10349,7 @@ export type ResolversTypes = ResolversObject<{
   MovieListCommentUpdateWithoutUserInput: MovieListCommentUpdateWithoutUserInput;
   MovieListCommentUpsertWithWhereUniqueWithoutMovieListInput: MovieListCommentUpsertWithWhereUniqueWithoutMovieListInput;
   MovieListCommentUpsertWithWhereUniqueWithoutUserInput: MovieListCommentUpsertWithWhereUniqueWithoutUserInput;
+  MovieListCommentUserIdMovieListIdCompoundUniqueInput: MovieListCommentUserIdMovieListIdCompoundUniqueInput;
   MovieListCommentWhereInput: MovieListCommentWhereInput;
   MovieListCommentWhereUniqueInput: MovieListCommentWhereUniqueInput;
   MovieListCount: ResolverTypeWrapper<MovieListCount>;
@@ -10663,6 +10929,7 @@ export type ResolversParentTypes = ResolversObject<{
   AggregateMovieCrewMemberType: AggregateMovieCrewMemberType;
   AggregateMovieLikedByUser: AggregateMovieLikedByUser;
   AggregateMovieList: AggregateMovieList;
+  AggregateMovieListComment: AggregateMovieListComment;
   AggregateMovieListLikedByUser: AggregateMovieListLikedByUser;
   AggregateMovieRating: AggregateMovieRating;
   AggregateMovieReview: AggregateMovieReview;
@@ -10926,6 +11193,10 @@ export type ResolversParentTypes = ResolversObject<{
   MovieLikedByUserWhereUniqueInput: MovieLikedByUserWhereUniqueInput;
   MovieList: MovieList;
   MovieListComment: MovieListComment;
+  MovieListCommentCountAggregate: MovieListCommentCountAggregate;
+  MovieListCommentCountOrderByAggregateInput: MovieListCommentCountOrderByAggregateInput;
+  MovieListCommentCreateInput: MovieListCommentCreateInput;
+  MovieListCommentCreateManyInput: MovieListCommentCreateManyInput;
   MovieListCommentCreateManyMovieListInput: MovieListCommentCreateManyMovieListInput;
   MovieListCommentCreateManyMovieListInputEnvelope: MovieListCommentCreateManyMovieListInputEnvelope;
   MovieListCommentCreateManyUserInput: MovieListCommentCreateManyUserInput;
@@ -10936,11 +11207,19 @@ export type ResolversParentTypes = ResolversObject<{
   MovieListCommentCreateOrConnectWithoutUserInput: MovieListCommentCreateOrConnectWithoutUserInput;
   MovieListCommentCreateWithoutMovieListInput: MovieListCommentCreateWithoutMovieListInput;
   MovieListCommentCreateWithoutUserInput: MovieListCommentCreateWithoutUserInput;
+  MovieListCommentGroupBy: MovieListCommentGroupBy;
   MovieListCommentListRelationFilter: MovieListCommentListRelationFilter;
+  MovieListCommentMaxAggregate: MovieListCommentMaxAggregate;
+  MovieListCommentMaxOrderByAggregateInput: MovieListCommentMaxOrderByAggregateInput;
+  MovieListCommentMinAggregate: MovieListCommentMinAggregate;
+  MovieListCommentMinOrderByAggregateInput: MovieListCommentMinOrderByAggregateInput;
   MovieListCommentOrderByRelationAggregateInput: MovieListCommentOrderByRelationAggregateInput;
   MovieListCommentOrderByRelevanceInput: MovieListCommentOrderByRelevanceInput;
+  MovieListCommentOrderByWithAggregationInput: MovieListCommentOrderByWithAggregationInput;
   MovieListCommentOrderByWithRelationAndSearchRelevanceInput: MovieListCommentOrderByWithRelationAndSearchRelevanceInput;
   MovieListCommentScalarWhereInput: MovieListCommentScalarWhereInput;
+  MovieListCommentScalarWhereWithAggregatesInput: MovieListCommentScalarWhereWithAggregatesInput;
+  MovieListCommentUpdateInput: MovieListCommentUpdateInput;
   MovieListCommentUpdateManyMutationInput: MovieListCommentUpdateManyMutationInput;
   MovieListCommentUpdateManyWithWhereWithoutMovieListInput: MovieListCommentUpdateManyWithWhereWithoutMovieListInput;
   MovieListCommentUpdateManyWithWhereWithoutUserInput: MovieListCommentUpdateManyWithWhereWithoutUserInput;
@@ -10952,6 +11231,7 @@ export type ResolversParentTypes = ResolversObject<{
   MovieListCommentUpdateWithoutUserInput: MovieListCommentUpdateWithoutUserInput;
   MovieListCommentUpsertWithWhereUniqueWithoutMovieListInput: MovieListCommentUpsertWithWhereUniqueWithoutMovieListInput;
   MovieListCommentUpsertWithWhereUniqueWithoutUserInput: MovieListCommentUpsertWithWhereUniqueWithoutUserInput;
+  MovieListCommentUserIdMovieListIdCompoundUniqueInput: MovieListCommentUserIdMovieListIdCompoundUniqueInput;
   MovieListCommentWhereInput: MovieListCommentWhereInput;
   MovieListCommentWhereUniqueInput: MovieListCommentWhereUniqueInput;
   MovieListCount: MovieListCount;
@@ -11548,6 +11828,13 @@ export type AggregateMovieListResolvers<ContextType = any, ParentType extends Re
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 }>;
 
+export type AggregateMovieListCommentResolvers<ContextType = any, ParentType extends ResolversParentTypes['AggregateMovieListComment'] = ResolversParentTypes['AggregateMovieListComment']> = ResolversObject<{
+  _count?: Resolver<Maybe<ResolversTypes['MovieListCommentCountAggregate']>, ParentType, ContextType>;
+  _max?: Resolver<Maybe<ResolversTypes['MovieListCommentMaxAggregate']>, ParentType, ContextType>;
+  _min?: Resolver<Maybe<ResolversTypes['MovieListCommentMinAggregate']>, ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+}>;
+
 export type AggregateMovieListLikedByUserResolvers<ContextType = any, ParentType extends ResolversParentTypes['AggregateMovieListLikedByUser'] = ResolversParentTypes['AggregateMovieListLikedByUser']> = ResolversObject<{
   _count?: Resolver<Maybe<ResolversTypes['MovieListLikedByUserCountAggregate']>, ParentType, ContextType>;
   _max?: Resolver<Maybe<ResolversTypes['MovieListLikedByUserMaxAggregate']>, ParentType, ContextType>;
@@ -11944,9 +12231,55 @@ export type MovieListCommentResolvers<ContextType = any, ParentType extends Reso
   content?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   createdAt?: Resolver<ResolversTypes['DateTimeISO'], ParentType, ContextType>;
   id?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  movieList?: Resolver<ResolversTypes['MovieList'], ParentType, ContextType>;
+  movieListId?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  updatedAt?: Resolver<ResolversTypes['DateTimeISO'], ParentType, ContextType>;
+  user?: Resolver<ResolversTypes['MovifierAppUser'], ParentType, ContextType>;
+  userId?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+}>;
+
+export type MovieListCommentCountAggregateResolvers<ContextType = any, ParentType extends ResolversParentTypes['MovieListCommentCountAggregate'] = ResolversParentTypes['MovieListCommentCountAggregate']> = ResolversObject<{
+  _all?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
+  content?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
+  createdAt?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
+  id?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
+  movieListId?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
+  updatedAt?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
+  userId?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+}>;
+
+export type MovieListCommentGroupByResolvers<ContextType = any, ParentType extends ResolversParentTypes['MovieListCommentGroupBy'] = ResolversParentTypes['MovieListCommentGroupBy']> = ResolversObject<{
+  _count?: Resolver<Maybe<ResolversTypes['MovieListCommentCountAggregate']>, ParentType, ContextType>;
+  _max?: Resolver<Maybe<ResolversTypes['MovieListCommentMaxAggregate']>, ParentType, ContextType>;
+  _min?: Resolver<Maybe<ResolversTypes['MovieListCommentMinAggregate']>, ParentType, ContextType>;
+  content?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  createdAt?: Resolver<ResolversTypes['DateTimeISO'], ParentType, ContextType>;
+  id?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   movieListId?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   updatedAt?: Resolver<ResolversTypes['DateTimeISO'], ParentType, ContextType>;
   userId?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+}>;
+
+export type MovieListCommentMaxAggregateResolvers<ContextType = any, ParentType extends ResolversParentTypes['MovieListCommentMaxAggregate'] = ResolversParentTypes['MovieListCommentMaxAggregate']> = ResolversObject<{
+  content?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  createdAt?: Resolver<Maybe<ResolversTypes['DateTimeISO']>, ParentType, ContextType>;
+  id?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  movieListId?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  updatedAt?: Resolver<Maybe<ResolversTypes['DateTimeISO']>, ParentType, ContextType>;
+  userId?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+}>;
+
+export type MovieListCommentMinAggregateResolvers<ContextType = any, ParentType extends ResolversParentTypes['MovieListCommentMinAggregate'] = ResolversParentTypes['MovieListCommentMinAggregate']> = ResolversObject<{
+  content?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  createdAt?: Resolver<Maybe<ResolversTypes['DateTimeISO']>, ParentType, ContextType>;
+  id?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  movieListId?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  updatedAt?: Resolver<Maybe<ResolversTypes['DateTimeISO']>, ParentType, ContextType>;
+  userId?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 }>;
 
@@ -12419,6 +12752,7 @@ export type MutationResolvers<ContextType = any, ParentType extends ResolversPar
   createManyMovieCrewMemberType?: Resolver<ResolversTypes['AffectedRowsOutput'], ParentType, ContextType, RequireFields<MutationCreateManyMovieCrewMemberTypeArgs, 'data'>>;
   createManyMovieLikedByUser?: Resolver<ResolversTypes['AffectedRowsOutput'], ParentType, ContextType, RequireFields<MutationCreateManyMovieLikedByUserArgs, 'data'>>;
   createManyMovieList?: Resolver<ResolversTypes['AffectedRowsOutput'], ParentType, ContextType, RequireFields<MutationCreateManyMovieListArgs, 'data'>>;
+  createManyMovieListComment?: Resolver<ResolversTypes['AffectedRowsOutput'], ParentType, ContextType, RequireFields<MutationCreateManyMovieListCommentArgs, 'data'>>;
   createManyMovieListLikedByUser?: Resolver<ResolversTypes['AffectedRowsOutput'], ParentType, ContextType, RequireFields<MutationCreateManyMovieListLikedByUserArgs, 'data'>>;
   createManyMovieRating?: Resolver<ResolversTypes['AffectedRowsOutput'], ParentType, ContextType, RequireFields<MutationCreateManyMovieRatingArgs, 'data'>>;
   createManyMovieReview?: Resolver<ResolversTypes['AffectedRowsOutput'], ParentType, ContextType, RequireFields<MutationCreateManyMovieReviewArgs, 'data'>>;
@@ -12433,6 +12767,7 @@ export type MutationResolvers<ContextType = any, ParentType extends ResolversPar
   createOneMovieCrewMemberType?: Resolver<ResolversTypes['MovieCrewMemberType'], ParentType, ContextType, RequireFields<MutationCreateOneMovieCrewMemberTypeArgs, 'data'>>;
   createOneMovieLikedByUser?: Resolver<ResolversTypes['MovieLikedByUser'], ParentType, ContextType, RequireFields<MutationCreateOneMovieLikedByUserArgs, 'data'>>;
   createOneMovieList?: Resolver<ResolversTypes['MovieList'], ParentType, ContextType, RequireFields<MutationCreateOneMovieListArgs, 'data'>>;
+  createOneMovieListComment?: Resolver<ResolversTypes['MovieListComment'], ParentType, ContextType, RequireFields<MutationCreateOneMovieListCommentArgs, 'data'>>;
   createOneMovieListLikedByUser?: Resolver<ResolversTypes['MovieListLikedByUser'], ParentType, ContextType, RequireFields<MutationCreateOneMovieListLikedByUserArgs, 'data'>>;
   createOneMovieRating?: Resolver<ResolversTypes['MovieRating'], ParentType, ContextType, RequireFields<MutationCreateOneMovieRatingArgs, 'data'>>;
   createOneMovieReview?: Resolver<ResolversTypes['MovieReview'], ParentType, ContextType, RequireFields<MutationCreateOneMovieReviewArgs, 'data'>>;
@@ -12448,6 +12783,7 @@ export type MutationResolvers<ContextType = any, ParentType extends ResolversPar
   deleteManyMovieCrewMemberType?: Resolver<ResolversTypes['AffectedRowsOutput'], ParentType, ContextType, Partial<MutationDeleteManyMovieCrewMemberTypeArgs>>;
   deleteManyMovieLikedByUser?: Resolver<ResolversTypes['AffectedRowsOutput'], ParentType, ContextType, Partial<MutationDeleteManyMovieLikedByUserArgs>>;
   deleteManyMovieList?: Resolver<ResolversTypes['AffectedRowsOutput'], ParentType, ContextType, Partial<MutationDeleteManyMovieListArgs>>;
+  deleteManyMovieListComment?: Resolver<ResolversTypes['AffectedRowsOutput'], ParentType, ContextType, Partial<MutationDeleteManyMovieListCommentArgs>>;
   deleteManyMovieListLikedByUser?: Resolver<ResolversTypes['AffectedRowsOutput'], ParentType, ContextType, Partial<MutationDeleteManyMovieListLikedByUserArgs>>;
   deleteManyMovieRating?: Resolver<ResolversTypes['AffectedRowsOutput'], ParentType, ContextType, Partial<MutationDeleteManyMovieRatingArgs>>;
   deleteManyMovieReview?: Resolver<ResolversTypes['AffectedRowsOutput'], ParentType, ContextType, Partial<MutationDeleteManyMovieReviewArgs>>;
@@ -12462,6 +12798,7 @@ export type MutationResolvers<ContextType = any, ParentType extends ResolversPar
   deleteOneMovieCrewMemberType?: Resolver<Maybe<ResolversTypes['MovieCrewMemberType']>, ParentType, ContextType, RequireFields<MutationDeleteOneMovieCrewMemberTypeArgs, 'where'>>;
   deleteOneMovieLikedByUser?: Resolver<Maybe<ResolversTypes['MovieLikedByUser']>, ParentType, ContextType, RequireFields<MutationDeleteOneMovieLikedByUserArgs, 'where'>>;
   deleteOneMovieList?: Resolver<Maybe<ResolversTypes['MovieList']>, ParentType, ContextType, RequireFields<MutationDeleteOneMovieListArgs, 'where'>>;
+  deleteOneMovieListComment?: Resolver<Maybe<ResolversTypes['MovieListComment']>, ParentType, ContextType, RequireFields<MutationDeleteOneMovieListCommentArgs, 'where'>>;
   deleteOneMovieListLikedByUser?: Resolver<Maybe<ResolversTypes['MovieListLikedByUser']>, ParentType, ContextType, RequireFields<MutationDeleteOneMovieListLikedByUserArgs, 'where'>>;
   deleteOneMovieRating?: Resolver<Maybe<ResolversTypes['MovieRating']>, ParentType, ContextType, RequireFields<MutationDeleteOneMovieRatingArgs, 'where'>>;
   deleteOneMovieReview?: Resolver<Maybe<ResolversTypes['MovieReview']>, ParentType, ContextType, RequireFields<MutationDeleteOneMovieReviewArgs, 'where'>>;
@@ -12478,6 +12815,7 @@ export type MutationResolvers<ContextType = any, ParentType extends ResolversPar
   updateManyMovieCrewMemberType?: Resolver<ResolversTypes['AffectedRowsOutput'], ParentType, ContextType, RequireFields<MutationUpdateManyMovieCrewMemberTypeArgs, 'data'>>;
   updateManyMovieLikedByUser?: Resolver<ResolversTypes['AffectedRowsOutput'], ParentType, ContextType, RequireFields<MutationUpdateManyMovieLikedByUserArgs, 'data'>>;
   updateManyMovieList?: Resolver<ResolversTypes['AffectedRowsOutput'], ParentType, ContextType, RequireFields<MutationUpdateManyMovieListArgs, 'data'>>;
+  updateManyMovieListComment?: Resolver<ResolversTypes['AffectedRowsOutput'], ParentType, ContextType, RequireFields<MutationUpdateManyMovieListCommentArgs, 'data'>>;
   updateManyMovieListLikedByUser?: Resolver<ResolversTypes['AffectedRowsOutput'], ParentType, ContextType, RequireFields<MutationUpdateManyMovieListLikedByUserArgs, 'data'>>;
   updateManyMovieRating?: Resolver<ResolversTypes['AffectedRowsOutput'], ParentType, ContextType, RequireFields<MutationUpdateManyMovieRatingArgs, 'data'>>;
   updateManyMovieReview?: Resolver<ResolversTypes['AffectedRowsOutput'], ParentType, ContextType, RequireFields<MutationUpdateManyMovieReviewArgs, 'data'>>;
@@ -12492,6 +12830,7 @@ export type MutationResolvers<ContextType = any, ParentType extends ResolversPar
   updateOneMovieCrewMemberType?: Resolver<Maybe<ResolversTypes['MovieCrewMemberType']>, ParentType, ContextType, RequireFields<MutationUpdateOneMovieCrewMemberTypeArgs, 'data' | 'where'>>;
   updateOneMovieLikedByUser?: Resolver<Maybe<ResolversTypes['MovieLikedByUser']>, ParentType, ContextType, RequireFields<MutationUpdateOneMovieLikedByUserArgs, 'data' | 'where'>>;
   updateOneMovieList?: Resolver<Maybe<ResolversTypes['MovieList']>, ParentType, ContextType, RequireFields<MutationUpdateOneMovieListArgs, 'data' | 'where'>>;
+  updateOneMovieListComment?: Resolver<Maybe<ResolversTypes['MovieListComment']>, ParentType, ContextType, RequireFields<MutationUpdateOneMovieListCommentArgs, 'data' | 'where'>>;
   updateOneMovieListLikedByUser?: Resolver<Maybe<ResolversTypes['MovieListLikedByUser']>, ParentType, ContextType, RequireFields<MutationUpdateOneMovieListLikedByUserArgs, 'data' | 'where'>>;
   updateOneMovieRating?: Resolver<Maybe<ResolversTypes['MovieRating']>, ParentType, ContextType, RequireFields<MutationUpdateOneMovieRatingArgs, 'data' | 'where'>>;
   updateOneMovieReview?: Resolver<Maybe<ResolversTypes['MovieReview']>, ParentType, ContextType, RequireFields<MutationUpdateOneMovieReviewArgs, 'data' | 'where'>>;
@@ -12506,6 +12845,7 @@ export type MutationResolvers<ContextType = any, ParentType extends ResolversPar
   upsertOneMovieCrewMemberType?: Resolver<ResolversTypes['MovieCrewMemberType'], ParentType, ContextType, RequireFields<MutationUpsertOneMovieCrewMemberTypeArgs, 'create' | 'update' | 'where'>>;
   upsertOneMovieLikedByUser?: Resolver<ResolversTypes['MovieLikedByUser'], ParentType, ContextType, RequireFields<MutationUpsertOneMovieLikedByUserArgs, 'create' | 'update' | 'where'>>;
   upsertOneMovieList?: Resolver<ResolversTypes['MovieList'], ParentType, ContextType, RequireFields<MutationUpsertOneMovieListArgs, 'create' | 'update' | 'where'>>;
+  upsertOneMovieListComment?: Resolver<ResolversTypes['MovieListComment'], ParentType, ContextType, RequireFields<MutationUpsertOneMovieListCommentArgs, 'create' | 'update' | 'where'>>;
   upsertOneMovieListLikedByUser?: Resolver<ResolversTypes['MovieListLikedByUser'], ParentType, ContextType, RequireFields<MutationUpsertOneMovieListLikedByUserArgs, 'create' | 'update' | 'where'>>;
   upsertOneMovieRating?: Resolver<ResolversTypes['MovieRating'], ParentType, ContextType, RequireFields<MutationUpsertOneMovieRatingArgs, 'create' | 'update' | 'where'>>;
   upsertOneMovieReview?: Resolver<ResolversTypes['MovieReview'], ParentType, ContextType, RequireFields<MutationUpsertOneMovieReviewArgs, 'create' | 'update' | 'where'>>;
@@ -12523,6 +12863,7 @@ export type QueryResolvers<ContextType = any, ParentType extends ResolversParent
   aggregateMovieCrewMemberType?: Resolver<ResolversTypes['AggregateMovieCrewMemberType'], ParentType, ContextType, Partial<QueryAggregateMovieCrewMemberTypeArgs>>;
   aggregateMovieLikedByUser?: Resolver<ResolversTypes['AggregateMovieLikedByUser'], ParentType, ContextType, Partial<QueryAggregateMovieLikedByUserArgs>>;
   aggregateMovieList?: Resolver<ResolversTypes['AggregateMovieList'], ParentType, ContextType, Partial<QueryAggregateMovieListArgs>>;
+  aggregateMovieListComment?: Resolver<ResolversTypes['AggregateMovieListComment'], ParentType, ContextType, Partial<QueryAggregateMovieListCommentArgs>>;
   aggregateMovieListLikedByUser?: Resolver<ResolversTypes['AggregateMovieListLikedByUser'], ParentType, ContextType, Partial<QueryAggregateMovieListLikedByUserArgs>>;
   aggregateMovieRating?: Resolver<ResolversTypes['AggregateMovieRating'], ParentType, ContextType, Partial<QueryAggregateMovieRatingArgs>>;
   aggregateMovieReview?: Resolver<ResolversTypes['AggregateMovieReview'], ParentType, ContextType, Partial<QueryAggregateMovieReviewArgs>>;
@@ -12541,6 +12882,8 @@ export type QueryResolvers<ContextType = any, ParentType extends ResolversParent
   findFirstMovieLikedByUser?: Resolver<Maybe<ResolversTypes['MovieLikedByUser']>, ParentType, ContextType, Partial<QueryFindFirstMovieLikedByUserArgs>>;
   findFirstMovieLikedByUserOrThrow?: Resolver<Maybe<ResolversTypes['MovieLikedByUser']>, ParentType, ContextType, Partial<QueryFindFirstMovieLikedByUserOrThrowArgs>>;
   findFirstMovieList?: Resolver<Maybe<ResolversTypes['MovieList']>, ParentType, ContextType, Partial<QueryFindFirstMovieListArgs>>;
+  findFirstMovieListComment?: Resolver<Maybe<ResolversTypes['MovieListComment']>, ParentType, ContextType, Partial<QueryFindFirstMovieListCommentArgs>>;
+  findFirstMovieListCommentOrThrow?: Resolver<Maybe<ResolversTypes['MovieListComment']>, ParentType, ContextType, Partial<QueryFindFirstMovieListCommentOrThrowArgs>>;
   findFirstMovieListLikedByUser?: Resolver<Maybe<ResolversTypes['MovieListLikedByUser']>, ParentType, ContextType, Partial<QueryFindFirstMovieListLikedByUserArgs>>;
   findFirstMovieListLikedByUserOrThrow?: Resolver<Maybe<ResolversTypes['MovieListLikedByUser']>, ParentType, ContextType, Partial<QueryFindFirstMovieListLikedByUserOrThrowArgs>>;
   findFirstMovieListOrThrow?: Resolver<Maybe<ResolversTypes['MovieList']>, ParentType, ContextType, Partial<QueryFindFirstMovieListOrThrowArgs>>;
@@ -12568,6 +12911,7 @@ export type QueryResolvers<ContextType = any, ParentType extends ResolversParent
   getMovieDecades?: Resolver<ResolversTypes['Decades'], ParentType, ContextType>;
   getMovieLikedByUser?: Resolver<Maybe<ResolversTypes['MovieLikedByUser']>, ParentType, ContextType, RequireFields<QueryGetMovieLikedByUserArgs, 'where'>>;
   getMovieList?: Resolver<Maybe<ResolversTypes['MovieList']>, ParentType, ContextType, RequireFields<QueryGetMovieListArgs, 'where'>>;
+  getMovieListComment?: Resolver<Maybe<ResolversTypes['MovieListComment']>, ParentType, ContextType, RequireFields<QueryGetMovieListCommentArgs, 'where'>>;
   getMovieListLikedByUser?: Resolver<Maybe<ResolversTypes['MovieListLikedByUser']>, ParentType, ContextType, RequireFields<QueryGetMovieListLikedByUserArgs, 'where'>>;
   getMovieRating?: Resolver<Maybe<ResolversTypes['MovieRating']>, ParentType, ContextType, RequireFields<QueryGetMovieRatingArgs, 'where'>>;
   getMovieReview?: Resolver<Maybe<ResolversTypes['MovieReview']>, ParentType, ContextType, RequireFields<QueryGetMovieReviewArgs, 'where'>>;
@@ -12582,6 +12926,7 @@ export type QueryResolvers<ContextType = any, ParentType extends ResolversParent
   groupByMovieCrewMemberType?: Resolver<Array<ResolversTypes['MovieCrewMemberTypeGroupBy']>, ParentType, ContextType, RequireFields<QueryGroupByMovieCrewMemberTypeArgs, 'by'>>;
   groupByMovieLikedByUser?: Resolver<Array<ResolversTypes['MovieLikedByUserGroupBy']>, ParentType, ContextType, RequireFields<QueryGroupByMovieLikedByUserArgs, 'by'>>;
   groupByMovieList?: Resolver<Array<ResolversTypes['MovieListGroupBy']>, ParentType, ContextType, RequireFields<QueryGroupByMovieListArgs, 'by'>>;
+  groupByMovieListComment?: Resolver<Array<ResolversTypes['MovieListCommentGroupBy']>, ParentType, ContextType, RequireFields<QueryGroupByMovieListCommentArgs, 'by'>>;
   groupByMovieListLikedByUser?: Resolver<Array<ResolversTypes['MovieListLikedByUserGroupBy']>, ParentType, ContextType, RequireFields<QueryGroupByMovieListLikedByUserArgs, 'by'>>;
   groupByMovieRating?: Resolver<Array<ResolversTypes['MovieRatingGroupBy']>, ParentType, ContextType, RequireFields<QueryGroupByMovieRatingArgs, 'by'>>;
   groupByMovieReview?: Resolver<Array<ResolversTypes['MovieReviewGroupBy']>, ParentType, ContextType, RequireFields<QueryGroupByMovieReviewArgs, 'by'>>;
@@ -12599,6 +12944,8 @@ export type QueryResolvers<ContextType = any, ParentType extends ResolversParent
   movieLikedByUser?: Resolver<Maybe<ResolversTypes['MovieLikedByUser']>, ParentType, ContextType, RequireFields<QueryMovieLikedByUserArgs, 'where'>>;
   movieLikedByUsers?: Resolver<Array<ResolversTypes['MovieLikedByUser']>, ParentType, ContextType, Partial<QueryMovieLikedByUsersArgs>>;
   movieList?: Resolver<Maybe<ResolversTypes['MovieList']>, ParentType, ContextType, RequireFields<QueryMovieListArgs, 'where'>>;
+  movieListComment?: Resolver<Maybe<ResolversTypes['MovieListComment']>, ParentType, ContextType, RequireFields<QueryMovieListCommentArgs, 'where'>>;
+  movieListComments?: Resolver<Array<ResolversTypes['MovieListComment']>, ParentType, ContextType, Partial<QueryMovieListCommentsArgs>>;
   movieListLikedByUser?: Resolver<Maybe<ResolversTypes['MovieListLikedByUser']>, ParentType, ContextType, RequireFields<QueryMovieListLikedByUserArgs, 'where'>>;
   movieListLikedByUsers?: Resolver<Array<ResolversTypes['MovieListLikedByUser']>, ParentType, ContextType, Partial<QueryMovieListLikedByUsersArgs>>;
   movieLists?: Resolver<Array<ResolversTypes['MovieList']>, ParentType, ContextType, Partial<QueryMovieListsArgs>>;
@@ -12685,6 +13032,7 @@ export type Resolvers<ContextType = any> = ResolversObject<{
   AggregateMovieCrewMemberType?: AggregateMovieCrewMemberTypeResolvers<ContextType>;
   AggregateMovieLikedByUser?: AggregateMovieLikedByUserResolvers<ContextType>;
   AggregateMovieList?: AggregateMovieListResolvers<ContextType>;
+  AggregateMovieListComment?: AggregateMovieListCommentResolvers<ContextType>;
   AggregateMovieListLikedByUser?: AggregateMovieListLikedByUserResolvers<ContextType>;
   AggregateMovieRating?: AggregateMovieRatingResolvers<ContextType>;
   AggregateMovieReview?: AggregateMovieReviewResolvers<ContextType>;
@@ -12730,6 +13078,10 @@ export type Resolvers<ContextType = any> = ResolversObject<{
   MovieLikedByUserMinAggregate?: MovieLikedByUserMinAggregateResolvers<ContextType>;
   MovieList?: MovieListResolvers<ContextType>;
   MovieListComment?: MovieListCommentResolvers<ContextType>;
+  MovieListCommentCountAggregate?: MovieListCommentCountAggregateResolvers<ContextType>;
+  MovieListCommentGroupBy?: MovieListCommentGroupByResolvers<ContextType>;
+  MovieListCommentMaxAggregate?: MovieListCommentMaxAggregateResolvers<ContextType>;
+  MovieListCommentMinAggregate?: MovieListCommentMinAggregateResolvers<ContextType>;
   MovieListCount?: MovieListCountResolvers<ContextType>;
   MovieListCountAggregate?: MovieListCountAggregateResolvers<ContextType>;
   MovieListGroupBy?: MovieListGroupByResolvers<ContextType>;
@@ -12858,6 +13210,16 @@ export const MovieListCardItemFragmentDoc = gql`
   }
 }
     `;
+export const MovieListCommentCardItemFragmentDoc = gql`
+    fragment MovieListCommentCardItem on MovieListComment {
+  id
+  content
+  user {
+    username
+  }
+  createdAt
+}
+    `;
 export const MovieListPageItemFragmentDoc = gql`
     fragment MovieListPageItem on MovieList {
   id
@@ -12868,12 +13230,16 @@ export const MovieListPageItemFragmentDoc = gql`
     id
     ...MovieCardItem
   }
+  comments(take: 5, orderBy: [{createdAt: desc}]) {
+    ...MovieListCommentCardItem
+  }
   movieListAuthor {
     id
     username
   }
 }
-    ${MovieCardItemFragmentDoc}`;
+    ${MovieCardItemFragmentDoc}
+${MovieListCommentCardItemFragmentDoc}`;
 export const MinimalisticMovieSearchCardItemFragmentDoc = gql`
     fragment MinimalisticMovieSearchCardItem on Movie {
   id
@@ -16402,6 +16768,12 @@ export type AggregateMovieListFieldPolicy = {
 	_max?: FieldPolicy<any> | FieldReadFunction<any>,
 	_min?: FieldPolicy<any> | FieldReadFunction<any>
 };
+export type AggregateMovieListCommentKeySpecifier = ('_count' | '_max' | '_min' | AggregateMovieListCommentKeySpecifier)[];
+export type AggregateMovieListCommentFieldPolicy = {
+	_count?: FieldPolicy<any> | FieldReadFunction<any>,
+	_max?: FieldPolicy<any> | FieldReadFunction<any>,
+	_min?: FieldPolicy<any> | FieldReadFunction<any>
+};
 export type AggregateMovieListLikedByUserKeySpecifier = ('_count' | '_max' | '_min' | AggregateMovieListLikedByUserKeySpecifier)[];
 export type AggregateMovieListLikedByUserFieldPolicy = {
 	_count?: FieldPolicy<any> | FieldReadFunction<any>,
@@ -16747,8 +17119,50 @@ export type MovieListFieldPolicy = {
 	updatedAt?: FieldPolicy<any> | FieldReadFunction<any>,
 	userId?: FieldPolicy<any> | FieldReadFunction<any>
 };
-export type MovieListCommentKeySpecifier = ('content' | 'createdAt' | 'id' | 'movieListId' | 'updatedAt' | 'userId' | MovieListCommentKeySpecifier)[];
+export type MovieListCommentKeySpecifier = ('content' | 'createdAt' | 'id' | 'movieList' | 'movieListId' | 'updatedAt' | 'user' | 'userId' | MovieListCommentKeySpecifier)[];
 export type MovieListCommentFieldPolicy = {
+	content?: FieldPolicy<any> | FieldReadFunction<any>,
+	createdAt?: FieldPolicy<any> | FieldReadFunction<any>,
+	id?: FieldPolicy<any> | FieldReadFunction<any>,
+	movieList?: FieldPolicy<any> | FieldReadFunction<any>,
+	movieListId?: FieldPolicy<any> | FieldReadFunction<any>,
+	updatedAt?: FieldPolicy<any> | FieldReadFunction<any>,
+	user?: FieldPolicy<any> | FieldReadFunction<any>,
+	userId?: FieldPolicy<any> | FieldReadFunction<any>
+};
+export type MovieListCommentCountAggregateKeySpecifier = ('_all' | 'content' | 'createdAt' | 'id' | 'movieListId' | 'updatedAt' | 'userId' | MovieListCommentCountAggregateKeySpecifier)[];
+export type MovieListCommentCountAggregateFieldPolicy = {
+	_all?: FieldPolicy<any> | FieldReadFunction<any>,
+	content?: FieldPolicy<any> | FieldReadFunction<any>,
+	createdAt?: FieldPolicy<any> | FieldReadFunction<any>,
+	id?: FieldPolicy<any> | FieldReadFunction<any>,
+	movieListId?: FieldPolicy<any> | FieldReadFunction<any>,
+	updatedAt?: FieldPolicy<any> | FieldReadFunction<any>,
+	userId?: FieldPolicy<any> | FieldReadFunction<any>
+};
+export type MovieListCommentGroupByKeySpecifier = ('_count' | '_max' | '_min' | 'content' | 'createdAt' | 'id' | 'movieListId' | 'updatedAt' | 'userId' | MovieListCommentGroupByKeySpecifier)[];
+export type MovieListCommentGroupByFieldPolicy = {
+	_count?: FieldPolicy<any> | FieldReadFunction<any>,
+	_max?: FieldPolicy<any> | FieldReadFunction<any>,
+	_min?: FieldPolicy<any> | FieldReadFunction<any>,
+	content?: FieldPolicy<any> | FieldReadFunction<any>,
+	createdAt?: FieldPolicy<any> | FieldReadFunction<any>,
+	id?: FieldPolicy<any> | FieldReadFunction<any>,
+	movieListId?: FieldPolicy<any> | FieldReadFunction<any>,
+	updatedAt?: FieldPolicy<any> | FieldReadFunction<any>,
+	userId?: FieldPolicy<any> | FieldReadFunction<any>
+};
+export type MovieListCommentMaxAggregateKeySpecifier = ('content' | 'createdAt' | 'id' | 'movieListId' | 'updatedAt' | 'userId' | MovieListCommentMaxAggregateKeySpecifier)[];
+export type MovieListCommentMaxAggregateFieldPolicy = {
+	content?: FieldPolicy<any> | FieldReadFunction<any>,
+	createdAt?: FieldPolicy<any> | FieldReadFunction<any>,
+	id?: FieldPolicy<any> | FieldReadFunction<any>,
+	movieListId?: FieldPolicy<any> | FieldReadFunction<any>,
+	updatedAt?: FieldPolicy<any> | FieldReadFunction<any>,
+	userId?: FieldPolicy<any> | FieldReadFunction<any>
+};
+export type MovieListCommentMinAggregateKeySpecifier = ('content' | 'createdAt' | 'id' | 'movieListId' | 'updatedAt' | 'userId' | MovieListCommentMinAggregateKeySpecifier)[];
+export type MovieListCommentMinAggregateFieldPolicy = {
 	content?: FieldPolicy<any> | FieldReadFunction<any>,
 	createdAt?: FieldPolicy<any> | FieldReadFunction<any>,
 	id?: FieldPolicy<any> | FieldReadFunction<any>,
@@ -17167,7 +17581,7 @@ export type MovifierAppUserCountFieldPolicy = {
 	watchedMovies?: FieldPolicy<any> | FieldReadFunction<any>,
 	watchlist?: FieldPolicy<any> | FieldReadFunction<any>
 };
-export type MutationKeySpecifier = ('createManyGenre' | 'createManyMovie' | 'createManyMovieCrewMember' | 'createManyMovieCrewMemberType' | 'createManyMovieLikedByUser' | 'createManyMovieList' | 'createManyMovieListLikedByUser' | 'createManyMovieRating' | 'createManyMovieReview' | 'createManyMovieReviewLikedByUser' | 'createManyMovieSpokenLanguage' | 'createManyMovieStudio' | 'createManyMovieWatchedByUser' | 'createManyUserMovieWatchlist' | 'createOneGenre' | 'createOneMovie' | 'createOneMovieCrewMember' | 'createOneMovieCrewMemberType' | 'createOneMovieLikedByUser' | 'createOneMovieList' | 'createOneMovieListLikedByUser' | 'createOneMovieRating' | 'createOneMovieReview' | 'createOneMovieReviewLikedByUser' | 'createOneMovieSpokenLanguage' | 'createOneMovieStudio' | 'createOneMovieWatchedByUser' | 'createOneMovifierAppUser' | 'createOneUserMovieWatchlist' | 'deleteManyGenre' | 'deleteManyMovie' | 'deleteManyMovieCrewMember' | 'deleteManyMovieCrewMemberType' | 'deleteManyMovieLikedByUser' | 'deleteManyMovieList' | 'deleteManyMovieListLikedByUser' | 'deleteManyMovieRating' | 'deleteManyMovieReview' | 'deleteManyMovieReviewLikedByUser' | 'deleteManyMovieSpokenLanguage' | 'deleteManyMovieStudio' | 'deleteManyMovieWatchedByUser' | 'deleteManyUserMovieWatchlist' | 'deleteOneGenre' | 'deleteOneMovie' | 'deleteOneMovieCrewMember' | 'deleteOneMovieCrewMemberType' | 'deleteOneMovieLikedByUser' | 'deleteOneMovieList' | 'deleteOneMovieListLikedByUser' | 'deleteOneMovieRating' | 'deleteOneMovieReview' | 'deleteOneMovieReviewLikedByUser' | 'deleteOneMovieSpokenLanguage' | 'deleteOneMovieStudio' | 'deleteOneMovieWatchedByUser' | 'deleteOneUserMovieWatchlist' | 'fetchMovieFromTmdb' | 'loginUser' | 'updateManyGenre' | 'updateManyMovie' | 'updateManyMovieCrewMember' | 'updateManyMovieCrewMemberType' | 'updateManyMovieLikedByUser' | 'updateManyMovieList' | 'updateManyMovieListLikedByUser' | 'updateManyMovieRating' | 'updateManyMovieReview' | 'updateManyMovieReviewLikedByUser' | 'updateManyMovieSpokenLanguage' | 'updateManyMovieStudio' | 'updateManyMovieWatchedByUser' | 'updateManyUserMovieWatchlist' | 'updateOneGenre' | 'updateOneMovie' | 'updateOneMovieCrewMember' | 'updateOneMovieCrewMemberType' | 'updateOneMovieLikedByUser' | 'updateOneMovieList' | 'updateOneMovieListLikedByUser' | 'updateOneMovieRating' | 'updateOneMovieReview' | 'updateOneMovieReviewLikedByUser' | 'updateOneMovieSpokenLanguage' | 'updateOneMovieStudio' | 'updateOneMovieWatchedByUser' | 'updateOneUserMovieWatchlist' | 'upsertOneGenre' | 'upsertOneMovie' | 'upsertOneMovieCrewMember' | 'upsertOneMovieCrewMemberType' | 'upsertOneMovieLikedByUser' | 'upsertOneMovieList' | 'upsertOneMovieListLikedByUser' | 'upsertOneMovieRating' | 'upsertOneMovieReview' | 'upsertOneMovieReviewLikedByUser' | 'upsertOneMovieSpokenLanguage' | 'upsertOneMovieStudio' | 'upsertOneMovieWatchedByUser' | 'upsertOneUserMovieWatchlist' | MutationKeySpecifier)[];
+export type MutationKeySpecifier = ('createManyGenre' | 'createManyMovie' | 'createManyMovieCrewMember' | 'createManyMovieCrewMemberType' | 'createManyMovieLikedByUser' | 'createManyMovieList' | 'createManyMovieListComment' | 'createManyMovieListLikedByUser' | 'createManyMovieRating' | 'createManyMovieReview' | 'createManyMovieReviewLikedByUser' | 'createManyMovieSpokenLanguage' | 'createManyMovieStudio' | 'createManyMovieWatchedByUser' | 'createManyUserMovieWatchlist' | 'createOneGenre' | 'createOneMovie' | 'createOneMovieCrewMember' | 'createOneMovieCrewMemberType' | 'createOneMovieLikedByUser' | 'createOneMovieList' | 'createOneMovieListComment' | 'createOneMovieListLikedByUser' | 'createOneMovieRating' | 'createOneMovieReview' | 'createOneMovieReviewLikedByUser' | 'createOneMovieSpokenLanguage' | 'createOneMovieStudio' | 'createOneMovieWatchedByUser' | 'createOneMovifierAppUser' | 'createOneUserMovieWatchlist' | 'deleteManyGenre' | 'deleteManyMovie' | 'deleteManyMovieCrewMember' | 'deleteManyMovieCrewMemberType' | 'deleteManyMovieLikedByUser' | 'deleteManyMovieList' | 'deleteManyMovieListComment' | 'deleteManyMovieListLikedByUser' | 'deleteManyMovieRating' | 'deleteManyMovieReview' | 'deleteManyMovieReviewLikedByUser' | 'deleteManyMovieSpokenLanguage' | 'deleteManyMovieStudio' | 'deleteManyMovieWatchedByUser' | 'deleteManyUserMovieWatchlist' | 'deleteOneGenre' | 'deleteOneMovie' | 'deleteOneMovieCrewMember' | 'deleteOneMovieCrewMemberType' | 'deleteOneMovieLikedByUser' | 'deleteOneMovieList' | 'deleteOneMovieListComment' | 'deleteOneMovieListLikedByUser' | 'deleteOneMovieRating' | 'deleteOneMovieReview' | 'deleteOneMovieReviewLikedByUser' | 'deleteOneMovieSpokenLanguage' | 'deleteOneMovieStudio' | 'deleteOneMovieWatchedByUser' | 'deleteOneUserMovieWatchlist' | 'fetchMovieFromTmdb' | 'loginUser' | 'updateManyGenre' | 'updateManyMovie' | 'updateManyMovieCrewMember' | 'updateManyMovieCrewMemberType' | 'updateManyMovieLikedByUser' | 'updateManyMovieList' | 'updateManyMovieListComment' | 'updateManyMovieListLikedByUser' | 'updateManyMovieRating' | 'updateManyMovieReview' | 'updateManyMovieReviewLikedByUser' | 'updateManyMovieSpokenLanguage' | 'updateManyMovieStudio' | 'updateManyMovieWatchedByUser' | 'updateManyUserMovieWatchlist' | 'updateOneGenre' | 'updateOneMovie' | 'updateOneMovieCrewMember' | 'updateOneMovieCrewMemberType' | 'updateOneMovieLikedByUser' | 'updateOneMovieList' | 'updateOneMovieListComment' | 'updateOneMovieListLikedByUser' | 'updateOneMovieRating' | 'updateOneMovieReview' | 'updateOneMovieReviewLikedByUser' | 'updateOneMovieSpokenLanguage' | 'updateOneMovieStudio' | 'updateOneMovieWatchedByUser' | 'updateOneUserMovieWatchlist' | 'upsertOneGenre' | 'upsertOneMovie' | 'upsertOneMovieCrewMember' | 'upsertOneMovieCrewMemberType' | 'upsertOneMovieLikedByUser' | 'upsertOneMovieList' | 'upsertOneMovieListComment' | 'upsertOneMovieListLikedByUser' | 'upsertOneMovieRating' | 'upsertOneMovieReview' | 'upsertOneMovieReviewLikedByUser' | 'upsertOneMovieSpokenLanguage' | 'upsertOneMovieStudio' | 'upsertOneMovieWatchedByUser' | 'upsertOneUserMovieWatchlist' | MutationKeySpecifier)[];
 export type MutationFieldPolicy = {
 	createManyGenre?: FieldPolicy<any> | FieldReadFunction<any>,
 	createManyMovie?: FieldPolicy<any> | FieldReadFunction<any>,
@@ -17175,6 +17589,7 @@ export type MutationFieldPolicy = {
 	createManyMovieCrewMemberType?: FieldPolicy<any> | FieldReadFunction<any>,
 	createManyMovieLikedByUser?: FieldPolicy<any> | FieldReadFunction<any>,
 	createManyMovieList?: FieldPolicy<any> | FieldReadFunction<any>,
+	createManyMovieListComment?: FieldPolicy<any> | FieldReadFunction<any>,
 	createManyMovieListLikedByUser?: FieldPolicy<any> | FieldReadFunction<any>,
 	createManyMovieRating?: FieldPolicy<any> | FieldReadFunction<any>,
 	createManyMovieReview?: FieldPolicy<any> | FieldReadFunction<any>,
@@ -17189,6 +17604,7 @@ export type MutationFieldPolicy = {
 	createOneMovieCrewMemberType?: FieldPolicy<any> | FieldReadFunction<any>,
 	createOneMovieLikedByUser?: FieldPolicy<any> | FieldReadFunction<any>,
 	createOneMovieList?: FieldPolicy<any> | FieldReadFunction<any>,
+	createOneMovieListComment?: FieldPolicy<any> | FieldReadFunction<any>,
 	createOneMovieListLikedByUser?: FieldPolicy<any> | FieldReadFunction<any>,
 	createOneMovieRating?: FieldPolicy<any> | FieldReadFunction<any>,
 	createOneMovieReview?: FieldPolicy<any> | FieldReadFunction<any>,
@@ -17204,6 +17620,7 @@ export type MutationFieldPolicy = {
 	deleteManyMovieCrewMemberType?: FieldPolicy<any> | FieldReadFunction<any>,
 	deleteManyMovieLikedByUser?: FieldPolicy<any> | FieldReadFunction<any>,
 	deleteManyMovieList?: FieldPolicy<any> | FieldReadFunction<any>,
+	deleteManyMovieListComment?: FieldPolicy<any> | FieldReadFunction<any>,
 	deleteManyMovieListLikedByUser?: FieldPolicy<any> | FieldReadFunction<any>,
 	deleteManyMovieRating?: FieldPolicy<any> | FieldReadFunction<any>,
 	deleteManyMovieReview?: FieldPolicy<any> | FieldReadFunction<any>,
@@ -17218,6 +17635,7 @@ export type MutationFieldPolicy = {
 	deleteOneMovieCrewMemberType?: FieldPolicy<any> | FieldReadFunction<any>,
 	deleteOneMovieLikedByUser?: FieldPolicy<any> | FieldReadFunction<any>,
 	deleteOneMovieList?: FieldPolicy<any> | FieldReadFunction<any>,
+	deleteOneMovieListComment?: FieldPolicy<any> | FieldReadFunction<any>,
 	deleteOneMovieListLikedByUser?: FieldPolicy<any> | FieldReadFunction<any>,
 	deleteOneMovieRating?: FieldPolicy<any> | FieldReadFunction<any>,
 	deleteOneMovieReview?: FieldPolicy<any> | FieldReadFunction<any>,
@@ -17234,6 +17652,7 @@ export type MutationFieldPolicy = {
 	updateManyMovieCrewMemberType?: FieldPolicy<any> | FieldReadFunction<any>,
 	updateManyMovieLikedByUser?: FieldPolicy<any> | FieldReadFunction<any>,
 	updateManyMovieList?: FieldPolicy<any> | FieldReadFunction<any>,
+	updateManyMovieListComment?: FieldPolicy<any> | FieldReadFunction<any>,
 	updateManyMovieListLikedByUser?: FieldPolicy<any> | FieldReadFunction<any>,
 	updateManyMovieRating?: FieldPolicy<any> | FieldReadFunction<any>,
 	updateManyMovieReview?: FieldPolicy<any> | FieldReadFunction<any>,
@@ -17248,6 +17667,7 @@ export type MutationFieldPolicy = {
 	updateOneMovieCrewMemberType?: FieldPolicy<any> | FieldReadFunction<any>,
 	updateOneMovieLikedByUser?: FieldPolicy<any> | FieldReadFunction<any>,
 	updateOneMovieList?: FieldPolicy<any> | FieldReadFunction<any>,
+	updateOneMovieListComment?: FieldPolicy<any> | FieldReadFunction<any>,
 	updateOneMovieListLikedByUser?: FieldPolicy<any> | FieldReadFunction<any>,
 	updateOneMovieRating?: FieldPolicy<any> | FieldReadFunction<any>,
 	updateOneMovieReview?: FieldPolicy<any> | FieldReadFunction<any>,
@@ -17262,6 +17682,7 @@ export type MutationFieldPolicy = {
 	upsertOneMovieCrewMemberType?: FieldPolicy<any> | FieldReadFunction<any>,
 	upsertOneMovieLikedByUser?: FieldPolicy<any> | FieldReadFunction<any>,
 	upsertOneMovieList?: FieldPolicy<any> | FieldReadFunction<any>,
+	upsertOneMovieListComment?: FieldPolicy<any> | FieldReadFunction<any>,
 	upsertOneMovieListLikedByUser?: FieldPolicy<any> | FieldReadFunction<any>,
 	upsertOneMovieRating?: FieldPolicy<any> | FieldReadFunction<any>,
 	upsertOneMovieReview?: FieldPolicy<any> | FieldReadFunction<any>,
@@ -17271,7 +17692,7 @@ export type MutationFieldPolicy = {
 	upsertOneMovieWatchedByUser?: FieldPolicy<any> | FieldReadFunction<any>,
 	upsertOneUserMovieWatchlist?: FieldPolicy<any> | FieldReadFunction<any>
 };
-export type QueryKeySpecifier = ('aggregateGenre' | 'aggregateMovie' | 'aggregateMovieCrewMember' | 'aggregateMovieCrewMemberType' | 'aggregateMovieLikedByUser' | 'aggregateMovieList' | 'aggregateMovieListLikedByUser' | 'aggregateMovieRating' | 'aggregateMovieReview' | 'aggregateMovieReviewLikedByUser' | 'aggregateMovieSpokenLanguage' | 'aggregateMovieStudio' | 'aggregateMovieWatchedByUser' | 'aggregateUserMovieWatchlist' | 'findFirstGenre' | 'findFirstGenreOrThrow' | 'findFirstMovie' | 'findFirstMovieCrewMember' | 'findFirstMovieCrewMemberOrThrow' | 'findFirstMovieCrewMemberType' | 'findFirstMovieCrewMemberTypeOrThrow' | 'findFirstMovieLikedByUser' | 'findFirstMovieLikedByUserOrThrow' | 'findFirstMovieList' | 'findFirstMovieListLikedByUser' | 'findFirstMovieListLikedByUserOrThrow' | 'findFirstMovieListOrThrow' | 'findFirstMovieOrThrow' | 'findFirstMovieRating' | 'findFirstMovieRatingOrThrow' | 'findFirstMovieReview' | 'findFirstMovieReviewLikedByUser' | 'findFirstMovieReviewLikedByUserOrThrow' | 'findFirstMovieReviewOrThrow' | 'findFirstMovieSpokenLanguage' | 'findFirstMovieSpokenLanguageOrThrow' | 'findFirstMovieStudio' | 'findFirstMovieStudioOrThrow' | 'findFirstMovieWatchedByUser' | 'findFirstMovieWatchedByUserOrThrow' | 'findFirstUserMovieWatchlist' | 'findFirstUserMovieWatchlistOrThrow' | 'genre' | 'genres' | 'getGenre' | 'getMovie' | 'getMovieCrewMember' | 'getMovieCrewMemberType' | 'getMovieDecades' | 'getMovieLikedByUser' | 'getMovieList' | 'getMovieListLikedByUser' | 'getMovieRating' | 'getMovieReview' | 'getMovieReviewLikedByUser' | 'getMovieSpokenLanguage' | 'getMovieStudio' | 'getMovieWatchedByUser' | 'getUserMovieWatchlist' | 'groupByGenre' | 'groupByMovie' | 'groupByMovieCrewMember' | 'groupByMovieCrewMemberType' | 'groupByMovieLikedByUser' | 'groupByMovieList' | 'groupByMovieListLikedByUser' | 'groupByMovieRating' | 'groupByMovieReview' | 'groupByMovieReviewLikedByUser' | 'groupByMovieSpokenLanguage' | 'groupByMovieStudio' | 'groupByMovieWatchedByUser' | 'groupByUserMovieWatchlist' | 'me' | 'movie' | 'movieCrewMember' | 'movieCrewMemberType' | 'movieCrewMemberTypes' | 'movieCrewMembers' | 'movieLikedByUser' | 'movieLikedByUsers' | 'movieList' | 'movieListLikedByUser' | 'movieListLikedByUsers' | 'movieLists' | 'movieRating' | 'movieRatings' | 'movieRatingsSearchWithMovies' | 'movieReview' | 'movieReviewLikedByUser' | 'movieReviewLikedByUsers' | 'movieReviews' | 'movieReviewsSearchWithMovies' | 'movieSpokenLanguage' | 'movieSpokenLanguages' | 'movieStudio' | 'movieStudios' | 'movieWatchedByUser' | 'movieWatchedByUsers' | 'movies' | 'movifierAppUsers' | 'searchMovieLists' | 'searchMovies' | 'userMovieWatchlist' | 'userMovieWatchlists' | QueryKeySpecifier)[];
+export type QueryKeySpecifier = ('aggregateGenre' | 'aggregateMovie' | 'aggregateMovieCrewMember' | 'aggregateMovieCrewMemberType' | 'aggregateMovieLikedByUser' | 'aggregateMovieList' | 'aggregateMovieListComment' | 'aggregateMovieListLikedByUser' | 'aggregateMovieRating' | 'aggregateMovieReview' | 'aggregateMovieReviewLikedByUser' | 'aggregateMovieSpokenLanguage' | 'aggregateMovieStudio' | 'aggregateMovieWatchedByUser' | 'aggregateUserMovieWatchlist' | 'findFirstGenre' | 'findFirstGenreOrThrow' | 'findFirstMovie' | 'findFirstMovieCrewMember' | 'findFirstMovieCrewMemberOrThrow' | 'findFirstMovieCrewMemberType' | 'findFirstMovieCrewMemberTypeOrThrow' | 'findFirstMovieLikedByUser' | 'findFirstMovieLikedByUserOrThrow' | 'findFirstMovieList' | 'findFirstMovieListComment' | 'findFirstMovieListCommentOrThrow' | 'findFirstMovieListLikedByUser' | 'findFirstMovieListLikedByUserOrThrow' | 'findFirstMovieListOrThrow' | 'findFirstMovieOrThrow' | 'findFirstMovieRating' | 'findFirstMovieRatingOrThrow' | 'findFirstMovieReview' | 'findFirstMovieReviewLikedByUser' | 'findFirstMovieReviewLikedByUserOrThrow' | 'findFirstMovieReviewOrThrow' | 'findFirstMovieSpokenLanguage' | 'findFirstMovieSpokenLanguageOrThrow' | 'findFirstMovieStudio' | 'findFirstMovieStudioOrThrow' | 'findFirstMovieWatchedByUser' | 'findFirstMovieWatchedByUserOrThrow' | 'findFirstUserMovieWatchlist' | 'findFirstUserMovieWatchlistOrThrow' | 'genre' | 'genres' | 'getGenre' | 'getMovie' | 'getMovieCrewMember' | 'getMovieCrewMemberType' | 'getMovieDecades' | 'getMovieLikedByUser' | 'getMovieList' | 'getMovieListComment' | 'getMovieListLikedByUser' | 'getMovieRating' | 'getMovieReview' | 'getMovieReviewLikedByUser' | 'getMovieSpokenLanguage' | 'getMovieStudio' | 'getMovieWatchedByUser' | 'getUserMovieWatchlist' | 'groupByGenre' | 'groupByMovie' | 'groupByMovieCrewMember' | 'groupByMovieCrewMemberType' | 'groupByMovieLikedByUser' | 'groupByMovieList' | 'groupByMovieListComment' | 'groupByMovieListLikedByUser' | 'groupByMovieRating' | 'groupByMovieReview' | 'groupByMovieReviewLikedByUser' | 'groupByMovieSpokenLanguage' | 'groupByMovieStudio' | 'groupByMovieWatchedByUser' | 'groupByUserMovieWatchlist' | 'me' | 'movie' | 'movieCrewMember' | 'movieCrewMemberType' | 'movieCrewMemberTypes' | 'movieCrewMembers' | 'movieLikedByUser' | 'movieLikedByUsers' | 'movieList' | 'movieListComment' | 'movieListComments' | 'movieListLikedByUser' | 'movieListLikedByUsers' | 'movieLists' | 'movieRating' | 'movieRatings' | 'movieRatingsSearchWithMovies' | 'movieReview' | 'movieReviewLikedByUser' | 'movieReviewLikedByUsers' | 'movieReviews' | 'movieReviewsSearchWithMovies' | 'movieSpokenLanguage' | 'movieSpokenLanguages' | 'movieStudio' | 'movieStudios' | 'movieWatchedByUser' | 'movieWatchedByUsers' | 'movies' | 'movifierAppUsers' | 'searchMovieLists' | 'searchMovies' | 'userMovieWatchlist' | 'userMovieWatchlists' | QueryKeySpecifier)[];
 export type QueryFieldPolicy = {
 	aggregateGenre?: FieldPolicy<any> | FieldReadFunction<any>,
 	aggregateMovie?: FieldPolicy<any> | FieldReadFunction<any>,
@@ -17279,6 +17700,7 @@ export type QueryFieldPolicy = {
 	aggregateMovieCrewMemberType?: FieldPolicy<any> | FieldReadFunction<any>,
 	aggregateMovieLikedByUser?: FieldPolicy<any> | FieldReadFunction<any>,
 	aggregateMovieList?: FieldPolicy<any> | FieldReadFunction<any>,
+	aggregateMovieListComment?: FieldPolicy<any> | FieldReadFunction<any>,
 	aggregateMovieListLikedByUser?: FieldPolicy<any> | FieldReadFunction<any>,
 	aggregateMovieRating?: FieldPolicy<any> | FieldReadFunction<any>,
 	aggregateMovieReview?: FieldPolicy<any> | FieldReadFunction<any>,
@@ -17297,6 +17719,8 @@ export type QueryFieldPolicy = {
 	findFirstMovieLikedByUser?: FieldPolicy<any> | FieldReadFunction<any>,
 	findFirstMovieLikedByUserOrThrow?: FieldPolicy<any> | FieldReadFunction<any>,
 	findFirstMovieList?: FieldPolicy<any> | FieldReadFunction<any>,
+	findFirstMovieListComment?: FieldPolicy<any> | FieldReadFunction<any>,
+	findFirstMovieListCommentOrThrow?: FieldPolicy<any> | FieldReadFunction<any>,
 	findFirstMovieListLikedByUser?: FieldPolicy<any> | FieldReadFunction<any>,
 	findFirstMovieListLikedByUserOrThrow?: FieldPolicy<any> | FieldReadFunction<any>,
 	findFirstMovieListOrThrow?: FieldPolicy<any> | FieldReadFunction<any>,
@@ -17324,6 +17748,7 @@ export type QueryFieldPolicy = {
 	getMovieDecades?: FieldPolicy<any> | FieldReadFunction<any>,
 	getMovieLikedByUser?: FieldPolicy<any> | FieldReadFunction<any>,
 	getMovieList?: FieldPolicy<any> | FieldReadFunction<any>,
+	getMovieListComment?: FieldPolicy<any> | FieldReadFunction<any>,
 	getMovieListLikedByUser?: FieldPolicy<any> | FieldReadFunction<any>,
 	getMovieRating?: FieldPolicy<any> | FieldReadFunction<any>,
 	getMovieReview?: FieldPolicy<any> | FieldReadFunction<any>,
@@ -17338,6 +17763,7 @@ export type QueryFieldPolicy = {
 	groupByMovieCrewMemberType?: FieldPolicy<any> | FieldReadFunction<any>,
 	groupByMovieLikedByUser?: FieldPolicy<any> | FieldReadFunction<any>,
 	groupByMovieList?: FieldPolicy<any> | FieldReadFunction<any>,
+	groupByMovieListComment?: FieldPolicy<any> | FieldReadFunction<any>,
 	groupByMovieListLikedByUser?: FieldPolicy<any> | FieldReadFunction<any>,
 	groupByMovieRating?: FieldPolicy<any> | FieldReadFunction<any>,
 	groupByMovieReview?: FieldPolicy<any> | FieldReadFunction<any>,
@@ -17355,6 +17781,8 @@ export type QueryFieldPolicy = {
 	movieLikedByUser?: FieldPolicy<any> | FieldReadFunction<any>,
 	movieLikedByUsers?: FieldPolicy<any> | FieldReadFunction<any>,
 	movieList?: FieldPolicy<any> | FieldReadFunction<any>,
+	movieListComment?: FieldPolicy<any> | FieldReadFunction<any>,
+	movieListComments?: FieldPolicy<any> | FieldReadFunction<any>,
 	movieListLikedByUser?: FieldPolicy<any> | FieldReadFunction<any>,
 	movieListLikedByUsers?: FieldPolicy<any> | FieldReadFunction<any>,
 	movieLists?: FieldPolicy<any> | FieldReadFunction<any>,
@@ -17453,6 +17881,10 @@ export type StrictTypedTypePolicies = {
 	AggregateMovieList?: Omit<TypePolicy, "fields" | "keyFields"> & {
 		keyFields?: false | AggregateMovieListKeySpecifier | (() => undefined | AggregateMovieListKeySpecifier),
 		fields?: AggregateMovieListFieldPolicy,
+	},
+	AggregateMovieListComment?: Omit<TypePolicy, "fields" | "keyFields"> & {
+		keyFields?: false | AggregateMovieListCommentKeySpecifier | (() => undefined | AggregateMovieListCommentKeySpecifier),
+		fields?: AggregateMovieListCommentFieldPolicy,
 	},
 	AggregateMovieListLikedByUser?: Omit<TypePolicy, "fields" | "keyFields"> & {
 		keyFields?: false | AggregateMovieListLikedByUserKeySpecifier | (() => undefined | AggregateMovieListLikedByUserKeySpecifier),
@@ -17629,6 +18061,22 @@ export type StrictTypedTypePolicies = {
 	MovieListComment?: Omit<TypePolicy, "fields" | "keyFields"> & {
 		keyFields?: false | MovieListCommentKeySpecifier | (() => undefined | MovieListCommentKeySpecifier),
 		fields?: MovieListCommentFieldPolicy,
+	},
+	MovieListCommentCountAggregate?: Omit<TypePolicy, "fields" | "keyFields"> & {
+		keyFields?: false | MovieListCommentCountAggregateKeySpecifier | (() => undefined | MovieListCommentCountAggregateKeySpecifier),
+		fields?: MovieListCommentCountAggregateFieldPolicy,
+	},
+	MovieListCommentGroupBy?: Omit<TypePolicy, "fields" | "keyFields"> & {
+		keyFields?: false | MovieListCommentGroupByKeySpecifier | (() => undefined | MovieListCommentGroupByKeySpecifier),
+		fields?: MovieListCommentGroupByFieldPolicy,
+	},
+	MovieListCommentMaxAggregate?: Omit<TypePolicy, "fields" | "keyFields"> & {
+		keyFields?: false | MovieListCommentMaxAggregateKeySpecifier | (() => undefined | MovieListCommentMaxAggregateKeySpecifier),
+		fields?: MovieListCommentMaxAggregateFieldPolicy,
+	},
+	MovieListCommentMinAggregate?: Omit<TypePolicy, "fields" | "keyFields"> & {
+		keyFields?: false | MovieListCommentMinAggregateKeySpecifier | (() => undefined | MovieListCommentMinAggregateKeySpecifier),
+		fields?: MovieListCommentMinAggregateFieldPolicy,
 	},
 	MovieListCount?: Omit<TypePolicy, "fields" | "keyFields"> & {
 		keyFields?: false | MovieListCountKeySpecifier | (() => undefined | MovieListCountKeySpecifier),

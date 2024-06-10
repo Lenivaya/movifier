@@ -41,9 +41,9 @@ const GetMovieForUpdate = gql`
   }
 `
 
-export const MovieUpdateForm: FC<{ movieId: string }> = ({ personId }) => {
+export const MovieUpdateForm: FC<{ movieId: string }> = ({ movieId }) => {
   const { data } = useGetMovieForUpdateQuery({
-    variables: { id: personId },
+    variables: { id: movieId },
     fetchPolicy: 'network-only'
   })
 
