@@ -37,7 +37,7 @@ export const MovieWatchListButton: FC<
 
     await addMovieToWatchList({
       variables: composeKey,
-      refetchQueries: ['GetUserWatchlist'],
+      refetchQueries: ['GetUserWatchlist', 'GetMovieCardStats'],
       onError: (error) => {
         console.error(error.message)
         toast({
@@ -56,7 +56,7 @@ export const MovieWatchListButton: FC<
   const handleRemoveMovieFromWatchList = async () => {
     await removeMovieFromWatchList({
       variables: composeKey,
-      refetchQueries: ['GetUserWatchlist'],
+      refetchQueries: ['GetUserWatchlist', 'GetMovieCardStats'],
       onError: (error) => {
         console.error(error)
         toast({

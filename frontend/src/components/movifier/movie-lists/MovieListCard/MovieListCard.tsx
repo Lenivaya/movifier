@@ -78,8 +78,8 @@ export const MovieListCard: FC<MovieListCardItemFragment> = ({
 
       <Separator className={'mb-5'} />
 
-      <CardContent>
-        <div className='flex items-center space-x-4 overflow-hidden rounded-lg'>
+      <CardContent className={'flex justify-center'}>
+        <div className='flex items-center space-x-4 overflow-hidden rounded-lg mx-auto w-max'>
           {movies.map((movie, index) => (
             <div
               key={movie.id}

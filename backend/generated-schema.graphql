@@ -473,6 +473,7 @@ type Movie {
   movieStats(where: MovieStatsWhereInput): MovieStats
   ratedBy(cursor: MovieRatingWhereUniqueInput, distinct: [MovieRatingScalarFieldEnum!], orderBy: [MovieRatingOrderByWithRelationAndSearchRelevanceInput!], skip: Int, take: Int, where: MovieRatingWhereInput): [MovieRating!]!
   spokenLanguages(cursor: MovieSpokenLanguageWhereUniqueInput, distinct: [MovieSpokenLanguageScalarFieldEnum!], orderBy: [MovieSpokenLanguageOrderByWithRelationAndSearchRelevanceInput!], skip: Int, take: Int, where: MovieSpokenLanguageWhereInput): [MovieSpokenLanguage!]!
+  statsSummary: MovieStatsSummary!
   studios(cursor: MovieStudioWhereUniqueInput, distinct: [MovieStudioScalarFieldEnum!], orderBy: [MovieStudioOrderByWithRelationAndSearchRelevanceInput!], skip: Int, take: Int, where: MovieStudioWhereInput): [MovieStudio!]!
   updatedAt: DateTimeISO!
   watchedBy(cursor: MovieWatchedByUserWhereUniqueInput, distinct: [MovieWatchedByUserScalarFieldEnum!], orderBy: [MovieWatchedByUserOrderByWithRelationAndSearchRelevanceInput!], skip: Int, take: Int, where: MovieWatchedByUserWhereInput): [MovieWatchedByUser!]!
@@ -4908,6 +4909,13 @@ input MovieStatsOrderByWithRelationAndSearchRelevanceInput {
   totalRatingsCount: SortOrder
 }
 
+type MovieStatsSummary {
+  appearancesInLists: Int!
+  avgRating: Float!
+  totalLikes: Int!
+  totalViews: Int!
+}
+
 input MovieStatsUpdateOneWithoutMovieNestedInput {
   connect: MovieStatsWhereUniqueInput
   connectOrCreate: MovieStatsCreateOrConnectWithoutMovieInput
@@ -4970,6 +4978,7 @@ type MovieStudio {
   _count: MovieStudioCount
   createdAt: DateTimeISO!
   id: String!
+  movies(cursor: MovieWhereUniqueInput, distinct: [MovieScalarFieldEnum!], orderBy: [MovieOrderByWithRelationAndSearchRelevanceInput!], skip: Int, take: Int, where: MovieWhereInput): [Movie!]!
   name: String!
   updatedAt: DateTimeISO!
 }

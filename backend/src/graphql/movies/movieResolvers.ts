@@ -1,5 +1,6 @@
 import { NonEmptyArray } from 'type-graphql'
 import {
+  AggregateMovieResolver,
   MovieCrewMemberCrudResolver,
   MovieCrewMemberOnMovieRelationsResolver,
   MovieCrewMemberRelationsResolver,
@@ -25,6 +26,7 @@ import {
 import { CustomMoviesResolver } from '@/graphql/movies/customMoviesResolver'
 import { CustomMoviesTmdbResolver } from '@/graphql/movies/moviesTmdbFetcher/customMoviesTmdbResolver'
 import { CustomMovieListResolver } from '@/graphql/movies/movieList/customMovieListResolver'
+import { MovieStatsSummaryResolver } from '@/graphql/movies/movieStatsSummaryResolver'
 
 export const moviesResolvers: NonEmptyArray<Function> = [
   CustomMoviesResolver,
@@ -50,5 +52,7 @@ export const moviesResolvers: NonEmptyArray<Function> = [
   MovieCrewMemberTypeCrudResolver,
   MovieCrewMemberTypeRelationsResolver,
   MovieStudioCrudResolver,
-  MovieStudioRelationsResolver
+  MovieStudioRelationsResolver,
+  AggregateMovieResolver,
+  MovieStatsSummaryResolver
 ]

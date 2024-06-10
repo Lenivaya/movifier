@@ -41,7 +41,7 @@ export class CustomMoviesResolver {
 
   @TypeGraphQL.Query(() => Decades)
   async getMovieDecades(@TypeGraphQL.Ctx() ctx: AppContext): Promise<Decades> {
-    const prisma = getPrismaFromContext(ctx)
+    const prisma = ctx.prisma
 
     const movies = await prisma.movieInfo.aggregate({
       _min: {

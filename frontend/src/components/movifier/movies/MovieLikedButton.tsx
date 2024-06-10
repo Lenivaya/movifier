@@ -40,7 +40,8 @@ export const MovieLikedButton: FC<
       refetchQueries: [
         'GetUserLikedMovieIdsInMovieList',
         'GetUserLikedPersonMovieIds',
-        'GetUserLikedMovies'
+        'GetUserLikedMovies',
+        'GetMovieCardStats'
       ],
       onError: (error) => {
         console.error(error.message)
@@ -60,7 +61,8 @@ export const MovieLikedButton: FC<
       refetchQueries: [
         'GetUserLikedMovieIdsInMovieList',
         'GetUserLikedPersonMovieIds',
-        'GetUserLikedMovies'
+        'GetUserLikedMovies',
+        'GetMovieCardStats'
       ],
       onError: (error) => {
         console.error(error)
