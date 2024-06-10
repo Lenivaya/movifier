@@ -136,6 +136,16 @@ export type AggregateUserMovieWatchlist = {
   _min?: Maybe<UserMovieWatchlistMinAggregate>;
 };
 
+export type AppStats = {
+  __typename?: 'AppStats';
+  totalAppUsers: Scalars['Int']['output'];
+  totalLikes: Scalars['Int']['output'];
+  totalMovieLists: Scalars['Int']['output'];
+  totalMovieWatches: Scalars['Int']['output'];
+  totalMoviesInWatchlists: Scalars['Int']['output'];
+  usersWithMovieLists: Scalars['Int']['output'];
+};
+
 export type DateTimeFieldUpdateOperationsInput = {
   set?: InputMaybe<Scalars['DateTimeISO']['input']>;
 };
@@ -5289,6 +5299,41 @@ export type MovieStatsSummary = {
   totalViews: Scalars['Int']['output'];
 };
 
+export type MovieStatsTopAppearancesInLists = {
+  __typename?: 'MovieStatsTopAppearancesInLists';
+  appearancesInLists: Scalars['Int']['output'];
+  movieId: Scalars['String']['output'];
+  movieName: Scalars['String']['output'];
+};
+
+export type MovieStatsTopGenres = {
+  __typename?: 'MovieStatsTopGenres';
+  genreId: Scalars['String']['output'];
+  genreName: Scalars['String']['output'];
+  movieCount: Scalars['Int']['output'];
+};
+
+export type MovieStatsTopLikes = {
+  __typename?: 'MovieStatsTopLikes';
+  movieId: Scalars['String']['output'];
+  movieName: Scalars['String']['output'];
+  totalLikes: Scalars['Int']['output'];
+};
+
+export type MovieStatsTopRated = {
+  __typename?: 'MovieStatsTopRated';
+  avgRating: Scalars['Float']['output'];
+  movieId: Scalars['String']['output'];
+  movieName: Scalars['String']['output'];
+};
+
+export type MovieStatsTopViews = {
+  __typename?: 'MovieStatsTopViews';
+  movieId: Scalars['String']['output'];
+  movieName: Scalars['String']['output'];
+  totalViews: Scalars['Int']['output'];
+};
+
 export type MovieStatsUpdateOneWithoutMovieNestedInput = {
   connect?: InputMaybe<MovieStatsWhereUniqueInput>;
   connectOrCreate?: InputMaybe<MovieStatsCreateOrConnectWithoutMovieInput>;
@@ -6332,6 +6377,12 @@ export type MovieWhereUniqueInput = {
 export type MoviefireAppUserRole =
   | 'ADMIN'
   | 'USER';
+
+export type MoviesPostedYearly = {
+  __typename?: 'MoviesPostedYearly';
+  totalMoviesPosted: Scalars['Int']['output'];
+  year: Scalars['Int']['output'];
+};
 
 export type MoviesSearchCriteriaInput = {
   decade?: InputMaybe<Scalars['Float']['input']>;
@@ -7909,6 +7960,7 @@ export type Query = {
   aggregateMovieStudio: AggregateMovieStudio;
   aggregateMovieWatchedByUser: AggregateMovieWatchedByUser;
   aggregateUserMovieWatchlist: AggregateUserMovieWatchlist;
+  appStats: AppStats;
   findFirstGenre?: Maybe<Genre>;
   findFirstGenreOrThrow?: Maybe<Genre>;
   findFirstMovie?: Maybe<Movie>;
@@ -8001,9 +8053,17 @@ export type Query = {
   movieWatchedByUser?: Maybe<MovieWatchedByUser>;
   movieWatchedByUsers: Array<MovieWatchedByUser>;
   movies: Array<Movie>;
+  moviesPostedYearly: Array<MoviesPostedYearly>;
   movifierAppUsers: Array<MovifierAppUser>;
   searchMovieLists: Array<MovieList>;
   searchMovies: Array<Movie>;
+  topCrewMemberTypes: Array<TopMovieCrewMemberType>;
+  topGenres: Array<MovieStatsTopGenres>;
+  topMoviesByAppearancesInLists: Array<MovieStatsTopAppearancesInLists>;
+  topMoviesByLikes: Array<MovieStatsTopLikes>;
+  topMoviesByRating: Array<MovieStatsTopRated>;
+  topMoviesByViews: Array<MovieStatsTopViews>;
+  topPersons: Array<TopPerson>;
   userMovieWatchlist?: Maybe<UserMovieWatchlist>;
   userMovieWatchlists: Array<UserMovieWatchlist>;
 };
@@ -8901,6 +8961,11 @@ export type QueryMoviesArgs = {
 };
 
 
+export type QueryMoviesPostedYearlyArgs = {
+  first?: Scalars['Int']['input'];
+};
+
+
 export type QueryMovifierAppUsersArgs = {
   cursor?: InputMaybe<MovifierAppUserWhereUniqueInput>;
   distinct?: InputMaybe<Array<MovifierAppUserScalarFieldEnum>>;
@@ -8930,6 +8995,41 @@ export type QuerySearchMoviesArgs = {
   skip?: InputMaybe<Scalars['Int']['input']>;
   take?: InputMaybe<Scalars['Int']['input']>;
   where?: InputMaybe<MovieWhereInput>;
+};
+
+
+export type QueryTopCrewMemberTypesArgs = {
+  first?: Scalars['Int']['input'];
+};
+
+
+export type QueryTopGenresArgs = {
+  first?: Scalars['Int']['input'];
+};
+
+
+export type QueryTopMoviesByAppearancesInListsArgs = {
+  first?: Scalars['Int']['input'];
+};
+
+
+export type QueryTopMoviesByLikesArgs = {
+  first?: Scalars['Int']['input'];
+};
+
+
+export type QueryTopMoviesByRatingArgs = {
+  first?: Scalars['Int']['input'];
+};
+
+
+export type QueryTopMoviesByViewsArgs = {
+  first?: Scalars['Int']['input'];
+};
+
+
+export type QueryTopPersonsArgs = {
+  first?: Scalars['Int']['input'];
 };
 
 
@@ -9000,6 +9100,21 @@ export type StringWithAggregatesFilter = {
   notIn?: InputMaybe<Array<Scalars['String']['input']>>;
   search?: InputMaybe<Scalars['String']['input']>;
   startsWith?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type TopMovieCrewMemberType = {
+  __typename?: 'TopMovieCrewMemberType';
+  movieCount: Scalars['Int']['output'];
+  movieCrewMemberTypeId: Scalars['String']['output'];
+  movieCrewMemberTypeName: Scalars['String']['output'];
+};
+
+export type TopPerson = {
+  __typename?: 'TopPerson';
+  appearancesInMovies: Scalars['Int']['output'];
+  personId: Scalars['String']['output'];
+  personName: Scalars['String']['output'];
+  popularity: Scalars['Float']['output'];
 };
 
 export type UserLoginInput = {
@@ -9846,6 +9961,21 @@ export type GetPersonForUpdateQueryVariables = Exact<{
 
 export type GetPersonForUpdateQuery = { __typename?: 'Query', movieCrewMember?: { __typename?: 'MovieCrewMember', id: string, name: string, photoUrl: string, description: string, popularity: number, imdbId: string } | null };
 
+export type GetAppStatsQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type GetAppStatsQuery = { __typename?: 'Query', appStats: { __typename?: 'AppStats', totalAppUsers: number, totalLikes: number, totalMovieWatches: number, totalMovieLists: number, totalMoviesInWatchlists: number, usersWithMovieLists: number } };
+
+export type GetMoviesStatsQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type GetMoviesStatsQuery = { __typename?: 'Query', topGenres: Array<{ __typename?: 'MovieStatsTopGenres', genreId: string, genreName: string, movieCount: number }>, topMoviesByLikes: Array<{ __typename?: 'MovieStatsTopLikes', movieId: string, movieName: string, totalLikes: number }>, topMoviesByAppearancesInLists: Array<{ __typename?: 'MovieStatsTopAppearancesInLists', movieId: string, movieName: string, appearancesInLists: number }>, topMoviesByRating: Array<{ __typename?: 'MovieStatsTopRated', movieId: string, movieName: string, avgRating: number }>, topMoviesByViews: Array<{ __typename?: 'MovieStatsTopViews', movieId: string, movieName: string, totalViews: number }>, moviesPostedYearly: Array<{ __typename?: 'MoviesPostedYearly', year: number, totalMoviesPosted: number }> };
+
+export type GetPersonStatsQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type GetPersonStatsQuery = { __typename?: 'Query', topCrewMemberTypes: Array<{ __typename?: 'TopMovieCrewMemberType', movieCrewMemberTypeId: string, movieCrewMemberTypeName: string, movieCount: number }>, topPersons: Array<{ __typename?: 'TopPerson', personId: string, personName: string, appearancesInMovies: number, popularity: number }> };
+
 export type LoginUserMutationVariables = Exact<{
   data: UserLoginInput;
 }>;
@@ -10075,6 +10205,7 @@ export type ResolversTypes = ResolversObject<{
   AggregateMovieStudio: ResolverTypeWrapper<AggregateMovieStudio>;
   AggregateMovieWatchedByUser: ResolverTypeWrapper<AggregateMovieWatchedByUser>;
   AggregateUserMovieWatchlist: ResolverTypeWrapper<AggregateUserMovieWatchlist>;
+  AppStats: ResolverTypeWrapper<AppStats>;
   Boolean: ResolverTypeWrapper<Scalars['Boolean']['output']>;
   DateTimeFieldUpdateOperationsInput: DateTimeFieldUpdateOperationsInput;
   DateTimeFilter: DateTimeFilter;
@@ -10694,6 +10825,11 @@ export type ResolversTypes = ResolversObject<{
   MovieStatsOrderByRelevanceInput: MovieStatsOrderByRelevanceInput;
   MovieStatsOrderByWithRelationAndSearchRelevanceInput: MovieStatsOrderByWithRelationAndSearchRelevanceInput;
   MovieStatsSummary: ResolverTypeWrapper<MovieStatsSummary>;
+  MovieStatsTopAppearancesInLists: ResolverTypeWrapper<MovieStatsTopAppearancesInLists>;
+  MovieStatsTopGenres: ResolverTypeWrapper<MovieStatsTopGenres>;
+  MovieStatsTopLikes: ResolverTypeWrapper<MovieStatsTopLikes>;
+  MovieStatsTopRated: ResolverTypeWrapper<MovieStatsTopRated>;
+  MovieStatsTopViews: ResolverTypeWrapper<MovieStatsTopViews>;
   MovieStatsUpdateOneWithoutMovieNestedInput: MovieStatsUpdateOneWithoutMovieNestedInput;
   MovieStatsUpdateToOneWithWhereWithoutMovieInput: MovieStatsUpdateToOneWithWhereWithoutMovieInput;
   MovieStatsUpdateWithoutMovieInput: MovieStatsUpdateWithoutMovieInput;
@@ -10821,6 +10957,7 @@ export type ResolversTypes = ResolversObject<{
   MovieWhereInput: MovieWhereInput;
   MovieWhereUniqueInput: MovieWhereUniqueInput;
   MoviefireAppUserRole: MoviefireAppUserRole;
+  MoviesPostedYearly: ResolverTypeWrapper<MoviesPostedYearly>;
   MoviesSearchCriteriaInput: MoviesSearchCriteriaInput;
   MovifierAppUser: ResolverTypeWrapper<MovifierAppUser>;
   MovifierAppUserCount: ResolverTypeWrapper<MovifierAppUserCount>;
@@ -10906,6 +11043,8 @@ export type ResolversTypes = ResolversObject<{
   StringFilter: StringFilter;
   StringNullableListFilter: StringNullableListFilter;
   StringWithAggregatesFilter: StringWithAggregatesFilter;
+  TopMovieCrewMemberType: ResolverTypeWrapper<TopMovieCrewMemberType>;
+  TopPerson: ResolverTypeWrapper<TopPerson>;
   UserLoginInput: UserLoginInput;
   UserLoginOutput: ResolverTypeWrapper<UserLoginOutput>;
   UserMovieWatchlist: ResolverTypeWrapper<UserMovieWatchlist>;
@@ -10973,6 +11112,7 @@ export type ResolversParentTypes = ResolversObject<{
   AggregateMovieStudio: AggregateMovieStudio;
   AggregateMovieWatchedByUser: AggregateMovieWatchedByUser;
   AggregateUserMovieWatchlist: AggregateUserMovieWatchlist;
+  AppStats: AppStats;
   Boolean: Scalars['Boolean']['output'];
   DateTimeFieldUpdateOperationsInput: DateTimeFieldUpdateOperationsInput;
   DateTimeFilter: DateTimeFilter;
@@ -11561,6 +11701,11 @@ export type ResolversParentTypes = ResolversObject<{
   MovieStatsOrderByRelevanceInput: MovieStatsOrderByRelevanceInput;
   MovieStatsOrderByWithRelationAndSearchRelevanceInput: MovieStatsOrderByWithRelationAndSearchRelevanceInput;
   MovieStatsSummary: MovieStatsSummary;
+  MovieStatsTopAppearancesInLists: MovieStatsTopAppearancesInLists;
+  MovieStatsTopGenres: MovieStatsTopGenres;
+  MovieStatsTopLikes: MovieStatsTopLikes;
+  MovieStatsTopRated: MovieStatsTopRated;
+  MovieStatsTopViews: MovieStatsTopViews;
   MovieStatsUpdateOneWithoutMovieNestedInput: MovieStatsUpdateOneWithoutMovieNestedInput;
   MovieStatsUpdateToOneWithWhereWithoutMovieInput: MovieStatsUpdateToOneWithWhereWithoutMovieInput;
   MovieStatsUpdateWithoutMovieInput: MovieStatsUpdateWithoutMovieInput;
@@ -11683,6 +11828,7 @@ export type ResolversParentTypes = ResolversObject<{
   MovieWatchedByUserWhereUniqueInput: MovieWatchedByUserWhereUniqueInput;
   MovieWhereInput: MovieWhereInput;
   MovieWhereUniqueInput: MovieWhereUniqueInput;
+  MoviesPostedYearly: MoviesPostedYearly;
   MoviesSearchCriteriaInput: MoviesSearchCriteriaInput;
   MovifierAppUser: MovifierAppUser;
   MovifierAppUserCount: MovifierAppUserCount;
@@ -11764,6 +11910,8 @@ export type ResolversParentTypes = ResolversObject<{
   StringFilter: StringFilter;
   StringNullableListFilter: StringNullableListFilter;
   StringWithAggregatesFilter: StringWithAggregatesFilter;
+  TopMovieCrewMemberType: TopMovieCrewMemberType;
+  TopPerson: TopPerson;
   UserLoginInput: UserLoginInput;
   UserLoginOutput: UserLoginOutput;
   UserMovieWatchlist: UserMovieWatchlist;
@@ -11926,6 +12074,16 @@ export type AggregateUserMovieWatchlistResolvers<ContextType = any, ParentType e
   _count?: Resolver<Maybe<ResolversTypes['UserMovieWatchlistCountAggregate']>, ParentType, ContextType>;
   _max?: Resolver<Maybe<ResolversTypes['UserMovieWatchlistMaxAggregate']>, ParentType, ContextType>;
   _min?: Resolver<Maybe<ResolversTypes['UserMovieWatchlistMinAggregate']>, ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+}>;
+
+export type AppStatsResolvers<ContextType = any, ParentType extends ResolversParentTypes['AppStats'] = ResolversParentTypes['AppStats']> = ResolversObject<{
+  totalAppUsers?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
+  totalLikes?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
+  totalMovieLists?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
+  totalMovieWatches?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
+  totalMoviesInWatchlists?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
+  usersWithMovieLists?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 }>;
 
@@ -12675,6 +12833,41 @@ export type MovieStatsSummaryResolvers<ContextType = any, ParentType extends Res
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 }>;
 
+export type MovieStatsTopAppearancesInListsResolvers<ContextType = any, ParentType extends ResolversParentTypes['MovieStatsTopAppearancesInLists'] = ResolversParentTypes['MovieStatsTopAppearancesInLists']> = ResolversObject<{
+  appearancesInLists?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
+  movieId?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  movieName?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+}>;
+
+export type MovieStatsTopGenresResolvers<ContextType = any, ParentType extends ResolversParentTypes['MovieStatsTopGenres'] = ResolversParentTypes['MovieStatsTopGenres']> = ResolversObject<{
+  genreId?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  genreName?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  movieCount?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+}>;
+
+export type MovieStatsTopLikesResolvers<ContextType = any, ParentType extends ResolversParentTypes['MovieStatsTopLikes'] = ResolversParentTypes['MovieStatsTopLikes']> = ResolversObject<{
+  movieId?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  movieName?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  totalLikes?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+}>;
+
+export type MovieStatsTopRatedResolvers<ContextType = any, ParentType extends ResolversParentTypes['MovieStatsTopRated'] = ResolversParentTypes['MovieStatsTopRated']> = ResolversObject<{
+  avgRating?: Resolver<ResolversTypes['Float'], ParentType, ContextType>;
+  movieId?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  movieName?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+}>;
+
+export type MovieStatsTopViewsResolvers<ContextType = any, ParentType extends ResolversParentTypes['MovieStatsTopViews'] = ResolversParentTypes['MovieStatsTopViews']> = ResolversObject<{
+  movieId?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  movieName?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  totalViews?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+}>;
+
 export type MovieStudioResolvers<ContextType = any, ParentType extends ResolversParentTypes['MovieStudio'] = ResolversParentTypes['MovieStudio']> = ResolversObject<{
   _count?: Resolver<Maybe<ResolversTypes['MovieStudioCount']>, ParentType, ContextType>;
   createdAt?: Resolver<ResolversTypes['DateTimeISO'], ParentType, ContextType>;
@@ -12764,6 +12957,12 @@ export type MovieWatchedByUserMinAggregateResolvers<ContextType = any, ParentTyp
   createdAt?: Resolver<Maybe<ResolversTypes['DateTimeISO']>, ParentType, ContextType>;
   movieId?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   userId?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+}>;
+
+export type MoviesPostedYearlyResolvers<ContextType = any, ParentType extends ResolversParentTypes['MoviesPostedYearly'] = ResolversParentTypes['MoviesPostedYearly']> = ResolversObject<{
+  totalMoviesPosted?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
+  year?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 }>;
 
@@ -12918,6 +13117,7 @@ export type QueryResolvers<ContextType = any, ParentType extends ResolversParent
   aggregateMovieStudio?: Resolver<ResolversTypes['AggregateMovieStudio'], ParentType, ContextType, Partial<QueryAggregateMovieStudioArgs>>;
   aggregateMovieWatchedByUser?: Resolver<ResolversTypes['AggregateMovieWatchedByUser'], ParentType, ContextType, Partial<QueryAggregateMovieWatchedByUserArgs>>;
   aggregateUserMovieWatchlist?: Resolver<ResolversTypes['AggregateUserMovieWatchlist'], ParentType, ContextType, Partial<QueryAggregateUserMovieWatchlistArgs>>;
+  appStats?: Resolver<ResolversTypes['AppStats'], ParentType, ContextType>;
   findFirstGenre?: Resolver<Maybe<ResolversTypes['Genre']>, ParentType, ContextType, Partial<QueryFindFirstGenreArgs>>;
   findFirstGenreOrThrow?: Resolver<Maybe<ResolversTypes['Genre']>, ParentType, ContextType, Partial<QueryFindFirstGenreOrThrowArgs>>;
   findFirstMovie?: Resolver<Maybe<ResolversTypes['Movie']>, ParentType, ContextType, Partial<QueryFindFirstMovieArgs>>;
@@ -13010,11 +13210,34 @@ export type QueryResolvers<ContextType = any, ParentType extends ResolversParent
   movieWatchedByUser?: Resolver<Maybe<ResolversTypes['MovieWatchedByUser']>, ParentType, ContextType, RequireFields<QueryMovieWatchedByUserArgs, 'where'>>;
   movieWatchedByUsers?: Resolver<Array<ResolversTypes['MovieWatchedByUser']>, ParentType, ContextType, Partial<QueryMovieWatchedByUsersArgs>>;
   movies?: Resolver<Array<ResolversTypes['Movie']>, ParentType, ContextType, Partial<QueryMoviesArgs>>;
+  moviesPostedYearly?: Resolver<Array<ResolversTypes['MoviesPostedYearly']>, ParentType, ContextType, RequireFields<QueryMoviesPostedYearlyArgs, 'first'>>;
   movifierAppUsers?: Resolver<Array<ResolversTypes['MovifierAppUser']>, ParentType, ContextType, Partial<QueryMovifierAppUsersArgs>>;
   searchMovieLists?: Resolver<Array<ResolversTypes['MovieList']>, ParentType, ContextType, RequireFields<QuerySearchMovieListsArgs, 'searchCriteria'>>;
   searchMovies?: Resolver<Array<ResolversTypes['Movie']>, ParentType, ContextType, RequireFields<QuerySearchMoviesArgs, 'searchCriteria'>>;
+  topCrewMemberTypes?: Resolver<Array<ResolversTypes['TopMovieCrewMemberType']>, ParentType, ContextType, RequireFields<QueryTopCrewMemberTypesArgs, 'first'>>;
+  topGenres?: Resolver<Array<ResolversTypes['MovieStatsTopGenres']>, ParentType, ContextType, RequireFields<QueryTopGenresArgs, 'first'>>;
+  topMoviesByAppearancesInLists?: Resolver<Array<ResolversTypes['MovieStatsTopAppearancesInLists']>, ParentType, ContextType, RequireFields<QueryTopMoviesByAppearancesInListsArgs, 'first'>>;
+  topMoviesByLikes?: Resolver<Array<ResolversTypes['MovieStatsTopLikes']>, ParentType, ContextType, RequireFields<QueryTopMoviesByLikesArgs, 'first'>>;
+  topMoviesByRating?: Resolver<Array<ResolversTypes['MovieStatsTopRated']>, ParentType, ContextType, RequireFields<QueryTopMoviesByRatingArgs, 'first'>>;
+  topMoviesByViews?: Resolver<Array<ResolversTypes['MovieStatsTopViews']>, ParentType, ContextType, RequireFields<QueryTopMoviesByViewsArgs, 'first'>>;
+  topPersons?: Resolver<Array<ResolversTypes['TopPerson']>, ParentType, ContextType, RequireFields<QueryTopPersonsArgs, 'first'>>;
   userMovieWatchlist?: Resolver<Maybe<ResolversTypes['UserMovieWatchlist']>, ParentType, ContextType, RequireFields<QueryUserMovieWatchlistArgs, 'where'>>;
   userMovieWatchlists?: Resolver<Array<ResolversTypes['UserMovieWatchlist']>, ParentType, ContextType, Partial<QueryUserMovieWatchlistsArgs>>;
+}>;
+
+export type TopMovieCrewMemberTypeResolvers<ContextType = any, ParentType extends ResolversParentTypes['TopMovieCrewMemberType'] = ResolversParentTypes['TopMovieCrewMemberType']> = ResolversObject<{
+  movieCount?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
+  movieCrewMemberTypeId?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  movieCrewMemberTypeName?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+}>;
+
+export type TopPersonResolvers<ContextType = any, ParentType extends ResolversParentTypes['TopPerson'] = ResolversParentTypes['TopPerson']> = ResolversObject<{
+  appearancesInMovies?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
+  personId?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  personName?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  popularity?: Resolver<ResolversTypes['Float'], ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 }>;
 
 export type UserLoginOutputResolvers<ContextType = any, ParentType extends ResolversParentTypes['UserLoginOutput'] = ResolversParentTypes['UserLoginOutput']> = ResolversObject<{
@@ -13087,6 +13310,7 @@ export type Resolvers<ContextType = any> = ResolversObject<{
   AggregateMovieStudio?: AggregateMovieStudioResolvers<ContextType>;
   AggregateMovieWatchedByUser?: AggregateMovieWatchedByUserResolvers<ContextType>;
   AggregateUserMovieWatchlist?: AggregateUserMovieWatchlistResolvers<ContextType>;
+  AppStats?: AppStatsResolvers<ContextType>;
   DateTimeISO?: GraphQLScalarType;
   Decades?: DecadesResolvers<ContextType>;
   Genre?: GenreResolvers<ContextType>;
@@ -13167,6 +13391,11 @@ export type Resolvers<ContextType = any> = ResolversObject<{
   MovieSpokenLanguageMinAggregate?: MovieSpokenLanguageMinAggregateResolvers<ContextType>;
   MovieStats?: MovieStatsResolvers<ContextType>;
   MovieStatsSummary?: MovieStatsSummaryResolvers<ContextType>;
+  MovieStatsTopAppearancesInLists?: MovieStatsTopAppearancesInListsResolvers<ContextType>;
+  MovieStatsTopGenres?: MovieStatsTopGenresResolvers<ContextType>;
+  MovieStatsTopLikes?: MovieStatsTopLikesResolvers<ContextType>;
+  MovieStatsTopRated?: MovieStatsTopRatedResolvers<ContextType>;
+  MovieStatsTopViews?: MovieStatsTopViewsResolvers<ContextType>;
   MovieStudio?: MovieStudioResolvers<ContextType>;
   MovieStudioCount?: MovieStudioCountResolvers<ContextType>;
   MovieStudioCountAggregate?: MovieStudioCountAggregateResolvers<ContextType>;
@@ -13178,10 +13407,13 @@ export type Resolvers<ContextType = any> = ResolversObject<{
   MovieWatchedByUserGroupBy?: MovieWatchedByUserGroupByResolvers<ContextType>;
   MovieWatchedByUserMaxAggregate?: MovieWatchedByUserMaxAggregateResolvers<ContextType>;
   MovieWatchedByUserMinAggregate?: MovieWatchedByUserMinAggregateResolvers<ContextType>;
+  MoviesPostedYearly?: MoviesPostedYearlyResolvers<ContextType>;
   MovifierAppUser?: MovifierAppUserResolvers<ContextType>;
   MovifierAppUserCount?: MovifierAppUserCountResolvers<ContextType>;
   Mutation?: MutationResolvers<ContextType>;
   Query?: QueryResolvers<ContextType>;
+  TopMovieCrewMemberType?: TopMovieCrewMemberTypeResolvers<ContextType>;
+  TopPerson?: TopPersonResolvers<ContextType>;
   UserLoginOutput?: UserLoginOutputResolvers<ContextType>;
   UserMovieWatchlist?: UserMovieWatchlistResolvers<ContextType>;
   UserMovieWatchlistCountAggregate?: UserMovieWatchlistCountAggregateResolvers<ContextType>;
@@ -16176,6 +16408,162 @@ export type GetPersonForUpdateQueryHookResult = ReturnType<typeof useGetPersonFo
 export type GetPersonForUpdateLazyQueryHookResult = ReturnType<typeof useGetPersonForUpdateLazyQuery>;
 export type GetPersonForUpdateSuspenseQueryHookResult = ReturnType<typeof useGetPersonForUpdateSuspenseQuery>;
 export type GetPersonForUpdateQueryResult = Apollo.QueryResult<GetPersonForUpdateQuery, GetPersonForUpdateQueryVariables>;
+export const GetAppStatsDocument = gql`
+    query GetAppStats {
+  appStats {
+    totalAppUsers
+    totalLikes
+    totalMovieWatches
+    totalMovieLists
+    totalMoviesInWatchlists
+    usersWithMovieLists
+  }
+}
+    `;
+
+/**
+ * __useGetAppStatsQuery__
+ *
+ * To run a query within a React component, call `useGetAppStatsQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetAppStatsQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetAppStatsQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useGetAppStatsQuery(baseOptions?: Apollo.QueryHookOptions<GetAppStatsQuery, GetAppStatsQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<GetAppStatsQuery, GetAppStatsQueryVariables>(GetAppStatsDocument, options);
+      }
+export function useGetAppStatsLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetAppStatsQuery, GetAppStatsQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<GetAppStatsQuery, GetAppStatsQueryVariables>(GetAppStatsDocument, options);
+        }
+export function useGetAppStatsSuspenseQuery(baseOptions?: Apollo.SuspenseQueryHookOptions<GetAppStatsQuery, GetAppStatsQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useSuspenseQuery<GetAppStatsQuery, GetAppStatsQueryVariables>(GetAppStatsDocument, options);
+        }
+export type GetAppStatsQueryHookResult = ReturnType<typeof useGetAppStatsQuery>;
+export type GetAppStatsLazyQueryHookResult = ReturnType<typeof useGetAppStatsLazyQuery>;
+export type GetAppStatsSuspenseQueryHookResult = ReturnType<typeof useGetAppStatsSuspenseQuery>;
+export type GetAppStatsQueryResult = Apollo.QueryResult<GetAppStatsQuery, GetAppStatsQueryVariables>;
+export const GetMoviesStatsDocument = gql`
+    query GetMoviesStats {
+  topGenres(first: 10) {
+    genreId
+    genreName
+    movieCount
+  }
+  topMoviesByLikes(first: 10) {
+    movieId
+    movieName
+    totalLikes
+  }
+  topMoviesByAppearancesInLists(first: 5) {
+    movieId
+    movieName
+    appearancesInLists
+  }
+  topMoviesByRating(first: 10) {
+    movieId
+    movieName
+    avgRating
+  }
+  topMoviesByViews(first: 10) {
+    movieId
+    movieName
+    totalViews
+  }
+  moviesPostedYearly(first: 30) {
+    year
+    totalMoviesPosted
+  }
+}
+    `;
+
+/**
+ * __useGetMoviesStatsQuery__
+ *
+ * To run a query within a React component, call `useGetMoviesStatsQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetMoviesStatsQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetMoviesStatsQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useGetMoviesStatsQuery(baseOptions?: Apollo.QueryHookOptions<GetMoviesStatsQuery, GetMoviesStatsQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<GetMoviesStatsQuery, GetMoviesStatsQueryVariables>(GetMoviesStatsDocument, options);
+      }
+export function useGetMoviesStatsLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetMoviesStatsQuery, GetMoviesStatsQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<GetMoviesStatsQuery, GetMoviesStatsQueryVariables>(GetMoviesStatsDocument, options);
+        }
+export function useGetMoviesStatsSuspenseQuery(baseOptions?: Apollo.SuspenseQueryHookOptions<GetMoviesStatsQuery, GetMoviesStatsQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useSuspenseQuery<GetMoviesStatsQuery, GetMoviesStatsQueryVariables>(GetMoviesStatsDocument, options);
+        }
+export type GetMoviesStatsQueryHookResult = ReturnType<typeof useGetMoviesStatsQuery>;
+export type GetMoviesStatsLazyQueryHookResult = ReturnType<typeof useGetMoviesStatsLazyQuery>;
+export type GetMoviesStatsSuspenseQueryHookResult = ReturnType<typeof useGetMoviesStatsSuspenseQuery>;
+export type GetMoviesStatsQueryResult = Apollo.QueryResult<GetMoviesStatsQuery, GetMoviesStatsQueryVariables>;
+export const GetPersonStatsDocument = gql`
+    query GetPersonStats {
+  topCrewMemberTypes(first: 10) {
+    movieCrewMemberTypeId
+    movieCrewMemberTypeName
+    movieCount
+  }
+  topPersons(first: 5) {
+    personId
+    personName
+    appearancesInMovies
+    popularity
+  }
+}
+    `;
+
+/**
+ * __useGetPersonStatsQuery__
+ *
+ * To run a query within a React component, call `useGetPersonStatsQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetPersonStatsQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetPersonStatsQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useGetPersonStatsQuery(baseOptions?: Apollo.QueryHookOptions<GetPersonStatsQuery, GetPersonStatsQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<GetPersonStatsQuery, GetPersonStatsQueryVariables>(GetPersonStatsDocument, options);
+      }
+export function useGetPersonStatsLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetPersonStatsQuery, GetPersonStatsQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<GetPersonStatsQuery, GetPersonStatsQueryVariables>(GetPersonStatsDocument, options);
+        }
+export function useGetPersonStatsSuspenseQuery(baseOptions?: Apollo.SuspenseQueryHookOptions<GetPersonStatsQuery, GetPersonStatsQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useSuspenseQuery<GetPersonStatsQuery, GetPersonStatsQueryVariables>(GetPersonStatsDocument, options);
+        }
+export type GetPersonStatsQueryHookResult = ReturnType<typeof useGetPersonStatsQuery>;
+export type GetPersonStatsLazyQueryHookResult = ReturnType<typeof useGetPersonStatsLazyQuery>;
+export type GetPersonStatsSuspenseQueryHookResult = ReturnType<typeof useGetPersonStatsSuspenseQuery>;
+export type GetPersonStatsQueryResult = Apollo.QueryResult<GetPersonStatsQuery, GetPersonStatsQueryVariables>;
 export const LoginUserDocument = gql`
     mutation LoginUser($data: UserLoginInput!) {
   loginUser(data: $data) {
@@ -16961,6 +17349,15 @@ export type AggregateUserMovieWatchlistFieldPolicy = {
 	_max?: FieldPolicy<any> | FieldReadFunction<any>,
 	_min?: FieldPolicy<any> | FieldReadFunction<any>
 };
+export type AppStatsKeySpecifier = ('totalAppUsers' | 'totalLikes' | 'totalMovieLists' | 'totalMovieWatches' | 'totalMoviesInWatchlists' | 'usersWithMovieLists' | AppStatsKeySpecifier)[];
+export type AppStatsFieldPolicy = {
+	totalAppUsers?: FieldPolicy<any> | FieldReadFunction<any>,
+	totalLikes?: FieldPolicy<any> | FieldReadFunction<any>,
+	totalMovieLists?: FieldPolicy<any> | FieldReadFunction<any>,
+	totalMovieWatches?: FieldPolicy<any> | FieldReadFunction<any>,
+	totalMoviesInWatchlists?: FieldPolicy<any> | FieldReadFunction<any>,
+	usersWithMovieLists?: FieldPolicy<any> | FieldReadFunction<any>
+};
 export type DecadesKeySpecifier = ('decades' | DecadesKeySpecifier)[];
 export type DecadesFieldPolicy = {
 	decades?: FieldPolicy<any> | FieldReadFunction<any>
@@ -17624,6 +18021,36 @@ export type MovieStatsSummaryFieldPolicy = {
 	totalLikes?: FieldPolicy<any> | FieldReadFunction<any>,
 	totalViews?: FieldPolicy<any> | FieldReadFunction<any>
 };
+export type MovieStatsTopAppearancesInListsKeySpecifier = ('appearancesInLists' | 'movieId' | 'movieName' | MovieStatsTopAppearancesInListsKeySpecifier)[];
+export type MovieStatsTopAppearancesInListsFieldPolicy = {
+	appearancesInLists?: FieldPolicy<any> | FieldReadFunction<any>,
+	movieId?: FieldPolicy<any> | FieldReadFunction<any>,
+	movieName?: FieldPolicy<any> | FieldReadFunction<any>
+};
+export type MovieStatsTopGenresKeySpecifier = ('genreId' | 'genreName' | 'movieCount' | MovieStatsTopGenresKeySpecifier)[];
+export type MovieStatsTopGenresFieldPolicy = {
+	genreId?: FieldPolicy<any> | FieldReadFunction<any>,
+	genreName?: FieldPolicy<any> | FieldReadFunction<any>,
+	movieCount?: FieldPolicy<any> | FieldReadFunction<any>
+};
+export type MovieStatsTopLikesKeySpecifier = ('movieId' | 'movieName' | 'totalLikes' | MovieStatsTopLikesKeySpecifier)[];
+export type MovieStatsTopLikesFieldPolicy = {
+	movieId?: FieldPolicy<any> | FieldReadFunction<any>,
+	movieName?: FieldPolicy<any> | FieldReadFunction<any>,
+	totalLikes?: FieldPolicy<any> | FieldReadFunction<any>
+};
+export type MovieStatsTopRatedKeySpecifier = ('avgRating' | 'movieId' | 'movieName' | MovieStatsTopRatedKeySpecifier)[];
+export type MovieStatsTopRatedFieldPolicy = {
+	avgRating?: FieldPolicy<any> | FieldReadFunction<any>,
+	movieId?: FieldPolicy<any> | FieldReadFunction<any>,
+	movieName?: FieldPolicy<any> | FieldReadFunction<any>
+};
+export type MovieStatsTopViewsKeySpecifier = ('movieId' | 'movieName' | 'totalViews' | MovieStatsTopViewsKeySpecifier)[];
+export type MovieStatsTopViewsFieldPolicy = {
+	movieId?: FieldPolicy<any> | FieldReadFunction<any>,
+	movieName?: FieldPolicy<any> | FieldReadFunction<any>,
+	totalViews?: FieldPolicy<any> | FieldReadFunction<any>
+};
 export type MovieStudioKeySpecifier = ('_count' | 'createdAt' | 'id' | 'movies' | 'name' | 'updatedAt' | MovieStudioKeySpecifier)[];
 export type MovieStudioFieldPolicy = {
 	_count?: FieldPolicy<any> | FieldReadFunction<any>,
@@ -17704,6 +18131,11 @@ export type MovieWatchedByUserMinAggregateFieldPolicy = {
 	createdAt?: FieldPolicy<any> | FieldReadFunction<any>,
 	movieId?: FieldPolicy<any> | FieldReadFunction<any>,
 	userId?: FieldPolicy<any> | FieldReadFunction<any>
+};
+export type MoviesPostedYearlyKeySpecifier = ('totalMoviesPosted' | 'year' | MoviesPostedYearlyKeySpecifier)[];
+export type MoviesPostedYearlyFieldPolicy = {
+	totalMoviesPosted?: FieldPolicy<any> | FieldReadFunction<any>,
+	year?: FieldPolicy<any> | FieldReadFunction<any>
 };
 export type MovifierAppUserKeySpecifier = ('_count' | 'createdAt' | 'email' | 'id' | 'name' | 'role' | 'updatedAt' | 'username' | MovifierAppUserKeySpecifier)[];
 export type MovifierAppUserFieldPolicy = {
@@ -17838,7 +18270,7 @@ export type MutationFieldPolicy = {
 	upsertOneMovieWatchedByUser?: FieldPolicy<any> | FieldReadFunction<any>,
 	upsertOneUserMovieWatchlist?: FieldPolicy<any> | FieldReadFunction<any>
 };
-export type QueryKeySpecifier = ('aggregateGenre' | 'aggregateMovie' | 'aggregateMovieCrewMember' | 'aggregateMovieCrewMemberType' | 'aggregateMovieLikedByUser' | 'aggregateMovieList' | 'aggregateMovieListComment' | 'aggregateMovieListLikedByUser' | 'aggregateMovieRating' | 'aggregateMovieReview' | 'aggregateMovieReviewLikedByUser' | 'aggregateMovieSpokenLanguage' | 'aggregateMovieStudio' | 'aggregateMovieWatchedByUser' | 'aggregateUserMovieWatchlist' | 'findFirstGenre' | 'findFirstGenreOrThrow' | 'findFirstMovie' | 'findFirstMovieCrewMember' | 'findFirstMovieCrewMemberOrThrow' | 'findFirstMovieCrewMemberType' | 'findFirstMovieCrewMemberTypeOrThrow' | 'findFirstMovieLikedByUser' | 'findFirstMovieLikedByUserOrThrow' | 'findFirstMovieList' | 'findFirstMovieListComment' | 'findFirstMovieListCommentOrThrow' | 'findFirstMovieListLikedByUser' | 'findFirstMovieListLikedByUserOrThrow' | 'findFirstMovieListOrThrow' | 'findFirstMovieOrThrow' | 'findFirstMovieRating' | 'findFirstMovieRatingOrThrow' | 'findFirstMovieReview' | 'findFirstMovieReviewLikedByUser' | 'findFirstMovieReviewLikedByUserOrThrow' | 'findFirstMovieReviewOrThrow' | 'findFirstMovieSpokenLanguage' | 'findFirstMovieSpokenLanguageOrThrow' | 'findFirstMovieStudio' | 'findFirstMovieStudioOrThrow' | 'findFirstMovieWatchedByUser' | 'findFirstMovieWatchedByUserOrThrow' | 'findFirstUserMovieWatchlist' | 'findFirstUserMovieWatchlistOrThrow' | 'genre' | 'genres' | 'getGenre' | 'getMovie' | 'getMovieCrewMember' | 'getMovieCrewMemberType' | 'getMovieDecades' | 'getMovieLikedByUser' | 'getMovieList' | 'getMovieListComment' | 'getMovieListLikedByUser' | 'getMovieRating' | 'getMovieReview' | 'getMovieReviewLikedByUser' | 'getMovieSpokenLanguage' | 'getMovieStudio' | 'getMovieWatchedByUser' | 'getUserMovieWatchlist' | 'groupByGenre' | 'groupByMovie' | 'groupByMovieCrewMember' | 'groupByMovieCrewMemberType' | 'groupByMovieLikedByUser' | 'groupByMovieList' | 'groupByMovieListComment' | 'groupByMovieListLikedByUser' | 'groupByMovieRating' | 'groupByMovieReview' | 'groupByMovieReviewLikedByUser' | 'groupByMovieSpokenLanguage' | 'groupByMovieStudio' | 'groupByMovieWatchedByUser' | 'groupByUserMovieWatchlist' | 'me' | 'movie' | 'movieCrewMember' | 'movieCrewMemberType' | 'movieCrewMemberTypes' | 'movieCrewMembers' | 'movieLikedByUser' | 'movieLikedByUsers' | 'movieList' | 'movieListComment' | 'movieListComments' | 'movieListLikedByUser' | 'movieListLikedByUsers' | 'movieLists' | 'movieRating' | 'movieRatings' | 'movieRatingsSearchWithMovies' | 'movieReview' | 'movieReviewLikedByUser' | 'movieReviewLikedByUsers' | 'movieReviews' | 'movieReviewsSearchWithMovies' | 'movieSpokenLanguage' | 'movieSpokenLanguages' | 'movieStudio' | 'movieStudios' | 'movieWatchedByUser' | 'movieWatchedByUsers' | 'movies' | 'movifierAppUsers' | 'searchMovieLists' | 'searchMovies' | 'userMovieWatchlist' | 'userMovieWatchlists' | QueryKeySpecifier)[];
+export type QueryKeySpecifier = ('aggregateGenre' | 'aggregateMovie' | 'aggregateMovieCrewMember' | 'aggregateMovieCrewMemberType' | 'aggregateMovieLikedByUser' | 'aggregateMovieList' | 'aggregateMovieListComment' | 'aggregateMovieListLikedByUser' | 'aggregateMovieRating' | 'aggregateMovieReview' | 'aggregateMovieReviewLikedByUser' | 'aggregateMovieSpokenLanguage' | 'aggregateMovieStudio' | 'aggregateMovieWatchedByUser' | 'aggregateUserMovieWatchlist' | 'appStats' | 'findFirstGenre' | 'findFirstGenreOrThrow' | 'findFirstMovie' | 'findFirstMovieCrewMember' | 'findFirstMovieCrewMemberOrThrow' | 'findFirstMovieCrewMemberType' | 'findFirstMovieCrewMemberTypeOrThrow' | 'findFirstMovieLikedByUser' | 'findFirstMovieLikedByUserOrThrow' | 'findFirstMovieList' | 'findFirstMovieListComment' | 'findFirstMovieListCommentOrThrow' | 'findFirstMovieListLikedByUser' | 'findFirstMovieListLikedByUserOrThrow' | 'findFirstMovieListOrThrow' | 'findFirstMovieOrThrow' | 'findFirstMovieRating' | 'findFirstMovieRatingOrThrow' | 'findFirstMovieReview' | 'findFirstMovieReviewLikedByUser' | 'findFirstMovieReviewLikedByUserOrThrow' | 'findFirstMovieReviewOrThrow' | 'findFirstMovieSpokenLanguage' | 'findFirstMovieSpokenLanguageOrThrow' | 'findFirstMovieStudio' | 'findFirstMovieStudioOrThrow' | 'findFirstMovieWatchedByUser' | 'findFirstMovieWatchedByUserOrThrow' | 'findFirstUserMovieWatchlist' | 'findFirstUserMovieWatchlistOrThrow' | 'genre' | 'genres' | 'getGenre' | 'getMovie' | 'getMovieCrewMember' | 'getMovieCrewMemberType' | 'getMovieDecades' | 'getMovieLikedByUser' | 'getMovieList' | 'getMovieListComment' | 'getMovieListLikedByUser' | 'getMovieRating' | 'getMovieReview' | 'getMovieReviewLikedByUser' | 'getMovieSpokenLanguage' | 'getMovieStudio' | 'getMovieWatchedByUser' | 'getUserMovieWatchlist' | 'groupByGenre' | 'groupByMovie' | 'groupByMovieCrewMember' | 'groupByMovieCrewMemberType' | 'groupByMovieLikedByUser' | 'groupByMovieList' | 'groupByMovieListComment' | 'groupByMovieListLikedByUser' | 'groupByMovieRating' | 'groupByMovieReview' | 'groupByMovieReviewLikedByUser' | 'groupByMovieSpokenLanguage' | 'groupByMovieStudio' | 'groupByMovieWatchedByUser' | 'groupByUserMovieWatchlist' | 'me' | 'movie' | 'movieCrewMember' | 'movieCrewMemberType' | 'movieCrewMemberTypes' | 'movieCrewMembers' | 'movieLikedByUser' | 'movieLikedByUsers' | 'movieList' | 'movieListComment' | 'movieListComments' | 'movieListLikedByUser' | 'movieListLikedByUsers' | 'movieLists' | 'movieRating' | 'movieRatings' | 'movieRatingsSearchWithMovies' | 'movieReview' | 'movieReviewLikedByUser' | 'movieReviewLikedByUsers' | 'movieReviews' | 'movieReviewsSearchWithMovies' | 'movieSpokenLanguage' | 'movieSpokenLanguages' | 'movieStudio' | 'movieStudios' | 'movieWatchedByUser' | 'movieWatchedByUsers' | 'movies' | 'moviesPostedYearly' | 'movifierAppUsers' | 'searchMovieLists' | 'searchMovies' | 'topCrewMemberTypes' | 'topGenres' | 'topMoviesByAppearancesInLists' | 'topMoviesByLikes' | 'topMoviesByRating' | 'topMoviesByViews' | 'topPersons' | 'userMovieWatchlist' | 'userMovieWatchlists' | QueryKeySpecifier)[];
 export type QueryFieldPolicy = {
 	aggregateGenre?: FieldPolicy<any> | FieldReadFunction<any>,
 	aggregateMovie?: FieldPolicy<any> | FieldReadFunction<any>,
@@ -17855,6 +18287,7 @@ export type QueryFieldPolicy = {
 	aggregateMovieStudio?: FieldPolicy<any> | FieldReadFunction<any>,
 	aggregateMovieWatchedByUser?: FieldPolicy<any> | FieldReadFunction<any>,
 	aggregateUserMovieWatchlist?: FieldPolicy<any> | FieldReadFunction<any>,
+	appStats?: FieldPolicy<any> | FieldReadFunction<any>,
 	findFirstGenre?: FieldPolicy<any> | FieldReadFunction<any>,
 	findFirstGenreOrThrow?: FieldPolicy<any> | FieldReadFunction<any>,
 	findFirstMovie?: FieldPolicy<any> | FieldReadFunction<any>,
@@ -17947,11 +18380,32 @@ export type QueryFieldPolicy = {
 	movieWatchedByUser?: FieldPolicy<any> | FieldReadFunction<any>,
 	movieWatchedByUsers?: FieldPolicy<any> | FieldReadFunction<any>,
 	movies?: FieldPolicy<any> | FieldReadFunction<any>,
+	moviesPostedYearly?: FieldPolicy<any> | FieldReadFunction<any>,
 	movifierAppUsers?: FieldPolicy<any> | FieldReadFunction<any>,
 	searchMovieLists?: FieldPolicy<any> | FieldReadFunction<any>,
 	searchMovies?: FieldPolicy<any> | FieldReadFunction<any>,
+	topCrewMemberTypes?: FieldPolicy<any> | FieldReadFunction<any>,
+	topGenres?: FieldPolicy<any> | FieldReadFunction<any>,
+	topMoviesByAppearancesInLists?: FieldPolicy<any> | FieldReadFunction<any>,
+	topMoviesByLikes?: FieldPolicy<any> | FieldReadFunction<any>,
+	topMoviesByRating?: FieldPolicy<any> | FieldReadFunction<any>,
+	topMoviesByViews?: FieldPolicy<any> | FieldReadFunction<any>,
+	topPersons?: FieldPolicy<any> | FieldReadFunction<any>,
 	userMovieWatchlist?: FieldPolicy<any> | FieldReadFunction<any>,
 	userMovieWatchlists?: FieldPolicy<any> | FieldReadFunction<any>
+};
+export type TopMovieCrewMemberTypeKeySpecifier = ('movieCount' | 'movieCrewMemberTypeId' | 'movieCrewMemberTypeName' | TopMovieCrewMemberTypeKeySpecifier)[];
+export type TopMovieCrewMemberTypeFieldPolicy = {
+	movieCount?: FieldPolicy<any> | FieldReadFunction<any>,
+	movieCrewMemberTypeId?: FieldPolicy<any> | FieldReadFunction<any>,
+	movieCrewMemberTypeName?: FieldPolicy<any> | FieldReadFunction<any>
+};
+export type TopPersonKeySpecifier = ('appearancesInMovies' | 'personId' | 'personName' | 'popularity' | TopPersonKeySpecifier)[];
+export type TopPersonFieldPolicy = {
+	appearancesInMovies?: FieldPolicy<any> | FieldReadFunction<any>,
+	personId?: FieldPolicy<any> | FieldReadFunction<any>,
+	personName?: FieldPolicy<any> | FieldReadFunction<any>,
+	popularity?: FieldPolicy<any> | FieldReadFunction<any>
 };
 export type UserLoginOutputKeySpecifier = ('token' | 'user' | UserLoginOutputKeySpecifier)[];
 export type UserLoginOutputFieldPolicy = {
@@ -18063,6 +18517,10 @@ export type StrictTypedTypePolicies = {
 	AggregateUserMovieWatchlist?: Omit<TypePolicy, "fields" | "keyFields"> & {
 		keyFields?: false | AggregateUserMovieWatchlistKeySpecifier | (() => undefined | AggregateUserMovieWatchlistKeySpecifier),
 		fields?: AggregateUserMovieWatchlistFieldPolicy,
+	},
+	AppStats?: Omit<TypePolicy, "fields" | "keyFields"> & {
+		keyFields?: false | AppStatsKeySpecifier | (() => undefined | AppStatsKeySpecifier),
+		fields?: AppStatsFieldPolicy,
 	},
 	Decades?: Omit<TypePolicy, "fields" | "keyFields"> & {
 		keyFields?: false | DecadesKeySpecifier | (() => undefined | DecadesKeySpecifier),
@@ -18380,6 +18838,26 @@ export type StrictTypedTypePolicies = {
 		keyFields?: false | MovieStatsSummaryKeySpecifier | (() => undefined | MovieStatsSummaryKeySpecifier),
 		fields?: MovieStatsSummaryFieldPolicy,
 	},
+	MovieStatsTopAppearancesInLists?: Omit<TypePolicy, "fields" | "keyFields"> & {
+		keyFields?: false | MovieStatsTopAppearancesInListsKeySpecifier | (() => undefined | MovieStatsTopAppearancesInListsKeySpecifier),
+		fields?: MovieStatsTopAppearancesInListsFieldPolicy,
+	},
+	MovieStatsTopGenres?: Omit<TypePolicy, "fields" | "keyFields"> & {
+		keyFields?: false | MovieStatsTopGenresKeySpecifier | (() => undefined | MovieStatsTopGenresKeySpecifier),
+		fields?: MovieStatsTopGenresFieldPolicy,
+	},
+	MovieStatsTopLikes?: Omit<TypePolicy, "fields" | "keyFields"> & {
+		keyFields?: false | MovieStatsTopLikesKeySpecifier | (() => undefined | MovieStatsTopLikesKeySpecifier),
+		fields?: MovieStatsTopLikesFieldPolicy,
+	},
+	MovieStatsTopRated?: Omit<TypePolicy, "fields" | "keyFields"> & {
+		keyFields?: false | MovieStatsTopRatedKeySpecifier | (() => undefined | MovieStatsTopRatedKeySpecifier),
+		fields?: MovieStatsTopRatedFieldPolicy,
+	},
+	MovieStatsTopViews?: Omit<TypePolicy, "fields" | "keyFields"> & {
+		keyFields?: false | MovieStatsTopViewsKeySpecifier | (() => undefined | MovieStatsTopViewsKeySpecifier),
+		fields?: MovieStatsTopViewsFieldPolicy,
+	},
 	MovieStudio?: Omit<TypePolicy, "fields" | "keyFields"> & {
 		keyFields?: false | MovieStudioKeySpecifier | (() => undefined | MovieStudioKeySpecifier),
 		fields?: MovieStudioFieldPolicy,
@@ -18424,6 +18902,10 @@ export type StrictTypedTypePolicies = {
 		keyFields?: false | MovieWatchedByUserMinAggregateKeySpecifier | (() => undefined | MovieWatchedByUserMinAggregateKeySpecifier),
 		fields?: MovieWatchedByUserMinAggregateFieldPolicy,
 	},
+	MoviesPostedYearly?: Omit<TypePolicy, "fields" | "keyFields"> & {
+		keyFields?: false | MoviesPostedYearlyKeySpecifier | (() => undefined | MoviesPostedYearlyKeySpecifier),
+		fields?: MoviesPostedYearlyFieldPolicy,
+	},
 	MovifierAppUser?: Omit<TypePolicy, "fields" | "keyFields"> & {
 		keyFields?: false | MovifierAppUserKeySpecifier | (() => undefined | MovifierAppUserKeySpecifier),
 		fields?: MovifierAppUserFieldPolicy,
@@ -18439,6 +18921,14 @@ export type StrictTypedTypePolicies = {
 	Query?: Omit<TypePolicy, "fields" | "keyFields"> & {
 		keyFields?: false | QueryKeySpecifier | (() => undefined | QueryKeySpecifier),
 		fields?: QueryFieldPolicy,
+	},
+	TopMovieCrewMemberType?: Omit<TypePolicy, "fields" | "keyFields"> & {
+		keyFields?: false | TopMovieCrewMemberTypeKeySpecifier | (() => undefined | TopMovieCrewMemberTypeKeySpecifier),
+		fields?: TopMovieCrewMemberTypeFieldPolicy,
+	},
+	TopPerson?: Omit<TypePolicy, "fields" | "keyFields"> & {
+		keyFields?: false | TopPersonKeySpecifier | (() => undefined | TopPersonKeySpecifier),
+		fields?: TopPersonFieldPolicy,
 	},
 	UserLoginOutput?: Omit<TypePolicy, "fields" | "keyFields"> & {
 		keyFields?: false | UserLoginOutputKeySpecifier | (() => undefined | UserLoginOutputKeySpecifier),

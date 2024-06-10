@@ -171,31 +171,32 @@ export function SettingsPageNavbar() {
               </Tooltip>
             </TooltipProvider>
 
-            <TooltipProvider>
-              <Tooltip>
-                <TooltipTrigger asChild>
-                  <Link
-                    href='#'
-                    className='flex h-9 w-9 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:text-foreground md:h-8 md:w-8'
-                  >
-                    <Users2 className='h-5 w-5' />
-                    <span className='sr-only'>Customers</span>
-                  </Link>
-                </TooltipTrigger>
-                <TooltipContent side='right'>Customers</TooltipContent>
-              </Tooltip>
-            </TooltipProvider>
+            {/*<TooltipProvider>*/}
+            {/*  <Tooltip>*/}
+            {/*    <TooltipTrigger asChild>*/}
+            {/*      <Link*/}
+            {/*        href='#'*/}
+            {/*        className='flex h-9 w-9 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:text-foreground md:h-8 md:w-8'*/}
+            {/*      >*/}
+            {/*        <Users2 className='h-5 w-5' />*/}
+            {/*        <span className='sr-only'>Customers</span>*/}
+            {/*      </Link>*/}
+            {/*    </TooltipTrigger>*/}
+            {/*    <TooltipContent side='right'>Customers</TooltipContent>*/}
+            {/*  </Tooltip>*/}
+            {/*</TooltipProvider>*/}
 
             <TooltipProvider>
               <Tooltip>
                 <TooltipTrigger asChild>
-                  <Link
-                    href='#'
-                    className='flex h-9 w-9 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:text-foreground md:h-8 md:w-8'
+                  <DashboardNavigationButton
+                    isActive={dashboardPageContext.currentPage === 'AdminStats'}
                   >
-                    <LineChart className='h-5 w-5' />
-                    <span className='sr-only'>Analytics</span>
-                  </Link>
+                    <Link href={'/user/dashboard/stats'}>
+                      <LineChart className='h-5 w-5' />
+                      <span className='sr-only'>Analytics</span>
+                    </Link>
+                  </DashboardNavigationButton>
                 </TooltipTrigger>
                 <TooltipContent side='right'>Analytics</TooltipContent>
               </Tooltip>

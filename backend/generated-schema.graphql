@@ -101,6 +101,15 @@ type AggregateUserMovieWatchlist {
   _min: UserMovieWatchlistMinAggregate
 }
 
+type AppStats {
+  totalAppUsers: Int!
+  totalLikes: Int!
+  totalMovieLists: Int!
+  totalMovieWatches: Int!
+  totalMoviesInWatchlists: Int!
+  usersWithMovieLists: Int!
+}
+
 input DateTimeFieldUpdateOperationsInput {
   set: DateTimeISO
 }
@@ -4916,6 +4925,36 @@ type MovieStatsSummary {
   totalViews: Int!
 }
 
+type MovieStatsTopAppearancesInLists {
+  appearancesInLists: Int!
+  movieId: String!
+  movieName: String!
+}
+
+type MovieStatsTopGenres {
+  genreId: String!
+  genreName: String!
+  movieCount: Int!
+}
+
+type MovieStatsTopLikes {
+  movieId: String!
+  movieName: String!
+  totalLikes: Int!
+}
+
+type MovieStatsTopRated {
+  avgRating: Float!
+  movieId: String!
+  movieName: String!
+}
+
+type MovieStatsTopViews {
+  movieId: String!
+  movieName: String!
+  totalViews: Int!
+}
+
 input MovieStatsUpdateOneWithoutMovieNestedInput {
   connect: MovieStatsWhereUniqueInput
   connectOrCreate: MovieStatsCreateOrConnectWithoutMovieInput
@@ -5939,6 +5978,11 @@ enum MoviefireAppUserRole {
   USER
 }
 
+type MoviesPostedYearly {
+  totalMoviesPosted: Int!
+  year: Int!
+}
+
 input MoviesSearchCriteriaInput {
   decade: Float
   genre: String
@@ -6858,6 +6902,7 @@ type Query {
   aggregateMovieStudio(cursor: MovieStudioWhereUniqueInput, orderBy: [MovieStudioOrderByWithRelationAndSearchRelevanceInput!], skip: Int, take: Int, where: MovieStudioWhereInput): AggregateMovieStudio!
   aggregateMovieWatchedByUser(cursor: MovieWatchedByUserWhereUniqueInput, orderBy: [MovieWatchedByUserOrderByWithRelationAndSearchRelevanceInput!], skip: Int, take: Int, where: MovieWatchedByUserWhereInput): AggregateMovieWatchedByUser!
   aggregateUserMovieWatchlist(cursor: UserMovieWatchlistWhereUniqueInput, orderBy: [UserMovieWatchlistOrderByWithRelationAndSearchRelevanceInput!], skip: Int, take: Int, where: UserMovieWatchlistWhereInput): AggregateUserMovieWatchlist!
+  appStats: AppStats!
   findFirstGenre(cursor: GenreWhereUniqueInput, distinct: [GenreScalarFieldEnum!], orderBy: [GenreOrderByWithRelationAndSearchRelevanceInput!], skip: Int, take: Int, where: GenreWhereInput): Genre
   findFirstGenreOrThrow(cursor: GenreWhereUniqueInput, distinct: [GenreScalarFieldEnum!], orderBy: [GenreOrderByWithRelationAndSearchRelevanceInput!], skip: Int, take: Int, where: GenreWhereInput): Genre
   findFirstMovie(cursor: MovieWhereUniqueInput, distinct: [MovieScalarFieldEnum!], orderBy: [MovieOrderByWithRelationAndSearchRelevanceInput!], skip: Int, take: Int, where: MovieWhereInput): Movie
@@ -6950,9 +6995,17 @@ type Query {
   movieWatchedByUser(where: MovieWatchedByUserWhereUniqueInput!): MovieWatchedByUser
   movieWatchedByUsers(cursor: MovieWatchedByUserWhereUniqueInput, distinct: [MovieWatchedByUserScalarFieldEnum!], orderBy: [MovieWatchedByUserOrderByWithRelationAndSearchRelevanceInput!], skip: Int, take: Int, where: MovieWatchedByUserWhereInput): [MovieWatchedByUser!]!
   movies(cursor: MovieWhereUniqueInput, distinct: [MovieScalarFieldEnum!], orderBy: [MovieOrderByWithRelationAndSearchRelevanceInput!], skip: Int, take: Int, where: MovieWhereInput): [Movie!]!
+  moviesPostedYearly(first: Int! = 10): [MoviesPostedYearly!]!
   movifierAppUsers(cursor: MovifierAppUserWhereUniqueInput, distinct: [MovifierAppUserScalarFieldEnum!], orderBy: [MovifierAppUserOrderByWithRelationAndSearchRelevanceInput!], skip: Int, take: Int, where: MovifierAppUserWhereInput): [MovifierAppUser!]!
   searchMovieLists(cursor: MovieListWhereUniqueInput, distinct: [MovieListScalarFieldEnum!], orderBy: [MovieListOrderByWithRelationAndSearchRelevanceInput!], searchCriteria: MovieListSearchCriteriaInput!, skip: Int, take: Int, where: MovieListWhereInput): [MovieList!]!
   searchMovies(cursor: MovieWhereUniqueInput, distinct: [MovieScalarFieldEnum!], orderBy: [MovieOrderByWithRelationAndSearchRelevanceInput!], searchCriteria: MoviesSearchCriteriaInput!, skip: Int, take: Int, where: MovieWhereInput): [Movie!]!
+  topCrewMemberTypes(first: Int! = 10): [TopMovieCrewMemberType!]!
+  topGenres(first: Int! = 10): [MovieStatsTopGenres!]!
+  topMoviesByAppearancesInLists(first: Int! = 10): [MovieStatsTopAppearancesInLists!]!
+  topMoviesByLikes(first: Int! = 10): [MovieStatsTopLikes!]!
+  topMoviesByRating(first: Int! = 10): [MovieStatsTopRated!]!
+  topMoviesByViews(first: Int! = 10): [MovieStatsTopViews!]!
+  topPersons(first: Int! = 10): [TopPerson!]!
   userMovieWatchlist(where: UserMovieWatchlistWhereUniqueInput!): UserMovieWatchlist
   userMovieWatchlists(cursor: UserMovieWatchlistWhereUniqueInput, distinct: [UserMovieWatchlistScalarFieldEnum!], orderBy: [UserMovieWatchlistOrderByWithRelationAndSearchRelevanceInput!], skip: Int, take: Int, where: UserMovieWatchlistWhereInput): [UserMovieWatchlist!]!
 }
@@ -7012,6 +7065,19 @@ input StringWithAggregatesFilter {
   notIn: [String!]
   search: String
   startsWith: String
+}
+
+type TopMovieCrewMemberType {
+  movieCount: Int!
+  movieCrewMemberTypeId: String!
+  movieCrewMemberTypeName: String!
+}
+
+type TopPerson {
+  appearancesInMovies: Int!
+  personId: String!
+  personName: String!
+  popularity: Float!
 }
 
 input UserLoginInput {
