@@ -76,8 +76,8 @@ export function Reviews() {
             </Card>
           </div>
 
-          <Card x-chunk='dashboard-05-chunk-3'>
-            <CardContent>
+          <Card>
+            <CardContent className={'!pb-0 !pl-0 !pr-0 min-h-full'}>
               <MoviesPage
                 hideOrdering
                 render={(searchCriteria, _orderBy) => {

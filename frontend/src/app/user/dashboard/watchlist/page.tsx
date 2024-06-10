@@ -86,8 +86,8 @@ export function Watchlist() {
             </Card>
           </div>
 
-          <Card x-chunk='dashboard-05-chunk-3'>
-            <CardContent>
+          <Card>
+            <CardContent className={'!pb-0 !pl-0 !pr-0'}>
               <MoviesPage
                 render={(
                   searchCriteria,

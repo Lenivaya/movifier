@@ -90,7 +90,7 @@ export function WatchedMovies() {
           </div>
 
           <Card className={'min-h-full'}>
-            <CardContent>
+            <CardContent className={'!pb-0 !pl-0 !pr-0'}>
               <div className='h-full'>
                 <MoviesPage
                   render={(

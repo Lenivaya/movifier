@@ -14,6 +14,7 @@ import { Imbue } from 'next/font/google'
 import { Separator } from '@/components/ui'
 import { MovieLists } from '@/app/user/dashboard/movie-lists/page'
 import { MovieListCard } from '@/components/movifier/movie-lists/MovieListCard/MovieListCard'
+import { MovieListCardList } from '@/components/movifier/movie-lists/MovieListCardList'
 
 const imbue = Imbue({ subsets: ['latin'] })
 
@@ -84,11 +85,7 @@ function RecentMovieLists() {
         Latest movie lists
       </h1>
       <Separator />
-      <div className='grid grid-cols-4 justify-center gap-5'>
-        {data?.movieLists.map((movieList) => (
-          <MovieListCard key={movieList.id} {...movieList} />
-        ))}
-      </div>
+      <MovieListCardList movieLists={data?.movieLists} />
     </div>
   )
 }

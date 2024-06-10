@@ -56,7 +56,7 @@ export const MovieListCard: FC<MovieListCardItemFragment> = ({
     <Card className={'w-[30em] min-h-full flex-1'}>
       <CardHeader>
         <Link href={`/movie-lists/${id}`} className={'h-full grow'}>
-          <CardTitle>{name}</CardTitle>
+          <CardTitle className={'text-center'}>{name}</CardTitle>
         </Link>
         <CardDescription>
           <div className='flex-col flex gap-5'>

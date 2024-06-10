@@ -176,7 +176,7 @@ export function MoviesPage({
       {isAdmin && (
         <Link href={'/movies/new'} passHref>
           <motion.div
-            className='absolute z-50 bottom-[90px] -right-10 focus:ring-0 focus:ring-transparent focus:ring-offset-0'
+            className='fixed z-50 bottom-[90px] -right-10 focus:ring-0 focus:ring-transparent focus:ring-offset-0'
             whileHover={{ scale: 1.3 }}
             whileTap={{ scale: 0.9 }}
             animate={{ x: -90 }}

@@ -122,7 +122,7 @@ export function MovieGenresAdminPage() {
 
               <Link href={'/movies/genres/new'} passHref>
                 <motion.div
-                  className='fixed z-50 bottom-[90px] -right-10 focus:ring-0 focus:ring-transparent focus:ring-offset-0'
+                  className='absolute z-50 bottom-[90px] -right-5 focus:ring-0 focus:ring-transparent focus:ring-offset-0'
                   whileHover={{ scale: 1.3 }}
                   whileTap={{ scale: 0.9 }}
                   animate={{ x: -90 }}
@@ -135,6 +135,7 @@ export function MovieGenresAdminPage() {
                 </motion.div>
               </Link>
             </CardContent>
+
             <div className='sticky bottom-0 pt-3 h-[6vh] w-full overflow-hidden bg-neutral-100/80 transition-all hover:h-[8vh] dark:bg-transparent/60'>
               <ClientSideOffsetPagination
                 pagination={pagination}

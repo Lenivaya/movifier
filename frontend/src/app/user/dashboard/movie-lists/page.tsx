@@ -105,14 +105,16 @@ export function MovieLists() {
           </div>
 
           <Tabs defaultValue={'created'}>
-            <TabsList>
+            <TabsList
+              className={'grid-cols-2 grid mx-auto justify-center items-center'}
+            >
               <TabsTrigger value={'created'}>Created by me</TabsTrigger>
               <TabsTrigger value={'liked'}>Liked</TabsTrigger>
             </TabsList>
 
             <TabsContent value={'created'}>
-              <Card className={'min-h-full'}>
-                <CardContent>
+              <Card>
+                <CardContent className={'!pb-0 !pl-0 !pr-0 min-h-full'}>
                   <div className='h-full'>
                     <MovieListsPage
                       render={(searchCriteria) => {
@@ -137,8 +139,8 @@ export function MovieLists() {
             </TabsContent>
 
             <TabsContent value={'liked'}>
-              <Card className={'min-h-full'}>
-                <CardContent>
+              <Card>
+                <CardContent className={'!pb-0 !pl-0 !pr-0 min-h-full'}>
                   <div className='h-full'>
                     <MovieListsPage
                       render={(searchCriteria) => {

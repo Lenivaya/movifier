@@ -13,6 +13,9 @@ import {
   transformCountFieldIntoSelectRelationsCount,
   transformInfoIntoPrismaArgs
 } from '@/generated/type-graphql/helpers'
+import { create } from 'mutative'
+import { isSome } from '@/lib/types/option'
+import { Prisma } from '@prisma/client'
 
 @TypeGraphQL.Resolver((_of) => MovieReview)
 export class CustomMovieReviewCrudResolver extends MovieReviewCrudResolver {
@@ -26,11 +29,23 @@ export class CustomMovieReviewCrudResolver extends MovieReviewCrudResolver {
     @TypeGraphQL.Args() searchCriteriaArgs: SearchMoviesArgs
   ): Promise<MovieReview[]> {
     const criteriaHandler = new MovieSearchCriteriaHandler(searchCriteriaArgs)
-    const where = criteriaHandler.buildWhere()
+    const movieWhere = criteriaHandler.buildWhere()
 
-    args.where = D.merge(args.where, {
-      rating: { is: { movie: { is: where } } }
-    })
+    args.where = {
+      AND: [
+        args.where ?? {},
+        {
+          rating: {
+            is: {
+              movie: {
+                // @ts-ignore
+                is: movieWhere
+              }
+            }
+          }
+        }
+      ]
+    }
 
     const { _count } = transformInfoIntoPrismaArgs(info)
     return getPrismaFromContext(ctx).movieReview.findMany({
