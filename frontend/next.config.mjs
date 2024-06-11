@@ -14,6 +14,11 @@ const nextConfig = {
             'ts-pattern',
             '@mobily/ts-belt',
             'framer-motion',
+            'lucide-react',
+            "mutative",
+            "use-mutative",
+            "zod",
+            "recharts"
         ]
     }
 };

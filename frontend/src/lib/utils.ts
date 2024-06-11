@@ -15,3 +15,5 @@ export const truncate = (str: string, maxLength: number) =>
   str.length > maxLength ? str.slice(0, maxLength) + '...' : str
 
 export const arrayNotNull = <T>(array: Array<T>) => array.filter(isSome)
+
+export const nonEmpty = (value: string) => value.trim().length > 0

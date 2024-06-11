@@ -59,7 +59,9 @@ services:
     networks:
       - movifier-network
     volumes:
-      - backend-graphql-api:/app
+      - ./backend/src:/app/src
+      - ./backend/migrations:/app/migrations
+      - ./backend/schema.prisma:/app/schema.prisma
 
   movifier-nextjs-frontend:
     container_name: movifier-nextjs-frontend
@@ -96,7 +98,6 @@ services:
 volumes:
   movifier-db-data:
   data-images:
-  backend-graphql-api:
 networks:
   movifier-network:
     driver: bridge

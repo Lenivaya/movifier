@@ -55,10 +55,6 @@ export function ImageUploader({
           {
             headers: {
               'Content-Type': 'multipart/form-data'
-            },
-            params: {
-              w: 500,
-              h: 700
             }
           }
         )
@@ -67,8 +63,8 @@ export function ImageUploader({
         const imgUrl =
           process.env.NEXT_PUBLIC_IMGPUSH_URL! +
           (isSome(imageSize)
-            ? `/${data.filename}?w=${imageSize.width}&h=${imageSize.height}`
-            : '/${data.filename}')
+            ? `${data.filename}?w=${imageSize.width}&h=${imageSize.height}`
+            : `/${data.filename}`)
 
         setImageUrl(imgUrl)
         toast({

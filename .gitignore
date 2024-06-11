@@ -517,3 +517,4 @@ fabric.properties
 .direnv
 .vscode
 backend/build
+backend/.env.docker

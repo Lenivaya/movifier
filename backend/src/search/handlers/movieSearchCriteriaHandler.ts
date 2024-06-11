@@ -145,14 +145,20 @@ export class MovieSearchCriteriaHandler
     if (isSome(language)) {
       where.spokenLanguages = {
         some: {
-          name: {
-            contains: `%${language}%`,
-            mode: 'insensitive'
-          },
-          iso_639_1: {
-            contains: `%${language}%`,
-            mode: 'insensitive'
-          }
+          OR: [
+            {
+              name: {
+                contains: `%${language}%`,
+                mode: 'insensitive'
+              }
+            },
+            {
+              iso_639_1: {
+                contains: `%${language}%`,
+                mode: 'insensitive'
+              }
+            }
+          ]
         }
       }
     }

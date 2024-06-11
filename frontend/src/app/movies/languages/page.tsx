@@ -1,6 +1,6 @@
 'use client'
 
-import { useGetSpokenLanguagesSuspenseQuery } from '@/lib'
+import { nonEmpty, useGetSpokenLanguagesSuspenseQuery } from '@/lib'
 import { Card, CardHeader, CardTitle } from '@/components/ui'
 import { Suspense } from 'react'
 import { AppLoader } from '@/components/movifier/generic'
@@ -39,7 +39,9 @@ function LanguagesListSuspense() {
         <Link href={`/movies/language/${lang.iso_639_1}`}>
           <Card>
             <CardHeader>
-              <CardTitle>{lang.name}</CardTitle>
+              <CardTitle>
+                {nonEmpty(lang.name) ? lang.name : lang.iso_639_1}
+              </CardTitle>
             </CardHeader>
           </Card>
         </Link>
