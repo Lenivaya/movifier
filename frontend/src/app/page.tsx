@@ -75,7 +75,7 @@ function RecentMovieLists() {
   })
 
   return (
-    <div className={'flex-col flex gap-7'}>
+    <div className={'flex-col flex gap-7 items-center'}>
       <h1
         className={cn(
           'font-black font-serif text-4xl underline',
