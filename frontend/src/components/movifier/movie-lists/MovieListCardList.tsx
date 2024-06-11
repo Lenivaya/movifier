@@ -8,7 +8,7 @@ export function MovieListCardList({
   movieLists?: MovieListCardItemFragment[]
 }) {
   return (
-    <div className={'flex flex-col w-full h-full justify-start max-w-5xl'}>
+    <div className={'flex flex-col w-full h-full justify-center max-w-5xl'}>
       <div
         className={
           'flex flex-row flex-shrink flex-wrap justify-center content-center items-center gap-10'

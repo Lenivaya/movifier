@@ -41,7 +41,6 @@ services:
       - MAX_UPLOADS_PER_HOUR=5000
       - MAX_UPLOADS_PER_DAY=100000
       - NAME_STRATEGY=uuidv4
-  #      - VALID_SIZES=[150,300,600,900,1200]
 
   movifier-graphql-api:
     container_name: movifier-graphql-api
