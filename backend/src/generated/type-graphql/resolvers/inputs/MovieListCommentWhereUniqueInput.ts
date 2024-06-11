@@ -3,6 +3,7 @@ import * as GraphQLScalars from "graphql-scalars";
 import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../../scalars";
 import { DateTimeFilter } from "../inputs/DateTimeFilter";
+import { MovieListCommentUserIdMovieListIdCompoundUniqueInput } from "../inputs/MovieListCommentUserIdMovieListIdCompoundUniqueInput";
 import { MovieListCommentWhereInput } from "../inputs/MovieListCommentWhereInput";
 import { MovieListRelationFilter } from "../inputs/MovieListRelationFilter";
 import { MovifierAppUserRelationFilter } from "../inputs/MovifierAppUserRelationFilter";
@@ -14,6 +15,11 @@ export class MovieListCommentWhereUniqueInput {
     nullable: true
   })
   id?: string | undefined;
+
+  @TypeGraphQL.Field(_type => MovieListCommentUserIdMovieListIdCompoundUniqueInput, {
+    nullable: true
+  })
+  userId_movieListId?: MovieListCommentUserIdMovieListIdCompoundUniqueInput | undefined;
 
   @TypeGraphQL.Field(_type => [MovieListCommentWhereInput], {
     nullable: true

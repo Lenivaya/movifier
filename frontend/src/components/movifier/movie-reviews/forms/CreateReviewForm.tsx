@@ -64,7 +64,7 @@ export const CreateReviewForm: FC<{ ratingId: string }> = ({ ratingId }) => {
   async function onSubmit(values: z.infer<typeof createReviewSchema>) {
     await upsertMovieReview({
       variables: { ratingId, ...values },
-      refetchQueries: ['RecentMovieReviews'],
+      refetchQueries: ['RecentMovieReviews', 'SearchUserMovieReviews'],
       onCompleted: () => {
         toast({
           title: 'Review saved'

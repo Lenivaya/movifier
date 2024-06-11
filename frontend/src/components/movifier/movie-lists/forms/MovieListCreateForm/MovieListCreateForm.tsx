@@ -60,7 +60,7 @@ export const SearchMovies = gql`
       searchCriteria: { search: $search }
       where: { id: { notIn: $alreadySelectedMovies } }
     ) {
-      ...MinimalisticMovieSearchCardFragmentItem
+      ...MinimalisticMovieSearchCardItem
     }
   }
 `
@@ -115,7 +115,7 @@ export const MovieListCreateForm: FC<{
   const isMoviesFound =
     isSome(movieSearch) && movieSearchData?.searchMovies.length > 0
 
-  const isUpadting = isSome(movieListToUpdate)
+  const isUpdating = isSome(movieListToUpdate)
 
   const user = useCurrentUser()
   const isSignedIn = isSome(user)
@@ -172,7 +172,7 @@ export const MovieListCreateForm: FC<{
       },
       onCompleted: ({ upsertOneMovieList }) => {
         toast({
-          title: `Movie list ${isUpadting ? 'updated' : 'created'}!`,
+          title: `Movie list ${isUpdating ? 'updated' : 'created'}!`,
           action: (
             <Link href={'/movie-lists/' + upsertOneMovieList.id}>
               <ToastAction altText='View movie list'>View</ToastAction>
@@ -183,7 +183,7 @@ export const MovieListCreateForm: FC<{
       onError: (error) => {
         console.error(error)
         toast({
-          title: `Couldn't ${isUpadting ? 'update' : 'create'} movie list`
+          title: `Couldn't ${isUpdating ? 'update' : 'create'} movie list`
         })
       }
     })
@@ -194,7 +194,7 @@ export const MovieListCreateForm: FC<{
       <CardHeader>
         <CardTitle>Movie list</CardTitle>
         <CardDescription>
-          {isUpadting ? 'Update' : 'Create'} movie list
+          {isUpdating ? 'Update' : 'Create'} movie list
         </CardDescription>
       </CardHeader>
 
@@ -405,7 +405,7 @@ function SelectedMovies({
 }
 
 const MinimalisticMovieSearchCardFragment = gql`
-  fragment MinimalisticMovieSearchCardFragmentItem on Movie {
+  fragment MinimalisticMovieSearchCardItem on Movie {
     id
     movieInfo {
       id

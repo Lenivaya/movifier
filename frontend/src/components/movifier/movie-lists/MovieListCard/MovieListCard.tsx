@@ -53,10 +53,10 @@ export const MovieListCard: FC<MovieListCardItemFragment> = ({
   const isAuthor = isSignedIn && user?.id === movieListAuthor.id
 
   return (
-    <Card className={'w-[30em] min-h-full'}>
+    <Card className={'w-[30em] min-h-full flex-1'}>
       <CardHeader>
         <Link href={`/movie-lists/${id}`} className={'h-full grow'}>
-          <CardTitle>{name}</CardTitle>
+          <CardTitle className={'text-center'}>{name}</CardTitle>
         </Link>
         <CardDescription>
           <div className='flex-col flex gap-5'>
@@ -78,8 +78,8 @@ export const MovieListCard: FC<MovieListCardItemFragment> = ({
 
       <Separator className={'mb-5'} />
 
-      <CardContent>
-        <div className='flex items-center space-x-4 overflow-hidden rounded-lg'>
+      <CardContent className={'flex justify-center'}>
+        <div className='flex items-center space-x-4 overflow-hidden rounded-lg mx-auto w-max'>
           {movies.map((movie, index) => (
             <div
               key={movie.id}

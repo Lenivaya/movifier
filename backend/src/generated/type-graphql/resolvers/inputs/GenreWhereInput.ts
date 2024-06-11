@@ -26,6 +26,11 @@ export class GenreWhereInput {
   @TypeGraphQL.Field(_type => StringFilter, {
     nullable: true
   })
+  id?: StringFilter | undefined;
+
+  @TypeGraphQL.Field(_type => StringFilter, {
+    nullable: true
+  })
   name?: StringFilter | undefined;
 
   @TypeGraphQL.Field(_type => DateTimeFilter, {

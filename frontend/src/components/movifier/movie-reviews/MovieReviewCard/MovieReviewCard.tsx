@@ -28,7 +28,7 @@ export const MovieReviewCardFragment = gql`
   }
 `
 
-const MAX_RATING = 10
+export const MAX_RATING = 10
 
 export const MovieReviewCard: FC<MovieReviewCardItemFragment> = ({
   id,

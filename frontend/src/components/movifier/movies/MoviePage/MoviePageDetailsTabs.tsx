@@ -46,7 +46,8 @@ export const MoviePageDetailsTabsFragment = gql`
       name
     }
     spokenLanguages {
-      language
+      iso_639_1
+      name
     }
   }
 `
@@ -197,10 +198,10 @@ export const MoviePageDetailsTabs: FC<MoviePageDetailsTabsItemFragment> = ({
                   items={spokenLanguages}
                   renderItem={(lang) => (
                     <Link
-                      href={`/movies/language/${lang.language}`}
-                      key={lang.language}
+                      href={`/movies/language/${lang.iso_639_1}`}
+                      key={lang.iso_639_1}
                     >
-                      <Badge>{lang.language}</Badge>
+                      <Badge>{lang.name}</Badge>
                     </Link>
                   )}
                   renderShowMoreButton={renderShowMoreButtonBadge}

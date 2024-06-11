@@ -5,7 +5,7 @@ import { buildApp } from '@/app'
 buildApp()
   .then(([app, endpoint]) => {
     app
-      .listen({ port: app.config.PORT })
+      .listen({ port: app.config.PORT, host: app.config.HOST })
       .then((address) =>
         console.log(`Server listening on ${address}${endpoint}`)
       )

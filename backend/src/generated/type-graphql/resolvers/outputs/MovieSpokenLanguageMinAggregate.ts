@@ -8,7 +8,12 @@ export class MovieSpokenLanguageMinAggregate {
   @TypeGraphQL.Field(_type => String, {
     nullable: true
   })
-  language!: string | null;
+  iso_639_1!: string | null;
+
+  @TypeGraphQL.Field(_type => String, {
+    nullable: true
+  })
+  name!: string | null;
 
   @TypeGraphQL.Field(_type => Date, {
     nullable: true

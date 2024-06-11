@@ -69,7 +69,8 @@ model MovieInfo {
 }
 
 model MovieSpokenLanguage {
-  language  String   @id @unique
+  iso_639_1 String   @id @unique
+  name      String   @unique
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   movies    Movie[]
@@ -111,7 +112,8 @@ model MovieCrewMemberType {
 }
 
 model Genre {
-  name      String   @id @unique
+  id        String   @id @unique @default(cuid())
+  name      String   @unique
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   movies    Movie[]
@@ -158,8 +160,8 @@ model UserMovieWatchlist {
   userId  String
   movieId String
 
-  movie Movie           @relation(fields: [movieId], references: [id])
-  user  MovifierAppUser @relation(fields: [userId], references: [id])
+  movie Movie           @relation(fields: [movieId], references: [id], onDelete: Cascade)
+  user  MovifierAppUser @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@id([userId, movieId])
 }
@@ -174,7 +176,7 @@ model MovieList {
   movies      Movie[]
 
   userId          String
-  movieListAuthor MovifierAppUser @relation(fields: [userId], references: [id])
+  movieListAuthor MovifierAppUser @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   stats    MovieListStats?
   comments MovieListComment[]
@@ -191,7 +193,7 @@ model MovieListStats {
   likes     Int
 
   movieListId String    @unique
-  MovieList   MovieList @relation(fields: [movieListId], references: [id])
+  MovieList   MovieList @relation(fields: [movieListId], references: [id], onDelete: Cascade)
 }
 
 model MovieListComment {
@@ -201,10 +203,12 @@ model MovieListComment {
   content   String
 
   movieListId String
-  movieList   MovieList @relation(fields: [movieListId], references: [id])
+  movieList   MovieList @relation(fields: [movieListId], references: [id], onDelete: Cascade)
 
   userId String
-  user   MovifierAppUser @relation(fields: [userId], references: [id])
+  user   MovifierAppUser @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, movieListId])
 }
 
 model MovieListLikedByUser {
@@ -213,8 +217,8 @@ model MovieListLikedByUser {
   userId      String
   movieListId String
 
-  movieList MovieList       @relation(fields: [movieListId], references: [id])
-  user      MovifierAppUser @relation(fields: [userId], references: [id])
+  movieList MovieList       @relation(fields: [movieListId], references: [id], onDelete: Cascade)
+  user      MovifierAppUser @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@id([userId, movieListId])
 }
@@ -225,8 +229,8 @@ model MovieWatchedByUser {
   userId  String
   movieId String
 
-  movie Movie           @relation(fields: [movieId], references: [id])
-  user  MovifierAppUser @relation(fields: [userId], references: [id])
+  movie Movie           @relation(fields: [movieId], references: [id], onDelete: Cascade)
+  user  MovifierAppUser @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@id([userId, movieId])
 }
@@ -237,8 +241,8 @@ model MovieLikedByUser {
   userId  String
   movieId String
 
-  movie Movie           @relation(fields: [movieId], references: [id])
-  user  MovifierAppUser @relation(fields: [userId], references: [id])
+  movie Movie           @relation(fields: [movieId], references: [id], onDelete: Cascade)
+  user  MovifierAppUser @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@id([userId, movieId])
 }

@@ -286,6 +286,7 @@ export { MovieListCommentUpdateWithoutMovieListInput } from './MovieListCommentU
 export { MovieListCommentUpdateWithoutUserInput } from './MovieListCommentUpdateWithoutUserInput'
 export { MovieListCommentUpsertWithWhereUniqueWithoutMovieListInput } from './MovieListCommentUpsertWithWhereUniqueWithoutMovieListInput'
 export { MovieListCommentUpsertWithWhereUniqueWithoutUserInput } from './MovieListCommentUpsertWithWhereUniqueWithoutUserInput'
+export { MovieListCommentUserIdMovieListIdCompoundUniqueInput } from './MovieListCommentUserIdMovieListIdCompoundUniqueInput'
 export { MovieListCommentWhereInput } from './MovieListCommentWhereInput'
 export { MovieListCommentWhereUniqueInput } from './MovieListCommentWhereUniqueInput'
 export { MovieListCountOrderByAggregateInput } from './MovieListCountOrderByAggregateInput'

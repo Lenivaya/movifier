@@ -114,6 +114,7 @@ export function MovieRatingInput(props: { composeKey: ComposeKeyMovieUser }) {
     async (change: number) => {
       await upsertRating({
         variables: { ...props.composeKey, rating: change },
+        refetchQueries: ['SearchUserMovieReviews'],
         onCompleted: ({ upsertOneMovieRating }) => {
           if (!upsertOneMovieRating) return
           setRating(upsertOneMovieRating.rating)
@@ -135,6 +136,7 @@ export function MovieRatingInput(props: { composeKey: ComposeKeyMovieUser }) {
   const handleDeleteRating = async () =>
     await deleteRating({
       variables: props.composeKey,
+      refetchQueries: ['SearchUserMovieReviews'],
       onCompleted: () => setRating(0),
       onError: (error) => {
         toast({

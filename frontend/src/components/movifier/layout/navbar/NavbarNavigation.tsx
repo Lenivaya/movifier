@@ -21,6 +21,11 @@ const moviesLinks: { title: string; href: string; description: string }[] = [
     description: 'Browse movies.'
   },
   {
+    title: 'Persons',
+    href: '/persons',
+    description: 'Search actors and other crew members'
+  },
+  {
     title: 'By years',
     href: '/movies/years',
     description:

@@ -35,5 +35,5 @@ export class FindManyMovieSpokenLanguageArgs {
   @TypeGraphQL.Field(_type => [MovieSpokenLanguageScalarFieldEnum], {
     nullable: true
   })
-  distinct?: Array<"language" | "createdAt" | "updatedAt"> | undefined;
+  distinct?: Array<"iso_639_1" | "name" | "createdAt" | "updatedAt"> | undefined;
 }

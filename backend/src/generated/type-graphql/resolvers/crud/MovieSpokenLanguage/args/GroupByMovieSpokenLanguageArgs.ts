@@ -20,7 +20,7 @@ export class GroupByMovieSpokenLanguageArgs {
   @TypeGraphQL.Field(_type => [MovieSpokenLanguageScalarFieldEnum], {
     nullable: false
   })
-  by!: Array<"language" | "createdAt" | "updatedAt">;
+  by!: Array<"iso_639_1" | "name" | "createdAt" | "updatedAt">;
 
   @TypeGraphQL.Field(_type => MovieSpokenLanguageScalarWhereWithAggregatesInput, {
     nullable: true

@@ -1,16 +1,22 @@
 import { NonEmptyArray } from 'type-graphql'
 import {
-  AggregateMovieReviewLikedByUserResolver,
   GroupByMovieReviewLikedByUserResolver,
   GroupByMovieReviewResolver,
-  MovieReviewCrudResolver,
-  MovieReviewRelationsResolver
+  MovieReviewRelationsResolver,
+  ResolverActionsConfig
 } from '@/generated/type-graphql'
-import { movieReviewLikesResolvers } from '@/graphql/movies/movieReviewLikes/movieReviewLikesResolvers'
+import { CustomMovieReviewCrudResolver } from '@/graphql/movies/movieReview/customMovieReviewCrudResolver'
+import { reviewOneActionAuth } from '@/graphql/movies/movieReview/auth/reviewOneActionAuth'
 
 export const movieReviewResolvers: NonEmptyArray<Function> = [
-  MovieReviewCrudResolver,
+  CustomMovieReviewCrudResolver,
   MovieReviewRelationsResolver,
   GroupByMovieReviewResolver,
   GroupByMovieReviewLikedByUserResolver
 ]
+
+export const movieReviewActionsConfig: ResolverActionsConfig<'MovieReview'> = {
+  deleteOneMovieReview: [reviewOneActionAuth()],
+  updateOneMovieReview: [reviewOneActionAuth()],
+  upsertOneMovieReview: [reviewOneActionAuth(true)]
+}

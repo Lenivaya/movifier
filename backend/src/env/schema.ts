@@ -6,6 +6,10 @@ export const envSchema = {
       type: 'number',
       default: 4000
     },
+    HOST: {
+      type: 'string',
+      default: '0.0.0.0'
+    },
     DATABASE_URL: {
       type: 'string',
       default: 'postgresql://postgres:password@localhost:5432/postgres'
@@ -29,6 +33,7 @@ declare module 'fastify' {
   interface FastifyInstance {
     config: {
       PORT: number
+      HOST: string
       DATABASE_URL: string
       REDIS_URL: string
       JWT_SECRET: string

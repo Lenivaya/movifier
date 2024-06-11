@@ -2,12 +2,14 @@
   "scripts": {
     "dev": "ts-node --transpile-only src/index.ts",
     "dev:watch": "nodemon --transpile-only --watch src src/index.ts | pino-pretty",
+    "build:compile": "tsc && tsc-alias",
     "run:clustered": "ts-node --transpile-only src/clustered.ts",
     "gen:schema": "ts-node --transpile-only scripts/generate-schema.ts",
     "gen:schema:watch": "nodemon --transpile-only --watch src scripts/generate-schema.ts",
     "code:format": "prettier --write src/",
     "db:seed": "ts-node --transpile-only scripts/db/seed.ts",
-    "db:seed:tmdb": "ts-node --transpile-only scripts/db/seed-tmdb.ts"
+    "db:seed:tmdb": "ts-node --transpile-only scripts/db/seed-tmdb.ts",
+    "db:seed:users": "ts-node --transpile-only scripts/db/seed-users.ts"
   },
   "devDependencies": {
     "@types/bcrypt": "^5.0.2",
@@ -17,7 +19,11 @@
     "prisma": "^5.14.0",
     "typescript": "^5.4.5"
   },
+  "peerDependencies": {
+    "reflect-metadata": "^0.2.2"
+  },
   "dependencies": {
+    "reflect-metadata": "^0.2.2",
     "@envelop/apollo-tracing": "^6.1.0",
     "@envelop/core": "^5.0.1",
     "@envelop/graphql-jit": "^8.0.3",
@@ -60,12 +66,13 @@
     "pino-pretty": "^11.0.0",
     "prettier-config-standard": "^7.0.0",
     "prettier-plugin-fix-imports": "^0.0.1",
-    "reflect-metadata": "^0.2.2",
     "swc": "^1.0.11",
     "ts-node": "^10.9.2",
+    "tsc-alias": "^1.8.10",
     "tsconfig-paths": "^4.2.0",
     "tslib": "^2.6.2",
     "type-graphql": "2.0.0-rc.1",
+    "typegraphql-authchecker": "0.2.0-beta.1",
     "typegraphql-prisma": "^0.27.2"
   }
 }

@@ -134,8 +134,14 @@ export async function fetchDetailedMovieData(imdbId: string, tmdb: MovieDb) {
 
   const spokenLanguages =
     movieInfo.spoken_languages?.map((language) => ({
-      where: { language: language.iso_639_1! },
-      create: { language: language.iso_639_1! }
+      where: {
+        iso_639_1: language.iso_639_1!,
+        name: language.name!
+      },
+      create: {
+        iso_639_1: language.iso_639_1!,
+        name: language.name!
+      }
     })) ?? []
 
   const keywords =

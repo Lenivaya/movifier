@@ -1,7 +1,8 @@
 import * as TypeGraphQL from "type-graphql";
 
 export enum MovieSpokenLanguageScalarFieldEnum {
-  language = "language",
+  iso_639_1 = "iso_639_1",
+  name = "name",
   createdAt = "createdAt",
   updatedAt = "updatedAt"
 }

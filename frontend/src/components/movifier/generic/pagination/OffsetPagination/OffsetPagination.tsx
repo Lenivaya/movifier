@@ -6,9 +6,9 @@ import {
   ChevronsLeft,
   ChevronsRight
 } from 'lucide-react'
-import { PaginationNavButton } from '@/components/tracking-service/generic/pagination/OffsetPagination/PaginationNavButton'
-import { IOffsetPagination } from '@/components/tracking-service/generic/pagination/OffsetPagination/IOffsetPagination'
 import { cn } from '@/lib'
+import { IOffsetPagination } from './IOffsetPagination'
+import { PaginationNavButton } from '@/components/movifier/generic/pagination/OffsetPagination/PaginationNavButton'
 
 export interface IOffsetPaginationProps {
   totalCount: number

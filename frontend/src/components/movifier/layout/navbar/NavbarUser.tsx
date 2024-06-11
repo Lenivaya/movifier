@@ -72,11 +72,18 @@ export const UserProfileDropDownMenu: FC<{ children: ReactNode }> = ({
         <Link href={'/user/dashboard/liked'} passHref>
           <DropdownMenuItem>Liked movies</DropdownMenuItem>
         </Link>
+        <Link href={'/user/dashboard/watched-movies'} passHref>
+          <DropdownMenuItem>Watched movies</DropdownMenuItem>
+        </Link>
         <Link href={'/user/dashboard/watchlist'} passHref>
           <DropdownMenuItem>Watchlist</DropdownMenuItem>
         </Link>
-        <DropdownMenuItem>Reviews</DropdownMenuItem>
-        <DropdownMenuItem>Movie lists</DropdownMenuItem>
+        <Link href={'/user/dashboard/reviews'} passHref>
+          <DropdownMenuItem>Reviews</DropdownMenuItem>
+        </Link>
+        <Link href={'/user/dashboard/movie-lists'} passHref>
+          <DropdownMenuItem>Movie lists</DropdownMenuItem>
+        </Link>
         <DropdownMenuSeparator />
         <AppTooltip text={'Logout from account'}>
           <DropdownMenuItem onClick={onLogoutClick}>

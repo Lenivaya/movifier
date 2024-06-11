@@ -1,8 +1,8 @@
 import { FC } from 'react'
 import { NavbarHeader } from '@/components/movifier/layout/navbar/NavbarHeader'
-import { HeaderMenuWithPopover } from '@/components/movifier/layout/navbar/HeaderMenuWithPopover'
 import { NavbarNavigationMenu } from '@/components/movifier/layout/navbar/NavbarNavigation'
 import { NavbarUser } from '@/components/movifier/layout/navbar/NavbarUser'
+// import { HeaderMenuWithPopover } from '@/components/movifier/layout/navbar/HeaderMenuWithPopover'
 
 export const Navbar: FC = () => {
   return (
@@ -20,7 +20,7 @@ export const Navbar: FC = () => {
               }
             >
               <NavbarUser />
-              <HeaderMenuWithPopover />
+              {/*<HeaderMenuWithPopover />*/}
             </div>
           </div>
         </div>

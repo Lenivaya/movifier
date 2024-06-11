@@ -36,6 +36,7 @@ export const LOGIN_USER = gql`
     }
   }
 `
+
 const loginUserSchema = z.object({
   email: z.string().email(),
   password: z.string().min(1)

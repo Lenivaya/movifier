@@ -14,7 +14,7 @@ export class GenreRelationsResolver {
     const { _count } = transformInfoIntoPrismaArgs(info);
     return getPrismaFromContext(ctx).genre.findUniqueOrThrow({
       where: {
-        name: genre.name,
+        id: genre.id,
       },
     }).movies({
       ...args,

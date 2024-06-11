@@ -27,6 +27,12 @@ type AggregateMovieCrewMember {
   _sum: MovieCrewMemberSumAggregate
 }
 
+type AggregateMovieCrewMemberType {
+  _count: MovieCrewMemberTypeCountAggregate
+  _max: MovieCrewMemberTypeMaxAggregate
+  _min: MovieCrewMemberTypeMinAggregate
+}
+
 type AggregateMovieLikedByUser {
   _count: MovieLikedByUserCountAggregate
   _max: MovieLikedByUserMaxAggregate
@@ -37,6 +43,12 @@ type AggregateMovieList {
   _count: MovieListCountAggregate
   _max: MovieListMaxAggregate
   _min: MovieListMinAggregate
+}
+
+type AggregateMovieListComment {
+  _count: MovieListCommentCountAggregate
+  _max: MovieListCommentMaxAggregate
+  _min: MovieListCommentMinAggregate
 }
 
 type AggregateMovieListLikedByUser {
@@ -71,6 +83,12 @@ type AggregateMovieSpokenLanguage {
   _min: MovieSpokenLanguageMinAggregate
 }
 
+type AggregateMovieStudio {
+  _count: MovieStudioCountAggregate
+  _max: MovieStudioMaxAggregate
+  _min: MovieStudioMinAggregate
+}
+
 type AggregateMovieWatchedByUser {
   _count: MovieWatchedByUserCountAggregate
   _max: MovieWatchedByUserMaxAggregate
@@ -81,6 +99,15 @@ type AggregateUserMovieWatchlist {
   _count: UserMovieWatchlistCountAggregate
   _max: UserMovieWatchlistMaxAggregate
   _min: UserMovieWatchlistMinAggregate
+}
+
+type AppStats {
+  totalAppUsers: Int!
+  totalLikes: Int!
+  totalMovieLists: Int!
+  totalMovieWatches: Int!
+  totalMoviesInWatchlists: Int!
+  usersWithMovieLists: Int!
 }
 
 input DateTimeFieldUpdateOperationsInput {
@@ -170,6 +197,7 @@ input FloatWithAggregatesFilter {
 type Genre {
   _count: GenreCount
   createdAt: DateTimeISO!
+  id: String!
   movies(cursor: MovieWhereUniqueInput, distinct: [MovieScalarFieldEnum!], orderBy: [MovieOrderByWithRelationAndSearchRelevanceInput!], skip: Int, take: Int, where: MovieWhereInput): [Movie!]!
   name: String!
   updatedAt: DateTimeISO!
@@ -182,18 +210,21 @@ type GenreCount {
 type GenreCountAggregate {
   _all: Int!
   createdAt: Int!
+  id: Int!
   name: Int!
   updatedAt: Int!
 }
 
 input GenreCountOrderByAggregateInput {
   createdAt: SortOrder
+  id: SortOrder
   name: SortOrder
   updatedAt: SortOrder
 }
 
 input GenreCreateInput {
   createdAt: DateTimeISO
+  id: String
   movies: MovieCreateNestedManyWithoutGenresInput
   name: String!
   updatedAt: DateTimeISO
@@ -201,6 +232,7 @@ input GenreCreateInput {
 
 input GenreCreateManyInput {
   createdAt: DateTimeISO
+  id: String
   name: String!
   updatedAt: DateTimeISO
 }
@@ -218,6 +250,7 @@ input GenreCreateOrConnectWithoutMoviesInput {
 
 input GenreCreateWithoutMoviesInput {
   createdAt: DateTimeISO
+  id: String
   name: String!
   updatedAt: DateTimeISO
 }
@@ -227,6 +260,7 @@ type GenreGroupBy {
   _max: GenreMaxAggregate
   _min: GenreMinAggregate
   createdAt: DateTimeISO!
+  id: String!
   name: String!
   updatedAt: DateTimeISO!
 }
@@ -239,24 +273,28 @@ input GenreListRelationFilter {
 
 type GenreMaxAggregate {
   createdAt: DateTimeISO
+  id: String
   name: String
   updatedAt: DateTimeISO
 }
 
 input GenreMaxOrderByAggregateInput {
   createdAt: SortOrder
+  id: SortOrder
   name: SortOrder
   updatedAt: SortOrder
 }
 
 type GenreMinAggregate {
   createdAt: DateTimeISO
+  id: String
   name: String
   updatedAt: DateTimeISO
 }
 
 input GenreMinOrderByAggregateInput {
   createdAt: SortOrder
+  id: SortOrder
   name: SortOrder
   updatedAt: SortOrder
 }
@@ -266,6 +304,7 @@ input GenreOrderByRelationAggregateInput {
 }
 
 enum GenreOrderByRelevanceFieldEnum {
+  id
   name
 }
 
@@ -280,6 +319,7 @@ input GenreOrderByWithAggregationInput {
   _max: GenreMaxOrderByAggregateInput
   _min: GenreMinOrderByAggregateInput
   createdAt: SortOrder
+  id: SortOrder
   name: SortOrder
   updatedAt: SortOrder
 }
@@ -287,6 +327,7 @@ input GenreOrderByWithAggregationInput {
 input GenreOrderByWithRelationAndSearchRelevanceInput {
   _relevance: GenreOrderByRelevanceInput
   createdAt: SortOrder
+  id: SortOrder
   movies: MovieOrderByRelationAggregateInput
   name: SortOrder
   updatedAt: SortOrder
@@ -294,6 +335,7 @@ input GenreOrderByWithRelationAndSearchRelevanceInput {
 
 enum GenreScalarFieldEnum {
   createdAt
+  id
   name
   updatedAt
 }
@@ -303,6 +345,7 @@ input GenreScalarWhereInput {
   NOT: [GenreScalarWhereInput!]
   OR: [GenreScalarWhereInput!]
   createdAt: DateTimeFilter
+  id: StringFilter
   name: StringFilter
   updatedAt: DateTimeFilter
 }
@@ -312,12 +355,14 @@ input GenreScalarWhereWithAggregatesInput {
   NOT: [GenreScalarWhereWithAggregatesInput!]
   OR: [GenreScalarWhereWithAggregatesInput!]
   createdAt: DateTimeWithAggregatesFilter
+  id: StringWithAggregatesFilter
   name: StringWithAggregatesFilter
   updatedAt: DateTimeWithAggregatesFilter
 }
 
 input GenreUpdateInput {
   createdAt: DateTimeFieldUpdateOperationsInput
+  id: StringFieldUpdateOperationsInput
   movies: MovieUpdateManyWithoutGenresNestedInput
   name: StringFieldUpdateOperationsInput
   updatedAt: DateTimeFieldUpdateOperationsInput
@@ -325,6 +370,7 @@ input GenreUpdateInput {
 
 input GenreUpdateManyMutationInput {
   createdAt: DateTimeFieldUpdateOperationsInput
+  id: StringFieldUpdateOperationsInput
   name: StringFieldUpdateOperationsInput
   updatedAt: DateTimeFieldUpdateOperationsInput
 }
@@ -354,6 +400,7 @@ input GenreUpdateWithWhereUniqueWithoutMoviesInput {
 
 input GenreUpdateWithoutMoviesInput {
   createdAt: DateTimeFieldUpdateOperationsInput
+  id: StringFieldUpdateOperationsInput
   name: StringFieldUpdateOperationsInput
   updatedAt: DateTimeFieldUpdateOperationsInput
 }
@@ -369,6 +416,7 @@ input GenreWhereInput {
   NOT: [GenreWhereInput!]
   OR: [GenreWhereInput!]
   createdAt: DateTimeFilter
+  id: StringFilter
   movies: MovieListRelationFilter
   name: StringFilter
   updatedAt: DateTimeFilter
@@ -379,6 +427,7 @@ input GenreWhereUniqueInput {
   NOT: [GenreWhereInput!]
   OR: [GenreWhereInput!]
   createdAt: DateTimeFilter
+  id: String
   movies: MovieListRelationFilter
   name: String
   updatedAt: DateTimeFilter
@@ -433,6 +482,7 @@ type Movie {
   movieStats(where: MovieStatsWhereInput): MovieStats
   ratedBy(cursor: MovieRatingWhereUniqueInput, distinct: [MovieRatingScalarFieldEnum!], orderBy: [MovieRatingOrderByWithRelationAndSearchRelevanceInput!], skip: Int, take: Int, where: MovieRatingWhereInput): [MovieRating!]!
   spokenLanguages(cursor: MovieSpokenLanguageWhereUniqueInput, distinct: [MovieSpokenLanguageScalarFieldEnum!], orderBy: [MovieSpokenLanguageOrderByWithRelationAndSearchRelevanceInput!], skip: Int, take: Int, where: MovieSpokenLanguageWhereInput): [MovieSpokenLanguage!]!
+  statsSummary: MovieStatsSummary!
   studios(cursor: MovieStudioWhereUniqueInput, distinct: [MovieStudioScalarFieldEnum!], orderBy: [MovieStudioOrderByWithRelationAndSearchRelevanceInput!], skip: Int, take: Int, where: MovieStudioWhereInput): [MovieStudio!]!
   updatedAt: DateTimeISO!
   watchedBy(cursor: MovieWatchedByUserWhereUniqueInput, distinct: [MovieWatchedByUserScalarFieldEnum!], orderBy: [MovieWatchedByUserOrderByWithRelationAndSearchRelevanceInput!], skip: Int, take: Int, where: MovieWatchedByUserWhereInput): [MovieWatchedByUser!]!
@@ -506,6 +556,12 @@ input MovieCreateNestedManyWithoutSpokenLanguagesInput {
   create: [MovieCreateWithoutSpokenLanguagesInput!]
 }
 
+input MovieCreateNestedManyWithoutStudiosInput {
+  connect: [MovieWhereUniqueInput!]
+  connectOrCreate: [MovieCreateOrConnectWithoutStudiosInput!]
+  create: [MovieCreateWithoutStudiosInput!]
+}
+
 input MovieCreateNestedOneWithoutCrewMembersInput {
   connect: MovieWhereUniqueInput
   connectOrCreate: MovieCreateOrConnectWithoutCrewMembersInput
@@ -568,6 +624,11 @@ input MovieCreateOrConnectWithoutRatedByInput {
 
 input MovieCreateOrConnectWithoutSpokenLanguagesInput {
   create: MovieCreateWithoutSpokenLanguagesInput!
+  where: MovieWhereUniqueInput!
+}
+
+input MovieCreateOrConnectWithoutStudiosInput {
+  create: MovieCreateWithoutStudiosInput!
   where: MovieWhereUniqueInput!
 }
 
@@ -691,6 +752,23 @@ input MovieCreateWithoutSpokenLanguagesInput {
   movieStats: MovieStatsCreateNestedOneWithoutMovieInput
   ratedBy: MovieRatingCreateNestedManyWithoutMovieInput
   studios: MovieStudioCreateNestedManyWithoutMoviesInput
+  updatedAt: DateTimeISO
+  watchedBy: MovieWatchedByUserCreateNestedManyWithoutMovieInput
+}
+
+input MovieCreateWithoutStudiosInput {
+  createdAt: DateTimeISO
+  crewMembers: MovieCrewMemberOnMovieCreateNestedManyWithoutMovieInput
+  genres: GenreCreateNestedManyWithoutMoviesInput
+  id: String
+  inWatchlistByUsers: UserMovieWatchlistCreateNestedManyWithoutMovieInput
+  keywordCategories: MovieKeywordCategoryCreateNestedManyWithoutMoviesInput
+  likedBy: MovieLikedByUserCreateNestedManyWithoutMovieInput
+  movieInfo: MovieInfoCreateNestedOneWithoutMovieInput
+  movieLists: MovieListCreateNestedManyWithoutMoviesInput
+  movieStats: MovieStatsCreateNestedOneWithoutMovieInput
+  ratedBy: MovieRatingCreateNestedManyWithoutMovieInput
+  spokenLanguages: MovieSpokenLanguageCreateNestedManyWithoutMoviesInput
   updatedAt: DateTimeISO
   watchedBy: MovieWatchedByUserCreateNestedManyWithoutMovieInput
 }
@@ -890,6 +968,19 @@ input MovieCrewMemberOnMovieCreateManyCrewMemberInputEnvelope {
   skipDuplicates: Boolean
 }
 
+input MovieCrewMemberOnMovieCreateManyMovieCrewMemberTypeInput {
+  createdAt: DateTimeISO
+  movieCrewMemberId: String!
+  movieId: String!
+  order: Int
+  updatedAt: DateTimeISO
+}
+
+input MovieCrewMemberOnMovieCreateManyMovieCrewMemberTypeInputEnvelope {
+  data: [MovieCrewMemberOnMovieCreateManyMovieCrewMemberTypeInput!]!
+  skipDuplicates: Boolean
+}
+
 input MovieCrewMemberOnMovieCreateManyMovieInput {
   createdAt: DateTimeISO
   movieCrewMemberId: String!
@@ -910,6 +1001,13 @@ input MovieCrewMemberOnMovieCreateNestedManyWithoutCrewMemberInput {
   createMany: MovieCrewMemberOnMovieCreateManyCrewMemberInputEnvelope
 }
 
+input MovieCrewMemberOnMovieCreateNestedManyWithoutMovieCrewMemberTypeInput {
+  connect: [MovieCrewMemberOnMovieWhereUniqueInput!]
+  connectOrCreate: [MovieCrewMemberOnMovieCreateOrConnectWithoutMovieCrewMemberTypeInput!]
+  create: [MovieCrewMemberOnMovieCreateWithoutMovieCrewMemberTypeInput!]
+  createMany: MovieCrewMemberOnMovieCreateManyMovieCrewMemberTypeInputEnvelope
+}
+
 input MovieCrewMemberOnMovieCreateNestedManyWithoutMovieInput {
   connect: [MovieCrewMemberOnMovieWhereUniqueInput!]
   connectOrCreate: [MovieCrewMemberOnMovieCreateOrConnectWithoutMovieInput!]
@@ -922,6 +1020,11 @@ input MovieCrewMemberOnMovieCreateOrConnectWithoutCrewMemberInput {
   where: MovieCrewMemberOnMovieWhereUniqueInput!
 }
 
+input MovieCrewMemberOnMovieCreateOrConnectWithoutMovieCrewMemberTypeInput {
+  create: MovieCrewMemberOnMovieCreateWithoutMovieCrewMemberTypeInput!
+  where: MovieCrewMemberOnMovieWhereUniqueInput!
+}
+
 input MovieCrewMemberOnMovieCreateOrConnectWithoutMovieInput {
   create: MovieCrewMemberOnMovieCreateWithoutMovieInput!
   where: MovieCrewMemberOnMovieWhereUniqueInput!
@@ -931,6 +1034,14 @@ input MovieCrewMemberOnMovieCreateWithoutCrewMemberInput {
   createdAt: DateTimeISO
   movie: MovieCreateNestedOneWithoutCrewMembersInput!
   movieCrewMemberType: MovieCrewMemberTypeCreateNestedOneWithoutMovieCrewMembersInput!
+  order: Int
+  updatedAt: DateTimeISO
+}
+
+input MovieCrewMemberOnMovieCreateWithoutMovieCrewMemberTypeInput {
+  createdAt: DateTimeISO
+  crewMember: MovieCrewMemberCreateNestedOneWithoutMoviesInput!
+  movie: MovieCreateNestedOneWithoutCrewMembersInput!
   order: Int
   updatedAt: DateTimeISO
 }
@@ -1016,6 +1127,11 @@ input MovieCrewMemberOnMovieUpdateManyWithWhereWithoutCrewMemberInput {
   where: MovieCrewMemberOnMovieScalarWhereInput!
 }
 
+input MovieCrewMemberOnMovieUpdateManyWithWhereWithoutMovieCrewMemberTypeInput {
+  data: MovieCrewMemberOnMovieUpdateManyMutationInput!
+  where: MovieCrewMemberOnMovieScalarWhereInput!
+}
+
 input MovieCrewMemberOnMovieUpdateManyWithWhereWithoutMovieInput {
   data: MovieCrewMemberOnMovieUpdateManyMutationInput!
   where: MovieCrewMemberOnMovieScalarWhereInput!
@@ -1033,6 +1149,20 @@ input MovieCrewMemberOnMovieUpdateManyWithoutCrewMemberNestedInput {
   update: [MovieCrewMemberOnMovieUpdateWithWhereUniqueWithoutCrewMemberInput!]
   updateMany: [MovieCrewMemberOnMovieUpdateManyWithWhereWithoutCrewMemberInput!]
   upsert: [MovieCrewMemberOnMovieUpsertWithWhereUniqueWithoutCrewMemberInput!]
+}
+
+input MovieCrewMemberOnMovieUpdateManyWithoutMovieCrewMemberTypeNestedInput {
+  connect: [MovieCrewMemberOnMovieWhereUniqueInput!]
+  connectOrCreate: [MovieCrewMemberOnMovieCreateOrConnectWithoutMovieCrewMemberTypeInput!]
+  create: [MovieCrewMemberOnMovieCreateWithoutMovieCrewMemberTypeInput!]
+  createMany: MovieCrewMemberOnMovieCreateManyMovieCrewMemberTypeInputEnvelope
+  delete: [MovieCrewMemberOnMovieWhereUniqueInput!]
+  deleteMany: [MovieCrewMemberOnMovieScalarWhereInput!]
+  disconnect: [MovieCrewMemberOnMovieWhereUniqueInput!]
+  set: [MovieCrewMemberOnMovieWhereUniqueInput!]
+  update: [MovieCrewMemberOnMovieUpdateWithWhereUniqueWithoutMovieCrewMemberTypeInput!]
+  updateMany: [MovieCrewMemberOnMovieUpdateManyWithWhereWithoutMovieCrewMemberTypeInput!]
+  upsert: [MovieCrewMemberOnMovieUpsertWithWhereUniqueWithoutMovieCrewMemberTypeInput!]
 }
 
 input MovieCrewMemberOnMovieUpdateManyWithoutMovieNestedInput {
@@ -1054,6 +1184,11 @@ input MovieCrewMemberOnMovieUpdateWithWhereUniqueWithoutCrewMemberInput {
   where: MovieCrewMemberOnMovieWhereUniqueInput!
 }
 
+input MovieCrewMemberOnMovieUpdateWithWhereUniqueWithoutMovieCrewMemberTypeInput {
+  data: MovieCrewMemberOnMovieUpdateWithoutMovieCrewMemberTypeInput!
+  where: MovieCrewMemberOnMovieWhereUniqueInput!
+}
+
 input MovieCrewMemberOnMovieUpdateWithWhereUniqueWithoutMovieInput {
   data: MovieCrewMemberOnMovieUpdateWithoutMovieInput!
   where: MovieCrewMemberOnMovieWhereUniqueInput!
@@ -1063,6 +1198,14 @@ input MovieCrewMemberOnMovieUpdateWithoutCrewMemberInput {
   createdAt: DateTimeFieldUpdateOperationsInput
   movie: MovieUpdateOneRequiredWithoutCrewMembersNestedInput
   movieCrewMemberType: MovieCrewMemberTypeUpdateOneRequiredWithoutMovieCrewMembersNestedInput
+  order: IntFieldUpdateOperationsInput
+  updatedAt: DateTimeFieldUpdateOperationsInput
+}
+
+input MovieCrewMemberOnMovieUpdateWithoutMovieCrewMemberTypeInput {
+  createdAt: DateTimeFieldUpdateOperationsInput
+  crewMember: MovieCrewMemberUpdateOneRequiredWithoutMoviesNestedInput
+  movie: MovieUpdateOneRequiredWithoutCrewMembersNestedInput
   order: IntFieldUpdateOperationsInput
   updatedAt: DateTimeFieldUpdateOperationsInput
 }
@@ -1078,6 +1221,12 @@ input MovieCrewMemberOnMovieUpdateWithoutMovieInput {
 input MovieCrewMemberOnMovieUpsertWithWhereUniqueWithoutCrewMemberInput {
   create: MovieCrewMemberOnMovieCreateWithoutCrewMemberInput!
   update: MovieCrewMemberOnMovieUpdateWithoutCrewMemberInput!
+  where: MovieCrewMemberOnMovieWhereUniqueInput!
+}
+
+input MovieCrewMemberOnMovieUpsertWithWhereUniqueWithoutMovieCrewMemberTypeInput {
+  create: MovieCrewMemberOnMovieCreateWithoutMovieCrewMemberTypeInput!
+  update: MovieCrewMemberOnMovieUpdateWithoutMovieCrewMemberTypeInput!
   where: MovieCrewMemberOnMovieWhereUniqueInput!
 }
 
@@ -1202,11 +1351,34 @@ input MovieCrewMemberSumOrderByAggregateInput {
 type MovieCrewMemberType {
   _count: MovieCrewMemberTypeCount
   id: String!
+  movieCrewMembers(cursor: MovieCrewMemberOnMovieWhereUniqueInput, distinct: [MovieCrewMemberOnMovieScalarFieldEnum!], orderBy: [MovieCrewMemberOnMovieOrderByWithRelationAndSearchRelevanceInput!], skip: Int, take: Int, where: MovieCrewMemberOnMovieWhereInput): [MovieCrewMemberOnMovie!]!
   name: String!
 }
 
 type MovieCrewMemberTypeCount {
   movieCrewMembers(where: MovieCrewMemberOnMovieWhereInput): Int!
+}
+
+type MovieCrewMemberTypeCountAggregate {
+  _all: Int!
+  id: Int!
+  name: Int!
+}
+
+input MovieCrewMemberTypeCountOrderByAggregateInput {
+  id: SortOrder
+  name: SortOrder
+}
+
+input MovieCrewMemberTypeCreateInput {
+  id: String
+  movieCrewMembers: MovieCrewMemberOnMovieCreateNestedManyWithoutMovieCrewMemberTypeInput
+  name: String!
+}
+
+input MovieCrewMemberTypeCreateManyInput {
+  id: String
+  name: String!
 }
 
 input MovieCrewMemberTypeCreateNestedOneWithoutMovieCrewMembersInput {
@@ -1225,6 +1397,34 @@ input MovieCrewMemberTypeCreateWithoutMovieCrewMembersInput {
   name: String!
 }
 
+type MovieCrewMemberTypeGroupBy {
+  _count: MovieCrewMemberTypeCountAggregate
+  _max: MovieCrewMemberTypeMaxAggregate
+  _min: MovieCrewMemberTypeMinAggregate
+  id: String!
+  name: String!
+}
+
+type MovieCrewMemberTypeMaxAggregate {
+  id: String
+  name: String
+}
+
+input MovieCrewMemberTypeMaxOrderByAggregateInput {
+  id: SortOrder
+  name: SortOrder
+}
+
+type MovieCrewMemberTypeMinAggregate {
+  id: String
+  name: String
+}
+
+input MovieCrewMemberTypeMinOrderByAggregateInput {
+  id: SortOrder
+  name: SortOrder
+}
+
 enum MovieCrewMemberTypeOrderByRelevanceFieldEnum {
   id
   name
@@ -1234,6 +1434,14 @@ input MovieCrewMemberTypeOrderByRelevanceInput {
   fields: [MovieCrewMemberTypeOrderByRelevanceFieldEnum!]!
   search: String!
   sort: SortOrder!
+}
+
+input MovieCrewMemberTypeOrderByWithAggregationInput {
+  _count: MovieCrewMemberTypeCountOrderByAggregateInput
+  _max: MovieCrewMemberTypeMaxOrderByAggregateInput
+  _min: MovieCrewMemberTypeMinOrderByAggregateInput
+  id: SortOrder
+  name: SortOrder
 }
 
 input MovieCrewMemberTypeOrderByWithRelationAndSearchRelevanceInput {
@@ -1246,6 +1454,30 @@ input MovieCrewMemberTypeOrderByWithRelationAndSearchRelevanceInput {
 input MovieCrewMemberTypeRelationFilter {
   is: MovieCrewMemberTypeWhereInput
   isNot: MovieCrewMemberTypeWhereInput
+}
+
+enum MovieCrewMemberTypeScalarFieldEnum {
+  id
+  name
+}
+
+input MovieCrewMemberTypeScalarWhereWithAggregatesInput {
+  AND: [MovieCrewMemberTypeScalarWhereWithAggregatesInput!]
+  NOT: [MovieCrewMemberTypeScalarWhereWithAggregatesInput!]
+  OR: [MovieCrewMemberTypeScalarWhereWithAggregatesInput!]
+  id: StringWithAggregatesFilter
+  name: StringWithAggregatesFilter
+}
+
+input MovieCrewMemberTypeUpdateInput {
+  id: StringFieldUpdateOperationsInput
+  movieCrewMembers: MovieCrewMemberOnMovieUpdateManyWithoutMovieCrewMemberTypeNestedInput
+  name: StringFieldUpdateOperationsInput
+}
+
+input MovieCrewMemberTypeUpdateManyMutationInput {
+  id: StringFieldUpdateOperationsInput
+  name: StringFieldUpdateOperationsInput
 }
 
 input MovieCrewMemberTypeUpdateOneRequiredWithoutMovieCrewMembersNestedInput {
@@ -1971,8 +2203,47 @@ type MovieListComment {
   content: String!
   createdAt: DateTimeISO!
   id: String!
+  movieList: MovieList!
   movieListId: String!
   updatedAt: DateTimeISO!
+  user: MovifierAppUser!
+  userId: String!
+}
+
+type MovieListCommentCountAggregate {
+  _all: Int!
+  content: Int!
+  createdAt: Int!
+  id: Int!
+  movieListId: Int!
+  updatedAt: Int!
+  userId: Int!
+}
+
+input MovieListCommentCountOrderByAggregateInput {
+  content: SortOrder
+  createdAt: SortOrder
+  id: SortOrder
+  movieListId: SortOrder
+  updatedAt: SortOrder
+  userId: SortOrder
+}
+
+input MovieListCommentCreateInput {
+  content: String!
+  createdAt: DateTimeISO
+  id: String
+  movieList: MovieListCreateNestedOneWithoutCommentsInput!
+  updatedAt: DateTimeISO
+  user: MovifierAppUserCreateNestedOneWithoutMovieListsCommentsInput!
+}
+
+input MovieListCommentCreateManyInput {
+  content: String!
+  createdAt: DateTimeISO
+  id: String
+  movieListId: String!
+  updatedAt: DateTimeISO
   userId: String!
 }
 
@@ -2042,10 +2313,58 @@ input MovieListCommentCreateWithoutUserInput {
   updatedAt: DateTimeISO
 }
 
+type MovieListCommentGroupBy {
+  _count: MovieListCommentCountAggregate
+  _max: MovieListCommentMaxAggregate
+  _min: MovieListCommentMinAggregate
+  content: String!
+  createdAt: DateTimeISO!
+  id: String!
+  movieListId: String!
+  updatedAt: DateTimeISO!
+  userId: String!
+}
+
 input MovieListCommentListRelationFilter {
   every: MovieListCommentWhereInput
   none: MovieListCommentWhereInput
   some: MovieListCommentWhereInput
+}
+
+type MovieListCommentMaxAggregate {
+  content: String
+  createdAt: DateTimeISO
+  id: String
+  movieListId: String
+  updatedAt: DateTimeISO
+  userId: String
+}
+
+input MovieListCommentMaxOrderByAggregateInput {
+  content: SortOrder
+  createdAt: SortOrder
+  id: SortOrder
+  movieListId: SortOrder
+  updatedAt: SortOrder
+  userId: SortOrder
+}
+
+type MovieListCommentMinAggregate {
+  content: String
+  createdAt: DateTimeISO
+  id: String
+  movieListId: String
+  updatedAt: DateTimeISO
+  userId: String
+}
+
+input MovieListCommentMinOrderByAggregateInput {
+  content: SortOrder
+  createdAt: SortOrder
+  id: SortOrder
+  movieListId: SortOrder
+  updatedAt: SortOrder
+  userId: SortOrder
 }
 
 input MovieListCommentOrderByRelationAggregateInput {
@@ -2063,6 +2382,18 @@ input MovieListCommentOrderByRelevanceInput {
   fields: [MovieListCommentOrderByRelevanceFieldEnum!]!
   search: String!
   sort: SortOrder!
+}
+
+input MovieListCommentOrderByWithAggregationInput {
+  _count: MovieListCommentCountOrderByAggregateInput
+  _max: MovieListCommentMaxOrderByAggregateInput
+  _min: MovieListCommentMinOrderByAggregateInput
+  content: SortOrder
+  createdAt: SortOrder
+  id: SortOrder
+  movieListId: SortOrder
+  updatedAt: SortOrder
+  userId: SortOrder
 }
 
 input MovieListCommentOrderByWithRelationAndSearchRelevanceInput {
@@ -2096,6 +2427,27 @@ input MovieListCommentScalarWhereInput {
   movieListId: StringFilter
   updatedAt: DateTimeFilter
   userId: StringFilter
+}
+
+input MovieListCommentScalarWhereWithAggregatesInput {
+  AND: [MovieListCommentScalarWhereWithAggregatesInput!]
+  NOT: [MovieListCommentScalarWhereWithAggregatesInput!]
+  OR: [MovieListCommentScalarWhereWithAggregatesInput!]
+  content: StringWithAggregatesFilter
+  createdAt: DateTimeWithAggregatesFilter
+  id: StringWithAggregatesFilter
+  movieListId: StringWithAggregatesFilter
+  updatedAt: DateTimeWithAggregatesFilter
+  userId: StringWithAggregatesFilter
+}
+
+input MovieListCommentUpdateInput {
+  content: StringFieldUpdateOperationsInput
+  createdAt: DateTimeFieldUpdateOperationsInput
+  id: StringFieldUpdateOperationsInput
+  movieList: MovieListUpdateOneRequiredWithoutCommentsNestedInput
+  updatedAt: DateTimeFieldUpdateOperationsInput
+  user: MovifierAppUserUpdateOneRequiredWithoutMovieListsCommentsNestedInput
 }
 
 input MovieListCommentUpdateManyMutationInput {
@@ -2181,6 +2533,11 @@ input MovieListCommentUpsertWithWhereUniqueWithoutUserInput {
   where: MovieListCommentWhereUniqueInput!
 }
 
+input MovieListCommentUserIdMovieListIdCompoundUniqueInput {
+  movieListId: String!
+  userId: String!
+}
+
 input MovieListCommentWhereInput {
   AND: [MovieListCommentWhereInput!]
   NOT: [MovieListCommentWhereInput!]
@@ -2207,6 +2564,7 @@ input MovieListCommentWhereUniqueInput {
   updatedAt: DateTimeFilter
   user: MovifierAppUserRelationFilter
   userId: StringFilter
+  userId_movieListId: MovieListCommentUserIdMovieListIdCompoundUniqueInput
 }
 
 type MovieListCount {
@@ -4266,8 +4624,9 @@ input MovieScalarWhereWithAggregatesInput {
 type MovieSpokenLanguage {
   _count: MovieSpokenLanguageCount
   createdAt: DateTimeISO!
-  language: String!
+  iso_639_1: String!
   movies(cursor: MovieWhereUniqueInput, distinct: [MovieScalarFieldEnum!], orderBy: [MovieOrderByWithRelationAndSearchRelevanceInput!], skip: Int, take: Int, where: MovieWhereInput): [Movie!]!
+  name: String!
   updatedAt: DateTimeISO!
 }
 
@@ -4278,26 +4637,30 @@ type MovieSpokenLanguageCount {
 type MovieSpokenLanguageCountAggregate {
   _all: Int!
   createdAt: Int!
-  language: Int!
+  iso_639_1: Int!
+  name: Int!
   updatedAt: Int!
 }
 
 input MovieSpokenLanguageCountOrderByAggregateInput {
   createdAt: SortOrder
-  language: SortOrder
+  iso_639_1: SortOrder
+  name: SortOrder
   updatedAt: SortOrder
 }
 
 input MovieSpokenLanguageCreateInput {
   createdAt: DateTimeISO
-  language: String!
+  iso_639_1: String!
   movies: MovieCreateNestedManyWithoutSpokenLanguagesInput
+  name: String!
   updatedAt: DateTimeISO
 }
 
 input MovieSpokenLanguageCreateManyInput {
   createdAt: DateTimeISO
-  language: String!
+  iso_639_1: String!
+  name: String!
   updatedAt: DateTimeISO
 }
 
@@ -4314,7 +4677,8 @@ input MovieSpokenLanguageCreateOrConnectWithoutMoviesInput {
 
 input MovieSpokenLanguageCreateWithoutMoviesInput {
   createdAt: DateTimeISO
-  language: String!
+  iso_639_1: String!
+  name: String!
   updatedAt: DateTimeISO
 }
 
@@ -4323,7 +4687,8 @@ type MovieSpokenLanguageGroupBy {
   _max: MovieSpokenLanguageMaxAggregate
   _min: MovieSpokenLanguageMinAggregate
   createdAt: DateTimeISO!
-  language: String!
+  iso_639_1: String!
+  name: String!
   updatedAt: DateTimeISO!
 }
 
@@ -4335,25 +4700,29 @@ input MovieSpokenLanguageListRelationFilter {
 
 type MovieSpokenLanguageMaxAggregate {
   createdAt: DateTimeISO
-  language: String
+  iso_639_1: String
+  name: String
   updatedAt: DateTimeISO
 }
 
 input MovieSpokenLanguageMaxOrderByAggregateInput {
   createdAt: SortOrder
-  language: SortOrder
+  iso_639_1: SortOrder
+  name: SortOrder
   updatedAt: SortOrder
 }
 
 type MovieSpokenLanguageMinAggregate {
   createdAt: DateTimeISO
-  language: String
+  iso_639_1: String
+  name: String
   updatedAt: DateTimeISO
 }
 
 input MovieSpokenLanguageMinOrderByAggregateInput {
   createdAt: SortOrder
-  language: SortOrder
+  iso_639_1: SortOrder
+  name: SortOrder
   updatedAt: SortOrder
 }
 
@@ -4362,7 +4731,8 @@ input MovieSpokenLanguageOrderByRelationAggregateInput {
 }
 
 enum MovieSpokenLanguageOrderByRelevanceFieldEnum {
-  language
+  iso_639_1
+  name
 }
 
 input MovieSpokenLanguageOrderByRelevanceInput {
@@ -4376,21 +4746,24 @@ input MovieSpokenLanguageOrderByWithAggregationInput {
   _max: MovieSpokenLanguageMaxOrderByAggregateInput
   _min: MovieSpokenLanguageMinOrderByAggregateInput
   createdAt: SortOrder
-  language: SortOrder
+  iso_639_1: SortOrder
+  name: SortOrder
   updatedAt: SortOrder
 }
 
 input MovieSpokenLanguageOrderByWithRelationAndSearchRelevanceInput {
   _relevance: MovieSpokenLanguageOrderByRelevanceInput
   createdAt: SortOrder
-  language: SortOrder
+  iso_639_1: SortOrder
   movies: MovieOrderByRelationAggregateInput
+  name: SortOrder
   updatedAt: SortOrder
 }
 
 enum MovieSpokenLanguageScalarFieldEnum {
   createdAt
-  language
+  iso_639_1
+  name
   updatedAt
 }
 
@@ -4399,7 +4772,8 @@ input MovieSpokenLanguageScalarWhereInput {
   NOT: [MovieSpokenLanguageScalarWhereInput!]
   OR: [MovieSpokenLanguageScalarWhereInput!]
   createdAt: DateTimeFilter
-  language: StringFilter
+  iso_639_1: StringFilter
+  name: StringFilter
   updatedAt: DateTimeFilter
 }
 
@@ -4408,20 +4782,23 @@ input MovieSpokenLanguageScalarWhereWithAggregatesInput {
   NOT: [MovieSpokenLanguageScalarWhereWithAggregatesInput!]
   OR: [MovieSpokenLanguageScalarWhereWithAggregatesInput!]
   createdAt: DateTimeWithAggregatesFilter
-  language: StringWithAggregatesFilter
+  iso_639_1: StringWithAggregatesFilter
+  name: StringWithAggregatesFilter
   updatedAt: DateTimeWithAggregatesFilter
 }
 
 input MovieSpokenLanguageUpdateInput {
   createdAt: DateTimeFieldUpdateOperationsInput
-  language: StringFieldUpdateOperationsInput
+  iso_639_1: StringFieldUpdateOperationsInput
   movies: MovieUpdateManyWithoutSpokenLanguagesNestedInput
+  name: StringFieldUpdateOperationsInput
   updatedAt: DateTimeFieldUpdateOperationsInput
 }
 
 input MovieSpokenLanguageUpdateManyMutationInput {
   createdAt: DateTimeFieldUpdateOperationsInput
-  language: StringFieldUpdateOperationsInput
+  iso_639_1: StringFieldUpdateOperationsInput
+  name: StringFieldUpdateOperationsInput
   updatedAt: DateTimeFieldUpdateOperationsInput
 }
 
@@ -4450,7 +4827,8 @@ input MovieSpokenLanguageUpdateWithWhereUniqueWithoutMoviesInput {
 
 input MovieSpokenLanguageUpdateWithoutMoviesInput {
   createdAt: DateTimeFieldUpdateOperationsInput
-  language: StringFieldUpdateOperationsInput
+  iso_639_1: StringFieldUpdateOperationsInput
+  name: StringFieldUpdateOperationsInput
   updatedAt: DateTimeFieldUpdateOperationsInput
 }
 
@@ -4465,8 +4843,9 @@ input MovieSpokenLanguageWhereInput {
   NOT: [MovieSpokenLanguageWhereInput!]
   OR: [MovieSpokenLanguageWhereInput!]
   createdAt: DateTimeFilter
-  language: StringFilter
+  iso_639_1: StringFilter
   movies: MovieListRelationFilter
+  name: StringFilter
   updatedAt: DateTimeFilter
 }
 
@@ -4475,8 +4854,9 @@ input MovieSpokenLanguageWhereUniqueInput {
   NOT: [MovieSpokenLanguageWhereInput!]
   OR: [MovieSpokenLanguageWhereInput!]
   createdAt: DateTimeFilter
-  language: String
+  iso_639_1: String
   movies: MovieListRelationFilter
+  name: String
   updatedAt: DateTimeFilter
 }
 
@@ -4536,6 +4916,43 @@ input MovieStatsOrderByWithRelationAndSearchRelevanceInput {
   timesWatchedCount: SortOrder
   totalLikesCount: SortOrder
   totalRatingsCount: SortOrder
+}
+
+type MovieStatsSummary {
+  appearancesInLists: Int!
+  avgRating: Float!
+  totalLikes: Int!
+  totalViews: Int!
+}
+
+type MovieStatsTopAppearancesInLists {
+  appearancesInLists: Int!
+  movieId: String!
+  movieName: String!
+}
+
+type MovieStatsTopGenres {
+  genreId: String!
+  genreName: String!
+  movieCount: Int!
+}
+
+type MovieStatsTopLikes {
+  movieId: String!
+  movieName: String!
+  totalLikes: Int!
+}
+
+type MovieStatsTopRated {
+  avgRating: Float!
+  movieId: String!
+  movieName: String!
+}
+
+type MovieStatsTopViews {
+  movieId: String!
+  movieName: String!
+  totalViews: Int!
 }
 
 input MovieStatsUpdateOneWithoutMovieNestedInput {
@@ -4600,12 +5017,43 @@ type MovieStudio {
   _count: MovieStudioCount
   createdAt: DateTimeISO!
   id: String!
+  movies(cursor: MovieWhereUniqueInput, distinct: [MovieScalarFieldEnum!], orderBy: [MovieOrderByWithRelationAndSearchRelevanceInput!], skip: Int, take: Int, where: MovieWhereInput): [Movie!]!
   name: String!
   updatedAt: DateTimeISO!
 }
 
 type MovieStudioCount {
   movies(where: MovieWhereInput): Int!
+}
+
+type MovieStudioCountAggregate {
+  _all: Int!
+  createdAt: Int!
+  id: Int!
+  name: Int!
+  updatedAt: Int!
+}
+
+input MovieStudioCountOrderByAggregateInput {
+  createdAt: SortOrder
+  id: SortOrder
+  name: SortOrder
+  updatedAt: SortOrder
+}
+
+input MovieStudioCreateInput {
+  createdAt: DateTimeISO
+  id: String
+  movies: MovieCreateNestedManyWithoutStudiosInput
+  name: String!
+  updatedAt: DateTimeISO
+}
+
+input MovieStudioCreateManyInput {
+  createdAt: DateTimeISO
+  id: String
+  name: String!
+  updatedAt: DateTimeISO
 }
 
 input MovieStudioCreateNestedManyWithoutMoviesInput {
@@ -4626,10 +5074,48 @@ input MovieStudioCreateWithoutMoviesInput {
   updatedAt: DateTimeISO
 }
 
+type MovieStudioGroupBy {
+  _count: MovieStudioCountAggregate
+  _max: MovieStudioMaxAggregate
+  _min: MovieStudioMinAggregate
+  createdAt: DateTimeISO!
+  id: String!
+  name: String!
+  updatedAt: DateTimeISO!
+}
+
 input MovieStudioListRelationFilter {
   every: MovieStudioWhereInput
   none: MovieStudioWhereInput
   some: MovieStudioWhereInput
+}
+
+type MovieStudioMaxAggregate {
+  createdAt: DateTimeISO
+  id: String
+  name: String
+  updatedAt: DateTimeISO
+}
+
+input MovieStudioMaxOrderByAggregateInput {
+  createdAt: SortOrder
+  id: SortOrder
+  name: SortOrder
+  updatedAt: SortOrder
+}
+
+type MovieStudioMinAggregate {
+  createdAt: DateTimeISO
+  id: String
+  name: String
+  updatedAt: DateTimeISO
+}
+
+input MovieStudioMinOrderByAggregateInput {
+  createdAt: SortOrder
+  id: SortOrder
+  name: SortOrder
+  updatedAt: SortOrder
 }
 
 input MovieStudioOrderByRelationAggregateInput {
@@ -4645,6 +5131,16 @@ input MovieStudioOrderByRelevanceInput {
   fields: [MovieStudioOrderByRelevanceFieldEnum!]!
   search: String!
   sort: SortOrder!
+}
+
+input MovieStudioOrderByWithAggregationInput {
+  _count: MovieStudioCountOrderByAggregateInput
+  _max: MovieStudioMaxOrderByAggregateInput
+  _min: MovieStudioMinOrderByAggregateInput
+  createdAt: SortOrder
+  id: SortOrder
+  name: SortOrder
+  updatedAt: SortOrder
 }
 
 input MovieStudioOrderByWithRelationAndSearchRelevanceInput {
@@ -4671,6 +5167,24 @@ input MovieStudioScalarWhereInput {
   id: StringFilter
   name: StringFilter
   updatedAt: DateTimeFilter
+}
+
+input MovieStudioScalarWhereWithAggregatesInput {
+  AND: [MovieStudioScalarWhereWithAggregatesInput!]
+  NOT: [MovieStudioScalarWhereWithAggregatesInput!]
+  OR: [MovieStudioScalarWhereWithAggregatesInput!]
+  createdAt: DateTimeWithAggregatesFilter
+  id: StringWithAggregatesFilter
+  name: StringWithAggregatesFilter
+  updatedAt: DateTimeWithAggregatesFilter
+}
+
+input MovieStudioUpdateInput {
+  createdAt: DateTimeFieldUpdateOperationsInput
+  id: StringFieldUpdateOperationsInput
+  movies: MovieUpdateManyWithoutStudiosNestedInput
+  name: StringFieldUpdateOperationsInput
+  updatedAt: DateTimeFieldUpdateOperationsInput
 }
 
 input MovieStudioUpdateManyMutationInput {
@@ -4777,6 +5291,11 @@ input MovieUpdateManyWithWhereWithoutSpokenLanguagesInput {
   where: MovieScalarWhereInput!
 }
 
+input MovieUpdateManyWithWhereWithoutStudiosInput {
+  data: MovieUpdateManyMutationInput!
+  where: MovieScalarWhereInput!
+}
+
 input MovieUpdateManyWithoutGenresNestedInput {
   connect: [MovieWhereUniqueInput!]
   connectOrCreate: [MovieCreateOrConnectWithoutGenresInput!]
@@ -4814,6 +5333,19 @@ input MovieUpdateManyWithoutSpokenLanguagesNestedInput {
   update: [MovieUpdateWithWhereUniqueWithoutSpokenLanguagesInput!]
   updateMany: [MovieUpdateManyWithWhereWithoutSpokenLanguagesInput!]
   upsert: [MovieUpsertWithWhereUniqueWithoutSpokenLanguagesInput!]
+}
+
+input MovieUpdateManyWithoutStudiosNestedInput {
+  connect: [MovieWhereUniqueInput!]
+  connectOrCreate: [MovieCreateOrConnectWithoutStudiosInput!]
+  create: [MovieCreateWithoutStudiosInput!]
+  delete: [MovieWhereUniqueInput!]
+  deleteMany: [MovieScalarWhereInput!]
+  disconnect: [MovieWhereUniqueInput!]
+  set: [MovieWhereUniqueInput!]
+  update: [MovieUpdateWithWhereUniqueWithoutStudiosInput!]
+  updateMany: [MovieUpdateManyWithWhereWithoutStudiosInput!]
+  upsert: [MovieUpsertWithWhereUniqueWithoutStudiosInput!]
 }
 
 input MovieUpdateOneRequiredWithoutCrewMembersNestedInput {
@@ -4893,6 +5425,11 @@ input MovieUpdateWithWhereUniqueWithoutMovieListsInput {
 
 input MovieUpdateWithWhereUniqueWithoutSpokenLanguagesInput {
   data: MovieUpdateWithoutSpokenLanguagesInput!
+  where: MovieWhereUniqueInput!
+}
+
+input MovieUpdateWithWhereUniqueWithoutStudiosInput {
+  data: MovieUpdateWithoutStudiosInput!
   where: MovieWhereUniqueInput!
 }
 
@@ -5015,6 +5552,23 @@ input MovieUpdateWithoutSpokenLanguagesInput {
   watchedBy: MovieWatchedByUserUpdateManyWithoutMovieNestedInput
 }
 
+input MovieUpdateWithoutStudiosInput {
+  createdAt: DateTimeFieldUpdateOperationsInput
+  crewMembers: MovieCrewMemberOnMovieUpdateManyWithoutMovieNestedInput
+  genres: GenreUpdateManyWithoutMoviesNestedInput
+  id: StringFieldUpdateOperationsInput
+  inWatchlistByUsers: UserMovieWatchlistUpdateManyWithoutMovieNestedInput
+  keywordCategories: MovieKeywordCategoryUpdateManyWithoutMoviesNestedInput
+  likedBy: MovieLikedByUserUpdateManyWithoutMovieNestedInput
+  movieInfo: MovieInfoUpdateOneWithoutMovieNestedInput
+  movieLists: MovieListUpdateManyWithoutMoviesNestedInput
+  movieStats: MovieStatsUpdateOneWithoutMovieNestedInput
+  ratedBy: MovieRatingUpdateManyWithoutMovieNestedInput
+  spokenLanguages: MovieSpokenLanguageUpdateManyWithoutMoviesNestedInput
+  updatedAt: DateTimeFieldUpdateOperationsInput
+  watchedBy: MovieWatchedByUserUpdateManyWithoutMovieNestedInput
+}
+
 input MovieUpdateWithoutWatchedByInput {
   createdAt: DateTimeFieldUpdateOperationsInput
   crewMembers: MovieCrewMemberOnMovieUpdateManyWithoutMovieNestedInput
@@ -5047,6 +5601,12 @@ input MovieUpsertWithWhereUniqueWithoutMovieListsInput {
 input MovieUpsertWithWhereUniqueWithoutSpokenLanguagesInput {
   create: MovieCreateWithoutSpokenLanguagesInput!
   update: MovieUpdateWithoutSpokenLanguagesInput!
+  where: MovieWhereUniqueInput!
+}
+
+input MovieUpsertWithWhereUniqueWithoutStudiosInput {
+  create: MovieCreateWithoutStudiosInput!
+  update: MovieUpdateWithoutStudiosInput!
   where: MovieWhereUniqueInput!
 }
 
@@ -5416,6 +5976,11 @@ input MovieWhereUniqueInput {
 enum MoviefireAppUserRole {
   ADMIN
   USER
+}
+
+type MoviesPostedYearly {
+  totalMoviesPosted: Int!
+  year: Int!
 }
 
 input MoviesSearchCriteriaInput {
@@ -6095,50 +6660,62 @@ type Mutation {
   createManyGenre(data: [GenreCreateManyInput!]!, skipDuplicates: Boolean): AffectedRowsOutput!
   createManyMovie(data: [MovieCreateManyInput!]!, skipDuplicates: Boolean): AffectedRowsOutput!
   createManyMovieCrewMember(data: [MovieCrewMemberCreateManyInput!]!, skipDuplicates: Boolean): AffectedRowsOutput!
+  createManyMovieCrewMemberType(data: [MovieCrewMemberTypeCreateManyInput!]!, skipDuplicates: Boolean): AffectedRowsOutput!
   createManyMovieLikedByUser(data: [MovieLikedByUserCreateManyInput!]!, skipDuplicates: Boolean): AffectedRowsOutput!
   createManyMovieList(data: [MovieListCreateManyInput!]!, skipDuplicates: Boolean): AffectedRowsOutput!
+  createManyMovieListComment(data: [MovieListCommentCreateManyInput!]!, skipDuplicates: Boolean): AffectedRowsOutput!
   createManyMovieListLikedByUser(data: [MovieListLikedByUserCreateManyInput!]!, skipDuplicates: Boolean): AffectedRowsOutput!
   createManyMovieRating(data: [MovieRatingCreateManyInput!]!, skipDuplicates: Boolean): AffectedRowsOutput!
   createManyMovieReview(data: [MovieReviewCreateManyInput!]!, skipDuplicates: Boolean): AffectedRowsOutput!
   createManyMovieReviewLikedByUser(data: [MovieReviewLikedByUserCreateManyInput!]!, skipDuplicates: Boolean): AffectedRowsOutput!
   createManyMovieSpokenLanguage(data: [MovieSpokenLanguageCreateManyInput!]!, skipDuplicates: Boolean): AffectedRowsOutput!
+  createManyMovieStudio(data: [MovieStudioCreateManyInput!]!, skipDuplicates: Boolean): AffectedRowsOutput!
   createManyMovieWatchedByUser(data: [MovieWatchedByUserCreateManyInput!]!, skipDuplicates: Boolean): AffectedRowsOutput!
   createManyUserMovieWatchlist(data: [UserMovieWatchlistCreateManyInput!]!, skipDuplicates: Boolean): AffectedRowsOutput!
   createOneGenre(data: GenreCreateInput!): Genre!
   createOneMovie(data: MovieCreateInput!): Movie!
   createOneMovieCrewMember(data: MovieCrewMemberCreateInput!): MovieCrewMember!
+  createOneMovieCrewMemberType(data: MovieCrewMemberTypeCreateInput!): MovieCrewMemberType!
   createOneMovieLikedByUser(data: MovieLikedByUserCreateInput!): MovieLikedByUser!
   createOneMovieList(data: MovieListCreateInput!): MovieList!
+  createOneMovieListComment(data: MovieListCommentCreateInput!): MovieListComment!
   createOneMovieListLikedByUser(data: MovieListLikedByUserCreateInput!): MovieListLikedByUser!
   createOneMovieRating(data: MovieRatingCreateInput!): MovieRating!
   createOneMovieReview(data: MovieReviewCreateInput!): MovieReview!
   createOneMovieReviewLikedByUser(data: MovieReviewLikedByUserCreateInput!): MovieReviewLikedByUser!
   createOneMovieSpokenLanguage(data: MovieSpokenLanguageCreateInput!): MovieSpokenLanguage!
+  createOneMovieStudio(data: MovieStudioCreateInput!): MovieStudio!
   createOneMovieWatchedByUser(data: MovieWatchedByUserCreateInput!): MovieWatchedByUser!
   createOneMovifierAppUser(data: MovifierAppUserCreateInput!): UserRegisterOutput!
   createOneUserMovieWatchlist(data: UserMovieWatchlistCreateInput!): UserMovieWatchlist!
   deleteManyGenre(where: GenreWhereInput): AffectedRowsOutput!
   deleteManyMovie(where: MovieWhereInput): AffectedRowsOutput!
   deleteManyMovieCrewMember(where: MovieCrewMemberWhereInput): AffectedRowsOutput!
+  deleteManyMovieCrewMemberType(where: MovieCrewMemberTypeWhereInput): AffectedRowsOutput!
   deleteManyMovieLikedByUser(where: MovieLikedByUserWhereInput): AffectedRowsOutput!
   deleteManyMovieList(where: MovieListWhereInput): AffectedRowsOutput!
+  deleteManyMovieListComment(where: MovieListCommentWhereInput): AffectedRowsOutput!
   deleteManyMovieListLikedByUser(where: MovieListLikedByUserWhereInput): AffectedRowsOutput!
   deleteManyMovieRating(where: MovieRatingWhereInput): AffectedRowsOutput!
   deleteManyMovieReview(where: MovieReviewWhereInput): AffectedRowsOutput!
   deleteManyMovieReviewLikedByUser(where: MovieReviewLikedByUserWhereInput): AffectedRowsOutput!
   deleteManyMovieSpokenLanguage(where: MovieSpokenLanguageWhereInput): AffectedRowsOutput!
+  deleteManyMovieStudio(where: MovieStudioWhereInput): AffectedRowsOutput!
   deleteManyMovieWatchedByUser(where: MovieWatchedByUserWhereInput): AffectedRowsOutput!
   deleteManyUserMovieWatchlist(where: UserMovieWatchlistWhereInput): AffectedRowsOutput!
   deleteOneGenre(where: GenreWhereUniqueInput!): Genre
   deleteOneMovie(where: MovieWhereUniqueInput!): Movie
   deleteOneMovieCrewMember(where: MovieCrewMemberWhereUniqueInput!): MovieCrewMember
+  deleteOneMovieCrewMemberType(where: MovieCrewMemberTypeWhereUniqueInput!): MovieCrewMemberType
   deleteOneMovieLikedByUser(where: MovieLikedByUserWhereUniqueInput!): MovieLikedByUser
   deleteOneMovieList(where: MovieListWhereUniqueInput!): MovieList
+  deleteOneMovieListComment(where: MovieListCommentWhereUniqueInput!): MovieListComment
   deleteOneMovieListLikedByUser(where: MovieListLikedByUserWhereUniqueInput!): MovieListLikedByUser
   deleteOneMovieRating(where: MovieRatingWhereUniqueInput!): MovieRating
   deleteOneMovieReview(where: MovieReviewWhereUniqueInput!): MovieReview
   deleteOneMovieReviewLikedByUser(where: MovieReviewLikedByUserWhereUniqueInput!): MovieReviewLikedByUser
   deleteOneMovieSpokenLanguage(where: MovieSpokenLanguageWhereUniqueInput!): MovieSpokenLanguage
+  deleteOneMovieStudio(where: MovieStudioWhereUniqueInput!): MovieStudio
   deleteOneMovieWatchedByUser(where: MovieWatchedByUserWhereUniqueInput!): MovieWatchedByUser
   deleteOneUserMovieWatchlist(where: UserMovieWatchlistWhereUniqueInput!): UserMovieWatchlist
   fetchMovieFromTmdb(imdbId: String!): Movie
@@ -6146,37 +6723,46 @@ type Mutation {
   updateManyGenre(data: GenreUpdateManyMutationInput!, where: GenreWhereInput): AffectedRowsOutput!
   updateManyMovie(data: MovieUpdateManyMutationInput!, where: MovieWhereInput): AffectedRowsOutput!
   updateManyMovieCrewMember(data: MovieCrewMemberUpdateManyMutationInput!, where: MovieCrewMemberWhereInput): AffectedRowsOutput!
+  updateManyMovieCrewMemberType(data: MovieCrewMemberTypeUpdateManyMutationInput!, where: MovieCrewMemberTypeWhereInput): AffectedRowsOutput!
   updateManyMovieLikedByUser(data: MovieLikedByUserUpdateManyMutationInput!, where: MovieLikedByUserWhereInput): AffectedRowsOutput!
   updateManyMovieList(data: MovieListUpdateManyMutationInput!, where: MovieListWhereInput): AffectedRowsOutput!
+  updateManyMovieListComment(data: MovieListCommentUpdateManyMutationInput!, where: MovieListCommentWhereInput): AffectedRowsOutput!
   updateManyMovieListLikedByUser(data: MovieListLikedByUserUpdateManyMutationInput!, where: MovieListLikedByUserWhereInput): AffectedRowsOutput!
   updateManyMovieRating(data: MovieRatingUpdateManyMutationInput!, where: MovieRatingWhereInput): AffectedRowsOutput!
   updateManyMovieReview(data: MovieReviewUpdateManyMutationInput!, where: MovieReviewWhereInput): AffectedRowsOutput!
   updateManyMovieReviewLikedByUser(data: MovieReviewLikedByUserUpdateManyMutationInput!, where: MovieReviewLikedByUserWhereInput): AffectedRowsOutput!
   updateManyMovieSpokenLanguage(data: MovieSpokenLanguageUpdateManyMutationInput!, where: MovieSpokenLanguageWhereInput): AffectedRowsOutput!
+  updateManyMovieStudio(data: MovieStudioUpdateManyMutationInput!, where: MovieStudioWhereInput): AffectedRowsOutput!
   updateManyMovieWatchedByUser(data: MovieWatchedByUserUpdateManyMutationInput!, where: MovieWatchedByUserWhereInput): AffectedRowsOutput!
   updateManyUserMovieWatchlist(data: UserMovieWatchlistUpdateManyMutationInput!, where: UserMovieWatchlistWhereInput): AffectedRowsOutput!
   updateOneGenre(data: GenreUpdateInput!, where: GenreWhereUniqueInput!): Genre
   updateOneMovie(data: MovieUpdateInput!, where: MovieWhereUniqueInput!): Movie
   updateOneMovieCrewMember(data: MovieCrewMemberUpdateInput!, where: MovieCrewMemberWhereUniqueInput!): MovieCrewMember
+  updateOneMovieCrewMemberType(data: MovieCrewMemberTypeUpdateInput!, where: MovieCrewMemberTypeWhereUniqueInput!): MovieCrewMemberType
   updateOneMovieLikedByUser(data: MovieLikedByUserUpdateInput!, where: MovieLikedByUserWhereUniqueInput!): MovieLikedByUser
   updateOneMovieList(data: MovieListUpdateInput!, where: MovieListWhereUniqueInput!): MovieList
+  updateOneMovieListComment(data: MovieListCommentUpdateInput!, where: MovieListCommentWhereUniqueInput!): MovieListComment
   updateOneMovieListLikedByUser(data: MovieListLikedByUserUpdateInput!, where: MovieListLikedByUserWhereUniqueInput!): MovieListLikedByUser
   updateOneMovieRating(data: MovieRatingUpdateInput!, where: MovieRatingWhereUniqueInput!): MovieRating
   updateOneMovieReview(data: MovieReviewUpdateInput!, where: MovieReviewWhereUniqueInput!): MovieReview
   updateOneMovieReviewLikedByUser(data: MovieReviewLikedByUserUpdateInput!, where: MovieReviewLikedByUserWhereUniqueInput!): MovieReviewLikedByUser
   updateOneMovieSpokenLanguage(data: MovieSpokenLanguageUpdateInput!, where: MovieSpokenLanguageWhereUniqueInput!): MovieSpokenLanguage
+  updateOneMovieStudio(data: MovieStudioUpdateInput!, where: MovieStudioWhereUniqueInput!): MovieStudio
   updateOneMovieWatchedByUser(data: MovieWatchedByUserUpdateInput!, where: MovieWatchedByUserWhereUniqueInput!): MovieWatchedByUser
   updateOneUserMovieWatchlist(data: UserMovieWatchlistUpdateInput!, where: UserMovieWatchlistWhereUniqueInput!): UserMovieWatchlist
   upsertOneGenre(create: GenreCreateInput!, update: GenreUpdateInput!, where: GenreWhereUniqueInput!): Genre!
   upsertOneMovie(create: MovieCreateInput!, update: MovieUpdateInput!, where: MovieWhereUniqueInput!): Movie!
   upsertOneMovieCrewMember(create: MovieCrewMemberCreateInput!, update: MovieCrewMemberUpdateInput!, where: MovieCrewMemberWhereUniqueInput!): MovieCrewMember!
+  upsertOneMovieCrewMemberType(create: MovieCrewMemberTypeCreateInput!, update: MovieCrewMemberTypeUpdateInput!, where: MovieCrewMemberTypeWhereUniqueInput!): MovieCrewMemberType!
   upsertOneMovieLikedByUser(create: MovieLikedByUserCreateInput!, update: MovieLikedByUserUpdateInput!, where: MovieLikedByUserWhereUniqueInput!): MovieLikedByUser!
   upsertOneMovieList(create: MovieListCreateInput!, update: MovieListUpdateInput!, where: MovieListWhereUniqueInput!): MovieList!
+  upsertOneMovieListComment(create: MovieListCommentCreateInput!, update: MovieListCommentUpdateInput!, where: MovieListCommentWhereUniqueInput!): MovieListComment!
   upsertOneMovieListLikedByUser(create: MovieListLikedByUserCreateInput!, update: MovieListLikedByUserUpdateInput!, where: MovieListLikedByUserWhereUniqueInput!): MovieListLikedByUser!
   upsertOneMovieRating(create: MovieRatingCreateInput!, update: MovieRatingUpdateInput!, where: MovieRatingWhereUniqueInput!): MovieRating!
   upsertOneMovieReview(create: MovieReviewCreateInput!, update: MovieReviewUpdateInput!, where: MovieReviewWhereUniqueInput!): MovieReview!
   upsertOneMovieReviewLikedByUser(create: MovieReviewLikedByUserCreateInput!, update: MovieReviewLikedByUserUpdateInput!, where: MovieReviewLikedByUserWhereUniqueInput!): MovieReviewLikedByUser!
   upsertOneMovieSpokenLanguage(create: MovieSpokenLanguageCreateInput!, update: MovieSpokenLanguageUpdateInput!, where: MovieSpokenLanguageWhereUniqueInput!): MovieSpokenLanguage!
+  upsertOneMovieStudio(create: MovieStudioCreateInput!, update: MovieStudioUpdateInput!, where: MovieStudioWhereUniqueInput!): MovieStudio!
   upsertOneMovieWatchedByUser(create: MovieWatchedByUserCreateInput!, update: MovieWatchedByUserUpdateInput!, where: MovieWatchedByUserWhereUniqueInput!): MovieWatchedByUser!
   upsertOneUserMovieWatchlist(create: UserMovieWatchlistCreateInput!, update: UserMovieWatchlistUpdateInput!, where: UserMovieWatchlistWhereUniqueInput!): UserMovieWatchlist!
 }
@@ -6304,23 +6890,31 @@ type Query {
   aggregateGenre(cursor: GenreWhereUniqueInput, orderBy: [GenreOrderByWithRelationAndSearchRelevanceInput!], skip: Int, take: Int, where: GenreWhereInput): AggregateGenre!
   aggregateMovie(cursor: MovieWhereUniqueInput, orderBy: [MovieOrderByWithRelationAndSearchRelevanceInput!], skip: Int, take: Int, where: MovieWhereInput): AggregateMovie!
   aggregateMovieCrewMember(cursor: MovieCrewMemberWhereUniqueInput, orderBy: [MovieCrewMemberOrderByWithRelationAndSearchRelevanceInput!], skip: Int, take: Int, where: MovieCrewMemberWhereInput): AggregateMovieCrewMember!
+  aggregateMovieCrewMemberType(cursor: MovieCrewMemberTypeWhereUniqueInput, orderBy: [MovieCrewMemberTypeOrderByWithRelationAndSearchRelevanceInput!], skip: Int, take: Int, where: MovieCrewMemberTypeWhereInput): AggregateMovieCrewMemberType!
   aggregateMovieLikedByUser(cursor: MovieLikedByUserWhereUniqueInput, orderBy: [MovieLikedByUserOrderByWithRelationAndSearchRelevanceInput!], skip: Int, take: Int, where: MovieLikedByUserWhereInput): AggregateMovieLikedByUser!
   aggregateMovieList(cursor: MovieListWhereUniqueInput, orderBy: [MovieListOrderByWithRelationAndSearchRelevanceInput!], skip: Int, take: Int, where: MovieListWhereInput): AggregateMovieList!
+  aggregateMovieListComment(cursor: MovieListCommentWhereUniqueInput, orderBy: [MovieListCommentOrderByWithRelationAndSearchRelevanceInput!], skip: Int, take: Int, where: MovieListCommentWhereInput): AggregateMovieListComment!
   aggregateMovieListLikedByUser(cursor: MovieListLikedByUserWhereUniqueInput, orderBy: [MovieListLikedByUserOrderByWithRelationAndSearchRelevanceInput!], skip: Int, take: Int, where: MovieListLikedByUserWhereInput): AggregateMovieListLikedByUser!
   aggregateMovieRating(cursor: MovieRatingWhereUniqueInput, orderBy: [MovieRatingOrderByWithRelationAndSearchRelevanceInput!], skip: Int, take: Int, where: MovieRatingWhereInput): AggregateMovieRating!
   aggregateMovieReview(cursor: MovieReviewWhereUniqueInput, orderBy: [MovieReviewOrderByWithRelationAndSearchRelevanceInput!], skip: Int, take: Int, where: MovieReviewWhereInput): AggregateMovieReview!
   aggregateMovieReviewLikedByUser(cursor: MovieReviewLikedByUserWhereUniqueInput, orderBy: [MovieReviewLikedByUserOrderByWithRelationAndSearchRelevanceInput!], skip: Int, take: Int, where: MovieReviewLikedByUserWhereInput): AggregateMovieReviewLikedByUser!
   aggregateMovieSpokenLanguage(cursor: MovieSpokenLanguageWhereUniqueInput, orderBy: [MovieSpokenLanguageOrderByWithRelationAndSearchRelevanceInput!], skip: Int, take: Int, where: MovieSpokenLanguageWhereInput): AggregateMovieSpokenLanguage!
+  aggregateMovieStudio(cursor: MovieStudioWhereUniqueInput, orderBy: [MovieStudioOrderByWithRelationAndSearchRelevanceInput!], skip: Int, take: Int, where: MovieStudioWhereInput): AggregateMovieStudio!
   aggregateMovieWatchedByUser(cursor: MovieWatchedByUserWhereUniqueInput, orderBy: [MovieWatchedByUserOrderByWithRelationAndSearchRelevanceInput!], skip: Int, take: Int, where: MovieWatchedByUserWhereInput): AggregateMovieWatchedByUser!
   aggregateUserMovieWatchlist(cursor: UserMovieWatchlistWhereUniqueInput, orderBy: [UserMovieWatchlistOrderByWithRelationAndSearchRelevanceInput!], skip: Int, take: Int, where: UserMovieWatchlistWhereInput): AggregateUserMovieWatchlist!
+  appStats: AppStats!
   findFirstGenre(cursor: GenreWhereUniqueInput, distinct: [GenreScalarFieldEnum!], orderBy: [GenreOrderByWithRelationAndSearchRelevanceInput!], skip: Int, take: Int, where: GenreWhereInput): Genre
   findFirstGenreOrThrow(cursor: GenreWhereUniqueInput, distinct: [GenreScalarFieldEnum!], orderBy: [GenreOrderByWithRelationAndSearchRelevanceInput!], skip: Int, take: Int, where: GenreWhereInput): Genre
   findFirstMovie(cursor: MovieWhereUniqueInput, distinct: [MovieScalarFieldEnum!], orderBy: [MovieOrderByWithRelationAndSearchRelevanceInput!], skip: Int, take: Int, where: MovieWhereInput): Movie
   findFirstMovieCrewMember(cursor: MovieCrewMemberWhereUniqueInput, distinct: [MovieCrewMemberScalarFieldEnum!], orderBy: [MovieCrewMemberOrderByWithRelationAndSearchRelevanceInput!], skip: Int, take: Int, where: MovieCrewMemberWhereInput): MovieCrewMember
   findFirstMovieCrewMemberOrThrow(cursor: MovieCrewMemberWhereUniqueInput, distinct: [MovieCrewMemberScalarFieldEnum!], orderBy: [MovieCrewMemberOrderByWithRelationAndSearchRelevanceInput!], skip: Int, take: Int, where: MovieCrewMemberWhereInput): MovieCrewMember
+  findFirstMovieCrewMemberType(cursor: MovieCrewMemberTypeWhereUniqueInput, distinct: [MovieCrewMemberTypeScalarFieldEnum!], orderBy: [MovieCrewMemberTypeOrderByWithRelationAndSearchRelevanceInput!], skip: Int, take: Int, where: MovieCrewMemberTypeWhereInput): MovieCrewMemberType
+  findFirstMovieCrewMemberTypeOrThrow(cursor: MovieCrewMemberTypeWhereUniqueInput, distinct: [MovieCrewMemberTypeScalarFieldEnum!], orderBy: [MovieCrewMemberTypeOrderByWithRelationAndSearchRelevanceInput!], skip: Int, take: Int, where: MovieCrewMemberTypeWhereInput): MovieCrewMemberType
   findFirstMovieLikedByUser(cursor: MovieLikedByUserWhereUniqueInput, distinct: [MovieLikedByUserScalarFieldEnum!], orderBy: [MovieLikedByUserOrderByWithRelationAndSearchRelevanceInput!], skip: Int, take: Int, where: MovieLikedByUserWhereInput): MovieLikedByUser
   findFirstMovieLikedByUserOrThrow(cursor: MovieLikedByUserWhereUniqueInput, distinct: [MovieLikedByUserScalarFieldEnum!], orderBy: [MovieLikedByUserOrderByWithRelationAndSearchRelevanceInput!], skip: Int, take: Int, where: MovieLikedByUserWhereInput): MovieLikedByUser
   findFirstMovieList(cursor: MovieListWhereUniqueInput, distinct: [MovieListScalarFieldEnum!], orderBy: [MovieListOrderByWithRelationAndSearchRelevanceInput!], skip: Int, take: Int, where: MovieListWhereInput): MovieList
+  findFirstMovieListComment(cursor: MovieListCommentWhereUniqueInput, distinct: [MovieListCommentScalarFieldEnum!], orderBy: [MovieListCommentOrderByWithRelationAndSearchRelevanceInput!], skip: Int, take: Int, where: MovieListCommentWhereInput): MovieListComment
+  findFirstMovieListCommentOrThrow(cursor: MovieListCommentWhereUniqueInput, distinct: [MovieListCommentScalarFieldEnum!], orderBy: [MovieListCommentOrderByWithRelationAndSearchRelevanceInput!], skip: Int, take: Int, where: MovieListCommentWhereInput): MovieListComment
   findFirstMovieListLikedByUser(cursor: MovieListLikedByUserWhereUniqueInput, distinct: [MovieListLikedByUserScalarFieldEnum!], orderBy: [MovieListLikedByUserOrderByWithRelationAndSearchRelevanceInput!], skip: Int, take: Int, where: MovieListLikedByUserWhereInput): MovieListLikedByUser
   findFirstMovieListLikedByUserOrThrow(cursor: MovieListLikedByUserWhereUniqueInput, distinct: [MovieListLikedByUserScalarFieldEnum!], orderBy: [MovieListLikedByUserOrderByWithRelationAndSearchRelevanceInput!], skip: Int, take: Int, where: MovieListLikedByUserWhereInput): MovieListLikedByUser
   findFirstMovieListOrThrow(cursor: MovieListWhereUniqueInput, distinct: [MovieListScalarFieldEnum!], orderBy: [MovieListOrderByWithRelationAndSearchRelevanceInput!], skip: Int, take: Int, where: MovieListWhereInput): MovieList
@@ -6333,6 +6927,8 @@ type Query {
   findFirstMovieReviewOrThrow(cursor: MovieReviewWhereUniqueInput, distinct: [MovieReviewScalarFieldEnum!], orderBy: [MovieReviewOrderByWithRelationAndSearchRelevanceInput!], skip: Int, take: Int, where: MovieReviewWhereInput): MovieReview
   findFirstMovieSpokenLanguage(cursor: MovieSpokenLanguageWhereUniqueInput, distinct: [MovieSpokenLanguageScalarFieldEnum!], orderBy: [MovieSpokenLanguageOrderByWithRelationAndSearchRelevanceInput!], skip: Int, take: Int, where: MovieSpokenLanguageWhereInput): MovieSpokenLanguage
   findFirstMovieSpokenLanguageOrThrow(cursor: MovieSpokenLanguageWhereUniqueInput, distinct: [MovieSpokenLanguageScalarFieldEnum!], orderBy: [MovieSpokenLanguageOrderByWithRelationAndSearchRelevanceInput!], skip: Int, take: Int, where: MovieSpokenLanguageWhereInput): MovieSpokenLanguage
+  findFirstMovieStudio(cursor: MovieStudioWhereUniqueInput, distinct: [MovieStudioScalarFieldEnum!], orderBy: [MovieStudioOrderByWithRelationAndSearchRelevanceInput!], skip: Int, take: Int, where: MovieStudioWhereInput): MovieStudio
+  findFirstMovieStudioOrThrow(cursor: MovieStudioWhereUniqueInput, distinct: [MovieStudioScalarFieldEnum!], orderBy: [MovieStudioOrderByWithRelationAndSearchRelevanceInput!], skip: Int, take: Int, where: MovieStudioWhereInput): MovieStudio
   findFirstMovieWatchedByUser(cursor: MovieWatchedByUserWhereUniqueInput, distinct: [MovieWatchedByUserScalarFieldEnum!], orderBy: [MovieWatchedByUserOrderByWithRelationAndSearchRelevanceInput!], skip: Int, take: Int, where: MovieWatchedByUserWhereInput): MovieWatchedByUser
   findFirstMovieWatchedByUserOrThrow(cursor: MovieWatchedByUserWhereUniqueInput, distinct: [MovieWatchedByUserScalarFieldEnum!], orderBy: [MovieWatchedByUserOrderByWithRelationAndSearchRelevanceInput!], skip: Int, take: Int, where: MovieWatchedByUserWhereInput): MovieWatchedByUser
   findFirstUserMovieWatchlist(cursor: UserMovieWatchlistWhereUniqueInput, distinct: [UserMovieWatchlistScalarFieldEnum!], orderBy: [UserMovieWatchlistOrderByWithRelationAndSearchRelevanceInput!], skip: Int, take: Int, where: UserMovieWatchlistWhereInput): UserMovieWatchlist
@@ -6342,52 +6938,74 @@ type Query {
   getGenre(where: GenreWhereUniqueInput!): Genre
   getMovie(where: MovieWhereUniqueInput!): Movie
   getMovieCrewMember(where: MovieCrewMemberWhereUniqueInput!): MovieCrewMember
+  getMovieCrewMemberType(where: MovieCrewMemberTypeWhereUniqueInput!): MovieCrewMemberType
   getMovieDecades: Decades!
   getMovieLikedByUser(where: MovieLikedByUserWhereUniqueInput!): MovieLikedByUser
   getMovieList(where: MovieListWhereUniqueInput!): MovieList
+  getMovieListComment(where: MovieListCommentWhereUniqueInput!): MovieListComment
   getMovieListLikedByUser(where: MovieListLikedByUserWhereUniqueInput!): MovieListLikedByUser
   getMovieRating(where: MovieRatingWhereUniqueInput!): MovieRating
   getMovieReview(where: MovieReviewWhereUniqueInput!): MovieReview
   getMovieReviewLikedByUser(where: MovieReviewLikedByUserWhereUniqueInput!): MovieReviewLikedByUser
   getMovieSpokenLanguage(where: MovieSpokenLanguageWhereUniqueInput!): MovieSpokenLanguage
+  getMovieStudio(where: MovieStudioWhereUniqueInput!): MovieStudio
   getMovieWatchedByUser(where: MovieWatchedByUserWhereUniqueInput!): MovieWatchedByUser
   getUserMovieWatchlist(where: UserMovieWatchlistWhereUniqueInput!): UserMovieWatchlist
   groupByGenre(by: [GenreScalarFieldEnum!]!, having: GenreScalarWhereWithAggregatesInput, orderBy: [GenreOrderByWithAggregationInput!], skip: Int, take: Int, where: GenreWhereInput): [GenreGroupBy!]!
   groupByMovie(by: [MovieScalarFieldEnum!]!, having: MovieScalarWhereWithAggregatesInput, orderBy: [MovieOrderByWithAggregationInput!], skip: Int, take: Int, where: MovieWhereInput): [MovieGroupBy!]!
   groupByMovieCrewMember(by: [MovieCrewMemberScalarFieldEnum!]!, having: MovieCrewMemberScalarWhereWithAggregatesInput, orderBy: [MovieCrewMemberOrderByWithAggregationInput!], skip: Int, take: Int, where: MovieCrewMemberWhereInput): [MovieCrewMemberGroupBy!]!
+  groupByMovieCrewMemberType(by: [MovieCrewMemberTypeScalarFieldEnum!]!, having: MovieCrewMemberTypeScalarWhereWithAggregatesInput, orderBy: [MovieCrewMemberTypeOrderByWithAggregationInput!], skip: Int, take: Int, where: MovieCrewMemberTypeWhereInput): [MovieCrewMemberTypeGroupBy!]!
   groupByMovieLikedByUser(by: [MovieLikedByUserScalarFieldEnum!]!, having: MovieLikedByUserScalarWhereWithAggregatesInput, orderBy: [MovieLikedByUserOrderByWithAggregationInput!], skip: Int, take: Int, where: MovieLikedByUserWhereInput): [MovieLikedByUserGroupBy!]!
   groupByMovieList(by: [MovieListScalarFieldEnum!]!, having: MovieListScalarWhereWithAggregatesInput, orderBy: [MovieListOrderByWithAggregationInput!], skip: Int, take: Int, where: MovieListWhereInput): [MovieListGroupBy!]!
+  groupByMovieListComment(by: [MovieListCommentScalarFieldEnum!]!, having: MovieListCommentScalarWhereWithAggregatesInput, orderBy: [MovieListCommentOrderByWithAggregationInput!], skip: Int, take: Int, where: MovieListCommentWhereInput): [MovieListCommentGroupBy!]!
   groupByMovieListLikedByUser(by: [MovieListLikedByUserScalarFieldEnum!]!, having: MovieListLikedByUserScalarWhereWithAggregatesInput, orderBy: [MovieListLikedByUserOrderByWithAggregationInput!], skip: Int, take: Int, where: MovieListLikedByUserWhereInput): [MovieListLikedByUserGroupBy!]!
   groupByMovieRating(by: [MovieRatingScalarFieldEnum!]!, having: MovieRatingScalarWhereWithAggregatesInput, orderBy: [MovieRatingOrderByWithAggregationInput!], skip: Int, take: Int, where: MovieRatingWhereInput): [MovieRatingGroupBy!]!
   groupByMovieReview(by: [MovieReviewScalarFieldEnum!]!, having: MovieReviewScalarWhereWithAggregatesInput, orderBy: [MovieReviewOrderByWithAggregationInput!], skip: Int, take: Int, where: MovieReviewWhereInput): [MovieReviewGroupBy!]!
   groupByMovieReviewLikedByUser(by: [MovieReviewLikedByUserScalarFieldEnum!]!, having: MovieReviewLikedByUserScalarWhereWithAggregatesInput, orderBy: [MovieReviewLikedByUserOrderByWithAggregationInput!], skip: Int, take: Int, where: MovieReviewLikedByUserWhereInput): [MovieReviewLikedByUserGroupBy!]!
   groupByMovieSpokenLanguage(by: [MovieSpokenLanguageScalarFieldEnum!]!, having: MovieSpokenLanguageScalarWhereWithAggregatesInput, orderBy: [MovieSpokenLanguageOrderByWithAggregationInput!], skip: Int, take: Int, where: MovieSpokenLanguageWhereInput): [MovieSpokenLanguageGroupBy!]!
+  groupByMovieStudio(by: [MovieStudioScalarFieldEnum!]!, having: MovieStudioScalarWhereWithAggregatesInput, orderBy: [MovieStudioOrderByWithAggregationInput!], skip: Int, take: Int, where: MovieStudioWhereInput): [MovieStudioGroupBy!]!
   groupByMovieWatchedByUser(by: [MovieWatchedByUserScalarFieldEnum!]!, having: MovieWatchedByUserScalarWhereWithAggregatesInput, orderBy: [MovieWatchedByUserOrderByWithAggregationInput!], skip: Int, take: Int, where: MovieWatchedByUserWhereInput): [MovieWatchedByUserGroupBy!]!
   groupByUserMovieWatchlist(by: [UserMovieWatchlistScalarFieldEnum!]!, having: UserMovieWatchlistScalarWhereWithAggregatesInput, orderBy: [UserMovieWatchlistOrderByWithAggregationInput!], skip: Int, take: Int, where: UserMovieWatchlistWhereInput): [UserMovieWatchlistGroupBy!]!
   me: MovifierAppUser
   movie(where: MovieWhereUniqueInput!): Movie
   movieCrewMember(where: MovieCrewMemberWhereUniqueInput!): MovieCrewMember
+  movieCrewMemberType(where: MovieCrewMemberTypeWhereUniqueInput!): MovieCrewMemberType
+  movieCrewMemberTypes(cursor: MovieCrewMemberTypeWhereUniqueInput, distinct: [MovieCrewMemberTypeScalarFieldEnum!], orderBy: [MovieCrewMemberTypeOrderByWithRelationAndSearchRelevanceInput!], skip: Int, take: Int, where: MovieCrewMemberTypeWhereInput): [MovieCrewMemberType!]!
   movieCrewMembers(cursor: MovieCrewMemberWhereUniqueInput, distinct: [MovieCrewMemberScalarFieldEnum!], orderBy: [MovieCrewMemberOrderByWithRelationAndSearchRelevanceInput!], skip: Int, take: Int, where: MovieCrewMemberWhereInput): [MovieCrewMember!]!
   movieLikedByUser(where: MovieLikedByUserWhereUniqueInput!): MovieLikedByUser
   movieLikedByUsers(cursor: MovieLikedByUserWhereUniqueInput, distinct: [MovieLikedByUserScalarFieldEnum!], orderBy: [MovieLikedByUserOrderByWithRelationAndSearchRelevanceInput!], skip: Int, take: Int, where: MovieLikedByUserWhereInput): [MovieLikedByUser!]!
   movieList(where: MovieListWhereUniqueInput!): MovieList
+  movieListComment(where: MovieListCommentWhereUniqueInput!): MovieListComment
+  movieListComments(cursor: MovieListCommentWhereUniqueInput, distinct: [MovieListCommentScalarFieldEnum!], orderBy: [MovieListCommentOrderByWithRelationAndSearchRelevanceInput!], skip: Int, take: Int, where: MovieListCommentWhereInput): [MovieListComment!]!
   movieListLikedByUser(where: MovieListLikedByUserWhereUniqueInput!): MovieListLikedByUser
   movieListLikedByUsers(cursor: MovieListLikedByUserWhereUniqueInput, distinct: [MovieListLikedByUserScalarFieldEnum!], orderBy: [MovieListLikedByUserOrderByWithRelationAndSearchRelevanceInput!], skip: Int, take: Int, where: MovieListLikedByUserWhereInput): [MovieListLikedByUser!]!
   movieLists(cursor: MovieListWhereUniqueInput, distinct: [MovieListScalarFieldEnum!], orderBy: [MovieListOrderByWithRelationAndSearchRelevanceInput!], skip: Int, take: Int, where: MovieListWhereInput): [MovieList!]!
   movieRating(where: MovieRatingWhereUniqueInput!): MovieRating
   movieRatings(cursor: MovieRatingWhereUniqueInput, distinct: [MovieRatingScalarFieldEnum!], orderBy: [MovieRatingOrderByWithRelationAndSearchRelevanceInput!], skip: Int, take: Int, where: MovieRatingWhereInput): [MovieRating!]!
+  movieRatingsSearchWithMovies(cursor: MovieRatingWhereUniqueInput, distinct: [MovieRatingScalarFieldEnum!], orderBy: [MovieRatingOrderByWithRelationAndSearchRelevanceInput!], searchCriteria: MoviesSearchCriteriaInput!, skip: Int, take: Int, where: MovieRatingWhereInput): [MovieRating!]!
   movieReview(where: MovieReviewWhereUniqueInput!): MovieReview
   movieReviewLikedByUser(where: MovieReviewLikedByUserWhereUniqueInput!): MovieReviewLikedByUser
   movieReviewLikedByUsers(cursor: MovieReviewLikedByUserWhereUniqueInput, distinct: [MovieReviewLikedByUserScalarFieldEnum!], orderBy: [MovieReviewLikedByUserOrderByWithRelationAndSearchRelevanceInput!], skip: Int, take: Int, where: MovieReviewLikedByUserWhereInput): [MovieReviewLikedByUser!]!
   movieReviews(cursor: MovieReviewWhereUniqueInput, distinct: [MovieReviewScalarFieldEnum!], orderBy: [MovieReviewOrderByWithRelationAndSearchRelevanceInput!], skip: Int, take: Int, where: MovieReviewWhereInput): [MovieReview!]!
+  movieReviewsSearchWithMovies(cursor: MovieReviewWhereUniqueInput, distinct: [MovieReviewScalarFieldEnum!], orderBy: [MovieReviewOrderByWithRelationAndSearchRelevanceInput!], searchCriteria: MoviesSearchCriteriaInput!, skip: Int, take: Int, where: MovieReviewWhereInput): [MovieReview!]!
   movieSpokenLanguage(where: MovieSpokenLanguageWhereUniqueInput!): MovieSpokenLanguage
   movieSpokenLanguages(cursor: MovieSpokenLanguageWhereUniqueInput, distinct: [MovieSpokenLanguageScalarFieldEnum!], orderBy: [MovieSpokenLanguageOrderByWithRelationAndSearchRelevanceInput!], skip: Int, take: Int, where: MovieSpokenLanguageWhereInput): [MovieSpokenLanguage!]!
+  movieStudio(where: MovieStudioWhereUniqueInput!): MovieStudio
+  movieStudios(cursor: MovieStudioWhereUniqueInput, distinct: [MovieStudioScalarFieldEnum!], orderBy: [MovieStudioOrderByWithRelationAndSearchRelevanceInput!], skip: Int, take: Int, where: MovieStudioWhereInput): [MovieStudio!]!
   movieWatchedByUser(where: MovieWatchedByUserWhereUniqueInput!): MovieWatchedByUser
   movieWatchedByUsers(cursor: MovieWatchedByUserWhereUniqueInput, distinct: [MovieWatchedByUserScalarFieldEnum!], orderBy: [MovieWatchedByUserOrderByWithRelationAndSearchRelevanceInput!], skip: Int, take: Int, where: MovieWatchedByUserWhereInput): [MovieWatchedByUser!]!
   movies(cursor: MovieWhereUniqueInput, distinct: [MovieScalarFieldEnum!], orderBy: [MovieOrderByWithRelationAndSearchRelevanceInput!], skip: Int, take: Int, where: MovieWhereInput): [Movie!]!
+  moviesPostedYearly(first: Int! = 10): [MoviesPostedYearly!]!
   movifierAppUsers(cursor: MovifierAppUserWhereUniqueInput, distinct: [MovifierAppUserScalarFieldEnum!], orderBy: [MovifierAppUserOrderByWithRelationAndSearchRelevanceInput!], skip: Int, take: Int, where: MovifierAppUserWhereInput): [MovifierAppUser!]!
   searchMovieLists(cursor: MovieListWhereUniqueInput, distinct: [MovieListScalarFieldEnum!], orderBy: [MovieListOrderByWithRelationAndSearchRelevanceInput!], searchCriteria: MovieListSearchCriteriaInput!, skip: Int, take: Int, where: MovieListWhereInput): [MovieList!]!
   searchMovies(cursor: MovieWhereUniqueInput, distinct: [MovieScalarFieldEnum!], orderBy: [MovieOrderByWithRelationAndSearchRelevanceInput!], searchCriteria: MoviesSearchCriteriaInput!, skip: Int, take: Int, where: MovieWhereInput): [Movie!]!
+  topCrewMemberTypes(first: Int! = 10): [TopMovieCrewMemberType!]!
+  topGenres(first: Int! = 10): [MovieStatsTopGenres!]!
+  topMoviesByAppearancesInLists(first: Int! = 10): [MovieStatsTopAppearancesInLists!]!
+  topMoviesByLikes(first: Int! = 10): [MovieStatsTopLikes!]!
+  topMoviesByRating(first: Int! = 10): [MovieStatsTopRated!]!
+  topMoviesByViews(first: Int! = 10): [MovieStatsTopViews!]!
+  topPersons(first: Int! = 10): [TopPerson!]!
   userMovieWatchlist(where: UserMovieWatchlistWhereUniqueInput!): UserMovieWatchlist
   userMovieWatchlists(cursor: UserMovieWatchlistWhereUniqueInput, distinct: [UserMovieWatchlistScalarFieldEnum!], orderBy: [UserMovieWatchlistOrderByWithRelationAndSearchRelevanceInput!], skip: Int, take: Int, where: UserMovieWatchlistWhereInput): [UserMovieWatchlist!]!
 }
@@ -6447,6 +7065,19 @@ input StringWithAggregatesFilter {
   notIn: [String!]
   search: String
   startsWith: String
+}
+
+type TopMovieCrewMemberType {
+  movieCount: Int!
+  movieCrewMemberTypeId: String!
+  movieCrewMemberTypeName: String!
+}
+
+type TopPerson {
+  appearancesInMovies: Int!
+  personId: String!
+  personName: String!
+  popularity: Float!
 }
 
 input UserLoginInput {

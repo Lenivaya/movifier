@@ -1,13 +1,15 @@
-import "reflect-metadata";
+import 'reflect-metadata'
 
-import path from "path";
-import { applyResolversEnhanceMap } from "@/generated/type-graphql";
-import { resolvers, resolversEnhanceMap } from "@/graphql/resolvers";
-import { buildSchema } from "type-graphql";
+import path from 'path'
+import { applyResolversEnhanceMap } from '@/generated/type-graphql'
+import { resolvers, resolversEnhanceMap } from '@/graphql/resolvers'
+import { buildSchema } from 'type-graphql'
+import authChecker from 'typegraphql-authchecker'
 
-applyResolversEnhanceMap(resolversEnhanceMap);
+applyResolversEnhanceMap(resolversEnhanceMap)
 buildSchema({
-    resolvers,
-    emitSchemaFile: path.resolve(__dirname, "../generated-schema.graphql"),
-    validate: false,
-});
+  resolvers,
+  emitSchemaFile: path.resolve(__dirname, '../generated-schema.graphql'),
+  authChecker: authChecker,
+  validate: false
+})

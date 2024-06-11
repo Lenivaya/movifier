@@ -18,7 +18,7 @@ if (cluster.isPrimary) {
   buildApp()
     .then(([app, endpoint]) => {
       app
-        .listen({ port: app.config.PORT })
+        .listen({ port: app.config.PORT, host: app.config.HOST })
         .then((address) =>
           console.log(
             `Worker process ${process.pid} is listening on ${address}${endpoint}`

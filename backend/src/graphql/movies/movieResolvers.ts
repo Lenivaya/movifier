@@ -1,18 +1,23 @@
 import { NonEmptyArray } from 'type-graphql'
 import {
+  AggregateMovieResolver,
   MovieCrewMemberCrudResolver,
   MovieCrewMemberOnMovieRelationsResolver,
   MovieCrewMemberRelationsResolver,
+  MovieCrewMemberTypeCrudResolver,
+  MovieCrewMemberTypeRelationsResolver,
   MovieCrudResolver,
+  MovieListCommentCrudResolver,
+  MovieListCommentRelationsResolver,
   MovieListCrudResolver,
   MovieListLikedByUserCrudResolver,
   MovieListLikedByUserRelationsResolver,
   MovieListRelationsResolver,
-  MovieRatingCrudResolver,
-  MovieRatingRelationsResolver,
   MovieRelationsResolver,
   MovieSpokenLanguageCrudResolver,
   MovieSpokenLanguageRelationsResolver,
+  MovieStudioCrudResolver,
+  MovieStudioRelationsResolver,
   MovieWatchedByUserCrudResolver,
   MovieWatchedByUserRelationsResolver,
   UserMovieWatchlistCrudResolver,
@@ -21,6 +26,7 @@ import {
 import { CustomMoviesResolver } from '@/graphql/movies/customMoviesResolver'
 import { CustomMoviesTmdbResolver } from '@/graphql/movies/moviesTmdbFetcher/customMoviesTmdbResolver'
 import { CustomMovieListResolver } from '@/graphql/movies/movieList/customMovieListResolver'
+import { MovieStatsSummaryResolver } from '@/graphql/movies/movieStatsSummaryResolver'
 
 export const moviesResolvers: NonEmptyArray<Function> = [
   CustomMoviesResolver,
@@ -31,16 +37,22 @@ export const moviesResolvers: NonEmptyArray<Function> = [
   MovieCrewMemberOnMovieRelationsResolver,
   MovieWatchedByUserCrudResolver,
   MovieWatchedByUserRelationsResolver,
-  MovieRatingCrudResolver,
-  MovieRatingRelationsResolver,
   UserMovieWatchlistCrudResolver,
   UserMovieWatchlistRelationsResolver,
   MovieListCrudResolver,
   MovieListRelationsResolver,
+  MovieListCommentCrudResolver,
+  MovieListCommentRelationsResolver,
   MovieSpokenLanguageCrudResolver,
   MovieSpokenLanguageRelationsResolver,
   MovieCrewMemberCrudResolver,
   MovieCrewMemberRelationsResolver,
   MovieListLikedByUserCrudResolver,
-  MovieListLikedByUserRelationsResolver
+  MovieListLikedByUserRelationsResolver,
+  MovieCrewMemberTypeCrudResolver,
+  MovieCrewMemberTypeRelationsResolver,
+  MovieStudioCrudResolver,
+  MovieStudioRelationsResolver,
+  AggregateMovieResolver,
+  MovieStatsSummaryResolver
 ]
