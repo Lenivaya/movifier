@@ -1,14 +1,14 @@
-import * as TypeGraphQL from "type-graphql";
+import * as TypeGraphQL from 'type-graphql'
 
 @TypeGraphQL.InputType()
 export class UserLoginInput {
   @TypeGraphQL.Field((_type) => String, {
-    nullable: false,
+    nullable: false
   })
-  email!: string;
+  email!: string
 
   @TypeGraphQL.Field((_type) => String, {
-    nullable: false,
+    nullable: false
   })
-  password!: string;
+  password!: string
 }
