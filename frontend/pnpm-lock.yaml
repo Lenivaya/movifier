@@ -219,9 +219,6 @@ importers:
       prettier-config-standard:
         specifier: ^7.0.0
         version: 7.0.0(prettier@3.2.5)
-      prettier-plugin-astro-organize-imports:
-        specifier: ^0.4.8
-        version: 0.4.8(prettier-plugin-tailwindcss@0.5.14(prettier@3.2.5))(prettier@3.2.5)
       prettier-plugin-fix-imports:
         specifier: ^0.0.1
         version: 0.0.1(prettier@3.2.5)
@@ -285,9 +282,6 @@ packages:
   '@ardatan/sync-fetch@0.0.1':
     resolution: {integrity: sha512-xhlTqH0m31mnsG0tIP4ETgfSB6gXDaYYsUWTrlUV93fFQPI9dd8hE0Ot6MHLCtqgB32hwJAC3YZMWlXZw7AleA==}
     engines: {node: '>=14'}
-
-  '@astrojs/compiler@2.8.0':
-    resolution: {integrity: sha512-yrpD1WRGqsJwANaDIdtHo+YVjvIOFAjC83lu5qENIgrafwZcJgSXDuwVMXOgok4tFzpeKLsFQ6c3FoUdloLWBQ==}
 
   '@babel/code-frame@7.24.2':
     resolution: {integrity: sha512-y5+tLQyV8pg3fsiln67BVLD1P13Eg4lh5RW9mF0zUuvLrv9uIQ4MCL+CRT+FTsBlBjcIan6PGsLcBN0m3ClUyQ==}
@@ -3666,18 +3660,6 @@ packages:
     peerDependencies:
       prettier: ^2.6.0 || ^3.0.0
 
-  prettier-plugin-astro-organize-imports@0.4.8:
-    resolution: {integrity: sha512-CwE/oT6to5udHK7vSTZiU6TTzdbfBW5WiLTzmkmC2zmF9dREJNtqVPB/Yl11I763cEf/sxyORa+jOf88f8aEyg==}
-    peerDependencies:
-      prettier: ^3.0
-      prettier-plugin-astro: '*'
-      prettier-plugin-tailwindcss: '*'
-    peerDependenciesMeta:
-      prettier-plugin-astro:
-        optional: true
-      prettier-plugin-tailwindcss:
-        optional: true
-
   prettier-plugin-fix-imports@0.0.1:
     resolution: {integrity: sha512-adafzNqk7OxmLkh2S0kekUCYpmwVf6594O/RTEXhsckCRVC0MM/ghWy3tbQFKq26YvIv+b32BrvUjcWgpUlBgA==}
     peerDependencies:
@@ -4552,8 +4534,6 @@ snapshots:
       node-fetch: 2.7.0
     transitivePeerDependencies:
       - encoding
-
-  '@astrojs/compiler@2.8.0': {}
 
   '@babel/code-frame@7.24.2':
     dependencies:
@@ -8561,14 +8541,6 @@ snapshots:
   prettier-config-standard@7.0.0(prettier@3.2.5):
     dependencies:
       prettier: 3.2.5
-
-  prettier-plugin-astro-organize-imports@0.4.8(prettier-plugin-tailwindcss@0.5.14(prettier@3.2.5))(prettier@3.2.5):
-    dependencies:
-      '@astrojs/compiler': 2.8.0
-      prettier: 3.2.5
-      typescript: 5.4.5
-    optionalDependencies:
-      prettier-plugin-tailwindcss: 0.5.14(prettier@3.2.5)
 
   prettier-plugin-fix-imports@0.0.1(prettier@3.2.5):
     dependencies:

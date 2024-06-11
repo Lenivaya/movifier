@@ -8,6 +8,10 @@ services:
       POSTGRES_DB: movifier-db
     ports:
       - "5432:5432"
+    expose:
+      - "5432"
+    networks:
+      - movifier-network
     volumes:
       - movifier-db-data:/var/lib/postgresql/data
 
@@ -26,20 +30,73 @@ services:
     container_name: imgpush
     volumes:
       - data-images:/images
-    networks:
-      - movifier-network
     ports:
       - "5000:5000"
+    expose:
+      - "5000"
+    networks:
+      - movifier-network
     environment:
       - MAX_UPLOADS_PER_MINUTE=100
       - MAX_UPLOADS_PER_HOUR=5000
       - MAX_UPLOADS_PER_DAY=100000
       - NAME_STRATEGY=uuidv4
-#      - VALID_SIZES=[150,300,600,900,1200]
+  #      - VALID_SIZES=[150,300,600,900,1200]
+
+  movifier-graphql-api:
+    container_name: movifier-graphql-api
+    ports:
+      - "4000:4000"
+    expose:
+      - "4000"
+    build:
+      context: backend
+      dockerfile: local.dev.Dockerfile
+    depends_on:
+      - redis
+      - database
+      - imgpush
+    networks:
+      - movifier-network
+    volumes:
+      - backend-graphql-api:/app
+
+  movifier-nextjs-frontend:
+    container_name: movifier-nextjs-frontend
+    build:
+      context: frontend
+      dockerfile: local.dev.Dockerfile
+    ports:
+      - "3000:3000"
+    expose:
+      - "3000"
+    networks:
+      - movifier-network
+    volumes:
+      - ./frontend/src:/app/src
+      - ./frontend/public:/app/public
+    depends_on:
+      - movifier-graphql-api
+      - imgpush
+
+  nginx:
+    image: nginx:stable-alpine
+    volumes:
+      - ./nginx/:/etc/nginx/:ro
+    ports:
+      - 80:80
+      - 443:443
+      - 8443:8443
+    networks:
+      - movifier-network
+    depends_on:
+      - movifier-graphql-api
+      - movifier-nextjs-frontend
 
 volumes:
   movifier-db-data:
   data-images:
+  backend-graphql-api:
 networks:
   movifier-network:
     driver: bridge

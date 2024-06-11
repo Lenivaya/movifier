@@ -6,6 +6,8 @@
   "scripts": {
     "dev": "next dev --turbo",
     "build": "next build",
+    "build:compile": "next build --experimental-build-mode compile",
+    "build:generate": "next build --experimental-build-mode generate",
     "start": "next start",
     "lint": "next lint",
     "code:format": "prettier --write src",
@@ -86,7 +88,6 @@
     "postcss": "^8.4.38",
     "prettier": "^3.2.5",
     "prettier-config-standard": "^7.0.0",
-    "prettier-plugin-astro-organize-imports": "^0.4.8",
     "prettier-plugin-fix-imports": "^0.0.1",
     "prettier-plugin-tailwindcss": "^0.5.14",
     "tailwindcss": "^3.4.3",
