@@ -93,6 +93,8 @@ export const MovieListPage: FC<MovieListPageItemFragment> = ({
   const user = useCurrentUser()
   const isSignedIn = isSome(user)
 
+  const isAuthor = user?.id === movieListAuthor.id
+
   const { data: userWatchedMovieIdsData } =
     useGetUserWatchedMovieIdsInMovieListSuspenseQuery({
       refetchWritePolicy: 'overwrite',
@@ -139,20 +141,22 @@ export const MovieListPage: FC<MovieListPageItemFragment> = ({
           />
         </CardDescription>
 
-        <div className={'absolute flex flex-col right-10 gap-3'}>
-          <AppTooltip text={'Edit movie list'}>
-            <Link href={`/movie-lists/${id}/edit`}>
-              <Button>
-                <FilePenLine />
+        {isAuthor && (
+          <div className={'absolute flex flex-col right-10 gap-3'}>
+            <AppTooltip text={'Edit movie list'}>
+              <Link href={`/movie-lists/${id}/edit`}>
+                <Button>
+                  <FilePenLine />
+                </Button>
+              </Link>
+            </AppTooltip>
+            <AppTooltip text={'Delete movie list'}>
+              <Button variant={'destructive'}>
+                <DeleteMovieListButton id={id} />
               </Button>
-            </Link>
-          </AppTooltip>
-          <AppTooltip text={'Delete movie list'}>
-            <Button variant={'destructive'}>
-              <DeleteMovieListButton id={id} />
-            </Button>
-          </AppTooltip>
-        </div>
+            </AppTooltip>
+          </div>
+        )}
       </CardHeader>
 
       <Separator className={'mb-10'} />
