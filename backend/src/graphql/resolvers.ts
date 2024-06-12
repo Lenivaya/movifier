@@ -77,5 +77,11 @@ export const resolversEnhanceMap: ResolversEnhanceMap = {
   },
   MovieRating: movieRatingActionsConfig,
   MovieReview: movieReviewActionsConfig,
-  MovieLikedByUser: movieLikesActionsConfig
+  MovieLikedByUser: movieLikesActionsConfig,
+  MovifierAppUser: {
+    movifierAppUsers: [Authorized([isAuthenticated, isAdmin])],
+    createManyMovifierAppUser: [Authorized([isAuthenticated, isAdmin])],
+    deleteManyMovifierAppUser: [Authorized([isAuthenticated, isAdmin])],
+    deleteOneMovifierAppUser: [Authorized([isAuthenticated, isAdmin])]
+  }
 }
